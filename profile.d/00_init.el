@@ -1,7 +1,3 @@
-;;複数ウィンドウを開かないようにする
-;;http://d.hatena.ne.jp/hiroshi128/20100831/1283225839
-(setq ns-pop-up-frames nil)
-
 ;;http://d.hatena.ne.jp/khiker/20090711/emacsfullscreen
 ;;(set-frame-parameter nil 'fullscreen 'fullboth)   ; ウインドウマネージャの枠もなくなる完全な最大化(--fullscreenオプションをつけた場合と同じ)
 (set-frame-parameter nil 'fullscreen 'maximized)  ; いわゆる右上の最大化するボタンを押しての最大化
