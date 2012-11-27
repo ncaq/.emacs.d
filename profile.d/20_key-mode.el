@@ -22,3 +22,8 @@
 ;;改行時のインデント
 ;;http://murakan.cocolog-nifty.com/blog/2009/01/emacs-tips-a8a4.html
 (global-set-key "\C-m" 'newline-and-indent)
+
+;;バッファ全部閉じる
+(defun close-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
