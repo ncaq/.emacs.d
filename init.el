@@ -5,12 +5,8 @@
   (server-start))
 
 ;; ロードパスの設定
-(setq load-path (append (list
-			 (expand-file-name "~/.emacs.d/site-lisp")
-			 (expand-file-name "~/.emacs.d/install")
-                         )
-                        load-path))
-
+(add-to-list 'load-path "~/.emacs.d/install/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
 ;;別ファイルから読み込む
 (require 'init-loader)
 (init-loader-load "~/.emacs.d/profile.d") ; 設定ファイルがあるディレクトリを指定
