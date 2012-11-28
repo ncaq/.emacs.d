@@ -1,11 +1,5 @@
 ;;http://navi2ch.sourceforge.net/
-(setq load-path
-      (append
-       (list
-	(expand-file-name "~/.emacs.d/navi2ch-1.8.4")
-	)
-       load-path))
-
+(add-to-list 'load-path "~/.emacs.d/bigprogram.d/navi2ch/")
 (autoload 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
 
 ;;GUIによって設定されたデータをここに遷す
