@@ -1,7 +1,11 @@
-;;VC++のインテリセンス的な
-;;http://d.hatena.ne.jp/nyaasan/20071216/p1
 (require 'flymake)
 
+;;http://d.hatena.ne.jp/sugyan/20100705/1278306885
+(defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
+  (setq flymake-check-was-interrupted t))
+(ad-activate 'flymake-post-syntax-check)
+
+;;http://d.hatena.ne.jp/nyaasan/20071216/p1
 (defun flymake-cc-init ()
   (let* ((temp-file(flymake-init-create-temp-buffer-copy
 		    'flymake-create-temp-inplace))
@@ -9,16 +13,10 @@
 		     temp-file
 		     (file-name-directory buffer-file-name))))
     (list "g++" (list "-std=c++0x" "-Wall" "-Werror" "-Wextra" "-fsyntax-only" local-file))))
-
-(push '("\\.cc$" flymake-cc-init) flymake-allowed-file-name-masks)
-(push '("\\.cpp$" flymake-cc-init) flymake-allowed-file-name-masks)
 (add-hook 'c++-mode-hook
 	  '(lambda ()
+	     (flymake-cc-init)
 	     (flymake-mode t)))
-
-;;.*hppも
-(push '("\\.hpp\\'" flymake-master-make-header-init flymake-master-cleanup)
-      flymake-allowed-file-name-masks)
 
 ;;Haskellバージョン
 ;;http://d.hatena.ne.jp/nushio/20071201
@@ -53,3 +51,4 @@
 (add-hook 'haskell-mode-hook
           '(lambda ()
              (flymake-mode)))
+
