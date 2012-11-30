@@ -5,9 +5,6 @@
 ;;バッファを閉じる,複数ウインドウだったらそのウインドウも
 (global-set-key "\C-q" 'kill-buffer-and-window)
 
-;;履歴を開く
-(global-set-key "\C-cf" 'anything-recentf)
-
 ;;コンパイル
 (global-set-key "\C-cc" 'compile)
 
