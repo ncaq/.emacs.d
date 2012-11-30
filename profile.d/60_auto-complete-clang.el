@@ -10,3 +10,5 @@
   ;;   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources))
   ;;   (setq ac-clang-prefix-header "/プリコンパイル済みヘッダの場所/stdafx.pch")
   )
+
+(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)

@@ -21,4 +21,3 @@
   (indent-region(point-min)(point-max)))
 
 (define-key global-map [(control meta \\)] 'code-format-custom)
-
