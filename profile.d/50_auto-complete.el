@@ -8,7 +8,7 @@
 (require 'auto-complete-config)
 
 ;;自動で補完画面を出すならt。補完キーを押すまで補完画面を出さないならnil
-(setq ac-auto-start 3)
+(setq ac-auto-start nil)
 
 ;;補完画面からさらにそのヘルプ画面が出るまでの遅延（秒）
 (setq ac-quick-help-delay 0)

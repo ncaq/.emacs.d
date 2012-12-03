@@ -1,7 +1,7 @@
 ;;C-hをbackspaceに
-;;(c-toggle-hungry-state 1)のために後者
-;;(keyboard-translate ?\C-h ?\C-?)
-(global-set-key "\C-h" 'delete-backward-char)
+;; C-hをBackSpaceキーに変更
+(keyboard-translate ?\C-h ?\C-?)
+(global-set-key "\C-h" nil)
 
 ;; C-kで行全体を削除
 ;; Vimのdd (行削除) に慣れた僕からすれば、C-kはぬるい。行全体削除するのにC-a C-k C-kって押さないといけない。めんどいので、行頭にいる場n合は最後の改行もまとめて削除するようにします。
