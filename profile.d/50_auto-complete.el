@@ -1,6 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/bigprogram.d/popup-el/");popup.elが必要
 
-
 ;;http://cx4a.org/software/auto-complete/manual.ja.html
 (add-to-list 'load-path "~/.emacs.d/bigprogram.d/auto-complete/");ここにインストールしてるのでー
 
@@ -21,7 +20,7 @@
 
 ;;http://www.nomtats.com/2010/11/auto-completeelemacs.html
 (defun my-ac-config ()
-  (global-set-key "\C-\\" 'ac-start)
+  (global-set-key [?\C-,] 'ac-start)
   ;; C-n/C-p で候補を選択
   (define-key ac-complete-mode-map "\C-n" 'ac-next)
   (define-key ac-complete-mode-map "\C-p" 'ac-previous)
