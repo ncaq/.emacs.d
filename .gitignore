@@ -1,5 +1,9 @@
+%backup%~
+.emacs-places
+.gitignore
 ac-comphist.dat
 auto-save-list
 backup
+elpa
+tramp
 undohist
-.emacs-places
