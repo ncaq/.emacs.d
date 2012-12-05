@@ -11,8 +11,8 @@
 ;;自動で補完画面を出すならt。補完キーを押すまで補完画面を出さないならnil
 (setq ac-auto-start nil)
 
-;;ヘルプを即表示
-(setq ac-quick-help-delay 0)
+;;ヘルプを即表示…しない.崩れるので.
+(setq ac-quick-help-delay 1)
 
 ;; 大文字・小文字を区別しない
 (setq ac-ignore-case t)
