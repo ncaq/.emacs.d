@@ -10,7 +10,7 @@
 (global-auto-complete-mode t)
 
 ;;自動で補完画面を出すならt。補完キーを押すまで補完画面を出さないならnil
-(setq ac-auto-start nil)
+(setq ac-auto-start 3)
 
 ;;ヘルプを即表示…する,pos-tipを使えば崩れ無くなった
 (setq ac-quick-help-delay 0)
@@ -20,6 +20,6 @@
 
 ;;補完キー指定
 (ac-set-trigger-key "TAB")
-(define-key ac-mode-map (kbd "C-,") 'auto-complete)
+(define-key ac-mode-map (kbd "C-'") 'auto-complete)
 (setq ac-use-menu-map t)
 
