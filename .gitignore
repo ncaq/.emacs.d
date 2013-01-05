@@ -1,0 +1,7 @@
+%backup%~
+.emacs-places
+ac-comphist.dat
+auto-save-list
+backup
+tramp
+undohist
