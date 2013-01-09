@@ -9,12 +9,13 @@
   ;; EmacsFrameClass   => Emacs Frame Class
   ;; NSGraphicsContext => NS Graphics Context
   (subword-mode 1)
-  ;;makefileの場所が特殊
-  (setq compile-command "make -C ../")
   ;;gnu globalを自動的に有効にする
   ;;http://d.hatena.ne.jp/Nos/20120723/1343204409
   (gtags-mode 1)
   (setq gtags-suggested-key-mapping t)
+
+  ;;omake-mode起動
+  (omake-mode)
   )
 
 (add-hook 'c++-mode-hook 'ncaq-c++-mode-set)
