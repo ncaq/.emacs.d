@@ -10,4 +10,5 @@
 (add-to-list 'interpreter-mode-alist '("runghc" . haskell-mode))     ;#!/usr/bin/env runghc 用
 (add-to-list 'interpreter-mode-alist '("runhaskell" . haskell-mode)) ;#!/usr/bin/env runhaskell 用
 
+(add-hook 'haskell-mode-hook '(push 'ac-source-ghc-mod ac-sources));auto-completeの情報源としてghc-modの補完を追加
 

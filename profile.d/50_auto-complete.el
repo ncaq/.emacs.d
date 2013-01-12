@@ -7,7 +7,6 @@
 (require 'auto-complete-config)
 (ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/bigprogram.d/auto-complete/dict/")
-(global-auto-complete-mode t)
 
 ;;自動で補完画面を出すならt。補完キーを押すまで補完画面を出さないならnil
 (setq ac-auto-start 3)
@@ -22,10 +21,12 @@
 (ac-set-trigger-key "TAB")
 (define-key ac-mode-map (kbd "C-'") 'auto-complete)
 (setq ac-use-menu-map t)
+(global-auto-complete-mode t)
 
 ;;ファイル名補完どうして初期は無効なんですかね…
 ;;http://d.hatena.ne.jp/m2ym/20091108/1257680169
 (push 'ac-source-filename ac-sources)
 (push 'ac-source-files-in-current-dir ac-sources)
 ;;全てのバッファからデータ収集
-(push 'ac-source-words-in-same-mode-buffers ac-sources)
+(push 'ac-source-words-in-buffer ac-sources)
+

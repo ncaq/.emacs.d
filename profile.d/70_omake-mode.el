@@ -1,4 +1,4 @@
-;;C++で使え無い機能多いのでそれを無効化している
+;;C++で使え無い機能が多いのでそれは無効化している
 					; in .emacs:
 (add-to-list 'load-path "~/.emacs.d/bigprogram.d/omake-mode/")
 (require 'omake-mode)
