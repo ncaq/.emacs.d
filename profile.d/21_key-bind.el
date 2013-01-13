@@ -28,7 +28,7 @@
 (defun close-all-buffers ()
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
-(global-set-key (kbd "C-Q") 'close-all-buffers)
+(global-set-key [(control shift q)] 'close-all-buffers)
 
 ;;C-\で全ての文字に対し字下げを行う
 (defun code-format-custom ()

@@ -13,9 +13,6 @@
   ;;http://d.hatena.ne.jp/Nos/20120723/1343204409
   (gtags-mode)
   (setq gtags-suggested-key-mapping t)
-  ;;omake-mode起動
-  (omake-mode)
   )
 
 (add-hook 'c-mode-common-hook 'ncaq-c++-mode-set)
-

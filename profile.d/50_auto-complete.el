@@ -4,6 +4,7 @@
 
 ;;http://cx4a.org/software/auto-complete/manual.ja.html
 (add-to-list 'load-path "~/.emacs.d/bigprogram.d/auto-complete/");ここにインストールしてるので
+(require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
 
@@ -20,9 +21,6 @@
 (ac-set-trigger-key "TAB")
 (define-key ac-mode-map (kbd "C-'") 'auto-complete)
 (setq ac-use-menu-map t)
-
-;;グローバルでautocompleteを有効に
-(global-auto-complete-mode t)
 
 ;;ファイル名補完どうして初期は無効なんですかね…
 ;; 全てのバッファで`ac-sources`の先頭にファイル名辞書情報源を追加する
