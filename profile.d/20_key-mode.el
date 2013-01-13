@@ -1,8 +1,3 @@
-;;C-hをbackspaceに
-;; C-hをBackSpaceキーに変更
-(keyboard-translate ?\C-h ?\C-?)
-(global-set-key "\C-h" nil)
-
 ;; C-kで行全体を削除
 ;; Vimのdd (行削除) に慣れた僕からすれば、C-kはぬるい。行全体削除するのにC-a C-k C-kって押さないといけない。めんどいので、行頭にいる場n合は最後の改行もまとめて削除するようにします。
 ;; C-kで行全体を削除
@@ -22,8 +17,3 @@
 ;;改行時のインデント
 ;;http://murakan.cocolog-nifty.com/blog/2009/01/emacs-tips-a8a4.html
 (global-set-key "\C-m" 'newline-and-indent)
-
-;;バッファ全部閉じる
-(defun close-all-buffers ()
-  (interactive)
-  (mapc 'kill-buffer (buffer-list)))

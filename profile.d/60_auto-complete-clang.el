@@ -2,8 +2,7 @@
 (require 'auto-complete-clang)
 
 (defun my-ac-cc-mode-setup ()
-  (push 'ac-source-clang ac-sources)
-  (push 'ac-source-yasnippet ac-sources)
+  (add-to-list 'ac-sources '(ac-source-clang . ac-source-yasnippet))
   )
 
 (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
