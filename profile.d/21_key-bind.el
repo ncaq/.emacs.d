@@ -22,7 +22,7 @@
 ;;バッファを閉じる,複数ウインドウだったらそのウインドウも
 (global-set-key "\C-q" 'kill-buffer-and-window)
 ;;元々の関数を別に割り当て
-(global-set-key "\C-cq" 'quoted-insert)
+(global-set-key "\C-cC-q" 'quoted-insert)
 
 ;;C-Qバッファ全部閉じる
 (defun close-all-buffers ()
