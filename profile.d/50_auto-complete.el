@@ -11,6 +11,9 @@
 ;;自動で補完画面を出すならt。補完キーを押すまで補完画面を出さないならnil
 (setq ac-auto-start 3)
 
+;;30行表示
+(setq ac-menu-height 22)
+
 ;;ヘルプを即表示…する,pos-tipを使えば崩れ無くなった
 (setq ac-quick-help-delay 0)
 
