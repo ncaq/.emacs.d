@@ -11,6 +11,3 @@
 
 ;;バッファリストをanythingのものに
 (global-set-key "\C-xb" 'anything-buffers-list)
-
-(require 'anything-include)
-(add-to-list 'anything-sources 'anything-c-source-include)

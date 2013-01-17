@@ -14,8 +14,6 @@
   (gtags-mode)
   (setq gtags-suggested-key-mapping t)
   ;;コンパイルコマンドをいじくる(多分これ使い方違う)
-  ;;OMake -pあるからいらないんだよな…
-  (setq compile-command "./program.out")
   )
 
 (add-hook 'c-mode-common-hook 'ncaq-c++-mode-set)

@@ -8,10 +8,10 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
-;;自動で補完画面を出すならt。補完キーを押すまで補完画面を出さないならnil
-(setq ac-auto-start 3)
+;;自動で補完画面を出すならt.補完キーを押すまで補完画面を出さないならnil.数字なら文字数.
+(setq ac-auto-start 5)
 
-;;30行表示
+;;22行表示
 (setq ac-menu-height 22)
 
 ;;ヘルプを即表示…する,pos-tipを使えば崩れ無くなった
@@ -19,6 +19,9 @@
 
 ;; 大文字・小文字を区別しない
 (setq ac-ignore-case t)
+
+;;曖昧補完
+(setq ac-use-fuzzy t)
 
 ;;補完キー指定
 (ac-set-trigger-key "TAB")
