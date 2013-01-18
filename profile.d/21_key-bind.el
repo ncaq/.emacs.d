@@ -1,6 +1,8 @@
-(global-unset-key "\C-h")
+;;emacsを終了しようだなんてとんでもない!
+(global-unset-key (kbd "C-x C-c"))
 
 ;;C-hをBackSpaceに変更
+(global-unset-key "\C-h")
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\M-h" 'backward-kill-word)
 (global-set-key (kbd "C-M-h") 'kill-whole-line)
@@ -22,12 +24,6 @@
 
 ;;ヘッダファイルに居る場合はソースファイルに,またはその逆
 (global-set-key "\M-t" 'ff-find-other-file)
-
-;;バッファを閉じる,複数ウインドウだったらそのウインドウも
-(global-set-key "\C-q" 'kill-buffer-and-window)
-
-;;元々の関数を別に割り当て
-(global-set-key "\C-cC-q" 'quoted-insert)
 
 ;;C-Qバッファ全部閉じる
 (defun close-all-buffers ()

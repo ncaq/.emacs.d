@@ -1,7 +1,3 @@
-(require 'anything)
-(require 'anything-config)
-(require 'anything-match-plugin)
-
 (defvar anything-c-source-ghc-mod
   '((name . "ghc-browse-document")
     (init . anything-c-source-ghc-mod)

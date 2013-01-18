@@ -10,4 +10,4 @@
       (pop-to-buffer buf))))
 
 ;;バッファリストをanythingのものに
-(global-set-key "\C-xb" 'anything-buffers-list)
+(global-set-key "\C-xb" 'anything)
