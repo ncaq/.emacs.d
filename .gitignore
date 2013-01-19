@@ -1,6 +1,7 @@
 %backup%~
 .emacs-places
 ac-comphist.dat
+anything-c-adaptive-history
 auto-save-list
 backup
 tramp

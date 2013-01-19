@@ -25,7 +25,10 @@
 ;;ヘッダファイルに居る場合はソースファイルに,またはその逆
 (global-set-key "\M-t" 'ff-find-other-file)
 
-;;C-Qバッファ全部閉じる
+;;C-qバッファ閉じる
+(global-set-key (kbd "C-q") 'kill-buffer-and-window)
+
+;;C-M-S-qバッファ全部閉じる
 (defun close-all-buffers ()
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
