@@ -1,7 +1,7 @@
 (require 'pos-tip)
-(add-to-list 'load-path "~/.emacs.d/bigprogram.d/auto-complete/lib/popup-el/")
+(add-to-list 'load-path "~/.emacs.d/bigprogram.d/popup-el/")
 (require 'popup)
-(add-to-list 'load-path "~/.emacs.d/bigprogram.d/auto-complete/lib/fuzzy-el/")
+(add-to-list 'load-path "~/.emacs.d/bigprogram.d/fuzzy-el/")
 (require 'fuzzy)
 
 ;;http://cx4a.org/software/auto-complete/manual.ja.html
