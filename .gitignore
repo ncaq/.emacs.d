@@ -6,3 +6,5 @@ auto-save-list
 backup
 tramp
 undohist
+
+*.elc
