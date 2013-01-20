@@ -3,7 +3,7 @@
 (add-to-list 'exec-path (concat (getenv "HOME") "/.cabal/bin"))
 
 ;;ghc-modのパス追加
-(add-to-list 'load-path "~/.cabal/share/ghc-mod-1.11.0/")
+(add-to-list 'load-path "~/.cabal/share/ghc-mod-1.11.3/")
 
 (autoload 'ghc-init "ghc" nil t)
 

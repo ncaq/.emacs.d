@@ -21,7 +21,7 @@
 ;;何やってるのかは良くわからん
 ;;http://ubulog.blogspot.jp/2007/09/emacs_09.html
 
-(defface my-face-b-1 '((t (:background "#AAAAAA"))) nil)
+(defface my-face-b-1 '((t (:background "#DDDDDD"))) nil)
 (defface my-face-b-2 '((t (:background "#C0FFEE"))) nil);コーヒー
 (defface my-face-u-1 '((t (:background "#FCFCFC"))) nil)
 (defvar my-face-b-1 'my-face-b-1)

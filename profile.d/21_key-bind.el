@@ -37,8 +37,9 @@
 ;;C-\で全ての文字に対し字下げを行う
 (defun code-format-custom ()
   (interactive)
-  (mark-whole-buffer)
-  (indent-region(point-min)(point-max)))
+  (save-excursion
+    (mark-whole-buffer)
+    (indent-region(point-min)(point-max))))
 (global-set-key (kbd "C-\\") 'code-format-custom)
 
 ;;C-cC-eでeval-bufferを実行
