@@ -9,6 +9,7 @@
 (require 'anything-obsolete)
 (require 'anything-show-completion)
 (require 'descbinds-anything)
+(require 'anything-include)
 
 ;;http://d.hatena.ne.jp/kitokitoki/20111217/
 (defun anything-default-display-buffer (buf)

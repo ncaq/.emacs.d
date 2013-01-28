@@ -18,3 +18,28 @@
      (find (aref (buffer-name buffer) 0) " *"))
    (buffer-list)))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
+
+
+;; 外観変更
+(set-face-attribute
+ 'tabbar-default nil
+ :family "Ricty Discord"
+ :background "black"
+ :foreground "white"
+ :height 1.0)
+(set-face-attribute
+ 'tabbar-unselected nil
+ :background "black"
+ :foreground "white"
+ :box nil)
+(set-face-attribute
+ 'tabbar-selected nil
+ :background "black"
+ :foreground "red"
+ :box nil)
+(set-face-attribute
+ 'tabbar-button nil
+ :box nil)
+(set-face-attribute
+ 'tabbar-separator nil
+ :height 1.5)

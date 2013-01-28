@@ -15,15 +15,20 @@
 ;;でもこれC系言語だけの設定なんだよなぁ…
 (setq-default indent-tabs-mode t)
 
+;;背景を暗く
+(set-face-foreground 'default "white")
+(set-face-background 'default "black")
+(setq frame-background-mode 'dark)
+
 ;;↓の有効にすると,auto-complete-modeが荒ぶるんですよね
 ;;(require 'whitespace-mode)
 ;;なので古代使われていたらしき方法で.
 ;;何やってるのかは良くわからん
 ;;http://ubulog.blogspot.jp/2007/09/emacs_09.html
 
-(defface my-face-b-1 '((t (:background "#DDDDDD"))) nil)
-(defface my-face-b-2 '((t (:background "#C0FFEE"))) nil);コーヒー
-(defface my-face-u-1 '((t (:background "#FCFCFC"))) nil)
+(defface my-face-b-1 '((t (:background "#202000"))) nil :group 'font-lock-highlighting-faces)
+(defface my-face-b-2 '((t (:background "#200000"))) nil :group 'font-lock-highlighting-faces)
+(defface my-face-u-1 '((t (:background "#001000"))) nil :group 'font-lock-highlighting-faces)
 (defvar my-face-b-1 'my-face-b-1)
 (defvar my-face-b-2 'my-face-b-2)
 (defvar my-face-u-1 'my-face-u-1)

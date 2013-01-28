@@ -1,2 +1,2 @@
-(autoload 'disk "disk" "Save, revert, or find file." t)
-(global-set-key "\C-x C-s" 'disk)
+(require 'disk)
+(global-set-key (kbd "C-x C-s") 'disk)

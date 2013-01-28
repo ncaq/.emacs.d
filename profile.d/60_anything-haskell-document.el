@@ -26,5 +26,5 @@
 ;; M-x anything-ghc-browse-document() に対応するキーの割り当て
 ;; ghc-mod の設定のあとに書いた方がよいかもしれません
 (add-hook 'haskell-mode-hook
-  (lambda()
-    (define-key haskell-mode-map (kbd "C-M-d") 'anything-ghc-browse-document)))
+	  (lambda()
+	    (define-key haskell-mode-map (kbd "C-M-\'") 'anything-ghc-browse-document)))
