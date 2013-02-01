@@ -22,7 +22,6 @@
 ;;補完キー指定
 (ac-set-trigger-key "TAB")
 (define-key ac-mode-map (kbd "C-'") 'auto-complete)
-(setq ac-use-menu-map t)
 ;; 別にこれでも邪魔じゃないし良いや
 (define-key ac-completing-map "\C-n" 'ac-next)
 (define-key ac-completing-map "\C-p" 'ac-previous)
@@ -33,3 +32,4 @@
 
 ;;auto-completeが有効にならないモードで有効に,というか全てのモードで有効にして欲しい…
 (add-to-list 'ac-modes 'text-mode)
+(add-to-list 'ac-modes 'fundamental-mode)
