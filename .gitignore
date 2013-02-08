@@ -1,10 +1,9 @@
 %backup%~
-.emacs-places
 ac-comphist.dat
 anything-c-adaptive-history
-auto-save-list
-backup
+auto-save-list/
+elpa/
 tramp
-undohist
+undohist/
 
 *.elc

@@ -1,4 +1,4 @@
-(global-set-key (kbd "C-,")	'anything-migemo);C-xC-bは頻繁に打つにしてはめんどくさい
+(global-set-key (kbd "C-,")	'anything);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key (kbd "C-;")	'foreign-regexp/align);正規表現揃え(perl)
 (global-set-key (kbd "C-M-%")	'foreign-regexp/query-replace);正規表現置換(perl)
 (global-set-key (kbd "C-M-d")	'delete-horizontal-space);周辺の空白を全て削除
