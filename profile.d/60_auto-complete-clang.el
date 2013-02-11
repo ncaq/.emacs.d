@@ -5,7 +5,6 @@
 (defun ac-cc-mode-setup ()
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet ac-source-gtags) ac-sources)))
 
-
 (defun set-clang-flag ()
   (setq ac-clang-flags '(
 			 ;; "-w"

@@ -1,9 +1,10 @@
-%backup%~
+*
+*.elc
+
 ac-comphist.dat
 anything-c-adaptive-history
 auto-save-list/
 elpa/
 tramp
 undohist/
-
-*.elc
+%backup%~

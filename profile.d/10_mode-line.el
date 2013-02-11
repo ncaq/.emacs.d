@@ -1,8 +1,3 @@
-;; 行番号・桁番号を modeline に表示する
-(line-number-mode t)	 ;行番号
-(column-number-mode t) ;桁番号
-(size-indication-mode t);モードラインにファイルサイズ表示
-
 ;;http://d.hatena.ne.jp/sr10/20110227/1298735721
 ;;mode-lineは割合表示とかいらないので総行数を表示してください
 (setq mode-line-position
@@ -15,7 +10,6 @@
 (setq eol-mnemonic-mac "(CR)")
 (setq eol-mnemonic-unix "(LF)")
 
-
 ;;http://d.hatena.ne.jp/sonota88/20110224/1298557375
 ;;リージョン内の行数と文字数をモードラインに表示する(範囲指定している時だけ)
 (defun count-lines-and-chars ()
@@ -23,7 +17,7 @@
       (format "%d lines,%d chars "
               (count-lines (region-beginning) (region-end))
               (- (region-end) (region-beginning)))
-    ;;(count-lines-region (region-beginning) (region-end)) ;; これだとエコーエリアがチラつく
+			;;(count-lines-region (region-beginning) (region-end)) ;; これだとエコーエリアがチラつく
     ""))
 (add-to-list 'default-mode-line-format
              '(:eval (count-lines-and-chars)))

@@ -19,11 +19,10 @@
    (buffer-list)))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
-
-;; 外観変更
+;;外観変更
 (set-face-attribute
  'tabbar-default nil
- :family "Ricty Discord"
+ :family "Ricty"
  :background "black"
  :foreground "white"
  :height 1.0)
