@@ -4,7 +4,7 @@
 
 (add-hook 'minibuffer-setup-hook 'ibus-disable);mini buffer ではオフに
 (ibus-disable-isearch);isearch 時はオフに
-(setq ibus-cursor-color '("red" "white" "black"));IBusの状態によってカーソル色を変化させる ("on" "off" "disabled")
+(setq ibus-cursor-color '("red" "white" "green"));IBusの状態によってカーソル色を変化させる ("on" "off" "disabled")
 (setq ibus-isearch-cursor-type 'hollow);インクリメンタル検索中のカーソル形状を変更する
 (setq ibus-prediction-window-position t);カーソル位置で予測候補ウィンドウを表示 (default はプリエディット領域の先頭位置に表示);;プリエディット領域 is 何
 (setq ibus-undo-by-committed-string t);アンドゥの時に、文字列を確定した位置ごとに戻るようにする
