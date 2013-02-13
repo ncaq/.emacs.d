@@ -1,5 +1,6 @@
 (require 'tabbar)
 (require 'tabbar-ruler)
+(require 'cl)
 (tabbar-mode 1)
 
 ;;http://d.hatena.ne.jp/tequilasunset/20110103/p1

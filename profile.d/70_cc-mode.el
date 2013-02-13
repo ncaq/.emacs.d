@@ -18,3 +18,18 @@
 (add-hook 'c-mode-common-hook 'ncaq-c++-mode-set)
 
 (add-to-list 'auto-mode-alist '("\\.h$" . c++-mode));*.hをc++モードで開く
+
+
+;;flymake
+;;makeファイルを使わない
+(require 'flymake)
+
+(defun flymake-cc-init ()
+  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+         (local-file  (file-relative-name
+                       temp-file
+                       (file-name-directory buffer-file-name))))
+    (list "g++" (list "-Wall" "-Wextra" "-fsyntax-only" local-file))))
+(push '("\\.cpp$" flymake-cc-init) flymake-allowed-file-name-masks)
+(add-hook 'c++-mode-hook 'flymake-mode-on)

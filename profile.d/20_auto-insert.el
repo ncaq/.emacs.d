@@ -8,7 +8,7 @@
 (setq auto-insert-alist
       (nconc '(
                ("\\.cpp$" . ["template.cpp" my-template])
-               ("\\.hpp$"   . ["template.hpp" my-template])
+               ("\\.hpp$" . ["template.hpp" my-template])
                ) auto-insert-alist))
 (require 'cl)
 

@@ -1,4 +1,5 @@
 					;(require 'anything-ipython)
+					;(require 'anything-migemo)
 (require 'anything-complete)
 (require 'anything-el-swank-fuzzy)
 (require 'anything-extension)
@@ -6,7 +7,6 @@
 (require 'anything-git-goto)
 (require 'anything-include)
 (require 'anything-match-plugin)
-					;(require 'anything-migemo)
 (require 'anything-obsolete)
 (require 'anything-show-completion)
 (require 'anything-startup)

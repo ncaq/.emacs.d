@@ -15,5 +15,6 @@
 			 ;; "`pkg-config --cflags-only-I gtkmm-utils`"
 					;GLUT
 			 "-I/usr/include/GL"
+			 "-I/usr/include/GL/internal"
 			 )))
 (add-hook 'c++-mode-hook 'set-clang-flag)

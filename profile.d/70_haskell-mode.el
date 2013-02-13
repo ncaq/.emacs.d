@@ -11,6 +11,7 @@
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
 
+(defvar haskell-mode-map);警告対策
 ;;HasktagをAnythingで扱う
 (add-to-list 'load-path "~/.emacs.d/bigprogram.d/anything-hasktags/")
 (require 'anything-hasktags)
@@ -18,7 +19,7 @@
 	  (lambda()
 	    (define-key haskell-mode-map (kbd "M-.") 'anything-hasktags-select)))
 
-
+(defvar ghc-mod)
 ;;Haskell向けのautocomplete
 ;;https://github.com/m2ym/auto-complete
 (ac-define-source ghc-mod

@@ -6,7 +6,8 @@
 (global-set-key (kbd "C-M-d")			'delete-horizontal-space);周辺の空白を全て削除
 (global-set-key (kbd "C-M-r")			'foreign-regexp/isearch-backward);正規表現後方検索(perl)
 (global-set-key (kbd "C-M-s")			'foreign-regexp/isearch-forward);正規表現前方検索(perl)
-(global-set-key (kbd "C-\\")			'code-format-custom);全ての文字に対し字下げを行う
+(global-set-key (kbd "C-\\")			'code-format-all);全ての文字に対し字下げを行う
+(global-set-key (kbd "C-a")			'move-beginning-of-line-Visual-Stdio-like);;Visual StdioライクなC-a,通常はインデントに従いHomeへ,もう一度押すと本来のHome
 (global-set-key (kbd "C-c c")			'compile);コンパイルコマンド
 (global-set-key (kbd "C-c e S")			'evernote-do-saved-search)
 (global-set-key (kbd "C-c e b")			'evernote-browser)
@@ -22,9 +23,11 @@
 (global-set-key (kbd "C-q")			'kill-buffer-and-window);C-qバッファ閉じる
 (global-set-key (kbd "C-x C-s")			'disk);ファイルを保存する時に,外部から更新されてたら警告を出して保存しないコマンド.それ以外はsave-buffer
 (global-set-key (kbd "C-z")			'recentf-open-most-recent-file);最後に閉じたバッファを開く
+(global-set-key (kbd "M-j")			'open-junk-file);残るscratch
 (global-set-key (kbd "M-n") (lambda () (interactive) (scroll-up 1)));http://d.hatena.ne.jp/uhiaha888/20101110/1289399913
 (global-set-key (kbd "M-p") (lambda () (interactive) (scroll-down 1)));カーソルを移動せずに画面を一行ずつスクロール
 (global-set-key (kbd "M-q")			'delete-other-windows);他のウインドウを閉じる
+(global-set-key [f11]				'action-a-out);実行ファイル実行
 
 ;;C-hをBackSpaceに変更
 (global-unset-key "\C-h")

@@ -1,13 +1,16 @@
 /*
- * %file% -
- *
- *
- */
+  $Id: %file%$
+  @ncaq
+  LGPL
+*/
 #pragma once
 
-class %file-without-ext%
+namespace scheme
 {
-public:
-	%file-without-ext%();
-	~%file-without-ext%();
-};
+	class %file-without-ext%
+	{
+	public:
+		%file-without-ext%();
+		~%file-without-ext%();
+	};
+}; // namespace scheme
