@@ -1,4 +1,5 @@
 (define-key emacs-lisp-mode-map	(kbd "C-c C-e") 'eval-buffer);C-cC-eでeval-bufferを実行
+(global-set-key			(kbd "<f11>")	'action-a-out);実行ファイル実行
 (global-set-key			(kbd "C-,")	'anything);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key			(kbd "C-;")	'align-regexp);揃える(正規表現)
 (global-set-key			(kbd "C-M-S-q")	'close-all-buffers);バッファを全て閉じる.まともに動かなくなるのですぐに終了すること
@@ -21,11 +22,11 @@
 (global-set-key			(kbd "C-u")	'kill-whole-line);現在行を削除
 (global-set-key			(kbd "C-x C-s")	'disk);ファイルを保存する時に,外部から更新されてたら警告を出して保存しないコマンド.それ以外はsave-buffer
 (global-set-key			(kbd "C-z")	'recentf-open-most-recent-file);最後に閉じたバッファを開く
+(global-set-key			(kbd "M-,")	'anything-kill-buffers);複数のバッファを簡単に閉じれる
 (global-set-key			(kbd "M-j")	'open-junk-file);残るscratch
 (global-set-key			(kbd "M-n")	'scroll-up-1);http://d.hatena.ne.jp/uhiaha888/20101110/1289399913
 (global-set-key			(kbd "M-p")	'scroll-down-1);カーソルを移動せずに画面を一行ずつスクロール
 (global-set-key			(kbd "M-q")	'delete-other-windows);他のウインドウを閉じる
-(global-set-key			(kbd "<f11>")	'action-a-out);実行ファイル実行
 
 ;;C-hをBackSpaceに変更
 (global-unset-key (kbd "C-h"))
