@@ -1,5 +1,6 @@
 ;;http://d.hatena.ne.jp/higepon/20080731/1217491155
 (require 'autoinsert)
+(eval-when-compile (require 'cl))
 
 ;; テンプレートのディレクトリ
 (setq auto-insert-directory "~/.emacs.d/insert/")
@@ -10,7 +11,6 @@
                ("\\.cpp$" . ["template.cpp" my-template])
                ("\\.hpp$" . ["template.hpp" my-template])
                ) auto-insert-alist))
-(require 'cl)
 
 ;; ここが腕の見せ所
 (defvar template-replacements-alists

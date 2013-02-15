@@ -1,7 +1,6 @@
 ;;requireして2行ぐらい書くだけのものはここに全部ツッコむ
 
 (require 'disk);ファイルを保存する時に,外部から更新されてたら警告を出して保存しないコマンド.それ以外はただのsave-buffer
-
 (require 'sudden-death);突然の死
 
 ;;emacs lispを保存する時に自動バイトコンパイル
@@ -33,13 +32,6 @@
 ;;http://www23.atwiki.jp/selflearn/pages/41.html#id_51d1d876
 (require 'linum)
 (global-linum-mode)
-
-;;EmacsでPerlの正規表現
-(add-to-list 'load-path "~/.emacs.d/bigprogram.d/foreign-regexp.el")
-(require 'foreign-regexp)
-(custom-set-variables
- '(foreign-regexp/regexp-type 'perl) ;; Choose by your preference.
- '(reb-re-syntax 'foreign-regexp)) ;; Tell re-builder to use foreign regexp.
 
 ;;Emacswikiとかからinstallしてくる
 (require 'auto-install)

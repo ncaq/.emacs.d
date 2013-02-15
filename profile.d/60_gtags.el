@@ -5,9 +5,10 @@
 (require 'gtags)
 (setq gtags-auto-update t);タグファイルの自動更新
 
-(setq gtags-mode-hook
-      '(lambda ()
-         (local-set-key (kbd "C-M-.") 'gtags-find-rtag)
-         (local-set-key (kbd "M-.") 'gtags-find-symbol)
-         (local-set-key (kbd "C-.") 'gtags-pop-stack)
-         ))
+(add-hook 'gtags-mode-hook
+	     '(lambda ()
+		(local-set-key (kbd "C-.") 'gtags-pop-stack)
+		(local-set-key (kbd "C-M-.") 'gtags-find-symbol)
+		(local-set-key (kbd "C->") 'gtags-find-with-grep)
+		(local-set-key (kbd "M-.") 'anything-gtags-select)
+		))
