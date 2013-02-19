@@ -2,10 +2,9 @@
 (add-to-list 'load-path "~/.emacs.d/bigprogram.d/omake-mode/")
 (require 'omake-mode)
 (setq omake-program-path "/usr/bin/omake")
-(setq omake-program-arguments "-P -w -j 3 --verbose")
+(setq omake-program-arguments "-P -w -j 5 --verbose")
 ;;omake command options. -w and --verbose are required for error browsing
 (setq omake-error-highlight-background "#880000")
-(setq omake-sound-error "~/.musicbackup/01.Lets_Go_ゆるゆり_World!!.wav")
 ;;key bindings (jfuruse's setting)
 (global-unset-key	(kbd "M-O"));Shift+Alt+o
 (global-unset-key	(kbd "M-o"));Alt+o
@@ -23,3 +22,8 @@
 ;;(global-set-key "\M-P" 'omake-previous-error)
 ;;(global-set-key [M-up] 'omake-previous-error)
 ;;(global-set-key [M-down] 'omake-next-error)
+
+;;sounds
+(setq omake-sound-success	"/home/ncaq/.musicbackup/success.wav")
+(setq omake-sound-error		"/home/ncaq/.musicbackup/error.wav")
+(setq omake-sound-start		"/home/ncaq/.musicbackup/start.wav");超絶被る

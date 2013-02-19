@@ -6,8 +6,9 @@
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet ac-source-gtags) ac-sources)))
 
 (defun set-clang-flag ()
+  (setq ac-clang-prefix-header "~/.emacs.d/bigprogram.d/auto-complete-clang/stdafx.pch")
   (setq ac-clang-flags '(
-			 ;; "-w"
+			 "-w"
 			 "-std=c++11"
 					;汎用
 			 "-I/usr/include"

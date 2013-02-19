@@ -47,7 +47,3 @@ C-u 100 M-x increment-string-as-number ;; replaced by \"-112\""
   (interactive "P")
   (operate-string-as-number number (lambda (x y) (- x y)))
   )
-
-;; smart-rep
-(global-set-key (kbd "C-+") 'increment-string-as-number)
-(global-set-key (kbd "C--") 'decrement-string-as-number)

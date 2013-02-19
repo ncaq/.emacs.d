@@ -54,11 +54,11 @@
     (is-point-whitespace)))
 (defun is-reverse-point-whitespace-all ()
   "カーソルの位置の前には空白文字しかありません"
-  (looking-back "[\t ]" ))
+  (looking-back "^[\t ]+" ))
 
 (defun move-beginning-of-line-Visual-Stdio-like ()
   "Visual StdioライクなC-a,通常はインデントに従いHomeへ,もう一度押すと本来のHome"
   (interactive)
   (cond
-   ((and(is-backward-point-whitespace)(not(is-point-whitespace))(is-reverse-point-whitespace-all)) (move-beginning-of-line nil))
+   ((is-reverse-point-whitespace-all) (move-beginning-of-line nil))
    (t (back-to-indentation))))

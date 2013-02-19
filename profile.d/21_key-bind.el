@@ -1,6 +1,8 @@
-(define-key emacs-lisp-mode-map	(kbd "C-c C-e") 'eval-buffer);C-cC-eでeval-bufferを実行
-(global-set-key			(kbd "<f11>")	'action-a-out);実行ファイル実行
+(define-key emacs-lisp-mode-map	(kbd "C-c C-e")	'eval-buffer);C-cC-eでeval-bufferを実行
+(global-set-key			(kbd "<f12>")	'action-a-out);実行ファイル実行
+(global-set-key			(kbd "C-+")	'increment-string-as-number);数字増やす
 (global-set-key			(kbd "C-,")	'anything);C-xC-bは頻繁に打つにしてはめんどくさい
+(global-set-key			(kbd "C--")	'decrement-string-as-number);数字減らす
 (global-set-key			(kbd "C-;")	'align-regexp);揃える(正規表現)
 (global-set-key			(kbd "C-M-S-q")	'close-all-buffers);バッファを全て閉じる.まともに動かなくなるのですぐに終了すること
 (global-set-key			(kbd "C-M-d")	'kill-paragraph);段落削除
@@ -23,6 +25,7 @@
 (global-set-key			(kbd "C-x C-s")	'disk);ファイルを保存する時に,外部から更新されてたら警告を出して保存しないコマンド.それ以外はsave-buffer
 (global-set-key			(kbd "C-z")	'recentf-open-most-recent-file);最後に閉じたバッファを開く
 (global-set-key			(kbd "M-,")	'anything-kill-buffers);複数のバッファを簡単に閉じれる
+(global-set-key			(kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
 (global-set-key			(kbd "M-j")	'open-junk-file);残るscratch
 (global-set-key			(kbd "M-n")	'scroll-up-1);http://d.hatena.ne.jp/uhiaha888/20101110/1289399913
 (global-set-key			(kbd "M-p")	'scroll-down-1);カーソルを移動せずに画面を一行ずつスクロール
@@ -30,9 +33,10 @@
 
 ;;C-hをBackSpaceに変更
 (global-unset-key (kbd "C-h"))
-(global-set-key (kbd "C-h")	'delete-backward-char)
-(global-set-key (kbd "M-h")	'backward-kill-word)
 (global-set-key (kbd "C-M-h")	'backward-kill-sentence)
+(global-set-key (kbd "C-S-h")	'c-hungry-backspace)
+(global-set-key (kbd "C-h")	'c-electric-backspace)
+(global-set-key (kbd "M-h")	'backward-kill-word)
 ;;http://stackoverflow.com/questions/13897125/emacs-translating-c-h-to-del-m-h-to-m-del
 ;;検索上でも効くように
 (add-hook 'isearch-mode-hook

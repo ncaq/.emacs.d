@@ -1,8 +1,17 @@
 /*
-  $Id: %file%$
-  @ncaq
-  LGPL
-*/
-#include "%file-without-ext%.hpp"
+  %file% - %bdesc%
 
-using namespace scheme;
+  author:%name%
+  mail:%mail%
+  time:%time%
+*/
+#include %include%
+%namespace-open%
+%file-without-ext%::%file-without-ext%()
+{
+}
+
+%file-without-ext%::~%file-without-ext%()
+{
+}
+%namespace-close%
