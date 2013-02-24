@@ -9,6 +9,7 @@
 (ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/bigprogram.d/auto-complete/ac-dict/")
 
+(ac-set-trigger-key "TAB")
 (define-key ac-completing-map	(kbd "C-n") 'ac-next)
 (define-key ac-completing-map	(kbd "C-p") 'ac-previous)
 (define-key ac-mode-map		(kbd "C-'") 'auto-complete)

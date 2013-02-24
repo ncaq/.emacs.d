@@ -27,6 +27,7 @@
 (global-set-key			(kbd "M-,")	'anything-kill-buffers);複数のバッファを簡単に閉じれる
 (global-set-key			(kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
 (global-set-key			(kbd "M-j")	'open-junk-file);残るscratch
+(global-set-key			(kbd "M-l")	'sdic-inline-pos-tip-show)
 (global-set-key			(kbd "M-n")	'scroll-up-1);http://d.hatena.ne.jp/uhiaha888/20101110/1289399913
 (global-set-key			(kbd "M-p")	'scroll-down-1);カーソルを移動せずに画面を一行ずつスクロール
 (global-set-key			(kbd "M-q")	'delete-other-windows);他のウインドウを閉じる
