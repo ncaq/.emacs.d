@@ -53,3 +53,6 @@
 ;;本当の自動保存
 (require 'auto-save-buffers)
 (run-with-idle-timer 15.0 t 'auto-save-buffers)
+
+(autoload 'd-mode "d-mode" "Major mode for editing D code." t);D言語
+(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t);Markdown

@@ -28,5 +28,6 @@
   (add-to-list 'ac-sources 'ac-source-filename))
 
 ;;auto-completeが有効にならないモードで有効に,というか全てのモードで有効にして欲しい…
-(add-to-list 'ac-modes 'text-mode)
 (add-to-list 'ac-modes 'fundamental-mode)
+(add-to-list 'ac-modes 'markdown-mode)
+(add-to-list 'ac-modes 'text-mode)
