@@ -39,19 +39,6 @@
 		 "*a.out*"; => 
 		 (concat current-dir "/a.out"))); => action-a-out
 
-(defun is-point-whitespace ()
-  "カーソルの位置は空白です 空白=( |\t|\n) else=nil"
-  (and(looking-at "[\t ]")))
-(defun is-backward-point-whitespace ()
-  "カーソルの前の位置は空白"
-  (save-excursion
-    (backward-char)
-    (is-point-whitespace)))
-(defun is-forward-point-whitespace ()
-  "カーソルの次の位置は空白"
-  (save-excursion
-    (forward-char)
-    (is-point-whitespace)))
 (defun is-reverse-point-whitespace-all ()
   "カーソルの位置の前には空白文字しかありません"
   (looking-back "^[\t ]+" ))

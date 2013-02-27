@@ -1,5 +1,6 @@
 ;;ファイルを作るまでも無い設定をここに書く
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode));zshのシェルスクリプトに対応
+(add-to-list 'auto-mode-alist '("\\.X.*" . conf-xdefaults-mode));xの設定ファイル
 (autoload 'd-mode "d-mode" "Major mode for editing D code." t);D言語
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t);Markdown
 (defvar windmove-wrap-around)
