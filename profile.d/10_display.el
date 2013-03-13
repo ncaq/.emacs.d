@@ -4,7 +4,7 @@
 (global-font-lock-mode t);モードに合わせるらしい?
 (global-hl-line-mode);現在行を目立たせる
 (menu-bar-mode 0);menu bar を表示させない
-(set-frame-font "Ricty:pixelsize=14:spacing=0");フォント設定
+(set-frame-font "Ricty:pixelsize=18");フォント設定
 (setq frame-title-format "%f %Z %m %s");title bar にファイル名,その他を表示
 (setq hl-line-face 'underline);↑下線で
 (show-paren-mode t);対応する括弧をハイライト

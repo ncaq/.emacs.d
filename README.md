@@ -35,9 +35,12 @@ init-loader.elは,数字の少ないところから読み込んで,数字から�
   * markdown
   * omake
   * sdic sdic-edict sdic-gene95
+  * w3m-el-snapshot
 * cabal:
   * ghc-mod
   * hasktags
+* build
+  * gnu global
 
 #Emacs初心者のため助言ください
 [Twitter](https://twitter.com/ncaq)

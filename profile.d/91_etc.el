@@ -16,7 +16,7 @@
 (setq windmove-wrap-around t);Window移動をループする
 (setq x-select-enable-clipboard t);クリップボード共有
 (setq-default indent-tabs-mode t);インデントをタブでする
-(subword-mode 1);CamelCaseの語でも単語単位に分解して編集する
+(subword-mode t);CamelCaseの語でも単語単位に分解して編集する
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
 ;;ブラウザをOperaに

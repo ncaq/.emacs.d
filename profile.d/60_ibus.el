@@ -11,11 +11,8 @@
 ;;(setq ibus-mode-local nil);すべてのバッファで入力状態を共有 (default ではバッファ毎にインプットメソッドの状態を保持)
 
 ;;Key
+(global-unset-key (kbd "C-\\"))
 (ibus-define-common-key (kbd "C-SPC") nil);C-SPC は Set Mark に使う
 (ibus-define-common-key (kbd "C-/") nil);C-/ は Undo に使う
-(global-set-key [zenkaku-hankaku] 'ibus-toggle)
-(global-set-key [henkan] 'ibus-enable);Use henkan key to enable IBus
-(global-set-key [muhenkan] 'ibus-disable);Use muhenkan key to disable IBus
-;;Enable muhenkan key only for preediting
-(ibus-define-common-key 'muhenkan nil)
-(ibus-define-preedit-key 'muhenkan t)
+(ibus-define-common-key [zenkaku-hankaku] 'ibus-toggle)
+(ibus-define-common-key (kbd "C-\\") 'ibus-toggle)

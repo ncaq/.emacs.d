@@ -3,8 +3,9 @@
 (defvar gtags-suggested-key-mapping)
 (defun ncaq-c++-mode-set ()
   (c-set-style "bsd");http://www.02.246.ne.jp/~torutk/cxx/emacs/indentation.html
-  (c-toggle-hungry-state 1);連続する空白を一気に削除
-  (local-set-key (kbd "C-\\") 'code-format-c);括弧も揃えるコードフォーマット;;gnu globalを自動的に有効にする
+  (c-toggle-hungry-state t);連続する空白を一気に削除
+  (subword-mode t)
+  (local-set-key (kbd "C-i") 'code-format-c);括弧も揃えるコードフォーマット;;gnu globalを自動的に有効にする
   (define-key c++-mode-map (kbd "C-x C-e") 'flymake-display-err-menu-for-current-line)
   )
 
