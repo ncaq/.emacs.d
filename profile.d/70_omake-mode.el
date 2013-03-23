@@ -1,5 +1,4 @@
 ;;C++で使え無い機能が多いのでそれは無効化している
-(add-to-list 'load-path "~/.emacs.d/bigprogram.d/omake-mode/")
 (require 'omake-mode)
 (setq omake-program-path "/usr/bin/omake")
 (setq omake-program-arguments "-P -w -j 5 --verbose")

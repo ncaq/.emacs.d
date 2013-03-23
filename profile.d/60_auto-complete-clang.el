@@ -1,4 +1,3 @@
-(add-to-list 'load-path "~/.emacs.d/bigprogram.d/auto-complete-clang/")
 (require 'auto-complete-clang)
 
 ;;auto-complete-config.el:501行の関数の再定義 先頭にac-source-clangを入れなければならないことを考えるとこの選択肢しか無い

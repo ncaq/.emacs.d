@@ -52,7 +52,11 @@
 
 ;;本当の自動保存
 (require 'auto-save-buffers)
-(run-with-idle-timer 15.0 t 'auto-save-buffers)
+(run-with-idle-timer 10.0 t 'auto-save-buffers "" "\\.el$")
+
+;;バッファの名前がかぶったらディレクトリ名もつける
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 (autoload 'd-mode "d-mode" "Major mode for editing D code." t);D言語
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t);Markdown

@@ -3,8 +3,9 @@
 %backup%~
 ac-comphist.dat
 anything-c-adaptive-history
-auto-save-list/
+auto-save-list
 eshell
 image-dired
 tramp
-undohist/
+undohist
+var

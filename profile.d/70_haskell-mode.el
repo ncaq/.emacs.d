@@ -1,7 +1,5 @@
 ;;Haskell関係 バイトコンパイルするとなぜかエラーが出るので注意.普通の.elなら問題ない.
 ;;http://d.hatena.ne.jp/kitokitoki/20111217/
-(add-to-list 'load-path "~/.emacs.d/haskell-mode-2.8.0")
-
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.lhs$" . literate-haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.cabal\\'" . haskell-cabal-mode))

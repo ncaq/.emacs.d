@@ -1,10 +1,7 @@
 (require 'pos-tip)
-(add-to-list 'load-path "~/.emacs.d/bigprogram.d/popup-el/")
 (require 'popup)
-(add-to-list 'load-path "~/.emacs.d/bigprogram.d/fuzzy-el/")
 (require 'fuzzy)
 ;;http://cx4a.org/software/auto-complete/manual.ja.html
-(add-to-list 'load-path "~/.emacs.d/bigprogram.d/auto-complete/")
 (require 'auto-complete-config)
 (ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/bigprogram.d/auto-complete/ac-dict/")
