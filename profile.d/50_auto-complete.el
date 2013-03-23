@@ -16,7 +16,7 @@
 (define-key ac-mode-map		(kbd "M-'") 'ac-fuzzy-complete)
 (setq ac-auto-start nil);;自動で補完画面を出すならt.補完キーを押すまで補完画面を出さないならnil.数字なら文字数.
 (setq popup-use-optimized-column-computation nil);;最適化の有無,最適化すると時折崩れる
-(setq ac-menu-height 22);;補完列表示数
+(setq ac-menu-height 27);;補完列表示数
 (setq ac-use-quick-help t);ヘルプを表示
 (setq ac-quick-help-delay 0);;ヘルプを即表示,pos-tipを使えば崩れ無くなった
 (setq ac-ignore-case t);;大文字・小文字を区別
@@ -31,3 +31,4 @@
 (add-to-list 'ac-modes 'fundamental-mode)
 (add-to-list 'ac-modes 'markdown-mode)
 (add-to-list 'ac-modes 'text-mode)
+(add-to-list 'ac-modes 'd-mode)

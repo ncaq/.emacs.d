@@ -1,5 +1,4 @@
 (require 'tabbar)
-(require 'tabbar-ruler)
 (eval-when-compile (require 'cl))
 (tabbar-mode 1)
 
@@ -20,40 +19,26 @@
    (buffer-list)))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
-;;Sort tabbar buffers by name
-(defun tabbar-add-tab (tabset object &optional append_ignored)
-  "Add to TABSET a tab with value OBJECT if there isn't one there yet.
- If the tab is added, it is added at the beginning of the tab list,
- unless the optional argument APPEND is non-nil, in which case it is
- added at the end."
-  (let ((tabs (tabbar-tabs tabset)))
-    (if (tabbar-get-tab object tabset)
-        tabs
-      (let ((tab (tabbar-make-tab object tabset)))
-        (tabbar-set-template tabset nil)
-        (set tabset (sort (cons tab tabs)
-                          (lambda (a b) (string< (buffer-name (car a)) (buffer-name (car b))))))))))
-
 ;;外観変更
 (set-face-attribute
  'tabbar-default nil
  :family "Ricty"
- :background "black"
- :foreground "white"
+ :background "#93a1a1"
+ :foreground "#002b36"
  :height 1.0)
 (set-face-attribute
  'tabbar-unselected nil
- :background "black"
- :foreground "white"
- :box nil)
+ :background "#93a1a1"
+ :foreground "#002b36"
+ :box t)
 (set-face-attribute
  'tabbar-selected nil
- :background "black"
- :foreground "red"
- :box nil)
+ :background "#002b36"
+ :foreground "#93a1a1"
+ :box t)
 (set-face-attribute
  'tabbar-button nil
- :box nil)
+ :box t)
 (set-face-attribute
  'tabbar-separator nil
- :height 1.5)
+ :height 10)

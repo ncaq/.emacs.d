@@ -6,8 +6,8 @@
 (global-set-key			(kbd "C-;")	'align-regexp);揃える(正規表現)
 (global-set-key			(kbd "C-M-S-q")	'close-all-buffers);バッファを全て閉じる.まともに動かなくなるのですぐに終了すること
 (global-set-key			(kbd "C-M-d")	'kill-paragraph);段落削除
-(global-set-key			(kbd "C-S-d")	'c-hungry-delete);実行ファイル実行
-(global-set-key			(kbd "C-a")	'move-beginning-of-line-Visual-Stdio-like);;Visual StdioライクなC-a,通常はインデントに従いHomeへ,もう一度押すと本来のHome
+(global-set-key			(kbd "C-S-d")	'delete-horizontal-space);実行ファイル実行
+(global-set-key			(kbd "C-a")	'move-beginning-of-line-Visual-Stdio-like);;Visual StdioライクなC-a
 (global-set-key			(kbd "C-c c")	'compile);コンパイルコマンド
 (global-set-key			(kbd "C-c e S")	'evernote-do-saved-search)
 (global-set-key			(kbd "C-c e b")	'evernote-browser)
@@ -16,6 +16,7 @@
 (global-set-key			(kbd "C-c e p")	'evernote-post-region)
 (global-set-key			(kbd "C-c e s")	'evernote-search-notes)
 (global-set-key			(kbd "C-c e w")	'evernote-write-note)
+(global-set-key			(kbd "C-c g")	'anything-do-grep);実行ファイル実行
 (global-set-key			(kbd "C-c q")	'quoted-insert);C-qの本来の関数
 (global-set-key			(kbd "C-c s")	'sort-lines);ソートする
 (global-set-key			(kbd "C-i")	'code-format-all);全ての文字に対し字下げを行う

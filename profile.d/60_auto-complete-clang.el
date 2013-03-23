@@ -8,14 +8,13 @@
 (defun set-clang-flag ()
   ;(setq ac-clang-prefix-header "~/.emacs.d/bigprogram.d/auto-complete-clang/stdafx.pch")
   (setq ac-clang-flags '(
-			 "-w"
 			 "-std=c++11"
 					;汎用
 			 "-I/usr/include"
 			 		;Gtkmm
 			 ;; "`pkg-config --cflags-only-I gtkmm-utils`"
 					;GLUT
-			 "-I/usr/include/GL"
+			 "-I/usr/include/GL/"
 			 "-I/usr/include/GL/internal"
 			 )))
 (add-hook 'c++-mode-hook 'set-clang-flag)

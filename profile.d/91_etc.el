@@ -18,12 +18,3 @@
 (setq-default indent-tabs-mode t);インデントをタブでする
 (subword-mode t);CamelCaseの語でも単語単位に分解して編集する
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
-
-;;ブラウザをOperaに
-;;http://d.hatena.ne.jp/portown/20100531/1297222343
-(defvar browse-url-firefox-program)
-(defvar browse-url-firefox-new-window-is-tab)
-(defvar browse-url-new-window-flag)
-(setq browse-url-firefox-program "opera")
-(setq browse-url-firefox-new-window-is-tab t)
-(setq browse-url-new-window-flag t)

@@ -12,7 +12,9 @@
 
 ;;Key
 (global-unset-key (kbd "C-\\"))
-(ibus-define-common-key (kbd "C-SPC") nil);C-SPC は Set Mark に使う
 (ibus-define-common-key (kbd "C-/") nil);C-/ は Undo に使う
-(ibus-define-common-key [zenkaku-hankaku] 'ibus-toggle)
+(ibus-define-common-key (kbd "C-SPC") nil);C-SPC は Set Mark に使う
+
 (ibus-define-common-key (kbd "C-\\") 'ibus-toggle)
+(ibus-define-common-key (kbd "s-SPC") 'ibus-toggle)
+(ibus-define-common-key [zenkaku-hankaku] 'ibus-toggle)
