@@ -5,15 +5,16 @@
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet ac-source-gtags) ac-sources)))
 
 (defun set-clang-flag ()
-  ;(setq ac-clang-prefix-header "~/.emacs.d/bigprogram.d/auto-complete-clang/stdafx.pch")
   (setq ac-clang-flags '(
-			 "-std=c++11"
 					;汎用
-			 "-I/usr/include"
+			 "-std=c++11"
+			 "-stdlib=libc++"
+			 "-I/usr/include/c++/v1"
+			 "-I/usr/include/"
 			 		;Gtkmm
-			 ;; "`pkg-config --cflags-only-I gtkmm-utils`"
+					;"`pkg-config --cflags-only-I gtkmm-utils`"
 					;GLUT
 			 "-I/usr/include/GL/"
-			 "-I/usr/include/GL/internal"
+			 "-I/usr/include/GL/internal/"
 			 )))
 (add-hook 'c++-mode-hook 'set-clang-flag)

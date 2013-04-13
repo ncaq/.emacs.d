@@ -1,4 +1,5 @@
-;;Haskell関係 バイトコンパイルするとなぜかエラーが出るので注意.普通の.elなら問題ない.
+;;Haskell関係
+(require 'haskell-mode)
 ;;http://d.hatena.ne.jp/kitokitoki/20111217/
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.lhs$" . literate-haskell-mode))
@@ -8,18 +9,8 @@
 
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
-
-(defvar haskell-mode-map);警告対策
-;;HasktagをAnythingで扱う
-(add-to-list 'load-path "~/.emacs.d/bigprogram.d/anything-hasktags/")
-(require 'anything-hasktags)
-(add-hook 'haskell-mode-hook
-	  (lambda()
-	    (define-key haskell-mode-map (kbd "M-.") 'anything-hasktags-select)))
-
-(defvar ghc-mod)
 ;;Haskell向けのautocomplete
-;;https://github.com/m2ym/auto-complete
+;;バイトコンパイルするとなぜかエラーが出るので注意.普通の.elなら問題ない.
 (ac-define-source ghc-mod
   '((depends ghc)
     (candidates . (ghc-select-completion-symbol))
@@ -27,6 +18,11 @@
     (cache)))
 (add-hook 'haskell-mode-hook '(add-to-list 'ac-sources 'ac-source-ghc-mod));auto-completeの情報源としてghc-modの補完を追加
 
+;;HasktagをAnythingで扱う
+(require 'anything-hasktags)
+(add-hook 'haskell-mode-hook
+	  (lambda()
+	    (define-key haskell-mode-map (kbd "C-.") 'anything-hasktags-select)))
 
 ;;AnythingとHaskellのなんかアレ
 (defvar anything-c-source-ghc-mod

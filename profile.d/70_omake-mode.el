@@ -24,5 +24,5 @@
 
 ;;sounds
 (setq omake-sound-success	"/home/ncaq/.musicbackup/success.wav")
-(setq omake-sound-error		"/home/ncaq/.musicbackup/error.wav")
+;;(setq omake-sound-error		"/home/ncaq/.musicbackup/error.wav")
 ;;(setq omake-sound-start		"/home/ncaq/.musicbackup/start.wav");超絶被る

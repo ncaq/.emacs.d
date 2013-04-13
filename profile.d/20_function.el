@@ -31,11 +31,11 @@
     (code-format-all)
     ))
 
-(defun action-a-out (); => 
+(defun action-a-out (); =>
   "currentdirのa.outを実行"
   (interactive); => 
   (defvar current-dir (expand-file-name "."));shell-command-to-stringには改行がくっついてくるので削除
-  (start-process "a.out"; => 
+  (start-process "a.out"; =>
 		 "*a.out*"; => 
 		 (concat current-dir "/a.out"))); => action-a-out
 

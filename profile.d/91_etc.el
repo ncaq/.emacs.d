@@ -6,15 +6,20 @@
 (desktop-save-mode 1);起動時に,前回終了していた時に開いていたバッファを一度開いたり,色々復元する
 (ffap-bindings);C-x C-fでカーソルの位置にあるファイルパスとURLを入力
 (fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
-(global-set-key "\C-m" 'newline-and-indent);改行時にインデント
 (kill-buffer "*Compile-Log*");謎
 (kill-buffer "*scratch*");open-junk-fileがあるからscratchいらないです^^;
+(savehist-mode 1);ミニバッファの履歴を保存する
+(subword-mode t);CamelCaseの語でも単語単位に分解して編集する
+(windmove-default-keybindings);shift + arrow keyでウィンドウ移動
+(display-time);時刻表示
+
+(setq history-length 1000);履歴の保存件数を増やす 履歴ってなんだ
 (setq delete-by-moving-to-trash t);ごみ箱を有効
 (setq dired-listing-switches "-AFlhv");diredでソート順を設定
+(setq history-length 10000);ミニバッファの履歴の保存数を増やす
+(setq message-log-max 10000);ログの記録行数を増やす.
 (setq next-line-add-newlines t);c-nした時に行を追加
 (setq user-mail-address "nyrigadake38@gmail.com")
 (setq windmove-wrap-around t);Window移動をループする
 (setq x-select-enable-clipboard t);クリップボード共有
 (setq-default indent-tabs-mode t);インデントをタブでする
-(subword-mode t);CamelCaseの語でも単語単位に分解して編集する
-(windmove-default-keybindings);shift + arrow keyでウィンドウ移動

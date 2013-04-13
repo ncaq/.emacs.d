@@ -10,6 +10,9 @@
 (global-set-key (kbd "C-x n") 'tabbar-forward)
 (global-set-key (kbd "C-x p") 'tabbar-backward)
 
+;;タブをグループ化しない
+(setq tabbar-buffer-groups-function nil)
+
 ;;http://dev.ariel-networks.com/wp/documents/aritcles/emacs/part11
 ;;リスト8 " *"で始まるバッファをタブとして表示しない
 (defun my-tabbar-buffer-list ()
@@ -28,13 +31,13 @@
  :height 1.0)
 (set-face-attribute
  'tabbar-unselected nil
- :background "#93a1a1"
- :foreground "#002b36"
+ :background "#002b36"
+ :foreground "#93a1a1"
  :box t)
 (set-face-attribute
  'tabbar-selected nil
- :background "#002b36"
- :foreground "#93a1a1"
+ :background "#93a1a1"
+ :foreground "#002b36"
  :box t)
 (set-face-attribute
  'tabbar-button nil

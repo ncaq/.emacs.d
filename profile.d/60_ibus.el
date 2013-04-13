@@ -4,7 +4,7 @@
 
 (add-hook 'minibuffer-setup-hook 'ibus-disable);mini buffer ではオフに
 (ibus-disable-isearch);isearch 時はオフに
-(setq ibus-cursor-color '("red" "white" "green"));IBusの状態によってカーソル色を変化させる ("on" "off" "disabled")
+(setq ibus-cursor-color '("#dc322f" "#eee8d5" "#859900"));IBusの状態によってカーソル色を変化させる ("on" "off" "disabled")
 (setq ibus-isearch-cursor-type 'hollow);インクリメンタル検索中のカーソル形状を変更する
 (setq ibus-prediction-window-position t);カーソル位置で予測候補ウィンドウを表示 (default はプリエディット領域の先頭位置に表示);;プリエディット領域 is 何
 (setq ibus-undo-by-committed-string t);アンドゥの時に、文字列を確定した位置ごとに戻るようにする
@@ -15,6 +15,4 @@
 (ibus-define-common-key (kbd "C-/") nil);C-/ は Undo に使う
 (ibus-define-common-key (kbd "C-SPC") nil);C-SPC は Set Mark に使う
 
-(ibus-define-common-key (kbd "C-\\") 'ibus-toggle)
-(ibus-define-common-key (kbd "s-SPC") 'ibus-toggle)
-(ibus-define-common-key [zenkaku-hankaku] 'ibus-toggle)
+(global-set-key (kbd "s-SPC") 'ibus-toggle)

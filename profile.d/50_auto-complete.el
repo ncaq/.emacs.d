@@ -17,6 +17,7 @@
 (setq ac-use-quick-help t);ヘルプを表示
 (setq ac-quick-help-delay 0);;ヘルプを即表示,pos-tipを使えば崩れ無くなった
 (setq ac-ignore-case t);;大文字・小文字を区別
+(setq ac-stop-flymake-on-completing t);補完時flymake遅延
 ;;(setq ac-use-fuzzy t);;曖昧補完
 
 ;;ファイル名補完どうして初期は無効なんですかね…
@@ -29,3 +30,5 @@
 (add-to-list 'ac-modes 'markdown-mode)
 (add-to-list 'ac-modes 'text-mode)
 (add-to-list 'ac-modes 'd-mode)
+(add-to-list 'ac-modes 'shell-script-mode)
+
