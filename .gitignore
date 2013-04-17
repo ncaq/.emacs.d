@@ -1,5 +1,3 @@
-*.elc
-
 %backup%~
 ac-comphist.dat
 anything-c-adaptive-history
