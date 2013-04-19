@@ -9,7 +9,7 @@
 (global-set-key			(kbd "C-M-o")	'anything-locate)
 (global-set-key			(kbd "C-S-d")	'delete-horizontal-space);実行ファイル実行
 (global-set-key			(kbd "C-a")	'move-beginning-of-line-Visual-Stdio-like);;Visual StdioライクなC-a
-(global-set-key			(kbd "C-c c")	'compile);コンパイルコマンド
+(global-set-key			(kbd "C-c c")	'mode-compile);かしこいコンパイルコマンド実行
 (global-set-key			(kbd "C-c e S")	'evernote-do-saved-search)
 (global-set-key			(kbd "C-c e b")	'evernote-browser)
 (global-set-key			(kbd "C-c e c")	'evernote-create-note)
@@ -36,6 +36,7 @@
 (global-set-key			(kbd "M-n")	'scroll-up-1);http://d.hatena.ne.jp/uhiaha888/20101110/1289399913
 (global-set-key			(kbd "M-p")	'scroll-down-1);カーソルを移動せずに画面を一行ずつスクロール
 (global-set-key			(kbd "M-q")	'delete-other-windows);他のウインドウを閉じる
+(global-set-key			(kbd "C-c h")	'help-command);HHKだとF1押しにくい
 
 ;;C-hをBackSpaceに変更
 (global-unset-key (kbd "C-h"))

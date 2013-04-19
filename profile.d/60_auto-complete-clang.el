@@ -8,9 +8,6 @@
   (setq ac-clang-flags '(
 					;汎用
 			 "-std=c++11"
-			 "-stdlib=libc++"
-			 "-I/usr/include/c++/v1"
-			 "-I/usr/include/"
 			 		;Gtkmm
 					;"`pkg-config --cflags-only-I gtkmm-utils`"
 					;GLUT

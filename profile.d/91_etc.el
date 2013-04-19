@@ -12,6 +12,7 @@
 (subword-mode t);CamelCaseの語でも単語単位に分解して編集する
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 (display-time);時刻表示
+(add-hook 'pre-command-hook (abbrev-mode nil));auto-complete.el使うからいらない
 
 (setq history-length 1000);履歴の保存件数を増やす 履歴ってなんだ
 (setq delete-by-moving-to-trash t);ごみ箱を有効

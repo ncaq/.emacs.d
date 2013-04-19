@@ -62,5 +62,10 @@
 (require 'saveplace)
 (setq-default save-place t)
 
+;;かしこいコンパイル
+(require 'mode-compile)
+(defconst c++-default-compiler-options
+  "-std=c++11 -Wall -Wextra -ggdb -pipe")
+
 (autoload 'd-mode "d-mode" "Major mode for editing D code." t);D言語
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t);Markdown
