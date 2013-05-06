@@ -26,7 +26,6 @@
 (global-set-key			(kbd "C-o")	'anything-find-file)
 (global-set-key			(kbd "C-q")	'kill-buffer-and-window);C-qバッファ閉じる
 (global-set-key			(kbd "C-u")	'kill-whole-line);現在行を削除
-(global-set-key			(kbd "C-x C-s")	'disk);ファイルを保存する時に,外部から更新されてたら警告を出して保存しないコマンド.それ以外はsave-buffer
 (global-set-key			(kbd "C-z")	'recentf-open-most-recent-file);最後に閉じたバッファを開く
 (global-set-key			(kbd "M-,")	'anything-kill-buffers);複数のバッファを簡単に閉じれる
 (global-set-key			(kbd "M-\\")	'delete-horizontal-space);前の改行も消すように

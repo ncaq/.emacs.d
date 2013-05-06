@@ -21,9 +21,7 @@
      (lambda () (setq namespace (read-from-minibuffer "namespace: "))))
     ("%include%" .
      (lambda () 
-       (cond ((string= namespace "") (concat "\"" file-without-ext ".hpp\""))
-	     (t (concat "<" (replace-regexp-in-string "::" "/" namespace) "/"
-			file-without-ext ".hpp>")))))
+       (cond ((concat "\"" file-without-ext ".hpp\"")))))
     ("%name%" . user-full-name)
     ("%mail%" . (lambda () (identity user-mail-address)))
     ("%time%" . (lambda () (current-time-string)))
@@ -36,7 +34,7 @@
 		  (setq namespace-text "")
 		  (while namespace-list
 		    (setq namespace-text (concat namespace-text "namespace "
-                                                 (car namespace-list) " {\n"))
+                                                 (car namespace-list) "\n{"))
 		    (setq namespace-list (cdr namespace-list))
 		    )
 		  (eval namespace-text))))))

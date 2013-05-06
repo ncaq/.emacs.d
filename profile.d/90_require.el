@@ -1,6 +1,7 @@
 ;;requireして2行ぐらい書くだけのものはここに全部ツッコむ
 
-(require 'disk);ファイルを保存する時に,外部から更新されてたら警告を出して保存しないコマンド.それ以外はただのsave-buffer
+;;バグってることが多くなってきた
+;;(require 'disk);ファイルを保存する時に,外部から更新されてたら警告を出して保存しないコマンド.それ以外はただのsave-buffer
 (require 'sudden-death);突然の死
 
 ;;emacs lispを保存する時に自動バイトコンパイル
@@ -48,7 +49,7 @@
 
 ;;使い捨てないscratch
 (require 'open-junk-file)
-(setq open-junk-file-directory "~/documents/log/%Y/%m/%d/%H_%M_%S.")
+(setq open-junk-file-directory "~/Documents/log/%Y/%m/%d/%H_%M_%S.")
 
 ;;本当の自動保存
 (require 'auto-save-buffers)

@@ -12,6 +12,7 @@
 	   (default-directory my-lisp-dir))
       (setq load-path (cons my-lisp-dir load-path))
       (normal-top-level-add-subdirs-to-load-path)))
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
 
 ;;別ファイルから読み込む
 (require 'init-loader)

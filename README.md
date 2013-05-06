@@ -27,20 +27,20 @@ init-loader.elは,数字の少ないところから読み込んで,数字から�
 * 91 1行で完結するような設定はここに
 
 #depend
-* apt
+* emerge
   * clang
   * git
   * haskell-platform
   * ibus-el
   * markdown
   * omake
-  * sdic sdic-edict sdic-gene95
+  * gnu global
+  * w3m-el  
 * cabal:
   * ghc-mod
   * hasktags
 * build
-  * gnu global
-  * w3m-el
+  * sdic sdic-edict sdic-gene95
 
 #Emacs初心者のため助言ください
 [Twitter](https://twitter.com/ncaq)
@@ -51,3 +51,4 @@ init-loader.elは,数字の少ないところから読み込んで,数字から�
 ncaqが書いた部分に付いてはPublic Domainです.
 他のはurl先や,ファイル自体に書かれているライセンスに当然従います.
 再配布しないでという方は連絡ください.
+Emacs関係だから,そのままの再配布を拒むようなライセンスが混じってはいないはずだけれども.

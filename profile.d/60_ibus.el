@@ -16,3 +16,4 @@
 (ibus-define-common-key (kbd "C-SPC") nil);C-SPC は Set Mark に使う
 
 (global-set-key (kbd "s-SPC") 'ibus-toggle)
+
