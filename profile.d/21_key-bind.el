@@ -7,6 +7,7 @@
 (global-set-key			(kbd "C-M-S-q")	'close-all-buffers);バッファを全て閉じる.まともに動かなくなるのですぐに終了すること
 (global-set-key			(kbd "C-M-d")	'kill-paragraph);段落削除
 (global-set-key			(kbd "C-M-o")	'anything-locate)
+(global-set-key			(kbd "C-M-q")	'kill-this-buffer);バッファとウインドウ閉じる
 (global-set-key			(kbd "C-S-d")	'delete-horizontal-space);実行ファイル実行
 (global-set-key			(kbd "C-a")	'move-beginning-of-line-Visual-Stdio-like);;Visual StdioライクなC-a
 (global-set-key			(kbd "C-c c")	'mode-compile);かしこいコンパイルコマンド実行
@@ -25,7 +26,7 @@
 (global-set-key			(kbd "C-j")	'recentf-open-most-recent-file);最後に閉じたバッファを開く
 (global-set-key			(kbd "C-m")	'newline-and-indent);改行時にインデント
 (global-set-key			(kbd "C-o")	'anything-find-file)
-(global-set-key			(kbd "C-q")	'kill-this-buffer);C-qバッファ閉じる
+(global-set-key			(kbd "C-q")	'kill-this-buffer);バッファ閉じる
 (global-set-key			(kbd "C-u")	'kill-whole-line);現在行を削除
 (global-set-key			(kbd "C-z")	'ff-find-other-file);ヘッダファイルに居る場合はソースファイルに,または逆
 (global-set-key			(kbd "M-,")	'anything-kill-buffers);複数のバッファを簡単に閉じれる
