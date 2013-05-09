@@ -3,6 +3,6 @@
 (add-to-list 'exec-path (concat (getenv "HOME") "/.cabal/bin"))
 
 ;;ghc-modのパス追加
-(add-to-list 'load-path "/home/ncaq/.cabal/share/ghc-mod-1.12.3/")
+(add-to-list 'load-path "~/.cabal/share/ghc-mod-1.12.3/")
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))

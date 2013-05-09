@@ -23,6 +23,6 @@
 ;;(global-set-key [M-down] 'omake-next-error)
 
 ;;sounds
-(setq omake-sound-success	"/home/ncaq/.musicbackup/success.wav")
-(setq omake-sound-error		"/home/ncaq/.musicbackup/error.wav")
-(setq omake-sound-start		"/home/ncaq/.musicbackup/start.wav");超絶被る
+(setq omake-sound-success	"~/.musicbackup/success.wav")
+(setq omake-sound-error		"~/.musicbackup/error.wav")
+(setq omake-sound-start		"~/.musicbackup/start.wav");超絶被る
