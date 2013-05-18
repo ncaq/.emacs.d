@@ -31,6 +31,7 @@
 (global-set-key			(kbd "C-z")	'ff-find-other-file);ヘッダファイルに居る場合はソースファイルに,または逆
 (global-set-key			(kbd "M-,")	'anything-kill-buffers);複数のバッファを簡単に閉じれる
 (global-set-key			(kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
+(global-set-key			(kbd "M-i")	'text-adjust-buffer);全角記号とかそういうゴミ文字を変換する
 (global-set-key			(kbd "M-j")	'open-junk-file);残るscratch
 (global-set-key			(kbd "M-l")	'sdic-inline-pos-tip-show)
 (global-set-key			(kbd "M-m")	'newline);
