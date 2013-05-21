@@ -53,7 +53,7 @@
 
 ;;本当の自動保存
 (require 'auto-save-buffers)
-(run-with-idle-timer 5.0 t 'auto-save-buffers "" "\\.el$")
+(run-with-idle-timer 10.0 t 'auto-save-buffers "" "\\.el$")
 
 ;;バッファの名前がかぶったらディレクトリ名もつける
 (require 'uniquify)
