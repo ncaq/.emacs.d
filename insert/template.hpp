@@ -1,10 +1,5 @@
-/*
-  %file% - %bdesc%
-
-  author:%name%
-  mail:%mail%
-  time:%time%
-*/
+//%file% - %bdesc%
+//author:%name%,mail:%mail%,time:%time%
 #pragma once
 %namespace-open%
 class %file-without-ext%
