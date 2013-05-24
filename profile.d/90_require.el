@@ -49,7 +49,7 @@
 
 ;;使い捨てないscratch
 (require 'open-junk-file)
-(setq open-junk-file-directory "~/Documents/%Y/%m/%d/%H_%M_%S.")
+(setq open-junk-file-directory "~/Documents/log/%Y/%m/%d/%H_%M_%S.")
 
 ;;本当の自動保存
 (require 'auto-save-buffers)
