@@ -17,16 +17,3 @@
 ;;別ファイルから読み込む
 (require 'init-loader)
 (init-loader-load "~/.emacs.d/profile.d/") ; 設定ファイルがあるディレクトリを指定
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(safe-local-variable-values (quote ((use-touten-for-comma) (use-kuten-for-period)))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

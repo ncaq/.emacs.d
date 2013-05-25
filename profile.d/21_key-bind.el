@@ -7,7 +7,7 @@
 (global-set-key			(kbd "C-M-S-q")	'close-all-buffers);バッファを全て閉じる.まともに動かなくなるのですぐに終了すること
 (global-set-key			(kbd "C-M-d")	'kill-paragraph);段落削除
 (global-set-key			(kbd "C-M-o")	'anything-locate)
-(global-set-key			(kbd "C-M-q")	'kill-this-buffer);バッファとウインドウ閉じる
+(global-set-key			(kbd "C-M-q")	'kill-buffer-and-window);バッファとウインドウ閉じる
 (global-set-key			(kbd "C-S-d")	'delete-horizontal-space);実行ファイル実行
 (global-set-key			(kbd "C-a")	'move-beginning-of-line-Visual-Stdio-like);;Visual StdioライクなC-a
 (global-set-key			(kbd "C-c c")	'mode-compile);かしこいコンパイルコマンド実行
