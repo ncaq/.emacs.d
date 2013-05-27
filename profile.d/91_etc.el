@@ -1,4 +1,6 @@
 ;;ファイルを作るまでも無い設定をここに書く
+(autoload 'd-mode "d-mode" "Major mode for editing D code." t);D言語
+(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t);Markdown
 (add-to-list 'auto-mode-alist '("\\.X.*" . conf-xdefaults-mode));xの設定ファイル
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode));markdownの拡張子は.mdを採用
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode));zshのシェルスクリプトに対応
@@ -22,5 +24,5 @@
 (setq next-line-add-newlines t);c-nした時に行を追加
 (setq user-mail-address "nyrigadake38@gmail.com")
 (setq windmove-wrap-around t);Window移動をループする
-(setq x-select-enable-clipboard t);クリップボード共有
+(setq x-select-enable-clipboard t);クリップボードをX11と共有
 (setq-default indent-tabs-mode t);インデントをタブでする

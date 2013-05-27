@@ -1,75 +1,39 @@
 ;;requireして2行ぐらい書くだけのものはここに全部ツッコむ
-
-;;バグってることが多くなってきた
-;;(require 'disk);ファイルを保存する時に,外部から更新されてたら警告を出して保存しないコマンド.それ以外はただのsave-buffer
+(require 'grep-edit)
+(require 'lispxmp);;xmpfilterのemacs lisp version
 (require 'sudden-death);突然の死
+(require 'text-adjust)
 
-;;emacs lispを保存する時に自動バイトコンパイル
-(require 'auto-async-byte-compile)
-(setq auto-async-byte-compile-exclude-files-regexp "/tmp/emacsAutoAsyncJunk/")
-(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
-
-;;emacsclientのserverを立ち上げる
-(require 'server)
+(require 'server);;emacsclientのserverを立ち上げる
 (unless (server-running-p)
   (server-start))
 
-;;undoをtreeに,C-x C-uで起動
-(require 'undo-tree)
+(require 'undo-tree);;undoをtreeに,C-x C-uで起動
 (global-undo-tree-mode)
 
-;;http://blog.clouder.jp/archives/001037.html
-;;プログラミング言語の定型文補完
-(require 'yasnippet)
+(require 'yasnippet);;定型文補完
 (require 'yasnippet-bundle)
 (yas/initialize)
 
-;;undoをファイル閉じても保存
-(require 'undohist)
-(setq undohist-directory "~/.undohist/")
-(undohist-initialize)
-
-;;行番号を左に表示
-;;http://www23.atwiki.jp/selflearn/pages/41.html#id_51d1d876
-(require 'linum)
+(require 'linum);;行番号を左に表示
 (global-linum-mode)
 
-;;Emacswikiとかからinstallしてくる
-(require 'auto-install)
-;;http://d.hatena.ne.jp/rubikitch/20091221/autoinstall
+(require 'auto-install);;Emacswikiとかからinstallしてくる
 (setq auto-install-directory "~/.emacs.d/install/")
 
-;;recentfのディレクトリも表示する改造版
-(require 'recentf-ext)
+(require 'recentf-ext);;recentfのディレクトリも表示する改造版
 (setq recentf-max-menu-items 10000);;メニュー表示件数
 (setq recentf-max-saved-items 100000);;保存件数
 
-;;xmpfilterのemacs lisp version
-(require 'lispxmp)
-
-;;使い捨てないscratch
-(require 'open-junk-file)
+(require 'open-junk-file);;使い捨てないscratch
 (setq open-junk-file-directory "~/Documents/log/%Y/%m/%d/%H_%M_%S.")
 
-;;本当の自動保存
-(require 'auto-save-buffers)
+(require 'auto-save-buffers);;本当の自動保存
 (run-with-idle-timer 10.0 t 'auto-save-buffers "" "\\.el$")
 
-;;バッファの名前がかぶったらディレクトリ名もつける
-(require 'uniquify)
+(require 'uniquify);;バッファの名前がかぶったらディレクトリ名もつける
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;;カーソル位置記憶
-(require 'saveplace)
-(setq-default save-place t)
-
-;;かしこいコンパイル
-(require 'mode-compile)
+(require 'mode-compile);;かしこいコンパイル
 (defconst c++-default-compiler-options
   "-std=c++11 -Wall -Wextra -ggdb -pipe")
-
-(require 'grep-edit)
-(require 'text-adjust)
-
-(autoload 'd-mode "d-mode" "Major mode for editing D code." t);D言語
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t);Markdown
