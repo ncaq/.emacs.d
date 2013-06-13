@@ -4,7 +4,7 @@
 (defun ncaq-c++-mode-set ()
   (c-set-style "bsd");http://www.02.246.ne.jp/~torutk/cxx/emacs/indentation.html
   (subword-mode t)
-  (local-set-key (kbd "C-i") 'code-format-c);括弧も揃えるコードフォーマット;;gnu globalを自動的に有効にする
+  (local-set-key (kbd "C-i") 'code-format-c);括弧も揃えるコードフォーマット
   )
 
 (add-hook 'c-mode-common-hook 'ncaq-c++-mode-set)

@@ -1,5 +1,4 @@
 ;;小さい自作関数
-
 (defun close-all-buffers (); => 
   "バッファ全部閉じる"
   (interactive); => 
@@ -49,3 +48,9 @@
   (cond
    ((is-reverse-point-whitespace-all) (move-beginning-of-line nil))
    (t (back-to-indentation))))
+
+(defun through-newline ()
+  "vimのO"
+  (interactive)
+  (move-end-of-line)
+  (newline-and-indent))
