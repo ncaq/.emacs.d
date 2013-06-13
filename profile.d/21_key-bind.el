@@ -11,14 +11,7 @@
 (global-set-key			(kbd "C-S-d")	'delete-horizontal-space);実行ファイル実行
 (global-set-key			(kbd "C-a")	'move-beginning-of-line-Visual-Stdio-like);;Visual StdioライクなC-a
 (global-set-key			(kbd "C-c c")	'mode-compile);かしこいコンパイルコマンド実行
-(global-set-key			(kbd "C-c e S")	'evernote-do-saved-search)
-(global-set-key			(kbd "C-c e b")	'evernote-browser)
-(global-set-key			(kbd "C-c e c")	'evernote-create-note)
-(global-set-key			(kbd "C-c e o")	'evernote-open-note)
-(global-set-key			(kbd "C-c e p")	'evernote-post-region)
-(global-set-key			(kbd "C-c e s")	'evernote-search-notes)
-(global-set-key			(kbd "C-c e w")	'evernote-write-note)
-(global-set-key			(kbd "C-c g")	'anything-do-grep)
+(global-set-key			(kbd "C-c g")	'anything-do-grep);インクリメント串刺し検索
 (global-set-key			(kbd "C-c h")	'help-command);HHKだとF1押しにくい
 (global-set-key			(kbd "C-c q")	'quoted-insert);C-qの本来の関数
 (global-set-key			(kbd "C-c s")	'sort-lines);ソートする
@@ -28,9 +21,11 @@
 (global-set-key			(kbd "C-o")	'anything-find-file)
 (global-set-key			(kbd "C-q")	'kill-this-buffer);バッファ閉じる
 (global-set-key			(kbd "C-u")	'kill-whole-line);現在行を削除
+(global-set-key			(kbd "C-x C-e") 'flymake-display-err-menu-for-current-line);現在の行のエラー表示
 (global-set-key			(kbd "C-z")	'ff-find-other-file);ヘッダファイルに居る場合はソースファイルに,または逆
 (global-set-key			(kbd "M-,")	'anything-kill-buffers);複数のバッファを簡単に閉じれる
 (global-set-key			(kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
+(global-set-key			(kbd "M-c")	'anything-show-kill-ring);多次元クリップボード
 (global-set-key			(kbd "M-i")	'text-adjust-buffer);全角記号とかそういうゴミ文字を変換する
 (global-set-key			(kbd "M-j")	'open-junk-file);残るscratch
 (global-set-key			(kbd "M-l")	'sdic-inline-pos-tip-show)

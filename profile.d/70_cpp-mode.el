@@ -5,7 +5,6 @@
   (c-set-style "bsd");http://www.02.246.ne.jp/~torutk/cxx/emacs/indentation.html
   (subword-mode t)
   (local-set-key (kbd "C-i") 'code-format-c);括弧も揃えるコードフォーマット;;gnu globalを自動的に有効にする
-  (define-key c++-mode-map (kbd "C-x C-e") 'flymake-display-err-menu-for-current-line)
   )
 
 (add-hook 'c-mode-common-hook 'ncaq-c++-mode-set)
