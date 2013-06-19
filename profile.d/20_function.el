@@ -52,5 +52,5 @@
 (defun through-newline ()
   "vimのO"
   (interactive)
-  (move-end-of-line)
+  (move-end-of-line nil)
   (newline-and-indent))
