@@ -1,4 +1,4 @@
-(add-to-list 'custom-theme-load-path "~/.emacs.d/bigprogram.d/emacs-color-theme-solarized/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/package.d/emacs-color-theme-solarized/")
 (load-theme 'solarized-dark t)
 
 (defface my-face-b-2 '((t (:background "#073642"))) nil)

@@ -19,7 +19,7 @@
 (global-linum-mode)
 
 (require 'auto-install);;Emacswikiとかからinstallしてくる
-(setq auto-install-directory "~/.emacs.d/install/")
+(setq auto-install-directory "~/.emacs.d/auto-install.d/")
 
 (require 'open-junk-file);;使い捨てないscratch
 (setq open-junk-file-directory "~/Documents/log/%Y/%m/%d/%H_%M_%S.")
