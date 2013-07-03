@@ -16,6 +16,3 @@
 (require 'undohist);;undoをファイル閉じても保存
 (setq undohist-directory "~/.undohist/")
 (undohist-initialize)
-
-(add-hook 'kill-emacs-hook '(lambda ()
-			      (shell-command "rm .\#.recentf")))

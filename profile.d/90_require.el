@@ -21,10 +21,6 @@
 (require 'auto-install);;Emacswikiとかからinstallしてくる
 (setq auto-install-directory "~/.emacs.d/install/")
 
-(require 'recentf-ext);;recentfのディレクトリも表示する改造版
-(setq recentf-max-menu-items 10000);;メニュー表示件数
-(setq recentf-max-saved-items 100000);;保存件数
-
 (require 'open-junk-file);;使い捨てないscratch
 (setq open-junk-file-directory "~/Documents/log/%Y/%m/%d/%H_%M_%S.")
 
