@@ -1,5 +1,5 @@
 (autoload 'd-mode "d-mode" "Major mode for editing D code." t);D言語
-
+(require 'auto-complete-d)
 ;;わからん
 ;;(require 'cl)
 ;; (defun clang-delete ()
@@ -18,5 +18,6 @@
   (flymake-d-load)
   (subword-mode t)
   (clang-delete)
+  (ac-d-mode-setup)
   (local-set-key (kbd "C-i") 'code-format-c))
 (add-hook 'd-mode-hook 'ncaq-d-mode-setup)
