@@ -11,4 +11,4 @@
 
 ;;trampのを通常のパスに
 (require 'recentf-purge-tramp)
-(recentf-purge-tramp-stand-by)
+(recentf-purge-tramp)
