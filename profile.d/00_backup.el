@@ -10,12 +10,3 @@
 (setq kept-new-versions 100000)		;新しいものをいくつ残すか
 (setq kept-old-versions 100000)		;古いものをいくつ残すか
 (setq vc-make-backup-files t)	;バージョン管理下のファイルもバックアップを作る。
-
-;;http://d.hatena.ne.jp/i_k_b/20120924/1348462736
-(setq backup-enable-predicate
-      '(lambda (path)
-         (and (normal-backup-enable-predicate path)
-              (let ((name (file-name-nondirectory path)))
-                (or (< (length name) 10)
-                    (not (string-equal ".recentf" (substring name 0 10)))))
-              )))
