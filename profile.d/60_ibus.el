@@ -2,7 +2,8 @@
 (require 'ibus)
 (add-hook 'after-init-hook 'ibus-mode-on)
 
-(add-hook 'minibuffer-setup-hook 'ibus-disable);mini buffer ではオフに
+;;isearchの時に無効になるから解除
+;;(add-hook 'minibuffer-setup-hook 'ibus-disable);mini buffer ではオフに
 (ibus-disable-isearch);isearch 時はオフに
 (setq ibus-cursor-color '("#dc322f" "#eee8d5" "#859900"));IBusの状態によってカーソル色を変化させる ("on" "off" "disabled")
 (setq ibus-isearch-cursor-type 'hollow);インクリメンタル検索中のカーソル形状を変更する
@@ -16,4 +17,4 @@
 (ibus-define-common-key (kbd "C-SPC") nil);C-SPC は Set Mark に使う
 
 (global-set-key (kbd "s-SPC") 'ibus-toggle)
-
+(define-key isearch-mode-map (kbd "s-SPC") 'ibus-toggle);効くのかなあ…?

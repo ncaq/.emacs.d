@@ -12,3 +12,5 @@
 ;;trampのを通常のパスに
 (require 'recentf-purge-tramp)
 (recentf-purge-tramp)
+
+(bug-recentf-del)
