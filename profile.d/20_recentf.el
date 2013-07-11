@@ -2,7 +2,6 @@
 (defun bug-recentf-del ()
   (shell-command "rm .\#.recentf"))
 (add-hook 'kill-emacs-hook 'bug-recentf-del)
-(bug-recentf-del)
 
 ;;順番が大事
 (require 'recentf-ext);;recentfのディレクトリも表示する改造版

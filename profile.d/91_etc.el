@@ -3,12 +3,11 @@
 (add-to-list 'auto-mode-alist '("\\.X.*" . conf-xdefaults-mode));xの設定ファイル
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode));markdownの拡張子は.mdを採用
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode));zshのシェルスクリプトに対応
+
 (defvar windmove-wrap-around)
 (desktop-save-mode 1);起動時に,前回終了していた時に開いていたバッファを一度開いたり,色々復元する
 (ffap-bindings);C-x C-fでカーソルの位置にあるファイルパスとURLを入力
 (fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
-(kill-buffer "*Compile-Log*");謎
-(kill-buffer "*scratch*");open-junk-fileがあるからscratchいらないです^^;
 (savehist-mode 1);ミニバッファの履歴を保存する
 (subword-mode t);CamelCaseの語でも単語単位に分解して編集する
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
@@ -25,3 +24,7 @@
 (setq windmove-wrap-around t);Window移動をループする
 (setq x-select-enable-clipboard t);クリップボードをX11と共有
 (setq-default indent-tabs-mode t);インデントをタブでする
+
+(kill-buffer "*Compile-Log*");謎
+(kill-buffer "*scratch*");open-junk-fileがあるからscratchいらないです^^;
+(kill-buffer "*Shell Command Output*")
