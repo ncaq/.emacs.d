@@ -5,14 +5,16 @@
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode));zshのシェルスクリプトに対応
 
 (defvar windmove-wrap-around)
+
+(add-hook 'pre-command-hook (abbrev-mode nil));auto-complete.el使うからいらない
 (desktop-save-mode 1);起動時に,前回終了していた時に開いていたバッファを一度開いたり,色々復元する
+(display-time);時刻表示
 (ffap-bindings);C-x C-fでカーソルの位置にあるファイルパスとURLを入力
 (fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
+(global-subword-mode 1)
 (savehist-mode 1);ミニバッファの履歴を保存する
 (subword-mode t);CamelCaseの語でも単語単位に分解して編集する
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
-(display-time);時刻表示
-(add-hook 'pre-command-hook (abbrev-mode nil));auto-complete.el使うからいらない
 
 (setq history-length 1000);履歴の保存件数を増やす 履歴ってなんだ
 (setq delete-by-moving-to-trash t);ごみ箱を有効

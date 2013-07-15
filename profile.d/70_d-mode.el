@@ -16,7 +16,6 @@
 
 (defun ncaq-d-mode-setup ()
   (flymake-d-load)
-  (subword-mode t)
   (clang-delete)
   (ac-d-mode-setup)
   (local-set-key (kbd "C-i") 'code-format-c))

@@ -3,7 +3,6 @@
 (defvar gtags-suggested-key-mapping)
 (defun ncaq-c++-mode-set ()
   (c-set-style "bsd");http://www.02.246.ne.jp/~torutk/cxx/emacs/indentation.html
-  (subword-mode t)
   (local-set-key (kbd "C-i") 'code-format-c);括弧も揃えるコードフォーマット
   )
 
