@@ -33,3 +33,5 @@
 (require 'mode-compile);;かしこいコンパイル
 (defconst c++-default-compiler-options
   "-std=c++11 -Wall -Wextra -ggdb -pipe")
+
+(require 'git-commit-mode)
