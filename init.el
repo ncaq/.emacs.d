@@ -1,23 +1,22 @@
 ;; ロードパスの設定
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-(add-to-list 'load-path "~/.emacs.d/auto-install.d/")
-;;サブディレクトリロードする奴
-;;http://six-pence.blogspot.jp/2009/11/emacs-load-path.html
-(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-    (let* ((my-lisp-dir "~/.emacs.d/package.d/")
-	   (default-directory my-lisp-dir))
-      (setq load-path (cons my-lisp-dir load-path))
-      (normal-top-level-add-subdirs-to-load-path)))
-(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-    (let* ((my-lisp-dir "~/.cabal/share/")
-	   (default-directory my-lisp-dir))
-      (setq load-path (cons my-lisp-dir load-path))
-      (normal-top-level-add-subdirs-to-load-path)))
-(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-    (let* ((my-lisp-dir "~/.emacs.d/universe.d/")
-	   (default-directory my-lisp-dir))
-      (setq load-path (cons my-lisp-dir load-path))
-      (normal-top-level-add-subdirs-to-load-path)))
+;;http://d.hatena.ne.jp/kitokitoki/20100705/p1
+(defun my-add-load-path-subdir (dirlist)
+  (with-temp-buffer
+    (dolist (dir dirlist)
+      (cd dir)
+      (add-to-list 'load-path dir)
+      (normal-top-level-add-subdirs-to-load-path))))
+
+(my-add-load-path-subdir
+ '("/usr/local/share/emacs/site-lisp"
+   "~/.emacs.d/auto-install.d/"
+   "~/.cabal/share/"
+   "~/.emacs.d/package.d/"
+   "~/.emacs.d/universe.d/"))
+
+;;何故か.elで終わるディレクトリは追加されない
+(add-to-list 'load-path "~/.emacs.d/package.d/fringe-helper.el")
+(add-to-list 'load-path "~/.emacs.d/package.d/sudden-death.el")
 
 ;;別ファイルから読み込む
 (require 'init-loader)
