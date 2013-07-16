@@ -16,5 +16,4 @@
 (ibus-define-common-key (kbd "C-/") nil);C-/ は Undo に使う
 (ibus-define-common-key (kbd "C-SPC") nil);C-SPC は Set Mark に使う
 
-(global-set-key (kbd "s-SPC") 'ibus-toggle)
-(define-key isearch-mode-map (kbd "s-SPC") 'ibus-toggle);効くのかなあ…?
+(ibus-define-common-key (kbd "s-SPC") 'ibus-toggle)
