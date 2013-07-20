@@ -1,7 +1,7 @@
 (define-key emacs-lisp-mode-map	(kbd "C-c C-e")	'eval-buffer);C-cC-eでeval-bufferを実行
 (global-set-key			(kbd "<f12>")	'action-a-out);実行ファイル実行
 (global-set-key			(kbd "C-+")	'increment-string-as-number);数字増やす
-(global-set-key			(kbd "C-,")	'anything);C-xC-bは頻繁に打つにしてはめんどくさい
+(global-set-key			(kbd "C-,")	'anything-filelist+);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key			(kbd "C--")	'decrement-string-as-number);数字減らす
 (global-set-key			(kbd "C-;")	'align-regexp);揃える(正規表現)
 (global-set-key			(kbd "C-M-S-q")	'close-all-buffers);バッファを全て閉じる.まともに動かなくなるのですぐに終了すること
