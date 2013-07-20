@@ -16,12 +16,14 @@
 (subword-mode t);CamelCaseの語でも単語単位に分解して編集する
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
-(setq history-length 1000);履歴の保存件数を増やす 履歴ってなんだ
 (setq delete-by-moving-to-trash t);ごみ箱を有効
 (setq dired-listing-switches "-AFlhv");diredでソート順を設定
+(setq history-length 1000);履歴の保存件数を増やす 履歴ってなんだ
 (setq history-length 10000);ミニバッファの履歴の保存数を増やす
 (setq message-log-max 10000);ログの記録行数を増やす.
 (setq next-line-add-newlines t);c-nした時に行を追加
+(setq read-buffer-completion-ignore-case t)    ;;大文字と小文字を区別しない バッファ名
+(setq read-file-name-completion-ignore-case t) ;; ファイル名
 (setq user-mail-address "nyrigadake38@gmail.com")
 (setq windmove-wrap-around t);Window移動をループする
 (setq x-select-enable-clipboard t);クリップボードをX11と共有

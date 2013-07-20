@@ -22,7 +22,7 @@
 (setq auto-install-directory "~/.emacs.d/auto-install.d/")
 
 (require 'open-junk-file);;使い捨てないscratch
-(setq open-junk-file-directory "~/Documents/log/%Y/%m/%d/%H_%M_%S.")
+(setq open-junk-file-directory "~/Documents/log/%Y/%m/%d/")
 
 (require 'auto-save-buffers);;本当の自動保存
 (run-with-idle-timer 10.0 t 'auto-save-buffers "" "\\.el$")
