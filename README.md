@@ -34,7 +34,7 @@ init-loader.elは,数字の少ないところから読み込んで,数字から�
   * markdown
   * omake
   * gnu global
-  * w3m-el  
+  * w3m-el
 * cabal:
   * ghc-mod
   * hasktags
