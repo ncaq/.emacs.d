@@ -9,6 +9,9 @@
 (add-hook 'c-mode-common-hook 'ncaq-c++-mode-set)
 (add-to-list 'auto-mode-alist '("\\.h$" . c++-mode));*.hをc++モードで開く
 
+(defconst c++-default-compiler-options
+  "-std=c++11 -Wall -Wextra -ggdb -pipe")
+
 ;;C++11向け
 (add-hook 'c++-mode-hook
 	  '(lambda()

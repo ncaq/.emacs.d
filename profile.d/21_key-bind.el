@@ -23,7 +23,7 @@
 (global-set-key			(kbd "C-u")	'kill-whole-line);現在行を削除
 (global-set-key			(kbd "C-x C-e") 'flymake-display-err-menu-for-current-line);現在の行のエラー表示
 (global-set-key			(kbd "C-z")	'ff-find-other-file);ヘッダファイルに居る場合はソースファイルに,または逆
-(global-set-key			(kbd "M-,")	'anything-kill-buffers);複数のバッファを簡単に閉じれる
+(global-set-key			(kbd "M-,")	'ibuffer);もう一つのバッファーリスト
 (global-set-key			(kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
 (global-set-key			(kbd "M-c")	'anything-show-kill-ring);多次元クリップボード
 (global-set-key			(kbd "M-i")	'text-adjust-buffer);全角記号とかそういうゴミ文字を変換する
