@@ -12,4 +12,6 @@
 (require 'recentf-purge-tramp)
 (recentf-purge-tramp)
 
+(run-at-time 300 t 'recentf-cleanup);定期的に削除をチェック
+
 (bug-recentf-del)
