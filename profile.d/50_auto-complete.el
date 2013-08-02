@@ -3,6 +3,7 @@
 (require 'fuzzy)
 ;;http://cx4a.org/software/auto-complete/manual.ja.html
 (require 'auto-complete-config)
+(require 'auto-complete)
 (ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/bigprogram.d/auto-complete/ac-dict/")
 

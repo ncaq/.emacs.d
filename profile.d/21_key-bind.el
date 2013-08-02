@@ -1,3 +1,4 @@
+(define-key emacs-lisp-mode-map	(kbd "C-M-q")	'kill-buffer-and-window);なんか予め設定されてるから
 (define-key emacs-lisp-mode-map	(kbd "C-c C-e")	'eval-buffer);C-cC-eでeval-bufferを実行
 (global-set-key			(kbd "<f12>")	'action-a-out);実行ファイル実行
 (global-set-key			(kbd "C-+")	'increment-string-as-number);数字増やす

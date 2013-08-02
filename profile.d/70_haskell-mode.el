@@ -1,5 +1,5 @@
 ;;Haskell関係
-(require 'haskell-mode)
+(autoload 'haskell-mode "haskell-mode")
 ;;http://d.hatena.ne.jp/kitokitoki/20111217/
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.lhs$" . literate-haskell-mode))
@@ -10,7 +10,7 @@
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
 ;;HasktagをAnythingで扱う
-(require 'anything-hasktags)
+(autoload 'anything-hasktags "haskell-mode")
 (add-hook 'haskell-mode-hook
 	  (lambda()
 	    (define-key haskell-mode-map (kbd "C-.") 'anything-hasktags-select)))

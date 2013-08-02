@@ -1,5 +1,5 @@
 ;;C++で使え無い機能が多いのでそれは無効化している
-(require 'omake-mode)
+(autoload 'omake-mode "omake-run")
 (setq omake-program-path "/usr/bin/omake")
 (setq omake-program-arguments "-P -w -j 5 --verbose")
 ;;omake command options. -w and --verbose are required for error browsing

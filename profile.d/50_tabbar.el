@@ -27,15 +27,6 @@
         (set tabset (sort (cons tab tabs)
                           (lambda (a b) (string< (buffer-name (car a)) (buffer-name (car b))))))))))
 
-;;http://dev.ariel-networks.com/wp/documents/aritcles/emacs/part11
-;;リスト8 " *"で始まるバッファをタブとして表示しない
-(defun my-tabbar-buffer-list ()
-  (remove-if
-   (lambda (buffer)
-     (find (aref (buffer-name buffer) 0) " *"))
-   (buffer-list)))
-(setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
-
 ;;外観変更
 (set-face-attribute
  'tabbar-default nil

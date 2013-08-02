@@ -11,3 +11,5 @@
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
 (ad-activate 'font-lock-mode)
+
+(custom-set-faces '(which-func ((t (:foreground "#a3a1a1")))));;現在の函数表示の場所

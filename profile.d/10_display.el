@@ -15,6 +15,11 @@
 
 (require 'linum);;行番号を左に表示
 (global-linum-mode)
+;;auto-complete時に崩れる問題を修正
+(defadvice linum-update
+  (around tung/suppress-linum-update-when-popup activate)
+  (unless (ac-menu-live-p)
+    ad-do-it))
 
 (require 'uniquify);;バッファの名前がかぶったらディレクトリ名もつける
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)

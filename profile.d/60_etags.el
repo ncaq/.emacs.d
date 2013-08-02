@@ -1,4 +1,4 @@
-(require 'anything-yaetags)
+(autoload 'anything-yaetags "ncaq-etags")
 (defun ncaq-etags ()
   (local-set-key (kbd "C-.") 'anything-c-etags-select)
   (local-set-key (kbd "M-.") 'pop-tag-mark))

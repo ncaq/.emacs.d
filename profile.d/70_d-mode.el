@@ -1,14 +1,7 @@
 (autoload 'd-mode "d-mode" "Major mode for editing D code." t);D言語
-(require 'auto-complete-d)
-;;わからん
-;;(require 'cl)
-;; (defun clang-delete ()
-;;   (setq ac-sources
-;; 	 (remove-if
-;; 	  (lambda (x)
-;; 	    (equal x ac-source-clang))
-;; 	 ac-sources)))
+(add-to-list 'auto-mode-alist '("\\.d$" . d-mode))
 
+(autoload 'auto-complete-d "ncaq-d-mode-setup")
 ;;d-modeはcc-modeを改造したものなため,d-modeを起動するとD言語書いてるのにC++の補完システムが起動してしまう.
 ;;やっつけでこれを防ぐ
 (defun clang-delete()
