@@ -1,11 +1,11 @@
-anythingからhelmに移行
-quickrunの導入
-autocomplete-clangからautocomplete-clang-asyncに移行
-flymake問題解決方法をソース直接書き換えじゃなく,函数再定義に
-fringe設定を別ファイルに移動
-emacs lisp開発専用ファイルを用意
-markdown-modeからpandoc-modeに乗り換え
-メールを読めるようにする
-Fontsize問題解決する
-minibufferでautocompleteが動くように
-管理されてないelispをgitかpackage.elで管理する
+バグ Fontsize問題解決する
+バグ flymake問題解決方法をソース直接書き換えじゃなく,函数再定義に
+バグ minibufferでautocompleteが動くように
+整理 emacs lisp開発専用ファイルを用意
+整理 fringe設定を別ファイルに移動
+整理 管理されてないelispをgitかpackage.elで管理する
+新規 メールを読めるようにする
+移行 anythingからhelm
+移行 autocomplete-clangからautocomplete-clang-async
+移行 markdown-modeからpandoc-mode
+移行 smart-compileからquickrun
