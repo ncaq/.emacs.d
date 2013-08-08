@@ -10,7 +10,7 @@
 (autoload 'gitignore-mode "gitignore-mode")
 
 (autoload 'open-junk-file "open-junk-file");;使い捨てないscratch
-(setq open-junk-file-directory "~/Documents/log/%Y/%m/%d/")
+(setq open-junk-file-directory "~/Documents/log/%Y_%m/")
 
 (require 'grep-edit)
 (require 'text-adjust)
@@ -23,4 +23,4 @@
 (yas/initialize)
 
 (require 'auto-save-buffers);;本当の自動保存
-(run-with-idle-timer 10.0 t 'auto-save-buffers "" "")
+(run-with-idle-timer 10 t 'auto-save-buffers)

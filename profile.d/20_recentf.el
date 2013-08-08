@@ -12,6 +12,6 @@
 (require 'recentf-purge-tramp)
 (recentf-purge-tramp)
 
-(run-at-time t 300 'recentf-cleanup);定期的に削除をチェック
-
+(run-at-time t 1000 'recentf-cleanup);定期的に削除をチェック
+(run-with-idle-timer 60 t 'auto-save-buffers);一定時間放置したらに削除をチェック
 (bug-recentf-del)

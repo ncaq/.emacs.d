@@ -32,4 +32,3 @@
 (add-to-list 'ac-modes 'text-mode)
 (add-to-list 'ac-modes 'd-mode)
 (add-to-list 'ac-modes 'shell-script-mode)
-

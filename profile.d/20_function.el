@@ -54,3 +54,8 @@
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
+
+(defun text-adjust-selective ()
+  (interactive)
+  (text-adjust-hankaku-buffer)
+  (text-adjust-kutouten-buffer))

@@ -70,7 +70,7 @@ Perhaps use text from LINE-ERR-INFO-LIST to enhance highlighting."
 ;;書き捨て
 (defun flymake-cc-init ()
   (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-		       'flymake-create-temp-inplace))
+		       'flymake-create-temp-with-folder-structure))
 	 (local-file  (file-relative-name
 		       temp-file
 		       (file-name-directory buffer-file-name))))
