@@ -1,4 +1,6 @@
 %backup%~
+.emacs.desktop
+.emacs.desktop.lock
 ac-comphist.dat
 anything-c-adaptive-history
 auto-save-list
