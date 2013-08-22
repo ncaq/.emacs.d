@@ -5,6 +5,7 @@
 (require 'auto-complete-config)
 (require 'auto-complete)
 (ac-config-default)
+(global-auto-complete-mode t)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/bigprogram.d/auto-complete/ac-dict/")
 
 (ac-set-trigger-key "TAB")
@@ -32,3 +33,4 @@
 (add-to-list 'ac-modes 'text-mode)
 (add-to-list 'ac-modes 'd-mode)
 (add-to-list 'ac-modes 'shell-script-mode)
+(add-to-list 'ac-modes 'conf-mode)
