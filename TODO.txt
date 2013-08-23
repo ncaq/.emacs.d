@@ -5,6 +5,7 @@
 整理 emacs lisp開発専用ファイルを用意
 整理 fringe設定を別ファイルに移動
 整理 管理されてないelispをgitかpackage.elで管理する
+新規 ag.el https://github.com/Wilfred/ag.el
 新規 atool http://d.hatena.ne.jp/mooz/20110911/p1
 新規 メールを読めるようにする
 移行 anythingからhelm

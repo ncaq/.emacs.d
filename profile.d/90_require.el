@@ -5,12 +5,12 @@
 (autoload 'sudden-death "sudden-death");突然の死
 (autoload 'wdired "wdired-mode")
 
-(autoload 'git-commit-mode "git-commit-mode")
-(autoload 'gitconfig-mode "gitconfig-mode")
-(autoload 'gitignore-mode "gitignore-mode")
-
 (autoload 'open-junk-file "open-junk-file");;使い捨てないscratch
 (setq open-junk-file-directory "~/Documents/log/%Y_%m/")
+
+(require 'git-commit-mode)
+(require 'gitconfig-mode)
+(require 'gitignore-mode)
 
 (require 'grep-edit)
 (require 'text-adjust)
