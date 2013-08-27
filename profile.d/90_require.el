@@ -23,7 +23,7 @@
 (yas/initialize)
 
 (require 'auto-save-buffers);;本当の自動保存
-(run-with-idle-timer 10 t 'auto-save-buffers)
+(run-with-idle-timer 30 t 'auto-save-buffers)
 
 (require 'zlc)
 (zlc-mode t)
