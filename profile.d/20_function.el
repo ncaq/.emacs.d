@@ -56,6 +56,7 @@
   (newline-and-indent))
 
 (defun text-adjust-selective ()
+  "text-adjustは色々やりすぎる"
   (interactive)
   (text-adjust-hankaku-buffer)
   (text-adjust-kutouten-buffer))
