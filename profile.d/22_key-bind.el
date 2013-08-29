@@ -1,8 +1,6 @@
-(keyboard-translate ?\C-i ?\H-i);<tab>とC-iを分離
-(keyboard-translate ?\C-M-i ?\H-M-i)
-
 (define-key emacs-lisp-mode-map	(kbd "C-M-q")	'kill-buffer);なんか予め設定されてるから
 (define-key emacs-lisp-mode-map	(kbd "C-c e")	'eval-buffer);C-cC-eでeval-bufferを実行
+(define-key read-expression-map (kbd "TAB") 'lisp-complete-symbol)
 (global-set-key			(kbd "<f12>")	'action-a-out);実行ファイル実行
 (global-set-key			(kbd "C-+")	'increment-string-as-number);数字増やす
 (global-set-key			(kbd "C-,")	'anything-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
