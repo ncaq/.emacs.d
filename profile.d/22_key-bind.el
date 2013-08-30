@@ -17,9 +17,8 @@
 (global-set-key			(kbd "C-a")	'move-beginning-of-line-Visual-Stdio-like);;Visual StdioライクなC-a
 (global-set-key			(kbd "C-c a")	'text-adjust-selective);全角記号とかそういうゴミな文字を変換する
 (global-set-key			(kbd "C-c c")	'mode-compile);かしこいコンパイルコマンド実行
-(global-set-key			(kbd "C-c f")	'code-format-all);全ての文字に対し字下げを行う
-(global-set-key			(kbd "C-c h")	'help-command);HHKだとF1押しにくい
 (global-set-key			(kbd "C-c j")	'open-junk-file);残るscratch
+(global-set-key			(kbd "C-c s")	'code-format-all);全ての文字に対し字下げを行う
 (global-set-key			(kbd "C-j")	'anything-do-grep);インクリメント串刺し検索
 (global-set-key			(kbd "C-m")	'newline-and-indent);改行時にインデント
 (global-set-key			(kbd "C-o")	'overwrite-mode);所謂insertモード
@@ -29,6 +28,7 @@
 (global-set-key			(kbd "C-z")	'quoted-insert);C-qの本来の関数
 (global-set-key			(kbd "M-,")	'ibuffer);もう一つのバッファーリスト
 (global-set-key			(kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
+(global-set-key			(kbd "M-c")	'help-command);HHKだとF1押しにくい
 (global-set-key			(kbd "M-l")	'sdic)
 (global-set-key			(kbd "M-m")	'through-newline);
 (global-set-key			(kbd "M-n")	'forward-paragraph)
@@ -36,17 +36,3 @@
 (global-set-key			(kbd "M-q")	'delete-other-windows);他のウインドウを閉じる
 (global-set-key			(kbd "M-y")	'anything-show-kill-ring);多次元クリップボード
 (global-set-key			(kbd "M-z")	'ff-find-other-file);ヘッダファイルに居る場合はソースファイルに,または逆
-
-;;C-hをBackSpaceに変更
-(global-unset-key (kbd "C-h"))
-(global-set-key (kbd "C-M-h")	'backward-kill-sentence)
-(global-set-key (kbd "C-S-h")	'c-hungry-backspace)
-(global-set-key (kbd "C-h")	'c-electric-backspace)
-(global-set-key (kbd "M-h")	'backward-kill-word)
-;;http://stackoverflow.com/questions/13897125/emacs-translating-c-h-to-del-m-h-to-m-del
-;;検索上でも効くように
-(add-hook 'isearch-mode-hook
-	  (function
-	   (lambda ()
-	     (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
-	     (define-key isearch-mode-map (kbd "M-h") 'isearch-del-char))));保留
