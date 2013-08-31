@@ -40,12 +40,22 @@
 (define-key key-translation-map (kbd "M-f") (kbd "M-s"))
 (define-key key-translation-map (kbd "C-M-f") (kbd "C-M-s"))
 
+(add-hook 'isearch-mode-end-hook
+	  (function
+	   (lambda ()
+	     (define-key key-translation-map (kbd "b") (kbd "h"))
+	     (define-key key-translation-map (kbd "f") (kbd "s"))
+	     (define-key key-translation-map (kbd "h") (kbd "b"))
+	     (define-key key-translation-map (kbd "p") (kbd "t"))
+	     (define-key key-translation-map (kbd "s") (kbd "f"))
+	     (define-key key-translation-map (kbd "t") (kbd "p")))))
+
 (add-hook 'isearch-mode-hook
 	  (function
 	   (lambda ()
-	     (define-key key-translation-map (kbd "t") (kbd "t"))
-	     (define-key key-translation-map (kbd "p") (kbd "p"))
-	     (define-key key-translation-map (kbd "h") (kbd "h"))
 	     (define-key key-translation-map (kbd "b") (kbd "b"))
+	     (define-key key-translation-map (kbd "f") (kbd "f"))
+	     (define-key key-translation-map (kbd "h") (kbd "h"))
+	     (define-key key-translation-map (kbd "p") (kbd "p"))
 	     (define-key key-translation-map (kbd "s") (kbd "s"))
-	     (define-key key-translation-map (kbd "f") (kbd "f")))))
+	     (define-key key-translation-map (kbd "t") (kbd "t")))))
