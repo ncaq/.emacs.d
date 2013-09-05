@@ -27,6 +27,5 @@
 (setq x-select-enable-clipboard t);クリップボードをX11と共有
 (setq-default indent-tabs-mode t);インデントをタブでする
 
-(kill-buffer "*Compile-Log*");謎
 (kill-buffer "*scratch*");open-junk-fileがあるからscratchいらないです^^;
 (kill-buffer "*Shell Command Output*")
