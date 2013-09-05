@@ -11,9 +11,8 @@
 (display-time);時刻表示
 (ffap-bindings);C-x C-fでカーソルの位置にあるファイルパスとURLを入力
 (fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
-(global-subword-mode 1)
+(global-subword-mode 1);CamelCaseの語でも単語単位に分解して編集する
 (savehist-mode 1);ミニバッファの履歴を保存する
-(subword-mode t);CamelCaseの語でも単語単位に分解して編集する
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
 (setq delete-by-moving-to-trash t);ごみ箱を有効

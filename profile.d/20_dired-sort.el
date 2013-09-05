@@ -40,7 +40,7 @@
        (read-string "ls switches (must contain -l): " dired-actual-switches))
     (dired-various-sort-change dired-various-sort-type)))
 
-(defvar anything-c-source-dired-various-sort
+(defvar helm-c-source-dired-various-sort
   '((name . "Dired various sort type")
     (candidates . (lambda ()
                     (mapcar (lambda (x)
@@ -56,5 +56,5 @@
              (define-key dired-mode-map "c"
                '(lambda ()
                   (interactive)
-                  (anything '(anything-c-source-dired-various-sort))))
+                  (helm '(helm-c-source-dired-various-sort))))
              ))

@@ -12,7 +12,6 @@
 (require 'gitconfig-mode)
 (require 'gitignore-mode)
 
-(require 'grep-edit)
 (require 'text-adjust)
 
 (require 'undo-tree);;undoをtreeに,C-x C-uで起動
@@ -27,3 +26,9 @@
 
 (require 'zlc)
 (zlc-mode t)
+
+(require 'git-gutter-fringe)
+(global-git-gutter-mode t)
+
+(require 'wgrep)
+(require 'ag)

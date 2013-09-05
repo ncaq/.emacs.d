@@ -17,6 +17,7 @@
 ;;何故か.elで終わるディレクトリは追加されない
 (add-to-list 'load-path "~/.emacs.d/package.d/fringe-helper.el")
 (add-to-list 'load-path "~/.emacs.d/package.d/sudden-death.el")
+(add-to-list 'load-path "~/.emacs.d/package.d/ag.el")
 
 ;;別ファイルから読み込む
 (require 'init-loader)

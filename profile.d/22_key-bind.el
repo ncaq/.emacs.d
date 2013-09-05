@@ -3,7 +3,7 @@
 (define-key read-expression-map (kbd "<tab>") 	'lisp-complete-symbol);M-S-;
 (global-set-key			(kbd "<f12>")	'action-a-out);実行ファイル実行
 (global-set-key			(kbd "C-+")	'increment-string-as-number);数字増やす
-(global-set-key			(kbd "C-,")	'anything-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
+(global-set-key			(kbd "C-,")	'helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key			(kbd "C--")	'decrement-string-as-number);数字減らす
 (global-set-key			(kbd "C-;")	'align-regexp);揃える(正規表現)
 (global-set-key			(kbd "C-M-S-q")	'close-all-buffers);バッファを全て閉じる.まともに動かなくなるのですぐに終了すること
@@ -19,7 +19,7 @@
 (global-set-key			(kbd "C-c c")	'mode-compile);かしこいコンパイルコマンド実行
 (global-set-key			(kbd "C-c j")	'open-junk-file);残るscratch
 (global-set-key			(kbd "C-c s")	'code-format-all);全ての文字に対し字下げを行う
-(global-set-key			(kbd "C-j")	'anything-do-grep);インクリメント串刺し検索
+(global-set-key			(kbd "C-j")	'helm-ag);インクリメント串刺し検索
 (global-set-key			(kbd "C-m")	'newline-and-indent);改行時にインデント
 (global-set-key			(kbd "C-o")	'overwrite-mode);所謂insertモード
 (global-set-key			(kbd "C-q")	'kill-buffer-and-window);バッファとウインドウ閉じる
@@ -34,5 +34,9 @@
 (global-set-key			(kbd "M-n")	'forward-paragraph)
 (global-set-key			(kbd "M-p")	'backward-paragraph)
 (global-set-key			(kbd "M-q")	'delete-other-windows);他のウインドウを閉じる
-(global-set-key			(kbd "M-y")	'anything-show-kill-ring);多次元クリップボード
+(global-set-key			(kbd "M-y")	'helm-show-kill-ring);多次元クリップボード
 (global-set-key			(kbd "M-z")	'ff-find-other-file);ヘッダファイルに居る場合はソースファイルに,または逆
+(global-set-key 		(kbd "C-M-h")	'backward-kill-sentence)
+(global-set-key 		(kbd "C-S-h")	'c-hungry-backspace)
+(global-set-key 		(kbd "C-h")	'c-electric-backspace)
+(global-set-key 		(kbd "M-h")	'backward-kill-word)

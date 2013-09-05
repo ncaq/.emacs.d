@@ -1,6 +1,6 @@
-(autoload 'anything-yaetags "ncaq-etags")
+(autoload 'helm-yaetags "ncaq-etags")
 (defun ncaq-etags ()
-  (local-set-key (kbd "C-.") 'anything-c-etags-select)
+  (local-set-key (kbd "C-.") 'helm-c-etags-select)
   (local-set-key (kbd "M-.") 'pop-tag-mark))
 (add-hook 'lisp-mode-hook 'ncaq-etags)
 (add-hook 'emacs-lisp-mode-hook 'ncaq-etags)
