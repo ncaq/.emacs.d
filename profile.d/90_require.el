@@ -18,8 +18,7 @@
 (global-undo-tree-mode)
 
 (require 'yasnippet);;定型文補完
-(require 'yasnippet-bundle)
-(yas/initialize)
+(yas-global-mode 1)
 
 (require 'auto-save-buffers);;本当の自動保存
 (run-with-idle-timer 30 t 'auto-save-buffers)
@@ -32,3 +31,5 @@
 
 (require 'wgrep)
 (require 'ag)
+
+(require 'auto-tramp)
