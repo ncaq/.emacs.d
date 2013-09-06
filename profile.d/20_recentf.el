@@ -4,3 +4,5 @@
 
 (run-at-time t 3600 'recentf-cleanup);定期的に削除をチェック
 (run-with-idle-timer 300 t 'auto-save-buffers);一定時間放置したら削除をチェック
+
+(require 'recentf-purge-tramp)

@@ -32,4 +32,4 @@
 (require 'wgrep)
 (require 'ag)
 
-(require 'auto-tramp)
+(require 'root-tramp)

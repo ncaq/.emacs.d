@@ -1,6 +1,6 @@
 (define-key emacs-lisp-mode-map	(kbd "C-M-q")	'kill-buffer);なんか予め設定されてるから
 (define-key emacs-lisp-mode-map	(kbd "C-c e")	'eval-buffer);C-cC-eでeval-bufferを実行
-(define-key read-expression-map (kbd "<tab>") 	'lisp-complete-symbol);M-S-;
+(define-key read-expression-map (kbd "<tab>")	'lisp-complete-symbol);M-S-;
 (global-set-key			(kbd "<f12>")	'action-a-out);実行ファイル実行
 (global-set-key			(kbd "C-+")	'increment-string-as-number);数字増やす
 (global-set-key			(kbd "C-,")	'helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
@@ -24,11 +24,12 @@
 (global-set-key			(kbd "C-o")	'overwrite-mode);所謂insertモード
 (global-set-key			(kbd "C-q")	'kill-buffer-and-window);バッファとウインドウ閉じる
 (global-set-key			(kbd "C-u")	'kill-whole-line);現在行を削除
-(global-set-key			(kbd "C-x C-e") 'flymake-display-err-menu-for-current-line);現在の行のエラー表示
+(global-set-key			(kbd "C-x C-e")	'flymake-display-err-menu-for-current-line);現在の行のエラー表示
 (global-set-key			(kbd "C-z")	'quoted-insert);C-qの本来の関数
 (global-set-key			(kbd "M-,")	'ibuffer);もう一つのバッファーリスト
 (global-set-key			(kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
 (global-set-key			(kbd "M-c")	'help-command);HHKだとF1押しにくい
+(global-set-key			(kbd "M-j")	'ag)
 (global-set-key			(kbd "M-l")	'sdic)
 (global-set-key			(kbd "M-m")	'through-newline);
 (global-set-key			(kbd "M-n")	'forward-paragraph)
