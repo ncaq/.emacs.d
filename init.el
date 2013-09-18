@@ -8,9 +8,7 @@
       (normal-top-level-add-subdirs-to-load-path))))
 
 (my-add-load-path-subdir
- '("/usr/local/share/emacs/site-lisp"
-   "~/.emacs.d/auto-install.d/"
-   "~/.cabal/share/"
+ '("~/.emacs.d/auto-install.d/"
    "~/.emacs.d/package.d/"
    "~/.emacs.d/universe.d/"))
 
