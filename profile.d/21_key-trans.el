@@ -21,8 +21,8 @@
 (define-key key-translation-map (kbd "h") (kbd "b"))
 (define-key key-translation-map (kbd "C-h") (kbd "C-b"))
 (define-key key-translation-map (kbd "M-h") (kbd "M-b"))
-(define-key key-translation-map (kbd "C-M-h") (kbd "C-M-h"))
-(define-key key-translation-map (kbd "C-S-h") (kbd "C-S-h"))
+(define-key key-translation-map (kbd "C-M-h") (kbd "C-M-b"))
+(define-key key-translation-map (kbd "C-S-h") (kbd "C-S-b"))
 
 (global-set-key (kbd "b") (lambda () (interactive)(insert-char ?h)))
 (define-key key-translation-map (kbd "b") (kbd "h"))
