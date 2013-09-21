@@ -1,9 +1,13 @@
-バグ minibufferでautocompleteが動くように
-整理 dired専用ファイル
-整理 emacs lisp開発専用ファイルを用意
-新規 atool http://d.hatena.ne.jp/mooz/20110911/p1
-新規 eldoc c-eldoc
-新規 メールを読めるようにする
-移行 autocomplete-clangからautocomplete-clang-async
-移行 markdown-modeからpandoc-mode
-移行 smart-compileからquickrun
+bug minibufferでautocompleteが動くように
+
+fix dired専用ファイル
+fix emacs lisp開発専用ファイルを用意
+
+cro autocomplete-clang -> autocomplete-clang-async
+cro markdown-mode -> pandoc-mode
+cro smart-compile -> quickrun
+
+new atool http://d.hatena.ne.jp/mooz/20110911/p1
+new eldoc c-eldoc
+new flycheck
+new メールを読めるようにする
