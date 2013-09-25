@@ -11,7 +11,7 @@
 (global-set-key (kbd "C-x p") 'tabbar-backward)
 
 ;;タブをグループ化しない
-(setq tabbar-buffer-groups-function nil)
+;;(setq tabbar-buffer-groups-function nil)
 
 ;;タブを名前でソートする
 (defun tabbar-add-tab (tabset object &optional append_ignored)
