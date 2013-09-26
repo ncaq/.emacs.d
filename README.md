@@ -39,8 +39,6 @@ init-loader.elは,数字の少ないところから読み込んで,数字から�
   * ghc-mod
   * hasktags
 * build
-  * ibus-el
-  * sdic sdic-edict sdic-gene95
 
 #Emacs初心者のため助言ください
 [Twitter](https://twitter.com/ncaq)
