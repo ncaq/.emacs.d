@@ -1,7 +1,6 @@
 ;;有効化して2行ぐらい書くだけのものはここに全部ツッコむ
 (autoload 'lispxmp "lispxmp");;xmpfilterのemacs lisp version
 (autoload 'minibuf-isearch "minibuf-isearch-mode")
-(autoload 'mode-compile "mode-compile");;かしこいコンパイル
 (autoload 'sudden-death "sudden-death");突然の死
 (autoload 'wdired "wdired-mode")
 
