@@ -4,15 +4,15 @@
 
 ;;C++でmakeファイルを使わない時の設定
 ;;書き捨て
-(defun flymake-cc-init ()
-  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-		       'flymake-create-temp-with-folder-structure))
-	 (local-file  (file-relative-name
-		       temp-file
-		       (file-name-directory buffer-file-name))))
-    (list "g++" (list "-Wall" "-Wextra" "-fsyntax-only" "-std=c++11" "-v" local-file))))
-(push '("\\.cpp$" flymake-cc-init) flymake-allowed-file-name-masks)
-(add-hook 'c++-mode-hook 'flymake-mode-on)
+;; (defun flymake-cc-init ()
+;;   (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+;; 		       'flymake-create-temp-with-folder-structure))
+;; 	 (local-file  (file-relative-name
+;; 		       temp-file
+;; 		       (file-name-directory buffer-file-name))))
+;;     (list "g++" (list "-Wall" "-Wextra" "-fsyntax-only" "-std=c++11" "-v" local-file))))
+;; (push '("\\.cpp$" flymake-cc-init) flymake-allowed-file-name-masks)
+;; (add-hook 'c++-mode-hook 'flymake-mode-on)
 
 ;;リモートのファイルで固まらないように
 (defvar flymake-run-in-place)

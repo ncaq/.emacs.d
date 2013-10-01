@@ -3,14 +3,11 @@
 (defvar gtags-suggested-key-mapping)
 (defun ncaq-c++-mode-set ()
   (c-set-style "bsd");http://www.02.246.ne.jp/~torutk/cxx/emacs/indentation.html
-  (local-set-key (kbd "C-i") 'code-format-c);括弧も揃えるコードフォーマット
+  (local-set-key (kbd "C-c f") 'code-format-c);括弧も揃えるコードフォーマット
   )
 
 (add-hook 'c-mode-common-hook 'ncaq-c++-mode-set)
 (add-to-list 'auto-mode-alist '("\\.h$" . c++-mode));*.hをc++モードで開く
-
-(defconst c++-default-compiler-options
-  "-std=c++11 -Wall -Wextra -ggdb -pipe")
 
 ;;C++11向け
 (add-hook 'c++-mode-hook

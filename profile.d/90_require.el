@@ -33,3 +33,5 @@
 (require 'ag)
 
 (require 'root-tramp)
+
+(require 'flycheck)
