@@ -1,11 +1,11 @@
 (require 'helm-config)
 (helm-mode 1)
 (require 'helm)
-
-(require 'helm-ag)
-
-(require 'helm-descbinds)
-mov(helm-descbinds-mode)
-
-;;tramp周りにバグがある
-(custom-set-variables '(helm-ff-auto-update-initial-value nil))
+(require 'helm-ag-autoloads)
+(require 'helm-dired-recent-dirs)
+(require 'helm-flymake)
+(require 'helm-gist)
+(require 'helm-git)
+(require 'helm-gtags)
+(require 'helm-helm-commands)
+(require 'helm-ls-git)
