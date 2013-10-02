@@ -9,3 +9,6 @@
 (require 'helm-gtags)
 (require 'helm-helm-commands)
 (require 'helm-ls-git)
+
+(require 'helm-descbinds)
+(helm-descbinds-mode)
