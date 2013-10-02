@@ -36,6 +36,7 @@
 (global-set-key			(kbd "M-p")	'backward-paragraph)
 (global-set-key			(kbd "M-q")	'delete-other-windows);他のウインドウを閉じる
 (global-set-key			(kbd "M-y")	'helm-show-kill-ring);多次元クリップボード
+(global-set-key			(kbd "M-z")	'code-format-all);全ての文字に対し字下げを行う
 (global-set-key			(kbd "M-z")	'ff-find-other-file);ヘッダファイルに居る場合はソースファイルに,または逆
 (global-set-key 		(kbd "C-M-h")	'backward-kill-sentence)
 (global-set-key 		(kbd "C-S-h")	'c-hungry-backspace)

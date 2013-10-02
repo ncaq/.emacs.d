@@ -5,6 +5,7 @@
 (autoload 'wdired "wdired-mode")
 
 (autoload 'open-junk-file "open-junk-file");;使い捨てないscratch
+(defvar open-junk-file-directory)
 (setq open-junk-file-directory "~/Documents/log/%Y_%m/")
 
 (require 'git-commit-mode)
@@ -32,5 +33,3 @@
 (require 'ag)
 
 (require 'root-tramp)
-
-(require 'flycheck)
