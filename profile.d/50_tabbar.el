@@ -40,18 +40,18 @@
 (set-face-attribute
  'tabbar-default nil
  :family "Ricty"
- :background "#93a1a1"
- :foreground "#002b36"
+ :background "#002b36"
+ :foreground "#93a1a1"
  :height 1.0)
 (set-face-attribute
  'tabbar-unselected nil
- :background "#002b36"
- :foreground "#93a1a1"
+ :background "#93a1a1"
+ :foreground "#002b36"
  :box t)
 (set-face-attribute
  'tabbar-selected nil
- :background "#93a1a1"
- :foreground "#002b36"
+ :background "#002b36"
+ :foreground "#93a1a1"
  :box t)
 (set-face-attribute
  'tabbar-button nil

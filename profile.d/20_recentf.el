@@ -1,4 +1,5 @@
 (require 'recentf)
+(require 'recentf-ext)
 (require 'recentf-purge-tramp)
 (setq recentf-max-menu-items  100000);;メニュー表示件数
 (setq recentf-max-saved-items 100000);;保存件数
