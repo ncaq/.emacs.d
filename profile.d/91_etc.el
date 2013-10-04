@@ -7,12 +7,11 @@
 (defvar windmove-wrap-around)
 
 (add-hook 'pre-command-hook (abbrev-mode nil));auto-complete.el使うからいらない
-(desktop-save-mode 1);起動時に,前回終了していた時に開いていたバッファを一度開いたり,色々復元する
-(display-time);時刻表示
-(ffap-bindings);C-x C-fでカーソルの位置にあるファイルパスとURLを入力
+(desktop-save-mode t);起動時に,前回終了していた時に開いていたバッファを一度開いたり,色々復元する
+(ffap-bindings)
 (fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
-(global-subword-mode 1);CamelCaseの語でも単語単位に分解して編集する
-(savehist-mode 1);ミニバッファの履歴を保存する
+(global-subword-mode t);CamelCaseの語でも単語単位に分解して編集する
+(savehist-mode t);ミニバッファの履歴を保存する
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
 (setq delete-by-moving-to-trash t);ごみ箱を有効

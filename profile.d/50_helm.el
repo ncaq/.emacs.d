@@ -11,4 +11,4 @@
 (require 'helm-ls-git)
 
 (require 'helm-descbinds)
-(helm-descbinds-mode)
+(helm-descbinds-mode t)

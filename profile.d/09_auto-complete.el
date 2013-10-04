@@ -6,7 +6,6 @@
 (require 'auto-complete)
 (ac-config-default)
 (global-auto-complete-mode t)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/bigprogram.d/auto-complete/ac-dict/")
 
 (ac-set-trigger-key "TAB")
 (define-key ac-completing-map	(kbd "C-n") 'ac-next)
@@ -17,9 +16,9 @@
 (setq popup-use-optimized-column-computation nil);;最適化の有無,最適化すると時折崩れる
 (setq ac-menu-height 22);;補完列表示数
 (setq ac-use-quick-help t);ヘルプを表示
-(setq ac-quick-help-delay 0);;ヘルプを即表示,pos-tipを使えば崩れ無くなった
+(setq ac-quick-help-delay 1);;ヘルプを即表示,pos-tipを使えば崩れ無くなった
 (setq ac-ignore-case t);;大文字・小文字を区別
-(setq ac-stop-flymake-on-completing t);補完時flymake遅延
+;;(setq ac-stop-flymake-on-completing t);補完時flymake遅延
 ;;(setq ac-use-fuzzy t);;曖昧補完
 
 ;;ファイル名補完どうして初期は無効なんですかね…
@@ -28,9 +27,9 @@
   (add-to-list 'ac-sources 'ac-source-filename))
 
 ;;auto-completeが有効にならないモードで有効に,というか全てのモードで有効にして欲しい…
+(add-to-list 'ac-modes 'conf-mode)
+(add-to-list 'ac-modes 'd-mode)
 (add-to-list 'ac-modes 'fundamental-mode)
 (add-to-list 'ac-modes 'markdown-mode)
-(add-to-list 'ac-modes 'text-mode)
-(add-to-list 'ac-modes 'd-mode)
 (add-to-list 'ac-modes 'shell-script-mode)
-(add-to-list 'ac-modes 'conf-mode)
+(add-to-list 'ac-modes 'text-mode)

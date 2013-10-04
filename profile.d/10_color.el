@@ -1,4 +1,4 @@
-(add-to-list 'custom-theme-load-path "~/.emacs.d/package.d/emacs-color-theme-solarized/")
+(require 'solarized-dark-theme)
 (load-theme 'solarized-dark t)
 
 (defface my-face-tab '((t (:background "#003636"))) nil)

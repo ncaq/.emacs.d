@@ -33,3 +33,4 @@
 (require 'ag)
 
 (require 'root-tramp)
+(require 'vs-move-beginning-of-line)

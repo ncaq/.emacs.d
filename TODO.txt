@@ -5,9 +5,7 @@ fix emacs lisp開発専用ファイルを用意
 
 cro autocomplete-clang -> autocomplete-clang-async
 cro markdown-mode -> pandoc-mode
-cro smart-compile -> quickrun
 
 new atool http://d.hatena.ne.jp/mooz/20110911/p1
 new eldoc c-eldoc
-new flycheck
 new メールを読めるようにする

@@ -38,23 +38,13 @@
 		 "*a.out*"; => 
 		 (concat current-dir "/a.out"))); => action-a-out
 
-(defun is-reverse-point-whitespace-all ()
-  "カーソルの位置の前には空白文字しかありません"
-  (looking-back "^[\t ]+" ))
-
-(defun move-beginning-of-line-Visual-Stdio-like ()
-  "Visual StdioライクなC-a,通常はインデントに従いHomeへ,もう一度押すと本来のHome"
-  (interactive)
-  (cond
-   ((is-reverse-point-whitespace-all) (move-beginning-of-line nil))
-   (t (back-to-indentation))))
-
 (defun through-newline ()
   "vimのO"
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
 
+(require 'text-adjust)
 (defun text-adjust-selective ()
   "text-adjustは色々やりすぎる"
   (interactive)

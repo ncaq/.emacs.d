@@ -14,9 +14,9 @@
 (global-set-key			(kbd "C-M-q")	'kill-buffer);バッファ閉じる
 (global-set-key			(kbd "C-M-z")	'recentf-open-most-recent-file);最後に閉じたバッファを開く
 (global-set-key			(kbd "C-S-d")	'delete-horizontal-space);スペースを一気に消す
-(global-set-key			(kbd "C-a")	'move-beginning-of-line-Visual-Stdio-like);;Visual StdioライクなC-a
+(global-set-key			(kbd "C-a")	'vs-move-beginning-of-line);;Visual StdioライクなC-a
 (global-set-key			(kbd "C-c a")	'text-adjust-selective);全角記号とかそういうゴミな文字を変換する
-(global-set-key			(kbd "C-c c")	'mode-compile);かしこいコンパイルコマンド実行
+(global-set-key			(kbd "C-c c")	'quickrun);かしこいコンパイルコマンド実行
 (global-set-key			(kbd "C-c j")	'open-junk-file);残るscratch
 (global-set-key			(kbd "C-c s")	'code-format-all);全ての文字に対し字下げを行う
 (global-set-key			(kbd "C-j")	'helm-ag);インクリメント串刺し検索
@@ -37,7 +37,6 @@
 (global-set-key			(kbd "M-q")	'delete-other-windows);他のウインドウを閉じる
 (global-set-key			(kbd "M-y")	'helm-show-kill-ring);多次元クリップボード
 (global-set-key			(kbd "M-z")	'code-format-all);全ての文字に対し字下げを行う
-(global-set-key			(kbd "M-z")	'ff-find-other-file);ヘッダファイルに居る場合はソースファイルに,または逆
 (global-set-key 		(kbd "C-M-h")	'backward-kill-sentence)
 (global-set-key 		(kbd "C-S-h")	'c-hungry-backspace)
 (global-set-key 		(kbd "C-h")	'c-electric-backspace)
