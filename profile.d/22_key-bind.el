@@ -1,13 +1,10 @@
-(define-key emacs-lisp-mode-map	(kbd "C-M-q")	'kill-buffer);なんか予め設定されてるから
-(define-key emacs-lisp-mode-map	(kbd "C-c e")	'eval-buffer);C-cC-eでeval-bufferを実行
-(define-key read-expression-map (kbd "<tab>")	'lisp-complete-symbol);M-S-;
 (global-set-key			(kbd "<f12>")	'action-a-out);実行ファイル実行
 (global-set-key			(kbd "C-+")	'increment-string-as-number);数字増やす
 (global-set-key			(kbd "C-,")	'helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key			(kbd "C--")	'decrement-string-as-number);数字減らす
 (global-set-key			(kbd "C-;")	'align-regexp);揃える(正規表現)
 (global-set-key			(kbd "C-M-S-q")	'close-all-buffers);バッファを全て閉じる.まともに動かなくなるのですぐに終了すること
-(global-set-key			(kbd "C-M-d")	'kill-paragraph);段落削除
+(global-set-key			(kbd "C-M-d")	'kill-sexp)
 (global-set-key			(kbd "C-M-l")	'sort-lines);ソートする
 (global-set-key			(kbd "C-M-n")	'scroll-up-1);http://d.hatena.ne.jp/uhiaha888/20101110/1289399913
 (global-set-key			(kbd "C-M-p")	'scroll-down-1);カーソルを移動せずに画面を一行ずつスクロール

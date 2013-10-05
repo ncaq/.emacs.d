@@ -4,11 +4,11 @@
 
 ;;http://d.hatena.ne.jp/tequilasunset/20110103/p1
 ;;Operaライクなキーバインドに
-(global-set-key [(control tab)] 'tabbar-forward)
-(global-set-key [(control shift iso-lefttab)] 'tabbar-backward)
+(define-key tabbar-mode-map [(control tab)] 'tabbar-forward)
+(define-key tabbar-mode-map [(control shift iso-lefttab)] 'tabbar-backward)
 ;; -nw では効かないので別のキーバインドを割り当てる
-(global-set-key (kbd "C-x n") 'tabbar-forward)
-(global-set-key (kbd "C-x p") 'tabbar-backward)
+(define-key tabbar-mode-map (kbd "C-x n") 'tabbar-forward)
+(define-key tabbar-mode-map (kbd "C-x p") 'tabbar-backward)
 
 ;;タブをグループ化しない
 ;;(setq tabbar-buffer-groups-function nil)

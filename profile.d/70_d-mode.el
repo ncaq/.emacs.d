@@ -1,7 +1,7 @@
 (require 'd-mode)
 (require 'flymake)
 (require 'flycheck)
-(require 'auto-complete-d)
+;;(require 'auto-complete-d)
 (add-to-list 'auto-mode-alist '("\\.d$" . d-mode))
 ;;d-modeはcc-modeを改造したものなため,d-modeを起動するとD言語書いてるのにC++の補完システムが起動してしまう.
 ;;やっつけでこれを防いでいた

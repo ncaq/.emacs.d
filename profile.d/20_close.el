@@ -4,11 +4,6 @@
 ;;; 最終行に必ず一行挿入する
 (setq require-final-newline t)
 
-;;emacs lispを保存する時に自動バイトコンパイル
-(require 'auto-async-byte-compile)
-(setq auto-async-byte-compile-exclude-files-regexp "/tmp/emacsAutoAsyncJunk/")
-(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
-
 (require 'saveplace);;カーソル位置記憶
 (setq-default save-place t)
 

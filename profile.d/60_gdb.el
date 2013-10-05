@@ -14,8 +14,8 @@
    (define-key gud-mode-map (kbd "<f9>")	'gud-step);1行進む.関数に入る
    (define-key gud-mode-map (kbd "C-c b")	'gud-break);ブレークポイント設置
    (define-key gud-mode-map (kbd "C-c d")	'gud-remove);ブレークポイント削除
-   (define-key gud-mode-map (kbd "C-c p")	'gud-print);変数の値を見る
-   (define-key gud-mode-map (kbd "C-c t")	'gud-tbreak);一時的なブレークポイント設置
+   (define-key gud-mode-map (kbd "C-c p")	'gud-tbreak);一時的なブレークポイント設置
+   (define-key gud-mode-map (kbd "C-c t")	'gud-print);変数の値を見る
    (define-key gud-mode-map (kbd "C-c u")	'gud-until);現在の行まで実行
    (define-key gud-mode-map (kbd "S-<f9>")	'gud-finish);step out 現在のスタックフレームを抜ける
    (define-key gud-mode-map (kbd "C-c v")	'gud-pv))
