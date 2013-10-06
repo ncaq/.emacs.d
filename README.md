@@ -32,9 +32,9 @@ init-loader.elは,数字の少ないところから読み込んで,数字から�
   * git
   * haskell-platform
   * markdown
-  * omake
   * gnu global
   * w3m-el
+  * atool
 * cabal:
   * ghc-mod
   * hasktags
