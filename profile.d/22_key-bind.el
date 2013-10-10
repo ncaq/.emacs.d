@@ -34,5 +34,6 @@
 (global-set-key			(kbd "M-z")	'code-format-all);全ての文字に対し字下げを行う
 (global-set-key 		(kbd "C-M-h")	'backward-kill-sentence)
 (global-set-key 		(kbd "C-S-h")	'c-hungry-backspace)
+(global-set-key 		(kbd "C-c g")	'magit-status)
 (global-set-key 		(kbd "C-h")	'c-electric-backspace)
 (global-set-key 		(kbd "M-h")	'backward-kill-word)
