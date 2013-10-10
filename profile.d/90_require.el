@@ -2,10 +2,6 @@
 (autoload 'minibuf-isearch "minibuf-isearch-mode")
 (autoload 'sudden-death "sudden-death");突然の死
 
-(require 'git-commit-mode)
-(require 'gitconfig-mode)
-(require 'gitignore-mode)
-
 (require 'text-adjust)
 
 (require 'undo-tree);;undoをtreeに,C-x C-uで起動
@@ -16,9 +12,6 @@
 
 (require 'zlc)
 (zlc-mode t)
-
-(require 'git-gutter-fringe)
-(global-git-gutter-mode t)
 
 (require 'wgrep)
 (require 'ag)

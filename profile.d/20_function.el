@@ -4,13 +4,6 @@
   (interactive); => 
   (mapc 'kill-buffer (buffer-list))); => close-all-buffers
 
-(defun scroll-up-1 ()
-  "カーソルを移動せずに画面を一行ずつスクロールhttp://d.hatena.ne.jp/uhiaha888/20101110/1289399913"
-  (interactive) (scroll-up 1))
-(defun scroll-down-1 ()
-  "カーソルを移動せずに画面を一行ずつスクロールhttp://d.hatena.ne.jp/uhiaha888/20101110/1289399913"
-  (interactive) (scroll-down 1))
-
 (defun code-format-all (); => 
   "自動で全選択→コードフォーマット"
   (interactive); => 
