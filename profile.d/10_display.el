@@ -2,6 +2,9 @@
 (menu-bar-mode 0);menu bar を表示させない
 (tool-bar-mode 0);tool bar を表示させない
 
+;;タイトルバーにバッファ名を表示する
+(setq frame-title-format (format "%%b"))
+
 (show-paren-mode t);対応する括弧をハイライト
 (auto-image-file-mode);画像表示
 
