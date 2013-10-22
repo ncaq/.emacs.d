@@ -18,3 +18,6 @@
      (loop for suffix in my-dired-additional-compression-suffixes
            do (add-to-list 'dired-compress-file-suffixes
                            `(,(concat "\\" suffix "\\'") "" "aunpack")))))
+
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)

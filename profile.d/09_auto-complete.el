@@ -23,12 +23,11 @@
 
 ;;ファイル名補完どうして初期は無効なんですかね…
 ;;全てのバッファで`ac-sources`の先頭にファイル名辞書情報源を追加する
-(defun ac-common-setup ()
-  (add-to-list 'ac-sources 'ac-source-filename))
+;; (defun ac-common-setup ()
+;;   (add-to-list 'ac-sources 'ac-source-filename))
 
 ;;auto-completeが有効にならないモードで有効に,というか全てのモードで有効にして欲しい…
 (add-to-list 'ac-modes 'conf-mode)
-(add-to-list 'ac-modes 'd-mode)
 (add-to-list 'ac-modes 'fundamental-mode)
 (add-to-list 'ac-modes 'markdown-mode)
 (add-to-list 'ac-modes 'shell-script-mode)
