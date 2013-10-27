@@ -32,7 +32,7 @@
 (define-key key-translation-map (kbd "M-s") (kbd "M-f"))
 (define-key key-translation-map (kbd "C-M-s") (kbd "C-M-f"))
 (define-key key-translation-map (kbd "C-S-s") (kbd "C-S-f"))
-(define-key key-translation-map (kbd "M-S-s") (kbd "M-S-s"))
+(define-key key-translation-map (kbd "M-S-s") (kbd "M-S-f"))
 
 (define-key key-translation-map (kbd "C-f") (kbd "C-s"))
 (define-key key-translation-map (kbd "M-f") (kbd "M-s"))
