@@ -1,8 +1,5 @@
 bug minibufferでautocompleteが動くように
 
-fix dired専用ファイル
-fix emacs lisp開発専用ファイルを用意
-
 cro autocomplete-clang -> autocomplete-clang-async
 cro markdown-mode -> pandoc-mode
 
