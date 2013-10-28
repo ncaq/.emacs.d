@@ -2,5 +2,5 @@
 ;; 起動時の画面はいらない
 (setq inhibit-startup-message t)
 
-(add-hook 'pre-command-hook (abbrev-mode nil));auto-complete.el使うからいらない
+(add-hook 'after-find-file (abbrev-mode nil));auto-complete.el使うからいらない
 (add-hook 'after-init-hook  (kill-buffer "*scratch*"));open-junk-fileがあるからscratchいらないです
