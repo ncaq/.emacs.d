@@ -1,8 +1,6 @@
 bug minibufferでautocompleteが動くように
-
 cro autocomplete-clang -> autocomplete-clang-async
-cro markdown-mode -> pandoc-mode
-
 new atool http://d.hatena.ne.jp/mooz/20110911/p1
 new eldoc c-eldoc
+new markdown-mode += pandoc-mode
 new メールを読めるようにする
