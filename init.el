@@ -1,3 +1,6 @@
+(require 'desktop)
+(desktop-save-mode t)
+
 ;; ロードパスの設定
 ;;http://d.hatena.ne.jp/kitokitoki/20100705/p1
 (defun my-add-load-path-subdir (dirlist)
@@ -9,7 +12,8 @@
 (my-add-load-path-subdir
  '("~/.emacs.d/auto-install.d/"
    "~/.emacs.d/package.d/"
-   "~/.emacs.d/universe.d/"))
+   "~/.emacs.d/universe.d/"
+   "~/.cabal/share/"))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"));;melpaも追加
