@@ -15,7 +15,6 @@
   "括弧を揃えない人が多くて困るよね"
   (interactive)
   (save-excursion
-    (code-format-all)
     (goto-char (point-min))
     (replace-regexp ")[ \t]+{" ")\n{")
     (goto-char (point-min))
@@ -31,13 +30,9 @@
 		 "*a.out*"; => 
 		 (concat current-dir "/a.out"))); => action-a-out
 
-(defun through-newline ()
-  "vimのO"
-  (interactive)
-  (move-end-of-line nil)
-  (newline-and-indent))
+(fset 'through-newline "\C-e\C-m")
 
-(require 'text-adjust)
+(require'text-adjust)
 (defun text-adjust-selective ()
   "text-adjustは色々やりすぎる"
   (interactive)
