@@ -13,12 +13,12 @@
 (global-set-key			(kbd "C-c c")	'quickrun);かしこいコンパイルコマンド実行
 (global-set-key			(kbd "C-c g")	'magit-status)
 (global-set-key			(kbd "C-c j")	'open-junk-file);残るscratch
-(global-set-key			(kbd "C-c s")	'code-format-all);全ての文字に対し字下げを行う
 (global-set-key			(kbd "C-h")	'c-electric-backspace)
 (global-set-key			(kbd "C-j")	'helm-ag);インクリメント串刺し検索
 (global-set-key			(kbd "C-m")	'newline-and-indent);改行時にインデント
 (global-set-key			(kbd "C-o")	'overwrite-mode);所謂上書きモード
 (global-set-key			(kbd "C-q")	'kill-buffer-and-window);バッファとウインドウ閉じる
+(global-set-key			(kbd "C-t")	'other-window)
 (global-set-key			(kbd "C-u")	'kill-whole-line);現在行を削除
 (global-set-key			(kbd "C-x C-b")	'helm-for-files)
 (global-set-key			(kbd "C-x C-e")	'flycheck-list-errors)

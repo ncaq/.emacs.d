@@ -4,7 +4,6 @@
 
 (defun ncaq-d-mode-setup ()
   (flycheck-mode)
-  (local-set-key (kbd "C-c s") 'code-format-c)
   (local-set-key (kbd "M-z") 'code-format-c))
 (add-hook 'd-mode-hook 'ncaq-d-mode-setup)
 
