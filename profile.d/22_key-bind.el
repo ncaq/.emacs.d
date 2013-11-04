@@ -5,6 +5,7 @@
 (global-set-key			(kbd "C-M-z")	'recentf-open-most-recent-file);最後に閉じたバッファを開く
 (global-set-key			(kbd "C-S-d")	'delete-horizontal-space);スペースを一気に消す
 (global-set-key			(kbd "C-S-h")	'c-hungry-backspace)
+(global-set-key			(kbd "C-^")	'dired-jump-to-current)
 (global-set-key			(kbd "C-a")	'vs-move-beginning-of-line);;Visual StdioライクなC-a
 (global-set-key			(kbd "C-c a")	'text-adjust-selective);全角記号とかそういうゴミな文字を変換する
 (global-set-key			(kbd "C-c c")	'quickrun);かしこいコンパイルコマンド実行

@@ -21,3 +21,7 @@
 
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
+
+(defun dired-jump-to-current ()
+  (interactive)
+  (dired "."))
