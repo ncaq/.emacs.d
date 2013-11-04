@@ -1,3 +1,4 @@
+(require 'auto-complete);何故かないと時折バグる(再現性なし)
 ;;描画関係
 (menu-bar-mode 0);menu bar を表示させない
 (tool-bar-mode 0);tool bar を表示させない
