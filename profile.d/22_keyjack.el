@@ -1,8 +1,8 @@
 ;;https://pqrs. org/emacs/doc/keyjack-mode/
-(defvar strong-mode-map (make-sparse-keymap))
+(defvar keyjack-mode-map (make-sparse-keymap))
 
 (mapc (lambda (x)
-	(define-key strong-mode-map (funcall (car(car x))(car(cdr(car x)))) (cdr x));;これはひどい…括弧の山だ…cadrとか使ったらもうちょっとマシになるのかな
+	(define-key keyjack-mode-map (funcall (car(car x))(car(cdr(car x)))) (cdr x));;これはひどい…括弧の山だ…cadrとか使ったらもうちょっとマシになるのかな
 	(global-set-key (funcall (car(car x))(car(cdr(car x)))) (cdr x)))
       '(
 	
@@ -18,5 +18,4 @@
 
 	))
 
-(easy-mmode-define-minor-mode strong-mode "Grab keys"
-			      t " Keyjack" strong-mode-map)
+(easy-mmode-define-minor-mode keyjack-mode "Grab keys" t " Keyjack" keyjack-mode-map)
