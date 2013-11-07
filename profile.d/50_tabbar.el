@@ -1,5 +1,4 @@
 (require 'tabbar)
-(eval-when-compile (require 'cl))
 (tabbar-mode 1)
 
 ;;http://d.hatena.ne.jp/tequilasunset/20110103/p1
@@ -29,6 +28,7 @@
 
 ;;http://dev.ariel-networks.com/wp/documents/aritcles/emacs/part11
 ;;リスト8 " *"で始まるバッファをタブとして表示しない
+(eval-when-compile (require 'cl))
 (defun my-tabbar-buffer-list ()
   (remove-if
    (lambda (buffer)
