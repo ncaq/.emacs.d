@@ -1,6 +1,3 @@
-(require 'pos-tip)
-(require 'popup)
-(require 'fuzzy)
 ;;http://cx4a.org/software/auto-complete/manual.ja.html
 (require 'auto-complete-config)
 (require 'auto-complete)

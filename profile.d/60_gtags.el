@@ -2,7 +2,7 @@
 (setq gtags-suggested-key-mapping);http://d.hatena.ne.jp/Nos/20120723/1343204409
 (setq gtags-auto-update t);タグファイルの自動更新
 
-(require 'helm-gtags)
+(require 'helm-gtags-autoloads)
 ;;; Enable helm-gtags-mode
 (add-hook 'c-mode-hook 'helm-gtags-mode)
 (add-hook 'c++-mode-hook 'helm-gtags-mode)

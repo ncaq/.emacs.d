@@ -1,5 +1,5 @@
-(require 'd-mode)
-(require 'flycheck)
+(require 'd-mode-autoloads)
+(require 'flycheck-autoloads)
 (require 'auto-complete)
 
 (defun ncaq-d-mode-setup ()

@@ -2,7 +2,6 @@
 ;;処理自体を消す方法は見つからなかったので仕方なく表示だけ消しておいた
 ;;https://gist.github.com/bkudria/759130
 (require 'fringe-helper)
-(require 'flymake)
 
 (defvar flymake-fringe-overlays nil)
 (make-variable-buffer-local 'flymake-fringe-overlays)
