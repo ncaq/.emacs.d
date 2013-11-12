@@ -9,9 +9,9 @@
 (global-set-key	(kbd "C-a")	'vs-move-beginning-of-line);;Visual StdioライクなC-a
 (global-set-key	(kbd "C-c a")	'text-adjust-selective);全角記号とかそういうゴミな文字を変換する
 (global-set-key	(kbd "C-c c")	'quickrun);かしこいコンパイルコマンド実行
-(global-set-key	(kbd "C-c s")	'sdic)
 (global-set-key	(kbd "C-c g")	'magit-status)
 (global-set-key	(kbd "C-c j")	'open-junk-file);残るscratch
+(global-set-key	(kbd "C-c s")	'sdic)
 (global-set-key	(kbd "C-h")	'c-electric-backspace)
 (global-set-key	(kbd "C-j")	'helm-ag);インクリメント串刺し検索
 (global-set-key	(kbd "C-m")	'newline-and-indent);改行時にインデント
@@ -32,3 +32,5 @@
 (global-set-key	(kbd "M-s")	'helm-occur)
 (global-set-key	(kbd "M-y")	'helm-show-kill-ring);多次元クリップボード
 (global-set-key	(kbd "M-z")	'code-format-all);全ての文字に対し字下げを行う
+(global-set-key (kbd "M-n")	'forward-paragraph)
+(global-set-key (kbd "M-p")	'backward-paragraph)

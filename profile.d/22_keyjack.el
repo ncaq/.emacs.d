@@ -13,9 +13,7 @@
 	((kbd "C-M-q")		. kill-buffer);バッファ閉じる
 	((kbd "C-q")		. kill-buffer-and-window);バッファとウインドウ閉じる
 	((kbd "C-t")		. other-window)
-	((kbd "M-n")		. forward-paragraph)
-	((kbd "M-p")		. backward-paragraph)
-
+	
 	))
 
 (easy-mmode-define-minor-mode keyjack-mode "Grab keys" t " Keyjack" keyjack-mode-map)

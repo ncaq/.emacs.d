@@ -1,4 +1,5 @@
-(setq dired-listing-switches "-hFAvlD");diredでソート順を設定
+;;(setq dired-listing-switches "-hFAvlD");diredでソート順を設定
+(defvar dired-listing-switches "-l --all --human-readable --almost-all -v");diredでソート順を設定
 
 (autoload 'open-junk-file "open-junk-file");;使い捨てないscratch
 (defvar open-junk-file-directory)
