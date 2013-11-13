@@ -6,7 +6,6 @@
 ;;タイトルバーにバッファ名を表示する
 (setq frame-title-format (format "%%b"))
 
-(show-paren-mode t);対応する括弧をハイライト
 (auto-image-file-mode);画像表示
 
 (require 'linum);;行番号を左に表示

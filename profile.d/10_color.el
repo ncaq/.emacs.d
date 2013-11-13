@@ -14,3 +14,12 @@
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
 (ad-activate 'font-lock-mode)
+
+(which-function-mode 1);ウィンドウの下部に現在の関数名を表示します。
+(custom-set-faces '(which-func ((t (:foreground "#a3a1a1")))));;現在の函数表示,デフォルトだと色がかぶって見辛い
+
+(show-paren-mode t);対応する括弧をハイライト
+
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode t)
+(custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8c8d")))))
