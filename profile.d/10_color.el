@@ -22,4 +22,4 @@
 
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
-(custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8c8d")))))
+(custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8c8d")))));文字列の色と被るため,変更
