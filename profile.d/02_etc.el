@@ -4,7 +4,6 @@
 (setq windmove-wrap-around t);Window移動をループする
 
 (fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
-(global-subword-mode t);CamelCaseの語でも単語単位に分解して編集する
 (savehist-mode t);ミニバッファの履歴を保存する
 
 (setq next-line-add-newlines t);c-nした時に行を追加
