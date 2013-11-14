@@ -9,8 +9,8 @@
   (local-set-key (kbd "M-z") 'code-format-c))
 (add-hook 'c-mode-common-hook 'ncaq-c++-mode-set)
 
-(add-hook 'c-mode-hook (lambda ()
-			 (defvar flycheck-clang-language-standard "c11")))
+;; (add-hook 'c-mode-hook (lambda ()
+;; 			 (defvar flycheck-clang-language-standard "c11")))
 
 (add-hook 'c++-mode-hook (lambda ()
 			   (defvar flycheck-clang-language-standard "c++11")))
