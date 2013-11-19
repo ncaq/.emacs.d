@@ -1,4 +1,5 @@
 (global-set-key	(kbd "C-;")	'align-regexp);揃える(正規表現)
+(global-set-key	(kbd "C-M-,")	'ibuffer);もう一つのバッファーリスト
 (global-set-key	(kbd "C-M-d")	'kill-sexp)
 (global-set-key	(kbd "C-M-h")	'backward-kill-sentence)
 (global-set-key	(kbd "C-M-l")	'sort-lines);ソートする
@@ -22,7 +23,7 @@
 (global-set-key	(kbd "C-x C-f")	'save-buffer)
 (global-set-key	(kbd "C-x C-s")	'find-file-at-point)
 (global-set-key	(kbd "C-z")	'quoted-insert);C-qの本来の関数
-(global-set-key	(kbd "M-,")	'ibuffer);もう一つのバッファーリスト
+(global-set-key	(kbd "M-,")	'helm-ls-git-ls)
 (global-set-key	(kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
 (global-set-key	(kbd "M-c")	'help-command);HHKだとF1押しにくい
 (global-set-key	(kbd "M-h")	'backward-kill-word)

@@ -1,5 +1,6 @@
-;;(custom-set-variables '(recentf-save-file "~/Dropbox/sync/.recentf"))
+(custom-set-variables '(recentf-save-file "~/Dropbox/sync/.recentf"))
 
 (require 'recentf)
-;; (require 'recentf-ext)
-;; (require 'recentf-purge-tramp)
+(recentf-mode 1)
+(require 'recentf-ext)
+(require 'recentf-purge-tramp)
