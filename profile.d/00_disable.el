@@ -4,4 +4,6 @@
 
 (add-hook 'after-find-file (lambda ()(abbrev-mode nil)));auto-complete.el使うからいらない
 
-(add-hook 'after-init-hook (lambda ()(kill-buffer "*scratch*")));open-junk-fileがあるからscratchいらないです
+(defun kill-scratch ()
+  (kill-buffer "*scratch*"))
+(add-hook 'after-init-hook 'kill-scratch);open-junk-fileがあるからscratchいらないです
