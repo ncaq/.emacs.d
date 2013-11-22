@@ -23,7 +23,7 @@
 				     (when (boundp 'erc-modified-channels-object)
 				       (powerline-raw erc-modified-channels-object face1 'l))
 				     (powerline-major-mode face1)
-				     (powerline-process face1)
+				     (powerline-process face1 'r)
 				     (powerline-minor-modes face1 'l)
 				     (powerline-narrow face1 'l)
 				     (funcall separator-left face1 face2)

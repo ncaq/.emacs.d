@@ -1,6 +1,5 @@
 ;;有効化して2行ぐらい書くだけのものはここに全部ツッコむ
-(autoload 'minibuf-isearch "minibuf-isearch-mode")
-(autoload 'sudden-death "sudden-death");突然の死
+(require 'minibuf-isearch)
 
 (require 'text-adjust)
 
@@ -18,6 +17,12 @@
 
 (require 'smooth-scroll)
 (smooth-scroll-mode t)
+
+;;＿人人人人人人＿
+;;＞　突然の死　＜
+;;￣ＹＹＹＹＹＹ￣
+(require 'sudden-death)
+
 
 (require 'root-tramp)
 (require 'vs-move-beginning-of-line)
