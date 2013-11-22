@@ -19,8 +19,6 @@
 				     (powerline-buffer-size nil 'l)
 				     (powerline-raw mode-line-mule-info nil 'l)
 				     (powerline-buffer-id nil 'l)
-				     (when (and (boundp 'which-func-mode) which-func-mode)
-				       (powerline-raw which-func-format nil 'l))
 				     (funcall separator-left mode-line face1)
 				     (when (boundp 'erc-modified-channels-object)
 				       (powerline-raw erc-modified-channels-object face1 'l))

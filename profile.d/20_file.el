@@ -1,6 +1,4 @@
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t);Markdown
 (add-to-list 'auto-mode-alist '("\\.X.*" . conf-xdefaults-mode));xの設定ファイル
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode));markdownの拡張子は.mdを採用
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode));zshのシェルスクリプトに対応
 
 (require 'auto-save-buffers);;本当の自動保存
