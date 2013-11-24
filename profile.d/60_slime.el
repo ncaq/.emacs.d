@@ -1,2 +1,0 @@
-;;SLIMEのロード
-(autoload 'slime "slime")

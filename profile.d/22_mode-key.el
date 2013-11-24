@@ -5,9 +5,3 @@
 	   (lambda ()
 	     (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
 	     (define-key isearch-mode-map (kbd "M-h") 'isearch-del-char))));保留
-
-;;helmはPrefix設定になる
-(eval-after-load 'helm
-  '(progn
-     (define-key helm-map (kbd "C-h") 'delete-backward-char)
-     ))
