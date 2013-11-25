@@ -16,4 +16,4 @@
 	
 	))
 
-(easy-mmode-define-minor-mode keyjack-mode "Grab keys" t "KJ" keyjack-mode-map)
+(easy-mmode-define-minor-mode keyjack-mode "Grab keys" t " KJ" keyjack-mode-map)

@@ -14,3 +14,6 @@
 
 (add-hook 'c++-mode-hook (lambda ()
 			   (setq flycheck-clang-language-standard "c++11")))
+
+(require 'c-eldoc)
+(add-hook 'c-mode-common-hook 'c-turn-on-eldoc-mode)
