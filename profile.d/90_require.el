@@ -23,7 +23,6 @@
 ;;￣ＹＹＹＹＹＹ￣
 (require 'sudden-death)
 
-
 (require 'root-tramp)
 (require 'vs-move-beginning-of-line)
 (require 'symbolword-mode)
