@@ -1,22 +1,19 @@
 (require 'solarized-dark-theme)
 (load-theme 'solarized-dark t)
 
-(defface my-face-tab '((t (:background "#003636"))) nil)
-(defvar my-face-tab 'my-face-tab)
-(defface my-face-space '((t (:background "#003616"))) nil)
-(defvar my-face-space 'my-face-space)
-(defadvice font-lock-mode (before my-font-lock-mode ())
+(defface ncaq-tab-face '((t :background "#003636")) nil)
+(defvar  ncaq-tab-face 'ncaq-tab-face)
+(defface ncaq-space-face '((t :background "#003616")) nil)
+(defvar  ncaq-space-face 'ncaq-space-face)
+(defadvice font-lock-mode (before ncaq-font-lock-mode ())
   (font-lock-add-keywords
    major-mode
    '(
-     ("\t"  0 my-face-tab   append)
-     ("[ ]" 0 my-face-space append)
+     ("\t"  . 'ncaq-tab-face)
+     ("[ ]" . 'ncaq-space-face)
      )))
-(ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
+(ad-enable-advice 'font-lock-mode 'before 'ncaq-font-lock-mode)
 (ad-activate 'font-lock-mode)
-
-;; (which-function-mode 1);ウィンドウの下部に現在の関数名を表示します。
-;; (custom-set-faces '(which-func ((t (:foreground "#a3a1a1")))));;現在の函数表示,デフォルトだと色がかぶって見辛い
 
 (show-paren-mode t);対応する括弧をハイライト
 
