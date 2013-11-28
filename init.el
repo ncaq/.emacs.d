@@ -12,8 +12,7 @@
 (my-add-load-path-subdir
  '("~/.emacs.d/auto-install.d/"
    "~/.emacs.d/package.d/"
-   "~/.emacs.d/universe.d/"
-   "~/.cabal/share/"))
+   "~/.emacs.d/universe.d/"))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"));;melpaも追加

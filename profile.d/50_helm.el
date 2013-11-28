@@ -3,12 +3,10 @@
 (require 'helm)
 
 (require 'helm-ag-autoloads)
-(require 'helm-dired-recent-dirs-autoloads)
 (require 'helm-flymake-autoloads)
 (require 'helm-gist-autoloads)
 (require 'helm-git-autoloads)
 (require 'helm-gtags-autoloads)
-(require 'helm-helm-commands-autoloads)
 (require 'helm-ls-git-autoloads)
 
 (require 'helm-descbinds-autoloads)
