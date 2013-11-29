@@ -15,6 +15,3 @@
   )
 
 (add-hook 'haskell-mode-hook 'ncaq-haskell-conf)
-
-(add-hook 'haskell-mode-hook (lambda ()
-			       (add-to-list 'ac-sources 'ac-source-ghc-mod)))
