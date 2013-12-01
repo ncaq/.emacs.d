@@ -1,5 +1,3 @@
 bug minibufferでautocompleteが動くように
-cro autocomplete-clang -> autocomplete-clang-async
-new atool http://d.hatena.ne.jp/mooz/20110911/p1
 new ctags
 new メールを読めるようにする
