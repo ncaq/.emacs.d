@@ -14,7 +14,6 @@
 (global-set-key	(kbd "C-c g")	'magit-status)
 (global-set-key	(kbd "C-c j")	'open-junk-file);残るscratch
 (global-set-key	(kbd "C-c s")	'sdic)
-(global-set-key	(kbd "C-h")	'c-electric-backspace)
 (global-set-key	(kbd "C-j")	'helm-ag);インクリメント串刺し検索
 (global-set-key	(kbd "C-m")	'newline-and-indent);改行時にインデント
 (global-set-key	(kbd "C-o")	'overwrite-mode);所謂上書きモード

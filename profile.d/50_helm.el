@@ -12,12 +12,8 @@
 (require 'helm-descbinds-autoloads)
 (helm-descbinds-mode t)
 
-;;helmはPrefix設定になる
-(eval-after-load 'helm
-  '(progn
-     (define-key helm-map (kbd "C-h") 'delete-backward-char)
-     ))
-
+(require 'helm-files)
+(require 'helm-locate)
 ;;flycheckとhelmの組み合わせバグに対する強引な回避方法
 (setq helm-source-recentf
   `((name . "Recentf")

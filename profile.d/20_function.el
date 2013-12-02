@@ -15,10 +15,10 @@
   "括弧を揃えない人が多くて困るよね"
   (interactive)
   (save-excursion
-    (goto-char (point-min))
-    (replace-regexp ")[ \t]+{" ")\n{")
-    (goto-char (point-min))
-    (replace-regexp "=[ \t]+{" "=\n{")
+    (while (re-search-forward ")[ \t]*{")
+      (replace-match ")\n{"))
+    (while (re-search-forward "=[ \t]*{")
+      (replace-match "=\n{"))
     (code-format-all)
     ))
 
@@ -30,7 +30,8 @@
 		 "*a.out*"; => 
 		 (concat current-dir "/a.out"))); => action-a-out
 
-(fset 'through-newline "\C-e\C-m")
+(fset 'through-newline
+      [end return])
 
 (require'text-adjust)
 (defun text-adjust-selective ()
