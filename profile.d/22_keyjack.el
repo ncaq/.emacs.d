@@ -11,7 +11,7 @@
 	((kbd "C-M-n")		. scroll-up-1)
 	((kbd "C-M-p")		. scroll-down-1)
 	((kbd "C-M-q")		. kill-buffer);バッファ閉じる
-	((kbd "C-h") . backward-delete-char-untabify)
+	((kbd "C-h")		. backward-delete-char-untabify)
 	((kbd "C-q")		. kill-buffer-and-window);バッファとウインドウ閉じる
 	((kbd "C-t")		. other-window)
 	
