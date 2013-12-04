@@ -15,9 +15,9 @@
   "括弧を揃えない人が多くて困るよね"
   (interactive)
   (save-excursion
-    (when (re-search-forward ")[ 	]*{" nil t)
+    (while (re-search-forward ")[ 	]*{" nil t)
       (replace-match ")\n{"))
-    (when (re-search-forward "=[ 	]*{" nil t)
+    (while (re-search-forward "=[ 	]*{" nil t)
       (replace-match "=\n{"))
     (code-format-all)
     ))
