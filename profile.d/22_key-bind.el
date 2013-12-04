@@ -8,10 +8,10 @@
 (global-set-key	(kbd "C-S-h")	'c-hungry-backspace)
 (global-set-key	(kbd "C-^")	'dired-jump-to-current)
 (global-set-key	(kbd "C-a")	'vs-move-beginning-of-line);;Visual StdioライクなC-a
-(global-set-key	(kbd "C-c .")	'imenu)
 (global-set-key	(kbd "C-c a")	'text-adjust-selective);全角記号とかそういうゴミな文字を変換する
 (global-set-key	(kbd "C-c c")	'quickrun);かしこいコンパイルコマンド実行
 (global-set-key	(kbd "C-c g")	'magit-status)
+(global-set-key	(kbd "C-c i")	'imenu)
 (global-set-key	(kbd "C-c j")	'open-junk-file);残るscratch
 (global-set-key	(kbd "C-c s")	'sdic)
 (global-set-key	(kbd "C-j")	'helm-ag);インクリメント串刺し検索

@@ -12,4 +12,7 @@ undohist
 url
 var
 
+tags
+TAGS
+
 elpa/*.txt

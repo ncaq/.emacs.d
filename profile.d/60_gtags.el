@@ -1,8 +1,7 @@
 (require 'gtags)
-(setq gtags-suggested-key-mapping);http://d.hatena.ne.jp/Nos/20120723/1343204409
 (setq gtags-auto-update t);タグファイルの自動更新
 
-(require 'helm-gtags-autoloads)
+(require 'helm-gtags)
 ;;; Enable helm-gtags-mode
 (add-hook 'c-mode-hook 'helm-gtags-mode)
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
@@ -14,10 +13,10 @@
 (setq helm-gtags-read-only t)
 
 ;; key bindings
-(add-hook 'helm-gtags-mode-hook
-          '(lambda ()
-	     (local-set-key (kbd "C-.")		'helm-gtags-find-tag)
-	     (local-set-key (kbd "C-M-.")	'helm-gtags-find-symbol)
-	     (local-set-key (kbd "C-S-.")	'helm-gtags-find-rtag)
-	     (local-set-key (kbd "M-.")		'helm-gtags-pop-stack)
-	     (local-set-key (kbd "M-g C-.")	'helm-gtags-parse-file)))
+(defun ncaq-gtags ()
+  (define-key helm-gtags-mode-map (kbd "C-.")	'helm-gtags-select)
+  (define-key helm-gtags-mode-map (kbd "C-c .")	'gtags-rootdir)
+  (define-key helm-gtags-mode-map (kbd "C-M-.")	'helm-gtags-find-tag)
+  (define-key helm-gtags-mode-map (kbd "C->")	'helm-gtags-find-rtag)
+  (define-key helm-gtags-mode-map (kbd "M-.")	'helm-gtags-pop-stack))
+(add-hook 'helm-gtags-mode-hook 'ncaq-gtags)
