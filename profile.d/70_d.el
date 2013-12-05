@@ -1,9 +1,9 @@
-(require 'd-mode-autoloads)
+(require 'd-mode)
 (require 'flycheck-autoloads)
 (require 'auto-complete)
 
 (defun ncaq-d-mode-setup ()
-  (local-set-key (kbd "M-z") 'code-format-c))
+  (define-key d-mode-map [remap code-format] 'code-format-c))
 (add-hook 'd-mode-hook 'ncaq-d-mode-setup)
 
 (add-to-list 'ac-modes 'd-mode)
