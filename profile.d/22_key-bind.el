@@ -20,7 +20,7 @@
 (global-set-key	(kbd "C-u")	'kill-whole-line);現在行を削除
 (global-set-key	(kbd "C-x C-e")	'flycheck-list-errors)
 (global-set-key	(kbd "C-x C-f")	'save-buffer)
-(global-set-key	(kbd "C-x C-s")	'find-file-at-point)
+(global-set-key	(kbd "C-x C-s")	'helm-find-files);;どう考えてもこっちのほうが便利だった
 (global-set-key	(kbd "M-,")	'ibuffer);もう一つのバッファーリスト
 (global-set-key	(kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
 (global-set-key	(kbd "M-c")	'help-command);HHKだとF1押しにくい
@@ -32,5 +32,4 @@
 (global-set-key	(kbd "M-y")	'helm-show-kill-ring);多次元クリップボード
 (global-set-key (kbd "C-z")	'repeat)
 (global-set-key (kbd "M-n")	'forward-paragraph)
-(global-set-key (kbd "M-o")	'helm-find-files)
 (global-set-key (kbd "M-p")	'backward-paragraph)
