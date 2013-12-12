@@ -21,7 +21,7 @@
 				(powerline-raw "%*" nil)
 				(powerline-buffer-size nil 'l)
 				(powerline-raw mode-line-mule-info nil 'l)
-				(powerline-buffer-id nil 'l)
+				(powerline-raw (replace-regexp-in-string (concat "^" (getenv "HOME")) "~" (powerline-buffer-id)) nil 'l)
 				(funcall separator-left mode-line face2)
 				(when (boundp 'erc-modified-channels-object)
 				  (powerline-raw erc-modified-channels-object face1 'l))))
