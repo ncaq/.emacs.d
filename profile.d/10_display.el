@@ -22,3 +22,17 @@
 
 (require 'uniquify);;バッファの名前がかぶったらディレクトリ名もつける
 (setq uniquify-buffer-name-style 'forward)
+
+;;package-listのformat
+(define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
+  "Major mode for browsing a list of packages.
+Letters do not insert themselves; instead, they are commands.
+\\<package-menu-mode-map>
+\\{package-menu-mode-map}"
+  (setq tabulated-list-format [("Package" 30 package-menu--name-predicate)
+			       ("Version" 15 package-menu--version-predicate)
+			       ("Status"  10 package-menu--status-predicate)
+			       ("Description" 10 package-menu--description-predicate)])
+  (setq tabulated-list-padding 1)
+  (setq tabulated-list-sort-key (cons "Status" nil))
+  (tabulated-list-init-header))
