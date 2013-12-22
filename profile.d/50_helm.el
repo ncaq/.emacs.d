@@ -12,11 +12,15 @@
 (require 'helm-descbinds-autoloads)
 (helm-descbinds-mode t)
 
-;;helmはPrefix設定になる
+;;デフォルトだとPrefixになる
 (eval-after-load 'helm
   '(progn
      (define-key helm-map (kbd "C-h") 'backward-delete-char-untabify)
      ))
+
+;;デフォルトはファイル名を短縮する区切りが20
+(require 'helm-buffers)
+(setq helm-buffer-max-length 50)
 
 (require 'helm-files)
 (require 'helm-locate)
