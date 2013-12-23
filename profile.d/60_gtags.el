@@ -10,7 +10,6 @@
 ;; customize
 (setq helm-gtags-path-style 'relative)
 (setq helm-gtags-ignore-case t)
-(setq helm-gtags-read-only t)
 
 ;; key bindings
 (defun ncaq-gtags ()

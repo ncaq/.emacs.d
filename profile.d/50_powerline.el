@@ -37,17 +37,6 @@
 				(powerline-raw "/")
 				(powerline-raw (format "%d" (count-lines (point-max)(point-min))));行の総計
 				(powerline-raw ":")
-				(powerline-raw "%c");;現在のColumn
-				(powerline-raw "/")
-				(powerline-raw
-				 (format "%d"
-					 (length
-					  (replace-regexp-in-string
-					   "\t"
-					   (make-string tab-width ? )
-					   (buffer-substring-no-properties (point-at-bol)(point-at-eol)))))
-				 );;Columnの総計
-				(powerline-raw ":")
 				(powerline-raw (format "%d" (point)));;現在のchar数
 				(powerline-raw "/")
 				(powerline-raw (format "%d" (- (point-max) (point-min)))))));;文字総計
