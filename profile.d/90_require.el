@@ -1,4 +1,9 @@
 ;;有効化して2行ぐらい書くだけのものはここに全部ツッコむ
+;;自作
+(require 'root-tramp)
+(require 'vs-move-beginning-of-line)
+(require 'symbolword-mode)
+
 (require 'minibuf-isearch)
 
 (require 'text-adjust)
@@ -24,6 +29,4 @@
 ;;￣ＹＹＹＹＹＹ￣
 (require 'sudden-death)
 
-(require 'root-tramp)
-(require 'vs-move-beginning-of-line)
-(require 'symbolword-mode)
+(autoload 'sdic "sdic")
