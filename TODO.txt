@@ -1,4 +1,6 @@
+bug faceの宣言の警告を消す
 bug minibufferでautocompleteが動くように
+bug spaceの区別をText-modeとかでも行う
 new anzu
 new auto-highlight-symbol
 new ctags auto update
