@@ -28,11 +28,11 @@
 
 ;;http://dev.ariel-networks.com/wp/documents/aritcles/emacs/part11
 ;;リスト8 " *"で始まるバッファをタブとして表示しない
-(eval-when-compile (require 'cl))
+(eval-when-compile (require 'cl-lib))
 (defun my-tabbar-buffer-list ()
-  (remove-if
+  (cl-remove-if
    (lambda (buffer)
-     (find (aref (buffer-name buffer) 0) " *"))
+     (cl-find (aref (buffer-name buffer) 0) " *"))
    (buffer-list)))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 

@@ -18,7 +18,8 @@
 ;;軽くする
 ;;http://d.hatena.ne.jp/daimatz/20120215/1329248780
 (setq linum-delay t)
-(defvar linum-schedule 1)
+(defadvice linum-schedule (around my-linum-schedule () activate)
+  (run-with-idle-timer 0.2 nil #'linum-update-current))
 
 (require 'uniquify);;バッファの名前がかぶったらディレクトリ名もつける
 (setq uniquify-buffer-name-style 'forward)

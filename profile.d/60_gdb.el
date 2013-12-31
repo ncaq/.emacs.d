@@ -1,9 +1,5 @@
 ;;http://d.hatena.ne.jp/higepon/20090505/
-(defvar gdb-many-windows)
-(setq gdb-many-windows t);有用なバッファを開くモード
-(defvar gdb-use-separate-io-buffer)
-(setq gdb-use-separate-io-buffer t);I/O バッファを表示
-(defvar gud-tooltip-echo-area)
+(require 'gud)
 (setq gud-tooltip-echo-area t);t にすると mini buffer に値が表示される
 
 (defun ncaq-gud ()

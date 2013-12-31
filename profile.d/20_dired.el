@@ -21,8 +21,6 @@
   (interactive)
   (dired "."))
 
-(define-key dired-mode-map (kbd "C-^") 'dired-up-directory)
-
 ;;実行ファイルに色を付ける
 (defface face-for-executable '((t :foreground "#5f8700")) nil)
 (defvar  face-for-executable 'face-for-executable)
@@ -32,3 +30,5 @@
     'dired-font-lock-keywords
     (list dired-re-exe
 	  '(".+" (dired-move-to-filename) nil (0 'face-for-executable)))))
+
+(define-key dired-mode-map (kbd "C-^") 'dired-up-directory)

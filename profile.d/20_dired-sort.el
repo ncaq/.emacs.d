@@ -1,4 +1,5 @@
 ;;http://d.hatena.ne.jp/mooz/20091207/p1
+(require 'dired)
 (defvar dired-various-sort-type
   '(("S" . "size")
     ("X" . "extension")

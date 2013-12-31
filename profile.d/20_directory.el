@@ -3,5 +3,4 @@
 (exec-path-from-shell-initialize)
 
 (require 'open-junk-file)
-(defvar open-junk-file-directory)
 (setq open-junk-file-directory "~/Documents/log/%Y_%m/")

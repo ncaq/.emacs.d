@@ -1,5 +1,5 @@
 ;;小さい自作関数
-(defun close-all-buffers (); => 
+(defun kill-all-buffers (); => 
   "バッファ全部閉じる"
   (interactive); => 
   (mapc 'kill-buffer (buffer-list))); => close-all-buffers

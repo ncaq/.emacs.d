@@ -7,7 +7,7 @@
       '(
 	
 	((kbd "C-,")		. helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
-	((kbd "C-M-S-q")	. close-all-buffers);バッファを全て閉じる. まともに動かなくなるのですぐに終了すること
+	((kbd "C-M-S-q")	. kill-all-buffers);バッファを全て閉じる. まともに動かなくなるのですぐに終了すること
 	((kbd "C-M-n")		. scroll-up-1)
 	((kbd "C-M-p")		. scroll-down-1)
 	((kbd "C-M-q")		. kill-buffer);バッファ閉じる

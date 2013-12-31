@@ -1,5 +1,5 @@
 ;;ファイルを作るまでも無い設定をここに書く
-(defvar windmove-wrap-around)
+(require 'windmove)
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 (setq windmove-wrap-around t);Window移動をループする
 
