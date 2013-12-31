@@ -1,4 +1,8 @@
-(require 'auto-complete);何故かないと時折バグる(再現性なし)
+;;フォントの設定
+(set-face-attribute 'default nil
+                    :family "Ricty"
+                    :height 180)
+
 ;;描画関係
 (menu-bar-mode 0);menu bar を表示させない
 (tool-bar-mode 0);tool bar を表示させない
@@ -9,6 +13,7 @@
 (auto-image-file-mode);画像表示
 
 (require 'linum);;行番号を左に表示
+(require 'auto-complete);何故かないと時折バグる(再現性なし)
 (global-linum-mode)
 ;;auto-complete時に崩れる問題を修正
 (defadvice linum-update

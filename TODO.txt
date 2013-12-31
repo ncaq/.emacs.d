@@ -4,5 +4,6 @@ bug spaceの区別をText-modeとかでも行う
 new anzu
 new auto-highlight-symbol
 new ctags auto update
+new flyspellの設定
 new multiple-cursors
 new メールを読めるようにする

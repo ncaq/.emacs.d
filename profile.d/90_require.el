@@ -11,9 +11,6 @@
 (require 'undo-tree);;undoをtreeに,C-x C-uで起動
 (global-undo-tree-mode)
 
-(require 'yasnippet);;定型文補完
-(yas-global-mode 1)
-
 (require 'zlc)
 (zlc-mode t)
 
