@@ -2,7 +2,6 @@
 .emacs.desktop
 .emacs.desktop.lock
 ac-comphist.dat
-anything-c-adaptive-history
 auto-save-list
 eshell
 history
@@ -14,5 +13,8 @@ var
 
 tags
 TAGS
+GPATH
+GRTAGS
+GTAGS
 
 elpa/*.txt

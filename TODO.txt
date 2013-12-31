@@ -1,3 +1,4 @@
 bug minibufferでautocompleteが動くように
+che helm-source-recentfのinit取り除きをremove-ifで実装る
 new ctags auto update
 new メールを読めるようにする
