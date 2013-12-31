@@ -1,4 +1,6 @@
 bug minibufferでautocompleteが動くように
-che helm-source-recentfのinit取り除きをremove-ifで実装る
+new anzu
+new auto-highlight-symbol
 new ctags auto update
+new multiple-cursors
 new メールを読めるようにする
