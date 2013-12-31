@@ -27,5 +27,5 @@
 (eval-when-compile (require 'cl-lib))
 (setq helm-source-recentf
       (cl-remove-if
-       (lambda (x) (eq 'init (car x)))
+       (lambda (x) (eq 'init (car x)));;'(init hogehoge) を取り除く
        helm-source-recentf))
