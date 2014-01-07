@@ -1,15 +1,15 @@
 ;;小さい自作関数
-(defun kill-all-buffers (); => 
+(defun kill-all-buffers ()
   "バッファ全部閉じる"
-  (interactive); => 
-  (mapc 'kill-buffer (buffer-list))); => close-all-buffers
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
 
-(defun code-format-all (); => 
+(defun code-format-all ()
   "自動で全選択→コードフォーマット"
-  (interactive); => 
-  (save-excursion; => 
-    (mark-whole-buffer); => 
-    (indent-region(point-min)(point-max)))); => code-format-custom
+  (interactive)
+  (save-excursion
+    (mark-whole-buffer)
+    (indent-region(point-min)(point-max))))
 
 (defun code-format-c ()
   "括弧を揃えない人が多くて困るよね"
@@ -22,13 +22,13 @@
     (code-format-all)
     ))
 
-(defun action-a-out (); =>
+(defun action-a-out ()
   "currentdirのa.outを実行"
-  (interactive); => 
+  (interactive)
   (defvar current-dir (expand-file-name "."));shell-command-to-stringには改行がくっついてくるので削除
-  (start-process "a.out"; =>
-		 "*a.out*"; => 
-		 (concat current-dir "/a.out"))); => action-a-out
+  (start-process "a.out"
+		 "*a.out*"
+		 (concat current-dir "/a.out")))
 
 (fset 'through-newline
       [end return])

@@ -1,7 +1,7 @@
 (global-set-key (kbd "C-+")	'text-scale-increase)
 (global-set-key (kbd "C--")	'text-scale-decrease)
 (global-set-key (kbd "C-;")	'align-regexp);揃える(正規表現)
-(global-set-key (kbd "C-=")	'text-scale-mode)
+(global-set-key (kbd "C-=")	'(lambda () (text-scale-adjust 0)))
 (global-set-key (kbd "C-M-,")	'helm-ls-git-ls)
 (global-set-key (kbd "C-M-d")	'kill-sexp)
 (global-set-key (kbd "C-M-l")	'sort-lines);ソートする
@@ -13,7 +13,7 @@
 (global-set-key (kbd "C-c c")	'quickrun);かしこいコンパイルコマンド実行
 (global-set-key (kbd "C-c f")	'code-format-all);全ての文字に対し字下げを行う
 (global-set-key (kbd "C-c g")	'magit-status)
-(global-set-key (kbd "C-c i")	'imenu)
+(global-set-key (kbd "C-c i")	'helm-semantic-or-imenu)
 (global-set-key (kbd "C-c j")	'open-junk-file);残るscratch
 (global-set-key (kbd "C-c s")	'sdic)
 (global-set-key (kbd "C-j")	'helm-ag);インクリメント串刺し検索
