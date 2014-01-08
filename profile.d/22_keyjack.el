@@ -2,8 +2,8 @@
 (defvar keyjack-mode-map (make-sparse-keymap))
 
 (mapc (lambda (x)
-	(define-key keyjack-mode-map (funcall (car(car x))(car(cdr(car x)))) (cdr x));;これはひどい…括弧の山だ…cadrとか使ったらもうちょっとマシになるのかな
-	(global-set-key (funcall (car(car x))(car(cdr(car x)))) (cdr x)))
+	(define-key keyjack-mode-map (funcall (caar x) (cadr(car x))) (cdr x))
+	(global-set-key (funcall (caar x) (cadr(car x))) (cdr x)))
       '(
 	
 	((kbd "C-,")		. helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい

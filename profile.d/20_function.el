@@ -4,14 +4,14 @@
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
 
-(defun code-format-all ()
+(defun indent-whole-buffer ()
   "自動で全選択→コードフォーマット"
   (interactive)
   (save-excursion
     (mark-whole-buffer)
     (indent-region(point-min)(point-max))))
 
-(defun code-format-c ()
+(defun indent-brackets-whole-buffer ()
   "括弧を揃えない人が多くて困るよね"
   (interactive)
   (save-excursion
@@ -19,7 +19,7 @@
       (replace-match ")\n{"))
     (while (re-search-forward "=[ 	]*{" nil t)
       (replace-match "=\n{"))
-    (code-format-all)
+    (indent-whole-buffer)
     ))
 
 (defun action-a-out ()
