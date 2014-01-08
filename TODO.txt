@@ -1,9 +1,12 @@
 bug faceの宣言の警告を消す
 bug minibufferでautocompleteが動くように
 bug spaceの区別をText-modeとかでも行う
+che key-bindを大幅に変更する
+che key-jack-modeのコードをもうちょっとどうにかする
 new anzu
 new auto-highlight-symbol
 new ctags auto update
 new flyspellの設定
 new multiple-cursors
 new メールを読めるようにする
+new 上改行,全体Sortをする関数を書く
