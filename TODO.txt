@@ -1,6 +1,10 @@
 bug faceの宣言の警告を消す
+bug http://stackoverflow.com/questions/20498554/how-do-i-make-flycheck-find-required-file-in-emacs-lisp
 bug minibufferでautocompleteが動くように
 bug spaceの区別をText-modeとかでも行う
+bug trampが.bash_historyを生成しないようにする
+bug ラテン文字交じり文は単語を分けるようにする
+che haskell-modeで保存するとimport読み込み直す
 che key-bindを大幅に変更する
 che key-jack-modeのコードをもうちょっとどうにかする
 new anzu

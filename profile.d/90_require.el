@@ -14,9 +14,6 @@
 (require 'zlc)
 (zlc-mode t)
 
-(require 'wgrep)
-(require 'ag)
-
 (require 'smooth-scroll)
 (smooth-scroll-mode t)
 (setq smooth-scroll/vscroll-step-size 5);;デフォルトだと重い

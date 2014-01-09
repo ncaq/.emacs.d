@@ -4,7 +4,6 @@
 ;;; 最終行に必ず一行挿入する
 (setq require-final-newline t)
 
-(require 'saveplace);;カーソル位置記憶
 (setq-default save-place t)
 
 (require 'undohist);;undoをファイル閉じても保存

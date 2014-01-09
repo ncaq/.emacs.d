@@ -1,7 +1,4 @@
-(require 'dired)
-(require 'wdired)
-
-(setq dired-listing-switches "-Aahlv");diredが使うlsオプションの設定
+(setq dired-listing-switches "-AFhvl");diredが使うlsオプションの設定
 
 ;;atoolの設定
 ;;http://d.hatena.ne.jp/mooz/20110911/p1
