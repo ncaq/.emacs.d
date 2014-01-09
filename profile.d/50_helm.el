@@ -2,21 +2,8 @@
 (helm-mode 1)
 (require 'helm)
 
-(require 'helm-ag-autoloads)
-(require 'helm-flymake-autoloads)
-(require 'helm-gist-autoloads)
-(require 'helm-git-autoloads)
-(require 'helm-gtags-autoloads)
-(require 'helm-ls-git-autoloads)
-
 (require 'helm-descbinds-autoloads)
 (helm-descbinds-mode t)
-
-;;デフォルトだとPrefixになる
-(eval-after-load 'helm
-  '(progn
-     (define-key helm-map (kbd "C-h") 'backward-delete-char-untabify)
-     ))
 
 ;;デフォルトはファイル名を短縮する区切りが20
 (require 'helm-buffers)
@@ -29,3 +16,9 @@
       (cl-remove-if
        (lambda (x) (eq 'init (car x)));;'(init hogehoge) を取り除く
        helm-source-recentf))
+
+;;デフォルトだとPrefixになる
+(eval-after-load 'helm
+  '(progn
+     (define-key helm-map (kbd "C-h") 'backward-delete-char-untabify)
+     ))
