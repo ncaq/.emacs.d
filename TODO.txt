@@ -6,7 +6,6 @@ bug trampが.bash_historyを生成しないようにする
 bug ラテン文字交じり文は単語を分けるようにする
 che haskell-modeで保存するとimport読み込み直す
 che key-bindを大幅に変更する
-che key-jack-modeのコードをもうちょっとどうにかする
 new anzu
 new auto-highlight-symbol
 new ctags auto update
