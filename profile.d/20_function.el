@@ -1,4 +1,7 @@
 ;;小さい自作関数
+(fset 'through-newline
+      [end return])
+
 (defun kill-all-buffers ()
   "バッファ全部閉じる"
   (interactive)
@@ -29,9 +32,6 @@
   (start-process "a.out"
 		 "*a.out*"
 		 (concat current-dir "/a.out")))
-
-(fset 'through-newline
-      [end return])
 
 (require'text-adjust)
 (defun text-adjust-selective ()

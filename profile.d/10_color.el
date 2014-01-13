@@ -1,4 +1,5 @@
 (global-font-lock-mode 1);syntax highlight有効
+(show-paren-mode t);対応する括弧をハイライト
 
 (require 'solarized-dark-theme)
 (load-theme 'solarized-dark t)
@@ -16,8 +17,6 @@
      )))
 (ad-enable-advice 'font-lock-mode 'before 'ncaq-font-lock-mode)
 (ad-activate 'font-lock-mode)
-
-(show-paren-mode t);対応する括弧をハイライト
 
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)

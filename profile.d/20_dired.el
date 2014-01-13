@@ -1,3 +1,4 @@
+(require 'dired)
 (setq dired-listing-switches "-AFhvl");diredが使うlsオプションの設定
 
 ;;atoolの設定

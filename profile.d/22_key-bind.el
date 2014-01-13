@@ -1,11 +1,15 @@
 (global-set-key (kbd "C-+")	'text-scale-increase)
+(global-set-key (kbd "C-,")	'helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key (kbd "C--")	'text-scale-decrease)
 (global-set-key (kbd "C-;")	'align-regexp);揃える(正規表現)
 (global-set-key (kbd "C-^")	'dired-jump-to-current)
 (global-set-key (kbd "C-a")	'vs-move-beginning-of-line);;Visual StdioライクなC-a
+(global-set-key (kbd "C-h")	'backward-delete-char-untabify)
 (global-set-key (kbd "C-j")	'helm-ag);インクリメント串刺し検索
 (global-set-key (kbd "C-m")	'newline-and-indent);改行時にインデント
 (global-set-key (kbd "C-o")	'helm-buffers-list)
+(global-set-key (kbd "C-q")	'kill-buffer-and-window);バッファとウインドウ閉じる
+(global-set-key (kbd "C-t")	'other-window)
 (global-set-key (kbd "C-u")	'kill-whole-line);現在行を削除
 (global-set-key (kbd "C-z")	'quoted-insert);C-qの本来の関数
 
@@ -28,6 +32,11 @@
 (global-set-key (kbd "M-z")	'repeat)
 
 (global-set-key (kbd "C-M-d")	'kill-sexp)
+(global-set-key (kbd "C-M-n")	'scroll-up-1)
+(global-set-key (kbd "C-M-p")	'scroll-down-1)
+(global-set-key (kbd "C-M-q")	'kill-buffer);バッファ閉じる
+
+(global-set-key (kbd "C-M-S-q")	'kill-all-buffers);バッファを全て閉じる. まともに動かなくなるのですぐに終了すること
 
 (global-set-key (kbd "C-x C-e")	'flycheck-list-errors)
 (global-set-key (kbd "C-x C-f")	'save-buffer)
