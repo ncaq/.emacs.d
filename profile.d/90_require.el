@@ -21,6 +21,9 @@
 (require 'auto-save-buffers);;本当の自動保存
 (run-with-idle-timer 30 t 'auto-save-buffers)
 
+(require 'anzu)
+(global-anzu-mode +1)
+
 ;;＿人人人人人人＿
 ;;＞　突然の死　＜
 ;;￣ＹＹＹＹＹＹ￣

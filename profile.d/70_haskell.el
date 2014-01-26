@@ -9,14 +9,15 @@
 
 (add-hook 'inferior-haskell-mode-hook 'ghci-completion-mode)
 
-;;勝手にflymakeを割り当てられる
-(setq ghc-previous-key    (kbd "C-c C-c p"))
-(setq ghc-next-key        (kbd "C-c C-c n"))
-
 (require 'auto-complete)
 (add-to-list 'ac-modes 'haskell-mode)
 
 (defun ncaq-haskell ()
   (ghc-init)
-  (add-to-list 'ac-sources 'ac-source-ghc-mod))
+  (add-to-list 'ac-sources 'ac-source-ghc-mod)
+  (add-hook 'after-save-hook 'ghc-import-module))
 (add-hook 'haskell-mode-hook 'ncaq-haskell)
+
+;;勝手にflymakeを割り当てられる
+(setq ghc-previous-key    (kbd "C-c C-c p"))
+(setq ghc-next-key        (kbd "C-c C-c n"))

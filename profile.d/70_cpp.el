@@ -12,7 +12,7 @@
 (require 'c-eldoc)
 (add-hook 'c-mode-common-hook 'c-turn-on-eldoc-mode)
 
-(defun ncaq-c++-mode-set ()
+(defun ncaq-c++ ()
   (c-set-style "bsd")
   (define-key c-mode-base-map [remap indent-whole-buffer] 'indent-brackets-whole-buffer))
-(add-hook 'c-mode-common-hook 'ncaq-c++-mode-set)
+(add-hook 'c-mode-common-hook 'ncaq-c++)

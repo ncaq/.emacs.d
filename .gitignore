@@ -11,10 +11,12 @@ undohist
 url
 var
 
+elpa/*.txt
+
+.mc-lists.el*
+
 tags
 TAGS
 GPATH
 GRTAGS
 GTAGS
-
-elpa/*.txt

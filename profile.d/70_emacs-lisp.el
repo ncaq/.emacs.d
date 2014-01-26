@@ -2,12 +2,13 @@
 (setq auto-async-byte-compile-exclude-files-regexp "/tmp/emacsAutoAsyncJunk/")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
-(autoload 'lispxmp "lispxmp");xmpfilterのemacs lisp version
-
 (require 'flycheck)
 (eval-after-load
     'flycheck '(setq flycheck-checkers
 		     (delq 'emacs-lisp-checkdoc flycheck-checkers)));emacs-lisp-checkdoc,設定ファイルごときにそんなに気合入れなくて良いです
+(defun ncaq-emacs-lisp ()
+  (setq flycheck-emacs-lisp-load-path load-path))
+(add-hook 'emacs-lisp-mode-hook 'ncaq-emacs-lisp)
 
 (require 'eldoc)
 (require 'eldoc-extension)

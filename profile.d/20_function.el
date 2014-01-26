@@ -1,6 +1,24 @@
-;;小さい自作関数
-(fset 'through-newline
+(fset 'newline-under;下に改行
       [end return])
+(fset 'newline-upper;上に改行
+      [up end return])
+
+(defun sort-lines-mark-auto ()
+  (interactive)
+  (if (use-region-p)
+      (sort-lines nil (region-beginning)(region-end))
+    (progn
+      (mark-paragraph)
+      (sort-lines nil (region-beginning)(region-end)))))
+
+(defun sort-whole-buffer ()
+  (interactive)
+  (mark-whole-buffer)
+  (sort-lines nil (region-beginning)(region-end)))
+
+(defun text-scale-reset ()
+  (interactive)
+  (text-scale-set 0))
 
 (defun kill-all-buffers ()
   "バッファ全部閉じる"
