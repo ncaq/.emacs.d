@@ -1,6 +1,7 @@
 (global-set-key (kbd "C-+")	'text-scale-increase)
 (global-set-key (kbd "C-,")	'helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key (kbd "C--")	'text-scale-decrease)
+(global-set-key (kbd "C-.")	'helm-semantic-or-imenu)
 (global-set-key (kbd "C-;")	'align-regexp);揃える(正規表現)
 (global-set-key (kbd "C-^")	'dired-jump-to-current)
 (global-set-key (kbd "C-a")	'vs-move-beginning-of-line);;Visual StdioライクなC-a
@@ -46,6 +47,5 @@
 (global-set-key (kbd "C-c c")	'quickrun);かしこいコンパイルコマンド実行
 (global-set-key (kbd "C-c f")	'indent-whole-buffer);全ての文字に対し字下げを行う
 (global-set-key (kbd "C-c g")	'magit-status)
-(global-set-key (kbd "C-c i")	'helm-semantic-or-imenu)
 (global-set-key (kbd "C-c j")	'open-junk-file);残るscratch
 (global-set-key (kbd "C-c s")	'sdic)
