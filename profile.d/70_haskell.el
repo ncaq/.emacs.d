@@ -18,6 +18,8 @@
   (add-hook 'after-save-hook 'ghc-import-module))
 (add-hook 'haskell-mode-hook 'ncaq-haskell)
 
+(define-key 'haskell-mode-map (kbd "C-M-m") nil)
+
 ;;勝手にflymakeを割り当てられる
 (setq ghc-previous-key    (kbd "C-c C-c p"))
 (setq ghc-next-key        (kbd "C-c C-c n"))

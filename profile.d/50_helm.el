@@ -20,5 +20,5 @@
 ;;デフォルトだとPrefixになる
 (eval-after-load 'helm
   '(progn
-     (define-key helm-map (kbd "C-h") 'backward-delete-char-untabify)
+     (define-key helm-map (kbd "C-h") nil)
      ))
