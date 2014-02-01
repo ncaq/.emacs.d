@@ -7,7 +7,7 @@
 (add-hook 'haskell-mode-hook 'haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
 
-(add-hook 'inferior-haskell-mode-hook 'ghci-completion-mode)
+(add-hook 'inferior-haskell-mode-hook 'turn-on-ghci-completion)
 
 (require 'auto-complete)
 (add-to-list 'ac-modes 'haskell-mode)

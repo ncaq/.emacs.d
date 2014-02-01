@@ -6,3 +6,6 @@
 
 (require 'hexl)
 (define-key hexl-mode-map (kbd "C-q") nil)
+
+(require 'nxml-mode)
+(define-key nxml-mode-map (kbd "M-h") nil)
