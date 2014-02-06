@@ -44,7 +44,7 @@
 
 (global-set-key (kbd "C-M-S-q")	'kill-all-buffers);バッファを全て閉じる.
 
-(global-set-key (kbd "C-x C-e")	'flycheck-list-errors)
+(global-set-key (kbd "C-x C-e")	'helm-flycheck)
 (global-set-key (kbd "C-x C-f")	'save-buffer)
 (global-set-key (kbd "C-x C-s")	'helm-find-files);どう考えてもこっちのほうが便利だった
 
