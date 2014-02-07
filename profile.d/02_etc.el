@@ -3,9 +3,11 @@
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 (setq windmove-wrap-around t);Window移動をループする
 
+(auto-image-file-mode);画像表示
 (fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
 (savehist-mode t);ミニバッファの履歴を保存する
 
+(setq blink-matching-paren nil);括弧移動無効
 (setq delete-by-moving-to-trash t);ごみ箱を有効
 (setq history-length 5000);ミニバッファの履歴の保存数を増やす
 (setq message-log-max 5000);ログの記録行数を増やす.
