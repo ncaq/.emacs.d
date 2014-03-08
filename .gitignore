@@ -14,6 +14,7 @@ var
 elpa/*.txt
 
 .mc-lists.el*
+session.*
 
 tags
 TAGS
