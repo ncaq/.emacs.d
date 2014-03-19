@@ -4,6 +4,12 @@
 (add-to-list 'auto-mode-alist '("\\.use\\'" . conf-mode));portage
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode));zshのシェルスクリプトに対応
 
+(require 'inf-lisp)
+(setq inferior-lisp-program "clisp")
+
+(require 'scheme)
+(setq scheme-program-name "gosh")
+
 (require 'hexl)
 (define-key hexl-mode-map (kbd "C-q") nil)
 

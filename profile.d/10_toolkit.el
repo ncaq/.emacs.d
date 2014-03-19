@@ -3,13 +3,19 @@
 (setq frame-title-format (format "%%b"));タイトルバーにバッファ名を表示する
 
 ;;mode-lineに改行コードを表示
-(setq eol-mnemonic-dos	"(CRLF)")
-(setq eol-mnemonic-mac	"(CR)")
+(setq eol-mnemonic-dos  "(CRLF)")
+(setq eol-mnemonic-mac  "(CR)")
 (setq eol-mnemonic-unix "(LF)")
 
-;;フルパスを表示
-(set-default 'mode-line-buffer-identification
-	 '(buffer-file-name ("%f") ("%b")))
+;;mode-lineフルパスを表示
+(set-default 'mode-line-buffer-identification '(buffer-file-name ("%f") ("%b")))
+
+;;mode-line line and char numbar
+(setq mode-line-position
+      '(:eval (format "l%%l/%d,c%d/%d"
+		      (count-lines (point-max)(point-min))
+		      (point)
+		      (- (point-max)(point-min)))))
 
 (require 'linum);;行番号を左に表示
 (require 'auto-complete)
