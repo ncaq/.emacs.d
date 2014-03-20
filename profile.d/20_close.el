@@ -7,7 +7,7 @@
 (setq-default save-place t)
 
 (require 'undohist);;undoをファイル閉じても保存
-(setq undohist-directory "~/.undohist/")
+(setq undohist-directory "~/.emacs.d/undohist")
 (undohist-initialize)
 
 (defun undohist-recover ()

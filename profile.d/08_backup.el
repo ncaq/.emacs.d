@@ -1,5 +1,5 @@
 ;;バックアップファイルの保存場所を指定。
-(setq backup-directory-alist '(("" . "~/.backupEmacs")))
+(setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
 ;;http://ubulog.blogspot.jp/2008/10/emacs.html
 (setq make-backup-files t);バックアップファイルを作成する。
 

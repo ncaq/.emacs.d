@@ -3,21 +3,23 @@
 .emacs.desktop.lock
 ac-comphist.dat
 auto-save-list
+emacs-backup
 eshell
 history
 image-dired
+recentf*
 tramp
+undohist
 undohist
 url
 var
 
-elpa/*.txt
-
 .mc-lists.el*
+elpa/*.txt
 session.*
 
-tags
-TAGS
 GPATH
 GRTAGS
 GTAGS
+TAGS
+tags

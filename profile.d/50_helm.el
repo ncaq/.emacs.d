@@ -1,6 +1,8 @@
 (require 'helm-config)
+(require 'helm-mode)
 (helm-mode 1)
-(require 'helm)
+;;helmを無効にする関数リストe
+(add-to-list 'helm-completing-read-handlers-alist '(find-file . nil))
 
 (require 'helm-descbinds-autoloads)
 (helm-descbinds-mode t)

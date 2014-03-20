@@ -45,8 +45,8 @@
 (global-set-key (kbd "C-M-S-q")	'kill-all-buffers);バッファを全て閉じる.
 
 (global-set-key (kbd "C-x C-e")	'helm-flycheck)
-(global-set-key (kbd "C-x C-f")	'save-buffer)
-(global-set-key (kbd "C-x C-s")	'helm-find-files);どう考えてもこっちのほうが便利だった
+(global-set-key (kbd "C-x C-f")	'save-buffer);key transの都合
+(global-set-key (kbd "C-x C-s")	'find-file);key transの都合
 
 (global-set-key (kbd "C-c a")	'text-adjust-selective);全角記号とかそういうゴミな文字を変換する
 (global-set-key (kbd "C-c c")	'quickrun);かしこいコンパイルコマンド実行
