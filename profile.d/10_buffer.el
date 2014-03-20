@@ -1,5 +1,5 @@
 ;;フォント
-(set-face-attribute 'default nil :family "Ricty" :height 190)
+(set-face-attribute 'default nil :family "Ricty" :height 180)
 
 ;;package-listのformat
 (define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
