@@ -6,4 +6,4 @@
 
 (defun kill-scratch ()
   (kill-buffer "*scratch*"))
-(add-hook 'after-init-hook 'kill-scratch);open-junk-fileがあるからscratchいらないです
+(add-hook 'after-init-hook 'kill-scratch);open-junk-fileがあるからscratchいらない
