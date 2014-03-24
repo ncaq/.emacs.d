@@ -1,4 +1,4 @@
-(global-font-lock-mode 1);syntax highlight有効
+(global-font-lock-mode);syntax highlight有効
 
 (require 'solarized-dark-theme)
 (load-theme 'solarized-dark t)
@@ -29,5 +29,5 @@
 	  '(".+" (dired-move-to-filename) nil (0 'face-for-executable)))))
 
 (require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode t)
+(global-rainbow-delimiters-mode)
 (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8c8d")))));文字列の色と被るため,変更

@@ -1,7 +1,7 @@
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p);スクリプトに実行権限付加
 (auto-image-file-mode);画像表示
 (fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
-(savehist-mode t);ミニバッファの履歴を保存する
+(savehist-mode);ミニバッファの履歴を保存する
 (set-frame-parameter nil 'fullscreen 'maximized);gtk maxium
 
 (setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
@@ -12,7 +12,6 @@
 (setq kept-old-versions 100000);古いものをいくつ残すか
 (setq make-backup-files t);バックアップファイルを作成する。
 (setq message-log-max 5000);ログの記録行数を増やす.
-(setq next-line-add-newlines t);c-nした時に行を追加
 (setq read-buffer-completion-ignore-case t);大文字と小文字を区別しない バッファ名
 (setq read-file-name-completion-ignore-case t);ファイル名
 (setq require-final-newline t);最終行に必ず一行挿入する

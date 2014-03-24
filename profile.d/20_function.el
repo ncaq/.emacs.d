@@ -1,7 +1,7 @@
 (fset 'newline-under;下に改行
       [end return])
 (fset 'newline-upper;上に改行
-      [up end return])
+      [home return up])
 
 (defun sort-lines-mark-auto ()
   (interactive)
@@ -36,9 +36,9 @@
   "括弧を揃えない人が多くて困るよね"
   (interactive)
   (save-excursion
-    (while (re-search-forward ")[ 	]*{" nil t)
+    (while (re-search-forward ")[ 	]*{" nil)
       (replace-match ")\n{"))
-    (while (re-search-forward "=[ 	]*{" nil t)
+    (while (re-search-forward "=[ 	]*{" nil)
       (replace-match "=\n{"))
     (indent-whole-buffer)
     ))

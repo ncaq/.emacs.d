@@ -15,7 +15,7 @@
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-(setq eldoc-echo-area-use-multiline-p t)
+(setq eldoc-echo-area-use-multiline-p)
 
 (define-key emacs-lisp-mode-map	(kbd "C-c e")	'eval-buffer);C-cC-eでeval-bufferを実行
 (define-key read-expression-map (kbd "<tab>")	'lisp-complete-symbol);M-S-;

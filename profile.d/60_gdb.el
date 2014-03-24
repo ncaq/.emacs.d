@@ -1,6 +1,6 @@
 ;;http://d.hatena.ne.jp/higepon/20090505/
 (require 'gud)
-(setq gud-tooltip-echo-area t);t にすると mini buffer に値が表示される
+(setq gud-tooltip-echo-area);t にすると mini buffer に値が表示される
 
 (defun ncaq-gud ()
    (global-set-key (kbd "<f10>")	'gud-cont);ブレークポイントに会うまで実行

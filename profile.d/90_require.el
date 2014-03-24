@@ -6,29 +6,29 @@
 (require 'text-adjust)
 (require 'vs-move-beginning-of-line)
 
-(require 'auto-save-buffers);本当の自動保存
-(run-with-idle-timer 30 t 'auto-save-buffers)
-
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
 
 (require 'open-junk-file)
 (setq open-junk-file-directory "~/Documents/log/%Y_%m/")
 
+(require 'server);emacsclient
+(unless (server-running-p)
+  (server-start))
+
 (require 'smooth-scroll)
-(smooth-scroll-mode t)
+(smooth-scroll-mode)
 (setq smooth-scroll/vscroll-step-size 5);デフォルトだと重い
 
 (require 'undo-tree);undoをtreeに,C-x C-uで起動
 (global-undo-tree-mode)
 
+(require 'uniquify);;バッファの名前がかぶったらディレクトリ名もつける
+(setq uniquify-buffer-name-style 'forward)
+
 (require 'windmove)
-(setq windmove-wrap-around t);Window移動をループする
+(setq windmove-wrap-around);Window移動をループする
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
 (require 'zlc)
-(zlc-mode t)
-
-(require 'server);emacsclient
-(unless (server-running-p)
-  (server-start))
+(zlc-mode)

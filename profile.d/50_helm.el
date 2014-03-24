@@ -1,14 +1,14 @@
 (require 'helm-mode)
-(helm-mode 1)
+(helm-mode)
 ;;helmを無効にする関数リストe
 (add-to-list 'helm-completing-read-handlers-alist '(find-file . nil))
 
-(require 'helm-descbinds-autoloads)
-(helm-descbinds-mode t)
+(require 'helm-descbinds)
+(helm-descbinds-mode)
 
 ;;デフォルトはファイル名を短縮する区切りが20
-(require 'helm-buffers)
-(setq helm-buffer-max-length 50)
+;; (require 'helm-buffers)
+;; (setq helm-buffer-max-length 10)
 
 ;;flycheckとhelmの組み合わせバグに対する強引な回避方法
 (require 'helm-files)

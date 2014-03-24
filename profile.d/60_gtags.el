@@ -1,5 +1,5 @@
 (require 'gtags)
-(setq gtags-auto-update t);タグファイルの自動更新
+(setq gtags-auto-update);タグファイルの自動更新
 
 (require 'helm-gtags)
 ;;; Enable helm-gtags-mode
@@ -9,7 +9,7 @@
 
 ;; customize
 (setq helm-gtags-path-style 'relative)
-(setq helm-gtags-ignore-case t)
+(setq helm-gtags-ignore-case)
 
 ;; key bindings
 (defun ncaq-gtags ()
