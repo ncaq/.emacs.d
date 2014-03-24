@@ -1,13 +1,10 @@
 (autoload 'sdic "sdic")
+(autoload 'sudden-death "sudden-death")
 (require 'minibuf-isearch)
 (require 'root-tramp)
-(require 'sudden-death)
 (require 'symbolword-mode)
 (require 'text-adjust)
 (require 'vs-move-beginning-of-line)
-
-(require 'anzu)
-(global-anzu-mode +1)
 
 (require 'auto-save-buffers);本当の自動保存
 (run-with-idle-timer 30 t 'auto-save-buffers)

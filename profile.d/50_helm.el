@@ -1,4 +1,3 @@
-(require 'helm-config)
 (require 'helm-mode)
 (helm-mode 1)
 ;;helmを無効にする関数リストe
