@@ -1,4 +1,4 @@
-(remove-hook 'git-commit-mode-hook 'turn-on-auto-fill)
+;; (require 'magit)
 
 (require 'git-gutter-fringe)
-(global-git-gutter-mode t)
+(global-git-gutter-mode)
