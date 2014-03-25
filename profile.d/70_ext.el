@@ -5,11 +5,8 @@
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("nginx.conf" . nginx-mode))
 
-(require 'inf-lisp)
-(setq inferior-lisp-program "clisp")
-
-(require 'scheme)
-(setq scheme-program-name "gosh")
+(defvar inferior-lisp-program "clisp")
+(defvar scheme-program-name "gosh")
 
 (require 'hexl)
 (define-key hexl-mode-map (kbd "C-q") nil)

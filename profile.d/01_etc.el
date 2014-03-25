@@ -1,9 +1,10 @@
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p);スクリプトに実行権限付加
 (auto-image-file-mode);画像表示
-(fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
 (savehist-mode);ミニバッファの履歴を保存する
 (set-frame-parameter nil 'fullscreen 'maximized);gtk maxium
 
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p);スクリプトに実行権限付加
+(custom-set-variables '(open-junk-file-format "~/Documents/log/%Y_%m/"))
+(fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
 (setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
 (setq blink-matching-paren nil);括弧移動無効
 (setq delete-by-moving-to-trash t);ごみ箱を有効

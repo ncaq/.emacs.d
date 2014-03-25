@@ -1,16 +1,14 @@
+(autoload 'root-tramp "auto-tramp-file")
 (autoload 'sdic "sdic")
 (autoload 'sudden-death "sudden-death")
+(autoload 'text-adjust "text-adjust-selective")
+
 (require 'minibuf-isearch)
-(require 'root-tramp)
 (require 'symbolword-mode)
-(require 'text-adjust)
 (require 'vs-move-beginning-of-line)
 
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
-
-(require 'open-junk-file)
-(setq open-junk-file-directory "~/Documents/log/%Y_%m/")
 
 (require 'server);emacsclient
 (unless (server-running-p)
