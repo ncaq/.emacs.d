@@ -17,5 +17,5 @@
 (defvar ghc-next-key		(kbd "C-c C-M-n"))
 (defvar ghc-previous-key	(kbd "C-c C-M-p"))
 
-(define-key haskell-mode-map (kbd "C-c f") nil)
+(define-key haskell-mode-map (kbd "C-c f") '(lambda () (message "Haskell is not free style language!")))
 (define-key haskell-mode-map (kbd "M-RET") 'newline-upper)
