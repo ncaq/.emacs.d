@@ -2,6 +2,9 @@
 (autoload 'sudden-death "sudden-death")
 (autoload 'text-adjust "text-adjust-selective")
 
+(autoload 'open-junk-file "open-junk-file")
+(custom-set-variables '(open-junk-file-format "~/Documents/log/%Y_%m/"))
+
 (require 'minibuf-isearch)
 (require 'root-tramp)
 (require 'symbolword-mode)
@@ -30,3 +33,4 @@
 
 (require 'zlc)
 (zlc-mode)
+

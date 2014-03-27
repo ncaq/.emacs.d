@@ -12,7 +12,8 @@
   (ghc-init)
   (add-to-list 'ac-sources 'ac-source-ghc-mod)
   (add-hook 'after-save-hook 'ghc-import-module nil t))
-(add-hook 'haskell-mode-map 'ghc-mod-setup t)
+(add-hook 'haskell-mode-hook 'ghc-mod-setup t)
+
 ;;勝手にflymakeを割り当てられる
 (defvar ghc-next-key		(kbd "C-c C-M-n"))
 (defvar ghc-previous-key	(kbd "C-c C-M-p"))
