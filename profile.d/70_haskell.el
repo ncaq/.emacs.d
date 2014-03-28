@@ -7,7 +7,7 @@
 (add-to-list 'ac-modes 'haskell-mode)
 (add-to-list 'ac-modes 'inferior-haskell-mode)
 
-(require 'ghc-autoloads)
+(require 'ghc)
 (defun ghc-mod-setup ()
   (ghc-init)
   (add-to-list 'ac-sources 'ac-source-ghc-mod)
@@ -18,5 +18,5 @@
 (defvar ghc-next-key		(kbd "C-c C-M-n"))
 (defvar ghc-previous-key	(kbd "C-c C-M-p"))
 
-(define-key haskell-mode-map (kbd "C-c f") '(lambda () (message "Haskell is not free style language!")))
+(define-key haskell-mode-map (kbd "C-c f") '(lambda () (interactive)(message "Haskell is not free style language!")))
 (define-key haskell-mode-map (kbd "M-RET") 'newline-upper)
