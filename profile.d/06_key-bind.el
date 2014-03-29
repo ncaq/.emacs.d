@@ -2,7 +2,6 @@
 (global-set-key (kbd "C-,")	'helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key (kbd "C--")	'text-scale-decrease)
 (global-set-key (kbd "C-.")	'helm-semantic-or-imenu)
-(global-set-key (kbd "C-;")	'align-regexp);揃える(正規表現)
 (global-set-key (kbd "C-=")	'text-scale-reset)
 (global-set-key (kbd "C-^")	'dired-jump-to-current)
 (global-set-key (kbd "C-a")	'vs-move-beginning-of-line);;Visual StdioライクなC-a
@@ -35,6 +34,7 @@
 (global-set-key (kbd "M-z")	'repeat)
 
 (global-set-key (kbd "C-M-,")	'ibuffer);もう一つのバッファーリスト
+(global-set-key (kbd "C-M-;")	'align-regexp);揃える(正規表現)
 (global-set-key (kbd "C-M-d")	'kill-sexp)
 (global-set-key (kbd "C-M-l")	'sort-whole-buffer)
 (global-set-key (kbd "C-M-m")	'newline-upper)
