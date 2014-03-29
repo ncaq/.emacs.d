@@ -7,13 +7,18 @@
 (setq ibus-prediction-window-position t)
 (setq ibus-undo-by-committed-string t)
 
-(define-key ibus-mode-map (kbd "C-;") 'ibus-toggle)
+(define-key ibus-mode-map (kbd "C-;") 'finary-ibus-toggle)
 (define-key ibus-mode-map (kbd "C-SPC") nil)
 (define-key ibus-mode-preedit-map (kbd "C-g") 'ibus-keyboard-quit)
 (define-key ibus-mode-preedit-map (kbd "RET") 'ibus-commit)
 
 (add-hook 'ibus-preedit-show-hook 'disable-trans-h-b)
 (add-hook 'ibus-commit-string-hook 'enable-trans-h-b)
+
+(defun finary-ibus-toggle ()
+  (interactive)
+  (enable-trans-h-b)
+  (ibus-toggle))
 
 (defun ibus-keyboard-quit ()
   (interactive)

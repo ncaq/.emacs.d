@@ -15,8 +15,9 @@
 (add-hook 'haskell-mode-hook 'ghc-mod-setup t)
 
 ;;勝手にflymakeを割り当てられる
-(defvar ghc-next-key		(kbd "C-c C-M-n"))
-(defvar ghc-previous-key	(kbd "C-c C-M-p"))
+(setq ghc-next-key	(kbd "C-c C-M-n"))
+(setq ghc-previous-key	(kbd "C-c C-M-p"))
 
 (define-key haskell-mode-map (kbd "C-c f") '(lambda () (interactive)(message "Haskell is not free style language!")))
+(define-key haskell-mode-map (kbd "C-x C-s") nil)
 (define-key haskell-mode-map (kbd "M-RET") 'newline-upper)
