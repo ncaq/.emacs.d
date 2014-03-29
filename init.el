@@ -1,5 +1,5 @@
 (require 'desktop)
-(desktop-save-mode t)
+(add-hook 'after-init-hook 'desktop-save-mode)
 
 ;; ロードパスの設定
 ;;http://d.hatena.ne.jp/kitokitoki/20100705/p1
