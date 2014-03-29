@@ -1,4 +1,5 @@
 bug faceの宣言の警告を消す
+bug flyspell
 bug minibufferでauto-completeが動くように
 bug spaceの区別をText-modeとかでも行う
 bug trampが.bash_historyを生成しないようにする
