@@ -1,25 +1,13 @@
-%backup%~
-.emacs.desktop
-.emacs.desktop.lock
-ac-comphist.dat
-auto-save-list
-emacs-backup
-eshell
-history
-image-dired
-recentf*
-tramp
-undohist
-undohist
-url
-var
+*
 
-.mc-lists.el*
-elpa/*.txt
-session.*
+!elpa
+!package.d
+!profile.d
+!universe.d
 
-GPATH
-GRTAGS
-GTAGS
-TAGS
-tags
+!.gitignore
+!.gitmodules
+!README.md
+!TODO.txt
+!init.el
+!init.elc
