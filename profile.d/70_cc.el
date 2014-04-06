@@ -7,14 +7,13 @@
 			  (awk-mode . "awk")
 			  (other . "bsd"))))
 
-(require 'flycheck-autoloads)
+(require 'flycheck)
 (add-hook 'c-mode-hook (lambda ()
-			 (custom-set-variables '(flycheck-clang-language-standard "c11"))))
+			 (setq flycheck-clang-language-standard "c11")))
 (add-hook 'c++-mode-hook (lambda ()
-			   (custom-set-variables
-			    '(flycheck-clang-language-standard "c++1y")
-			    '(flycheck-clang-standard-library "libc++")
-			    '(flycheck-clang-include-path ("/usr/include/c++/v1")))))
+			   (setq flycheck-clang-language-standard "c++1y")
+			   (setq flycheck-clang-standard-library "libc++")
+			   (setq flycheck-clang-include-path '("/usr/include/c++/v1"))))
 
 (require 'quickrun-autoloads)
 (quickrun-add-command "c11/clang"

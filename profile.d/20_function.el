@@ -33,12 +33,12 @@
     (indent-region(point-min)(point-max))))
 
 (defun indent-brackets-whole-buffer ()
-  "括弧を揃えない人が多くて困るよね"
+  "括弧を揃える"
   (interactive)
   (save-excursion
-    (while (re-search-forward ")[ 	]*{" nil)
+    (while (re-search-forward ")[ 	]*{" nil t)
       (replace-match ")\n{"))
-    (while (re-search-forward "=[ 	]*{" nil)
+    (while (re-search-forward "=[ 	]*{" nil t)
       (replace-match "=\n{"))
     (indent-whole-buffer)
     ))
