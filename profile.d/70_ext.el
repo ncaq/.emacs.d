@@ -6,6 +6,8 @@
 (add-to-list 'auto-mode-alist '("nginx.conf" . nginx-mode))
 
 (defvar inferior-lisp-program "clisp")
+
+(require 'scheme)
 (defvar scheme-program-name "gosh")
 
 (require 'hexl)

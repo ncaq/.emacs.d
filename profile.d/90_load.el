@@ -31,5 +31,7 @@
 (setq windmove-wrap-around);Window移動をループする
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
-(require 'zlc)
-(zlc-mode)
+(require 'undohist);;undoをファイル閉じても保存
+(setq undohist-directory "~/.emacs.d/undohist")
+(setq undohist-ignored-files ".*COMMIT_EDITMSG.*")
+(undohist-initialize)
