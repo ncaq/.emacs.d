@@ -3,4 +3,5 @@ bug minibufferでauto-completeが動くように
 bug spaceの区別をText-modeとかでも行う
 bug trampが.bash_historyを生成しないようにする
 new ctags auto update
+new haskell-type-echo
 new メールを読めるようにする

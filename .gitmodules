@@ -10,3 +10,6 @@
 [submodule "package.d/vs-move-beginning-of-line"]
 	path = package.d/vs-move-beginning-of-line
 	url = git@github.com:ncaq/vs-move-beginning-of-line.git
+[submodule "package.d/haskell-type-echo"]
+	path = package.d/haskell-type-echo
+	url = git@github.com:ncaq/haskell-type-echo.git
