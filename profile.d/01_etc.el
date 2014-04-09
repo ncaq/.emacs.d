@@ -18,4 +18,5 @@
 (setq user-mail-address "ncaq@mail.ncaq.net")
 (setq version-control t);複数のバックアップを残します。世代。
 (setq x-select-enable-clipboard t);クリップボードをX11と共有
+(setq-default indent-tabs-mode nil) 
 (setq-default save-place t)
