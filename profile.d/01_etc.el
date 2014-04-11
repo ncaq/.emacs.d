@@ -1,5 +1,5 @@
-(auto-image-file-mode);画像表示
-(savehist-mode);ミニバッファの履歴を保存する
+(auto-image-file-mode 1);画像表示
+(savehist-mode 1);ミニバッファの履歴を保存する
 (set-frame-parameter nil 'fullscreen 'maximized);gtk maxium
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p);スクリプトに実行権限付加
@@ -15,7 +15,7 @@
 (setq read-buffer-completion-ignore-case t);大文字と小文字を区別しない バッファ名
 (setq read-file-name-completion-ignore-case t);ファイル名
 (setq require-final-newline t);最終行に必ず一行挿入する
-(setq user-mail-address "ncaq@mail.ncaq.net")
+(setq user-mail-address "ncaq@ncaq.net")
 (setq version-control t);複数のバックアップを残します。世代。
 (setq x-select-enable-clipboard t);クリップボードをX11と共有
 (setq-default indent-tabs-mode nil) 
