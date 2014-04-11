@@ -1,5 +1,5 @@
 (require 'helm-gtags)
-(custom-set-variables '(gtags-auto-update t));タグファイルの自動更新
+(custom-set-variables '(helm-gtags-auto-update t));タグファイルの自動更新
 
 ;;; Enable helm-gtags-mode
 (add-hook 'c-mode-hook 'helm-gtags-mode)
