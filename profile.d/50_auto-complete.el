@@ -18,7 +18,7 @@
 (add-to-list 'ac-modes 'text-mode)
 
 (ac-set-trigger-key "TAB")
-(define-key ac-completing-map	(kbd "C-n") 'ac-next)
-(define-key ac-completing-map	(kbd "C-p") 'ac-previous)
+(define-key ac-completing-map	(kbd "M-n") 'ac-next)
+(define-key ac-completing-map	(kbd "M-p") 'ac-previous)
 (define-key ac-mode-map		(kbd "C-'") 'auto-complete)
 (define-key ac-mode-map		(kbd "M-'") 'ac-fuzzy-complete)

@@ -1,5 +1,4 @@
 (require 'cc-mode)
-(add-to-list 'auto-mode-alist '("\\.h$" . c++-mode));*.hをc++モードで開く
 (custom-set-variables '(c-default-style
 			'((c-mode . "bsd")
 			  (c++-mode . "bsd")

@@ -17,5 +17,5 @@
 (define-key nxml-mode-map (kbd "M-h") nil)
 
 (require 'make-mode)
+(define-key makefile-mode-map (kbd "M-n") nil)
 (define-key makefile-mode-map (kbd "M-p") nil)
-(define-key makefile-mode-map (kbd "M-t") nil)

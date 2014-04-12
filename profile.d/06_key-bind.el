@@ -46,7 +46,7 @@
 
 (global-set-key (kbd "C-x C-e")	'helm-flycheck)
 (global-set-key (kbd "C-x C-f")	'save-buffer);key transの都合
-(global-set-key (kbd "C-x C-s")	'find-file);key transの都合
+(global-set-key (kbd "C-x C-s")	'find-file-at-point);key transの都合
 
 (global-set-key (kbd "C-c a")	'text-adjust-selective);全角記号とかそういうゴミな文字を変換する
 (global-set-key (kbd "C-c c")	'quickrun);かしこいコンパイルコマンド実行
