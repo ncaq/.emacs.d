@@ -18,17 +18,17 @@
   (server-start))
 
 (require 'smooth-scroll)
-(smooth-scroll-mode)
+(smooth-scroll-mode 1)
 (setq smooth-scroll/vscroll-step-size 5);デフォルトだと重い
 
 (require 'undo-tree);undoをtreeに,C-x C-uで起動
-(global-undo-tree-mode)
+(global-undo-tree-mode 1)
 
 (require 'uniquify);;バッファの名前がかぶったらディレクトリ名もつける
 (setq uniquify-buffer-name-style 'forward)
 
 (require 'windmove)
-(setq windmove-wrap-around);Window移動をループする
+(setq windmove-wrap-around t);Window移動をループする
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
 (require 'zlc-autoloads)
