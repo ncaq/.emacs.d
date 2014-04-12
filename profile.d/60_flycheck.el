@@ -1,5 +1,3 @@
-;;flymake
-;;実質flycheckの設定 便利
 ;;http://d.hatena.ne.jp/kitokitoki/20101230
 (require 'flycheck)
 
