@@ -1,5 +1,9 @@
 (require 'helm-tags)
-(define-key helm-etags-map (kbd "C-.")		'helm-etags-select)
-(define-key helm-etags-map (kbd "C-M-.")	'find-tag)
-(define-key helm-etags-map (kbd "C-c .")	'visit-tags-table);;タグを再設定
-(define-key helm-etags-map (kbd "M-.")		'pop-tag-mark)
+
+(defun helm-etags-setup ()
+  (local-set-key (kbd "C-.")	'helm-etags-select)
+  (local-set-key (kbd "C-M-.")	'find-tag)
+  (local-set-key (kbd "C-c .")	'visit-tags-table);;タグを再設定
+  (local-set-key (kbd "M-.")	'pop-tag-mark))
+
+(add-hook 'emacs-lisp-mode-hook 'helm-etags-setup)

@@ -1,7 +1,8 @@
 (require 'haskell-mode-autoloads)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(add-hook 'haskell-mode-hook 'haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
+
+(require 'haskell-echo-type)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-echo-type)
 
 (require 'auto-complete)
 (add-to-list 'ac-modes 'haskell-mode)

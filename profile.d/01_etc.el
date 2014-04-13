@@ -1,6 +1,4 @@
-(auto-image-file-mode 1);画像表示
 (savehist-mode 1);ミニバッファの履歴を保存する
-(set-frame-parameter nil 'fullscreen 'maximized);gtk maxium
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p);スクリプトに実行権限付加
 (fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に
