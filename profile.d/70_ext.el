@@ -19,3 +19,8 @@
 (require 'make-mode)
 (define-key makefile-mode-map (kbd "M-n") nil)
 (define-key makefile-mode-map (kbd "M-p") nil)
+
+(require 'auto-complete)
+(require 'ac-math)
+(add-to-list 'ac-modes 'latex-mode)
+(add-hook 'latex-mode-hook (lambda () (setq ac-sources (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands) ac-sources))))
