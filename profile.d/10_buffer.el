@@ -1,5 +1,6 @@
 ;;フォント
 (set-face-attribute 'default nil :family "Ricty" :height 180)
+(set-fontset-font nil 'unicode (font-spec :family "Ricty"))
 
 ;;package-listのformat
 (define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
