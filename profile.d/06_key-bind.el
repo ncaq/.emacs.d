@@ -15,14 +15,14 @@
 (global-set-key (kbd "C-z")	'quoted-insert);C-qの本来の関数
 
 (global-set-key (kbd "C-S-d")	'delete-horizontal-space);スペースを一気に消す
-(global-set-key (kbd "C-S-h")	'c-hungry-backspace)
+(global-set-key (kbd "C-S-h")	'delete-whitespace-backward)
 
 (global-set-key (kbd "M-,")	'helm-ls-git-ls)
 (global-set-key (kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
 (global-set-key (kbd "M-c")	'help-command);HHKだとF1押しにくい
 (global-set-key (kbd "M-h")	'backward-kill-word)
 (global-set-key (kbd "M-j")	'ag)
-(global-set-key (kbd "M-l")	'sort-lines-mark-auto);ソートする
+(global-set-key (kbd "M-l")	'sort-lines-auto-paragrah-mark);ソートする
 (global-set-key (kbd "M-m")	'newline-under);
 (global-set-key (kbd "M-n")	'forward-paragraph)
 (global-set-key (kbd "M-o")	'mc/edit-lines)

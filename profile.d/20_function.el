@@ -3,7 +3,7 @@
 (fset 'newline-upper;上に改行
       [home return up])
 
-(defun sort-lines-mark-auto ()
+(defun sort-lines-auto-paragrah-mark ()
   (interactive)
   (if (use-region-p)
       (sort-lines nil (region-beginning)(region-end))
@@ -32,7 +32,7 @@
     (mark-whole-buffer)
     (indent-region(point-min)(point-max))))
 
-(defun indent-brackets-whole-buffer ()
+(defun indent-whole-buffer-and-brackets ()
   "括弧を揃える"
   (interactive)
   (save-excursion
@@ -57,3 +57,10 @@
   (interactive)
   (text-adjust-hankaku-buffer)
   (text-adjust-kutouten-buffer))
+
+(require 'vs-move-beginning-of-line)
+(defun delete-whitespace-backward ()
+  (interactive)
+  (when (is-reverse-point-whitespace-all)
+    (backward-delete-char-untabify 1)
+    (delete-whitespace-backward)))
