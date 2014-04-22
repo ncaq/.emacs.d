@@ -58,9 +58,8 @@
   (text-adjust-hankaku-buffer)
   (text-adjust-kutouten-buffer))
 
-(require 'vs-move-beginning-of-line)
 (defun delete-whitespace-backward ()
   (interactive)
-  (when (is-reverse-point-whitespace-all)
+  (when (looking-back " " 0)
     (backward-delete-char-untabify 1)
     (delete-whitespace-backward)))
