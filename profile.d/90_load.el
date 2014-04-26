@@ -21,10 +21,6 @@
 (smooth-scroll-mode 1)
 (setq smooth-scroll/vscroll-step-size 5);デフォルトだと重い
 
-(require 'undo-tree);undoをtreeに,C-x C-uで起動
-;; (global-undo-tree-mode 1)
-(add-hook 'find-file-hook (lambda () (undo-tree-mode 1)))
-
 (require 'uniquify);;バッファの名前がかぶったらディレクトリ名もつける
 (setq uniquify-buffer-name-style 'forward)
 
@@ -34,8 +30,3 @@
 
 (require 'zlc-autoloads)
 (zlc-mode t)
-
-;; (require 'undohist);;undoをファイル閉じても保存
-;; (setq undohist-directory "~/.emacs.d/undohist")
-;; (setq undohist-ignored-files ".*COMMIT_EDITMSG.*")
-;; (undohist-initialize)

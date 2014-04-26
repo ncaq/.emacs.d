@@ -6,8 +6,9 @@
 (custom-set-variables '(helm-samewindow t);今のウインドウに表示
                       '(helm-buffer-max-length 50));デフォルトはファイル名を短縮する区切りが20
 
-;;デフォルトだとPrefixになる
-(define-key helm-map (kbd "C-h") nil)
-
 (require 'helm-descbinds)
 (helm-descbinds-mode)
+
+(define-key helm-map (kbd "C-h") nil);デフォルトだとPrefixになる
+(define-key helm-map (kbd "C-s") nil)
+(define-key helm-map (kbd "C-t") 'helm-previous-line)
