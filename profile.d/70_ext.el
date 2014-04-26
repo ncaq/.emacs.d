@@ -18,7 +18,7 @@
 
 (require 'make-mode)
 (define-key makefile-mode-map (kbd "M-n") nil)
-(define-key makefile-mode-map (kbd "M-p") nil)
+(define-key makefile-mode-map (kbd "M-t") nil)
 
 (require 'auto-complete)
 (require 'ac-math)

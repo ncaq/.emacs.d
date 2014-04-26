@@ -2,7 +2,7 @@
 ;;起動時の画面はいらない
 (setq inhibit-startup-message)
 
-(add-hook 'after-find-file (lambda ()(abbrev-mode nil)));auto-complete.el使うからいらない
+(abbrev-mode -1)
 
 (defun kill-scratch ()
   (kill-buffer "*scratch*"))

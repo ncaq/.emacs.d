@@ -9,6 +9,6 @@
 		     (-(point) found-string-length)
 		   (+(point) found-string-length))))))
 
-(define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
-(define-key isearch-mode-map (kbd "M-h") 'isearch-del-char)
+(define-key isearch-mode-map (kbd "C-b") 'isearch-delete-char)
+(define-key isearch-mode-map (kbd "M-b") 'isearc-del-char)
 (define-key isearch-mode-map (kbd "M-m") 'isearch-exit-previous)

@@ -17,7 +17,7 @@
 
 ;;勝手にflymakeを割り当てられる
 (setq ghc-next-key	(kbd "C-c C-M-n"))
-(setq ghc-previous-key	(kbd "C-c C-M-p"))
+(setq ghc-previous-key	(kbd "C-c C-M-t"))
 
 (define-key haskell-mode-map (kbd "C-c f") '(lambda () (interactive)(message "Haskell is not free style language!")))
 (define-key haskell-mode-map (kbd "C-x C-s") nil)
