@@ -5,7 +5,7 @@
 ;;ポップアップを出した時に荒ぶる問題の修正
 (defadvice linum-update
   (around tung/suppress-linum-update-when-popup activate)
-  (unless (ac-menu-live-p)
+  (unless (or (ac-menu-live-p) mozc-preedit-in-session-flag)
     ad-do-it))
 
 ;;更新頻度を低くして軽くする

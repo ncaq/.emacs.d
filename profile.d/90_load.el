@@ -5,7 +5,6 @@
 (autoload 'open-junk-file "open-junk-file")
 (custom-set-variables '(open-junk-file-format "~/Documents/log/%Y_%m/"))
 
-(require 'minibuf-isearch)
 (require 'root-tramp)
 (require 'symbolword-mode)
 (require 'vs-move-beginning-of-line)
@@ -30,3 +29,6 @@
 
 (require 'zlc-autoloads)
 (zlc-mode t)
+
+(require 'minibuf-isearch)
+(define-key minibuffer-local-map (kbd "M-t") 'previous-history-element)
