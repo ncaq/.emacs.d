@@ -12,5 +12,7 @@
 ;;(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 ;;(custom-set-variables '(eldoc-echo-area-use-multiline-p t))
 
-(define-key emacs-lisp-mode-map	(kbd "C-c e")	'eval-buffer)
-(define-key read-expression-map (kbd "<tab>")	'lisp-complete-symbol);M-S-;
+(require 'ielm)
+(define-key emacs-lisp-mode-map (kbd "C-c e")   'eval-buffer)
+(define-key ielm-map            (kbd "M-t")     'comint-previous-input)
+(define-key read-expression-map (kbd "<tab>")   'lisp-complete-symbol);M-S-;

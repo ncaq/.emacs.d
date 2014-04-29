@@ -29,3 +29,6 @@
 (global-set-key (kbd "C-f")   'isearch-forward)
 (global-set-key (kbd "M-f")   'helm-occur)
 (global-set-key (kbd "C-M-f") 'isearch-forward-regexp)
+
+;;
+(define-key minibuffer-local-map (kbd "M-s") nil)
