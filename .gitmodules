@@ -1,12 +1,12 @@
-[submodule "package.d/root-tramp"]
-	path = package.d/root-tramp
+[submodule "package/root-tramp"]
+	path = package/root-tramp
 	url = git@github.com:ncaq/root-tramp.git
-[submodule "package.d/symbolword-mode"]
-	path = package.d/symbolword-mode
+[submodule "package/symbolword-mode"]
+	path = package/symbolword-mode
 	url = git@github.com:ncaq/symbolword-mode.git
-[submodule "package.d/recentf-purge-tramp"]
-	path = package.d/recentf-purge-tramp
+[submodule "package/recentf-purge-tramp"]
+	path = package/recentf-purge-tramp
 	url = git@github.com:ncaq/recentf-purge-tramp.git
-[submodule "package.d/vs-move-beginning-of-line"]
-	path = package.d/vs-move-beginning-of-line
+[submodule "package/vs-move-beginning-of-line"]
+	path = package/vs-move-beginning-of-line
 	url = git@github.com:ncaq/vs-move-beginning-of-line.git

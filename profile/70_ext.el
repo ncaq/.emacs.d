@@ -14,6 +14,7 @@
 (define-key hexl-mode-map (kbd "C-q") nil)
 
 (require 'nxml-mode)
+(define-key nxml-mode-map (kbd "C-M-n") nil)
 (define-key nxml-mode-map (kbd "M-h") nil)
 
 (require 'make-mode)

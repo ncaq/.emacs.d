@@ -10,8 +10,8 @@
       (add-to-list 'load-path dir)
       (normal-top-level-add-subdirs-to-load-path))))
 (my-add-load-path-subdir
- '("~/.emacs.d/package.d/"
-   "~/.emacs.d/universe.d/"))
+ '("~/.emacs.d/package/"
+   "~/.emacs.d/universe/"))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"));;melpaも追加
@@ -19,4 +19,4 @@
 
 ;;別ファイルから読み込む
 (require 'init-loader)
-(init-loader-load "~/.emacs.d/profile.d/") ; 設定ファイルがあるディレクトリを指定
+(init-loader-load "~/.emacs.d/profile/") ; 設定ファイルがあるディレクトリを指定
