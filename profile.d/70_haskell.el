@@ -1,9 +1,6 @@
 (require 'haskell-mode-autoloads)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
-(require 'haskell-echo-type)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-echo-type)
-
 (require 'auto-complete)
 (add-to-list 'ac-modes 'haskell-mode)
 (add-to-list 'ac-modes 'inferior-haskell-mode)
@@ -15,10 +12,10 @@
   (add-hook 'after-save-hook 'ghc-import-module nil t))
 (add-hook 'haskell-mode-hook 'ghc-mod-setup t)
 
-;;勝手にflymakeを割り当てられる
-(setq ghc-next-key	(kbd "C-c C-M-n"))
-(setq ghc-previous-key	(kbd "C-c C-M-t"))
+(setq ghc-import-key    (kbd "C-c M-m"))
+(setq ghc-insert-key    (kbd "C-c C-t"))
+t(setq ghc-next-key      (kbd "C-c C-M-n"))
+(setq ghc-previous-key  (kbd "C-c C-M-t"))
+(setq ghc-sort-key      (kbd "C-c M-l"))
 
-(define-key haskell-mode-map (kbd "C-c f") '(lambda () (interactive)(message "Haskell is not free style language!")))
-(define-key haskell-mode-map (kbd "C-x C-s") nil)
-(define-key haskell-mode-map (kbd "M-RET") 'newline-upper)
+(define-key haskell-mode-map [remap indent-whole-buffer] (lambda () (message "disable")))
