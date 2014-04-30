@@ -7,7 +7,7 @@
 
 (require 'root-tramp)
 (require 'symbolword-mode)
-(require 'vs-move-beginning-of-line)
+(require 'ncaq-emacs-utils)
 
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)

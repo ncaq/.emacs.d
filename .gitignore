@@ -1,9 +1,9 @@
 *
 
 !elpa
-!package.d
-!profile.d
-!universe.d
+!package
+!profile
+!universe
 
 !.gitignore
 !.gitmodules

@@ -7,6 +7,6 @@
 [submodule "package/recentf-purge-tramp"]
 	path = package/recentf-purge-tramp
 	url = git@github.com:ncaq/recentf-purge-tramp.git
-[submodule "package/vs-move-beginning-of-line"]
-	path = package/vs-move-beginning-of-line
-	url = git@github.com:ncaq/vs-move-beginning-of-line.git
+[submodule "package/ncaq-emacs-utils"]
+	path = package/ncaq-emacs-utils
+	url = git@github.com:ncaq/ncaq-emacs-utils.git

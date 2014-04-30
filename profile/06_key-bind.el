@@ -4,7 +4,7 @@
 (global-set-key (kbd "C-.")	'helm-semantic-or-imenu)
 (global-set-key (kbd "C-=")	'text-scale-reset)
 (global-set-key (kbd "C-^")	'dired-jump-to-current)
-(global-set-key (kbd "C-a")	'vs-move-beginning-of-line);;Visual StdioライクなC-a
+(global-set-key (kbd "C-a")	'smart-move-beginning-of-line)
 (global-set-key (kbd "C-j")	'helm-ag);インクリメント串刺し検索
 (global-set-key (kbd "C-m")	'newline-and-indent);改行時にインデント
 (global-set-key (kbd "C-o")	'mc/mark-all-dwim)
@@ -13,13 +13,13 @@
 (global-set-key (kbd "C-z")	'quoted-insert);C-qの本来の関数
 
 (global-set-key (kbd "C-S-d")	'delete-horizontal-space);スペースを一気に消す
-(global-set-key (kbd "C-S-b")	'delete-whitespace-backward)
+(global-set-key (kbd "C-S-b")	'smart-delete-whitespace-backward)
 
 (global-set-key (kbd "M-,")	'helm-ls-git-ls)
 (global-set-key (kbd "M-\\")	'delete-horizontal-space);前の改行も消すように
 (global-set-key (kbd "M-c")	'help-command);HHKだとF1押しにくい
 (global-set-key (kbd "M-j")	'ag)
-(global-set-key (kbd "M-l")	'sort-lines-auto-paragrah-mark);ソートする
+(global-set-key (kbd "M-l")	'sort-lines-auto-mark-paragrah)
 (global-set-key (kbd "M-m")	'newline-under);
 (global-set-key (kbd "M-o")	'mc/edit-lines)
 (global-set-key (kbd "M-q")	'delete-other-windows);他のウインドウを閉じる
@@ -34,11 +34,11 @@
 (global-set-key (kbd "C-M-m")	'newline-upper)
 (global-set-key (kbd "C-M-q")	'kill-buffer)
 
-(global-set-key (kbd "C-M-S-q")	'kill-all-buffers);バッファを全て閉じる.
+(global-set-key (kbd "C-M-S-q")	'kill-all-buffers)
 
 (global-set-key (kbd "C-x C-e")	'helm-flycheck)
 
-(global-set-key (kbd "C-c a")	'text-adjust-selective);全角記号とかそういうゴミな文字を変換する
+(global-set-key (kbd "C-c a")	'text-adjust-selective);全角記号とかを変換する
 (global-set-key (kbd "C-c c")	'quickrun);かしこいコンパイルコマンド実行
 (global-set-key (kbd "C-c f")	'indent-whole-buffer);全ての文字に対し字下げを行う
 (global-set-key (kbd "C-c g")	'magit-status)
