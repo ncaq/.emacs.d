@@ -11,7 +11,15 @@
 (defvar scheme-program-name "gosh")
 
 (require 'hexl)
-(define-key hexl-mode-map (kbd "C-q") nil)
+(define-key hexl-mode-map (kbd "C-h") 'hexl-backward-char)
+(define-key hexl-mode-map (kbd "C-s") 'hexl-forward-char)
+(define-key hexl-mode-map (kbd "M-h") 'hexl-backward-word)
+(define-key hexl-mode-map (kbd "M-s") 'hexl-forward-word)
+(define-key hexl-mode-map (kbd "C-t") 'hexl-previous-line)
+
+(define-key hexl-mode-map (kbd "C-f") 'nil)
+(define-key hexl-mode-map (kbd "C-q") 'nil)
+(define-key hexl-mode-map (kbd "M-f") 'nil)
 
 (require 'nxml-mode)
 (define-key nxml-mode-map (kbd "C-M-n") nil)

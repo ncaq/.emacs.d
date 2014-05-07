@@ -32,3 +32,5 @@
 
 ;;
 (define-key minibuffer-local-map (kbd "M-s") nil)
+(require 'comint)
+(define-key comint-mode-map (kbd "M-t") 'comint-previous-input)

@@ -33,3 +33,4 @@
 (define-key dired-mode-map (kbd "C-^") 'dired-up-directory)
 (define-key dired-mode-map (kbd "C-c C-p") 'wdired-change-to-wdired-mode)
 (define-key dired-mode-map (kbd "C-t") nil)
+(define-key dired-mode-map (kbd "M-s") nil)

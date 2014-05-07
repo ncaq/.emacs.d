@@ -30,7 +30,7 @@
 (global-set-key (kbd "C-M-,")	'ibuffer);もう一つのバッファーリスト
 (global-set-key (kbd "C-M-;")	'align-regexp);揃える(正規表現)
 (global-set-key (kbd "C-M-d")	'kill-sexp)
-(global-set-key (kbd "C-M-l")	'sort-whole-buffer)
+(global-set-key (kbd "C-M-l")	'sort-lines-whole-buffer)
 (global-set-key (kbd "C-M-m")	'newline-upper)
 (global-set-key (kbd "C-M-q")	'kill-buffer)
 

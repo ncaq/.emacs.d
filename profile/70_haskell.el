@@ -14,8 +14,11 @@
 
 (setq ghc-import-key    (kbd "C-c M-m"))
 (setq ghc-insert-key    (kbd "C-c C-t"))
-t(setq ghc-next-key      (kbd "C-c C-M-n"))
+(setq ghc-next-key      (kbd "C-c C-M-n"))
 (setq ghc-previous-key  (kbd "C-c C-M-t"))
 (setq ghc-sort-key      (kbd "C-c M-l"))
+
+(require 'haskell-echo-type)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-echo-type)
 
 (define-key haskell-mode-map [remap indent-whole-buffer] (lambda () (message "disable")))

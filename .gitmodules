@@ -10,3 +10,6 @@
 [submodule "package/ncaq-emacs-utils"]
 	path = package/ncaq-emacs-utils
 	url = git@github.com:ncaq/ncaq-emacs-utils.git
+[submodule "package/haskell-echo-type"]
+	path = package/haskell-echo-type
+	url = git@github.com:ncaq/haskell-echo-type.git

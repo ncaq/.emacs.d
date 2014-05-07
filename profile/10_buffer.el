@@ -17,7 +17,9 @@ Letters do not insert themselves; instead, they are commands.
   (tabulated-list-init-header))
 
 ;;ibufferのformat
+(require 'ibuffer)
 (custom-set-variables '(ibuffer-formats
 			'((mark modified read-only " " (name 60 30)
 				" " (size 6 -1) " " (mode 16 16) " " filename)
 			  (mark " " (name 60 -1) " " filename))))
+(define-key ibuffer-mode-map (kbd "C-t") 'nil)

@@ -14,5 +14,4 @@
 
 (require 'ielm)
 (define-key emacs-lisp-mode-map (kbd "C-c e")   'eval-buffer)
-(define-key ielm-map            (kbd "M-t")     'comint-previous-input)
 (define-key read-expression-map (kbd "<tab>")   'lisp-complete-symbol);M-S-;

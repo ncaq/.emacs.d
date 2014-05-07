@@ -10,7 +10,6 @@
  '(message-log-max 5000);ログの記録行数を増やす.
  '(read-buffer-completion-ignore-case t);大文字と小文字を区別しない バッファ名
  '(read-file-name-completion-ignore-case t);ファイル名
- '(user-mail-address "ncaq@ncaq.net")
  '(version-control t);複数のバックアップを残します。世代。
  '(x-select-enable-clipboard t);クリップボードをX11と共有
  '(indent-tabs-mode nil) 
