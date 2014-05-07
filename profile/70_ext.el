@@ -17,6 +17,7 @@
 (define-key hexl-mode-map (kbd "M-s") 'hexl-forward-word)
 (define-key hexl-mode-map (kbd "C-t") 'hexl-previous-line)
 
+(define-key hexl-mode-map (kbd "C-M-t") 'nil)
 (define-key hexl-mode-map (kbd "C-f") 'nil)
 (define-key hexl-mode-map (kbd "C-q") 'nil)
 (define-key hexl-mode-map (kbd "M-f") 'nil)
