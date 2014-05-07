@@ -18,6 +18,7 @@
 (require 'smtpmail)
 (custom-set-variables
  '(message-send-mail-function 'smtpmail-send-it)
+ '(smtpmail-smtp-user "ncaq")
  '(smtpmail-smtp-server "ncaq.net")
  '(smtpmail-smtp-service 587)
  '(smtpmail-stream-type 'starttls))
