@@ -8,6 +8,6 @@
 !.gitignore
 !.gitmodules
 !README.md
-!TODO.txt
 !init.el
 !init.elc
+!todo.txt

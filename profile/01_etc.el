@@ -3,6 +3,7 @@
  '(backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
  '(blink-matching-paren nil);括弧移動無効
  '(delete-by-moving-to-trash t);ごみ箱を有効
+ '(trash-directory "~/trash/")
  '(history-length 5000);ミニバッファの履歴の保存数を増やす
  '(kept-new-versions 100000);新しいものをいくつ残すか
  '(kept-old-versions 100000);古いものをいくつ残すか
