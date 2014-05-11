@@ -30,5 +30,3 @@
 
 (require 'c-eldoc-autoloads)
 (add-hook 'c-mode-common-hook 'c-turn-on-eldoc-mode)
-
-(define-key c-mode-base-map [remap indent-whole-buffer] 'indent-whole-buffer-and-brackets)
