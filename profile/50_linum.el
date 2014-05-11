@@ -13,4 +13,4 @@
 ;;http://d.hatena.ne.jp/daimatz/20120215/1329248780
 (setq linum-delay)
 (defadvice linum-schedule (around my-linum-schedule () activate)
-  (run-with-idle-timer 2 nil #'linum-update-current))
+  (run-with-idle-timer 10 nil #'linum-update-current))
