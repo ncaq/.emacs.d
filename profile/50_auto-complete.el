@@ -15,6 +15,7 @@
 (add-to-list 'ac-modes 'conf-mode)
 (add-to-list 'ac-modes 'conf-space-mode)
 (add-to-list 'ac-modes 'fundamental-mode)
+(add-to-list 'ac-modes 'processing-mode)
 (add-to-list 'ac-modes 'shell-script-mode)
 (add-to-list 'ac-modes 'text-mode)
 
