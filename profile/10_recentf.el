@@ -1,5 +1,5 @@
 (custom-set-variables '(recentf-save-file "~/.emacs.d/recentf")
-		      '(recentf-max-saved-items nil))
+		      '(recentf-max-saved-items 1000))
 (require 'recentf)
 (recentf-mode 1)
 (require 'recentf-ext)
