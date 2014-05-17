@@ -16,6 +16,10 @@
 ;;mode-line line and char numbar
 (setq mode-line-position
       '(:eval (format "l%%l/%d,c%d/%d"
-                      (+ 1 (count-screen-lines))
+                      number-of-line-buffer
                       (point)
                       (point-max))))
+(defvar-local number-of-line-buffer 0)
+(defun set-number-of-line-buffer ()
+  (setq number-of-line-buffer (+ 1 (count-screen-lines))))
+(add-hook 'find-file-hook 'set-number-of-line-buffer)
