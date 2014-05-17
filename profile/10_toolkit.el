@@ -16,6 +16,6 @@
 ;;mode-line line and char numbar
 (setq mode-line-position
       '(:eval (format "l%%l/%d,c%d/%d"
-                      (count-lines (point-max)(point-min))
+                      (+ 1 (count-screen-lines))
                       (point)
-                      (- (point-max)(point-min)))))
+                      (point-max))))
