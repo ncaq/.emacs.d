@@ -3,6 +3,7 @@
 (global-set-key (kbd "C--")     'text-scale-decrease)
 (global-set-key (kbd "C-.")     'helm-semantic-or-imenu)
 (global-set-key (kbd "C-=")     'text-scale-reset)
+(global-set-key (kbd "C-\\")    'indent-whole-buffer);全ての文字に対し字下げを行う
 (global-set-key (kbd "C-^")     'dired-jump-to-current)
 (global-set-key (kbd "C-a")     'smart-move-beginning-of-line)
 (global-set-key (kbd "C-j")     'helm-ag);インクリメント串刺し検索
@@ -27,20 +28,18 @@
 (global-set-key (kbd "M-y")     'helm-show-kill-ring);多次元クリップボード
 (global-set-key (kbd "M-z")     'repeat)
 
-(global-set-key (kbd "C-M-,")   'ibuffer);もう一つのバッファーリスト
 (global-set-key (kbd "C-M-;")   'align-regexp);揃える(正規表現)
 (global-set-key (kbd "C-M-d")   'kill-sexp)
 (global-set-key (kbd "C-M-l")   'sort-lines-whole-buffer)
 (global-set-key (kbd "C-M-m")   'newline-upper)
+(global-set-key (kbd "C-M-o")   'ibuffer);もう一つのバッファーリスト
 (global-set-key (kbd "C-M-q")   'kill-buffer)
 
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
-(global-set-key (kbd "C-x C-e") 'helm-flycheck)
-
+(global-set-key (kbd "C-c C-e") 'helm-flycheck)
 (global-set-key (kbd "C-c a")   'text-adjust-selective);全角記号とかを変換する
 (global-set-key (kbd "C-c c")   'quickrun);かしこいコンパイルコマンド実行
-(global-set-key (kbd "C-c f")   'indent-whole-buffer);全ての文字に対し字下げを行う
 (global-set-key (kbd "C-c g")   'magit-status)
 (global-set-key (kbd "C-c j")   'open-junk-file);残るscratch
 (global-set-key (kbd "C-c m")   'mu4e)
