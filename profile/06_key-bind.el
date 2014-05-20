@@ -37,10 +37,11 @@
 
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
-(global-set-key (kbd "C-c C-e") 'helm-flycheck)
 (global-set-key (kbd "C-c a")   'text-adjust-selective);全角記号とかを変換する
 (global-set-key (kbd "C-c c")   'quickrun);かしこいコンパイルコマンド実行
 (global-set-key (kbd "C-c g")   'magit-status)
 (global-set-key (kbd "C-c j")   'open-junk-file);残るscratch
 (global-set-key (kbd "C-c m")   'mu4e)
 (global-set-key (kbd "C-c s")   'sdic)
+
+(global-set-key (kbd "C-x C-e") 'helm-flycheck)
