@@ -21,4 +21,4 @@
 (require 'haskell-echo-type)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-echo-type)
 
-(define-key haskell-mode-map [remap indent-whole-buffer] (lambda () (message "disable")))
+(define-key haskell-mode-map [remap indent-whole-buffer] (lambda () (interactive)(message "disable")))
