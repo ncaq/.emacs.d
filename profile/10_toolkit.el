@@ -21,7 +21,7 @@
                       (point-max))))
 (defvar-local number-of-line-buffer 0)
 (defun set-number-of-line-buffer ()
-  (setq number-of-line-buffer (+ 1 (count-screen-lines))))
+  (setq number-of-line-buffer (count-screen-lines)))
 (add-hook 'find-file-hook 'set-number-of-line-buffer)
 (add-hook 'after-save-hook 'set-number-of-line-buffer)
 (run-with-idle-timer 30 t 'set-number-of-line-buffer)
