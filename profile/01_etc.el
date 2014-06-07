@@ -1,5 +1,5 @@
 (custom-set-variables
- '(backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
+ '(backup-directory-alist '(("" . "~/.emacs.d/backup")))
  '(blink-matching-paren nil);括弧移動無効
  '(delete-by-moving-to-trash t);ごみ箱を有効
  '(history-length 500);ミニバッファの履歴の保存数を増やす
