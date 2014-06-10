@@ -16,10 +16,6 @@
 (unless (server-running-p)
   (server-start))
 
-(require 'smooth-scroll)
-(smooth-scroll-mode 1)
-(setq smooth-scroll/vscroll-step-size 5);デフォルトだと重い
-
 (require 'uniquify);;バッファの名前がかぶったらディレクトリ名もつける
 (setq uniquify-buffer-name-style 'forward)
 

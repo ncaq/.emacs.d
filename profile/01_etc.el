@@ -12,6 +12,7 @@
  '(read-buffer-completion-ignore-case t);大文字と小文字を区別しない バッファ名
  '(read-file-name-completion-ignore-case t);ファイル名
  '(save-place t)
+ '(tramp-auto-save-directory "~/.emacs.d/backup")
  '(trash-directory "~/trash/")
  '(version-control t);複数バックアップ
  '(x-select-enable-clipboard t));クリップボードをX11と共有
