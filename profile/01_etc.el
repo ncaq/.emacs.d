@@ -3,7 +3,7 @@
  '(blink-matching-paren nil);括弧移動無効
  '(delete-by-moving-to-trash t);ごみ箱を有効
  '(history-length 500);ミニバッファの履歴の保存数を増やす
- '(indent-tabs-mode nil) 
+ '(indent-tabs-mode nil)
  '(kept-new-versions 100000);新しいものをいくつ残すか
  '(kept-old-versions 100000);古いものをいくつ残すか
  '(make-backup-files t);バックアップファイルを作成する。
@@ -12,6 +12,7 @@
  '(read-buffer-completion-ignore-case t);大文字と小文字を区別しない バッファ名
  '(read-file-name-completion-ignore-case t);ファイル名
  '(save-place t)
+ '(scroll-step 1);最下段までScrollしてもカーソルを中心に戻さない
  '(tramp-auto-save-directory "~/.emacs.d/backup")
  '(trash-directory "~/trash/")
  '(version-control t);複数バックアップ

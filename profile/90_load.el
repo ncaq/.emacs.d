@@ -28,3 +28,6 @@
 
 (require 'minibuf-isearch)
 (define-key minibuffer-local-map (kbd "M-t") 'previous-history-element)
+
+(require 'skype)
+(setq skype--my-user-handle "ncaq__")
