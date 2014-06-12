@@ -11,7 +11,7 @@
  '(mu4e-get-mail-command "offlineimap")
  '(mu4e-html2text-command "w3m -dump -T text/html")
  '(mu4e-refile-folder nil)
- '(mu4e-update-interval 300)
+ '(mu4e-update-interval 900)
  '(mu4e-view-show-images t)
  '(mu4e-view-image-max-width 800))
 
