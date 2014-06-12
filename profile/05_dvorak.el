@@ -8,10 +8,10 @@
 
 (global-set-key (kbd "C-t")   'previous-line)
 (global-set-key (kbd "M-t")   'backward-paragraph)
-(global-set-key (kbd "C-M-t") 'scroll-down-1)
+(global-set-key (kbd "C-M-t") 'scroll-down-one)
 
 (global-set-key (kbd "M-n")   'forward-paragraph)
-(global-set-key (kbd "C-M-n") 'scroll-up-1)
+(global-set-key (kbd "C-M-n") 'scroll-up-one)
 
 (global-set-key (kbd "C-s")   'forward-char)
 (global-set-key (kbd "M-s")   'forward-word)
