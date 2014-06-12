@@ -10,18 +10,19 @@
 (setq eol-mnemonic-mac  "(CR)")
 (setq eol-mnemonic-unix "(LF)")
 
-;;mode-lineフルパスを表示
+;;mode-lineにフルパスを表示
 (set-default 'mode-line-buffer-identification '(buffer-file-name ("%f") ("%b")))
 
 ;;mode-line line and char numbar
 (setq mode-line-position
-      '(:eval (format "l%%l/%d,c%d/%d"
+      '(:eval (format "l%%l/%d,c%d/%%i"
                       number-of-line-buffer
-                      (point)
-                      (point-max))))
-(defvar-local number-of-line-buffer 0)
+                      (point))))
+(defvar-local number-of-line-buffer (count-screen-lines))
 (defun set-number-of-line-buffer ()
   (setq number-of-line-buffer (count-screen-lines)))
-(add-hook 'find-file-hook 'set-number-of-line-buffer)
+(add-hook 'after-revert-hook 'set-number-of-line-buffer)
 (add-hook 'after-save-hook 'set-number-of-line-buffer)
+(add-hook 'buffer-list-update-hook 'set-number-of-line-buffer)
+(add-hook 'find-file-hook 'set-number-of-line-buffer)
 (run-with-idle-timer 30 t 'set-number-of-line-buffer)
