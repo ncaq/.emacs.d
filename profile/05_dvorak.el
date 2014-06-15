@@ -21,12 +21,12 @@
 ;;余ったpにはwindow操作を割り当てる
 (global-set-key (kbd "C-p")   'other-window)
 (global-set-key (kbd "M-p")   'split-window-right)
-(global-set-key (kbd "M-p")   'delete-window)
+(global-set-key (kbd "C-M-p") 'delete-window)
 
 ;;backspace
 (global-set-key (kbd "C-b")   'backward-delete-char-untabify)
 (global-set-key (kbd "M-b")   'backward-kill-word)
-(global-set-key (kbd "M-b")   'backward-kill-sexp)
+(global-set-key (kbd "C-M-b") 'backward-kill-sexp)
 
 ;;search→find
 (global-set-key (kbd "C-f")   'isearch-forward)
