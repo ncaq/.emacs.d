@@ -19,7 +19,7 @@
 (global-set-key (kbd "M-,")     'mc/edit-lines)
 (global-set-key (kbd "M-\\")    'delete-horizontal-space);前の改行も消すように
 (global-set-key (kbd "M-c")     'help-command);HHKだとF1押しにくい
-(global-set-key (kbd "M-j")     'ag)
+(global-set-key (kbd "M-j")     'ag-project)
 (global-set-key (kbd "M-l")     'sort-lines-auto-mark-paragrah)
 (global-set-key (kbd "M-m")     'newline-under);
 (global-set-key (kbd "M-o")     'helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
@@ -45,3 +45,4 @@
 (global-set-key (kbd "C-c s")   'sdic)
 
 (global-set-key (kbd "C-x C-e") 'helm-flycheck)
+(global-set-key (kbd "C-x C-f") 'find-file-at-point)

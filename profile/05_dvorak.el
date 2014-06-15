@@ -17,20 +17,21 @@
 (global-set-key (kbd "M-s")   'forward-word)
 (global-set-key (kbd "C-M-s") 'forward-sexp)
 
-;;余ったpを適当に
+;;余ったpにはwindow操作を割り当てる
 (global-set-key (kbd "C-p")   'other-window)
 (global-set-key (kbd "M-p")   'split-window-right)
+(global-set-key (kbd "M-p")   'delete-window)
 
-;;bは削除系
+;;backspace
 (global-set-key (kbd "C-b")   'backward-delete-char-untabify)
 (global-set-key (kbd "M-b")   'backward-kill-word)
+(global-set-key (kbd "M-b")   'backward-kill-sexp)
 
-;;sのsearchをfのfindで置き換え
+;;search→find
 (global-set-key (kbd "C-f")   'isearch-forward)
 (global-set-key (kbd "M-f")   'helm-occur)
 (global-set-key (kbd "C-M-f") 'isearch-forward-regexp)
 
-;;
 (define-key minibuffer-local-map (kbd "M-s") nil)
 (require 'comint)
 (define-key comint-mode-map (kbd "M-t") 'comint-previous-input)
