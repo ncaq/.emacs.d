@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (defun isearch-exit-previous ()
   "通常isearchは終了するとき,マッチした文字列の末尾に移動するが,これは先頭に移動する."
   (interactive)

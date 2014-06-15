@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'haskell-mode-autoloads)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 

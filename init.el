@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'desktop)
 (add-hook 'after-init-hook 'desktop-save-mode)
 

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'google-translate)
 
 (custom-set-variables

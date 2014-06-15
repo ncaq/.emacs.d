@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (custom-set-variables
  '(backup-directory-alist '(("" . "~/.emacs.d/backup")))
  '(blink-matching-paren nil);括弧移動無効

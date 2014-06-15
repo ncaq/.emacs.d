@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (custom-set-variables
  '(user-full-name "ncaq")
  '(user-mail-address "ncaq@ncaq.net"))

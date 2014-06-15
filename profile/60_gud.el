@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 ;;http://d.hatena.ne.jp/higepon/20090505/
 (require 'gud)
 

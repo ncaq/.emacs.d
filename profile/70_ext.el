@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (add-to-list 'auto-mode-alist '("\\.license\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.mask\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.unmask\\'" . conf-mode))

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'helm-gtags)
 (custom-set-variables '(helm-gtags-auto-update t));タグファイルの自動更新
 

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'magit)
 (setq git-commit-mode-hook nil)
 

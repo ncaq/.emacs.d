@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (autoload 'sdic "sdic")
 (autoload 'sudden-death "sudden-death")
 (autoload 'text-adjust "text-adjust-selective")

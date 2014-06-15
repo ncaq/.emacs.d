@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (global-set-key (kbd "C-+")     'text-scale-increase)
 (global-set-key (kbd "C-,")     'mc/mark-all-dwim)
 (global-set-key (kbd "C--")     'text-scale-decrease)

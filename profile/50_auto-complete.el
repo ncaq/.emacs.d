@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 ;;http://cx4a.org/software/auto-complete/manual.ja.html
 (require 'auto-complete-config)
 (ac-config-default)

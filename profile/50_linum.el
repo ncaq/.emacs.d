@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'linum);;行番号を左に表示
 (global-linum-mode)
 

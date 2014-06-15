@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'd-mode)
 (require 'auto-complete)
 

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'auto-async-byte-compile)
 (custom-set-variables '(auto-async-byte-compile-exclude-files-regexp "/junk/"))
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)

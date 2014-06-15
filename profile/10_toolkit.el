@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (menu-bar-mode 0);menu bar を表示させない
 (tool-bar-mode 0);tool bar を表示させない
 (set-frame-parameter nil 'fullscreen 'maximized);gtk maxium

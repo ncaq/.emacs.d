@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'helm-tags)
 
 (defun helm-etags-setup ()

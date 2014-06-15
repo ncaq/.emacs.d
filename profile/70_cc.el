@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'cc-mode)
 (custom-set-variables '(c-default-style
 			'((c-mode . "bsd")

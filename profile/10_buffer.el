@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 ;;フォント
 (set-face-attribute 'default nil :family "Ricty" :height 160)
 (set-fontset-font nil 'unicode (font-spec :family "Ricty"))

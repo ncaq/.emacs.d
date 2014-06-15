@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 ;;http://d.hatena.ne.jp/kitokitoki/20101230
 (require 'flycheck)
 

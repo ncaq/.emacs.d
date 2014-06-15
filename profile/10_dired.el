@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'dired)
 (require 'wdired)
 (setq dired-listing-switches "-AFhvl");diredが使うlsオプションの設定

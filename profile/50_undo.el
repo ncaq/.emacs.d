@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'undo-tree);undoをtreeに,C-x C-uで起動
 (add-hook 'find-file-hook (lambda () (undo-tree-mode 1)))
 (custom-set-variables '(undo-tree-visualizer-timestamps t))

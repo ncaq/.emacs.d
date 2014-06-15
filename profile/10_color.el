@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (global-font-lock-mode);syntax highlight有効
 
 (require 'solarized-dark-theme)
