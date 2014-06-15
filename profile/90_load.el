@@ -32,3 +32,14 @@
 
 (require 'skype)
 (setq skype--my-user-handle "ncaq__")
+
+(require 'magit)
+(setq git-commit-mode-hook nil)
+
+(require 'git-gutter-fringe)
+(global-git-gutter-mode)
+
+(require 'mozc)
+(setq default-input-method 'japanese-mozc)
+(setq mozc-candidate-style 'echo-area)
+(global-set-key (kbd "C-;") 'toggle-input-method)
