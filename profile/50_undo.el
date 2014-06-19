@@ -8,7 +8,7 @@
 (define-key undo-tree-visualizer-mode-map (kbd "t") 'undo-tree-visualize-undo)
 
 (require 'undohist);;undoをファイル閉じても保存
-(custom-set-variables '(undohist-directory "~/.emacs.d/undohist"))
+(custom-set-variables '(undohist-directory "~/.undohist"))
 (undohist-initialize)
 
 ;; Original copylight and license

@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 (custom-set-variables
- '(backup-directory-alist '(("" . "~/.emacs.d/backup")))
+ '(backup-directory-alist '(("" . "~/.backup")))
  '(blink-matching-paren nil);括弧移動無効
  '(delete-by-moving-to-trash t);ごみ箱を有効
  '(history-length 500);ミニバッファの履歴の保存数を増やす
@@ -14,7 +14,7 @@
  '(read-file-name-completion-ignore-case t);ファイル名
  '(save-place t)
  '(scroll-step 1);最下段までScrollしてもカーソルを中心に戻さない
- '(tramp-auto-save-directory "~/.emacs.d/backup")
+ '(tramp-auto-save-directory "~/.backup")
  '(trash-directory "~/trash/")
  '(version-control t);複数バックアップ
  '(x-select-enable-clipboard t));クリップボードをX11と共有
