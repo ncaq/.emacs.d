@@ -27,7 +27,7 @@
 (global-set-key (kbd "M-q")     'delete-other-windows);他のウインドウを閉じる
 (global-set-key (kbd "M-u")     'universal-argument);C-u本来
 (global-set-key (kbd "M-y")     'helm-show-kill-ring);多次元クリップボード
-(global-set-key (kbd "M-z")     'repeat)
+(global-set-key (kbd "M-z")     'repeat-complex-command)
 
 (global-set-key (kbd "C-M-,")   'mc/edit-lines)
 (global-set-key (kbd "C-M-;")   'align-regexp);揃える(正規表現)
@@ -46,4 +46,5 @@
 (global-set-key (kbd "C-c m")   'mu4e)
 (global-set-key (kbd "C-c s")   'sdic)
 
+(global-set-key (kbd "C-c r")   'revert-buffer)
 (global-set-key (kbd "C-x C-f") 'find-file-at-point)
