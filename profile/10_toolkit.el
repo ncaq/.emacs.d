@@ -24,6 +24,5 @@
   (setq number-of-line-buffer (count-screen-lines)))
 (add-hook 'after-revert-hook 'set-number-of-line-buffer)
 (add-hook 'after-save-hook 'set-number-of-line-buffer)
-(add-hook 'buffer-list-update-hook 'set-number-of-line-buffer)
 (add-hook 'find-file-hook 'set-number-of-line-buffer)
 (run-with-idle-timer 30 t 'set-number-of-line-buffer)
