@@ -14,6 +14,9 @@
 (require 'helm-descbinds)
 (helm-descbinds-mode 1)
 
+(define-key helm-buffer-map (kbd "C-s") nil)
+(define-key helm-generic-files-map (kbd "C-s") nil)
 (define-key helm-map (kbd "C-h") nil);デフォルトだとPrefixになる
 (define-key helm-map (kbd "C-s") nil)
 (define-key helm-map (kbd "C-t") 'helm-previous-line)
+(define-key helm-map (kbd "M-s") nil)

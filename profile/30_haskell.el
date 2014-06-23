@@ -4,6 +4,7 @@
 
 (autoload 'turn-on-haskell-echo-type "haskell-echo-type")
 (autoload 'haskell-echo-type         "haskell-echo-type")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-echo-type)
 
 (require 'ghc)
 (defvar ac-sources)
