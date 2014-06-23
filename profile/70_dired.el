@@ -1,6 +1,4 @@
 ;; -*- lexical-binding: t -*-
-(require 'dired)
-(require 'wdired)
 (setq dired-listing-switches "-AFhvl");diredが使うlsオプションの設定
 
 ;;atoolの設定
@@ -12,7 +10,6 @@
     ".tzo" ".war" ".xz" ".zip"))
 (eval-after-load "dired-aux"
   '(progn
-     (require 'cl)
      (loop for suffix in my-dired-additional-compression-suffixes
            do (add-to-list 'dired-compress-file-suffixes
                            `(,(concat "\\" suffix "\\'") "" "aunpack")))))

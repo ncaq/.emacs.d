@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
-;; (require 'auto-async-byte-compile)
-;; (custom-set-variables '(auto-async-byte-compile-suppress-warnings t))
-;; (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+(require 'auto-async-byte-compile)
+(custom-set-variables '(auto-async-byte-compile-suppress-warnings t))
+(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
 (eval-after-load
     'flycheck '(setq flycheck-checkers
@@ -11,6 +11,5 @@
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
-(require 'ielm)
 (define-key emacs-lisp-mode-map (kbd "C-c e") 'eval-buffer)
 (define-key read-expression-map (kbd "<tab>") 'lisp-complete-symbol);M-S-;

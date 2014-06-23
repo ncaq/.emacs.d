@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t -*-
 (require 'helm-mode)
+(require 'helm-config)
 (helm-mode 1)
 
 ;;helmを無効にするコマンドリスト
