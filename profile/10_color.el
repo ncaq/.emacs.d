@@ -27,7 +27,7 @@
   '(add-to-list
     'dired-font-lock-keywords
     (list dired-re-exe
-	  '(".+" (dired-move-to-filename) nil (0 'face-for-executable)))))
+          '(".+" (dired-move-to-filename) nil (0 'face-for-executable)))))
 
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)

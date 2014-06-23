@@ -8,13 +8,12 @@
 
 (require 'auto-complete)
 
-(require 'd-mode)
+(require 'd-mode-autoloads)
 (add-to-list 'ac-modes 'd-mode)
 
 (defvar inferior-lisp-program "clisp")
 
-(require 'scheme)
-(defvar scheme-program-name "gosh")
+(custom-set-variables '(scheme-program-name "gosh"))
 
 (require 'nxml-mode)
 (define-key nxml-mode-map (kbd "C-M-n") nil)
@@ -24,8 +23,7 @@
 (define-key makefile-mode-map (kbd "M-n") nil)
 (define-key makefile-mode-map (kbd "M-t") nil)
 
-(require 'markdown-mode)
-(setq markdown-command "pandoc")
+(custom-set-variables '(markdown-command "pandoc"))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode));markdownの拡張子は.mdを採用
 (add-to-list 'ac-modes 'markdown-mode)
 
