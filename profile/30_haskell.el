@@ -2,14 +2,11 @@
 (require 'haskell-mode-autoloads)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
-(require 'auto-complete)
-(add-to-list 'ac-modes 'haskell-mode)
-(add-to-list 'ac-modes 'inferior-haskell-mode)
-
-(require 'haskell-echo-type)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-echo-type)
+(autoload 'turn-on-haskell-echo-type "haskell-echo-type")
+(autoload 'haskell-echo-type         "haskell-echo-type")
 
 (require 'ghc)
+(defvar ac-sources)
 (defun ghc-mod-setup ()
   (ghc-init)
   (add-to-list 'ac-sources 'ac-source-ghc-mod)

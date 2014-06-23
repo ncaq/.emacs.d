@@ -1,9 +1,4 @@
 ;; -*- lexical-binding: t -*-
-(global-font-lock-mode);syntax highlight有効
-
-(require 'solarized-dark-theme)
-(load-theme 'solarized-dark t)
-
 ;;空白とタブに色を付ける
 (defface ncaq-tab-face '((t :background "#003636")) nil)
 (defvar  ncaq-tab-face 'ncaq-tab-face)
@@ -28,7 +23,3 @@
     'dired-font-lock-keywords
     (list dired-re-exe
           '(".+" (dired-move-to-filename) nil (0 'face-for-executable)))))
-
-(require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
-(custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8c8d")))));文字列の色と被るため,変更

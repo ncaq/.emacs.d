@@ -3,10 +3,11 @@
  '(backup-directory-alist '(("" . "~/.backup")))
  '(blink-matching-paren nil);括弧移動無効
  '(delete-by-moving-to-trash t);ごみ箱を有効
+ '(git-commit-mode-hook nil)
  '(history-length 500);ミニバッファの履歴の保存数を増やす
  '(indent-tabs-mode nil)
- '(kept-new-versions 100000);新しいものをいくつ残すか
- '(kept-old-versions 100000);古いものをいくつ残すか
+ '(kept-new-versions 10000);新しいものをいくつ残すか
+ '(kept-old-versions 10000);古いものをいくつ残すか
  '(make-backup-files t);バックアップファイルを作成する。
  '(message-log-max 1000);ログの記録行数を増やす.
  '(mode-require-final-newline nil)
@@ -16,6 +17,7 @@
  '(scroll-step 1);最下段までScrollしてもカーソルを中心に戻さない
  '(tramp-auto-save-directory "~/.backup")
  '(trash-directory "~/trash/")
+ '(uniquify-buffer-name-style 'forward)
  '(version-control t);複数バックアップ
  '(x-select-enable-clipboard t));クリップボードをX11と共有
 

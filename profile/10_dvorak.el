@@ -1,7 +1,4 @@
 ;; -*- lexical-binding: t -*-
-;;EmacsのデフォルトのKeyindには特に意味はない
-;;ユーザが勝手に設定することを前提としている…と思う
-
 ;;h,t,n,sの移動設定
 (global-set-key (kbd "C-h")   'backward-char)
 (global-set-key (kbd "M-h")   'backward-word)
@@ -34,5 +31,13 @@
 (global-set-key (kbd "C-M-f") 'isearch-forward-regexp)
 
 (define-key minibuffer-local-map (kbd "M-s") nil)
+(define-key minibuffer-local-map (kbd "M-t") 'previous-history-element)
+
+(define-key isearch-mode-map (kbd "C-b") 'isearch-delete-char)
+(define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "C-s") nil)
+(define-key isearch-mode-map (kbd "M-b") 'isearc-del-char)
+(define-key isearch-mode-map (kbd "M-m") 'isearch-exit-previous)
+
 (require 'comint)
 (define-key comint-mode-map (kbd "M-t") 'comint-previous-input)

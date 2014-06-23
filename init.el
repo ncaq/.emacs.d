@@ -1,6 +1,13 @@
 ;; -*- lexical-binding: t -*-
-(require 'desktop)
-(add-hook 'after-init-hook 'desktop-save-mode)
+(setq gc-cons-threshold 268435456);256MB
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"));melpaも追加
+(package-initialize);インストールしたパッケージにロードパスを通してロードする
+
+(require 'server);emacsclient
+(unless (server-running-p)
+  (server-start))
 
 ;; ロードパスの設定
 ;;http://d.hatena.ne.jp/kitokitoki/20100705/p1
@@ -13,10 +20,6 @@
 (my-add-load-path-subdir
  '("~/.emacs.d/package/"
    "~/.emacs.d/universe/"))
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"));;melpaも追加
-(package-initialize);インストールしたパッケージにロードパスを通してロードする
 
 ;;別ファイルから読み込む
 (require 'init-loader)

@@ -1,7 +1,5 @@
 ;; -*- lexical-binding: t -*-
-;;http://blog.goo.ne.jp/shihei_1951/e/cc8be74e8f330bb59539b30e4a234883
-;;起動時の画面はいらない
-(setq inhibit-startup-message)
+(setq inhibit-startup-message);起動時の画面無効
 
 (abbrev-mode -1)
 

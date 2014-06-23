@@ -3,8 +3,8 @@
 (global-linum-mode)
 
 ;;ポップアップを出した時に荒ぶる問題の修正
-(require 'mozc)
 (require 'auto-complete)
+(defvar mozc-preedit-in-session-flag)
 (defadvice linum-update
   (around tung/suppress-linum-update-when-popup activate)
   (unless (or (ac-menu-live-p) mozc-preedit-in-session-flag)
