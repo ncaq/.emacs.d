@@ -22,5 +22,5 @@
 (setq ghc-previous-key  (kbd "C-c C-t"))
 (setq ghc-sort-key      (kbd "C-c M-l"))
 
-(define-key haskell-mode-map (kbd "C-M-'") 'ghc-check-insert-from-warning)
+(define-key haskell-mode-map (kbd "M-'") 'ghc-check-insert-from-warning)
 (define-key haskell-mode-map [remap indent-whole-buffer] (lambda () (interactive)(message "disable")))
