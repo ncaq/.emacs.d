@@ -12,6 +12,6 @@
 
 ;;更新頻度を低くして軽くする
 ;;http://d.hatena.ne.jp/daimatz/20120215/1329248780
-(setq linum-delay)
+(setq linum-delay t)
 (defadvice linum-schedule (around my-linum-schedule () activate)
   (run-with-idle-timer 10 nil #'linum-update-current))
