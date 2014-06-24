@@ -1,18 +1,25 @@
 ;; -*- lexical-binding: t -*-
-(add-to-list 'auto-mode-alist '("\\.license\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.mask\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.unmask\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.use\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode))
-(add-to-list 'auto-mode-alist '("nginx.conf" . nginx-mode))
-
-(custom-set-variables '(scheme-program-name "gosh"))
+(custom-set-variables
+ '(auto-mode-alist
+   (append
+    '(("\\.license\\'" . conf-mode)
+      ("\\.mask\\'" . conf-mode)
+      ("\\.md\\'" . markdown-mode)
+      ("\\.unmask\\'" . conf-mode)
+      ("\\.use\\'" . conf-mode)
+      ("\\.zsh\\'" . shell-script-mode)
+      ("nginx.conf" . nginx-mode))
+    auto-mode-alist))
+ '(scheme-program-name "gosh"))
 
 (defvar inferior-lisp-program "clisp")
 
 (defvar ac-sources)
-(add-hook 'latex-mode-hook (lambda () (setq ac-sources (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands) ac-sources))))
+(add-hook 'latex-mode-hook (lambda ()
+                             (setq ac-sources (append '(ac-source-math-unicode
+                                                        ac-source-math-latex
+                                                        ac-source-latex-commands)
+                                                      ac-sources))))
 
 (require 'nxml-mode)
 (define-key nxml-mode-map (kbd "C-M-n") nil)
