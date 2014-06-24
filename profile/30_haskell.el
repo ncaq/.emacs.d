@@ -14,11 +14,11 @@
   (add-hook 'after-save-hook 'ghc-import-module nil t))
 (add-hook 'haskell-mode-hook 'ghc-mod-setup t)
 
-(setq ghc-import-key    (kbd "C-c M-m"))
-(setq ghc-insert-key    (kbd "C-c C-h"))
-(setq ghc-next-key      (kbd "C-c C-n"))
-(setq ghc-previous-key  (kbd "C-c C-t"))
-(setq ghc-sort-key      (kbd "C-c M-l"))
+(setq ghc-import-key    (kbd "C-c i"))
+(setq ghc-insert-key    (kbd "C-c m"))
+(setq ghc-next-key      (kbd "C-c n"))
+(setq ghc-previous-key  (kbd "C-c t"))
+(setq ghc-sort-key      (kbd "C-c l"))
 
 (define-key haskell-mode-map (kbd "M-'") 'ghc-check-insert-from-warning)
 (define-key haskell-mode-map [remap indent-whole-buffer] (lambda () (interactive)(message "disable")))
