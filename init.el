@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t -*-
-(setq gc-cons-threshold 268435456);256MB
+(setq gc-cons-threshold 134217728);128MB
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"));melpaも追加

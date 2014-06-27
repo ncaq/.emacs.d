@@ -15,11 +15,13 @@
 (defvar inferior-lisp-program "clisp")
 
 (defvar ac-sources)
+(require 'ac-math)
 (add-hook 'latex-mode-hook (lambda ()
-                             (setq ac-sources (append '(ac-source-math-unicode
-                                                        ac-source-math-latex
-                                                        ac-source-latex-commands)
-                                                      ac-sources))))
+                             (setq ac-sources (append
+                                               '(ac-source-math-unicode
+                                                 ac-source-math-latex
+                                                 ac-source-latex-commands)
+                                               ac-sources))))
 
 (require 'nxml-mode)
 (define-key nxml-mode-map (kbd "C-M-n") nil)

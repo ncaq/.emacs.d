@@ -3,6 +3,8 @@
  '(backup-directory-alist '(("" . "~/.backup")))
  '(blink-matching-paren nil);括弧移動無効
  '(delete-by-moving-to-trash t);ごみ箱を有効
+ '(fill-column 160)
+ '(git-commit-fill-column 160)
  '(git-commit-mode-hook nil)
  '(history-length 500);ミニバッファの履歴の保存数を増やす
  '(indent-tabs-mode nil)

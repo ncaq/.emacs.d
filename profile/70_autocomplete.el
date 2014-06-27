@@ -13,19 +13,20 @@
 
 (setq-default ac-sources '(ac-source-files-in-current-dir ac-source-dictionary ac-source-words-in-all-buffer));デフォルトの情報源を指定
 
-(custom-set-variables '(ac-modes (append
-                                  '(conf-mode
-                                    conf-space-mode
-                                    d-mode
-                                    fundamental-mode
-                                    haskell-mode
-                                    inferior-haskell-mode
-                                    latex-mode
-                                    markdown-mode
-                                    processing-mode
-                                    shell-script-mode
-                                    text-mode)
-                                  ac-modes)))
+(custom-set-variables '(ac-modes
+                        (append
+                         '(conf-mode
+                           conf-space-mode
+                           d-mode
+                           fundamental-mode
+                           haskell-mode
+                           inferior-haskell-mode
+                           latex-mode
+                           markdown-mode
+                           processing-mode
+                           shell-script-mode
+                           text-mode)
+                         ac-modes)))
 
 (ac-set-trigger-key "TAB")
 (define-key ac-completing-map (kbd "M-n") 'ac-next)

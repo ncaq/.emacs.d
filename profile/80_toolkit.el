@@ -5,7 +5,8 @@
 
 (auto-image-file-mode 1);画像表示
 
-(setq frame-title-format (format "%%b"));タイトルバーにバッファ名を表示する
+(setq frame-title-format (format "%%f%%*,%%m"));タイトルバーにバッファ名を表示する
+
 ;;mode-lineに改行コードを表示
 (setq eol-mnemonic-dos  "(CRLF)")
 (setq eol-mnemonic-mac  "(CR)")
@@ -15,10 +16,10 @@
 (set-default 'mode-line-buffer-identification '(buffer-file-name ("%f") ("%b")))
 
 ;;mode-line line and char numbar
-(setq mode-line-position
-      '(:eval (format "l%%l/%d,c%d/%%i"
-                      number-of-line-buffer
-                      (point))))
+(setq mode-line-position '(:eval
+                           (format "l%%l/%d,c%d/%%i"
+                            number-of-line-buffer
+                            (point))))
 (defvar-local number-of-line-buffer (count-screen-lines))
 (defun set-number-of-line-buffer ()
   (setq number-of-line-buffer (count-screen-lines)))

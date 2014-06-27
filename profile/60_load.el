@@ -19,29 +19,35 @@
 (require 'recentf-ext)
 (require 'recentf-purge-tramp)
 
+(require 'desktop)
+(add-hook 'after-init-hook 'desktop-save-mode)
+
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
 (require 'mozc)
 (setq default-input-method 'japanese-mozc)
 (setq mozc-candidate-style 'echo-area)
 (global-set-key (kbd "C-;") 'toggle-input-method)
 
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
+(require 'flycheck)
+(add-hook 'after-init-hook 'global-flycheck-mode)
 
-(require 'desktop)
-(add-hook 'after-init-hook 'desktop-save-mode)
+(custom-set-variables
+ '(flycheck-highlighting-mode 'nil);下線があると,_が見えなくなる
+ '(flycheck-check-syntax-automatically '(mode-enabled save));セーブした時だけにチェック
+ '(flycheck-display-errors-function 'nil);;Echoエリアにエラーを表示しない
+ '(flycheck-indication-mode 'left-fringe))
+
+(require 'git-gutter-fringe)
+(global-git-gutter-mode)
 
 (require 'windmove)
 (setq windmove-wrap-around t);Window移動をループする
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
-(require 'zlc-autoloads)
+(require 'zlc)
 (zlc-mode 1)
-
-(require 'git-gutter-fringe)
-(global-git-gutter-mode)
-
-(require 'skype)
-(setq skype--my-user-handle "ncaq__")
 
 (require 'google-translate)
 (custom-set-variables
@@ -49,6 +55,9 @@
  '(google-translate-default-target-language "ja"))
 (global-set-key (kbd "C-c t") 'google-translate-at-point)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
+
+(require 'skype)
+(setq skype--my-user-handle "ncaq__")
 
 (require 'gud)
 (custom-set-variables '(gud-tooltip-echo-area t));t にすると mini buffer に値が表示される

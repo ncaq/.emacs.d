@@ -1,11 +1,10 @@
 ;; -*- lexical-binding: t -*-
-(custom-set-variables
- '(c-default-style
-   '((c-mode . "bsd")
-     (c++-mode . "bsd")
-     (java-mode . "java")
-     (awk-mode . "awk")
-     (other . "bsd"))))
+(custom-set-variables '(c-default-style
+                        '((c-mode . "bsd")
+                          (c++-mode . "bsd")
+                          (java-mode . "java")
+                          (awk-mode . "awk")
+                          (other . "bsd"))))
 
 (require 'flycheck)
 (add-hook 'c-mode-hook (lambda ()

@@ -30,4 +30,5 @@ Letters do not insert themselves; instead, they are commands.
                         '((mark modified read-only " " (name 60 30)
                                 " " (size 6 -1) " " (mode 16 16) " " filename)
                           (mark " " (name 60 -1) " " filename))))
+(define-key ibuffer-mode-map (kbd "C-o") 'nil)
 (define-key ibuffer-mode-map (kbd "C-t") 'nil)
