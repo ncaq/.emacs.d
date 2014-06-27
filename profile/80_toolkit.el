@@ -5,7 +5,7 @@
 
 (auto-image-file-mode 1);画像表示
 
-(setq frame-title-format (format "%%f%%*,%%m"));タイトルバーにバッファ名を表示する
+(setq frame-title-format (format "%%f%%* %%m"));タイトルバーにバッファ名を表示する
 
 ;;mode-lineに改行コードを表示
 (setq eol-mnemonic-dos  "(CRLF)")

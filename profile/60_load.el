@@ -25,22 +25,12 @@
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
 
-(require 'mozc)
-(setq default-input-method 'japanese-mozc)
-(setq mozc-candidate-style 'echo-area)
-(global-set-key (kbd "C-;") 'toggle-input-method)
-
-(require 'flycheck)
-(add-hook 'after-init-hook 'global-flycheck-mode)
-
-(custom-set-variables
- '(flycheck-highlighting-mode 'nil);下線があると,_が見えなくなる
- '(flycheck-check-syntax-automatically '(mode-enabled save));セーブした時だけにチェック
- '(flycheck-display-errors-function 'nil);;Echoエリアにエラーを表示しない
- '(flycheck-indication-mode 'left-fringe))
-
 (require 'git-gutter-fringe)
-(global-git-gutter-mode)
+(global-git-gutter-mode 1)
+(custom-set-variables '(git-gutter:verbosity 2))
+
+(require 'uniquify)
+(custom-set-variables '(uniquify-buffer-name-style 'forward))
 
 (require 'windmove)
 (setq windmove-wrap-around t);Window移動をループする
@@ -48,6 +38,19 @@
 
 (require 'zlc)
 (zlc-mode 1)
+
+(require 'mozc)
+(setq default-input-method 'japanese-mozc)
+(setq mozc-candidate-style 'echo-area)
+(global-set-key (kbd "C-;") 'toggle-input-method)
+
+(require 'flycheck)
+(add-hook 'after-init-hook 'global-flycheck-mode)
+(custom-set-variables
+ '(flycheck-highlighting-mode 'nil);下線があると,_が見えなくなる
+ '(flycheck-check-syntax-automatically '(mode-enabled save));セーブした時だけにチェック
+ '(flycheck-display-errors-function 'nil);;Echoエリアにエラーを表示しない
+ '(flycheck-indication-mode 'left-fringe))
 
 (require 'google-translate)
 (custom-set-variables
