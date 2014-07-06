@@ -25,9 +25,9 @@
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
 
-(require 'git-gutter-fringe)
-(global-git-gutter-mode 1)
-(custom-set-variables '(git-gutter:verbosity 2))
+(require 'git-gutter-fringe+)
+(global-git-gutter+-mode 1)
+(custom-set-variables '(git-gutter+:verbosity 2))
 
 (require 'uniquify)
 (custom-set-variables '(uniquify-buffer-name-style 'forward))
