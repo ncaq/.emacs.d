@@ -6,9 +6,14 @@
 (autoload 'open-junk-file "open-junk-file")
 (custom-set-variables '(open-junk-file-format "~/Documents/log/%Y_%m/"))
 
+(global-anzu-mode 1)
+
 (require 'ncaq-emacs-utils)
 (require 'root-tramp)
 (require 'symbolword-mode)
+
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
 
 (require 'recentf)
 (custom-set-variables
@@ -22,9 +27,6 @@
 (require 'desktop)
 (add-hook 'after-init-hook 'desktop-save-mode)
 
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
-
 (require 'git-gutter-fringe+)
 (global-git-gutter+-mode 1)
 (custom-set-variables '(git-gutter+:verbosity 2))
@@ -32,12 +34,12 @@
 (require 'uniquify)
 (custom-set-variables '(uniquify-buffer-name-style 'forward))
 
+(require 'zlc)
+(zlc-mode 1)
+
 (require 'windmove)
 (setq windmove-wrap-around t);Window移動をループする
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
-
-(require 'zlc)
-(zlc-mode 1)
 
 (require 'mozc)
 (setq default-input-method 'japanese-mozc)
