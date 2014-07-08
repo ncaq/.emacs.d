@@ -9,8 +9,8 @@
 
 (custom-set-variables
  '(helm-samewindow t);ウインドウ全体に表示
- '(helm-buffer-max-length 50);デフォルトはファイル名を短縮する区切りが20
- '(helm-exit-idle-delay nil))
+ '(helm-buffer-max-length 50));デフォルトはファイル名を短縮する区切りが20
+(setq helm-exit-idle-delay 0.1)
 
 (require 'helm-descbinds)
 (helm-descbinds-mode 1)
