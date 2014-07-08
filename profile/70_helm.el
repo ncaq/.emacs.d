@@ -4,12 +4,13 @@
 (helm-mode 1)
 
 ;;helmを無効にするコマンドリスト
-(add-to-list 'helm-completing-read-handlers-alist 'find-file)
-(add-to-list 'helm-completing-read-handlers-alist 'find-file-at-point)
+(add-to-list 'helm-completing-read-handlers-alist '(find-file . nil))
+(add-to-list 'helm-completing-read-handlers-alist '(find-file-at-point . nil))
 
 (custom-set-variables
- '(helm-samewindow t);今のウインドウに表示
- '(helm-buffer-max-length 50));デフォルトはファイル名を短縮する区切りが20
+ '(helm-samewindow t);ウインドウ全体に表示
+ '(helm-buffer-max-length 50);デフォルトはファイル名を短縮する区切りが20
+ '(helm-exit-idle-delay nil))
 
 (require 'helm-descbinds)
 (helm-descbinds-mode 1)
