@@ -3,6 +3,7 @@
  '(backup-directory-alist '(("" . "~/.backup")))
  '(blink-matching-paren nil);括弧移動無効
  '(delete-by-moving-to-trash t);ごみ箱を有効
+ '(diff-switches "-u")
  '(fill-column 160)
  '(git-commit-fill-column 160)
  '(git-commit-mode-hook nil)
