@@ -19,12 +19,12 @@
 (defvar inferior-lisp-program "clisp")
 
 (require 'nxml-mode)
-(define-key nxml-mode-map (kbd "C-M-n") nil)
-(define-key nxml-mode-map (kbd "M-h") nil)
+(define-key nxml-mode-map (kbd "C-M-n") 'nil)
+(define-key nxml-mode-map (kbd "M-h")   'nil)
 
 (require 'make-mode)
-(define-key makefile-mode-map (kbd "M-n") nil)
-(define-key makefile-mode-map (kbd "M-t") nil)
+(define-key makefile-mode-map (kbd "M-n") 'nil)
+(define-key makefile-mode-map (kbd "M-t") 'nil)
 
 (require 'hexl)
 (define-key hexl-mode-map (kbd "C-h")   'hexl-backward-char)

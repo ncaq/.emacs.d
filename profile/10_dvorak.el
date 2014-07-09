@@ -30,12 +30,12 @@
 (global-set-key (kbd "M-f")   'helm-occur)
 (global-set-key (kbd "C-M-f") 'isearch-forward-regexp)
 
-(define-key minibuffer-local-map (kbd "M-s") nil)
+(define-key minibuffer-local-map (kbd "M-s") 'nil)
 (define-key minibuffer-local-map (kbd "M-t") 'previous-history-element)
 
 (define-key isearch-mode-map (kbd "C-b") 'isearch-delete-char)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
-(define-key isearch-mode-map (kbd "C-s") nil)
+(define-key isearch-mode-map (kbd "C-s") 'nil)
 (define-key isearch-mode-map (kbd "M-b") 'isearc-del-char)
 (define-key isearch-mode-map (kbd "M-m") 'isearch-exit-previous)
 

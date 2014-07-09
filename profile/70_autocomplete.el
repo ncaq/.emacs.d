@@ -5,7 +5,7 @@
 (global-auto-complete-mode)
 
 (custom-set-variables
- '(ac-auto-start nil);自動で補完画面を出すならt.補完キーを押すまで補完画面を出さないならnil.数字なら文字数.
+ '(ac-auto-start nil);自動で補完画面を出すならt.補完キーを押すまで補完画面を出さないなら'nil.数字なら文字数.
  '(ac-ignore-case);大文字・小文字を区別しない
  '(ac-menu-height 22);補完列表示数
  '(ac-quick-help-delay);ヘルプを即表示
