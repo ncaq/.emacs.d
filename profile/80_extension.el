@@ -36,14 +36,3 @@
 (define-key hexl-mode-map (kbd "C-f")   'nil)
 (define-key hexl-mode-map (kbd "C-q")   'nil)
 (define-key hexl-mode-map (kbd "M-f")   'nil)
-
-(defvar ac-sources)
-(require 'ac-math)
-(add-hook 'latex-mode-hook (lambda ()
-                             (setq ac-sources (append
-                                               '(
-                                                 ac-source-latex-commands
-                                                 ac-source-math-latex
-                                                 ac-source-math-unicode
-                                                 )
-                                               ac-sources))))

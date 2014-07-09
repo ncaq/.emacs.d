@@ -1,0 +1,5 @@
+(require 'tex)
+(setq-default TeX-PDF-mode t)
+(setq-default TeX-command-default "xelatex")
+(setq-default TeX-engine 'xetex)
+(setq-default latex-run-command "xelatex")
