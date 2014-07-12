@@ -6,7 +6,6 @@
 (autoload 'open-junk-file "open-junk-file")
 (custom-set-variables '(open-junk-file-format "~/Documents/log/%Y_%m/"))
 
-(projectile-global-mode)
 (global-anzu-mode 1)
 
 (require 'ncaq-emacs-utils)
