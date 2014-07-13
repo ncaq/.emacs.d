@@ -4,9 +4,6 @@
  '(blink-matching-paren                   nil);括弧移動無効
  '(delete-by-moving-to-trash              t);ごみ箱を有効
  '(diff-switches                          "-u")
- '(fill-column                            160)
- '(git-commit-fill-column                 160)
- '(git-commit-mode-hook                   nil)
  '(history-length                         500);ミニバッファの履歴の保存数を増やす
  '(indent-tabs-mode                       nil)
  '(kept-new-versions                      10000);新しいものをいくつ残すか
@@ -20,7 +17,8 @@
  '(tramp-auto-save-directory              "~/.backup")
  '(trash-directory                        "~/trash/")
  '(version-control                        t);複数バックアップ
- '(x-select-enable-clipboard              t));クリップボードをX11と共有
+ '(x-select-enable-clipboard              t);クリップボードをX11と共有
+ )
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p);スクリプトに実行権限付加
 (fset 'yes-or-no-p 'y-or-n-p);"yes or no"を"y or n"に

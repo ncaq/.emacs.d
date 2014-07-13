@@ -18,10 +18,6 @@
 (require 'desktop)
 (add-hook 'after-init-hook 'desktop-save-mode)
 
-(require 'git-gutter-fringe+)
-(global-git-gutter+-mode 1)
-(custom-set-variables '(git-gutter+:verbosity 2))
-
 (require 'uniquify)
 (custom-set-variables '(uniquify-buffer-name-style 'forward))
 

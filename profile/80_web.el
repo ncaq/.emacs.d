@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'web-mode)
 
 (custom-set-variables
