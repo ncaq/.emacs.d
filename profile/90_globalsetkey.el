@@ -1,13 +1,14 @@
 ;; -*- lexical-binding: t -*-
+
 (global-set-key (kbd "C-+")     'text-scale-increase)
-(global-set-key (kbd "C-,")     'helm-flycheck)
 (global-set-key (kbd "C--")     'text-scale-decrease)
 (global-set-key (kbd "C-.")     'helm-semantic-or-imenu)
+(global-set-key (kbd "C-;")     'toggle-input-method)
 (global-set-key (kbd "C-=")     'text-scale-reset)
 (global-set-key (kbd "C-\\")    'indent-whole-buffer);全ての文字に対し字下げを行う
 (global-set-key (kbd "C-^")     'dired-jump-to-current)
 (global-set-key (kbd "C-a")     'smart-move-beginning-of-line)
-(global-set-key (kbd "C-j")     'helm-ag);インクリメント串刺し検索
+(global-set-key (kbd "C-j")     'helm-ag-r);インクリメント串刺し検索
 (global-set-key (kbd "C-m")     'newline-and-indent);改行時にインデント
 (global-set-key (kbd "C-o")     'helm-buffers-list)
 (global-set-key (kbd "C-q")     'kill-buffer-and-window)
@@ -46,5 +47,7 @@
 (global-set-key (kbd "C-c m")   'mu4e)
 (global-set-key (kbd "C-c s")   'sdic)
 
+(global-set-key (kbd "C-c n")   'google-translate-at-point-reverse)
 (global-set-key (kbd "C-c r")   'revert-buffer)
+(global-set-key (kbd "C-c t")   'google-translate-at-point)
 (global-set-key (kbd "C-x C-f") 'find-file-at-point)

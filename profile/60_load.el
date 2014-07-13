@@ -15,14 +15,6 @@
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
 
-(require 'recentf)
-(custom-set-variables
- '(recentf-max-saved-items 1000)
- '(recentf-exclude '("~$" "\\.elc$" "TAGS" "\\.backup" "\\.undohist" "trash")))
-(recentf-mode 1)
-(require 'recentf-ext)
-(require 'recentf-purge-tramp)
-
 (require 'desktop)
 (add-hook 'after-init-hook 'desktop-save-mode)
 
@@ -39,10 +31,6 @@
 (require 'mozc)
 (setq default-input-method 'japanese-mozc)
 (setq mozc-candidate-style 'echo-area)
-(global-set-key (kbd "C-;") 'toggle-input-method)
-
-(require 'yasnippet)
-(yas-global-mode 1)
 
 (require 'windmove)
 (setq windmove-wrap-around t);Window移動をループする
@@ -55,13 +43,12 @@
  '(flycheck-check-syntax-automatically '(mode-enabled save));セーブした時だけにチェック
  '(flycheck-display-errors-function nil);;Echoエリアにエラーを表示しない
  '(flycheck-indication-mode 'left-fringe))
+(define-key flycheck-mode-map (kbd "C-,") 'helm-flycheck)
 
 (require 'google-translate)
 (custom-set-variables
  '(google-translate-default-source-language "en")
  '(google-translate-default-target-language "ja"))
-(global-set-key (kbd "C-c t") 'google-translate-at-point)
-(global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
 
 (require 'skype)
 (setq skype--my-user-handle "ncaq__")

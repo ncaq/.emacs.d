@@ -11,7 +11,13 @@
  '(ac-quick-help-delay);ヘルプを即表示
  '(ac-use-quick-help));ヘルプを表示
 
-(setq-default ac-sources '(ac-source-files-in-current-dir ac-source-dictionary ac-source-words-in-all-buffer));デフォルトの情報源を指定
+(setq-default ac-sources
+              '(
+                ac-source-files-in-current-dir
+                ac-source-yasnippet
+                ac-source-dictionary
+                ac-source-words-in-all-buffer
+                ));デフォルトの情報源を指定
 
 (custom-set-variables '(ac-modes
                         (append
