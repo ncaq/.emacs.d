@@ -36,14 +36,17 @@
 (require 'zlc)
 (zlc-mode 1)
 
-(require 'windmove)
-(setq windmove-wrap-around t);Window移動をループする
-(windmove-default-keybindings);shift + arrow keyでウィンドウ移動
-
 (require 'mozc)
 (setq default-input-method 'japanese-mozc)
 (setq mozc-candidate-style 'echo-area)
 (global-set-key (kbd "C-;") 'toggle-input-method)
+
+(require 'yasnippet)
+(yas-global-mode 1)
+
+(require 'windmove)
+(setq windmove-wrap-around t);Window移動をループする
+(windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
 (require 'flycheck)
 (add-hook 'after-init-hook 'global-flycheck-mode)
