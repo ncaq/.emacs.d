@@ -1,5 +1,10 @@
 (require 'tex)
-(setq-default TeX-PDF-mode t)
-(setq-default TeX-command-default "xelatex")
-(setq-default TeX-engine 'xetex)
-(setq-default latex-run-command "xelatex")
+
+(setq-default
+ TeX-PDF-mode t
+ TeX-command-default "xelatex"
+ TeX-engine 'xetex
+ latex-run-command "xelatex"
+ )
+
+(define-key TeX-mode-map (kbd "C-]") 'LaTeX-close-environment)

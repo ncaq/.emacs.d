@@ -3,14 +3,11 @@
  '(auto-mode-alist
    (append
     '(
-      ("\\.html\\'" . web-mode)
       ("\\.license\\'" . conf-mode)
       ("\\.mask\\'" . conf-mode)
       ("\\.md\\'" . markdown-mode)
-      ("\\.php\\'" . web-mode)
       ("\\.unmask\\'" . conf-mode)
       ("\\.use\\'" . conf-mode)
-      ("\\.xhtml\\'" . web-mode)
       ("\\.zsh\\'" . shell-script-mode)
       ("nginx.conf" . nginx-mode)
       )

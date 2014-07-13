@@ -11,40 +11,13 @@
 (custom-set-variables '(undohist-directory "~/.undohist"))
 (undohist-initialize)
 
-;; Original copylight and license
-;;; undohist.el --- Persistent undo history for GNU Emacs
-;; Copyright (C) 2009, 2010, 2011, 2012, 2013, 2014  Tomohiro Matsuyama
-;; Author: MATSUYAMA Tomohiro <tomo@cx4a.org>
-;; Package-Requires: ((cl-lib "1.0"))
-;; Keywords: convenience
-;; Version: 20140321.758
-;; X-Original-Version: 0.2
+;;履歴を常にtrampファイルでも復元する
+(defadvice yes-or-no-p (around always-yes)
+  (setq ad-return-value t))
 
-;; This program is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
+(defadvice undohist-recover-1 (around undohist-always-recover)
+  (ad-activate-regexp "always-yes")
+  ad-do-it
+  (ad-deactivate-regexp "always-yes"))
 
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
-(defun undohist-recover-1 ()
-  (let* ((buffer (current-buffer))
-         (file (buffer-file-name buffer))
-         (undo-file (make-undohist-file-name file))
-         undo-list)
-    (when (and (undohist-recover-file-p file)
-               (file-exists-p undo-file))
-      (with-temp-buffer
-        (insert-file-contents undo-file)
-        (goto-char (point-min))
-        (let ((alist (undohist-decode (read (current-buffer)))))
-          (if (string= (md5 buffer) (assoc-default 'digest alist))
-              (setq undo-list (assoc-default 'undo-list alist))
-            (message "File digest doesn't match, so undo history will be discarded."))))
-      (when (consp undo-list)
-        (setq buffer-undo-list undo-list)))))
+(ad-activate-regexp "always-yes")

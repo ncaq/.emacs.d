@@ -18,6 +18,4 @@ Emacsの設定ディレクトリ
   * haskell-platform
 
 # License
-ncaqが書いた部分で,特筆してないところはPublic Domain
-
-そもそも設定ファイルに著作権が認められるかどうか不明だけれど
+ncaqが書いた**部分**で,特筆してないところはPublic Domain

@@ -17,7 +17,6 @@
 
 (require 'recentf)
 (custom-set-variables
- '(recentf-save-file "~/.emacs.d/recentf")
  '(recentf-max-saved-items 1000)
  '(recentf-exclude '("~$" "\\.elc$" "TAGS" "\\.backup" "\\.undohist" "trash")))
 (recentf-mode 1)
