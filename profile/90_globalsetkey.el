@@ -10,7 +10,7 @@
 (global-set-key (kbd "C-a")     'smart-move-beginning-of-line)
 (global-set-key (kbd "C-j")     'helm-ag);インクリメント串刺し検索
 (global-set-key (kbd "C-m")     'newline-and-indent);改行時にインデント
-(global-set-key (kbd "C-o")     'helm-buffers-list)
+(global-set-key (kbd "C-o")     'helm-buffers-list-selective)
 (global-set-key (kbd "C-q")     'kill-buffer-and-window)
 (global-set-key (kbd "C-u")     'kill-whole-line);現在行を削除
 (global-set-key (kbd "C-z")     'quoted-insert);C-qの本来の関数
@@ -46,8 +46,9 @@
 (global-set-key (kbd "C-c j")   'open-junk-file);残るscratch
 (global-set-key (kbd "C-c m")   'mu4e)
 (global-set-key (kbd "C-c s")   'sdic)
-
 (global-set-key (kbd "C-c n")   'google-translate-at-point-reverse)
 (global-set-key (kbd "C-c r")   'revert-buffer)
 (global-set-key (kbd "C-c t")   'google-translate-at-point)
+
 (global-set-key (kbd "C-x C-f") 'find-file-at-point)
+(global-set-key (kbd "C-x b")   'helm-buffers-list-helm-other)
