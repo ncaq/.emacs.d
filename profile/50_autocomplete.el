@@ -13,8 +13,7 @@
 
 (setq-default ac-sources
               '(
-                ac-source-files-in-current-dir
-                ac-source-yasnippet
+                ac-source-filename
                 ac-source-dictionary
                 ac-source-words-in-all-buffer
                 ));デフォルトの情報源を指定
