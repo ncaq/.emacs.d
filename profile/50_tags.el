@@ -2,8 +2,7 @@
 (require 'helm-gtags)
 (custom-set-variables
  '(helm-gtags-auto-update t)
- '(helm-gtags-ignore-case t)
- '(helm-gtags-path-style  'relative))
+ '(helm-gtags-ignore-case t))
 
 ;; Enable helm-gtags-mode
 (add-hook 'c-mode-hook          'helm-gtags-mode)
