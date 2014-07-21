@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t -*-
 (require 'tex)
+(require 'tex-buf)
 
 (setq-default
  TeX-PDF-mode t

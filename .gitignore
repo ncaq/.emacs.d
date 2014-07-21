@@ -3,6 +3,7 @@
 !elpa
 !package
 !profile
+!snippets
 !universe
 
 !.gitignore
