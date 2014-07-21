@@ -1,6 +1,6 @@
 (require 'processing-mode)
-(custom-set-variables '(processing-location "/home/ncaq/Desktop/processing/processing-java")
-                      '(processing-application-dir "/home/ncaq/Desktop/processing/")
+(custom-set-variables '(processing-location "~/Desktop/processing/processing-java")
+                      '(processing-application-dir "~/Desktop/processing/")
                       '(processing-output-dir "/tmp"))
 
 (require 'auto-complete)

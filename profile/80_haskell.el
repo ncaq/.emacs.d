@@ -26,6 +26,6 @@
 (setq ghc-previous-key  (kbd "C-c t"))
 (setq ghc-sort-key      (kbd "C-c l"))
 
-(define-key haskell-mode-map (kbd "C-M-'")   'ghc-check-insert-from-warning)
-(define-key haskell-mode-map (kbd "C-c C-l") 'inferior-haskell-load-file)
-(define-key haskell-mode-map [remap indent-whole-buffer] (lambda () (interactive)(message "disable")))
+(define-key haskell-mode-map (kbd "C-M-'")                'ghc-check-insert-from-warning)
+(define-key haskell-mode-map (kbd "C-c C-l")              'inferior-haskell-load-file)
+(define-key haskell-mode-map [remap indent-whole-buffer]  'haskell-mode-stylish-buffer)
