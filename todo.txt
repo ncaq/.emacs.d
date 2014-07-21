@@ -1,4 +1,19 @@
-bug faceの宣言の警告を消す
-bug minibufferでauto-completeが動くように
-bug spaceの区別をtext-modeとかでも行う
-bug trampが.bash_historyを生成しないようにする
+add alc to web
+add elisp-slime-nav
+add helm-open-github
+add help+
+add pandoc-mode
+add point-undo
+add rainbow-mode
+add smartchr
+add smartparens
+add volatile-highlights
+add yascroll
+cha key bind close tag
+cha key bind help key
+fix faceの宣言の警告を消す
+fix minibufferでauto-completeが動くように
+fix mu4e html view
+fix package format
+fix spaceの区別をtext-modeとかでも行う
+fix trampが.bash_historyを生成しないようにする
