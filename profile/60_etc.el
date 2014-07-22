@@ -10,7 +10,6 @@
  '(kept-old-versions                      10000);古いものをいくつ残すか
  '(make-backup-files                      t);バックアップファイルを作成する。
  '(message-log-max                        1000);ログの記録行数を増やす.
- '(mode-require-final-newline             nil)
  '(read-buffer-completion-ignore-case     t);大文字と小文字を区別しない バッファ名
  '(read-file-name-completion-ignore-case  t);大文字と小文字を区別しない ファイル名
  '(scroll-step                            1);最下段までScrollしてもカーソルを中心に戻さない

@@ -9,7 +9,7 @@
 
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
-;; (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8c8d")))));文字列の色と被るため,変更
+(custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8c8d")))));文字列の色と被るため,変更
 
 ;;package-listのformat
 (define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"

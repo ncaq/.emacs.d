@@ -1,5 +1,4 @@
 ;; -*- lexical-binding: t -*-
-
 (require 'magit)
 (delq 'Git vc-handled-backends)
 (remove-hook 'find-file-hooks 'vc-find-file-hook)
@@ -8,6 +7,7 @@
  '(fill-column             160)
  '(git-commit-fill-column  160)
  '(git-commit-mode-hook    nil)
+ '(magit-diff-refine-hunk 'all)
  )
 
 (require 'git-gutter-fringe+)
