@@ -12,3 +12,6 @@
     auto-mode-alist)))
 
 (define-key web-mode-map (kbd "C-]") 'web-mode-element-close)
+
+(require 'scss-mode)
+(custom-set-variables '(scss-sass-options '("--cache-location" "'/tmp/.sass-cache'" "--style" "expanded")))

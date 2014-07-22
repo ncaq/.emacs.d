@@ -11,9 +11,9 @@
 (add-hook 'emacs-lisp-mode-hook 'helm-gtags-mode)
 
 ;; key bindings
-(define-key helm-gtags-mode-map (kbd "C-.")   'helm-gtags-select)
+(define-key helm-gtags-mode-map (kbd "C-.")   'helm-gtags-find-tag-from-here)
 (define-key helm-gtags-mode-map (kbd "C->")   'helm-gtags-find-rtag)
-(define-key helm-gtags-mode-map (kbd "C-M-.") 'helm-gtags-find-tag)
+(define-key helm-gtags-mode-map (kbd "C-M-.") 'helm-gtags-select)
 (define-key helm-gtags-mode-map (kbd "C-c .") 'gtags-visit-rootdir)
 (define-key helm-gtags-mode-map (kbd "M-.")   'helm-gtags-pop-stack)
 
