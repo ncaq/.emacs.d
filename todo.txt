@@ -1,5 +1,4 @@
 add alc to web
-add smartchr
 add smartparens
 add volatile-highlights
 add yascroll
@@ -8,6 +7,5 @@ cha key bind help key
 fix faceの宣言の警告を消す
 fix minibufferでauto-completeが動くように
 fix mu4e html view
-fix package format
 fix spaceの区別をtext-modeとかでも行う
 fix trampが.bash_historyを生成しないようにする
