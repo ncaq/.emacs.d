@@ -9,7 +9,7 @@
 
 (require 'rainbow-mode)
 (add-hook 'find-file-hook 'rainbow-turn-on)
-(add-hook 'conf-mode 'rainbow-turn-off)
+(add-hook 'conf-mode-hook 'rainbow-turn-off)
 
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
