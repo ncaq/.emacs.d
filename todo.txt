@@ -1,7 +1,6 @@
 add alc to web
+add smartchr
 add smartparens
-add volatile-highlights
-add yascroll
 cha key bind close tag
 cha key bind help key
 fix faceの宣言の警告を消す
