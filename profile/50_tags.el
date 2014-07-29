@@ -4,13 +4,10 @@
  '(helm-gtags-auto-update t)
  '(helm-gtags-ignore-case t))
 
-;; Enable helm-gtags-mode
-(add-hook 'c-mode-hook          'helm-gtags-mode)
-(add-hook 'c++-mode-hook        'helm-gtags-mode)
-(add-hook 'asm-mode-hook        'helm-gtags-mode)
-(add-hook 'emacs-lisp-mode-hook 'helm-gtags-mode)
+(add-hook 'c-mode-hook   'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
 
-;; key bindings
 (define-key helm-gtags-mode-map (kbd "C-.")   'helm-gtags-find-tag-from-here)
 (define-key helm-gtags-mode-map (kbd "C->")   'helm-gtags-find-rtag)
 (define-key helm-gtags-mode-map (kbd "C-M-.") 'helm-gtags-select)

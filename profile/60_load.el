@@ -32,15 +32,6 @@
 (setq windmove-wrap-around t);Window移動をループする
 (windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
-(require 'flycheck)
-(add-hook 'after-init-hook 'global-flycheck-mode)
-(custom-set-variables
- '(flycheck-highlighting-mode nil);下線があると,_が見えなくなる
- '(flycheck-check-syntax-automatically '(mode-enabled save));セーブした時だけにチェック
- '(flycheck-display-errors-function nil);;Echoエリアにエラーを表示しない
- '(flycheck-indication-mode 'left-fringe))
-(define-key flycheck-mode-map (kbd "C-,") 'helm-flycheck)
-
 (require 'google-translate)
 (custom-set-variables
  '(google-translate-default-source-language "en")
