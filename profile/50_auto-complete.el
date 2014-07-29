@@ -20,7 +20,8 @@
 
 (custom-set-variables '(ac-modes
                         (append
-                         '(conf-mode
+                         '(
+                           conf-mode
                            conf-space-mode
                            d-mode
                            fundamental-mode
@@ -29,8 +30,10 @@
                            latex-mode
                            markdown-mode
                            processing-mode
+                           scss-mode
                            shell-script-mode
-                           text-mode)
+                           text-mode
+                           )
                          ac-modes)))
 
 (ac-set-trigger-key "TAB")

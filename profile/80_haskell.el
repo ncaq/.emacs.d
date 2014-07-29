@@ -2,11 +2,13 @@
 (require 'haskell-mode-autoloads)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
-(custom-set-variables '(haskell-stylish-on-save t)
-                      '(tab-width 4)
-                      '(haskell-indentation-layout-offset 4)
-                      '(haskell-indentation-left-offset 4)
-                      '(haskell-indentation-ifte-offset 4))
+(custom-set-variables
+ '(haskell-indentation-ifte-offset 4)
+ '(haskell-indentation-layout-offset 4)
+ '(haskell-indentation-left-offset 4)
+ '(haskell-stylish-on-save t)
+ '(tab-width 4)
+ )
 
 (autoload 'turn-on-haskell-echo-type "haskell-echo-type")
 (autoload 'haskell-echo-type         "haskell-echo-type")
