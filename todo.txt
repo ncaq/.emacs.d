@@ -1,5 +1,4 @@
 add alc to web
-add pandoc-mode
 add point-undo
 add rainbow-mode
 add smartchr

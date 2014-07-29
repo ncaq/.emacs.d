@@ -25,7 +25,6 @@
 (global-set-key (kbd "M-q")     'delete-other-windows);他のウインドウを閉じる
 (global-set-key (kbd "M-u")     'quoted-insert);C-qの本来の関数
 (global-set-key (kbd "M-y")     'helm-show-kill-ring);多次元クリップボード
-(global-set-key (kbd "M-z")     'repeat-complex-command)
 
 (global-set-key (kbd "C-M-,")   'mc/edit-lines)
 (global-set-key (kbd "C-M-;")   'indent-whole-buffer);全ての文字に対し字下げを行う
