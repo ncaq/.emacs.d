@@ -1,7 +1,4 @@
 add alc to web
-add elisp-slime-nav
-add helm-open-github
-add help+
 add pandoc-mode
 add point-undo
 add rainbow-mode
