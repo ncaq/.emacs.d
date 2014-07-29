@@ -2,7 +2,7 @@
 (require 'flycheck)
 (require 'helm-flycheck)
 
-(add-hook 'after-init-hook 'global-flycheck-mode)
+(global-flycheck-mode 1)
 
 (custom-set-variables
  '(flycheck-check-syntax-automatically '(mode-enabled save)) ;セーブした時だけにリロード

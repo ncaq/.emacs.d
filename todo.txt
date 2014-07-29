@@ -1,6 +1,4 @@
 add alc to web
-add point-undo
-add rainbow-mode
 add smartchr
 add smartparens
 add volatile-highlights
