@@ -10,9 +10,8 @@
  '(tab-width 4)
  )
 
-(autoload 'turn-on-haskell-echo-type "haskell-echo-type")
-(autoload 'haskell-echo-type         "haskell-echo-type")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-echo-type)
+(autoload 'haskell-echo-type-mode "haskell-echo-type")
+(add-hook 'haskell-mode-hook 'haskell-echo-type-mode)
 
 (require 'ghc)
 (require 'auto-complete)
