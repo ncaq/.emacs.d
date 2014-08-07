@@ -19,7 +19,7 @@
       (add-to-list 'load-path dir)
       (normal-top-level-add-subdirs-to-load-path))))
 (my-add-load-path-subdir
- '("~/.emacs.d/package/"
+ '("~/.emacs.d/mine/"
    "~/.emacs.d/universe/"))
 
 ;;別ファイルから読み込む
