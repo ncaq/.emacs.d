@@ -9,4 +9,4 @@
  latex-run-command "xelatex"
  )
 
-(define-key TeX-mode-map (kbd "C-]") 'LaTeX-close-environment)
+(define-key TeX-mode-map (kbd "M-c") 'LaTeX-close-environment)

@@ -1,6 +1,4 @@
 add alc to web
-add smartchr
-add smartparens
 cha key bind close tag
 cha key bind help key
 fix faceの宣言の警告を消す
