@@ -7,7 +7,7 @@
 (custom-set-variables '(open-junk-file-format "~/Documents/log/%Y_%m/"))
 
 (require 'ncaq-emacs-utils)
-(require 'root-tramp)
+(require 'auto-sudoedit)
 (require 'symbolword-mode)
 
 (require 'exec-path-from-shell)

@@ -7,9 +7,9 @@
 [submodule "mine/recentf-purge-tramp"]
 	path = mine/recentf-purge-tramp
 	url = git@github.com:ncaq/recentf-purge-tramp.git
-[submodule "mine/root-tramp"]
-	path = mine/root-tramp
-	url = git@github.com:ncaq/root-tramp.git
 [submodule "mine/symbolword-mode"]
 	path = mine/symbolword-mode
 	url = git@github.com:ncaq/symbolword-mode.git
+[submodule "mine/auto-sudoedit"]
+	path = mine/auto-sudoedit
+	url = git@github.com:ncaq/auto-sudoedit.git
