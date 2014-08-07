@@ -30,6 +30,7 @@
 (global-set-key (kbd "M-f")   'helm-occur)
 (global-set-key (kbd "C-M-f") 'isearch-forward-regexp)
 
+;; disable
 (define-key minibuffer-local-map (kbd "M-s") 'nil)
 (define-key minibuffer-local-map (kbd "M-t") 'previous-history-element)
 
@@ -41,3 +42,6 @@
 
 (require 'comint)
 (define-key comint-mode-map (kbd "M-t") 'comint-previous-input)
+
+(require 'diff-mode)
+(define-key diff-mode-map (kbd "M-h") 'nil)
