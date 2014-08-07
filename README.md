@@ -2,8 +2,7 @@
 Emacsの設定ディレクトリ
  
 # ディレクトリ
-+ elpa emacsのパッケージシステムが作ったディレクトリ
-+ package バージョン管理システムでcloneしたEmacsLisp
++ mine git submoduleでコピーした私が作成した拡張
 + profile initloader.elが起動時に読み込むディレクトリ
 + universe 管理されていないプログラムのディレクトリ
 
@@ -14,8 +13,9 @@ Emacsの設定ディレクトリ
   * exuberant-ctags
   * ghc-mod
   * git
-  * global
+  * gnu global
   * haskell-platform
+  * stylish-haskell
 
 # License
 ncaqが書いた**部分**で,特筆してないところはPublic Domain

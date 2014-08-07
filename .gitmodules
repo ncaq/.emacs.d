@@ -1,15 +1,15 @@
-[submodule "package/root-tramp"]
-	path = package/root-tramp
-	url = git@github.com:ncaq/root-tramp.git
-[submodule "package/symbolword-mode"]
-	path = package/symbolword-mode
-	url = git@github.com:ncaq/symbolword-mode.git
-[submodule "package/recentf-purge-tramp"]
-	path = package/recentf-purge-tramp
-	url = git@github.com:ncaq/recentf-purge-tramp.git
-[submodule "package/ncaq-emacs-utils"]
-	path = package/ncaq-emacs-utils
-	url = git@github.com:ncaq/ncaq-emacs-utils.git
-[submodule "package/haskell-echo-type"]
-	path = package/haskell-echo-type
+[submodule "mine/haskell-echo-type"]
+	path = mine/haskell-echo-type
 	url = git@github.com:ncaq/haskell-echo-type.git
+[submodule "mine/ncaq-emacs-utils"]
+	path = mine/ncaq-emacs-utils
+	url = git@github.com:ncaq/ncaq-emacs-utils.git
+[submodule "mine/recentf-purge-tramp"]
+	path = mine/recentf-purge-tramp
+	url = git@github.com:ncaq/recentf-purge-tramp.git
+[submodule "mine/root-tramp"]
+	path = mine/root-tramp
+	url = git@github.com:ncaq/root-tramp.git
+[submodule "mine/symbolword-mode"]
+	path = mine/symbolword-mode
+	url = git@github.com:ncaq/symbolword-mode.git
