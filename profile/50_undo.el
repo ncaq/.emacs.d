@@ -24,5 +24,6 @@
 (ad-activate-regexp "always-yes")
 
 (require 'point-undo)
-(define-key global-map (kbd "C-z") 'point-undo)
-(define-key global-map (kbd "M-z") 'point-redo)
+(global-set-key (kbd "C-z")   'point-undo)
+(global-set-key (kbd "M-z")   'point-redo)
+(global-set-key (kbd "C-S-z") 'point-redo)
