@@ -26,6 +26,7 @@
 (global-set-key (kbd "M-q")  'delete-other-windows);他のウインドウを閉じる
 (global-set-key (kbd "M-u")  'quoted-insert);C-qの本来の関数
 (global-set-key (kbd "M-y")  'helm-show-kill-ring);多次元クリップボード
+(global-set-key (kbd "M-z")  'align-regexp);揃える(正規表現)
 
 (global-set-key (kbd "C-M-,") 'mc/edit-lines)
 (global-set-key (kbd "C-M-;") 'indent-whole-buffer);全ての文字に対し字下げを行う
@@ -37,7 +38,6 @@
 
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
-(global-set-key (kbd "C-c ;") 'align-regexp);揃える(正規表現)
 (global-set-key (kbd "C-c a") 'text-adjust-selective);全角記号とかを変換する
 (global-set-key (kbd "C-c c") 'quickrun);かしこいコンパイルコマンド実行
 (global-set-key (kbd "C-c g") 'magit-status)
