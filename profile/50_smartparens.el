@@ -5,7 +5,7 @@
 (show-smartparens-global-mode 1)
 
 (define-key smartparens-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
-(define-key smartparens-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
+(define-key smartparens-mode-map (kbd "C-)") 'sp-slurp-hybrid-sexp)
 (define-key smartparens-mode-map (kbd "M-(") 'sp-backward-barf-sexp)
 (define-key smartparens-mode-map (kbd "M-)") 'sp-forward-barf-sexp)
 

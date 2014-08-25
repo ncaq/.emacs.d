@@ -11,6 +11,7 @@
 (global-set-key (kbd "C-o") 'helm-buffers-list-selective)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-u") 'kill-whole-line);現在行を削除
+(global-set-key (kbd "C-z") 'indent-whole-buffer);全ての文字に対し字下げを行う
 
 (global-set-key (kbd "C-S-b") 'smart-delete-whitespace-backward)
 (global-set-key (kbd "C-S-d") 'delete-horizontal-space);スペースを一気に消す
