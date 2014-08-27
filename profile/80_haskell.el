@@ -10,8 +10,8 @@
  '(tab-width 4)
  )
 
-(autoload 'haskell-echo-type-mode "haskell-echo-type")
-(add-hook 'haskell-mode-hook 'haskell-echo-type-mode)
+(autoload 'haskell-echo-info-mode "haskell-echo-info")
+(add-hook 'haskell-mode-hook 'haskell-echo-info-mode)
 
 (require 'ghc)
 (require 'auto-complete)

@@ -1,6 +1,3 @@
-[submodule "mine/haskell-echo-type"]
-	path = mine/haskell-echo-type
-	url = git@github.com:ncaq/haskell-echo-type.git
 [submodule "mine/ncaq-emacs-utils"]
 	path = mine/ncaq-emacs-utils
 	url = git@github.com:ncaq/ncaq-emacs-utils.git
@@ -13,3 +10,6 @@
 [submodule "mine/auto-sudoedit"]
 	path = mine/auto-sudoedit
 	url = git@github.com:ncaq/auto-sudoedit.git
+[submodule "mine/haskell-echo-info"]
+	path = mine/haskell-echo-info
+	url = git@github.com:ncaq/haskell-echo-info.git
