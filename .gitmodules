@@ -13,3 +13,6 @@
 [submodule "mine/haskell-echo-info"]
 	path = mine/haskell-echo-info
 	url = git@github.com:ncaq/haskell-echo-info.git
+[submodule "mine/w3m-goto-alc"]
+	path = mine/w3m-goto-alc
+	url = git@github.com:ncaq/w3m-goto-alc.git

@@ -12,6 +12,7 @@
  '(message-log-max                        1000);ログの記録行数を増やす.
  '(read-buffer-completion-ignore-case     t);大文字と小文字を区別しない バッファ名
  '(read-file-name-completion-ignore-case  t);大文字と小文字を区別しない ファイル名
+ '(require-final-newline                  t);POSIX改行
  '(scroll-step                            1);最下段までScrollしてもカーソルを中心に戻さない
  '(tramp-auto-save-directory              "~/.backup")
  '(trash-directory                        "~/trash/")
