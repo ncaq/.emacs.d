@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t -*-
-(setq dired-listing-switches "-AFhvl");diredが使うlsオプションの設定
+(setq dired-listing-switches "-l --almost-all --classify --human-readable --group-directories-first -vX");diredが使うlsオプションの設定
 
 ;;atoolの設定
 ;;http://d.hatena.ne.jp/mooz/20110911/p1

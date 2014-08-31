@@ -6,9 +6,10 @@
 (autoload 'open-junk-file "open-junk-file")
 (custom-set-variables '(open-junk-file-format "~/Documents/log/%Y_%m/"))
 
-(require 'ncaq-emacs-utils)
 (require 'auto-sudoedit)
+(require 'ncaq-emacs-utils)
 (require 'symbolword-mode)
+(require 'w3m-goto-alc)
 
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)

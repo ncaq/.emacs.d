@@ -7,7 +7,6 @@
  '(haskell-indentation-layout-offset 4)
  '(haskell-indentation-left-offset 4)
  '(haskell-stylish-on-save t)
- '(tab-width 4)
  )
 
 (autoload 'haskell-echo-info-mode "haskell-echo-info")
