@@ -8,14 +8,24 @@ Emacsの設定ディレクトリ
 
 # depend
 * portage
-  * atool
-  * clang
-  * exuberant-ctags
-  * ghc-mod
-  * git
-  * gnu global
-  * haskell-platform
-  * stylish-haskell
+  * app-arch/atool
+  * app-emacs/ghc-mod
+  * dev-haskell/haskell-platform
+  * dev-haskell/stylish-haskell
+  * dev-python/html2text
+  * dev-ruby/sass
+  * dev-util/ctags
+  * dev-util/global
+  * dev-vcs/git
+  * net-libs/nodejs
+  * net-mail/mu
+  * net-mail/offlineimap
+  * sys-devel/clang
+  * www-client/w3m
+
+* net-libs/nodejs
+  * csslint
+  * jshint
 
 # License
 ncaqが書いた**部分**で,特筆してないところはPublic Domain
