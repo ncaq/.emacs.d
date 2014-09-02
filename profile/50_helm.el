@@ -21,10 +21,10 @@
   (setq helm-boring-buffer-regexp-list '("\\*"))
   (helm-buffers-list))
 
-(defun helm-buffers-list-helm-other ()
+(defun helm-for-files-list-other-helm ()
   (interactive)
   (setq helm-boring-buffer-regexp-list '("\\*[hH]elm"))
-  (helm-buffers-list))
+  (helm-for-files))
 
 (define-key helm-buffer-map        (kbd "C-s") 'nil)
 (define-key helm-generic-files-map (kbd "C-s") 'nil)

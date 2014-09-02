@@ -23,7 +23,7 @@
 (global-set-key (kbd "M-j") 'ag-regexp)
 (global-set-key (kbd "M-l") 'sort-lines-auto-mark-paragrah)
 (global-set-key (kbd "M-m") 'newline-under);
-(global-set-key (kbd "M-o") 'helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
+(global-set-key (kbd "M-o") 'helm-for-files-list-other-helm);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key (kbd "M-q") 'delete-other-windows);他のウインドウを閉じる
 (global-set-key (kbd "M-u") 'quoted-insert);C-qの本来の関数
 (global-set-key (kbd "M-y") 'helm-show-kill-ring);多次元クリップボード
@@ -50,6 +50,5 @@
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-c t") 'google-translate-at-point)
-(global-set-key (kbd "C-x b") 'helm-buffers-list-helm-other)
 
 (global-set-key (kbd "C-x C-f") 'find-file-at-point)
