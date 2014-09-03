@@ -9,7 +9,9 @@
 (define-key smartparens-mode-map (kbd "M-(") 'sp-backward-barf-sexp)
 (define-key smartparens-mode-map (kbd "M-)") 'sp-forward-barf-sexp)
 
-(define-key smartparens-mode-map (kbd "C-M-k") 'sp-splice-sexp)
+(define-key smartparens-mode-map (kbd "M-u") 'sp-splice-sexp)
+
+(define-key smartparens-mode-map (kbd "C-M-k") 'sp-raise-sexp)
 
 (define-key smartparens-mode-map [remap forward-sexp]       'sp-forward-sexp)
 (define-key smartparens-mode-map [remap backward-sexp]      'sp-backward-sexp)

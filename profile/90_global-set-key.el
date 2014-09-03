@@ -12,7 +12,7 @@
 (global-set-key (kbd "C-o") 'helm-buffers-list-selective)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-u") 'kill-whole-line);現在行を削除
-(global-set-key (kbd "C-z") 'indent-whole-buffer);全ての文字に対し字下げを行う
+(global-set-key (kbd "C-z") 'quoted-insert);C-qの本来の関数
 
 (global-set-key (kbd "C-S-b") 'smart-delete-whitespace-backward)
 (global-set-key (kbd "C-S-d") 'delete-horizontal-space);スペースを一気に消す
@@ -25,7 +25,6 @@
 (global-set-key (kbd "M-m") 'newline-under);
 (global-set-key (kbd "M-o") 'helm-for-files-list-other-helm);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key (kbd "M-q") 'delete-other-windows);他のウインドウを閉じる
-(global-set-key (kbd "M-u") 'quoted-insert);C-qの本来の関数
 (global-set-key (kbd "M-y") 'helm-show-kill-ring);多次元クリップボード
 (global-set-key (kbd "M-z") 'align-regexp);揃える(正規表現)
 
