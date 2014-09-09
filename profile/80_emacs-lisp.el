@@ -7,6 +7,7 @@
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 (define-key elisp-slime-nav-mode-map (kbd "C-.") 'elisp-slime-nav-find-elisp-thing-at-point)
 (define-key elisp-slime-nav-mode-map (kbd "M-.") 'pop-tag-mark)
+(define-key elisp-slime-nav-mode-map (kbd "C-c C-d") 'elisp-slime-nav-describe-elisp-thing-at-point)
 
 (require 'flycheck)
 (setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers)) ;emacs-lisp-checkdoc,設定ファイルごときにそんなに気合入れなくて良いです

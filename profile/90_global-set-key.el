@@ -47,6 +47,7 @@
 (global-set-key (kbd "C-c j") 'open-junk-file);残るscratch
 (global-set-key (kbd "C-c m") 'mu4e)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
+(global-set-key (kbd "C-c p") 'tramp-cleanup-all-connections)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-c t") 'google-translate-at-point)
 

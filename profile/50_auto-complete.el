@@ -25,6 +25,7 @@
                            conf-space-mode
                            d-mode
                            fundamental-mode
+                           git-commit-mode
                            haskell-mode
                            inferior-haskell-mode
                            latex-mode
