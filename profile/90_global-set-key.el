@@ -45,6 +45,7 @@
 (global-set-key (kbd "C-c c") 'quickrun);かしこいコンパイルコマンド実行
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c j") 'open-junk-file);残るscratch
+(global-set-key (kbd "C-c l") 'recentf-cleanup)
 (global-set-key (kbd "C-c m") 'mu4e)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
 (global-set-key (kbd "C-c p") 'tramp-cleanup-all-connections)

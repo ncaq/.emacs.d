@@ -27,3 +27,11 @@
 (add-hook 'after-save-hook   'set-number-of-line-buffer)
 (add-hook 'find-file-hook    'set-number-of-line-buffer)
 (run-with-idle-timer 30 t    'set-number-of-line-buffer)
+
+(require 'uniquify)
+(custom-set-variables '(uniquify-buffer-name-style 'forward))
+
+(require 'zlc)
+(zlc-mode 1)
+
+(global-anzu-mode 1)

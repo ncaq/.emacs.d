@@ -17,8 +17,12 @@
 
 ;;余ったpにはwindow操作を割り当てる
 (global-set-key (kbd "C-p")   'other-window)
-(global-set-key (kbd "M-p")   (lambda () (interactive)(other-window -1)))
+(global-set-key (kbd "M-p")   'other-window-backward)
 (global-set-key (kbd "C-M-p") 'split-window-right)
+
+(defun other-window-backward ()
+  (interactive)
+  (other-window -1))
 
 ;;backspace
 (global-set-key (kbd "C-b")   'backward-delete-char-untabify)

@@ -14,3 +14,5 @@
 (recentf-mode 1)
 (require 'recentf-ext)
 (require 'recentf-purge-tramp)
+
+(run-with-idle-timer 900 t 'recentf-cleanup)

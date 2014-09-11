@@ -23,7 +23,7 @@
 
 (defun helm-for-files-list-other-helm ()
   (interactive)
-  (setq helm-boring-buffer-regexp-list '("\\*[hH]elm"))
+  (setq helm-boring-buffer-regexp-list '("\\` " "\\*helm" "\\*Echo Area" "\\*Minibuf" "\\*tramp"))
   (helm-for-files))
 
 (define-key helm-buffer-map        (kbd "C-s") 'nil)

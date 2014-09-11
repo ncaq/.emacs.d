@@ -11,9 +11,12 @@
 (add-hook 'find-file-hook 'rainbow-turn-on)
 (add-hook 'conf-mode-hook 'rainbow-turn-off)
 
-(require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
-(custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#586e75")))));文字列の色と被るため,変更
+;; (require 'rainbow-delimiters)
+;; (global-rainbow-delimiters-mode)
+;; (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#586e75")))));文字列の色と被るため,変更
+
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
 
 ;;package-listのformat
 (define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"

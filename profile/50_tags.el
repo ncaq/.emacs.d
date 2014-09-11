@@ -1,4 +1,6 @@
 ;; -*- lexical-binding: t -*-
+
+(require 'gtags)
 (require 'helm-gtags)
 (custom-set-variables
  '(helm-gtags-auto-update t)

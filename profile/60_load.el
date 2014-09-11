@@ -1,8 +1,8 @@
 ;; -*- lexical-binding: t -*-
-(global-anzu-mode 1)
 (autoload 'sdic "sdic")
 (autoload 'sudden-death "sudden-death")
 (autoload 'text-adjust-selective "text-adjust")
+
 (autoload 'open-junk-file "open-junk-file")
 (custom-set-variables '(open-junk-file-format "~/Documents/log/%Y_%m/"))
 
@@ -16,15 +16,6 @@
 
 (require 'desktop)
 (add-hook 'after-init-hook 'desktop-save-mode)
-
-(require 'uniquify)
-(custom-set-variables '(uniquify-buffer-name-style 'forward))
-
-(require 'volatile-highlights)
-(volatile-highlights-mode t)
-
-(require 'zlc)
-(zlc-mode 1)
 
 (require 'mozc)
 (setq default-input-method 'japanese-mozc)
