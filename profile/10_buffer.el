@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t -*-
+
 (set-face-attribute 'default nil :family "Ricty" :height 160)
 (set-fontset-font nil 'unicode (font-spec :family "Ricty"))
 
@@ -7,13 +8,16 @@
 (require 'solarized-dark-theme)
 (load-theme 'solarized-dark t)
 
-(require 'rainbow-mode)
-(add-hook 'find-file-hook 'rainbow-turn-on)
-(add-hook 'conf-mode-hook 'rainbow-turn-off)
+;; 順番重要
+;; rainbow-delimiters -> rainbow-mode
 
 ;; (require 'rainbow-delimiters)
 ;; (global-rainbow-delimiters-mode)
 ;; (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#586e75")))));文字列の色と被るため,変更
+
+(require 'rainbow-mode)
+(add-hook 'find-file-hook 'rainbow-turn-on)
+(add-hook 'conf-mode-hook 'rainbow-turn-off)
 
 (require 'volatile-highlights)
 (volatile-highlights-mode t)

@@ -7,12 +7,16 @@
                           (other . "bsd"))))
 
 (require 'flycheck)
-(add-hook 'c-mode-hook (lambda ()
-                         (setq flycheck-clang-language-standard "c99")))
-(add-hook 'c++-mode-hook (lambda ()
-                           (setq flycheck-clang-language-standard "c++1y")
-                           (setq flycheck-clang-standard-library "libc++")
-                           (setq flycheck-clang-include-path '("/usr/include/c++/v1"))))
+
+(defun change-std-to-c99 ()
+  (setq flycheck-clang-language-standard "c99"))
+(add-hook 'c-mode-hook 'change-std-to-c99)
+
+(defun change-std-to-c++1y ()
+  (setq flycheck-clang-language-standard "c++1y")
+  (setq flycheck-clang-standard-library "libc++")
+  (setq flycheck-clang-include-path '("/usr/include/c++/v1")))
+(add-hook 'c++-mode-hook 'change-std-to-c++1y)
 
 (require 'quickrun)
 (quickrun-add-command "c99/clang"

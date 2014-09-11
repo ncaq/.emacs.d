@@ -15,19 +15,26 @@
                            `(,(concat "\\" suffix "\\'") "" "aunpack")))))
 
 (require 'dired-sort)
-(add-hook 'dired-mode-hook '(lambda ()
-                              (define-key dired-mode-map "s" 'dired-various-sort-change-or-edit)
-                              (define-key dired-mode-map "c" '(lambda ()
-                                                                (interactive)
-                                                                (helm '(helm-c-source-dired-various-sort))))))
+(add-hook 'dired-mode-hook 'dired-sort-trigger)
+
+(defun dired-sort-trigger ()
+  (define-key dired-mode-map "c" 'helm-dired-various)
+  (define-key dired-mode-map "s" 'dired-various-sort-change-or-edit))
+
+(defun helm-dired-various ()
+  (interactive)
+  (helm '(helm-c-source-dired-various-sort)))
 
 (defun dired-jump-to-current ()
   (interactive)
   (dired "."))
 
+(defun dired-disable-M-o()
+  (define-key dired-mode-map (kbd "M-o") 'nil))
+
+(add-hook 'dired-mode-hook 'dired-disable-M-o)
 (define-key dired-mode-map (kbd "C-^")     'dired-up-directory)
 (define-key dired-mode-map (kbd "C-c C-p") 'wdired-change-to-wdired-mode)
 (define-key dired-mode-map (kbd "C-o")     'nil)
 (define-key dired-mode-map (kbd "C-t")     'nil)
 (define-key dired-mode-map (kbd "M-s")     'nil)
-(add-hook 'dired-mode-hook (lambda ()(define-key dired-mode-map (kbd "M-o") nil)))

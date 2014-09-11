@@ -1,8 +1,5 @@
-add alc to web
-cha key bind close tag
-cha key bind help key
+add recentfにバイナリファイルを記録しない modeで判別できる?
 fix faceの宣言の警告を消す
 fix minibufferでauto-completeが動くように
-fix mu4e html view
 fix spaceの区別をtext-modeとかでも行う
 fix trampが.bash_historyを生成しないようにする

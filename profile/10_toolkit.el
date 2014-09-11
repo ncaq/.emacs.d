@@ -31,6 +31,10 @@
 (require 'uniquify)
 (custom-set-variables '(uniquify-buffer-name-style 'forward))
 
+(require 'windmove)
+(setq windmove-wrap-around t);Window移動をループする
+(windmove-default-keybindings);shift + arrow keyでウィンドウ移動
+
 (require 'zlc)
 (zlc-mode 1)
 

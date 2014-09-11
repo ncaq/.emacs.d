@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t -*-
+
 (autoload 'sdic "sdic")
 (autoload 'sudden-death "sudden-death")
 (autoload 'text-adjust-selective "text-adjust")
@@ -14,16 +15,9 @@
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
 
-(require 'desktop)
-(add-hook 'after-init-hook 'desktop-save-mode)
-
 (require 'mozc)
 (setq default-input-method 'japanese-mozc)
 (setq mozc-candidate-style 'echo-area)
-
-(require 'windmove)
-(setq windmove-wrap-around t);Window移動をループする
-(windmove-default-keybindings);shift + arrow keyでウィンドウ移動
 
 (require 'google-translate)
 (custom-set-variables

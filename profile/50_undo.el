@@ -1,7 +1,11 @@
 ;; -*- lexical-binding: t -*-
 
 (require 'undo-tree);undoをtreeに,C-x C-uで起動
-(add-hook 'find-file-hook (lambda () (undo-tree-mode 1)))
+
+(defun strict-global-undo-tree-mode ()
+  (undo-tree-mode 1))
+(add-hook 'find-file-hook 'strict-global-undo-tree-mode)
+
 (custom-set-variables '(undo-tree-visualizer-timestamps t))
 
 (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit)

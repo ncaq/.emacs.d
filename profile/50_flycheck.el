@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t -*-
+
 (require 'flycheck)
 (require 'helm-flycheck)
 

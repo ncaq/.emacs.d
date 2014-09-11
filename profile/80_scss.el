@@ -10,9 +10,11 @@
 (setq compilation-scroll-output t)
 ;;(setq compilation-window-height nil)
 
-(setq compilation-ask-about-save nil)
-(setq compilation-save-buffers-predicate '(lambda () nil))
+(defun const-nil ()
+  nil)
 
+(setq compilation-ask-about-save 'nil)
+(setq compilation-save-buffers-predicate 'const-nil)
 
 (defvar aj-compilation-saved-window-configuration nil
   "Previous window conf from before a compilation")

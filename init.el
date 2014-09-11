@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t -*-
+
 (setq gc-cons-threshold 134217728);128MB
 (setq inhibit-startup-message);起動時の画面無効
 
@@ -24,8 +25,7 @@
 
 ;;別ファイルから読み込む
 (require 'init-loader)
+(custom-set-variables '(init-loader-show-log-after-init nil))
 (init-loader-load "~/.emacs.d/profile/") ;設定ファイルがあるディレクトリを指定
 
-(defun kill-scratch ()
-  (kill-buffer "*scratch*"))
-(add-hook 'after-init-hook 'kill-scratch) ;open-junk-fileがあるからscratchいらない
+(kill-buffer "*scratch*")
