@@ -30,6 +30,10 @@
 (desktop-save-mode 1)
 (savehist-mode 1)
 
+(defvar recentf-list)
+(defun sync-file-name-history-from-recentf ()
+  (setq file-name-history recentf-list))
+
 (defun recentf-setup ()
   "recentfによる .recentf の読み込みで,バックアップ位置がバグることへの対策"
   (require 'recentf)
@@ -37,8 +41,7 @@
   (require 'recentf-purge-tramp)
   
   (recentf-mode 1)
-  (defvar recentf-list)
-  (setq file-name-history recentf-list)
+  (run-with-idle-timer 600 t 'sync-file-name-history-from-recentf)
   )
 
 (add-hook 'after-init-hook 'recentf-setup)

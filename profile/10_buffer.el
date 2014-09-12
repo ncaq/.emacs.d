@@ -16,8 +16,9 @@
 ;; (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#586e75")))));文字列の色と被るため,変更
 
 (require 'rainbow-mode)
-(add-hook 'find-file-hook 'rainbow-turn-on)
-(add-hook 'conf-mode-hook 'rainbow-turn-off)
+(add-hook 'lisp-mode-hook 'rainbow-turn-on)
+(add-hook 'scss-mode-hook 'rainbow-turn-on)
+(add-hook 'web-mode-hook  'rainbow-turn-on)
 
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
