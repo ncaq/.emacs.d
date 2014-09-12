@@ -8,6 +8,7 @@
 
 !.gitignore
 !.gitmodules
+!.mc-lists.el
 !README.md
 !init.el
 !init.elc
