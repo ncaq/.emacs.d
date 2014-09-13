@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 (require 'scss-mode)
-(custom-set-variables '(scss-sass-options '("--cache-location" "'/tmp/.sass-cache'" "--style" "expanded" "--sourcemap")))
+(custom-set-variables '(scss-sass-options '("--cache-location" "'/tmp/.sass-cache'" "--style" "expanded")))
 
 ;; Original setting file url is
 ;; https://github.com/antonj/.emacs.d/blob/master/aj-compilation.el
