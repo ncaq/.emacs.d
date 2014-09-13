@@ -3,12 +3,14 @@
  '(auto-mode-alist
    (append
     '(
-      ("\\.license\\'"  . conf-mode)
-      ("\\.mask\\'"     . conf-mode)
-      ("\\.unmask\\'"   . conf-mode)
-      ("\\.use\\'"      . conf-mode)
-      ("\\.zsh\\'"      . shell-script-mode)
-      ("nginx.conf"     . nginx-mode)
+      ("\\.license\\'"    . conf-mode)
+      ("\\.mask\\'"       . conf-mode)
+      ("\\.ssh/config\\'" . ssh-config-mode)
+      ("\\.unmask\\'"     . conf-mode)
+      ("\\.use\\'"        . conf-mode)
+      ("\\.zsh\\'"        . shell-script-mode)
+      ("nginx.conf\\'"    . nginx-mode)
+      ("sshd?_config\\'"  . ssh-config-mode)
       )
     auto-mode-alist))
  '(scheme-program-name "gosh"))
