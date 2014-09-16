@@ -22,8 +22,8 @@
 
 (setq ghc-import-key    (kbd "C-c i"))
 (setq ghc-insert-key    (kbd "C-c m"))
-(setq ghc-next-key      (kbd "C-c n"))
-(setq ghc-previous-key  (kbd "C-c t"))
+(setq ghc-next-key      (kbd "C-c ! n"))
+(setq ghc-previous-key  (kbd "C-c ! t"))
 (setq ghc-sort-key      (kbd "C-c l"))
 
 (define-key haskell-mode-map (kbd "C-M-'")                'ghc-check-insert-from-warning)

@@ -12,6 +12,8 @@
  '(kept-old-versions 500)               ;backupに古いものをいくつ残すか
  '(message-log-max 1000)                ;ログの記録行数を増やす.
 
+ '(save-place t)                        ;fileのカーソル位置保存
+ 
  '(recentf-max-saved-items 200)
  '(recentf-auto-cleanup 1000)
  '(recentf-exclude '(
