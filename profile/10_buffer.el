@@ -11,14 +11,15 @@
 ;; 順番重要
 ;; rainbow-delimiters -> rainbow-mode
 
-;; (require 'rainbow-delimiters)
-;; (global-rainbow-delimiters-mode)
-;; (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#586e75")))));文字列の色と被るため,変更
+(require 'rainbow-delimiters)
+(setq global-rainbow-delimiters-mode t)
+(custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#586e75")))));文字列の色と被るため,変更
 
 (require 'rainbow-mode)
-(add-hook 'lisp-mode-hook 'rainbow-turn-on)
-(add-hook 'scss-mode-hook 'rainbow-turn-on)
-(add-hook 'web-mode-hook  'rainbow-turn-on)
+(add-hook 'emacs-lisp-mode-hook 'rainbow-turn-on)
+(add-hook 'lisp-mode-hook       'rainbow-turn-on)
+(add-hook 'scss-mode-hook       'rainbow-turn-on)
+(add-hook 'web-mode-hook        'rainbow-turn-on)
 
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
