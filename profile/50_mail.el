@@ -21,6 +21,10 @@
  '(mu4e-view-show-images      t)
  )
 
+(defun mu4e-jump-to-inbox ()
+  (interactive)
+  (mu4e~headers-jump-to-maildir "/INBOX"))
+
 (define-key mu4e-view-mode-map (kbd "M-q") 'nil)
 
 (require 'smtpmail)
