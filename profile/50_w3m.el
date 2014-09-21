@@ -20,3 +20,6 @@
 (define-key w3m-mode-map (kbd "C-t") 'nil)
 (define-key w3m-mode-map (kbd "M-n") 'nil)
 (define-key w3m-mode-map (kbd "M-s") 'nil)
+
+(define-key w3m-mode-map (kbd "<C-tab>")           'w3m-next-buffer)
+(define-key w3m-mode-map (kbd "<C-S-iso-lefttab>") 'w3m-previous-buffer)
