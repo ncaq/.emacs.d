@@ -1,5 +1,8 @@
-;; -*- lexical-binding: t -*-
-(setq dired-listing-switches "-lAFhvX --group-directories-first");diredが使うlsオプションの設定
+; -*- lexical-binding: t -*-
+
+(require 'dired)
+
+(setq dired-listing-switches "-lAFhvX --group-directories-first") ;diredが使うlsオプションの設定
 
 ;;atoolの設定
 ;;http://d.hatena.ne.jp/mooz/20110911/p1
@@ -13,13 +16,6 @@
      (loop for suffix in my-dired-additional-compression-suffixes
            do (add-to-list 'dired-compress-file-suffixes
                            `(,(concat "\\" suffix "\\'") "" "aunpack")))))
-
-(require 'dired-sort)
-(add-hook 'dired-mode-hook 'dired-sort-trigger)
-
-(defun dired-sort-trigger ()
-  (define-key dired-mode-map "c" 'helm-dired-various)
-  (define-key dired-mode-map "s" 'dired-various-sort-change-or-edit))
 
 (defun helm-dired-various ()
   (interactive)
