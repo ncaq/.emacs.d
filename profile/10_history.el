@@ -7,14 +7,14 @@
  '(backup-directory-alist '(("" . "~/.backup")))
  '(tramp-auto-save-directory "~/.backup")
 
- '(history-length 100)                  ;ミニバッファの履歴の保存数を増やす
+ '(history-length 500)                  ;ミニバッファの履歴の保存数を増やす
  '(kept-new-versions 500)               ;backupに新しいものをいくつ残すか
  '(kept-old-versions 500)               ;backupに古いものをいくつ残すか
- '(message-log-max 1000)                ;ログの記録行数を増やす.
+ '(message-log-max 5000)                ;ログの記録行数を増やす.
 
  '(save-place t)                        ;fileのカーソル位置保存
- 
- '(recentf-max-saved-items 200)
+
+ '(recentf-max-saved-items 500)
  '(recentf-auto-cleanup 1000)
  '(recentf-exclude '(
                      "TAGS"

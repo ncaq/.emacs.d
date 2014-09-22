@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (require 'processing-mode)
 (custom-set-variables '(processing-location "~/Desktop/processing/processing-java")
                       '(processing-application-dir "~/Desktop/processing/")
