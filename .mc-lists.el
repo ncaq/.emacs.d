@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        LaTeX-babel-insert-hyphen
         backward-kill-symbolword
         backward-sexp
         backward-symbolword
@@ -30,5 +31,6 @@
 
 (setq mc/cmds-to-run-once
       '(
+        helm-show-kill-ring
         yas-expand
         ))
