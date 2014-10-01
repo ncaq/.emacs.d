@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
-(setq gc-cons-threshold 134217728);128MB
-(setq inhibit-startup-message);起動時の画面無効
+(setq gc-cons-threshold 32000000)       ;32MB
+(setq inhibit-startup-message)          ;起動時の画面無効
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")) ;melpaも追加
