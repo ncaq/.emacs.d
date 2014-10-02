@@ -16,7 +16,7 @@
  '(scheme-program-name "gosh"))
 (defvar inferior-lisp-program "clisp")
 
-(eval-after-load 'nxml
+(eval-after-load 'nxml-mode
   '(progn
      (define-key nxml-mode-map (kbd "C-M-n") 'nil)
      (define-key nxml-mode-map (kbd "M-h")   'nil)
