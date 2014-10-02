@@ -1,6 +1,5 @@
 ;; -*- lexical-binding: t -*-
 ;;http://cx4a.org/software/auto-complete/manual.ja.html
-(require 'auto-complete-config)
 (ac-config-default)
 (global-auto-complete-mode)
 
@@ -37,7 +36,10 @@
                            )
                          ac-modes)))
 
-(ac-set-trigger-key "TAB")
-(define-key ac-completing-map (kbd "M-n") 'ac-next)
-(define-key ac-completing-map (kbd "M-t") 'ac-previous)
-(define-key ac-mode-map       (kbd "C-'") 'auto-complete)
+(eval-after-load 'auto-complete
+  '(progn
+    (ac-set-trigger-key "TAB")
+    (define-key ac-completing-map (kbd "M-n") 'ac-next)
+    (define-key ac-completing-map (kbd "M-t") 'ac-previous)
+    (define-key ac-mode-map       (kbd "C-'") 'auto-complete)
+    ))
