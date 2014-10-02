@@ -32,5 +32,6 @@
 (setq mc/cmds-to-run-once
       '(
         helm-show-kill-ring
+        w3m-goto-alc
         yas-expand
         ))
