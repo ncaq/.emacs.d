@@ -44,8 +44,12 @@
 (define-key isearch-mode-map (kbd "M-b") 'isearc-del-char)
 (define-key isearch-mode-map (kbd "M-m") 'isearch-exit-previous)
 
-(require 'comint)
-(define-key comint-mode-map (kbd "M-t") 'comint-previous-input)
+(eval-after-load 'comint
+  '(progn
+    (define-key comint-mode-map (kbd "M-t") 'comint-previous-input)
+    ))
 
-(require 'diff-mode)
-(define-key diff-mode-map (kbd "M-h") 'nil)
+(eval-after-load 'diff-mode
+  '(progn
+    (define-key diff-mode-map (kbd "M-h") 'nil)
+    ))

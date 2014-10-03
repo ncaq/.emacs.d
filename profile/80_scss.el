@@ -1,20 +1,20 @@
 ;; -*- lexical-binding: t -*-
-(require 'scss-mode)
-(custom-set-variables '(scss-sass-options '("--cache-location" "'/tmp/.sass-cache'" "--style" "expanded")))
+(custom-set-variables '(scss-sass-options '("--cache-location" "'/tmp/.sass-cache/'" "--style" "expanded")))
 
 ;; Original setting file url is
 ;; https://github.com/antonj/.emacs.d/blob/master/aj-compilation.el
 
 ;; Compilation mode
 ;; Compilation ;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq compilation-scroll-output t)
+(custom-set-variables
+ '(compilation-scroll-output t)
+ '(compilation-ask-about-save 'nil)
+ '(compilation-save-buffers-predicate 'const-nil)
+ )
 ;;(setq compilation-window-height nil)
 
 (defun const-nil ()
   nil)
-
-(setq compilation-ask-about-save 'nil)
-(setq compilation-save-buffers-predicate 'const-nil)
 
 (defvar aj-compilation-saved-window-configuration nil
   "Previous window conf from before a compilation")

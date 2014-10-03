@@ -11,12 +11,13 @@
 ;; 順番重要
 ;; rainbow-delimiters -> rainbow-mode
 
-(require 'rainbow-delimiters)
-(add-to-list 'rainbow-delimiters-ignore-modes 'fundamental-mode)                    ;helmとの干渉回避
+(eval-after-load 'rainbow-delimiters
+  '(progn
+     (add-to-list 'rainbow-delimiters-ignore-modes 'fundamental-mode)                    ;helmとの干渉回避
+     ))
 (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#586e75"))))) ;文字列の色と被るため,変更
 (global-rainbow-delimiters-mode 1)
 
-(require 'rainbow-mode)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-turn-on)
 (add-hook 'lisp-mode-hook       'rainbow-turn-on)
 (add-hook 'scss-mode-hook       'rainbow-turn-on)
@@ -39,10 +40,12 @@ Letters do not insert themselves; instead, they are commands.
   (setq tabulated-list-sort-key (cons "Status" nil))
   (tabulated-list-init-header))
 
-(require 'ibuffer)
-(custom-set-variables '(ibuffer-formats
-                        '((mark modified read-only " " (name 60 30)
-                                " " (size 6 -1) " " (mode 16 16) " " filename)
-                          (mark " " (name 60 -1) " " filename))))
-(define-key ibuffer-mode-map (kbd "C-o") 'nil)
-(define-key ibuffer-mode-map (kbd "C-t") 'nil)
+(eval-after-load 'ibuffer
+  '(progn
+     (custom-set-variables '(ibuffer-formats
+                             '((mark modified read-only " " (name 60 30)
+                                     " " (size 6 -1) " " (mode 16 16) " " filename)
+                               (mark " " (name 60 -1) " " filename))))
+     (define-key ibuffer-mode-map (kbd "C-o") 'nil)
+     (define-key ibuffer-mode-map (kbd "C-t") 'nil)
+     ))

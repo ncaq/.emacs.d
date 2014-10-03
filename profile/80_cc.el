@@ -41,3 +41,8 @@
      ))
 
 (add-hook 'c-mode-common-hook 'c-turn-on-eldoc-mode)
+
+(eval-after-load 'cc-mode
+  '(progn
+    (define-key c-mode-base-map (kbd "C-M-h") nil)
+    ))

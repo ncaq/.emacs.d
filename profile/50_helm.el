@@ -1,9 +1,7 @@
 ;; -*- lexical-binding: t -*-
-(require 'helm-mode)
-(require 'helm-config)
-(helm-mode 1)
 
-(require 'helm-descbinds)
+(require 'helm-mode)
+(helm-mode 1)
 (helm-descbinds-mode 1)
 
 ;;helmを無効にするコマンドリスト
@@ -13,8 +11,9 @@
 (custom-set-variables
  '(helm-boring-buffer-regexp-list '("\\*"))
  '(helm-buffer-max-length 50) ;デフォルトはファイル名を短縮する区切りが20
- '(helm-samewindow t))        ;ウインドウ全体に表示
-(setq helm-exit-idle-delay 0.1)
+ '(helm-samewindow t);ウインドウ全体に表示
+ '(helm-exit-idle-delay 0.1)
+ )        
 
 (defun helm-buffers-list-selective ()
   (interactive)
