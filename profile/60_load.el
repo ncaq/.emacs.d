@@ -14,14 +14,12 @@
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
 
-(eval-after-load 'mozc
-  '(progn
-     (custom-set-variables
-      '(default-input-method 'japanese-mozc)
-      '(mozc-candidate-style 'echo-area)
-      )
-     (define-key mozc-mode-map (kbd "C-;") 'toggle-input-method)
-     ))
+(require 'mozc)
+(custom-set-variables
+ '(default-input-method 'japanese-mozc)
+ '(mozc-candidate-style 'echo-area)
+ )
+'(define-key mozc-mode-map (kbd "C-;") 'toggle-input-method)
 
 (custom-set-variables
  '(google-translate-default-source-language "en")
