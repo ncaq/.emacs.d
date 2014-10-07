@@ -27,22 +27,20 @@
   '(progn
      (quickrun-add-command "c99/gcc"
                            '((:command . "gcc")
-                             (:exec    . ("%c -std=c99 -g -Werror -Wall -Wextra %o -o %e %s"
+                             (:exec    . ("%c -std=c99 -ggdb -Wall -Wextra %o -o %e %s"
                                           "%e %a"))
                              (:remove  . ("%e")))
                            :default "c")
 
      (quickrun-add-command "c++11/g++"
                            '((:command . "g++")
-                             (:exec    . ("%c -std=c++11 -g -Werror -Wall -Wextra %o -o %e %s"
+                             (:exec    . ("%c -std=c++11 -ggdb -Wall -Wextra %o -o %e %s"
                                           "%e %a"))
                              (:remove  . ("%e")))
                            :default "c++")
      ))
 
-(add-hook 'c-mode-common-hook 'c-turn-on-eldoc-mode)
-
 (eval-after-load 'cc-mode
   '(progn
-    (define-key c-mode-base-map (kbd "C-M-h") nil)
-    ))
+     (define-key c-mode-base-map (kbd "C-M-h") nil)
+     ))
