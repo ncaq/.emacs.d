@@ -40,6 +40,21 @@
                            :default "c++")
      ))
 
+(eval-after-load 'gud
+  '(progn
+     (custom-set-variables
+      '(gdb-many-windows t)        ;情報表示
+      '(gud-tooltip-echo-area t)   ;mini bufferに値を表示
+      '(gud-tooltip-mode t)        ;ポップアップで情報
+      )
+     (define-key gud-minor-mode-map (kbd "<f7>")  'gud-until)  ;現在の行まで実行))
+     (define-key gud-minor-mode-map (kbd "<f8>")  'gud-cont)   ;ブレークポイントに会うまで実行
+     (define-key gud-minor-mode-map (kbd "<f9>")  'gud-break)  ;ブレークポイント設置
+     (define-key gud-minor-mode-map (kbd "<f10>") 'gud-next)   ;1行進む
+     (define-key gud-minor-mode-map (kbd "<f11>") 'gud-step)   ;1行進む.関数に入る
+     (define-key gud-minor-mode-map (kbd "<f12>") 'gud-finish) ;step out 現在のスタックフレームを抜ける
+     ))
+
 (eval-after-load 'cc-mode
   '(progn
      (define-key c-mode-base-map (kbd "C-M-h") nil)
