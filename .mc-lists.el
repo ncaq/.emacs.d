@@ -7,8 +7,11 @@
         backward-kill-symbolword
         backward-sexp
         backward-symbolword
+        c-electric-colon
         c-electric-delete-forward
+        c-electric-lt-gt
         c-electric-paren
+        c-electric-semi&comma
         c-hungry-backspace
         comment-dwim
         delete-horizontal-space
@@ -32,6 +35,7 @@
 (setq mc/cmds-to-run-once
       '(
         helm-show-kill-ring
+        indent-whole-buffer
+        mozc-handle-event
         w3m-goto-alc
-        yas-expand
         ))
