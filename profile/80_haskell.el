@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
+(require 'haskell-echo-info-autoloads)
+
 (eval-after-load 'haskell-mode
   '(progn
      (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
@@ -19,18 +21,17 @@
      (define-key haskell-mode-map [remap indent-whole-buffer]  'haskell-mode-stylish-buffer)
      ))
 
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook 'ghc-init)
+
 (eval-after-load 'ghc
   '(progn
-     (defun ncaq/ghc-mod-setup ()
-       (ghc-init)
-       (add-to-list 'ac-sources 'ac-source-ghc-mod)
-       (add-hook 'after-save-hook 'ghc-import-module nil t))
-
+     (add-to-list 'ac-sources 'ac-source-ghc-mod)
+     (add-hook 'after-save-hook 'ghc-import-module nil t)
      (setq ghc-import-key    (kbd "C-c i"))
      (setq ghc-insert-key    (kbd "C-c m"))
      (setq ghc-next-key      (kbd "C-c ! n"))
      (setq ghc-previous-key  (kbd "C-c ! t"))
      (setq ghc-sort-key      (kbd "C-c l"))
      ))
-
-(add-hook 'haskell-mode-hook 'ncaq/ghc-mod-setup t)
