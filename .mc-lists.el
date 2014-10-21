@@ -37,5 +37,6 @@
         helm-show-kill-ring
         indent-whole-buffer
         mozc-handle-event
+        toggle-input-method
         w3m-goto-alc
         ))
