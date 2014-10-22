@@ -47,13 +47,30 @@
       '(gud-tooltip-echo-area t)   ;mini bufferに値を表示
       '(gud-tooltip-mode t)        ;ポップアップで情報
       )
-     (define-key gud-minor-mode-map (kbd "<f7>")  'gud-until)  ;現在の行まで実行))
+     (define-key gud-minor-mode-map (kbd "<f7>")  'gud-until)  ;現在の行まで実行
      (define-key gud-minor-mode-map (kbd "<f8>")  'gud-cont)   ;ブレークポイントに会うまで実行
      (define-key gud-minor-mode-map (kbd "<f9>")  'gud-break)  ;ブレークポイント設置
      (define-key gud-minor-mode-map (kbd "<f10>") 'gud-next)   ;1行進む
      (define-key gud-minor-mode-map (kbd "<f11>") 'gud-step)   ;1行進む.関数に入る
      (define-key gud-minor-mode-map (kbd "<f12>") 'gud-finish) ;step out 現在のスタックフレームを抜ける
      ))
+
+(with-eval-after-load 'smartparens
+  ;; based on https://github.com/Fuco1/smartparens/wiki/Permissions
+  (defun my-create-newline-and-enter-sexp (&rest _ignored)
+    "Open a new brace or bracket expression, with relevant newlines and indent. "
+    (forward-line -1)
+    (indent-according-to-mode)
+    (forward-line 1)
+    (indent-according-to-mode)
+    (newline)
+    (indent-according-to-mode)
+    (forward-line -1)
+    (indent-according-to-mode)
+    )
+
+  (sp-local-pair 'c++-mode "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  )
 
 (eval-after-load 'cc-mode
   '(progn
