@@ -4,7 +4,7 @@
 (defface ncaq-space-face '((t (:background "#003616"))) nil)
 (defadvice font-lock-mode (before ncaq-font-lock-mode ())
   (font-lock-add-keywords
-   nil
+   major-mode
    '(
      ("\t"  . 'ncaq-tab-face)
      ("[ ]" . 'ncaq-space-face)
