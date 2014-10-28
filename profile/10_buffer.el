@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(set-face-attribute 'default nil :family "Ricty" :height 160)
+(set-face-attribute 'default nil :family "Ricty" :height 140)
 (set-fontset-font nil 'unicode (font-spec :family "Ricty"))
 
 (global-font-lock-mode);syntax highlight
@@ -11,10 +11,9 @@
 ;; 順番重要
 ;; rainbow-delimiters -> rainbow-mode
 
-(eval-after-load 'rainbow-delimiters
-  '(progn
-     (add-to-list 'rainbow-delimiters-ignore-modes 'fundamental-mode)                    ;helmとの干渉回避
-     ))
+(with-eval-after-load 'rainbow-delimiters
+  (add-to-list 'rainbow-delimiters-ignore-modes 'fundamental-mode)                    ;helmとの干渉回避
+  )
 (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#586e75"))))) ;文字列の色と被るため,変更
 (global-rainbow-delimiters-mode 1)
 
@@ -41,12 +40,11 @@ Letters do not insert themselves; instead, they are commands.
   (setq tabulated-list-sort-key (cons "Status" nil))
   (tabulated-list-init-header))
 
-(eval-after-load 'ibuffer
-  '(progn
-     (custom-set-variables '(ibuffer-formats
-                             '((mark modified read-only " " (name 60 30)
-                                     " " (size 6 -1) " " (mode 16 16) " " filename)
-                               (mark " " (name 60 -1) " " filename))))
-     (define-key ibuffer-mode-map (kbd "C-o") 'nil)
-     (define-key ibuffer-mode-map (kbd "C-t") 'nil)
-     ))
+(with-eval-after-load 'ibuffer
+  (custom-set-variables '(ibuffer-formats
+                          '((mark modified read-only " " (name 60 30)
+                                  " " (size 6 -1) " " (mode 16 16) " " filename)
+                            (mark " " (name 60 -1) " " filename))))
+  (define-key ibuffer-mode-map (kbd "C-o") 'nil)
+  (define-key ibuffer-mode-map (kbd "C-t") 'nil)
+  )
