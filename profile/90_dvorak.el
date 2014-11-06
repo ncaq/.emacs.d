@@ -34,7 +34,7 @@
 (global-set-key (kbd "M-f")   'helm-occur)
 (global-set-key (kbd "C-M-f") 'isearch-forward-regexp)
 
-;; disable
+;; modes
 (define-key minibuffer-local-map (kbd "M-s") 'nil)
 (define-key minibuffer-local-map (kbd "M-t") 'previous-history-element)
 
@@ -44,12 +44,16 @@
 (define-key isearch-mode-map (kbd "M-b") 'isearc-del-char)
 (define-key isearch-mode-map (kbd "M-m") 'isearch-exit-previous)
 
-(eval-after-load 'comint
-  '(progn
-    (define-key comint-mode-map (kbd "M-t") 'comint-previous-input)
-    ))
+(with-eval-after-load 'comint
+  (define-key comint-mode-map (kbd "M-t") 'comint-previous-input))
 
-(eval-after-load 'diff-mode
-  '(progn
-    (define-key diff-mode-map (kbd "M-h") 'nil)
-    ))
+(with-eval-after-load 'diff-mode
+  (define-key diff-mode-map (kbd "M-h") 'nil))
+
+(with-eval-after-load 'info
+  (define-key Info-mode-map (kbd "h") 'Info-history-back)
+  (define-key Info-mode-map (kbd "s") 'Info-history-forward)
+  
+  (define-key Info-mode-map (kbd "t") 'Info-prev)
+  (define-key Info-mode-map (kbd "b") 'Info-up)
+  )
