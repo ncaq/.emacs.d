@@ -7,7 +7,8 @@
 (custom-set-variables
  '(helm-boring-buffer-regexp-list '("\\*"))
  '(helm-buffer-max-length 50) ;デフォルトはファイル名を短縮する区切りが20
- '(helm-samewindow t);ウインドウ全体に表示
+ '(helm-buffer-max-len-mode 25)         ;モードを短縮する基準
+ '(helm-samewindow t)                   ;ウインドウ全体に表示
  )
 
 (defun helm-buffers-list-selective ()
