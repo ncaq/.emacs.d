@@ -29,6 +29,7 @@
         sp-slurp-hybrid-sexp
         sp-wrap-tag-done
         tab-to-tab-stop
+        undo-tree-visualizer-quit
         vs-move-beginning-of-line
         ))
 
