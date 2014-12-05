@@ -34,3 +34,4 @@
 (define-key dired-mode-map (kbd "C-o")     'nil)
 (define-key dired-mode-map (kbd "C-t")     'nil)
 (define-key dired-mode-map (kbd "M-s")     'nil)
+(define-key dired-mode-map (kbd "t")       'dired-previous-line)

@@ -36,6 +36,7 @@
 
 ;; modes
 (define-key minibuffer-local-map (kbd "M-s") 'nil)
+(define-key minibuffer-local-map (kbd "M-p") 'nil)
 (define-key minibuffer-local-map (kbd "M-t") 'previous-history-element)
 
 (define-key isearch-mode-map (kbd "C-b") 'isearch-delete-char)
@@ -45,10 +46,17 @@
 (define-key isearch-mode-map (kbd "M-m") 'isearch-exit-previous)
 
 (with-eval-after-load 'comint
-  (define-key comint-mode-map (kbd "M-t") 'comint-previous-input))
+  (define-key comint-mode-map (kbd "M-p") 'nil)
+  (define-key comint-mode-map (kbd "M-t") 'comint-previous-input)
+  )
 
 (with-eval-after-load 'diff-mode
   (define-key diff-mode-map (kbd "M-h") 'nil))
+
+(with-eval-after-load 'doc-view
+  (define-key doc-view-mode-map (kbd "C-p") 'nil)
+  (define-key doc-view-mode-map (kbd "C-t") 'doc-view-previous-line-or-previous-page)
+  )
 
 (with-eval-after-load 'info
   (define-key Info-mode-map (kbd "h") 'Info-history-back)
