@@ -11,9 +11,9 @@
     ".deb" ".gz" ".jar" ".lha" ".lrz" ".lz" ".lzh" ".lzma" ".lzo" ".rar"
     ".rpm" ".rz" ".t7z" ".tZ" ".tar" ".tbz" ".tbz2" ".tgz" ".tlz" ".txz"
     ".tzo" ".war" ".xz" ".zip"))
-(eval-after-load "dired-aux"
+(with-eval-after-load 'dired-aux
   '(progn
-     (loop for suffix in my-dired-additional-compression-suffixes
+     (cl-loop for suffix in my-dired-additional-compression-suffixes
            do (add-to-list 'dired-compress-file-suffixes
                            `(,(concat "\\" suffix "\\'") "" "aunpack")))))
 
