@@ -12,7 +12,7 @@
 ;; rainbow-delimiters -> rainbow-mode
 
 (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#586e75"))))) ;文字列の色と被るため,変更
-(rainbow-delimiters-mode-enable)
+(add-hook 'find-file-hook 'rainbow-delimiters-mode-enable)
 
 (autoload 'rainbow-turn-on "rainbow-mode")
 (add-hook 'emacs-lisp-mode-hook 'rainbow-turn-on)
