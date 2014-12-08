@@ -57,3 +57,7 @@
   (define-key Info-mode-map (kbd "t") 'Info-prev)
   (define-key Info-mode-map (kbd "b") 'Info-up)
   )
+
+(with-eval-after-load 'rect
+  (define-key rectangle-mark-mode-map (kbd "C-t") 'nil)
+  )
