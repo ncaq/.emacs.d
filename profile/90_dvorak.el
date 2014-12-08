@@ -56,6 +56,7 @@
 (with-eval-after-load 'doc-view
   (define-key doc-view-mode-map (kbd "C-p") 'nil)
   (define-key doc-view-mode-map (kbd "C-t") 'doc-view-previous-line-or-previous-page)
+  (define-key doc-view-mode-map (kbd "t")   'doc-view-previous-page)
   )
 
 (with-eval-after-load 'info
