@@ -15,12 +15,14 @@
         c-hungry-backspace
         comment-dwim
         delete-horizontal-space
+        ess-smart-comma
         forward-sexp
         forward-symbolword
         haskell-indentation-delete-char
         indent-for-tab-command
         kill-region
         kill-symbolword
+        markdown-enter-key
         smart-delete-whitespace-backward
         smart-move-beginning-of-line
         sp--self-insert-command
