@@ -26,6 +26,7 @@
         smart-delete-whitespace-backward
         smart-move-beginning-of-line
         sp--self-insert-command
+        sp-backward-kill-sexp
         sp-backward-sexp
         sp-forward-sexp
         sp-slurp-hybrid-sexp
