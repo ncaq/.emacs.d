@@ -75,5 +75,6 @@
 
 (with-eval-after-load 'cc-mode
   (define-key c-mode-base-map (kbd "C-M-h") 'nil)
+  (define-key c-mode-base-map (kbd "C-M-q") 'nil)
   (define-key c-mode-base-map (kbd "C-M-z") 'ff-find-other-file)
   )

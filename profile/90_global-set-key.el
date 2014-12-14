@@ -37,7 +37,7 @@
 (global-set-key (kbd "C-M-l") 'sort-lines-whole-buffer)
 (global-set-key (kbd "C-M-m") 'newline-upper)
 (global-set-key (kbd "C-M-o") 'ibuffer);もう一つのバッファーリスト
-(global-set-key (kbd "C-M-q") 'delete-window)
+(global-set-key (kbd "C-M-q") 'kill-this-buffer)
 (global-set-key (kbd "C-M-w") 'kill-ring-save-whole)
 
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
