@@ -2,7 +2,7 @@
 
 (require 'dired)
 
-(setq dired-listing-switches "-lAFhvX --group-directories-first") ;diredが使うlsオプションの設定
+(custom-set-variables '(dired-listing-switches "-lAFhvX")) ;diredが使うlsオプションの設定
 
 ;;atoolの設定
 ;;http://d.hatena.ne.jp/mooz/20110911/p1
