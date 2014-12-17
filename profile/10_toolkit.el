@@ -7,10 +7,11 @@
 
 (setq frame-title-format (format "%%f%%"));タイトルバーにバッファ名を表示する
 
-;;mode-line line and char numbar
+;; mode-line line and column and sum char numbar
 (setq mode-line-position '(:eval
-                           (format "l%%l/%d,c%d/%%i"
+                           (format "l%%l/%d,c%%c/%d,s%d/%%i"
                                    number-of-line-buffer
+                                   (- (line-end-position) (line-beginning-position))
                                    (point))))
 (defvar-local number-of-line-buffer (count-screen-lines))
 (defun set-number-of-line-buffer ()
