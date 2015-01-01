@@ -12,6 +12,7 @@
         c-electric-lt-gt
         c-electric-paren
         c-electric-semi&comma
+        c-electric-slash
         c-hungry-backspace
         comment-dwim
         delete-horizontal-space
@@ -41,6 +42,7 @@
         helm-show-kill-ring
         indent-whole-buffer
         mozc-handle-event
+        scroll-down-one
         toggle-input-method
         w3m-goto-alc
         ))
