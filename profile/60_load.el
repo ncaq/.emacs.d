@@ -13,7 +13,7 @@
  '(default-input-method 'japanese-mozc)
  '(mozc-candidate-style 'echo-area)
  )
-'(define-key mozc-mode-map (kbd "C-;") 'toggle-input-method)
+(define-key mozc-mode-map (kbd "C-;") 'toggle-input-method)
 
 (autoload 'sdic "sdic")
 (autoload 'sudden-death "sudden-death")
@@ -25,7 +25,5 @@
  '(google-translate-default-source-language "en")
  '(google-translate-default-target-language "ja"))
 
-(eval-after-load 'skype
-  '(progn
-     (setq skype--my-user-handle "ncaq__")
-     ))
+(with-eval-after-load 'skype
+  (setq skype--my-user-handle "ncaq__"))

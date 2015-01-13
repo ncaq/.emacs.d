@@ -13,6 +13,7 @@
         c-electric-paren
         c-electric-semi&comma
         c-electric-slash
+        c-electric-star
         c-hungry-backspace
         comment-dwim
         delete-horizontal-space

@@ -1,9 +1,12 @@
 ;; -*- lexical-binding: t -*-
 
 (with-eval-after-load 'helm-gtags
+  (require 'auto-complete)
+
   (custom-set-variables
    '(helm-gtags-auto-update t)
    '(helm-gtags-ignore-case t)
+   '(helm-gtags-update-interval-second 15)
    )
 
   (define-key helm-gtags-mode-map (kbd "C-.")   'helm-gtags-dwim)

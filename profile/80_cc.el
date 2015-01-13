@@ -16,13 +16,11 @@
      '(flycheck-clang-language-standard "c99")))
   (add-hook 'c-mode-hook 'flycheck-select-c-checker)
 
-  (defun flycheck-select-c++-checker ()
-    (custom-set-variables
-     '(flycheck-clang-language-standard "c++11")
-     '(flycheck-clang-standard-library "libc++")
-     '(flycheck-clang-include-path '("/usr/include/c++/v1"))
-     ))
-  (add-hook 'c++-mode-hook 'flycheck-select-c++-checker)
+  (custom-set-variables
+   '(flycheck-gcc-language-standard   "c++11")
+   '(flycheck-clang-language-standard "c++11")
+   '(flycheck-clang-standard-library  "libc++")
+   )
   )
 
 (with-eval-after-load 'quickrun
