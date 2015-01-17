@@ -12,10 +12,11 @@
 (add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
 (add-hook 'help-mode-hook 'elisp-slime-nav-mode)
 
-(custom-set-variables
- '(flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers)) ;emacs-lisp-checkdocは設定ファイルには不向き
- '(flycheck-emacs-lisp-load-path load-path)
- )
+(with-eval-after-load 'flycheck
+  (custom-set-variables
+   '(flycheck-disabled-checkers (append '(emacs-lisp-checkdoc) flycheck-disabled-checkers)) ;emacs-lisp-checkdocは設定ファイルには不向き
+   '(flycheck-emacs-lisp-load-path load-path)
+   ))
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
