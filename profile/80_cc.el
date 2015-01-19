@@ -10,27 +10,13 @@
  '(c-basic-offset 4)
  )
 
-(with-eval-after-load 'flycheck
-  (defun flycheck-select-c-checker ()
-    (custom-set-variables
-     '(flycheck-clang-language-standard "c99")))
-  (add-hook 'c-mode-hook 'flycheck-select-c-checker)
-
-  (custom-set-variables
-   '(flycheck-gcc-language-standard   "c++11")
-   '(flycheck-clang-language-standard "c++11")
-   '(flycheck-clang-standard-library  "libc++")
-   )
-  )
+(custom-set-variables
+ '(flycheck-gcc-language-standard   "c++11")
+ '(flycheck-clang-language-standard "c++11")
+ '(flycheck-clang-standard-library  "libc++")
+ )
 
 (with-eval-after-load 'quickrun
-  (quickrun-add-command "c99/clang"
-                        '((:command . "clang")
-                          (:exec    . ("%c -std=c99 -ggdb -Wall -Wextra %o -o %e %s"
-                                       "%e %a"))
-                          (:remove  . ("%e")))
-                        :default "c")
-
   (quickrun-add-command "c++11/clang++"
                         '((:command . "clang++")
                           (:exec    . ("%c -std=c++11 -ggdb -Wall -Wextra %o -o %e %s"
@@ -41,9 +27,9 @@
 
 (with-eval-after-load 'gud
   (custom-set-variables
-   '(gdb-many-windows t)        ;情報表示
-   '(gud-tooltip-echo-area t)   ;mini bufferに値を表示
-   '(gud-tooltip-mode t)        ;ポップアップで情報
+   '(gdb-many-windows t)                ;情報表示
+   '(gud-tooltip-echo-area t)           ;mini bufferに値を表示
+   '(gud-tooltip-mode t)                ;ポップアップで情報
    )
   (define-key gud-minor-mode-map (kbd "<f6>")  'gud-until)  ;現在の行まで実行
   (define-key gud-minor-mode-map (kbd "<f7>")  'gud-cont)   ;ブレークポイントまで実行

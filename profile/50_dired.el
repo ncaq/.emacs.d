@@ -1,8 +1,8 @@
-; -*- lexical-binding: t -*-
+;; -*- lexical-binding: t -*-
 
 (require 'dired)
 
-(custom-set-variables '(dired-listing-switches "-lAFhvL --group-directories-first")) ;diredが使うlsオプションの設定
+(custom-set-variables '(dired-listing-switches "-AFhvLl --group-directories-first")) ;diredが使うlsオプションの設定
 
 ;;atoolの設定
 ;;http://d.hatena.ne.jp/mooz/20110911/p1

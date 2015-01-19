@@ -25,15 +25,18 @@
         kill-region
         kill-symbolword
         markdown-enter-key
+        sh-assignment
         smart-delete-whitespace-backward
         smart-move-beginning-of-line
         sp--self-insert-command
         sp-backward-kill-sexp
         sp-backward-sexp
         sp-forward-sexp
+        sp-kill-sexp
         sp-slurp-hybrid-sexp
         sp-wrap-tag-done
         tab-to-tab-stop
+        undefined
         undo-tree-visualizer-quit
         vs-move-beginning-of-line
         ))
