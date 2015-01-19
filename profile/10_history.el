@@ -22,7 +22,7 @@
                      "\\.elc$"
                      "\\.file-backup"
                      "\\.o$"
-                     "\\.undohist"
+                     "\\.undo-tree"
                      "trash"
                      "~$"
                      ))
