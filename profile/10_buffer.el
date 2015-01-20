@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(set-face-attribute 'default nil :family "Ricty" :height 140)
+(set-face-attribute 'default nil :family "Ricty" :height 120)
 (set-fontset-font nil 'unicode (font-spec :family "Ricty"))
 
 (global-font-lock-mode);syntax highlight
