@@ -26,7 +26,8 @@
                      "trash"
                      "~$"
                      ))
- 
+
+ '(desktop-restore-frames nil)
  '(savehist-ignored-variables '(file-name-history))
  )
 
