@@ -5,14 +5,14 @@
 
 (auto-image-file-mode 1);画像表示
 
-(setq frame-title-format (format "%%f%%"));タイトルバーにバッファ名を表示する
+(setq frame-title-format '(:eval (list (or (buffer-file-name) (buffer-name)) " " mode-line-modes))) ;((ファイル名 or バッファ名) モード一覧)
 
 ;; mode-line line and column and sum char numbar
 (setq mode-line-position '(:eval
-                           (format "l%%l/%d,c%%c/%d,s%d/%%i"
-                                   number-of-line-buffer
-                                   (- (line-end-position) (line-beginning-position))
-                                   (point))))
+                           (list "l%l/" (int-to-string number-of-line-buffer)
+                                 ",c" (int-to-string (- (point) (line-beginning-position))) "/" (int-to-string (- (line-end-position) (line-beginning-position)))
+                                 ",s" (int-to-string (point)) "/%i"
+                                 )))
 (defvar-local number-of-line-buffer (count-screen-lines))
 (defun set-number-of-line-buffer ()
   (setq number-of-line-buffer (count-screen-lines)))
