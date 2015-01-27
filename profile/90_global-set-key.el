@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
+(global-set-key (kbd "<tab>") 'indent-for-tab-command) ;何かしらを割り当てることで,C-iと別扱いになる
+
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'w3m-goto-alc)
 (global-set-key (kbd "C-.") 'helm-semantic-or-imenu)
@@ -7,6 +9,7 @@
 (global-set-key (kbd "C-=") 'text-scale-reset)
 (global-set-key (kbd "C-^") 'dired-jump-to-current)
 (global-set-key (kbd "C-a") 'smart-move-beginning-of-line)
+(global-set-key (kbd "C-i") 'indent-whole-buffer) ;全ての文字に対し字下げを行う
 (global-set-key (kbd "C-j") 'helm-ag);インクリメント串刺し検索
 (global-set-key (kbd "C-m") 'newline-and-indent);改行時にインデント
 (global-set-key (kbd "C-o") 'helm-buffers-list)
@@ -26,13 +29,12 @@
 (global-set-key (kbd "M-o") 'helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
 (global-set-key (kbd "M-q") 'delete-other-windows);他のウインドウを閉じる
 (global-set-key (kbd "M-y") 'helm-show-kill-ring);多次元クリップボード
-(global-set-key (kbd "M-z") 'align-regexp);揃える(正規表現)
 
 (global-set-key (kbd "M-\\") 'delete-horizontal-space);前の改行も消すように
 
 (global-set-key (kbd "C-M-,") 'mc/edit-lines)
 (global-set-key (kbd "C-M--") 'sdic)
-(global-set-key (kbd "C-M-;") 'indent-whole-buffer);全ての文字に対し字下げを行う
+(global-set-key (kbd "C-M-;") 'align-regexp);揃える(正規表現)
 (global-set-key (kbd "C-M-d") 'kill-sexp)
 (global-set-key (kbd "C-M-l") 'sort-lines-whole-buffer)
 (global-set-key (kbd "C-M-m") 'newline-upper)

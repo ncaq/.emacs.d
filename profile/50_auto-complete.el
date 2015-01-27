@@ -36,10 +36,9 @@
                            )
                          ac-modes)))
 
-(eval-after-load 'auto-complete
-  '(progn
-    (ac-set-trigger-key "TAB")
-    (define-key ac-completing-map (kbd "M-n") 'ac-next)
-    (define-key ac-completing-map (kbd "M-t") 'ac-previous)
-    (define-key ac-mode-map       (kbd "C-'") 'auto-complete)
-    ))
+(with-eval-after-load 'auto-complete
+  (ac-set-trigger-key "<tab>")
+  (define-key ac-completing-map (kbd "M-n") 'ac-next)
+  (define-key ac-completing-map (kbd "M-t") 'ac-previous)
+  (define-key ac-mode-map       (kbd "C-'") 'auto-complete)
+  )
