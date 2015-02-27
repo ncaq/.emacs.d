@@ -1,5 +1,4 @@
 ;; -*- lexical-binding: t -*-
-(require 'haskell-echo-info-autoloads)
 
 (with-eval-after-load 'haskell-mode
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
@@ -10,8 +9,6 @@
    '(haskell-indentation-left-offset 4)
    '(haskell-stylish-on-save t)
    )
-
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-echo-info-mode)
 
   (define-key haskell-mode-map (kbd "C-M-'")                'ghc-check-insert-from-warning)
   (define-key haskell-mode-map (kbd "C-c C-d")              'hayoo)
