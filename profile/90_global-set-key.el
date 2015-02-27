@@ -12,7 +12,7 @@
 (global-set-key (kbd "C-i") 'indent-whole-buffer) ;全ての文字に対し字下げを行う
 (global-set-key (kbd "C-j") 'helm-ag);インクリメント串刺し検索
 (global-set-key (kbd "C-m") 'newline-and-indent);改行時にインデント
-(global-set-key (kbd "C-o") 'helm-buffers-list)
+(global-set-key (kbd "C-o") 'helm-for-files-lite)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-u") 'kill-whole-line);現在行を削除
 (global-set-key (kbd "C-z") 'quoted-insert);C-qの本来の関数

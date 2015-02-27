@@ -6,6 +6,16 @@
 (helm-mode 1)
 (helm-descbinds-mode 1)
 
+(defvar helm-for-files-original-preferred-list helm-for-files-preferred-list)
+(defvar helm-for-files-lite-preferred-list (remove 'helm-source-locate helm-for-files-preferred-list))
+
+(defun helm-for-files-lite ()
+  (interactive)
+  (setq helm-for-files-preferred-list helm-for-files-lite-preferred-list)
+  (helm-for-files)
+  (setq helm-for-files-preferred-list helm-for-files-original-preferred-list)
+  )
+
 (custom-set-variables
  '(helm-boring-buffer-regexp-list (append '("\\*tramp" "\\*magit-") helm-boring-buffer-regexp-list))
  '(helm-buffer-max-len-mode 25)         ;モードを短縮する基準
