@@ -3,7 +3,7 @@
 (global-set-key (kbd "<tab>") 'indent-for-tab-command) ;何かしらを割り当てることで,C-iと別扱いになる
 
 (global-set-key (kbd "C-+") 'text-scale-increase)
-(global-set-key (kbd "C--") 'w3m-goto-alc)
+(global-set-key (kbd "C--") 'eww-goto-alc)
 (global-set-key (kbd "C-.") 'helm-semantic-or-imenu)
 (global-set-key (kbd "C-;") 'toggle-input-method)
 (global-set-key (kbd "C-=") 'text-scale-reset)

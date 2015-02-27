@@ -1,9 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
 (require 'auto-sudoedit-autoloads)
+(require 'eww-goto-alc-autoloads)
 (require 'ncaq-emacs-utils)
 (require 'symbolword-mode)
-(require 'w3m-goto-alc-autoloads)
 
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)

@@ -16,3 +16,6 @@
 [submodule "mine/w3m-goto-alc"]
 	path = mine/w3m-goto-alc
 	url = git@github.com:ncaq/w3m-goto-alc.git
+[submodule "mine/eww-goto-alc"]
+	path = mine/eww-goto-alc
+	url = git@github.com:ncaq/eww-goto-alc.git
