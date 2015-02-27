@@ -45,6 +45,7 @@
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
 (global-set-key (kbd "C-c a") 'text-adjust-selective);全角記号とかを変換する
+(global-set-key (kbd "C-c b") 'eww)
 (global-set-key (kbd "C-c c") 'quickrun);かしこいコンパイルコマンド実行
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c l") 'recentf-cleanup)
