@@ -29,6 +29,13 @@
 (with-eval-after-load 'ghc
   (add-to-list 'ac-sources 'ac-source-ghc-mod)
   (add-hook 'after-save-hook 'ghc-import-module nil t)
+
+  (defun ghc-show-info-minibuffer ()
+    (interactive)
+    (message "%s" (ghc-get-info (ghc-things-at-point))))
+
+  (define-key haskell-mode-map (kbd "C-M-.") 'ghc-show-info-minibuffer)
+
   (setq ghc-import-key    (kbd "C-c i"))
   (setq ghc-insert-key    (kbd "C-c m"))
   (setq ghc-next-key      (kbd "C-c ! n"))
