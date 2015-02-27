@@ -14,17 +14,12 @@
 (unless (server-running-p)
   (server-start))
 
-;; ロードパスの設定
-;;http://d.hatena.ne.jp/kitokitoki/20100705/p1
-(defun my-add-load-path-subdir (dirlist)
-  (with-temp-buffer
-    (dolist (dir dirlist)
-      (cd dir)
-      (add-to-list 'load-path dir)
-      (normal-top-level-add-subdirs-to-load-path))))
-(my-add-load-path-subdir
- '("~/.emacs.d/mine/"
-   "~/.emacs.d/universe/"))
+;; load-pathの設定
+(mapc (lambda (path)
+        (let ((default-directory path))
+          (normal-top-level-add-subdirs-to-load-path)))
+      (list "~/.emacs.d/mine/"
+            "~/.emacs.d/universe/"))
 
 ;;別ファイルから読み込む
 (require 'init-loader)
