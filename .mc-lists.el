@@ -43,10 +43,13 @@
 
 (setq mc/cmds-to-run-once
       '(
+        dired-clean-directory
         helm-show-kill-ring
         indent-whole-buffer
         mozc-handle-event
         scroll-down-one
         toggle-input-method
         w3m-goto-alc
+        wdired-change-to-wdired-mode
+        wdired-finish-edit
         ))
