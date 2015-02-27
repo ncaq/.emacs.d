@@ -7,6 +7,9 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")) ;melpaも追加
 (package-initialize)                                                              ;インストールしたパッケージにロードパスを通してロードする
 
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
 (require 'server)                       ;emacsclient
 (unless (server-running-p)
   (server-start))

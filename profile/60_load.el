@@ -5,9 +5,6 @@
 (require 'ncaq-emacs-utils)
 (require 'symbolword-mode)
 
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
-
 (require 'mozc)
 (custom-set-variables
  '(default-input-method 'japanese-mozc)
