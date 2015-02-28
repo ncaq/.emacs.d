@@ -26,4 +26,9 @@
 (custom-set-variables '(init-loader-show-log-after-init nil))
 (init-loader-load "~/.emacs.d/profile/") ;設定ファイルがあるディレクトリを指定
 
-(kill-buffer "*scratch*")
+(defun kill-buffer-if-exist (BUFFER-OR-NAME)
+  (when (get-buffer BUFFER-OR-NAME)
+    (kill-buffer BUFFER-OR-NAME)))
+
+(kill-buffer-if-exist "*scratch*")
+(kill-buffer-if-exist "*Compile-Log*")
