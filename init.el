@@ -1,7 +1,10 @@
 ;; -*- lexical-binding: t -*-
 
-(setq gc-cons-threshold 32000000)       ;32MB
-(setq inhibit-startup-message)          ;起動時の画面無効
+(custom-set-variables
+ '(gc-cons-percentage 10)               ; 10%以上作成したらGC
+ '(gc-cons-threshold 16000000)          ; 16MB以上作成したらGC
+ '(inhibit-startup-message t)           ; 起動時の画面無効
+ )
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")) ;melpaも追加
