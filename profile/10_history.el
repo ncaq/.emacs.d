@@ -46,7 +46,7 @@
   "recentfによる .recentf の読み込みで,バックアップ位置がバグることへの対策"
   (require 'recentf)
   (require 'recentf-ext)
-  (require 'recentf-purge-tramp)
+  (require 'recentf-remove-sudo-tramp-prefix)
 
   (recentf-mode 1)
   (run-with-idle-timer 600 t 'sync-file-name-history-from-recentf)
