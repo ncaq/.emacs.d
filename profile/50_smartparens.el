@@ -4,6 +4,23 @@
 (smartparens-global-mode 1)
 (show-smartparens-global-mode 1)
 
+(with-eval-after-load 'smartparens
+  ;; based on https://github.com/Fuco1/smartparens/wiki/Permissions
+  (defun my-create-newline-and-enter-sexp (&rest _ignored)
+    "Open a new brace or bracket expression, with relevant newlines and indent. "
+    (forward-line -1)
+    (indent-according-to-mode)
+    (forward-line 1)
+    (indent-according-to-mode)
+    (newline)
+    (indent-according-to-mode)
+    (forward-line -1)
+    (indent-according-to-mode)
+    )
+
+  (sp-local-pair '(c-mode c++-mode objc-mode java-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  )
+
 (define-key smartparens-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
 (define-key smartparens-mode-map (kbd "C-)") 'sp-slurp-hybrid-sexp)
 (define-key smartparens-mode-map (kbd "M-(") 'sp-backward-barf-sexp)

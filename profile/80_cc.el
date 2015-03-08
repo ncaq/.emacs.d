@@ -4,7 +4,7 @@
  '(c-default-style
    '((c-mode . "bsd")
      (c++-mode . "bsd")
-     (java-mode . "java")
+     (java-mode . "bsd")
      (awk-mode . "awk")
      (other . "bsd")))
  '(c-basic-offset 4)
@@ -38,23 +38,6 @@
   (define-key gud-minor-mode-map (kbd "<f10>") 'gud-next)   ;1行進む
   (define-key gud-minor-mode-map (kbd "<f11>") 'gud-step)   ;1行進む.関数に入る
   (define-key gud-minor-mode-map (kbd "<f12>") 'gud-finish) ;step out 現在のスタックフレームを抜ける
-  )
-
-(with-eval-after-load 'smartparens
-  ;; based on https://github.com/Fuco1/smartparens/wiki/Permissions
-  (defun my-create-newline-and-enter-sexp (&rest _ignored)
-    "Open a new brace or bracket expression, with relevant newlines and indent. "
-    (forward-line -1)
-    (indent-according-to-mode)
-    (forward-line 1)
-    (indent-according-to-mode)
-    (newline)
-    (indent-according-to-mode)
-    (forward-line -1)
-    (indent-according-to-mode)
-    )
-
-  (sp-local-pair 'c++-mode "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   )
 
 (with-eval-after-load 'cc-mode
