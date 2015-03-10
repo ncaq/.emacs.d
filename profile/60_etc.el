@@ -10,7 +10,6 @@
  '(require-final-newline t)     ;POSIX改行
  '(scroll-step 1)     ;最下段までScrollしてもカーソルを中心に戻さない
  '(tab-width 4)
- '(trash-directory "~/trash/")
  '(x-select-enable-clipboard t) ;クリップボードをX11と共有
  )
 

@@ -26,7 +26,6 @@
                      
                      "\\.file-backup/"
                      "\\.undo-tree/"
-                     "trash/"
                      ))
 
  '(desktop-restore-frames nil)
