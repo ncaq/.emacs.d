@@ -3,8 +3,7 @@
 (require 'dired)
 
 (custom-set-variables
- '(insert-directory-program "ls-first-ln-dir") ;lsコマンド指定
- '(dired-listing-switches "-alFh")      ;diredが使うlsオプションの設定
+ '(dired-listing-switches "-Fhval --group-directories-first")      ;diredが使うlsオプションの設定
  )
 
 (defun dired-jump-to-current ()
