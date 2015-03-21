@@ -1,4 +1,4 @@
- ;; -*- lexical-binding: t -*-
+;; -*- lexical-binding: t -*-
 (autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t) ;http://www.okada.jp.org/RWiki/?ESS
 
 (custom-set-variables
