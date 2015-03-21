@@ -14,4 +14,7 @@
   (define-key web-mode-map (kbd "M-c") 'web-mode-element-close)
   )
 
-(custom-set-variables '(scss-sass-options '("--cache-location" "'/tmp/.sass-cache/'" "--style" "expanded")))
+(custom-set-variables
+ '(scss-compile-at-save t)
+ '(scss-sass-options '("--cache-location" "'/tmp/.sass-cache/'" "--style" "expanded"))
+ )
