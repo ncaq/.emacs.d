@@ -17,6 +17,8 @@
         c-hungry-backspace
         comment-dwim
         delete-horizontal-space
+        dired-next-line
+        dired-previous-line
         ess-smart-comma
         forward-sexp
         forward-symbolword
