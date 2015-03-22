@@ -11,7 +11,7 @@
    )
 
   (define-key haskell-mode-map (kbd "C-M-'")                'ghc-check-insert-from-warning)
-  (define-key haskell-mode-map (kbd "C-c C-d")              'hayoo)
+  (define-key haskell-mode-map (kbd "C-c C-d")              'hoogle)
   (define-key haskell-mode-map (kbd "C-c C-l")              'inferior-haskell-load-file)
   (define-key haskell-mode-map [remap indent-whole-buffer]  'haskell-mode-stylish-buffer-and-save-buffer)
   )
