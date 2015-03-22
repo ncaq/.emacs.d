@@ -9,48 +9,48 @@
 (global-set-key (kbd "C-=") 'text-scale-reset)
 (global-set-key (kbd "C-^") 'dired-jump-to-current)
 (global-set-key (kbd "C-a") 'smart-move-beginning-of-line)
-(global-set-key (kbd "C-i") 'indent-whole-buffer) ;全ての文字に対し字下げを行う
-(global-set-key (kbd "C-j") 'helm-ag);インクリメント串刺し検索
-(global-set-key (kbd "C-m") 'newline-and-indent);改行時にインデント
+(global-set-key (kbd "C-i") 'indent-whole-buffer) 
+(global-set-key (kbd "C-j") 'helm-ag)
+(global-set-key (kbd "C-m") 'newline-and-indent)
 (global-set-key (kbd "C-o") 'helm-for-files-lite)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
-(global-set-key (kbd "C-u") 'kill-whole-line);現在行を削除
-(global-set-key (kbd "C-z") 'quoted-insert);C-qの本来の関数
+(global-set-key (kbd "C-u") 'kill-whole-line)
+(global-set-key (kbd "C-z") 'quoted-insert)
 
 (global-set-key (kbd "C-S-b") 'smart-delete-whitespace-backward)
-(global-set-key (kbd "C-S-d") 'delete-horizontal-space);スペースを一気に消す
+(global-set-key (kbd "C-S-d") 'delete-horizontal-space)
 
 (global-set-key (kbd "M-,") 'mc/mark-all-dwim)
-(global-set-key (kbd "M--") 'help-command);HHKだとF1押しにくい
+(global-set-key (kbd "M--") 'help-command)
 (global-set-key (kbd "M-c") 'nil)
 (global-set-key (kbd "M-j") 'ag-regexp)
 (global-set-key (kbd "M-l") 'sort-lines-auto-mark-paragrah)
-(global-set-key (kbd "M-m") 'newline-under);
-(global-set-key (kbd "M-o") 'helm-for-files);C-xC-bは頻繁に打つにしてはめんどくさい
-(global-set-key (kbd "M-q") 'delete-other-windows);他のウインドウを閉じる
-(global-set-key (kbd "M-y") 'helm-show-kill-ring);多次元クリップボード
+(global-set-key (kbd "M-m") 'newline-under)
+(global-set-key (kbd "M-o") 'helm-for-files)
+(global-set-key (kbd "M-q") 'delete-other-windows)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
-(global-set-key (kbd "M-\\") 'delete-horizontal-space);前の改行も消すように
+(global-set-key (kbd "M-\\") 'delete-horizontal-space)
 
 (global-set-key (kbd "C-M-,") 'mc/edit-lines)
 (global-set-key (kbd "C-M--") 'sdic)
-(global-set-key (kbd "C-M-;") 'align-regexp);揃える(正規表現)
+(global-set-key (kbd "C-M-;") 'align-regexp)
 (global-set-key (kbd "C-M-d") 'kill-sexp)
 (global-set-key (kbd "C-M-l") 'sort-lines-whole-buffer)
 (global-set-key (kbd "C-M-m") 'newline-upper)
-(global-set-key (kbd "C-M-o") 'ibuffer);もう一つのバッファーリスト
+(global-set-key (kbd "C-M-o") 'ibuffer)
 (global-set-key (kbd "C-M-q") 'kill-this-buffer)
 (global-set-key (kbd "C-M-w") 'kill-ring-save-whole)
 
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
-(global-set-key (kbd "C-c a") 'text-adjust-selective);全角記号とかを変換する
+(global-set-key (kbd "C-c a") 'text-adjust-selective)
 (global-set-key (kbd "C-c b") 'eww)
-(global-set-key (kbd "C-c c") 'quickrun);かしこいコンパイルコマンド実行
+(global-set-key (kbd "C-c c") 'quickrun)
 (global-set-key (kbd "C-c l") 'recentf-cleanup)
 (global-set-key (kbd "C-c m") 'mu4e-jump-to-inbox)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
-(global-set-key (kbd "C-c o") 'open-junk-file) ;残るscratch
+(global-set-key (kbd "C-c o") 'open-junk-file)
 (global-set-key (kbd "C-c p") 'tramp-cleanup-all-connections)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-c t") 'google-translate-at-point)
