@@ -47,7 +47,6 @@
 (global-set-key (kbd "C-c a") 'text-adjust-selective);全角記号とかを変換する
 (global-set-key (kbd "C-c b") 'eww)
 (global-set-key (kbd "C-c c") 'quickrun);かしこいコンパイルコマンド実行
-(global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c l") 'recentf-cleanup)
 (global-set-key (kbd "C-c m") 'mu4e-jump-to-inbox)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
@@ -56,5 +55,9 @@
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-c t") 'google-translate-at-point)
 (global-set-key (kbd "C-c w") 'helm-man-woman)
+
+(global-set-key (kbd "M-g b") 'magit-blame-mode)
+(global-set-key (kbd "M-g o") 'magit-show)
+(global-set-key (kbd "M-g s") 'magit-status)
 
 (global-set-key (kbd "C-x C-f") 'find-file-at-point)
