@@ -10,6 +10,7 @@
  '(require-final-newline t)                 ; POSIX改行
  '(scroll-step 1)                           ; 最下段までScrollしてもカーソルを中心に戻さない
  '(tab-width 4)                             ; tab to 4 space
+ '(warning-minimum-level :error)            ; quiet waring
  '(x-select-enable-clipboard t)             ; クリップボードをX11と共有
  )
 
