@@ -15,7 +15,8 @@
 (global-set-key (kbd "C-o") 'helm-for-files-lite)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-u") 'kill-whole-line)
-(global-set-key (kbd "C-z") 'quoted-insert)
+
+(global-set-key (kbd "C-\\") 'quoted-insert)
 
 (global-set-key (kbd "C-S-b") 'smart-delete-whitespace-backward)
 (global-set-key (kbd "C-S-d") 'delete-horizontal-space)
