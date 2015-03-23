@@ -10,15 +10,19 @@
  '(c-basic-offset 4)
  )
 
-(custom-set-variables
- '(flycheck-gcc-language-standard   "c++11")
- '(flycheck-clang-language-standard "c++11")
- )
+(with-eval-after-load 'cc-mode
+  (define-key c-mode-base-map (kbd "C-M-h") 'nil)
+  (define-key c-mode-base-map (kbd "C-M-q") 'nil)
+  (define-key c-mode-base-map (kbd "C-M-z") 'ff-find-other-file)
+  )
 
 (with-eval-after-load 'flycheck
-  (defun flycheck-c++ ()
-    (setq flycheck-clang-standard-library  "libc++"))
-  (add-hook 'c++-mode-hook 'flycheck-c++)
+  (custom-set-variables
+   '(flycheck-gcc-language-standard   "c++11")
+   '(flycheck-clang-language-standard "c++11")
+   )
+  (add-hook 'c++-mode-hook '(lambda ()
+                              (setq flycheck-clang-standard-library "libc++")))
   )
 
 (with-eval-after-load 'gud
@@ -36,8 +40,7 @@
   (define-key gud-minor-mode-map (kbd "<f12>") 'gud-finish) ;step out 現在のスタックフレームを抜ける
   )
 
-(with-eval-after-load 'cc-mode
-  (define-key c-mode-base-map (kbd "C-M-h") 'nil)
-  (define-key c-mode-base-map (kbd "C-M-q") 'nil)
-  (define-key c-mode-base-map (kbd "C-M-z") 'ff-find-other-file)
+(with-eval-after-load 'company
+  (custom-set-variables '(company-c-headers-path-system (append '("/usr/include/c++/v1"))))
+  (add-hook 'c-mode-common-hook '(lambda ()(add-to-list 'company-backends 'company-c-headers)))
   )
