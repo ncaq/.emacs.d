@@ -13,16 +13,12 @@
 (custom-set-variables
  '(flycheck-gcc-language-standard   "c++11")
  '(flycheck-clang-language-standard "c++11")
- '(flycheck-clang-standard-library  "libc++")
  )
 
-(with-eval-after-load 'quickrun
-  (quickrun-add-command "c++11/clang++"
-                        '((:command . "clang++")
-                          (:exec    . ("%c -std=c++11 -ggdb -Wall -Wextra %o -o %e %s"
-                                       "%e %a"))
-                          (:remove  . ("%e")))
-                        :default "c++")
+(with-eval-after-load 'flycheck
+  (defun flycheck-c++ ()
+    (setq flycheck-clang-standard-library  "libc++"))
+  (add-hook 'c++-mode-hook 'flycheck-c++)
   )
 
 (with-eval-after-load 'gud
