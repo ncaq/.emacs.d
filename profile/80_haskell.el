@@ -10,16 +10,18 @@
    '(haskell-stylish-on-save t)
    )
 
+  (add-to-list 'company-backends 'company-cabal)
+
+  (defun haskell-mode-stylish-buffer-and-save-buffer()
+    (interactive)
+    (save-buffer)
+    (haskell-mode-stylish-buffer)
+    )
+  (define-key haskell-mode-map [remap indent-whole-buffer]  'haskell-mode-stylish-buffer-and-save-buffer)
+
   (define-key haskell-mode-map (kbd "C-M-'")                'ghc-check-insert-from-warning)
   (define-key haskell-mode-map (kbd "C-c C-d")              'hoogle)
   (define-key haskell-mode-map (kbd "C-c C-l")              'inferior-haskell-load-file)
-  (define-key haskell-mode-map [remap indent-whole-buffer]  'haskell-mode-stylish-buffer-and-save-buffer)
-  )
-
-(defun haskell-mode-stylish-buffer-and-save-buffer()
-  (interactive)
-  (save-buffer)
-  (haskell-mode-stylish-buffer)
   )
 
 (autoload 'ghc-init "ghc" nil t)
@@ -28,11 +30,11 @@
 
 (with-eval-after-load 'ghc
   (add-hook 'after-save-hook 'ghc-import-module nil t)
+  (add-to-list 'company-backends 'company-ghc)
 
   (defun ghc-show-info-minibuffer ()
     (interactive)
     (message "%s" (ghc-get-info (ghc-things-at-point))))
-
   (define-key haskell-mode-map (kbd "C-M-.") 'ghc-show-info-minibuffer)
 
   (setq ghc-import-key    (kbd "C-c i"))
