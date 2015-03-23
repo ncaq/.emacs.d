@@ -1,12 +1,12 @@
 ;; -*- lexical-binding: t -*-
 
+(custom-set-variables '(global-flycheck-mode t))
+
 (with-eval-after-load 'flycheck
-  (global-flycheck-mode 1)
-  
   (custom-set-variables
-   '(flycheck-display-errors-function nil) ; Echoエリアにエラーを表示しない
-   '(flycheck-highlighting-mode nil)    ; 下線があると_が見えなくなる
-   '(flycheck-idle-change-delay 5)      ; 5秒
+   '(flycheck-display-errors-function nil) ;Echoエリアにエラーを表示しない
+   '(flycheck-highlighting-mode nil)       ;下線があると_が見えなくなる
+   '(flycheck-idle-change-delay 5)         ;5秒
    '(flycheck-indication-mode 'left-fringe)
    )
 
