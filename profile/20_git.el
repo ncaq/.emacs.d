@@ -9,5 +9,4 @@
    '(magit-diff-refine-hunk 'all)
    ))
 
-(global-git-gutter+-mode 1)
-(custom-set-variables '(git-gutter+:verbosity 2))
+(custom-set-variables '(global-git-gutter+-mode t))
