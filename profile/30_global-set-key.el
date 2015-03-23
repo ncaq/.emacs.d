@@ -1,7 +1,8 @@
 ;; -*- lexical-binding: t -*-
 
-(global-set-key (kbd "<tab>") 'indent-for-tab-command) ;何かしらを割り当てることで,C-iと別扱いになる
+(global-set-key (kbd "<tab>") 'company-trigger-key-command) ;何かしらを割り当てることで,C-iと別扱いになる
 
+(global-set-key (kbd "C-'") 'company-complete-common)
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'eww-goto-alc)
 (global-set-key (kbd "C-.") 'helm-semantic-or-imenu)
@@ -9,7 +10,7 @@
 (global-set-key (kbd "C-=") 'text-scale-reset)
 (global-set-key (kbd "C-^") 'dired-jump-to-current)
 (global-set-key (kbd "C-a") 'smart-move-beginning-of-line)
-(global-set-key (kbd "C-i") 'indent-whole-buffer) 
+(global-set-key (kbd "C-i") 'indent-whole-buffer)
 (global-set-key (kbd "C-j") 'helm-ag)
 (global-set-key (kbd "C-m") 'newline-and-indent)
 (global-set-key (kbd "C-o") 'helm-for-files-lite)
