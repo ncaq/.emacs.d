@@ -4,7 +4,6 @@
  '(user-full-name     "ncaq")
  '(user-mail-address  "ncaq@ncaq.net"))
 
-(require 'smtpmail)
 (custom-set-variables
  '(message-send-mail-function  'smtpmail-send-it)
  '(smtpmail-smtp-server        "ncaq.net")

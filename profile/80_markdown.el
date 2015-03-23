@@ -1,14 +1,10 @@
 ;; -*- lexical-binding: t -*-
 
-(require 'markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(with-eval-after-load 'markdown-mode
+  (define-key markdown-mode-map (kbd "M-n") 'nil)
 
-(custom-set-variables
- '(markdown-command "pandoc")
- )
-
-(define-key markdown-mode-map (kbd "M-n") 'nil)
-
-(require 'pandoc-mode)
-(add-hook 'markdown-mode-hook 'pandoc-mode)
-(add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
+  (custom-set-variables '(markdown-command "pandoc"))
+  (add-hook 'markdown-mode-hook 'pandoc-mode)
+  (add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
+  )
