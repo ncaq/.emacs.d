@@ -1,8 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
 (with-eval-after-load 'helm-gtags
-  (require 'auto-complete)
-
   (custom-set-variables
    '(helm-gtags-auto-update t)
    '(helm-gtags-ignore-case t)
@@ -14,10 +12,6 @@
   (define-key helm-gtags-mode-map (kbd "C-M-.") 'helm-gtags-select)
   (define-key helm-gtags-mode-map (kbd "C-c .") 'gtags-visit-rootdir)
   (define-key helm-gtags-mode-map (kbd "M-.")   'helm-gtags-pop-stack)
-
-  (defun ncaq/add-to-ac-sources-gtags ()
-    (add-to-list 'ac-sources 'ac-source-gtags))
-  (add-hook 'helm-gtags-mode-hook 'ncaq/add-to-ac-sources-gtags)
 
   ;; monkey patch
   (defun helm-gtags--read-tagname (type &optional default-tagname)
