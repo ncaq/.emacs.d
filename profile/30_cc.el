@@ -42,5 +42,5 @@
 
 (with-eval-after-load 'company
   (custom-set-variables '(company-c-headers-path-system (append '("/usr/include/c++/v1"))))
-  (add-hook 'c-mode-common-hook '(lambda ()(add-to-list 'company-backends 'company-c-headers)))
+  (add-to-list 'company-backends 'company-c-headers)
   )
