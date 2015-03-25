@@ -39,8 +39,3 @@
   (define-key gud-minor-mode-map (kbd "<f11>") 'gud-step)   ;1行進む.関数に入る
   (define-key gud-minor-mode-map (kbd "<f12>") 'gud-finish) ;step out 現在のスタックフレームを抜ける
   )
-
-(with-eval-after-load 'company
-  (custom-set-variables '(company-c-headers-path-system (append '("/usr/include/c++/v1"))))
-  (add-to-list 'company-backends 'company-c-headers)
-  )

@@ -10,8 +10,6 @@
    '(haskell-stylish-on-save t)
    )
 
-  (add-to-list 'company-backends 'company-cabal)
-
   (defun haskell-mode-stylish-buffer-and-save-buffer()
     (interactive)
     (save-buffer)
@@ -30,7 +28,6 @@
 
 (with-eval-after-load 'ghc
   (add-hook 'after-save-hook 'ghc-import-module nil t)
-  (add-to-list 'company-backends 'company-ghc)
 
   (defun ghc-show-info-minibuffer ()
     (interactive)
