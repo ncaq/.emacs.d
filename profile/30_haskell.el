@@ -10,6 +10,10 @@
    '(haskell-stylish-on-save t)
    )
 
+  (add-to-list 'ac-modes 'haskell-interactive-mode)
+  (add-hook 'interactive-haskell-mode-hook 'ac-haskell-process-setup)
+  (add-hook 'haskell-interactive-mode-hook 'ac-haskell-process-setup)
+
   (defun haskell-mode-stylish-buffer-and-save-buffer()
     (interactive)
     (save-buffer)
@@ -27,6 +31,7 @@
 (add-hook 'haskell-mode-hook 'ghc-init)
 
 (with-eval-after-load 'ghc
+  (add-to-list 'ac-sources 'ac-source-ghc-mod)
   (add-hook 'after-save-hook 'ghc-import-module nil t)
 
   (defun ghc-show-info-minibuffer ()
