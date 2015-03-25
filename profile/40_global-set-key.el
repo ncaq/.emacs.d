@@ -1,8 +1,8 @@
 ;; -*- lexical-binding: t -*-
 
-(global-set-key (kbd "<tab>") 'company-trigger-key-command) ;何かしらを割り当てることで,C-iと別扱いになる
+(global-set-key (kbd "<tab>") 'indent-for-tab-command) ;何かしらを割り当てることで,C-iと別扱いになる
 
-(global-set-key (kbd "C-'") 'company-complete-common)
+(global-set-key (kbd "C-'") 'auto-complete)
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'eww-goto-alc)
 (global-set-key (kbd "C-.") 'helm-semantic-or-imenu)
