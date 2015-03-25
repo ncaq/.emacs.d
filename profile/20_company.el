@@ -1,6 +1,22 @@
 ;; -*- lexical-binding: t -*-
 
-(custom-set-variables '(global-company-mode t))
+(custom-set-variables
+ '(global-company-mode t)
+ '(company-backends (list
+                     'company-clang
+                     'company-cmake
+                     'company-css
+                     'company-nxml
+                     'company-gtags
+                     'company-etags
+                     'company-keywords
+                     'company-capf
+                     'company-semantic
+                     'company-files
+                     'company-dabbrev
+                     ))
+ '(company-dabbrev-minimum-length 2)
+ )
 
 (with-eval-after-load 'company
   (defun company-trigger-key-command ()
