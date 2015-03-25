@@ -50,7 +50,6 @@
 (global-set-key (kbd "C-c b") 'eww)
 (global-set-key (kbd "C-c c") 'quickrun)
 (global-set-key (kbd "C-c l") 'recentf-cleanup)
-(global-set-key (kbd "C-c m") 'mu4e-jump-to-inbox)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
 (global-set-key (kbd "C-c o") 'open-junk-file)
 (global-set-key (kbd "C-c p") 'tramp-cleanup-all-connections)
