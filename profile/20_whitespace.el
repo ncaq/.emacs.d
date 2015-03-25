@@ -1,11 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
-(require 'cl)                           ;reduce
-
 (custom-set-variables
  '(global-whitespace-mode t)
- '(whitespace-style (reduce (lambda (a x) (remove x a)) '(lines space-mark newline-mark) :initial-value whitespace-style))
- '(whitespace-action (list 'auto-cleanup))
+ '(whitespace-style '(face tabs spaces trailing space-before-tab space-after-tab))
+ '(whitespace-action '(auto-cleanup))
  )
 
 (set-face-background 'whitespace-space "#073642")
