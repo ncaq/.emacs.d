@@ -34,6 +34,9 @@
   (add-to-list 'ac-sources 'ac-source-ghc-mod)
   (add-hook 'after-save-hook 'ghc-import-module nil t)
 
+  (set-face-underline 'ghc-face-error 'unspecified)
+  (set-face-underline 'ghc-face-warn 'unspecified)
+
   (defun ghc-show-info-minibuffer ()
     (interactive)
     (message "%s" (ghc-get-info (ghc-things-at-point))))
