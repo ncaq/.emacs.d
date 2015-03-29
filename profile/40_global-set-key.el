@@ -23,13 +23,14 @@
 (global-set-key (kbd "C-S-d") 'delete-horizontal-space)
 
 (global-set-key (kbd "M-,") 'mc/mark-all-dwim)
-(global-set-key (kbd "M--") 'help-command)
-(global-set-key (kbd "M-c") 'nil)
+(global-set-key (kbd "M-c") 'help-command)
 (global-set-key (kbd "M-j") 'ag-regexp)
 (global-set-key (kbd "M-l") 'sort-lines-auto-mark-paragrah)
 (global-set-key (kbd "M-m") 'newline-under)
 (global-set-key (kbd "M-o") 'helm-for-files)
 (global-set-key (kbd "M-q") 'delete-other-windows)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
 (global-set-key (kbd "M-\\") 'delete-horizontal-space)
@@ -57,9 +58,12 @@
 (global-set-key (kbd "C-c t") 'google-translate-at-point)
 
 (global-set-key (kbd "M-g b") 'magit-blame-mode)
+(global-set-key (kbd "M-g l") 'magit-log)
 (global-set-key (kbd "M-g o") 'magit-show)
 (global-set-key (kbd "M-g s") 'magit-status)
 
-(global-set-key (kbd "C-x C-f") 'find-file-at-point)
+(global-set-key (kbd "C-x b")   'helm-buffers-list)
+
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (global-set-key (kbd "<help> w") 'helm-man-woman)
