@@ -34,8 +34,6 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
-(global-set-key (kbd "M-\\") 'delete-horizontal-space)
-
 (global-set-key (kbd "C-M-,") 'mc/edit-lines)
 (global-set-key (kbd "C-M--") 'sdic)
 (global-set-key (kbd "C-M-;") 'align-regexp)
