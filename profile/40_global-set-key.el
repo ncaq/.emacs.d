@@ -21,6 +21,7 @@
 
 (global-set-key (kbd "C-S-b") 'smart-delete-whitespace-backward)
 (global-set-key (kbd "C-S-d") 'delete-horizontal-space)
+(global-set-key (kbd "C-S-m") 'quoted-newline)
 
 (global-set-key (kbd "M-,") 'mc/mark-all-dwim)
 (global-set-key (kbd "M-c") 'help-command)
