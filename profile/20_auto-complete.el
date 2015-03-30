@@ -8,7 +8,6 @@
 (custom-set-variables
  '(global-auto-complete-mode t)
  '(ac-auto-show-menu 0.4)
- '(ac-ignore-case t)
  '(ac-menu-height 22)
  '(ac-quick-help-delay 0.4)
  '(ac-use-quick-help t)
@@ -34,4 +33,5 @@
 (ac-set-trigger-key "<tab>")
 (define-key ac-completing-map (kbd "M-n") 'ac-next)
 (define-key ac-completing-map (kbd "M-t") 'ac-previous)
+(define-key ac-completing-map (kbd "RET") 'nil)
 (define-key ac-mode-map       (kbd "C-'") 'auto-complete)
