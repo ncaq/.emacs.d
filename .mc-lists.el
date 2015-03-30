@@ -46,6 +46,7 @@
 (setq mc/cmds-to-run-once
       '(
         dired-clean-directory
+        helm-M-x
         helm-show-kill-ring
         indent-whole-buffer
         mozc-handle-event
