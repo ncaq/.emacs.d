@@ -22,7 +22,9 @@
 
 (with-eval-after-load 'nxml-mode
   (define-key nxml-mode-map (kbd "C-M-n") 'nil)
+  (define-key nxml-mode-map (kbd "C-M-p") 'nil)
   (define-key nxml-mode-map (kbd "M-h")   'nil)
+  (define-key nxml-mode-map (kbd "C-c h") 'nxml-mark-paragraph)
   )
 
 (with-eval-after-load 'make-mode
