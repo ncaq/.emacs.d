@@ -4,6 +4,8 @@
 (smartparens-global-mode 1)
 (show-smartparens-global-mode 1)
 
+(custom-set-variables '(sp-autoescape-string-quote nil))
+
 ;; based on https://github.com/Fuco1/smartparens/wiki/Permissions
 (defun my-create-newline-and-enter-sexp (&rest _ignored)
   "Open a new brace or bracket expression, with relevant newlines and indent. "
