@@ -48,3 +48,6 @@
   )
 
 (add-hook 'after-init-hook 'recentf-setup)
+
+(setq-default save-place t)
+(require 'saveplace)
