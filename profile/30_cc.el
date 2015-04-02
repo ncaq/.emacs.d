@@ -17,13 +17,12 @@
   )
 
 (with-eval-after-load 'flycheck
-  (custom-set-variables
-   '(flycheck-gcc-language-standard   "c++11")
-   '(flycheck-clang-language-standard "c++11")
-   )
   (add-hook 'c++-mode-hook '(lambda ()
-                              (setq flycheck-clang-standard-library "libc++")))
-  )
+                              (custom-set-variables
+                               '(flycheck-gcc-language-standard   "c++11")
+                               '(flycheck-clang-language-standard "c++11")
+                               '(flycheck-clang-standard-library  "libc++")
+                               ))))
 
 (with-eval-after-load 'gud
   (custom-set-variables
