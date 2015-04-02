@@ -1,17 +1,16 @@
 ;; -*- lexical-binding: t -*-
 
-(defvar backup-directory "~/.file-backup/")
-
 (custom-set-variables
  '(make-backup-files t)              ;バックアップファイルを作成する。
  '(version-control t)                ;複数バックアップ
  '(delete-old-versions t)
  '(kept-new-versions 50)             ;backupに新しいものをいくつ残すか
  '(kept-old-versions 50)             ;backupに古いものをいくつ残すか
- '(backup-directory-alist `(("" . ,backup-directory)))
- '(tramp-auto-save-directory backup-directory)
+ '(backup-directory-alist `(("" . "~/.file-backup/")))
 
  '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+ '(tramp-auto-save-directory temporary-file-directory)
+ '(auto-save-list-file-prefix (concat temporary-file-directory "auto-save-list/.saves-"))
 
  '(message-log-max 5000)                ;ログの記録行数を増やす.
 
@@ -28,14 +27,11 @@
                      "\\.undo-tree/"
                      ))
 
- '(desktop-restore-frames nil)
+ '(savehist-mode t)
  '(savehist-ignored-variables '(file-name-history))
- '(history-length 500)             ;ミニバッファの履歴の保存数を増やす
- )
 
-(desktop-save-mode 1)
-(savehist-mode 1)
-(toggle-save-place-globally t)          ;fileのカーソル位置保存
+ '(desktop-save-mode t)
+ '(desktop-restore-frames nil)
 
 (defvar recentf-list)
 (defun sync-file-name-history-from-recentf ()
