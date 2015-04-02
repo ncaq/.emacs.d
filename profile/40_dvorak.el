@@ -120,3 +120,13 @@
 
   (define-key hexl-mode-map [remap quoted-insert] 'hexl-quoted-insert)
   )
+
+(with-eval-after-load 'man
+  (define-key Man-mode-map (kbd "p") 'nil)
+  (define-key Man-mode-map (kbd "t") 'Man-previous-section)
+
+  (define-key Man-mode-map (kbd "M-p")   'nil)
+  (define-key Man-mode-map (kbd "C-c t") 'Man-previous-manpage)
+  (define-key Man-mode-map (kbd "M-n")   'nil)
+  (define-key Man-mode-map (kbd "C-c n") 'Man-next-manpage)
+  )
