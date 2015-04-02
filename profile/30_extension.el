@@ -19,27 +19,3 @@
     auto-mode-alist))
  '(scheme-program-name "gosh"))
 (defvar inferior-lisp-program "clisp")
-
-(with-eval-after-load 'nxml-mode
-  (define-key nxml-mode-map (kbd "C-M-n") 'nil)
-  (define-key nxml-mode-map (kbd "C-M-p") 'nil)
-  (define-key nxml-mode-map (kbd "M-h")   'nil)
-  (define-key nxml-mode-map (kbd "C-c h") 'nxml-mark-paragraph)
-  )
-
-(with-eval-after-load 'make-mode
-  (define-key makefile-mode-map (kbd "M-n") 'nil)
-  (define-key makefile-mode-map (kbd "M-t") 'nil)
-  )
-
-(with-eval-after-load 'hexl
-  (define-key hexl-mode-map (kbd "C-M-t") 'nil)
-  (define-key hexl-mode-map (kbd "C-f")   'nil)
-  (define-key hexl-mode-map (kbd "C-h")   'hexl-backward-char)
-  (define-key hexl-mode-map (kbd "C-q")   'nil)
-  (define-key hexl-mode-map (kbd "C-s")   'hexl-forward-char)
-  (define-key hexl-mode-map (kbd "C-t")   'hexl-previous-line)
-  (define-key hexl-mode-map (kbd "M-f")   'nil)
-  (define-key hexl-mode-map (kbd "M-h")   'hexl-backward-word)
-  (define-key hexl-mode-map (kbd "M-s")   'hexl-forward-word)
-  )
