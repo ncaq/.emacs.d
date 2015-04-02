@@ -75,6 +75,14 @@
   (define-key Info-mode-map (kbd "b") 'Info-up)
   )
 
+(with-eval-after-load 'help-mode
+  (define-key help-mode-map (kbd "h") 'help-go-back)
+  (define-key help-mode-map (kbd "s") 'help-go-forward)
+
+  (define-key help-mode-map (kbd "t") 'help-go-back)
+  (define-key help-mode-map (kbd "n") 'help-go-forward)
+  )
+
 (with-eval-after-load 'rect
   (define-key rectangle-mark-mode-map (kbd "C-t") 'nil)
   )
