@@ -17,6 +17,7 @@
                fundamental-mode
                git-commit-mode
                haskell-mode
+               inferior-emacs-lisp-mode
                inferior-haskell-mode
                markdown-mode
                nxml-mode
