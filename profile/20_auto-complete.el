@@ -19,6 +19,7 @@
                haskell-mode
                inferior-haskell-mode
                markdown-mode
+               nxml-mode
                scss-mode
                shell-script-mode
                text-mode
