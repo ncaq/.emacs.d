@@ -24,4 +24,3 @@
 
 (define-key emacs-lisp-mode-map (kbd "C-M-q") 'nil)
 (define-key emacs-lisp-mode-map (kbd "C-c e") 'eval-buffer)
-(define-key read-expression-map (kbd "<tab>") 'lisp-complete-symbol) ;M-S-:

@@ -23,5 +23,4 @@
 (require 'uniquify)
 (custom-set-variables '(uniquify-buffer-name-style 'forward))
 
-(zlc-mode 1)
-(global-anzu-mode 1)
+(global-anzu-mode t)
