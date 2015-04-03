@@ -10,21 +10,20 @@
 
 (set-face-background 'whitespace-space "#073642")
 
-(defcustom whitespace-auto-cleanup-action-disabled-hooks
+(defcustom whitespace-cleanup-disabled-hooks
   '(
     diff-mode-hook
     markdown-hook
     )
   "Called after whitespace-mode auto-cleanup is turned off."
+  :type 'hook
   :group 'whitespace)
 
-(defun whitespace-auto-cleanup-turn-off ()
+(defun whitespace-cleanup-turn-off ()
   (interactive)
-  (setq-local whitespace-action (remove 'auto-cleanup whitespace-action))
-  )
+  (setq-local whitespace-action (remove 'auto-cleanup whitespace-action)))
 
-(defun add-whitespace-auto-cleanup-action-disable-hook (h)
-  (add-hook h 'whitespace-auto-cleanup-turn-off)
-  )
+(defun whitespace-clean-disable (h)
+  (add-hook h 'whitespace-cleanup-turn-off))
 
-(mapc 'add-whitespace-auto-cleanup-action-disable-hook 'whitespace-auto-cleanup-action-disabled-modes)
+(mapc 'whitespace-clean-disable whitespace-cleanup-disabled-hooks)
