@@ -1,7 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(require 'helm-mode)
-(require 'helm-config)
+(require 'helm)
 (require 'helm-files)
 
 (helm-mode 1)
