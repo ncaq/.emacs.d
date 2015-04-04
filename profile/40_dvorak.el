@@ -130,3 +130,8 @@
   (define-key Man-mode-map (kbd "M-n")   'nil)
   (define-key Man-mode-map (kbd "C-c n") 'Man-next-manpage)
   )
+
+(with-eval-after-load 'profiler
+  (define-key profiler-report-mode-map (kbd "p") 'nil)
+  (define-key profiler-report-mode-map (kbd "t") 'profiler-report-previous-entry)
+  )
