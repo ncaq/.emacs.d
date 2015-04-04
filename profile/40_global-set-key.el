@@ -19,7 +19,6 @@
 
 (global-set-key (kbd "C-\\") 'quoted-insert)
 
-(global-set-key (kbd "C-S-b") 'smart-delete-whitespace-backward)
 (global-set-key (kbd "C-S-d") 'delete-horizontal-space)
 (global-set-key (kbd "C-S-m") 'quoted-newline)
 
@@ -47,20 +46,20 @@
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
 (global-set-key (kbd "C-c a") 'text-adjust-selective)
-(global-set-key (kbd "C-c b") 'eww)
 (global-set-key (kbd "C-c c") 'quickrun)
+(global-set-key (kbd "C-c h") 'eww)
 (global-set-key (kbd "C-c l") 'recentf-cleanup)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
 (global-set-key (kbd "C-c o") 'open-junk-file)
-(global-set-key (kbd "C-c p") 'tramp-cleanup-all-connections)
+(global-set-key (kbd "C-c p") 'google-translate-at-point)
 (global-set-key (kbd "C-c r") 'revert-buffer)
-(global-set-key (kbd "C-c t") 'google-translate-at-point)
+(global-set-key (kbd "C-c t") 'tramp-cleanup-all-connections)
 
-(global-set-key (kbd "M-g b") 'magit-blame-mode)
 (global-set-key (kbd "M-g d") 'vc-diff)
+(global-set-key (kbd "M-g f") 'magit-status)
+(global-set-key (kbd "M-g h") 'magit-blame-mode)
 (global-set-key (kbd "M-g l") 'magit-file-log)
 (global-set-key (kbd "M-g o") 'magit-show)
-(global-set-key (kbd "M-g s") 'magit-status)
 
 (global-set-key (kbd "C-x b")   'helm-buffers-list)
 

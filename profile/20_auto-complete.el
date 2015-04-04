@@ -33,7 +33,7 @@
                            ))
 
 (ac-set-trigger-key "<tab>")
+(define-key ac-completing-map (kbd "M-p") 'ac-previous)
 (define-key ac-completing-map (kbd "M-n") 'ac-next)
-(define-key ac-completing-map (kbd "M-t") 'ac-previous)
 (define-key ac-completing-map (kbd "RET") 'nil)
 (define-key ac-mode-map       (kbd "C-'") 'auto-complete)

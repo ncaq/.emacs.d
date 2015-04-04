@@ -1,8 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(custom-set-variables
- '(dired-listing-switches "-Fhval --group-directories-first")      ;diredが使うlsオプションの設定
- )
+(custom-set-variables '(dired-listing-switches "-Fhval --group-directories-first")) ;diredが使うlsオプションの設定
 
 (with-eval-after-load 'dired
   (defun dired-jump-to-current ()
@@ -14,10 +12,6 @@
 
   (add-hook 'dired-mode-hook 'dired-disable-M-o)
   (define-key dired-mode-map (kbd "C-^")     'dired-up-directory)
-  (define-key dired-mode-map (kbd "C-c C-p") 'wdired-change-to-wdired-mode)
+  (define-key dired-mode-map (kbd "C-c C-c") 'wdired-change-to-wdired-mode)
   (define-key dired-mode-map (kbd "C-o")     'nil)
-  (define-key dired-mode-map (kbd "C-t")     'nil)
-  (define-key dired-mode-map (kbd "M-s")     'nil)
-  (define-key dired-mode-map (kbd "p")       'dired-toggle-marks)
-  (define-key dired-mode-map (kbd "t")       'dired-previous-line)
   )
