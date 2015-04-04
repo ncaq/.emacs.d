@@ -14,7 +14,7 @@
  '(helm-samewindow t)                            ;ウインドウ全体に表示
  )
 
-(defvar helm-for-files-lite-preferred-list (remove 'helm-source-locate helm-for-files-preferred-list))
+(defvar helm-for-files-lite-preferred-list '(helm-source-buffers-list helm-source-recentf helm-source-file-cache))
 
 (defun helm-for-files-lite ()
   (interactive)
