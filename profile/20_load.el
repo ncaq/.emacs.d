@@ -21,7 +21,8 @@
 
 (custom-set-variables
  '(google-translate-default-source-language "en")
- '(google-translate-default-target-language "ja"))
+ '(google-translate-default-target-language "ja")
+ )
 
 (with-eval-after-load 'skype
   (setq skype--my-user-handle "ncaq__"))
@@ -30,5 +31,4 @@
 (defun text-adjust-selective ()
   (interactive)
   (text-adjust-hankaku-buffer)
-  (text-adjust-kutouten-buffer)
-  )
+  (text-adjust-kutouten-buffer))
