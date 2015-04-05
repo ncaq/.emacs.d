@@ -35,7 +35,7 @@
 
 (global-set-key (kbd "C-M-,") 'mc/edit-lines)
 (global-set-key (kbd "C-M--") 'sdic)
-(global-set-key (kbd "C-M-;") 'align-regexp)
+(global-set-key (kbd "C-M-;") 'align-space)
 (global-set-key (kbd "C-M-d") 'kill-sexp)
 (global-set-key (kbd "C-M-l") 'sort-lines-whole-buffer)
 (global-set-key (kbd "C-M-m") 'newline-upper)
@@ -45,6 +45,7 @@
 
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
+(global-set-key (kbd "C-c ;") 'align-regexp)
 (global-set-key (kbd "C-c a") 'text-adjust-selective)
 (global-set-key (kbd "C-c c") 'quickrun)
 (global-set-key (kbd "C-c h") 'eww)
