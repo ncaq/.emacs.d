@@ -8,6 +8,7 @@
 (custom-set-variables
  '(global-auto-complete-mode t)
  '(ac-auto-show-menu 0.4)
+ '(ac-auto-start nil)
  '(ac-menu-height 22)
  '(ac-quick-help-delay 0.4)
  '(ac-use-quick-help t)

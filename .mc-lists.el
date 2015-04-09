@@ -37,6 +37,7 @@
         sp-forward-sexp
         sp-kill-sexp
         sp-slurp-hybrid-sexp
+        sp-splice-sexp
         sp-wrap-tag-done
         tab-to-tab-stop
         undefined
