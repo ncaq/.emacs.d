@@ -27,6 +27,7 @@
         kill-region
         kill-symbolword
         markdown-enter-key
+        nxml-down-element
         sh-assignment
         smart-delete-whitespace-backward
         smart-move-beginning-of-line
@@ -47,7 +48,6 @@
       '(
         dired-clean-directory
         helm-M-x
-        helm-show-kill-ring
         indent-whole-buffer
         mozc-handle-event
         scroll-down-one
