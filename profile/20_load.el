@@ -11,7 +11,6 @@
  '(default-input-method 'japanese-mozc)
  '(mozc-candidate-style 'echo-area)
  )
-(define-key mozc-mode-map (kbd "C-;") 'toggle-input-method)
 
 (autoload 'sdic "sdic")
 (autoload 'sudden-death "sudden-death")
