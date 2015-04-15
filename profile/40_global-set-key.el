@@ -4,7 +4,7 @@
 
 (global-set-key (kbd "C-'") 'auto-complete)
 (global-set-key (kbd "C-+") 'text-scale-increase)
-(global-set-key (kbd "C--") 'eww-goto-alc)
+(global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-.") 'helm-semantic-or-imenu)
 (global-set-key (kbd "C-;") 'toggle-input-method)
 (global-set-key (kbd "C-=") 'text-scale-reset)
@@ -16,6 +16,7 @@
 (global-set-key (kbd "C-o") 'helm-for-files-lite)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-u") 'kill-whole-line)
+(global-set-key (kbd "C-z") 'toggle-input-method)
 
 (global-set-key (kbd "C-\\") 'quoted-insert)
 
@@ -33,9 +34,9 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "M-z") 'eww-goto-alc)
 
 (global-set-key (kbd "C-M-,") 'mc/edit-lines)
-(global-set-key (kbd "C-M--") 'sdic)
 (global-set-key (kbd "C-M-;") 'align-space)
 (global-set-key (kbd "C-M-d") 'kill-sexp)
 (global-set-key (kbd "C-M-l") 'sort-lines-whole-buffer)
@@ -43,6 +44,7 @@
 (global-set-key (kbd "C-M-o") 'ibuffer)
 (global-set-key (kbd "C-M-q") 'kill-this-buffer)
 (global-set-key (kbd "C-M-w") 'kill-ring-save-whole)
+(global-set-key (kbd "C-M-z") 'sdic)
 
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
