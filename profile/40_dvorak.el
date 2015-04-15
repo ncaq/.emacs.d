@@ -1,154 +1,137 @@
 ;; -*- lexical-binding: t -*-
 
-;; (kbd x)上のxをdvorak用に置き換え
+;; h,t,n,sの移動設定
+(global-set-key (kbd "C-h")   'backward-char)
+(global-set-key (kbd "M-h")   'backward-word)
+(global-set-key (kbd "C-M-h") 'backward-sexp)
 
-(define-key key-translation-map (kbd "b") (kbd "h"))
-(define-key key-translation-map (kbd "B") (kbd "H"))
-(define-key key-translation-map (kbd "C-b") (kbd "C-h"))
-(define-key key-translation-map (kbd "M-b") (kbd "M-h"))
-(define-key key-translation-map (kbd "C-M-b") (kbd "C-M-h"))
-(define-key key-translation-map (kbd "C-S-b") (kbd "C-S-h"))
+(global-set-key (kbd "C-t")   'previous-line)
+(global-set-key (kbd "M-t")   'scroll-down-one)
+(global-set-key (kbd "C-M-t") 'backward-paragraph)
 
-(define-key key-translation-map (kbd "h") (kbd "b"))
-(define-key key-translation-map (kbd "H") (kbd "B"))
-(define-key key-translation-map (kbd "C-h") (kbd "C-b"))
-(define-key key-translation-map (kbd "M-h") (kbd "M-b"))
-(define-key key-translation-map (kbd "C-M-h") (kbd "C-M-b"))
-(define-key key-translation-map (kbd "C-S-h") (kbd "C-S-b"))
-
-(define-key key-translation-map (kbd "f") (kbd "s"))
-(define-key key-translation-map (kbd "F") (kbd "S"))
-(define-key key-translation-map (kbd "C-f") (kbd "C-s"))
-(define-key key-translation-map (kbd "M-f") (kbd "M-s"))
-(define-key key-translation-map (kbd "C-M-f") (kbd "C-M-s"))
-(define-key key-translation-map (kbd "C-S-f") (kbd "C-S-s"))
-
-(define-key key-translation-map (kbd "s") (kbd "f"))
-(define-key key-translation-map (kbd "S") (kbd "F"))
-(define-key key-translation-map (kbd "C-s") (kbd "C-f"))
-(define-key key-translation-map (kbd "M-s") (kbd "M-f"))
-(define-key key-translation-map (kbd "C-M-s") (kbd "C-M-f"))
-(define-key key-translation-map (kbd "C-S-s") (kbd "C-S-f"))
-
-(define-key key-translation-map (kbd "p") (kbd "t"))
-(define-key key-translation-map (kbd "P") (kbd "T"))
-(define-key key-translation-map (kbd "C-p") (kbd "C-t"))
-(define-key key-translation-map (kbd "M-p") (kbd "M-t"))
-(define-key key-translation-map (kbd "C-M-p") (kbd "C-M-t"))
-(define-key key-translation-map (kbd "C-S-p") (kbd "C-S-t"))
-
-(define-key key-translation-map (kbd "t") (kbd "p"))
-(define-key key-translation-map (kbd "T") (kbd "P"))
-(define-key key-translation-map (kbd "C-t") (kbd "C-p"))
-(define-key key-translation-map (kbd "M-t") (kbd "M-p"))
-(define-key key-translation-map (kbd "C-M-t") (kbd "C-M-p"))
-(define-key key-translation-map (kbd "C-S-t") (kbd "C-S-p"))
-
-;; 実際には入れ替わっている
-
-;; h
-(global-set-key (kbd "b")     '(lambda ()(interactive)(insert ?h)))
-(global-set-key (kbd "B")     '(lambda ()(interactive)(insert ?H)))
-(global-set-key (kbd "C-b")   'backward-char)
-(global-set-key (kbd "C-b")   'backward-char)
-(global-set-key (kbd "M-b")   'backward-word)
-(global-set-key (kbd "C-M-b") 'backward-sexp)
-
-;; b
-(global-set-key (kbd "h")     '(lambda ()(interactive)(insert ?b)))
-(global-set-key (kbd "H")     '(lambda ()(interactive)(insert ?B)))
-(global-set-key (kbd "C-h")   'backward-delete-char-untabify)
-(global-set-key (kbd "M-h")   'backward-kill-word)
-(global-set-key (kbd "C-M-h") 'backward-kill-sexp)
-(global-set-key (kbd "C-S-h") 'smart-delete-whitespace-backward)
-
-;; s
-(global-set-key (kbd "f")     '(lambda ()(interactive)(insert ?s)))
-(global-set-key (kbd "F")     '(lambda ()(interactive)(insert ?S)))
-(global-set-key (kbd "C-f")   'forward-char)
-(global-set-key (kbd "M-f")   'forward-word)
-(global-set-key (kbd "C-M-f") 'forward-sexp)
-
-;; f
-(global-set-key (kbd "s")     '(lambda ()(interactive)(insert ?f)))
-(global-set-key (kbd "S")     '(lambda ()(interactive)(insert ?F)))
-(global-set-key (kbd "C-s")   'isearch-forward)
-(global-set-key (kbd "M-s")   'helm-occur)
-(global-set-key (kbd "C-M-s") 'isearch-forward-regexp)
-
-;; t
-(global-set-key (kbd "p")     '(lambda ()(interactive)(insert ?t)))
-(global-set-key (kbd "P")     '(lambda ()(interactive)(insert ?T)))
-(global-set-key (kbd "C-p")   'previous-line)
-(global-set-key (kbd "M-p")   'scroll-down-one)
-(global-set-key (kbd "C-M-p") 'backward-paragraph)
-
-;; p
-(global-set-key (kbd "t")     '(lambda ()(interactive)(insert ?p)))
-(global-set-key (kbd "T")     '(lambda ()(interactive)(insert ?P)))
-(global-set-key (kbd "C-t")   'other-window)
-(global-set-key (kbd "M-t")   'other-window-backward)
-(global-set-key (kbd "C-M-t") 'split-window-right)
-
-;; n(not changing)
 (global-set-key (kbd "C-n")   'next-line)
 (global-set-key (kbd "M-n")   'scroll-up-one)
 (global-set-key (kbd "C-M-n") 'forward-paragraph)
 
-(define-key isearch-mode-map (kbd "b") '(lambda ()(interactive)(isearch-printing-char ?h)))
-(define-key isearch-mode-map (kbd "h") '(lambda ()(interactive)(isearch-printing-char ?b)))
-(define-key isearch-mode-map (kbd "B") '(lambda ()(interactive)(isearch-printing-char ?H)))
-(define-key isearch-mode-map (kbd "H") '(lambda ()(interactive)(isearch-printing-char ?B)))
+(global-set-key (kbd "C-s")   'forward-char)
+(global-set-key (kbd "M-s")   'forward-word)
+(global-set-key (kbd "C-M-s") 'forward-sexp)
 
-(define-key isearch-mode-map (kbd "f") '(lambda ()(interactive)(isearch-printing-char ?s)))
-(define-key isearch-mode-map (kbd "s") '(lambda ()(interactive)(isearch-printing-char ?f)))
-(define-key isearch-mode-map (kbd "F") '(lambda ()(interactive)(isearch-printing-char ?S)))
-(define-key isearch-mode-map (kbd "S") '(lambda ()(interactive)(isearch-printing-char ?F)))
+(defun other-window-backward ()
+  (interactive)
+  (other-window -1))
 
-(define-key isearch-mode-map (kbd "p") '(lambda ()(interactive)(isearch-printing-char ?t)))
-(define-key isearch-mode-map (kbd "t") '(lambda ()(interactive)(isearch-printing-char ?p)))
-(define-key isearch-mode-map (kbd "P") '(lambda ()(interactive)(isearch-printing-char ?T)))
-(define-key isearch-mode-map (kbd "T") '(lambda ()(interactive)(isearch-printing-char ?P)))
+;; 余ったpにはwindow操作を割り当てる
+(global-set-key (kbd "C-p")   'other-window)
+(global-set-key (kbd "M-p")   'other-window-backward)
+(global-set-key (kbd "C-M-p") 'split-window-right)
 
-(define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
-(define-key isearch-mode-map (kbd "M-h") 'isearch-del-char)
+;; backspace
+(global-set-key (kbd "C-b")   'backward-delete-char-untabify)
+(global-set-key (kbd "M-b")   'backward-kill-word)
+(global-set-key (kbd "C-M-b") 'backward-kill-sexp)
 
+;; search→find
+(global-set-key (kbd "C-f")   'isearch-forward)
+(global-set-key (kbd "M-f")   'helm-occur)
+(global-set-key (kbd "C-M-f") 'isearch-forward-regexp)
+
+(global-set-key (kbd "M-g p")   'nil)
+(global-set-key (kbd "M-g t")   'previous-error)
+(global-set-key (kbd "M-g C-p") 'nil)
+(global-set-key (kbd "M-g C-t") 'previous-error)
+
+;; modes
+(define-key minibuffer-local-map (kbd "M-s") 'nil)
+(define-key minibuffer-local-map (kbd "M-p") 'nil)
+(define-key minibuffer-local-map (kbd "M-t") 'previous-history-element)
+
+(define-key isearch-mode-map (kbd "C-b") 'isearch-delete-char)
+(define-key isearch-mode-map (kbd "C-s") 'nil)
+(define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "M-b") 'isearc-del-char)
 (define-key isearch-mode-map (kbd "M-m") 'isearch-exit-previous)
 
-(with-eval-after-load 'info
-  (define-key Info-mode-map (kbd "b") 'Info-history-back)
-  (define-key Info-mode-map (kbd "f") 'Info-history-forward)
+(with-eval-after-load 'comint
+  (define-key comint-mode-map (kbd "M-p") 'nil)
+  (define-key comint-mode-map (kbd "M-t") 'comint-previous-input)
+  )
 
-  (define-key Info-mode-map (kbd "p") 'Info-prev)
-  (define-key Info-mode-map (kbd "h") 'Info-up)
+(with-eval-after-load 'diff-mode
+  (define-key diff-mode-map (kbd "M-h") 'nil))
+
+(with-eval-after-load 'doc-view
+  (define-key doc-view-mode-map (kbd "C-p") 'nil)
+  (define-key doc-view-mode-map (kbd "C-t") 'doc-view-previous-line-or-previous-page)
+  (define-key doc-view-mode-map (kbd "p")   'doc-view-previous-page)
+  (define-key doc-view-mode-map (kbd "t")   'doc-view-previous-page)
+  )
+
+(with-eval-after-load 'info
+  (define-key Info-mode-map (kbd "h") 'Info-history-back)
+  (define-key Info-mode-map (kbd "s") 'Info-history-forward)
+
+  (define-key Info-mode-map (kbd "t") 'Info-prev)
+  (define-key Info-mode-map (kbd "b") 'Info-up)
   )
 
 (with-eval-after-load 'help-mode
-  (define-key help-mode-map (kbd "b") 'help-go-back)
-  (define-key help-mode-map (kbd "f") 'help-go-forward)
+  (define-key help-mode-map (kbd "h") 'help-go-back)
+  (define-key help-mode-map (kbd "s") 'help-go-forward)
 
-  (define-key help-mode-map (kbd "p") 'help-go-back)
+  (define-key help-mode-map (kbd "t") 'help-go-back)
   (define-key help-mode-map (kbd "n") 'help-go-forward)
   )
 
+(with-eval-after-load 'rect
+  (define-key rectangle-mark-mode-map (kbd "C-t") 'nil)
+  )
+
+(with-eval-after-load 'nxml-mode
+  (define-key nxml-mode-map (kbd "C-M-p") 'nil)
+  (define-key nxml-mode-map (kbd "M-h")   'nil)
+  (define-key nxml-mode-map (kbd "C-c h") 'nxml-mark-paragraph)
+  )
+
+(with-eval-after-load 'make-mode
+  (define-key makefile-mode-map (kbd "M-n") 'nil)
+  (define-key makefile-mode-map (kbd "M-t") 'nil)
+  )
+
+(with-eval-after-load 'hexl
+  (define-key hexl-mode-map (kbd "C-b")   'nil)
+  (define-key hexl-mode-map (kbd "C-h")   'hexl-backward-char)
+  (define-key hexl-mode-map (kbd "M-b")   'nil)
+  (define-key hexl-mode-map (kbd "M-h")   'hexl-backward-word)
+  (define-key hexl-mode-map (kbd "C-M-b") 'nil)
+  (define-key hexl-mode-map (kbd "C-M-h") 'hexl-backward-short)
+
+  (define-key hexl-mode-map (kbd "C-p")   'nil)
+  (define-key hexl-mode-map (kbd "C-t")   'hexl-previous-line)
+
+  (define-key hexl-mode-map (kbd "C-f")   'nil)
+  (define-key hexl-mode-map (kbd "C-s")   'hexl-forward-char)
+  (define-key hexl-mode-map (kbd "M-f")   'nil)
+  (define-key hexl-mode-map (kbd "M-s")   'hexl-forward-word)
+  (define-key hexl-mode-map (kbd "C-M-f") 'nil)
+  (define-key hexl-mode-map (kbd "C-M-s") 'hexl-forward-short)
+
+  (define-key hexl-mode-map (kbd "C-q")   'nil)
+
+  (define-key hexl-mode-map [remap quoted-insert] 'hexl-quoted-insert)
+  )
+
 (with-eval-after-load 'man
+  (define-key Man-mode-map (kbd "p") 'nil)
+  (define-key Man-mode-map (kbd "t") 'Man-previous-section)
+
   (define-key Man-mode-map (kbd "M-p")   'nil)
-  (define-key Man-mode-map (kbd "C-c p") 'Man-previous-manpage)
+  (define-key Man-mode-map (kbd "C-c t") 'Man-previous-manpage)
   (define-key Man-mode-map (kbd "M-n")   'nil)
   (define-key Man-mode-map (kbd "C-c n") 'Man-next-manpage)
   )
 
-(with-eval-after-load 'nxml-mode
-  (define-key nxml-mode-map (kbd "M-h") 'nil)
-  )
-
-(with-eval-after-load 'make-mode
-  (define-key makefile-mode-map (kbd "M-p") 'nil)
-  (define-key makefile-mode-map (kbd "M-n") 'nil)
-  )
-
-(with-eval-after-load 'hexl
-  (define-key hexl-mode-map (kbd "C-q") 'nil)
-
-  (define-key hexl-mode-map [remap quoted-insert] 'hexl-quoted-insert)
+(with-eval-after-load 'profiler
+  (define-key profiler-report-mode-map (kbd "p") 'nil)
+  (define-key profiler-report-mode-map (kbd "t") 'profiler-report-previous-entry)
   )

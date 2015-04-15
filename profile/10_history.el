@@ -19,6 +19,7 @@
 
  '(desktop-save-mode t)
  '(desktop-restore-frames nil)
+
  )
 
 (defun recentf-setup ()

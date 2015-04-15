@@ -25,9 +25,15 @@
     (helm :sources helm-for-files-lite-preferred-list :buffer "*helm for files*")))
 
 (define-key helm-map (kbd "<tab>") 'helm-select-action)
+(define-key helm-map (kbd "C-t")   'helm-previous-line)
 
-(define-key helm-find-files-map (kbd "C-h") 'nil)
-(define-key helm-map            (kbd "C-h") 'nil)  ;デフォルトだとPrefixになる
+(define-key helm-buffer-map        (kbd "C-s") 'nil)
+(define-key helm-find-files-map    (kbd "C-h") 'nil)
+(define-key helm-find-files-map    (kbd "C-s") 'nil)
+(define-key helm-generic-files-map (kbd "C-s") 'nil)
+(define-key helm-map               (kbd "C-h") 'nil)  ;デフォルトだとPrefixになる
+(define-key helm-map               (kbd "C-s") 'nil)
+(define-key helm-map               (kbd "M-s") 'nil)
 
 (define-key helm-find-files-map (kbd "C-'") 'helm-execute-persistent-action)
 (define-key helm-read-file-map  (kbd "C-'") 'helm-execute-persistent-action)
