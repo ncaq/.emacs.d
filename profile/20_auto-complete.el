@@ -17,11 +17,13 @@
                d-mode
                fundamental-mode
                git-commit-mode
+               graphviz-dot-mode
                haskell-mode
                inferior-emacs-lisp-mode
                inferior-haskell-mode
                markdown-mode
                nxml-mode
+               plantuml-mode
                scss-mode
                shell-script-mode
                text-mode
