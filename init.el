@@ -10,6 +10,7 @@
           (normal-top-level-add-subdirs-to-load-path)))
       (list "~/.emacs.d/mine/"
             "~/.emacs.d/universe/"))
+(add-to-list 'load-path "~/.emacs.d/universe/")
 
 (require 'init-loader)
 (custom-set-variables '(init-loader-show-log-after-init nil))
