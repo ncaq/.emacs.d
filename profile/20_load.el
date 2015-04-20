@@ -16,7 +16,7 @@
 (autoload 'sudden-death "sudden-death")
 
 (autoload 'open-junk-file "open-junk-file")
-(custom-set-variables '(open-junk-file-format "~/Documents/log/%Y_%m/"))
+(custom-set-variables '(open-junk-file-format "~/Documents/log/%Y-%m/"))
 
 (custom-set-variables
  '(google-translate-default-source-language "en")
