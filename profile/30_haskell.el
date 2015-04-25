@@ -16,10 +16,11 @@
     (interactive)
     (save-buffer)
     (haskell-mode-stylish-buffer))
-  (define-key haskell-mode-map [remap indent-whole-buffer]  'haskell-mode-stylish-buffer-and-save-buffer)
+  (define-key haskell-mode-map [remap indent-whole-buffer] 'haskell-mode-stylish-buffer-and-save-buffer)
+  (define-key haskell-mode-map (kbd "C-c C-l") 'inferior-haskell-load-file)
+  (define-key haskell-mode-map (kbd "C-c d") 'hayoo)
 
-  (define-key haskell-mode-map (kbd "C-c C-d")              'hayoo)
-  (define-key haskell-mode-map (kbd "C-c C-l")              'inferior-haskell-load-file)
+  (define-key haskell-mode-map (kbd "C-c l") 'nil)
   )
 
 (autoload 'ghc-init "ghc" nil t)
@@ -37,13 +38,14 @@
   (defun ghc-show-info-minibuffer ()
     (interactive)
     (message "%s" (ghc-get-info (ghc-things-at-point))))
-  (define-key haskell-mode-map (kbd "C-M-.") 'ghc-show-info-minibuffer)
-
+  (define-key haskell-mode-map (kbd "C-c C-d") 'ghc-show-info-minibuffer)
   (define-key haskell-mode-map (kbd "C-M-'") 'ghc-check-insert-from-warning)
+
+  (define-key haskell-mode-map (kbd "C-M-d") 'nil)
 
   (setq ghc-import-key   (kbd "C-c i"))
   (setq ghc-insert-key   (kbd "C-c m"))
   (setq ghc-next-key     (kbd "C-c ! n"))
   (setq ghc-previous-key (kbd "C-c ! t"))
-  (setq ghc-sort-key     (kbd "C-c l"))
+  (setq ghc-sort-key     (kbd "C-c ! l"))
   )
