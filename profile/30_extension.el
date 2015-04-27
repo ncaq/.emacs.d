@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t -*-
+
 (autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t) ;http://www.okada.jp.org/RWiki/?ESS
 
 (custom-set-variables
@@ -17,5 +18,7 @@
       ("sshd?_config\\'"  . ssh-config-mode)
       )
     auto-mode-alist))
- '(scheme-program-name "gosh"))
+ '(scheme-program-name "gosh")
+ '(scss-sass-options '("--cache-location" "'/tmp/.sass-cache/'" "--style" "expanded"))
+ )
 (defvar inferior-lisp-program "clisp")
