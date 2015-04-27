@@ -21,4 +21,3 @@
  '(scheme-program-name "gosh")
  '(scss-sass-options '("--cache-location" "'/tmp/.sass-cache/'" "--style" "expanded"))
  )
-(defvar inferior-lisp-program "clisp")
