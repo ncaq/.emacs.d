@@ -14,8 +14,8 @@
   (define-key helm-gtags-mode-map (kbd "M-.")   'helm-gtags-pop-stack)
   )
 
-(add-hook 'c-mode-hook       'helm-gtags-mode)
-(add-hook 'c++-mode-hook     'helm-gtags-mode)
-(add-hook 'java-mode-hook    'helm-gtags-mode)
 (add-hook 'asm-mode-hook     'helm-gtags-mode)
+(add-hook 'c++-mode-hook     'helm-gtags-mode)
+(add-hook 'c-mode-hook       'helm-gtags-mode)
 (add-hook 'haskell-mode-hook 'helm-gtags-mode)
+(add-hook 'java-mode-hook    'helm-gtags-mode)
