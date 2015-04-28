@@ -8,3 +8,5 @@
  '(global-git-gutter+-mode t)
  '(magit-diff-refine-hunk 'all)
  )
+
+(setq magit-last-seen-setup-instructions "1.4.0")
