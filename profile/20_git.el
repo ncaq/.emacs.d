@@ -5,7 +5,6 @@
  '(git-commit-fill-column 160)
  '(git-commit-mode-hook nil)
  '(git-commit-summary-max-length 160)
+ '(global-git-gutter+-mode t)
  '(magit-diff-refine-hunk 'all)
  )
-
-(custom-set-variables '(global-git-gutter+-mode t))
