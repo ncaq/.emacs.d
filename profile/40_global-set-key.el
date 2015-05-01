@@ -42,7 +42,6 @@
 (global-set-key (kbd "C-M-o") 'ibuffer)
 (global-set-key (kbd "C-M-q") 'kill-this-buffer)
 (global-set-key (kbd "C-M-w") 'kill-ring-save-whole)
-(global-set-key (kbd "C-M-z") 'sdic)
 
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 

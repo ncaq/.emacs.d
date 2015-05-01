@@ -6,14 +6,13 @@
 (require 'ncaq-emacs-utils)
 (require 'symbolword-mode)
 
+(autoload 'sudden-death "sudden-death")
+
 (require 'mozc)
 (custom-set-variables
  '(default-input-method 'japanese-mozc)
  '(mozc-candidate-style 'echo-area)
  )
-
-(autoload 'sdic "sdic")
-(autoload 'sudden-death "sudden-death")
 
 (custom-set-variables
  '(google-translate-default-source-language "en")
