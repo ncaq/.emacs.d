@@ -21,9 +21,3 @@
 
 (with-eval-after-load 'skype
   (setq skype--my-user-handle "ncaq__"))
-
-(autoload 'text-adjust-selective "text-adjust")
-(defun text-adjust-selective ()
-  (interactive)
-  (text-adjust-hankaku-buffer)
-  (text-adjust-kutouten-buffer))
