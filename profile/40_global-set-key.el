@@ -16,7 +16,7 @@
 (global-set-key (kbd "C-o") 'helm-for-files-lite)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-u") 'kill-whole-line)
-(global-set-key (kbd "C-z") 'toggle-input-method)
+(global-set-key (kbd "C-z") 'eww-goto-alc)
 
 (global-set-key (kbd "C-\\") 'quoted-insert)
 
@@ -32,7 +32,6 @@
 (global-set-key (kbd "M-q") 'delete-other-windows)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "M-z") 'eww-goto-alc)
 
 (global-set-key (kbd "C-M-,") 'ag-regexp)
 (global-set-key (kbd "C-M-;") 'align-space)
