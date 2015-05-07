@@ -22,30 +22,3 @@
 
   (define-key haskell-mode-map (kbd "C-c l") 'nil)
   )
-
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook 'ghc-init)
-
-(with-eval-after-load 'ghc
-  (add-hook 'haskell-mode-hook '(lambda ()
-                                  (add-to-list 'ac-sources 'ac-source-ghc-mod)))
-  (add-hook 'after-save-hook 'ghc-import-module nil t)
-
-  (set-face-underline 'ghc-face-error 'unspecified)
-  (set-face-underline 'ghc-face-warn 'unspecified)
-
-  (defun ghc-show-info-minibuffer ()
-    (interactive)
-    (message "%s" (ghc-get-info (ghc-things-at-point))))
-  (define-key haskell-mode-map (kbd "C-c C-d") 'ghc-show-info-minibuffer)
-  (define-key haskell-mode-map (kbd "C-M-'") 'ghc-check-insert-from-warning)
-
-  (define-key haskell-mode-map (kbd "C-M-d") 'nil)
-
-  (setq ghc-import-key   (kbd "C-c i"))
-  (setq ghc-insert-key   (kbd "C-c m"))
-  (setq ghc-next-key     (kbd "C-c ! n"))
-  (setq ghc-previous-key (kbd "C-c ! t"))
-  (setq ghc-sort-key     (kbd "C-c ! l"))
-  )
