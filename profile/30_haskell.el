@@ -12,6 +12,8 @@
   (add-to-list 'ac-modes 'haskell-interactive-mode)
   (add-hook 'inferior-haskell-mode-hook 'ac-haskell-process-setup)
 
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook 'flycheck-haskell-setup))
 
   (defun haskell-mode-stylish-buffer-and-save-buffer()
     (interactive)
