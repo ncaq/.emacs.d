@@ -19,7 +19,15 @@
   (indent-according-to-mode)
   )
 
-(sp-local-pair '(c-mode c++-mode objc-mode java-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+(sp-local-pair '(
+                 c++-mode
+                 c-mode
+                 css-mode
+                 d-mode
+                 java-mode
+                 js-mode
+                 objc-mode
+                 ) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
 
 (define-key smartparens-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
 (define-key smartparens-mode-map (kbd "C-)") 'sp-slurp-hybrid-sexp)
