@@ -24,7 +24,4 @@
   (interactive)
   (setq-local whitespace-action (remove 'auto-cleanup whitespace-action)))
 
-(defun whitespace-clean-disable (h)
-  (add-hook h 'whitespace-cleanup-turn-off))
-
-(mapc 'whitespace-clean-disable whitespace-cleanup-disabled-hooks)
+(mapc (lambda (h)(add-hook h 'whitespace-cleanup-turn-off)) whitespace-cleanup-disabled-hooks)
