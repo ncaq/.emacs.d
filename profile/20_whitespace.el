@@ -9,7 +9,7 @@
  )
 
 (set-face-background 'whitespace-space "#073642")
-(set-face-background 'whitespace-tab "#586e75")
+(set-face-background 'whitespace-tab "#0C2B33")
 
 (defcustom whitespace-cleanup-disabled-hooks
   '(
