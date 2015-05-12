@@ -17,6 +17,7 @@
 
 (autoload 'rainbow-turn-on "rainbow-mode")
 (add-hook 'emacs-lisp-mode-hook 'rainbow-turn-on)
+(add-hook 'help-mode-hook       'rainbow-turn-on)
 (add-hook 'lisp-mode-hook       'rainbow-turn-on)
 (add-hook 'scss-mode-hook       'rainbow-turn-on)
 (add-hook 'web-mode-hook        'rainbow-turn-on)
