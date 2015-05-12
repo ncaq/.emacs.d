@@ -4,7 +4,7 @@
 
 (custom-set-variables
  '(global-whitespace-mode t)
- '(whitespace-style '(face tabs spaces trailing space-before-tab space-after-tab))
+ '(whitespace-style '(face tabs spaces trailing))
  '(whitespace-action '(auto-cleanup))
  )
 
