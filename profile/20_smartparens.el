@@ -26,6 +26,7 @@
                  d-mode
                  java-mode
                  js-mode
+                 llvm-mode
                  objc-mode
                  ) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
 
