@@ -3,7 +3,7 @@
 (custom-set-variables
  '(gc-cons-percentage 10)               ; 10%以上作成したらGC
  '(gc-cons-threshold 16000000)          ; 16MB以上作成したらGC
- '(inhibit-startup-message t)           ; 起動時の画面無効
+ '(inhibit-startup-screen t)            ; 起動時の画面無効
  )
 
 (require 'exec-path-from-shell)
