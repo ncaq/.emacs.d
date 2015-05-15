@@ -45,7 +45,6 @@
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
 (global-set-key (kbd "C-c ;") 'align-regexp)
-(global-set-key (kbd "C-c a") 'text-adjust-selective)
 (global-set-key (kbd "C-c b") 'eww)
 (global-set-key (kbd "C-c c") 'quickrun)
 (global-set-key (kbd "C-c l") 'recentf-cleanup)
