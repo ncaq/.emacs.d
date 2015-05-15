@@ -9,16 +9,10 @@
 
 ;; mode-line line and column and sum char numbar
 (setq mode-line-position '(:eval
-                           (list "l%l/" (int-to-string number-of-line-buffer)
-                                 ",c" (int-to-string (- (point) (line-beginning-position))) "/" (int-to-string (- (line-end-position) (line-beginning-position)))
-                                 ",s" (int-to-string (point)) "/%i"
+                           (list "l%l/" (int-to-string (line-number-at-pos (point-max))) " "
+                                 "c" (int-to-string (- (point) (line-beginning-position))) "/" (int-to-string (- (line-end-position) (line-beginning-position))) " "
+                                 "s" (int-to-string (point)) "/%i"
                                  )))
-(defvar-local number-of-line-buffer (count-screen-lines))
-(defun set-number-of-line-buffer ()
-  (setq number-of-line-buffer (count-screen-lines)))
-(add-hook 'after-revert-hook 'set-number-of-line-buffer)
-(add-hook 'after-save-hook   'set-number-of-line-buffer)
-(run-with-idle-timer 30 t    'set-number-of-line-buffer)
 
 (require 'uniquify)
 (custom-set-variables '(uniquify-buffer-name-style 'forward))
