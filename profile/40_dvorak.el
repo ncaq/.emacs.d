@@ -38,8 +38,10 @@
 
 (global-set-key (kbd "M-g p")   'nil)
 (global-set-key (kbd "M-g t")   'previous-error)
-(global-set-key (kbd "M-g C-p") 'nil)
 (global-set-key (kbd "M-g C-t") 'previous-error)
+(global-set-key (kbd "M-g C-n") 'next-error)
+(global-set-key (kbd "M-g M-p") 'nil)
+(global-set-key (kbd "M-g M-t") 'previous-error)
 
 ;; modes
 (define-key minibuffer-local-map (kbd "M-s") 'nil)
