@@ -9,4 +9,8 @@
  '(flycheck-indication-mode 'left-fringe)
  )
 
-(with-eval-after-load 'flycheck (define-key flycheck-mode-map (kbd "C-j") 'flycheck-list-errors))
+(with-eval-after-load 'flycheck
+  (define-key flycheck-mode-map (kbd "C-j") 'flycheck-list-errors)
+  (define-key flycheck-mode-map [remap previous-error] 'flycheck-previous-error)
+  (define-key flycheck-mode-map [remap next-error] 'flycheck-next-error)
+  )
