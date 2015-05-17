@@ -52,6 +52,7 @@
 (global-set-key (kbd "C-c p") 'tramp-cleanup-all-connections)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-c t") 'google-translate-at-point)
+(global-set-key (kbd "C-c w") 'whitespace-cleanup)
 
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
 
