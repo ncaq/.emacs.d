@@ -18,8 +18,8 @@
 (with-eval-after-load 'flycheck
   (add-hook 'c++-mode-hook '(lambda ()
                               (custom-set-variables
-                               '(flycheck-gcc-language-standard   "c++11")
-                               '(flycheck-clang-language-standard "c++11")
+                               '(flycheck-gcc-language-standard   "c++14")
+                               '(flycheck-clang-language-standard "c++14")
                                '(flycheck-clang-standard-library  "libc++")
                                ))))
 
