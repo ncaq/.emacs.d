@@ -28,6 +28,7 @@
                  js-mode
                  llvm-mode
                  objc-mode
+                 rust-mode
                  ) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
 
 (define-key smartparens-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)

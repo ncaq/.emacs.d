@@ -24,6 +24,7 @@
                markdown-mode
                nxml-mode
                plantuml-mode
+               rust-mode
                scss-mode
                shell-script-mode
                text-mode
