@@ -1,15 +1,15 @@
 [submodule "mine/ncaq-emacs-utils"]
 	path = mine/ncaq-emacs-utils
-	url = git@github.com:ncaq/ncaq-emacs-utils.git
+	url = https://github.com/ncaq/ncaq-emacs-utils.git
 [submodule "mine/symbolword-mode"]
 	path = mine/symbolword-mode
-	url = git@github.com:ncaq/symbolword-mode.git
+	url = https://github.com/ncaq/symbolword-mode.git
 [submodule "mine/auto-sudoedit"]
 	path = mine/auto-sudoedit
-	url = git@github.com:ncaq/auto-sudoedit.git
+	url = https://github.com/ncaq/auto-sudoedit.git
 [submodule "mine/eww-goto-alc"]
 	path = mine/eww-goto-alc
-	url = git@github.com:ncaq/eww-goto-alc.git
+	url = https://github.com/ncaq/eww-goto-alc.git
 [submodule "mine/recentf-remove-sudo-tramp-prefix"]
 	path = mine/recentf-remove-sudo-tramp-prefix
-	url = git@github.com:ncaq/recentf-purge-tramp.git
+	url = https://github.com/ncaq/recentf-purge-tramp.git
