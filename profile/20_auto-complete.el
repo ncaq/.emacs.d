@@ -19,6 +19,7 @@
                git-commit-mode
                graphviz-dot-mode
                haskell-mode
+               html-mode
                inferior-emacs-lisp-mode
                inferior-haskell-mode
                markdown-mode
