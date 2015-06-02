@@ -49,6 +49,7 @@
 (global-set-key (kbd "C-c c") 'quickrun)
 (global-set-key (kbd "C-c l") 'recentf-cleanup)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
+(global-set-key (kbd "C-c o") 'open-ncaq-working-dir)
 (global-set-key (kbd "C-c p") 'tramp-cleanup-all-connections)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-c t") 'google-translate-at-point)

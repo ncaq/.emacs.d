@@ -7,3 +7,7 @@
 (require 'symbolword-mode)
 
 (autoload 'sudden-death "sudden-death")
+
+(defun open-ncaq-working-dir ()
+  (interactive)
+  (find-file "~/Documents/current/"))
