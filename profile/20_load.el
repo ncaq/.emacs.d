@@ -10,4 +10,5 @@
 
 (defun open-ncaq-working-dir ()
   (interactive)
-  (find-file "~/Documents/current/"))
+  (let ((find-file-visit-truename t))
+    (find-file "~/Documents/current/")))
