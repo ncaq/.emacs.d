@@ -30,6 +30,7 @@
         nxml-down-element
         sh-assignment
         smart-delete-whitespace-backward
+        smart-delete-whitespace-forward
         smart-move-beginning-of-line
         sp--self-insert-command
         sp-backward-kill-sexp
