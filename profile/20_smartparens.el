@@ -24,6 +24,7 @@
                  c-mode
                  css-mode
                  d-mode
+                 dart-mode
                  java-mode
                  js-mode
                  jsx-mode
