@@ -26,6 +26,7 @@
                  d-mode
                  java-mode
                  js-mode
+                 jsx-mode
                  llvm-mode
                  objc-mode
                  rust-mode
