@@ -15,6 +15,7 @@
  '(ac-modes (append
              '(conf-mode
                d-mode
+               dart-mode
                fundamental-mode
                git-commit-mode
                graphviz-dot-mode
