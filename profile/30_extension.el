@@ -3,7 +3,7 @@
 (autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t) ;http://www.okada.jp.org/RWiki/?ESS
 
 (add-to-list 'auto-mode-alist '("\\.R\\'"          . R-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'"        . jsx-mode))
 (add-to-list 'auto-mode-alist '("\\.license\\'"    . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.mask\\'"       . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.r\\'"          . R-mode))
