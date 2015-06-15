@@ -15,3 +15,5 @@
 (defun whitespace-cleanup-turn-off ()
   (interactive)
   (setq-local whitespace-action (remove 'auto-cleanup whitespace-action)))
+
+(add-hook 'markdown-mode-hook 'whitespace-cleanup-turn-off)
