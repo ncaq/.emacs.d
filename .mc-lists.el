@@ -3,6 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        *table--cell-self-insert-command
+        *table--cell-yank
         LaTeX-babel-insert-hyphen
         backward-kill-symbolword
         backward-sexp
