@@ -16,6 +16,7 @@
 (set-face-foreground 'rainbow-delimiters-depth-1-face "#586e75") ;文字列の色と被るため,変更
 
 (autoload 'rainbow-turn-on "rainbow-mode")
+(add-hook 'css-mode-hook        'rainbow-turn-on)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-turn-on)
 (add-hook 'help-mode-hook       'rainbow-turn-on)
 (add-hook 'lisp-mode-hook       'rainbow-turn-on)
