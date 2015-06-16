@@ -30,6 +30,7 @@
         kill-symbolword
         markdown-enter-key
         nxml-down-element
+        sgml-slash
         sh-assignment
         smart-delete-whitespace-backward
         smart-delete-whitespace-forward
