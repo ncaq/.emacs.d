@@ -19,6 +19,7 @@
                fundamental-mode
                git-commit-mode
                graphviz-dot-mode
+               haml-mode
                haskell-mode
                html-mode
                inferior-emacs-lisp-mode
