@@ -3,8 +3,6 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        *table--cell-self-insert-command
-        *table--cell-yank
         LaTeX-babel-insert-hyphen
         backward-kill-symbolword
         backward-sexp
@@ -54,10 +52,8 @@
         dired-clean-directory
         helm-M-x
         indent-whole-buffer
-        mozc-handle-event
         scroll-down-one
         toggle-input-method
-        w3m-goto-alc
         wdired-change-to-wdired-mode
         wdired-finish-edit
         ))
