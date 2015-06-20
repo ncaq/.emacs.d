@@ -19,4 +19,4 @@
 (add-hook 'c-mode-hook       'helm-gtags-mode)
 (add-hook 'haskell-mode-hook 'helm-gtags-mode)
 (add-hook 'java-mode-hook    'helm-gtags-mode)
-(add-hook 'js-mode           'helm-gtags-mode)
+(add-hook 'js-mode-hook      'helm-gtags-mode)
