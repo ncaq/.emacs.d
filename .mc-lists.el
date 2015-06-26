@@ -28,6 +28,7 @@
         kill-symbolword
         markdown-enter-key
         nxml-down-element
+        nxml-electric-slash
         sgml-slash
         sh-assignment
         smart-delete-whitespace-backward
