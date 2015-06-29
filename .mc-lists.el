@@ -11,6 +11,7 @@
         c-electric-delete-forward
         c-electric-lt-gt
         c-electric-paren
+        c-electric-pound
         c-electric-semi&comma
         c-electric-slash
         c-electric-star
@@ -54,6 +55,7 @@
         helm-M-x
         indent-whole-buffer
         scroll-down-one
+        scroll-up-one
         toggle-input-method
         wdired-change-to-wdired-mode
         wdired-finish-edit
