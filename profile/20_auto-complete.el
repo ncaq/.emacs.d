@@ -31,6 +31,7 @@
                scss-mode
                shell-script-mode
                text-mode
+               typescript-mode
                )
              ac-modes))
  )
