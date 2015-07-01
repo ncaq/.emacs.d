@@ -44,6 +44,7 @@
         sp-splice-sexp
         sp-wrap-tag-done
         tab-to-tab-stop
+        typescript-insert-and-indent
         undefined
         undo-tree-visualizer-quit
         vs-move-beginning-of-line
