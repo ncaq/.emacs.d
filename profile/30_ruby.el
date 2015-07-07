@@ -7,8 +7,6 @@
  '(inf-ruby-eval-binding "Pry.toplevel_binding")
  )
 
-(add-hook 'inf-ruby-mode-hook 'ansi-color-for-comint-mode-on)
-
 (with-eval-after-load 'auto-complete (add-to-list 'ac-modes 'inf-ruby-mode))
 (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
 
