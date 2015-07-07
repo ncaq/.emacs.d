@@ -23,6 +23,7 @@
 (define-key smartparens-mode-map (kbd "M-)") 'sp-forward-barf-sexp)
 
 (define-key smartparens-mode-map (kbd "M-u") 'sp-splice-sexp)
+(define-key smartparens-mode-map (kbd "C-M-u") 'sp-up-sexp)
 
 (define-key smartparens-mode-map (kbd "C-M-k") 'sp-raise-sexp)
 
