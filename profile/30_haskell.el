@@ -1,11 +1,13 @@
 ;; -*- lexical-binding: t -*-
 
 (with-eval-after-load 'haskell-mode
-  (custom-set-variables '(haskell-stylish-on-save t))
+  (custom-set-variables
+   '(ac-modes (append '(haskell-mode inferior-haskell-mode haskell-interactive-mode) ac-modes))
+   '(haskell-stylish-on-save t)
+   )
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
   (with-eval-after-load 'auto-complete
-    (add-to-list 'ac-modes 'haskell-interactive-mode)
     (add-hook 'inferior-haskell-mode-hook 'ac-haskell-process-setup))
 
   (with-eval-after-load 'flycheck

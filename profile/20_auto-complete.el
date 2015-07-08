@@ -20,10 +20,8 @@
                git-commit-mode
                graphviz-dot-mode
                haml-mode
-               haskell-mode
                html-mode
                inferior-emacs-lisp-mode
-               inferior-haskell-mode
                markdown-mode
                nxml-mode
                plantuml-mode
