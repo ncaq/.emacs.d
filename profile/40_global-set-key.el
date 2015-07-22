@@ -57,10 +57,10 @@
 
 (global-set-key (kbd "C-c C-f") 'ff-find-other-file)
 
-(global-set-key (kbd "M-g b") 'magit-blame-mode)
+(global-set-key (kbd "M-g b") 'magit-blame)
 (global-set-key (kbd "M-g d") 'vc-diff)
-(global-set-key (kbd "M-g l") 'magit-file-log)
-(global-set-key (kbd "M-g o") 'magit-show)
+(global-set-key (kbd "M-g f") 'magit-find-file)
+(global-set-key (kbd "M-g l") 'magit-log-buffer-file)
 (global-set-key (kbd "M-g s") 'magit-status)
 
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
