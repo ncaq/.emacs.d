@@ -16,7 +16,6 @@
 (global-set-key (kbd "C-o") 'helm-for-files-lite)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-u") 'kill-whole-line)
-(global-set-key (kbd "C-z") 'eww-goto-alc)
 
 (global-set-key (kbd "C-\\") 'quoted-insert)
 
@@ -25,6 +24,7 @@
 (global-set-key (kbd "C-S-m") 'quoted-newline)
 
 (global-set-key (kbd "M-,") 'mc/edit-lines)
+(global-set-key (kbd "M--") 'eww-goto-alc)
 (global-set-key (kbd "M-c") 'help-command)
 (global-set-key (kbd "M-l") 'sort-lines-auto-mark-paragrah)
 (global-set-key (kbd "M-m") 'newline-under)
