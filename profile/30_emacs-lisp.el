@@ -6,7 +6,6 @@
 
 (with-eval-after-load 'elisp-slime-nav
   (define-key elisp-slime-nav-mode-map (kbd "C-.") 'elisp-slime-nav-find-elisp-thing-at-point)
-  (define-key elisp-slime-nav-mode-map (kbd "M-.") 'pop-tag-mark)
   (define-key elisp-slime-nav-mode-map (kbd "M-,") 'nil)
   (define-key elisp-slime-nav-mode-map (kbd "C-c C-d") 'elisp-slime-nav-describe-elisp-thing-at-point)
   )

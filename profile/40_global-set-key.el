@@ -6,7 +6,7 @@
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C-,") 'mc/mark-all-dwim)
 (global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "C-.") 'helm-semantic-or-imenu)
+(global-set-key (kbd "C-.") 'gtags-or-imenu)
 (global-set-key (kbd "C-;") 'toggle-input-method)
 (global-set-key (kbd "C-=") 'text-scale-reset)
 (global-set-key (kbd "C-^") 'dired-jump-to-current)
@@ -25,6 +25,7 @@
 
 (global-set-key (kbd "M-,") 'mc/edit-lines)
 (global-set-key (kbd "M--") 'eww-goto-alc)
+(global-set-key (kbd "M-.") 'pop-tag-mark)
 (global-set-key (kbd "M-c") 'help-command)
 (global-set-key (kbd "M-l") 'sort-lines-auto-mark-paragrah)
 (global-set-key (kbd "M-m") 'newline-under)
