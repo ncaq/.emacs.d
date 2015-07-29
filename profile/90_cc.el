@@ -10,10 +10,7 @@
  '(c-basic-offset 4)
  )
 
-(with-eval-after-load 'cc-mode
-  (define-key c-mode-base-map (kbd "C-M-h") 'nil)
-  (define-key c-mode-base-map (kbd "C-M-q") 'nil)
-  )
+(with-eval-after-load 'cc-mode (ncaq-set-key c-mode-base-map))
 
 (with-eval-after-load 'flycheck
   (add-hook 'c++-mode-hook '(lambda ()

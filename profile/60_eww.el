@@ -4,6 +4,8 @@
   (custom-set-variables
    '(eww-search-prefix "https://www.google.co.jp/search?q="))
 
+  (ncaq-set-key eww-mode-map)
+
   (define-key eww-mode-map (kbd "h") 'backward-char)
   (define-key eww-mode-map (kbd "t") 'previous-line)
   (define-key eww-mode-map (kbd "n") 'next-line)
@@ -18,7 +20,7 @@
   (define-key eww-mode-map (kbd "m") 'ace-link-eww)
 
   (define-key eww-mode-map (kbd "M-n") 'nil)
-  (define-key eww-mode-map (kbd "M-p") 'nil)
+  (define-key eww-mode-map (kbd "M-t") 'nil)
 
   (define-key eww-mode-map (kbd "<C-S-iso-lefttab>") 'eww-previous-buffer)
   (define-key eww-mode-map (kbd "<C-tab>")           'eww-next-buffer)

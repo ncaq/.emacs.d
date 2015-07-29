@@ -1,133 +1,58 @@
 ;; -*- lexical-binding: t -*-
 
-;; h,t,n,sの移動設定
-(global-set-key (kbd "C-h")   'backward-char)
-(global-set-key (kbd "M-h")   'backward-word)
-(global-set-key (kbd "C-M-h") 'backward-sexp)
+(defun reverse-cons (c)
+  (cons (cdr c) (car c)))
 
-(global-set-key (kbd "C-t")   'previous-line)
-(global-set-key (kbd "M-t")   'scroll-down-one)
-(global-set-key (kbd "C-M-t") 'backward-paragraph)
+(defun trans-bind (key-map key-pair)
+  (cons (kbd (car key-pair)) (lookup-key key-map (kbd (cdr key-pair)))))
 
-(global-set-key (kbd "C-n")   'next-line)
-(global-set-key (kbd "M-n")   'scroll-up-one)
-(global-set-key (kbd "C-M-n") 'forward-paragraph)
+(defun swap-set-key (key-map key-pairs)
+  (mapc (lambda (kc) (define-key key-map (car kc) (cdr kc)))
+        (mapcar (lambda (kp) (trans-bind key-map kp)) (append key-pairs (mapcar 'reverse-cons key-pairs)))))
 
-(global-set-key (kbd "C-s")   'forward-char)
-(global-set-key (kbd "M-s")   'forward-word)
-(global-set-key (kbd "C-M-s") 'forward-sexp)
+(defconst qwerty-dvorak '(("b" . "h")
+                          ("f" . "s")
+                          ("p" . "t")))
 
-(defun other-window-backward ()
-  (interactive)
-  (other-window -1))
+(defun prefix-key-pair (from-prefix to-prefix key-pair)
+  (cons (concat from-prefix (car key-pair)) (concat to-prefix (cdr key-pair))))
 
-;; 余ったpにはwindow操作を割り当てる
-(global-set-key (kbd "C-p")   'other-window)
-(global-set-key (kbd "M-p")   'other-window-backward)
-(global-set-key (kbd "C-M-p") 'split-window-right)
+(defun dvorak-set-key (key-map)
+  (let ((prefixes '(("C-"     . "C-")
+                    ("M-"     . "M-")
+                    ("C-M-"   . "C-M-")
+                    ("M-g M-" . "M-g M-")
+                    )))
+    (mapc (lambda (pp) (swap-set-key key-map (mapcar (lambda (kp) (prefix-key-pair (car pp) (cdr pp) kp)) qwerty-dvorak))) prefixes)))
 
-;; backspace
-(global-set-key (kbd "C-b")   'backward-delete-char-untabify)
-(global-set-key (kbd "M-b")   'backward-kill-word)
-(global-set-key (kbd "C-M-b") 'backward-kill-sexp)
+(dvorak-set-key global-map)
 
-;; search→find
-(global-set-key (kbd "C-f")   'isearch-forward)
-(global-set-key (kbd "M-f")   'helm-occur)
-(global-set-key (kbd "C-M-f") 'isearch-forward-regexp)
+(defun ncaq-set-key (key-map)
+  (swap-set-key key-map '(("C-q"   . "C-\\")
+                          ("C-M-q" . "C-c q")
+                          ("M-h"   . "C-c h")
+                          ("C-M-h" . "C-c C-h")
+                          ))
+  (dvorak-set-key key-map))
 
-(global-set-key (kbd "M-g p")   'nil)
-(global-set-key (kbd "M-g t")   'previous-error)
-(global-set-key (kbd "M-g C-t") 'previous-error)
-(global-set-key (kbd "M-g C-n") 'next-error)
-(global-set-key (kbd "M-g M-p") 'nil)
-(global-set-key (kbd "M-g M-t") 'previous-error)
-
-;; modes
-(define-key minibuffer-local-map (kbd "M-s") 'nil)
-(define-key minibuffer-local-map (kbd "M-p") 'nil)
-(define-key minibuffer-local-map (kbd "M-t") 'previous-history-element)
-
+(ncaq-set-key isearch-mode-map)
 (define-key isearch-mode-map (kbd "C-b") 'isearch-delete-char)
-(define-key isearch-mode-map (kbd "C-s") 'nil)
-(define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 (define-key isearch-mode-map (kbd "M-b") 'isearc-del-char)
 (define-key isearch-mode-map (kbd "M-m") 'isearch-exit-previous)
 
-(with-eval-after-load 'comint
-  (define-key comint-mode-map (kbd "M-p") 'nil)
-  (define-key comint-mode-map (kbd "M-t") 'comint-previous-input)
-  )
-
-(with-eval-after-load 'diff-mode
-  (define-key diff-mode-map (kbd "M-h") 'nil))
-
-(with-eval-after-load 'doc-view
-  (define-key doc-view-mode-map (kbd "C-p") 'nil)
-  (define-key doc-view-mode-map (kbd "C-t") 'doc-view-previous-line-or-previous-page)
-  (define-key doc-view-mode-map (kbd "p")   'doc-view-previous-page)
-  (define-key doc-view-mode-map (kbd "t")   'doc-view-previous-page)
-  )
-
-(with-eval-after-load 'info
-  (define-key Info-mode-map (kbd "h") 'Info-history-back)
-  (define-key Info-mode-map (kbd "s") 'Info-history-forward)
-
-  (define-key Info-mode-map (kbd "t") 'Info-prev)
-  (define-key Info-mode-map (kbd "b") 'Info-up)
-  )
-
-(with-eval-after-load 'help-mode
-  (define-key help-mode-map (kbd "h") 'help-go-back)
-  (define-key help-mode-map (kbd "s") 'help-go-forward)
-
-  (define-key help-mode-map (kbd "t") 'help-go-back)
-  (define-key help-mode-map (kbd "n") 'help-go-forward)
-  )
-
-(with-eval-after-load 'rect
-  (define-key rectangle-mark-mode-map (kbd "C-t") 'nil)
-  )
-
-(with-eval-after-load 'make-mode
-  (define-key makefile-mode-map (kbd "M-n") 'nil)
-  (define-key makefile-mode-map (kbd "M-t") 'nil)
-  )
+(ncaq-set-key minibuffer-local-map)
 
 (with-eval-after-load 'hexl
-  (define-key hexl-mode-map (kbd "C-b")   'nil)
-  (define-key hexl-mode-map (kbd "C-h")   'hexl-backward-char)
-  (define-key hexl-mode-map (kbd "M-b")   'nil)
-  (define-key hexl-mode-map (kbd "M-h")   'hexl-backward-word)
-  (define-key hexl-mode-map (kbd "C-M-b") 'nil)
-  (define-key hexl-mode-map (kbd "C-M-h") 'hexl-backward-short)
-
-  (define-key hexl-mode-map (kbd "C-p")   'nil)
-  (define-key hexl-mode-map (kbd "C-t")   'hexl-previous-line)
-
-  (define-key hexl-mode-map (kbd "C-f")   'nil)
-  (define-key hexl-mode-map (kbd "C-s")   'hexl-forward-char)
-  (define-key hexl-mode-map (kbd "M-f")   'nil)
-  (define-key hexl-mode-map (kbd "M-s")   'hexl-forward-word)
-  (define-key hexl-mode-map (kbd "C-M-f") 'nil)
-  (define-key hexl-mode-map (kbd "C-M-s") 'hexl-forward-short)
-
-  (define-key hexl-mode-map (kbd "C-q")   'nil)
-
+  (define-key hexl-mode-map (kbd "M-g") 'nil)
+  (ncaq-set-key hexl-mode-map)
   (define-key hexl-mode-map [remap quoted-insert] 'hexl-quoted-insert)
   )
 
-(with-eval-after-load 'man
-  (define-key Man-mode-map (kbd "p") 'nil)
-  (define-key Man-mode-map (kbd "t") 'Man-previous-section)
-
-  (define-key Man-mode-map (kbd "M-p")   'nil)
-  (define-key Man-mode-map (kbd "C-c t") 'Man-previous-manpage)
-  (define-key Man-mode-map (kbd "M-n")   'nil)
-  (define-key Man-mode-map (kbd "C-c n") 'Man-next-manpage)
-  )
-
-(with-eval-after-load 'profiler
-  (define-key profiler-report-mode-map (kbd "p") 'nil)
-  (define-key profiler-report-mode-map (kbd "t") 'profiler-report-previous-entry)
-  )
+(with-eval-after-load 'comint (ncaq-set-key comint-mode-map))
+(with-eval-after-load 'diff-mode (ncaq-set-key diff-mode-map))
+(with-eval-after-load 'doc-view (ncaq-set-key doc-view-mode-map))
+(with-eval-after-load 'help-mode (ncaq-set-key help-mode-map))
+(with-eval-after-load 'info (ncaq-set-key Info-mode-map))
+(with-eval-after-load 'make-mode (ncaq-set-key makefile-mode-map))
+(with-eval-after-load 'man (ncaq-set-key Man-mode-map))
+(with-eval-after-load 'rect (ncaq-set-key rectangle-mark-mode-map))

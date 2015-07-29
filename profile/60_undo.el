@@ -10,9 +10,8 @@
  '(undo-tree-visualizer-timestamps t)
  )
 
+(ncaq-set-key undo-tree-visualizer-mode-map)
 (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit)
-(define-key undo-tree-visualizer-mode-map (kbd "s")   'undo-tree-visualize-switch-branch-right)
-(define-key undo-tree-visualizer-mode-map (kbd "t")   'undo-tree-visualize-undo)
 
 (require 'point-undo)
 

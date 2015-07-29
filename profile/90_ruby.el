@@ -14,15 +14,6 @@
 (add-hook 'robe-mode-hook 'ac-robe-setup)
 
 (with-eval-after-load 'enh-ruby-mode
+  (ncaq-set-key enh-ruby-mode-map)
   (define-key enh-ruby-mode-map "C-j" 'nil)
-  (define-key enh-ruby-mode-map "C-M-q" 'nil)
-
-  (define-key enh-ruby-mode-map "C-M-b" 'nil)
-  (define-key enh-ruby-mode-map "C-M-h" 'enh-ruby-backward-sexp)
-
-  (define-key enh-ruby-mode-map "C-M-f" 'nil)
-  (define-key enh-ruby-mode-map "C-M-s" 'enh-ruby-forward-sexp)
-
-  (define-key enh-ruby-mode-map "C-M-p" 'nil)
-  (define-key enh-ruby-mode-map "C-M-t" 'enh-ruby-beginning-of-block)
   )

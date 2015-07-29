@@ -16,9 +16,10 @@ Letters do not insert themselves; instead, they are commands.
 (with-eval-after-load 'ibuffer
   (custom-set-variables '(ibuffer-formats '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
                                             (mark " " (name 60 -1) " " filename))))
+  (ncaq-set-key ibuffer-mode-map)
   (define-key ibuffer-mode-map (kbd "C-o") 'nil)
-  (define-key ibuffer-mode-map (kbd "C-t") 'nil)
   )
 
 (with-eval-after-load 'profiler
+  (ncaq-set-key profiler-report-mode-map)
   (setq profiler-report-cpu-line-format '((100 left) (24 right ((19 right) (5 right))))))
