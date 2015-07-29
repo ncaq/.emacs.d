@@ -18,7 +18,8 @@
   (cons (concat from-prefix (car key-pair)) (concat to-prefix (cdr key-pair))))
 
 (defun dvorak-set-key (key-map)
-  (let ((prefixes '(("C-"     . "C-")
+  (let ((prefixes '((""       . "")
+                    ("C-"     . "C-")
                     ("M-"     . "M-")
                     ("C-M-"   . "C-M-")
                     ("M-g M-" . "M-g M-")

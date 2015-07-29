@@ -9,12 +9,10 @@
     (interactive)
     (dired "."))
 
-  (defun dired-disable-M-o()
-    (define-key dired-mode-map (kbd "M-o") 'nil))
-
-  (add-hook 'dired-mode-hook 'dired-disable-M-o)
-
   (ncaq-set-key dired-mode-map)
-  (define-key dired-mode-map (kbd "C-^")     'dired-up-directory)
+  (define-key dired-mode-map (kbd "C-o") 'nil)
+  (define-key dired-mode-map (kbd "C-p") 'nil)
+  (define-key dired-mode-map (kbd "M-o") 'nil)
+  (define-key dired-mode-map (kbd "C-^") 'dired-up-directory)
   (define-key dired-mode-map (kbd "C-c C-p") 'wdired-change-to-wdired-mode)
   )
