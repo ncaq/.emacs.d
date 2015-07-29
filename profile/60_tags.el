@@ -13,8 +13,9 @@
   (define-key helm-gtags-mode-map [remap pop-tag-mark] 'helm-gtags-pop-stack)
   )
 
-(defun gtags-or-imenu ()
-  (interactive)
+(defun gtags-or-imenu (arg)
+  (interactive "P")
   (if (locate-dominating-file default-directory "GTAGS")
-      (helm-gtags-mode)
-    (helm-semantic-or-imenu)))
+      (progn (helm-gtags-mode)
+             (helm-gtags-dwim))
+    (helm-semantic-or-imenu arg)))
