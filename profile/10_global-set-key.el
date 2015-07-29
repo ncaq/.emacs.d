@@ -26,7 +26,6 @@
 (global-set-key (kbd "C-S-m") 'quoted-newline)
 
 (global-set-key (kbd "M-,") 'mc/edit-lines)
-(global-set-key (kbd "M--") 'eww-goto-alc)
 (global-set-key (kbd "M-.") 'pop-tag-mark)
 (global-set-key (kbd "M-b") 'backward-kill-word)
 (global-set-key (kbd "M-c") 'help-command)
@@ -41,6 +40,7 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
 (global-set-key (kbd "C-M-,") 'ag-regexp)
+(global-set-key (kbd "C-M--") 'eww-goto-alc)
 (global-set-key (kbd "C-M-;") 'align-space)
 (global-set-key (kbd "C-M-b") 'backward-kill-sexp)
 (global-set-key (kbd "C-M-d") 'kill-sexp)
