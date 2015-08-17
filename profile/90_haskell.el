@@ -4,6 +4,7 @@
  '(ac-modes (append '(haskell-mode inferior-haskell-mode haskell-interactive-mode) ac-modes))
  '(haskell-stylish-on-save t)
  '(haskell-indent-after-keywords '("where" "of" "do" "mdo" "rec" "in" "{" "if" "then" "else" "let"))
+ '(hamlet/basic-offset 4)
  )
 
 (with-eval-after-load 'haskell-mode
