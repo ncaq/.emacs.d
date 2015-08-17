@@ -4,7 +4,10 @@
   (cons (cdr c) (car c)))
 
 (defun trans-bind (key-map key-pair)
-  (cons (kbd (car key-pair)) (lookup-key key-map (kbd (cdr key-pair)))))
+  (cons (kbd (car key-pair)) (command-or-nil (lookup-key key-map (kbd (cdr key-pair))))))
+
+(defun command-or-nil (symbol)
+  (when (commandp symbol) symbol))
 
 (defun swap-set-key (key-map key-pairs)
   (mapc (lambda (kc) (define-key key-map (car kc) (cdr kc)))
