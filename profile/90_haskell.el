@@ -16,6 +16,9 @@
   (with-eval-after-load 'flycheck
     (add-hook 'flycheck-mode-hook 'flycheck-haskell-setup))
 
+  (with-eval-after-load 'haskell-interactive-mode
+    (ncaq-set-key haskell-interactive-mode-map))
+
   (defun haskell-mode-stylish-buffer-and-save-buffer ()
     (interactive)
     (save-buffer)
