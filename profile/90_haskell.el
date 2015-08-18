@@ -3,12 +3,17 @@
 (custom-set-variables
  '(ac-modes (append '(haskell-mode inferior-haskell-mode haskell-interactive-mode) ac-modes))
  '(haskell-stylish-on-save t)
- '(haskell-indent-after-keywords '("where" "of" "do" "mdo" "rec" "in" "{" "if" "then" "else" "let"))
+ '(haskell-indentation-ifte-offset 4)
+ '(haskell-indentation-layout-offset 4)
+ '(haskell-indentation-left-offset 4)
+ '(haskell-indentation-starter-offset 4)
+ '(haskell-indentation-where-post-offset 4)
+ '(haskell-indentation-where-pre-offset 4)
  '(hamlet/basic-offset 4)
  )
 
 (with-eval-after-load 'haskell-mode
-  (add-hook 'haskell-mode-hook 'haskell-indent-mode)
+  (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
   (with-eval-after-load 'auto-complete
     (add-hook 'inferior-haskell-mode-hook 'ac-haskell-process-setup))
