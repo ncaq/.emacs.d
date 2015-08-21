@@ -4,6 +4,7 @@
  '(blink-matching-paren nil)                ;括弧移動無効
  '(delete-by-moving-to-trash t)             ;ごみ箱を有効
  '(diff-switches "-u")                      ;diffをunifitedモードで
+ '(disabled-command-function nil)
  '(google-translate-default-source-language "en")
  '(google-translate-default-target-language "ja")
  '(indent-tabs-mode nil)                    ;インデントをスペースで行う
