@@ -8,10 +8,10 @@
 (mapc (lambda (path)
         (let ((default-directory path))
           (normal-top-level-add-subdirs-to-load-path)))
-      (list "~/.emacs.d/mine/"
-            "~/.emacs.d/universe/"))
-(add-to-list 'load-path "~/.emacs.d/universe/")
+      (list (concat user-emacs-directory "mine/")
+            (concat user-emacs-directory "universe/")))
+(add-to-list 'load-path (concat user-emacs-directory "universe/"))
 
 (require 'init-loader)
 (custom-set-variables '(init-loader-show-log-after-init nil))
-(init-loader-load "~/.emacs.d/profile/")
+(init-loader-load (concat user-emacs-directory "profile/"))

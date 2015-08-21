@@ -6,7 +6,7 @@
 
 (custom-set-variables
  '(undo-tree-auto-save-history t)
- '(undo-tree-history-directory-alist '(("". "~/.undo-tree")))
+ '(undo-tree-history-directory-alist `(("" . ,(concat user-emacs-directory "undo-tree/"))))
  '(undo-tree-visualizer-timestamps t)
  )
 

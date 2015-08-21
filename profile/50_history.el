@@ -6,7 +6,7 @@
  '(delete-old-versions t)
  '(kept-new-versions 50)             ;backupに新しいものをいくつ残すか
  '(kept-old-versions 50)             ;backupに古いものをいくつ残すか
- '(backup-directory-alist `(("" . "~/.file-backup/")))
+ '(backup-directory-alist `(("" . ,(concat user-emacs-directory "file-backup/"))))
 
  '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
  '(tramp-auto-save-directory temporary-file-directory)
@@ -19,7 +19,6 @@
 
  '(desktop-save-mode t)
  '(desktop-restore-frames nil)
-
  )
 
 (defun recentf-setup ()
