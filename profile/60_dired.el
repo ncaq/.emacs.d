@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
- '(dired-listing-switches "-Fhval --group-directories-first")      ;diredが使うlsオプションの設定
+ '(dired-listing-switches (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
  )
 
 (with-eval-after-load 'dired
