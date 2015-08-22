@@ -20,9 +20,9 @@
 (define-key helm-find-files-map    (kbd "C-s")   'nil)
 (define-key helm-generic-files-map (kbd "C-s")   'nil)
 (define-key helm-map               (kbd "C-M-b") 'nil)
+(define-key helm-map               (kbd "C-b")   'nil)
 (define-key helm-map               (kbd "C-h")   'nil)
 (define-key helm-map               (kbd "M-b")   'nil)
 (define-key helm-map               (kbd "M-s")   'nil)
 
 (define-key helm-map (kbd "<tab>") 'helm-select-action)
-(define-key helm-map (kbd "C-b") 'backward-delete-char-untabify)
