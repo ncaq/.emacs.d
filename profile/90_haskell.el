@@ -32,4 +32,5 @@
   (define-key haskell-mode-map [remap indent-whole-buffer] 'haskell-mode-stylish-buffer-and-save-buffer)
   (define-key haskell-mode-map (kbd "C-c C-d") 'hayoo)
   (define-key haskell-mode-map (kbd "C-c C-l") 'inferior-haskell-load-file)
+  (define-key haskell-mode-map (kbd "C-c C-r") 'haskell-process-load-or-reload)
   )
