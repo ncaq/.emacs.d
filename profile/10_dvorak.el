@@ -52,6 +52,13 @@
   (define-key hexl-mode-map [remap quoted-insert] 'hexl-quoted-insert)
   )
 
+(with-eval-after-load 'ag
+  (ncaq-set-key ag-mode-map)
+  (define-key ag-mode-map (kbd "C-o") 'nil)
+  (define-key ag-mode-map (kbd "M-n") 'nil)
+  (define-key ag-mode-map (kbd "M-p") 'nil)
+  )
+
 (with-eval-after-load 'comint (ncaq-set-key comint-mode-map))
 (with-eval-after-load 'diff-mode (ncaq-set-key diff-mode-map))
 (with-eval-after-load 'doc-view (ncaq-set-key doc-view-mode-map))
