@@ -23,7 +23,7 @@
 
 (global-set-key (kbd "C-S-b") 'smart-delete-whitespace-backward)
 (global-set-key (kbd "C-S-d") 'smart-delete-whitespace-forward)
-(global-set-key (kbd "C-S-m") 'newline-upper)
+(global-set-key (kbd "C-S-m") 'quoted-newline)
 
 (global-set-key (kbd "M-,") 'mc/edit-lines)
 (global-set-key (kbd "M-.") 'pop-tag-mark)
@@ -31,7 +31,7 @@
 (global-set-key (kbd "M-c") 'help-command)
 (global-set-key (kbd "M-f") 'helm-occur)
 (global-set-key (kbd "M-l") 'sort-lines-auto-mark-paragrah)
-(global-set-key (kbd "M-m") 'quoted-newline)
+(global-set-key (kbd "M-m") 'newline-under)
 (global-set-key (kbd "M-n") 'scroll-up-one)
 (global-set-key (kbd "M-o") 'helm-multi-files)
 (global-set-key (kbd "M-q") 'delete-other-windows)
@@ -45,7 +45,7 @@
 (global-set-key (kbd "C-M-b") 'backward-kill-sexp)
 (global-set-key (kbd "C-M-d") 'kill-sexp)
 (global-set-key (kbd "C-M-l") 'sort-lines-whole-buffer)
-(global-set-key (kbd "C-M-m") 'newline-under)
+(global-set-key (kbd "C-M-m") 'newline-upper)
 (global-set-key (kbd "C-M-o") 'ibuffer)
 (global-set-key (kbd "C-M-p") 'split-window-right)
 (global-set-key (kbd "C-M-q") 'kill-this-buffer)
