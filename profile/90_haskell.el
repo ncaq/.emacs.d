@@ -13,7 +13,7 @@
  '(haskell-stylish-on-save t)
  )
 
-(with-eval-after-load 'haskell-mode
+(with-eval-after-load 'haskell
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   (add-hook 'haskell-mode-hook 'haskell-doc-mode)
@@ -29,11 +29,15 @@
   (defun haskell-process-load-or-reload-and-switch ()
     (interactive)
     (haskell-process-load-or-reload)
-    (switch-to-buffer (haskell-process)))
+    (haskell-interactive-switch))
 
   (with-eval-after-load 'haskell-interactive-mode (ncaq-set-key haskell-interactive-mode-map))
 
   (define-key haskell-mode-map (kbd "C-c C-d") 'hayoo)
-  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload-and-switch)
   (define-key haskell-mode-map [remap indent-whole-buffer] 'haskell-mode-stylish-buffer-and-save-buffer)
+
+  (ncaq-set-key interactive-haskell-mode-map)
+  (define-key interactive-haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload-and-switch)
+  (define-key interactive-haskell-mode-map (kbd "M-n") 'nil)
+  (define-key interactive-haskell-mode-map (kbd "M-t") 'nil)
   )
