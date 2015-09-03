@@ -14,10 +14,10 @@
   (define-key eww-mode-map (kbd "H") 'eww-back-url)
   (define-key eww-mode-map (kbd "S") 'eww-forward-url)
 
-  (define-key eww-mode-map (kbd "c") 'eww-browse-with-external-browser)
   (define-key eww-mode-map (kbd "d") 'eww-history-browse)
-  (define-key eww-mode-map (kbd "i") 'eww)
-  (define-key eww-mode-map (kbd "m") 'ace-link-eww)
+  (define-key eww-mode-map (kbd "e") 'eww-browse-with-external-browser)
+  (define-key eww-mode-map (kbd "g") 'ace-link-eww)
+  (define-key eww-mode-map (kbd "l") 'eww)
 
   (define-key eww-mode-map (kbd "M-n") 'nil)
   (define-key eww-mode-map (kbd "M-t") 'nil)
