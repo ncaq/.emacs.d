@@ -26,11 +26,6 @@
     (save-buffer)
     (haskell-mode-stylish-buffer))
 
-  (defun haskell-process-load-or-reload-and-switch ()
-    (interactive)
-    (haskell-process-load-or-reload)
-    (haskell-interactive-switch))
-
   (with-eval-after-load 'haskell-interactive-mode (ncaq-set-key haskell-interactive-mode-map))
 
   (define-key haskell-mode-map (kbd "C-c C-d") 'hayoo)
@@ -39,7 +34,6 @@
 
 (with-eval-after-load 'haskell
   (ncaq-set-key interactive-haskell-mode-map)
-  (define-key interactive-haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload-and-switch)
   (define-key interactive-haskell-mode-map (kbd "M-n") 'nil)
   (define-key interactive-haskell-mode-map (kbd "M-t") 'nil)
   )
