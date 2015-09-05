@@ -37,3 +37,5 @@
   (define-key interactive-haskell-mode-map (kbd "M-n") 'nil)
   (define-key interactive-haskell-mode-map (kbd "M-t") 'nil)
   )
+
+(with-eval-after-load 'haskell-cabal (ncaq-set-key haskell-cabal-mode-map))
