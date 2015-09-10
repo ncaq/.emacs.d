@@ -14,6 +14,7 @@
  '(global-auto-complete-mode t)
  '(ac-modes (append '(fundamental-mode
                       inferior-emacs-lisp-mode
+                      text-mode
                       )))
  )
 
