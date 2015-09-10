@@ -48,6 +48,7 @@
         undefined
         undo-tree-visualizer-quit
         vs-move-beginning-of-line
+        yaml-electric-dash-and-dot
         ))
 
 (setq mc/cmds-to-run-once
