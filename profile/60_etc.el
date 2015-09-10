@@ -7,10 +7,12 @@
  '(disabled-command-function nil)
  '(google-translate-default-source-language "en")
  '(google-translate-default-target-language "ja")
+ '(graphviz-dot-auto-indent-on-semi nil)
  '(indent-tabs-mode nil)                    ;インデントをスペースで行う
  '(read-buffer-completion-ignore-case t)    ;大文字と小文字を区別しない バッファ名
  '(read-file-name-completion-ignore-case t) ;大文字と小文字を区別しない ファイル名
  '(require-final-newline t)                 ;POSIX改行
+ '(scheme-program-name "gosh")
  '(scroll-step 1)                           ;最下段までScrollしてもカーソルを中心に戻さない
  '(skype--my-user-handle "ncaq__")
  '(tab-width 4)                             ;tab to 4 space

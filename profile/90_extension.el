@@ -13,9 +13,3 @@
 (add-to-list 'auto-mode-alist '("\\.zsh\\'"        . shell-script-mode))
 (add-to-list 'auto-mode-alist '("nginx.conf\\'"    . nginx-mode))
 (add-to-list 'auto-mode-alist '("sshd?_config\\'"  . ssh-config-mode))
-
-(custom-set-variables
- '(graphviz-dot-auto-indent-on-semi nil)
- '(scheme-program-name "gosh")
- '(scss-sass-options '("--cache-location" "'/tmp/.sass-cache/'" "--style" "expanded"))
- )
