@@ -6,37 +6,25 @@
 (ac-config-default)
 
 (custom-set-variables
- '(global-auto-complete-mode t)
  '(ac-auto-show-menu 0.4)
  '(ac-auto-start nil)
  '(ac-menu-height 22)
  '(ac-quick-help-delay 0.4)
  '(ac-use-quick-help t)
- '(ac-modes (append
-             '(conf-mode
-               d-mode
-               dart-mode
-               fundamental-mode
-               git-commit-mode
-               graphviz-dot-mode
-               haml-mode
-               html-mode
-               inferior-emacs-lisp-mode
-               markdown-mode
-               nxml-mode
-               plantuml-mode
-               rust-mode
-               scss-mode
-               shell-script-mode
-               text-mode
-               typescript-mode
-               )
-             ac-modes))
+ '(global-auto-complete-mode t)
+ '(ac-modes (append '(fundamental-mode
+                      inferior-emacs-lisp-mode
+                      )))
  )
 
 (setq-default ac-sources '(ac-source-filename
                            ac-source-words-in-all-buffer
                            ))
+
+(defun turn-on-auto-complete-mode ()
+  (auto-complete-mode t))
+
+(add-hook 'find-file-hook 'turn-on-auto-complete-mode)
 
 (ac-set-trigger-key "<tab>")
 (define-key ac-completing-map (kbd "M-n") 'ac-next)
