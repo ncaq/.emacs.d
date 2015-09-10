@@ -12,7 +12,7 @@
  '(tramp-auto-save-directory temporary-file-directory)
  '(auto-save-list-file-prefix (concat temporary-file-directory "auto-save-list/.saves-"))
 
- '(message-log-max 5000)                ;ログの記録行数を増やす.
+ '(message-log-max 100000)
 
  '(savehist-mode t)
  '(savehist-ignored-variables '(file-name-history))
