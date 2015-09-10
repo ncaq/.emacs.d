@@ -11,6 +11,7 @@
  '(haskell-indentation-starter-offset 4)
  '(haskell-indentation-where-post-offset 2)
  '(haskell-indentation-where-pre-offset 2)
+ '(haskell-process-suggest-hayoo-imports t)
  '(haskell-process-suggest-language-pragmas nil)
  '(haskell-stylish-on-save t)
  '(sass-indent-offset 4)
