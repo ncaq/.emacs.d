@@ -44,12 +44,10 @@
 (define-key isearch-mode-map (kbd "M-b") 'isearc-del-char)
 (define-key isearch-mode-map (kbd "M-m") 'isearch-exit-previous)
 
-(ncaq-set-key minibuffer-local-map)
-
 (with-eval-after-load 'hexl
   (define-key hexl-mode-map (kbd "M-g") 'nil)
-  (ncaq-set-key hexl-mode-map)
   (define-key hexl-mode-map [remap quoted-insert] 'hexl-quoted-insert)
+  (ncaq-set-key hexl-mode-map)
   )
 
 (with-eval-after-load 'ag
@@ -59,12 +57,15 @@
   (define-key ag-mode-map (kbd "M-p") 'nil)
   )
 
-(with-eval-after-load 'comint (ncaq-set-key comint-mode-map))
+(ncaq-set-key minibuffer-local-map)
+
+(with-eval-after-load 'comint    (ncaq-set-key comint-mode-map))
 (with-eval-after-load 'diff-mode (ncaq-set-key diff-mode-map))
-(with-eval-after-load 'doc-view (ncaq-set-key doc-view-mode-map))
+(with-eval-after-load 'doc-view  (ncaq-set-key doc-view-mode-map))
 (with-eval-after-load 'help-mode (ncaq-set-key help-mode-map))
-(with-eval-after-load 'info (ncaq-set-key Info-mode-map))
+(with-eval-after-load 'info      (ncaq-set-key Info-mode-map))
 (with-eval-after-load 'make-mode (ncaq-set-key makefile-mode-map))
-(with-eval-after-load 'man (ncaq-set-key Man-mode-map))
-(with-eval-after-load 'prolog (ncaq-set-key prolog-mode-map))
-(with-eval-after-load 'rect (ncaq-set-key rectangle-mark-mode-map))
+(with-eval-after-load 'man       (ncaq-set-key Man-mode-map))
+(with-eval-after-load 'prog-mode (ncaq-set-key prog-mode-map))
+(with-eval-after-load 'prolog    (ncaq-set-key prolog-mode-map))
+(with-eval-after-load 'rect      (ncaq-set-key rectangle-mark-mode-map))
