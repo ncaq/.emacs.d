@@ -32,10 +32,10 @@
 (dvorak-set-key global-map)
 
 (defun ncaq-set-key (key-map)
-  (swap-set-key key-map '(("C-q"   . "C-\\")
-                          ("C-M-q" . "C-c q")
-                          ("M-h"   . "C-c h")
-                          ("C-M-h" . "C-c C-h")
+  (swap-set-key key-map '(("C-q"   . "C-c C-q")
+                          ("C-M-q" . "C-c C-M-q")
+                          ("M-h"   . "C-c M-h")
+                          ("C-M-h" . "C-c C-M-h")
                           ))
   (dvorak-set-key key-map))
 
