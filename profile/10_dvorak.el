@@ -50,13 +50,6 @@
   (ncaq-set-key hexl-mode-map)
   )
 
-(with-eval-after-load 'ag
-  (ncaq-set-key ag-mode-map)
-  (define-key ag-mode-map (kbd "C-o") 'nil)
-  (define-key ag-mode-map (kbd "M-n") 'nil)
-  (define-key ag-mode-map (kbd "M-p") 'nil)
-  )
-
 (ncaq-set-key minibuffer-local-map)
 
 (with-eval-after-load 'comint    (ncaq-set-key comint-mode-map))
