@@ -1,15 +1,12 @@
-*
+file-backup/
+undo-tree/
+url/
 
-!elpa
-!mine
-!profile
-!snippets
-!universe
-
-!.gitignore
-!.gitmodules
-!.mc-lists.el
-!README.md
-!init.el
-!init.elc
-!todo.txt
+%backup%~
+.emacs.desktop
+.emacs.desktop.lock
+ac-comphist.dat
+history
+places
+recentf
+tramp
