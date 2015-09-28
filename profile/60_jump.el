@@ -21,8 +21,7 @@
   (define-key helm-gtags-mode-map [remap pop-tag-mark] 'helm-gtags-pop-stack)
   )
 
-(custom-set-variables '(helm-ag-command-option "--all-text"))
-
+(autoload 'helm-ag--project-root "helm-ag")
 (defun helm-do-ag-project-root-or-normal ()
   (interactive)
   (if (helm-ag--project-root)
