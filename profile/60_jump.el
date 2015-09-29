@@ -24,6 +24,4 @@
 (autoload 'helm-ag--project-root "helm-ag")
 (defun helm-do-ag-project-root-or-normal ()
   (interactive)
-  (if (helm-ag--project-root)
-      (helm-do-ag-project-root)
-    (helm-do-ag)))
+  (helm-do-ag (or (helm-ag--project-root) default-directory)))
