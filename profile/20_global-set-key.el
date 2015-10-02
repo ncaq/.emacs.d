@@ -58,6 +58,7 @@
 (global-set-key (kbd "C-c ;") 'align-regexp)
 (global-set-key (kbd "C-c b") 'eww)
 (global-set-key (kbd "C-c c") 'quickrun)
+(global-set-key (kbd "C-c j") 'ag-regexp)
 (global-set-key (kbd "C-c l") 'recentf-cleanup)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
 (global-set-key (kbd "C-c o") 'open-ncaq-working-dir)

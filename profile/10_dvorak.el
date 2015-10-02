@@ -32,7 +32,7 @@
 (dvorak-set-key global-map)
 
 (defun ncaq-set-key (key-map)
-  (mapc (lambda (key) (define-key key-map (kbd key) 'nil)) '("C-q" "M-q" "C-M-q" "M-h" "C-M-h" "M-b" "C-M-b"))
+  (mapc (lambda (key) (define-key key-map (kbd key) 'nil)) '("C-o" "M-b" "C-M-b" "M-h" "C-M-h" "C-q" "M-q" "C-M-q"))
   (dvorak-set-key key-map))
 
 (ncaq-set-key isearch-mode-map)
@@ -40,13 +40,23 @@
 (define-key isearch-mode-map (kbd "M-b") 'isearc-del-char)
 (define-key isearch-mode-map (kbd "M-m") 'isearch-exit-previous)
 
+(ncaq-set-key minibuffer-local-map)
+
+(with-eval-after-load 'ag
+  (swap-set-key ag-mode-map '(("p" . "t")))
+  )
+
+(with-eval-after-load 'compile
+  (ncaq-set-key compilation-minor-mode-map)
+  (ncaq-set-key compilation-mode-map)
+  (ncaq-set-key compilation-shell-minor-mode-map)
+  )
+
 (with-eval-after-load 'hexl
   (define-key hexl-mode-map (kbd "M-g") 'nil)
   (define-key hexl-mode-map [remap quoted-insert] 'hexl-quoted-insert)
   (ncaq-set-key hexl-mode-map)
   )
-
-(ncaq-set-key minibuffer-local-map)
 
 (with-eval-after-load 'comint    (ncaq-set-key comint-mode-map))
 (with-eval-after-load 'diff-mode (ncaq-set-key diff-mode-map))
