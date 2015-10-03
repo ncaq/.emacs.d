@@ -1,7 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(add-to-list 'auto-mode-alist '("\\.cassius\\'" . sass-mode))
-
 (custom-set-variables
  '(ac-modes (append '(haskell-mode inferior-haskell-mode haskell-interactive-mode) ac-modes))
  '(hamlet/basic-offset 4)
@@ -13,19 +11,15 @@
  '(haskell-indentation-where-pre-offset 2)
  '(haskell-process-suggest-language-pragmas nil)
  '(haskell-stylish-on-save t)
- '(sass-indent-offset 4)
  )
+
+(defun turn-off-flycheck-mode ()
+  (flycheck-mode -1))
 
 (with-eval-after-load 'haskell-mode
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  (add-hook 'haskell-mode-hook 'haskell-doc-mode)
-  (add-hook 'haskell-mode-hook 'ac-haskell-process-setup)
-  (add-hook 'inferior-haskell-mode-hook 'ac-haskell-process-setup)
-  (add-hook 'flycheck-mode-hook 'flycheck-haskell-setup)
-
-  (define-key haskell-mode-map (kbd "C-c C-d") 'hayoo)
-  (define-key haskell-mode-map [remap indent-whole-buffer] 'haskell-mode-stylish-buffer)
+  (add-hook 'haskell-mode-hook 'turn-off-flycheck-mode)
   )
 
 (with-eval-after-load 'haskell
@@ -36,3 +30,25 @@
 
 (with-eval-after-load 'haskell-cabal            (ncaq-set-key haskell-cabal-mode-map))
 (with-eval-after-load 'haskell-interactive-mode (ncaq-set-key haskell-interactive-mode-map))
+
+(add-to-list 'load-path (concat (car (file-expand-wildcards "~/.cabal/share/*-ghc-*/*ghc-mod*/elisp")) "/"))
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook 'ghc-init)
+
+(defun ghc-user-init ()
+  (add-to-list 'ac-sources 'ac-source-ghc-mod))
+(advice-add 'ghc-init :after 'ghc-user-init)
+
+(defvar ghc-display-error 'minibuffer)
+
+(defvar ghc-document-key   (kbd "C-c C-d"))
+(defvar ghc-help-key       (kbd "C-z"))
+(defvar ghc-info-key       (kbd "C-c d"))
+(defvar ghc-insert-key     (kbd "C-M-'"))
+(defvar ghc-next-hole-key  (kbd "C-c M-n"))
+(defvar ghc-next-key       (kbd "M-g M-n"))
+(defvar ghc-prev-hole-key  (kbd "C-c M-t"))
+(defvar ghc-previous-key   (kbd "M-g M-t"))
+(defvar ghc-sort-key       (kbd "C-c M-g l"))
+(defvar ghc-type-key       (kbd "C-c C-t"))

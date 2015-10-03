@@ -29,11 +29,12 @@
                     )))
     (mapc (lambda (pp) (swap-set-key key-map (mapcar (lambda (kp) (prefix-key-pair (car pp) (cdr pp) kp)) qwerty-dvorak))) prefixes)))
 
-(dvorak-set-key global-map)
-
 (defun ncaq-set-key (key-map)
   (mapc (lambda (key) (define-key key-map (kbd key) 'nil)) '("C-o" "M-b" "C-M-b" "M-h" "C-M-h" "C-q" "M-q" "C-M-q"))
   (dvorak-set-key key-map))
+
+(dvorak-set-key global-map)
+(swap-set-key global-map '(("M-g p" . "M-g t")))
 
 (ncaq-set-key isearch-mode-map)
 (define-key isearch-mode-map (kbd "C-b") 'isearch-delete-char)

@@ -15,7 +15,6 @@
  '(scheme-program-name "gosh")
  '(scroll-step 1)                           ;最下段までScrollしてもカーソルを中心に戻さない
  '(skype--my-user-handle "ncaq__")
- '(tab-width 4)                             ;tab to 4 space
  '(warning-minimum-level :error)            ;quiet waring
  '(x-select-enable-clipboard t)             ;クリップボードをX11と共有
  )
