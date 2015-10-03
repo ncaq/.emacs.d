@@ -3,7 +3,7 @@
 (custom-set-variables
  '(make-backup-files t)              ;バックアップファイルを作成する。
  '(version-control t)                ;複数バックアップ
- '(delete-old-versions t)
+ '(delete-old-versions t)            ;askだといちいち聞いてくる
  '(kept-new-versions 50)             ;backupに新しいものをいくつ残すか
  '(kept-old-versions 50)             ;backupに古いものをいくつ残すか
  '(backup-directory-alist `(("" . ,(concat user-emacs-directory "file-backup/"))))
@@ -26,7 +26,7 @@
    '(recentf-max-saved-items 1000)
 
    '(helm-ff-file-name-history-use-recentf t)
-   '(recentf-auto-cleanup 1000)
+   '(recentf-auto-cleanup 300)
 
    '(recentf-exclude '(
                        "\\.elc$"
