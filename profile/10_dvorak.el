@@ -43,9 +43,7 @@
 
 (ncaq-set-key minibuffer-local-map)
 
-(with-eval-after-load 'ag
-  (swap-set-key ag-mode-map '(("p" . "t")))
-  )
+(with-eval-after-load 'ag (swap-set-key ag-mode-map '(("p" . "t"))))
 
 (with-eval-after-load 'compile
   (ncaq-set-key compilation-minor-mode-map)
