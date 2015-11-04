@@ -7,4 +7,5 @@
  '(global-git-gutter+-mode t)
  )
 
+(with-eval-after-load 'git-commit (ncaq-set-key git-commit-mode-map))
 (with-eval-after-load 'magit (ncaq-set-key magit-mode-map))
