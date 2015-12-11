@@ -9,7 +9,7 @@
 
 ;; mode-line line and column and sum char numbar
 (setq mode-line-position '(:eval
-                           (list "l%l/" (int-to-string (line-number-at-pos (point-max))) " "
+                           (list "l%l/" (int-to-string (count-lines (point-min) (point-max))) " "
                                  "c" (int-to-string (- (point) (line-beginning-position))) "/" (int-to-string (- (line-end-position) (line-beginning-position))) " "
                                  "s" (int-to-string (point)) "/%i"
                                  )))
