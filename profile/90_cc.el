@@ -12,13 +12,8 @@
 
 (with-eval-after-load 'cc-mode (ncaq-set-key c-mode-base-map))
 
-(with-eval-after-load 'flycheck
-  (add-hook 'c++-mode-hook '(lambda ()
-                              (custom-set-variables
-                               '(flycheck-gcc-language-standard   "c++14")
-                               '(flycheck-clang-language-standard "c++14")
-                               '(flycheck-clang-standard-library  "libc++")
-                               ))))
+(setq-default flycheck-gcc-language-standard "c++14"
+              flycheck-clang-language-standard "c++14")
 
 (with-eval-after-load 'gud
   (custom-set-variables
