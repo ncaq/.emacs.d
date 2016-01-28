@@ -2,9 +2,9 @@
 
 (custom-set-variables
  '(exec-path-from-shell-check-startup-files nil)
- '(gc-cons-percentage 10)               ; 10%以上作成したらGC
- '(gc-cons-threshold 16000000)          ; 16MB以上作成したらGC
- '(inhibit-startup-screen t)            ; 起動時の画面無効
+ '(gc-cons-percentage 1)
+ '(gc-cons-threshold 8000000)
+ '(inhibit-startup-screen t)
  )
 
 (exec-path-from-shell-initialize)
