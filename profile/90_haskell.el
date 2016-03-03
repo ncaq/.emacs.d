@@ -52,3 +52,6 @@
 (defvar ghc-previous-key   (kbd "M-g M-t"))
 (defvar ghc-sort-key       (kbd "C-c M-g l"))
 (defvar ghc-type-key       (kbd "C-c C-t"))
+
+(flycheck-add-mode 'css-csslint 'shakespeare-lucius-mode)
+(flycheck-add-mode 'javascript-jshint 'shakespeare-julius-mode)
