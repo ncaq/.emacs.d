@@ -31,7 +31,6 @@
 (with-eval-after-load 'haskell-cabal            (ncaq-set-key haskell-cabal-mode-map))
 (with-eval-after-load 'haskell-interactive-mode (ncaq-set-key haskell-interactive-mode-map))
 
-(add-to-list 'load-path (concat (car (file-expand-wildcards "~/.cabal/share/*-ghc-*/*ghc-mod*/elisp")) "/"))
 (autoload 'ghc-init "ghc" nil t)
 (autoload 'ghc-debug "ghc" nil t)
 (add-hook 'haskell-mode-hook 'ghc-init)
