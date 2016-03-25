@@ -19,6 +19,7 @@
 (global-set-key (kbd "C-p") 'other-window)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-u") 'kill-whole-line)
+(global-set-key (kbd "C-w") 'kill-region-or-word-at-point)
 
 (global-set-key (kbd "C-\\") 'quoted-insert)
 
@@ -38,6 +39,7 @@
 (global-set-key (kbd "M-o") 'helm-multi-files)
 (global-set-key (kbd "M-q") 'delete-other-windows)
 (global-set-key (kbd "M-t") 'scroll-down-one)
+(global-set-key (kbd "M-w") 'kill-ring-save-region-or-word-at-point)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
@@ -51,7 +53,7 @@
 (global-set-key (kbd "C-M-o") 'ibuffer)
 (global-set-key (kbd "C-M-p") 'split-window-right)
 (global-set-key (kbd "C-M-q") 'kill-this-buffer)
-(global-set-key (kbd "C-M-w") 'kill-ring-save-whole)
+(global-set-key (kbd "C-M-w") 'kill-region-or-sexp-at-point)
 
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
