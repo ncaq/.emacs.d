@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(custom-set-variables '(safe-local-variable-values '((web-mode-markup-indent-offset . 2))))
+(put 'web-mode-markup-indent-offset 'safe-local-variable 'integerp)
 
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'"   . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'"   . web-mode))
