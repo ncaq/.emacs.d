@@ -13,7 +13,6 @@
  '(haskell-stylish-on-save t)
  )
 
-
 (put 'flycheck-ghc-language-extensions 'safe-local-variable 'listp)
 (put 'hamlet/basic-offset              'safe-local-variable 'integerp)
 (put 'haskell-indent-spaces            'safe-local-variable 'integerp)
@@ -24,10 +23,17 @@
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   )
 
+(defun haskell-interactive-and-flycheck ()
+  (interactive)
+  (haskell-interactive-switch)
+  (let ((frame (split-window-below)))
+    (flycheck-list-errors)))
+
 (with-eval-after-load 'haskell
   (ncaq-set-key interactive-haskell-mode-map)
   (define-key interactive-haskell-mode-map (kbd "M-n") 'nil)
   (define-key interactive-haskell-mode-map (kbd "M-t") 'nil)
+  (define-key interactive-haskell-mode-map (kbd "C-M-z") 'haskell-interactive-and-flycheck)
   )
 
 (with-eval-after-load 'haskell-cabal            (ncaq-set-key haskell-cabal-mode-map))
