@@ -16,7 +16,7 @@
 (global-set-key (kbd "C-j") 'helm-do-ag-project-root-or-normal)
 (global-set-key (kbd "C-m") 'newline-and-indent)
 (global-set-key (kbd "C-o") 'helm-for-files)
-(global-set-key (kbd "C-p") 'other-or-split-window)
+(global-set-key (kbd "C-p") 'other-window-fallback-split)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-u") 'kill-whole-line)
 (global-set-key (kbd "C-w") 'kill-region-or-word-at-point)
@@ -52,7 +52,7 @@
 (global-set-key (kbd "C-M-l") 'sort-lines-whole-buffer)
 (global-set-key (kbd "C-M-m") 'newline-upper)
 (global-set-key (kbd "C-M-o") 'ibuffer)
-(global-set-key (kbd "C-M-p") 'split-window-dwim)
+(global-set-key (kbd "C-M-p") 'split-window-dwim-and-other)
 (global-set-key (kbd "C-M-q") 'kill-this-buffer)
 (global-set-key (kbd "C-M-w") 'kill-region-or-sexp-at-point)
 
