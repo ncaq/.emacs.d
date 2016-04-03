@@ -26,6 +26,7 @@
         haskell-indentation-delete-char
         indent-for-tab-command
         kill-region
+        kill-region-or-word-at-point
         kill-symbolword
         markdown-enter-key
         nxml-down-element
