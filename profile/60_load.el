@@ -6,8 +6,6 @@
 (require 'ncaq-emacs-utils)
 (require 'symbolword-mode)
 
-(autoload 'sudden-death "sudden-death")
-
 (defun open-ncaq-working-dir ()
   (interactive)
   (let ((find-file-visit-truename t))
