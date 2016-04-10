@@ -42,4 +42,4 @@
 (with-eval-after-load 'haskell-interactive-mode (ncaq-set-key haskell-interactive-mode-map))
 
 (flycheck-add-mode 'css-csslint 'shakespeare-lucius-mode)
-(flycheck-add-mode 'javascript-jshint 'shakespeare-julius-mode)
+(flycheck-add-mode 'javascript-eslint 'shakespeare-julius-mode)
