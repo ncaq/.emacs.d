@@ -25,6 +25,7 @@
 
 (defun haskell-interactive-and-flycheck ()
   (interactive)
+  (delete-other-windows)
   (haskell-interactive-switch)
   (let ((frame (split-window-below)))
     (flycheck-list-errors)))
