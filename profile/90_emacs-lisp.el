@@ -7,6 +7,7 @@
  )
 
 (define-key emacs-lisp-mode-map (kbd "C-M-e") 'eval-buffer)
+(define-key emacs-lisp-mode-map (kbd "C-M-q") 'nil)
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
