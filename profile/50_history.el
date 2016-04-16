@@ -31,6 +31,7 @@
    '(recentf-exclude '(
                        "\\.elc$"
                        "\\.o$"
+                       "autoloads\\.el"
                        "~$"
 
                        "COMMIT_EDITMSG$"
