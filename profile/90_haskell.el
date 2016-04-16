@@ -44,3 +44,8 @@
 
 (flycheck-add-mode 'css-csslint 'shakespeare-lucius-mode)
 (flycheck-add-mode 'javascript-eslint 'shakespeare-julius-mode)
+
+(defun hamlet-ncaq-setup ()
+  (electric-indent-local-mode -1))
+
+(add-hook 'hamlet-mode-hook 'hamlet-ncaq-setup)
