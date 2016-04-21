@@ -55,6 +55,7 @@
 (setq mc/cmds-to-run-once
       '(
         dired-clean-directory
+        haskell-process-load-file
         helm-M-x
         indent-whole-buffer
         scroll-down-one
