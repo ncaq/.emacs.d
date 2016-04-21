@@ -12,9 +12,6 @@
 
 (with-eval-after-load 'cc-mode (ncaq-set-key c-mode-base-map))
 
-(setq-default flycheck-gcc-language-standard "c++14"
-              flycheck-clang-language-standard "c++14")
-
 (with-eval-after-load 'gud
   (custom-set-variables
    '(gdb-many-windows t)                ;情報表示
