@@ -13,6 +13,8 @@
  '(haskell-stylish-on-save t)
  )
 
+(add-hook 'flycheck-mode-hook 'flycheck-haskell-setup)
+
 (put 'flycheck-ghc-language-extensions 'safe-local-variable 'listp)
 (put 'hamlet/basic-offset              'safe-local-variable 'integerp)
 (put 'haskell-indent-spaces            'safe-local-variable 'integerp)
