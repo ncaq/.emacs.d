@@ -12,3 +12,8 @@
 
 (with-eval-after-load 'web-mode
   (sp-local-pair '(web-mode) "<" ">" :actions :rem))
+
+(defun json-ncaq-setup ()
+  (custom-set-variables '(js-indent-level 2)))
+
+(add-hook 'json-mode-hook 'json-ncaq-setup)
