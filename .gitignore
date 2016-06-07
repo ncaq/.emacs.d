@@ -5,6 +5,7 @@ url/
 %backup%~
 .emacs.desktop
 .emacs.desktop.lock
+abbrev_defs
 ac-comphist.dat
 history
 places
