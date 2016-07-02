@@ -2,14 +2,11 @@
 
 (custom-set-variables
  '(ac-modes (append '(haskell-mode inferior-haskell-mode haskell-interactive-mode) ac-modes))
- '(hamlet/basic-offset 4)
- '(haskell-indentation-ifte-offset 4)
  '(haskell-indentation-layout-offset 4)
  '(haskell-indentation-left-offset 4)
  '(haskell-indentation-starter-offset 4)
  '(haskell-indentation-where-post-offset 2)
  '(haskell-indentation-where-pre-offset 2)
- '(haskell-process-suggest-language-pragmas nil)
  '(haskell-stylish-on-save t)
  )
 
@@ -18,7 +15,6 @@
 (put 'flycheck-ghc-language-extensions 'safe-local-variable 'listp)
 (put 'hamlet/basic-offset              'safe-local-variable 'integerp)
 (put 'haskell-indent-spaces            'safe-local-variable 'integerp)
-(put 'haskell-process-use-ghci         'safe-local-variable 'booleanp)
 
 (with-eval-after-load 'haskell-mode
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
