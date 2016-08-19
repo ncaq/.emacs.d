@@ -3,6 +3,8 @@
 (set-face-attribute 'default nil :family "Ricty" :height 135)
 (set-fontset-font nil 'unicode (font-spec :family "Ricty"))
 
+(emoji-fontset-enable "Symbola")
+
 (global-font-lock-mode);syntax highlight
 
 (require 'solarized-dark-theme)
