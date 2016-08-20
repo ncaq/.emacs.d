@@ -15,6 +15,7 @@
 (put 'flycheck-ghc-language-extensions 'safe-local-variable 'listp)
 (put 'hamlet/basic-offset              'safe-local-variable 'integerp)
 (put 'haskell-indent-spaces            'safe-local-variable 'integerp)
+(put 'haskell-process-use-ghci         'safe-local-variable 'booleanp)
 
 (with-eval-after-load 'haskell-mode
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
