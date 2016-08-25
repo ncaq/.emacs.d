@@ -2,8 +2,8 @@
 
 (custom-set-variables
  '(exec-path-from-shell-check-startup-files nil)
- '(gc-cons-percentage 1)
- '(gc-cons-threshold 8000000)
+ '(gc-cons-percentage (* gc-cons-percentage 5))
+ '(gc-cons-threshold (* gc-cons-threshold 5))
  '(inhibit-startup-screen t)
  )
 
