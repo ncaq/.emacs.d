@@ -14,5 +14,3 @@
 
 (add-to-list 'auto-mode-alist '("\\.jsx$" . jsx-mode))
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
-
-(custom-set-variables '(imaxima-latex-preamble "\\usepackage{concrete}"))
