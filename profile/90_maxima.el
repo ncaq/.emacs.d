@@ -1,6 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
-(custom-set-variables '(imaxima-latex-preamble "\\usepackage{concrete} \\setlength{\\mathindent}{10em}"))
+(custom-set-variables
+ '(imaxima-fnt-size "LARGE")
+ '(imaxima-latex-preamble "\\usepackage{concrete} \\setlength{\\mathindent}{5em}")
+ )
 
 (defun imaxima-latex ()
   "Convert Maxima buffer to LaTeX.
