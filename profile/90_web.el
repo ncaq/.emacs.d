@@ -17,3 +17,5 @@
   (setq-local js-indent-level 2))
 
 (add-hook 'json-mode-hook 'json-ncaq-setup)
+
+(add-hook 'typescript-mode-hook (lambda () (tide-setup)))
