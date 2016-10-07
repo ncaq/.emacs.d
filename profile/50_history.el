@@ -8,6 +8,7 @@
  '(kept-old-versions 20)             ;backupに古いものをいくつ残すか
  '(backup-directory-alist `(("" . ,(concat user-emacs-directory "file-backup/"))))
 
+ '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
  '(tramp-auto-save-directory temporary-file-directory)
 
  '(message-log-max 100000)
