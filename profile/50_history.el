@@ -23,7 +23,7 @@
   (require 'recentf-ext)
   (require 'recentf-remove-sudo-tramp-prefix)
   (custom-set-variables
-   '(recentf-max-saved-items (* recentf-max-saved-items 10))
+   '(recentf-max-saved-items (* recentf-max-saved-items 40))
 
    '(helm-ff-file-name-history-use-recentf t)
    '(recentf-auto-cleanup (* 15 60))
