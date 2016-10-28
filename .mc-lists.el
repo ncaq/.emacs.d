@@ -27,6 +27,7 @@
         indent-for-tab-command
         kill-region
         kill-region-or-word-at-point
+        kill-ring-save-region-or-word-at-point
         kill-symbolword
         markdown-enter-key
         nxml-down-element
