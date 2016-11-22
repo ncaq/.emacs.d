@@ -5,9 +5,10 @@ url/
 
 %backup%~
 .emacs.desktop
-.emacs.desktop.lock
+.emacs.desktop*
 abbrev_defs
 ac-comphist.dat
+custom.el*
 history
 places
 recentf

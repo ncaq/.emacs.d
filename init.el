@@ -11,5 +11,4 @@
       (list (concat user-emacs-directory "mine/")))
 
 (require 'init-loader)
-(custom-set-variables '(init-loader-show-log-after-init nil))
 (init-loader-load (concat user-emacs-directory "profile/"))
