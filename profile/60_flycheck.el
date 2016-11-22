@@ -13,6 +13,5 @@
   (define-key flycheck-mode-map [remap previous-error] 'flycheck-previous-error)
   (define-key flycheck-mode-map [remap next-error] 'flycheck-next-error)
 
-  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
   (add-hook 'flycheck-mode-hook 'flycheck-typescript-tslint-setup)
   )

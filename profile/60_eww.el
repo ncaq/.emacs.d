@@ -16,7 +16,6 @@
 
   (define-key eww-mode-map (kbd "d") 'eww-history-browse)
   (define-key eww-mode-map (kbd "e") 'eww-browse-with-external-browser)
-  (define-key eww-mode-map (kbd "g") 'ace-link-eww)
   (define-key eww-mode-map (kbd "l") 'eww)
 
   (define-key eww-mode-map (kbd "M-n") 'nil)
