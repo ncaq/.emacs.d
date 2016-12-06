@@ -3,7 +3,6 @@
 (require 'helm-config)
 
 (helm-mode 1)
-(add-hook 'after-init-hook 'helm-ls-git-ls)
 
 (custom-set-variables
  '(helm-boring-buffer-regexp-list (append '("\\*tramp") helm-boring-buffer-regexp-list))
@@ -28,3 +27,5 @@
 (define-key helm-map               (kbd "M-s")   'nil)
 
 (define-key helm-map (kbd "<tab>") 'helm-select-action)
+
+(helm-ls-git-ls)
