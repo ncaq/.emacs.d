@@ -16,6 +16,7 @@
 (put 'haskell-process-use-ghci         'safe-local-variable 'booleanp)
 
 (with-eval-after-load 'haskell-mode
+  (require 'flycheck-stack)
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   )
