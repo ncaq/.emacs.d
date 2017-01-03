@@ -30,10 +30,8 @@
 
 (with-eval-after-load 'haskell
   (ncaq-set-key interactive-haskell-mode-map)
-  (define-key interactive-haskell-mode-map (kbd "M-.") 'nil)
   (define-key interactive-haskell-mode-map (kbd "M-n") 'nil)
   (define-key interactive-haskell-mode-map (kbd "M-t") 'nil)
-  (define-key interactive-haskell-mode-map (kbd "C-.") 'haskell-mode-jump-to-def-or-tag)
   (define-key interactive-haskell-mode-map (kbd "C-M-z") 'haskell-interactive-and-flycheck)
   )
 

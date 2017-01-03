@@ -15,9 +15,7 @@
 (add-hook 'find-file-hook 'helm-gtags-mode-when-gtags-dir)
 
 (with-eval-after-load 'helm-gtags
-  (define-key helm-gtags-mode-map (kbd "C-.") 'helm-gtags-dwim)
-  (define-key helm-gtags-mode-map (kbd "C->") 'helm-gtags-find-rtag)
-  (define-key helm-gtags-mode-map (kbd "C-M-.") 'helm-gtags-select)
+  (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
   (define-key helm-gtags-mode-map [remap pop-tag-mark] 'helm-gtags-pop-stack)
   )
 
