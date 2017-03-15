@@ -8,21 +8,7 @@
      (awk-mode . "awk")
      (other . "bsd")))
  '(c-basic-offset 4)
+ '(flycheck-clang-language-standard "c++14")
  )
 
 (with-eval-after-load 'cc-mode (ncaq-set-key c-mode-base-map))
-
-(with-eval-after-load 'gud
-  (custom-set-variables
-   '(gdb-many-windows t)                ;情報表示
-   '(gud-tooltip-echo-area t)           ;mini bufferに値を表示
-   '(gud-tooltip-mode t)                ;ポップアップで情報
-   )
-  (define-key gud-minor-mode-map (kbd "<f6>")  'gud-until)  ;現在の行まで実行
-  (define-key gud-minor-mode-map (kbd "<f7>")  'gud-cont)   ;ブレークポイントまで実行
-  (define-key gud-minor-mode-map (kbd "<f8>")  'gud-remove) ;ブレークポイント削除
-  (define-key gud-minor-mode-map (kbd "<f9>")  'gud-break)  ;ブレークポイント設置
-  (define-key gud-minor-mode-map (kbd "<f10>") 'gud-next)   ;1行進む
-  (define-key gud-minor-mode-map (kbd "<f11>") 'gud-step)   ;1行進む.関数に入る
-  (define-key gud-minor-mode-map (kbd "<f12>") 'gud-finish) ;step out 現在のスタックフレームを抜ける
-  )
