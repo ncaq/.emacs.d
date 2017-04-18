@@ -20,6 +20,7 @@
 (add-hook 'emacs-lisp-mode-hook 'rainbow-turn-on)
 (add-hook 'hamlet-mode-hook     'rainbow-turn-on)
 (add-hook 'help-mode-hook       'rainbow-turn-on)
+(add-hook 'js-mode              'rainbow-turn-on)
 (add-hook 'lisp-mode-hook       'rainbow-turn-on)
 (add-hook 'sass-mode-hook       'rainbow-turn-on)
 (add-hook 'scss-mode-hook       'rainbow-turn-on)
