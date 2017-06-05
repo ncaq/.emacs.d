@@ -11,7 +11,7 @@
  '(helm-delete-minibuffer-contents-from-point t) ;kill-line sim
  '(helm-descbinds-mode t)
  '(helm-samewindow t)                            ;ウインドウ全体に表示
- '(helm-for-files-preferred-list '(helm-source-buffers-list helm-source-recentf helm-source-bookmarks helm-source-file-cache helm-source-files-in-current-dir helm-source-ls-git helm-source-locate))
+ '(helm-for-files-preferred-list '(helm-source-buffers-list helm-source-files-in-current-dir helm-source-ls-git helm-source-recentf helm-source-file-cache helm-source-locate))
  )
 
 (swap-set-key helm-map '(("C-t" . "C-p")
