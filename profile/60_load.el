@@ -10,3 +10,5 @@
   (interactive)
   (let ((find-file-visit-truename t))
     (find-file "~/Documents/current/")))
+
+(yas-global-mode t)
