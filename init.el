@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.milkbox.net/packages/"))
 (package-initialize)
 
 ;; set load-path
