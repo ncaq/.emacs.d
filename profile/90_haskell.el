@@ -37,5 +37,12 @@
 (with-eval-after-load 'haskell-cabal            (ncaq-set-key haskell-cabal-mode-map))
 (with-eval-after-load 'haskell-interactive-mode (ncaq-set-key haskell-interactive-mode-map))
 
+(defun hamlet-mode-config ()
+  (local-set-key (kbd "C-m") 'newline)
+  (electric-indent-mode -1)
+  )
+
+(add-hook 'hamlet-mode-hook 'hamlet-mode-config)
+
 (flycheck-add-mode 'css-csslint 'shakespeare-lucius-mode)
 (flycheck-add-mode 'javascript-eslint 'shakespeare-julius-mode)
