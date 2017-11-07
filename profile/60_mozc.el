@@ -7,6 +7,8 @@
  '(mozc-candidate-style 'echo-area)
  )
 
+(set-face-background 'mozc-preedit-selected-face "#268bd2")
+
 (defun cursor-color-toggle ()
   (if current-input-method
       (set-face-background 'cursor "#00629D")
