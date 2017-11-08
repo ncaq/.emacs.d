@@ -16,6 +16,7 @@
  '(savehist-mode t)
 
  '(desktop-save-mode t)
+ '(desktop-globals-to-save nil)
  '(desktop-restore-frames nil)
  )
 
