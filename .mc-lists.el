@@ -4,9 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         LaTeX-babel-insert-hyphen
-        backward-kill-symbolword
         backward-sexp
-        backward-symbolword
         c-electric-colon
         c-electric-delete-forward
         c-electric-lt-gt
@@ -22,13 +20,12 @@
         dired-previous-line
         ess-smart-comma
         forward-sexp
-        forward-symbolword
         haskell-indentation-delete-char
         indent-for-tab-command
         kill-region
         kill-region-or-word-at-point
         kill-ring-save-region-or-word-at-point
-        kill-symbolword
+        symbolword-kill
         markdown-enter-key
         nxml-down-element
         nxml-electric-slash
@@ -45,6 +42,8 @@
         sp-slurp-hybrid-sexp
         sp-splice-sexp
         sp-wrap-tag-done
+        symbolword-backward
+        symbolword-forward
         tab-to-tab-stop
         typescript-insert-and-indent
         undefined
