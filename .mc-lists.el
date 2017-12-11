@@ -25,7 +25,6 @@
         kill-region
         kill-region-or-word-at-point
         kill-ring-save-region-or-word-at-point
-        symbolword-kill
         markdown-enter-key
         nxml-down-element
         nxml-electric-slash
@@ -43,7 +42,9 @@
         sp-splice-sexp
         sp-wrap-tag-done
         symbolword-backward
+        symbolword-backward-kill
         symbolword-forward
+        symbolword-kill
         tab-to-tab-stop
         typescript-insert-and-indent
         undefined
