@@ -15,4 +15,5 @@
   (find-file (concat "~/Desktop/www.ncaq.net/entry/"
                      (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
 
+(editorconfig-mode 1)
 (yas-global-mode t)

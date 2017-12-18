@@ -19,6 +19,7 @@
   (define-key helm-gtags-mode-map (kbd "C->") 'helm-gtags-find-symbol)
   (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
   (define-key helm-gtags-mode-map [remap pop-tag-mark] 'helm-gtags-pop-stack)
+  (define-key helm-gtags-mode-map [remap xref-pop-marker-stack] 'helm-gtags-pop-stack)
   )
 
 (defun etags-dir? ()
