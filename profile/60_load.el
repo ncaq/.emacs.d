@@ -1,6 +1,8 @@
 ;; -*- lexical-binding: t -*-
 
-(require 'auto-sudoedit-autoloads)
+(require 'auto-sudoedit)
+(auto-sudoedit-mode 1)
+
 (require 'help-fns+)
 (require 'ncaq-emacs-utils)
 (require 'symbolword-mode)
