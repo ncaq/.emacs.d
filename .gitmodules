@@ -4,9 +4,6 @@
 [submodule "mine/symbolword-mode"]
 	path = mine/symbolword-mode
 	url = https://github.com/ncaq/symbolword-mode.git
-[submodule "mine/auto-sudoedit"]
-	path = mine/auto-sudoedit
-	url = https://github.com/ncaq/auto-sudoedit.git
 [submodule "mine/eww-goto-alc"]
 	path = mine/eww-goto-alc
 	url = https://github.com/ncaq/eww-goto-alc.git
