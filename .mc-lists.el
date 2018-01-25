@@ -20,6 +20,7 @@
         dired-previous-line
         ess-smart-comma
         forward-sexp
+        haskell-indentation-common-electric-command
         haskell-indentation-delete-char
         indent-for-tab-command
         kill-region
