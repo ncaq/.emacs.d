@@ -23,6 +23,7 @@
 (defun recentf-setup ()
   (require 'recentf-ext)
   (require 'recentf-remove-sudo-tramp-prefix)
+  (recentf-remove-sudo-tramp-prefix-mode 1)
   (custom-set-variables
    '(recentf-max-saved-items (* recentf-max-saved-items 40))
 
