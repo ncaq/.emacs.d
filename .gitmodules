@@ -4,9 +4,3 @@
 [submodule "mine/symbolword-mode"]
 	path = mine/symbolword-mode
 	url = https://github.com/ncaq/symbolword-mode.git
-[submodule "mine/eww-goto-alc"]
-	path = mine/eww-goto-alc
-	url = https://github.com/ncaq/eww-goto-alc.git
-[submodule "mine/recentf-remove-sudo-tramp-prefix"]
-	path = mine/recentf-remove-sudo-tramp-prefix
-	url = https://github.com/ncaq/recentf-purge-tramp.git
