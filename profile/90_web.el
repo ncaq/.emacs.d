@@ -30,3 +30,9 @@
                                 (prettier-js-mode))))
 
 (with-eval-after-load 'web-mode (sp-local-pair '(web-mode) "<" ">" :actions :rem))
+
+(autoload 'apache-mode "apache-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
+(add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
+(add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
+(add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
