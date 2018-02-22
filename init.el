@@ -8,7 +8,7 @@
 (mapc (lambda (path)
         (let ((default-directory path))
           (normal-top-level-add-subdirs-to-load-path)))
-      (list (concat user-emacs-directory "mine/")))
+      (list (concat user-emacs-directory "module/")))
 
 (require 'init-loader)
 (init-loader-load (concat user-emacs-directory "profile/"))
