@@ -22,12 +22,18 @@
 (add-to-list 'auto-mode-alist '("\\.tpl\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'"      . web-mode))
 
+(flycheck-add-mode 'html-tidy 'web-mode)
 (flycheck-add-mode 'javascript-eslint 'web-mode)
-(add-hook 'web-mode-hook '(lambda ()
-                            (if (or
-                                 (string= web-mode-content-type "javascript")
-                                 (string= web-mode-content-type "jsx"))
-                                (prettier-js-mode))))
+
+(add-hook
+ 'web-mode-hook
+ '(lambda ()
+    (cond
+     ((string= web-mode-content-type "html")
+      (when (executable-find "tidy") (flycheck-select-checker 'html-tidy)))
+     ((or (string= web-mode-content-type "javascript") (string= web-mode-content-type "jsx"))
+      (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint))
+      (prettier-js-mode)))))
 
 (with-eval-after-load 'web-mode (sp-local-pair '(web-mode) "<" ">" :actions :rem))
 
