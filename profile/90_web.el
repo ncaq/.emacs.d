@@ -22,6 +22,8 @@
 (add-to-list 'auto-mode-alist '("\\.tpl\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'"      . web-mode))
 
+(with-eval-after-load 'web-mode (sp-local-pair '(web-mode) "<" ">" :actions :rem))
+
 (flycheck-add-mode 'html-tidy 'web-mode)
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 
@@ -34,8 +36,6 @@
      ((or (string= web-mode-content-type "javascript") (string= web-mode-content-type "jsx"))
       (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint))
       (prettier-js-mode)))))
-
-(with-eval-after-load 'web-mode (sp-local-pair '(web-mode) "<" ">" :actions :rem))
 
 (autoload 'apache-mode "apache-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
