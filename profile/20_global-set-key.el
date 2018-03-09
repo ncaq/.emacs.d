@@ -51,7 +51,8 @@
 (global-set-key (kbd "C-M-o") 'ibuffer)
 (global-set-key (kbd "C-M-p") 'split-window-dwim-and-other)
 (global-set-key (kbd "C-M-q") 'kill-this-buffer)
-(global-set-key (kbd "C-M-w") 'kill-region-or-sexp-at-point)
+(global-set-key (kbd "C-M-w") 'copy-to-register-@)
+(global-set-key (kbd "C-M-y") 'insert-register-@)
 
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
