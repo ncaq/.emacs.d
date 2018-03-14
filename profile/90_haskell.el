@@ -33,8 +33,9 @@
 (with-eval-after-load 'haskell-cabal (ncaq-set-key haskell-cabal-mode-map))
 
 (defun hamlet-mode-config ()
-  (local-set-key (kbd "C-m") 'newline)
-  (electric-indent-mode -1))
+  (local-set-key (kbd "C-m") 'newline-and-indent)
+  (electric-indent-local-mode -1)
+  )
 
 (put 'hamlet/basic-offset 'safe-local-variable 'integerp)
 
