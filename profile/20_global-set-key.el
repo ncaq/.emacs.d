@@ -12,7 +12,6 @@
 (global-set-key (kbd "C-b") 'backward-delete-char-untabify)
 (global-set-key (kbd "C-i") 'indent-whole-buffer)
 (global-set-key (kbd "C-j") 'helm-do-ag-project-root-or-normal)
-(global-set-key (kbd "C-m") 'newline-and-indent)
 (global-set-key (kbd "C-o") 'helm-for-files)
 (global-set-key (kbd "C-p") 'other-window-fallback-split)
 (global-set-key (kbd "C-q") 'kill-buffer-and-window)
