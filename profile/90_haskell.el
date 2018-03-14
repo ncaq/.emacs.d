@@ -11,35 +11,32 @@
  '(intero-global-mode 1)
  )
 
-(put 'flycheck-ghc-language-extensions 'safe-local-variable 'listp)
-(put 'hamlet/basic-offset              'safe-local-variable 'integerp)
-(put 'haskell-indent-spaces            'safe-local-variable 'integerp)
-(put 'haskell-process-use-ghci         'safe-local-variable 'booleanp)
+(put 'haskell-indent-spaces    'safe-local-variable 'integerp)
+(put 'haskell-process-use-ghci 'safe-local-variable 'booleanp)
 
-(defun haskell-interactive-and-flycheck ()
+(defun intero-repl-and-flycheck ()
   (interactive)
   (delete-other-windows)
-  (haskell-interactive-switch)
-  (let ((frame (split-window-below)))
-    (flycheck-list-errors)))
-
-(with-eval-after-load 'haskell
-  (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  (flycheck-add-next-checker 'intero '(warning . haskell-hlint))
-  (ncaq-set-key interactive-haskell-mode-map)
-  (define-key interactive-haskell-mode-map (kbd "M-n") 'nil)
-  (define-key interactive-haskell-mode-map (kbd "M-t") 'nil)
-  (define-key interactive-haskell-mode-map (kbd "C-M-z") 'haskell-interactive-and-flycheck)
+  (flycheck-list-errors)
+  (intero-repl)
+  (split-window-below)
+  (other-window 1)
+  (switch-to-buffer flycheck-error-list-buffer)
+  (other-window 1)
   )
 
-(with-eval-after-load 'haskell-cabal            (ncaq-set-key haskell-cabal-mode-map))
-(with-eval-after-load 'haskell-interactive-mode (ncaq-set-key haskell-interactive-mode-map))
+(with-eval-after-load 'intero
+  (define-key intero-mode-map (kbd "C-M-z") 'intero-repl-and-flycheck)
+  (flycheck-add-next-checker 'intero '(warning . haskell-hlint))
+  )
+
+(with-eval-after-load 'haskell-cabal (ncaq-set-key haskell-cabal-mode-map))
 
 (defun hamlet-mode-config ()
   (local-set-key (kbd "C-m") 'newline)
-  (electric-indent-mode -1)
-  )
+  (electric-indent-mode -1))
+
+(put 'hamlet/basic-offset 'safe-local-variable 'integerp)
 
 (add-hook 'hamlet-mode-hook 'hamlet-mode-config)
 
