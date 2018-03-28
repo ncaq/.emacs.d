@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
-(global-set-key (kbd "<tab>") 'indent-for-tab-command) ;何かしらを割り当てることで,C-iと別扱いになる
+;; 何かしらを割り当てることで,C-iと別扱いになる
+(global-set-key (kbd "<tab>") 'company-indent-or-complete-common)
 
 (global-set-key (kbd "C-'") 'mc/mark-all-dwim)
 (global-set-key (kbd "C-+") 'text-scale-increase)
@@ -18,7 +19,7 @@
 (global-set-key (kbd "C-u") 'kill-whole-line)
 (global-set-key (kbd "C-w") 'kill-region-or-word-at-point)
 
-(global-set-key (kbd "C-<tab>") 'auto-complete)
+(global-set-key (kbd "C-<tab>") 'company-dabbrev)
 (global-set-key (kbd "C-\\")    'quoted-insert)
 
 (global-set-key (kbd "C-S-b") 'smart-delete-whitespace-backward)

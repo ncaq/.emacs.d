@@ -1,7 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
- '(ac-modes (append '(haskell-mode inferior-haskell-mode haskell-interactive-mode) ac-modes))
  '(haskell-indentation-layout-offset 4)
  '(haskell-indentation-left-offset 4)
  '(haskell-indentation-starter-offset 4)
