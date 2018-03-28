@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (set-face-attribute 'default nil :family "Ricty" :height 135)
-(set-fontset-font nil 'unicode (font-spec :family "Ricty"))
+(set-fontset-font t 'unicode (font-spec :name "Ricty") nil 'append)
 
 (global-font-lock-mode);syntax highlight
 
