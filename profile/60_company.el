@@ -8,6 +8,7 @@
 
 (custom-set-variables
  '(company-dabbrev-code-other-buffers 'all)
+ '(company-dabbrev-downcase nil)
  '(company-dabbrev-other-buffers 'all)
  )
 
