@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (require 'helm-config)
+(require 'helm-ls-git)
 
 (helm-mode 1)
 
@@ -11,11 +12,21 @@
  '(helm-delete-minibuffer-contents-from-point t) ;kill-line sim
  '(helm-descbinds-mode t)
  '(helm-samewindow t)                            ;ウインドウ全体に表示
- '(helm-for-files-preferred-list '(helm-source-buffers-list helm-source-ls-git helm-source-recentf helm-source-files-in-current-dir helm-source-file-cache helm-source-locate))
+ '(helm-source-ls-git-status (helm-ls-git-build-git-status-source))
+ '(helm-for-files-preferred-list
+   '(helm-source-buffers-list
+     helm-source-recentf
+     helm-source-files-in-current-dir
+     helm-source-ls-git-status
+     helm-source-file-cache
+     helm-source-locate
+     ))
  )
 
-(swap-set-key helm-map '(("C-t" . "C-p")
-                         ("C-s" . "C-f")))
+(swap-set-key
+ helm-map
+ '(("C-t" . "C-p")
+   ("C-s" . "C-f")))
 
 (define-key helm-buffer-map        (kbd "C-s")   'nil)
 (define-key helm-find-files-map    (kbd "C-s")   'nil)
@@ -27,5 +38,3 @@
 (define-key helm-map               (kbd "M-s")   'nil)
 
 (define-key helm-map (kbd "<tab>") 'helm-select-action)
-
-(helm-ls-git-ls)
