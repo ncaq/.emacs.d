@@ -1,6 +1,3 @@
-[submodule "module/symbolword-mode"]
-	path = module/symbolword-mode
-	url = https://github.com/ncaq/symbolword-mode.git
 [submodule "module/ncaq-emacs-utils"]
 	path = module/ncaq-emacs-utils
 	url = https://github.com/ncaq/ncaq-emacs-utils.git
