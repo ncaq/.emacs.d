@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
+ '(fill-column 100)
  '(global-git-gutter-mode t)
  )
 
