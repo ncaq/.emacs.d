@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
+ '(web-mode-enable-auto-indentation nil)
  '(web-mode-enable-auto-quoting nil)
  '(web-mode-enable-current-column-highlight t)
  '(web-mode-enable-current-element-highlight t)
