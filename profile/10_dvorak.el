@@ -64,6 +64,7 @@
 (with-eval-after-load 'info      (ncaq-set-key Info-mode-map))
 (with-eval-after-load 'make-mode (ncaq-set-key makefile-mode-map))
 (with-eval-after-load 'man       (ncaq-set-key Man-mode-map))
+(with-eval-after-load 'pascal    (ncaq-set-key pascal-mode-map))
 (with-eval-after-load 'prog-mode (ncaq-set-key prog-mode-map))
 (with-eval-after-load 'prolog    (ncaq-set-key prolog-mode-map))
 (with-eval-after-load 'rect      (ncaq-set-key rectangle-mark-mode-map))
