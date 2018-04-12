@@ -58,6 +58,7 @@
 
 (global-set-key (kbd "C-c ;") 'align-regexp)
 (global-set-key (kbd "C-c c") 'quickrun)
+(global-set-key (kbd "C-c d") 'open-downloads)
 (global-set-key (kbd "C-c e") 'open-ncaq-entry)
 (global-set-key (kbd "C-c l") 'recentf-cleanup)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)

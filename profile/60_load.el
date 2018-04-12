@@ -7,6 +7,11 @@
 (require 'ncaq-emacs-utils)
 (require 'symbolword-mode)
 
+(defun open-downloads ()
+  (interactive)
+  (find-file "~/Downloads/")
+  )
+
 (defun open-ncaq-working-dir ()
   (interactive)
   (let ((find-file-visit-truename t))
