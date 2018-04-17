@@ -25,7 +25,7 @@
   (require 'recentf-remove-sudo-tramp-prefix)
   (recentf-remove-sudo-tramp-prefix-mode 1)
   (custom-set-variables
-   '(recentf-max-saved-items (* recentf-max-saved-items 40))
+   '(recentf-max-saved-items (* recentf-max-saved-items 20))
 
    '(helm-ff-file-name-history-use-recentf t)
    '(recentf-auto-cleanup (* 15 60))
