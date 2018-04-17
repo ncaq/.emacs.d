@@ -57,15 +57,16 @@
 (global-set-key (kbd "C-M-S-q") 'kill-all-buffers)
 
 (global-set-key (kbd "C-c ;") 'align-regexp)
+(global-set-key (kbd "C-c a") 'open-downloads)
 (global-set-key (kbd "C-c c") 'quickrun)
-(global-set-key (kbd "C-c d") 'open-downloads)
 (global-set-key (kbd "C-c e") 'open-ncaq-entry)
 (global-set-key (kbd "C-c l") 'recentf-cleanup)
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
-(global-set-key (kbd "C-c o") 'open-ncaq-working-dir)
+(global-set-key (kbd "C-c o") 'open-desktop)
 (global-set-key (kbd "C-c p") 'tramp-cleanup-all-connections)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-c t") 'google-translate-at-point)
+(global-set-key (kbd "C-c u") 'open-document-current)
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 

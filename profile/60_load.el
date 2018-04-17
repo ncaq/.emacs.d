@@ -7,12 +7,15 @@
 (require 'ncaq-emacs-utils)
 (require 'symbolword-mode)
 
+(defun open-desktop ()
+  (interactive)
+  (find-file "~/Desktop/"))
+
 (defun open-downloads ()
   (interactive)
-  (find-file "~/Downloads/")
-  )
+  (find-file "~/Downloads/"))
 
-(defun open-ncaq-working-dir ()
+(defun open-document-current ()
   (interactive)
   (let ((find-file-visit-truename t))
     (find-file "~/Documents/current/")))
