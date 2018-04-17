@@ -10,9 +10,6 @@
  '(intero-global-mode 1)
  )
 
-(put 'haskell-indent-spaces    'safe-local-variable 'integerp)
-(put 'haskell-process-use-ghci 'safe-local-variable 'booleanp)
-
 (defun intero-repl-and-flycheck ()
   (interactive)
   (delete-other-windows)
