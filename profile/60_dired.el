@@ -1,7 +1,11 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
- '(dired-listing-switches (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
+ '(dired-dwim-target t)
+ '(dired-isearch-filenames t)
+ '(dired-listing-switches
+   (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type))
+                      " --group-directories-first")))
  )
 
 (with-eval-after-load 'dired
