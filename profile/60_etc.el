@@ -5,6 +5,8 @@
  '(delete-by-moving-to-trash t)         ;ごみ箱を有効
  '(diff-switches "-u")                  ;diffをunifitedモードで
  '(disabled-command-function nil)
+ '(ediff-split-window-function 'split-window-horizontally)
+ '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(google-translate-default-source-language "en")
  '(google-translate-default-target-language "ja")
  '(graphviz-dot-auto-indent-on-semi nil)
@@ -20,5 +22,7 @@
  '(x-select-enable-clipboard t)         ;クリップボードをX11と共有
  )
 
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p) ;スクリプトに実行権限付加
-(fset 'yes-or-no-p 'y-or-n-p)                                                   ;"yes or no"を"y or n"に
+;;スクリプトに実行権限付加
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+;;"yes or no"を"y or n"に
+(fset 'yes-or-no-p 'y-or-n-p)
