@@ -47,3 +47,6 @@
 (add-hook 'after-init-hook 'recentf-setup)
 
 (save-place-mode 1)
+
+(defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
+(advice-add 'save-buffer :before 'setq-buffer-backed-up-nil)
