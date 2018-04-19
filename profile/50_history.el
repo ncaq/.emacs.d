@@ -1,12 +1,13 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
- '(make-backup-files t)              ;バックアップファイルを作成する。
- '(version-control t)                ;複数バックアップ
- '(delete-old-versions t)            ;askだといちいち聞いてくる
- '(kept-new-versions 20)             ;backupに新しいものをいくつ残すか
- '(kept-old-versions 20)             ;backupに古いものをいくつ残すか
  '(backup-directory-alist `(("" . ,(concat user-emacs-directory "file-backup/"))))
+ '(delete-old-versions t)            ;askだと削除時に一々聞いてくる
+ '(kept-new-versions 50)             ;backupに新しいものをいくつ残すか
+ '(kept-old-versions 0)              ;backupに古いものをいくつ残すか
+ '(make-backup-files t)              ;バックアップファイルを作成する。
+ '(vc-make-backup-files t)           ;VCS以下のファイルもバックアップを作成する
+ '(version-control t)                ;複数バックアップ
 
  '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
  '(tramp-auto-save-directory temporary-file-directory)
@@ -30,8 +31,7 @@
    '(helm-ff-file-name-history-use-recentf t)
    '(recentf-auto-cleanup (* 15 60))
 
-   '(recentf-exclude '(
-                       "\\.elc$"
+   '(recentf-exclude '("\\.elc$"
                        "\\.o$"
                        "~$"
 
