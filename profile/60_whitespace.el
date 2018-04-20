@@ -3,9 +3,9 @@
 (require 'whitespace)
 
 (custom-set-variables
- '(global-whitespace-mode t)
- '(whitespace-style '(face tabs spaces trailing))
+ '(global-whitespace-mode 1)
  '(whitespace-action '(auto-cleanup))
+ '(whitespace-style '(face tabs spaces trailing empty))
  )
 
 (set-face-background 'whitespace-space "#073642")
