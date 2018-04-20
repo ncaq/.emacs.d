@@ -7,10 +7,11 @@
  '(disabled-command-function nil)
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
+ '(global-auto-revert-mode 1)           ;自動再読込
  '(google-translate-default-source-language "en")
  '(google-translate-default-target-language "ja")
  '(graphviz-dot-auto-indent-on-semi nil)
- '(imaxima-fnt-size "LARGE")            ;maximaの文字を大きく
+ '(imaxima-fnt-size "LARGE")                ;maximaの文字を大きく
  '(indent-tabs-mode nil)                    ;インデントをスペースで行う
  '(read-buffer-completion-ignore-case t)    ;大文字と小文字を区別しない バッファ名
  '(read-file-name-completion-ignore-case t) ;大文字と小文字を区別しない ファイル名

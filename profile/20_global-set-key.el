@@ -37,6 +37,7 @@
 (global-set-key (kbd "M-o") 'helm-multi-files)
 (global-set-key (kbd "M-p") 'other-window-backward)
 (global-set-key (kbd "M-q") 'delete-other-windows)
+(global-set-key (kbd "M-r") 'revert-buffer-safe-confirm)
 (global-set-key (kbd "M-t") 'scroll-down-one)
 (global-set-key (kbd "M-w") 'kill-ring-save-region-or-word-at-point)
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -64,7 +65,6 @@
 (global-set-key (kbd "C-c n") 'google-translate-at-point-reverse)
 (global-set-key (kbd "C-c o") 'open-desktop)
 (global-set-key (kbd "C-c p") 'tramp-cleanup-all-connections)
-(global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-c t") 'google-translate-at-point)
 (global-set-key (kbd "C-c u") 'open-document-current)
 
