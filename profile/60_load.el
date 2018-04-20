@@ -26,3 +26,4 @@
                      (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
 
 (editorconfig-mode 1)
+(which-key-mode 1)
