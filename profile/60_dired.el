@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
+ '(dired-auto-revert-buffer t)          ;diredの自動再読込
  '(dired-dwim-target t)
  '(dired-isearch-filenames t)
  '(dired-listing-switches
