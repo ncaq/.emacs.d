@@ -1,14 +1,14 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
  '(web-mode-enable-auto-indentation nil)
  '(web-mode-enable-auto-quoting nil)
  '(web-mode-enable-current-column-highlight t)
  '(web-mode-enable-current-element-highlight t)
  '(web-mode-markup-indent-offset 2)
  )
-
-(put 'web-mode-markup-indent-offset 'safe-local-variable 'integerp)
 
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'"  . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'"  . web-mode))
@@ -28,15 +28,16 @@
 (flycheck-add-mode 'html-tidy 'web-mode)
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 
-(add-hook
- 'web-mode-hook
- '(lambda ()
-    (cond
-     ((string= web-mode-content-type "html")
-      (when (executable-find "tidy") (flycheck-select-checker 'html-tidy)))
-     ((or (string= web-mode-content-type "javascript") (string= web-mode-content-type "jsx"))
-      (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint))
-      (prettier-js-mode)))))
+(defun web-mode-setting ()
+  (cond
+   ((string= web-mode-content-type "html")
+    (when (executable-find "tidy") (flycheck-select-checker 'html-tidy)))
+   ((or (string= web-mode-content-type "javascript") (string= web-mode-content-type "jsx"))
+    (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint))
+    (prettier-js-mode 1)
+    )))
+
+(add-hook 'web-mode-hook 'web-mode-setting)
 
 (autoload 'apache-mode "apache-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
