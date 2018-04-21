@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
+ '(js-indent-level 2)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-enable-auto-indentation nil)
@@ -16,6 +17,7 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'"    . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'"       . web-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'"     . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'"      . web-mode))
@@ -32,12 +34,15 @@
   (cond
    ((string= web-mode-content-type "html")
     (when (executable-find "tidy") (flycheck-select-checker 'html-tidy)))
-   ((or (string= web-mode-content-type "javascript") (string= web-mode-content-type "jsx"))
-    (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint))
-    (prettier-js-mode 1)
-    )))
+   ((or (some (lambda (type) (string= web-mode-content-type type)) '("javascript" "jsx")))
+    (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint))))
+  (when
+      (some (lambda (type) (string= web-mode-content-type type)) '("css" "javascript" "json" "jsx"))
+    (prettier-js-mode 1)))
 
 (add-hook 'web-mode-hook 'web-mode-setting)
+
+(add-hook 'json-mode-hook 'prettier-js-mode)
 
 (autoload 'apache-mode "apache-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
