@@ -15,6 +15,8 @@
  '(message-log-max 100000)
 
  '(savehist-mode t)
+ '(savehist-minibuffer-history-variables
+   (cons 'extended-command-history savehist-minibuffer-history-variables))
 
  '(desktop-save-mode t)
  '(desktop-globals-to-save nil)
