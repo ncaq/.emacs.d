@@ -1,13 +1,13 @@
 ;; -*- lexical-binding: t -*-
 
-(custom-set-variables
- '(c-default-style
-   '((c-mode . "bsd")
-     (c++-mode . "bsd")
-     (java-mode . "bsd")
-     (awk-mode . "awk")
-     (other . "bsd")))
- '(c-basic-offset 4)
- )
+(defun set-hook-after-save-clang-format ()
+  (add-hook 'after-save-hook 'clang-format-buffer t t))
 
-(with-eval-after-load 'cc-mode (ncaq-set-key c-mode-base-map))
+(with-eval-after-load 'cc-mode
+  (add-hook 'c-mode-hook 'set-hook-after-save-clang-format)
+  (add-hook 'c++-mode-hook 'set-hook-after-save-clang-format)
+
+  (ncaq-set-key c-mode-base-map)
+  (define-key c-mode-map (kbd "C-i") 'clang-format-buffer)
+  (define-key c++-mode-map (kbd "C-i") 'clang-format-buffer)
+  )
