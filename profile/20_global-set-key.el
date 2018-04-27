@@ -40,6 +40,7 @@
 (global-set-key (kbd "M-q") 'delete-other-windows)
 (global-set-key (kbd "M-r") 'revert-buffer-safe-confirm)
 (global-set-key (kbd "M-t") 'scroll-down-one)
+(global-set-key (kbd "M-u") 'copy-whole-line)
 (global-set-key (kbd "M-w") 'kill-ring-save-region-or-word-at-point)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
