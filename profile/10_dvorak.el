@@ -41,10 +41,11 @@
      prefixes)))
 
 (defun ncaq-set-key (key-map)
+  (swap-set-key key-map '(("M-h" . "C-x p") ("C-M-h" . "C-x d")))
   (mapc
    (lambda (key)
      (define-key key-map (kbd key) 'nil))
-   '("C-o" "M-b" "C-M-b" "M-h" "C-M-h" "C-q" "M-q" "C-M-q"))
+   '("C-o" "M-b" "C-M-b" "C-q" "M-q" "C-M-q"))
   (dvorak-set-key key-map))
 
 (dvorak-set-key global-map)

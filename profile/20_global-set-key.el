@@ -71,6 +71,9 @@
 (global-set-key (kbd "C-c t") 'google-translate-at-point)
 (global-set-key (kbd "C-c u") 'open-document-current)
 
+(global-set-key (kbd "C-x d") 'mark-defun)
+(global-set-key (kbd "C-x p") 'mark-paragraph)
+
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (global-set-key (kbd "M-g b") 'magit-blame)

@@ -13,7 +13,7 @@
  )
 
 (ncaq-set-key company-active-map)
-(ncaq-set-key company-search-map)
+(dvorak-set-key company-search-map)
 
 (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
 (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
