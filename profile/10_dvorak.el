@@ -10,8 +10,13 @@
   (when (commandp symbol) symbol))
 
 (defun swap-set-key (key-map key-pairs)
-  (mapc (lambda (kc) (define-key key-map (car kc) (cdr kc)))
-        (mapcar (lambda (kp) (trans-bind key-map kp)) (append key-pairs (mapcar 'reverse-cons key-pairs)))))
+  (mapc
+   (lambda (kc)
+     (define-key key-map (car kc) (cdr kc)))
+   (mapcar
+    (lambda (kp)
+      (trans-bind key-map kp))
+    (append key-pairs (mapcar 'reverse-cons key-pairs)))))
 
 (defconst qwerty-dvorak '(("b" . "h")
                           ("f" . "s")
@@ -27,10 +32,19 @@
                     ("C-M-"   . "C-M-")
                     ("M-g M-" . "M-g M-")
                     )))
-    (mapc (lambda (pp) (swap-set-key key-map (mapcar (lambda (kp) (prefix-key-pair (car pp) (cdr pp) kp)) qwerty-dvorak))) prefixes)))
+    (mapc
+     (lambda (pp)
+       (swap-set-key key-map (mapcar
+                              (lambda (kp)
+                                (prefix-key-pair (car pp) (cdr pp) kp))
+                              qwerty-dvorak)))
+     prefixes)))
 
 (defun ncaq-set-key (key-map)
-  (mapc (lambda (key) (define-key key-map (kbd key) 'nil)) '("C-o" "M-b" "C-M-b" "M-h" "C-M-h" "C-q" "M-q" "C-M-q"))
+  (mapc
+   (lambda (key)
+     (define-key key-map (kbd key) 'nil))
+   '("C-o" "M-b" "C-M-b" "M-h" "C-M-h" "C-q" "M-q" "C-M-q"))
   (dvorak-set-key key-map))
 
 (dvorak-set-key global-map)
