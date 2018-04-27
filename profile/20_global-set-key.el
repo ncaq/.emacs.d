@@ -31,6 +31,7 @@
 (global-set-key (kbd "M-b") 'backward-kill-word)
 (global-set-key (kbd "M-c") 'help-command)
 (global-set-key (kbd "M-f") 'helm-occur)
+(global-set-key (kbd "M-i") 'indent-for-tab-command)
 (global-set-key (kbd "M-j") 'helm-ag-pop-stack)
 (global-set-key (kbd "M-l") 'sort-lines-auto-mark-paragrah)
 (global-set-key (kbd "M-m") 'newline-under)
