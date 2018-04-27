@@ -21,3 +21,5 @@
 (with-eval-after-load 'elisp-slime-nav
   (define-key elisp-slime-nav-mode-map (kbd "C-c C-d")
     'elisp-slime-nav-describe-elisp-thing-at-point))
+
+(define-key read-expression-map (kbd "<tab>") 'completion-at-point)
