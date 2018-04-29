@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
+ '(Man-notify-method 'bully)
  '(blink-matching-paren nil)            ;括弧移動無効
  '(delete-by-moving-to-trash t)         ;ごみ箱を有効
  '(diff-switches "-u")                  ;diffをunifitedモードで
