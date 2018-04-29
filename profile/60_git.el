@@ -1,10 +1,15 @@
 ;; -*- lexical-binding: t -*-
 
+(require 'git-commit)
+(require 'git-gutter)
+(require 'git-rebase)
+(require 'magit-mode)
+
 (custom-set-variables
  '(fill-column 100)
  '(global-git-gutter-mode t)
  )
 
-(with-eval-after-load 'git-commit (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
-(with-eval-after-load 'git-rebase (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t"))))
-(with-eval-after-load 'magit (swap-set-key magit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
+(swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t")))
+(swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))
+(swap-set-key magit-mode-map '(("p" . "t") ("M-p" . "M-t")))

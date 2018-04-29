@@ -1,5 +1,8 @@
 ;; -*- lexical-binding: t -*-
 
+(require 'recentf-ext)
+(require 'recentf-remove-sudo-tramp-prefix)
+
 (custom-set-variables
  '(backup-directory-alist `(("" . ,(concat user-emacs-directory "file-backup/"))))
  '(delete-old-versions t)            ;askだと削除時に一々聞いてくる
@@ -21,34 +24,27 @@
  '(desktop-save-mode t)
  '(desktop-globals-to-save nil)
  '(desktop-restore-frames nil)
+
+ '(recentf-max-saved-items (* recentf-max-saved-items 20))
+ '(helm-ff-file-name-history-use-recentf t)
+ '(recentf-auto-cleanup (* 15 60))
+ '(recentf-exclude '("\\.elc$"
+                     "\\.o$"
+                     "~$"
+
+                     "\\.file-backup/"
+                     "\\.undo-tree/"
+
+                     "EDITMSG"
+                     "PATH"
+                     "TAGS"
+                     "autoloads"
+                     ))
  )
-
-(defun recentf-setup ()
-  (require 'recentf-ext)
-  (require 'recentf-remove-sudo-tramp-prefix)
-  (recentf-remove-sudo-tramp-prefix-mode 1)
-  (custom-set-variables
-   '(recentf-max-saved-items (* recentf-max-saved-items 20))
-
-   '(helm-ff-file-name-history-use-recentf t)
-   '(recentf-auto-cleanup (* 15 60))
-
-   '(recentf-exclude '("\\.elc$"
-                       "\\.o$"
-                       "~$"
-
-                       "\\.file-backup/"
-                       "\\.undo-tree/"
-
-                       "EDITMSG"
-                       "PATH"
-                       "TAGS"
-                       "autoloads"
-                       ))))
-
-(add-hook 'after-init-hook 'recentf-setup)
-
-(save-place-mode 1)
 
 (defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
 (advice-add 'save-buffer :before 'setq-buffer-backed-up-nil)
+
+(save-place-mode 1)
+
+(recentf-remove-sudo-tramp-prefix-mode 1)
