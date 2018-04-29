@@ -2,8 +2,6 @@
 
 (custom-set-variables
  '(custom-file "~/.emacs.d/custom.el")
- '(gc-cons-percentage (* gc-cons-percentage 5))
- '(gc-cons-threshold (* gc-cons-threshold 5))
  '(inhibit-startup-screen t)
  '(init-loader-show-log-after-init 'error-only)
  )

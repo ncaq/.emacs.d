@@ -1,5 +1,10 @@
 ;; -*- lexical-binding: t -*-
 
+(custom-set-variables
+ '(gc-cons-percentage (* gc-cons-percentage 5))
+ '(gc-cons-threshold (* gc-cons-threshold 5))
+ )
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
