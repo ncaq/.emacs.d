@@ -25,7 +25,7 @@
  '(desktop-globals-to-save nil)
  '(desktop-restore-frames nil)
 
- '(recentf-max-saved-items (* recentf-max-saved-items 20))
+ '(recentf-max-saved-items 2000)
  '(helm-ff-file-name-history-use-recentf t)
  '(recentf-auto-cleanup (* 15 60))
  '(recentf-exclude '("\\.elc$"
