@@ -32,6 +32,8 @@
 
 (add-hook 'find-file-hook 'helm-etags-mode-when-etags-dir)
 
+(custom-set-variables '(helm-ag-base-command "rg --no-heading"))
+
 (autoload 'helm-ag--project-root "helm-ag")
 (defun helm-do-ag-project-root-or-normal ()
   (interactive)
