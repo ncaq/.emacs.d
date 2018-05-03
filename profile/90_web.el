@@ -39,7 +39,8 @@
     (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint))))
   (when
       (some (lambda (type) (string= web-mode-content-type type)) '("css" "javascript" "json" "jsx"))
-    (prettier-js-mode 1)))
+    (prettier-js-mode 1)
+    (local-set-key [remap indent-whole-buffer] 'prettier-js)))
 
 (add-hook 'web-mode-hook 'web-mode-setting)
 
