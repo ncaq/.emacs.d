@@ -20,6 +20,7 @@
  '(scheme-program-name "gosh")
  '(scroll-step 1)                       ;最下段までScrollしてもカーソルを中心に戻さない
  '(skype--my-user-handle "ncaq__")
+ '(vc-follow-symlinks t)                ;常にシンボリックリンクをたどる
  '(warning-minimum-level :error)        ;quiet waring
  '(x-select-enable-clipboard t)         ;クリップボードをX11と共有
  )
