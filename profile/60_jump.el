@@ -36,3 +36,5 @@
 (defun helm-do-ag-project-root-or-normal ()
   (interactive)
   (helm-do-ag (or (helm-ag--project-root) default-directory)))
+
+(add-hook 'rg-mode-hook 'wgrep-ag-setup)
