@@ -32,7 +32,7 @@
 
 (add-hook 'find-file-hook 'helm-etags-mode-when-etags-dir)
 
-(custom-set-variables '(helm-ag-base-command "rg --no-heading"))
+(custom-set-variables '(helm-ag-base-command "rg --no-heading --smart-case"))
 
 (autoload 'helm-ag--project-root "helm-ag")
 (defun helm-do-ag-project-root-or-normal ()
