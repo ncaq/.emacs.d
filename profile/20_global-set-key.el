@@ -86,3 +86,6 @@
 (global-set-key (kbd "M-g s") 'magit-status)
 
 (global-set-key (kbd "<help> w") 'helm-man-woman)
+
+(global-set-key [remap query-replace] 'anzu-query-replace)
+(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
