@@ -15,7 +15,7 @@
 (global-set-key (kbd "C-j") 'helm-do-ag-project-root-or-normal)
 (global-set-key (kbd "C-o") 'helm-for-files)
 (global-set-key (kbd "C-p") 'other-window-fallback-split)
-(global-set-key (kbd "C-q") 'kill-buffer-and-window)
+(global-set-key (kbd "C-q") 'kill-this-buffer)
 (global-set-key (kbd "C-u") 'kill-whole-line)
 (global-set-key (kbd "C-w") 'kill-region-or-word-at-point)
 (global-set-key (kbd "C-z") 'flycheck-list-errors)
@@ -55,7 +55,7 @@
 (global-set-key (kbd "C-M-m") 'newline-upper)
 (global-set-key (kbd "C-M-o") 'ibuffer)
 (global-set-key (kbd "C-M-p") 'split-window-dwim-and-other)
-(global-set-key (kbd "C-M-q") 'kill-this-buffer)
+(global-set-key (kbd "C-M-q") 'kill-buffer-and-window)
 (global-set-key (kbd "C-M-w") 'copy-to-register-@)
 (global-set-key (kbd "C-M-y") 'yank-register-@)
 
