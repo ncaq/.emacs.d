@@ -28,8 +28,6 @@
   (electric-indent-local-mode -1)
   )
 
-(put 'hamlet/basic-offset 'safe-local-variable 'integerp)
-
 (add-hook 'hamlet-mode-hook 'hamlet-mode-config)
 
 (flycheck-add-mode 'css-csslint 'shakespeare-lucius-mode)
