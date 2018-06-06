@@ -43,3 +43,5 @@
   (helm-do-ag (or (helm-ag--project-root) default-directory)))
 
 (add-hook 'rg-mode-hook 'wgrep-ag-setup)
+
+(ncaq-set-key rg-mode-map)
