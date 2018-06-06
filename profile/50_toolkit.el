@@ -1,12 +1,13 @@
 ;; -*- lexical-binding: t -*-
-(menu-bar-mode 0);menu bar を表示させない
-(tool-bar-mode 0);tool bar を表示させない
-(set-frame-parameter nil 'fullscreen 'maximized);gtk maxium
+(menu-bar-mode 0)                       ; menu bar を表示させない
+(tool-bar-mode 0)                       ; tool bar を表示させない
+(toggle-frame-maximized)                ; 全画面化
 
 (auto-image-file-mode 1);画像表示
 
 ;; ((ファイル名 or バッファ名) モード一覧)
-(setq frame-title-format '(:eval (list (or (buffer-file-name) (buffer-name)) " " mode-line-modes)))
+(setq frame-title-format
+      '(:eval (list (or (buffer-file-name) (buffer-name)) " " mode-line-modes)))
 
 ;; mode-line line and column and sum char numbar
 (setq mode-line-position
@@ -22,6 +23,8 @@
          (number-to-string (point))
          "/%i"
          )))
+
+(custom-set-variables '(global-display-line-numbers-mode 1)) ; 行番号を左に表示
 
 (require 'uniquify)
 (custom-set-variables '(uniquify-buffer-name-style 'forward))
