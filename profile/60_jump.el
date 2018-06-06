@@ -44,4 +44,4 @@
 
 (add-hook 'rg-mode-hook 'wgrep-ag-setup)
 
-(ncaq-set-key rg-mode-map)
+(with-eval-after-load 'rg (ncaq-set-key rg-mode-map))
