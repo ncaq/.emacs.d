@@ -10,6 +10,8 @@
  '(dired-listing-switches
    (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type))
                       " --group-directories-first")))
+ '(dired-recursive-copies 'always)      ; 聞かずに再帰的コピー
+ '(dired-recursive-deletes 'always)     ; 聞かずに再帰的削除
  )
 
 (defun dired-jump-to-current ()
