@@ -49,6 +49,7 @@
 
 (add-hook 'json-mode-hook 'prettier-js-mode-and-key)
 (add-hook 'typescript-mode-hook 'prettier-js-mode-and-key)
+(add-hook 'scss-mode-hook 'prettier-js-mode-and-key)
 
 (autoload 'apache-mode "apache-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
