@@ -25,5 +25,9 @@
   (find-file (concat "~/Desktop/www.ncaq.net/entry/"
                      (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
 
+(defun insert-iso-datetime ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%dT%H:%M:%S" (current-time))))
+
 (editorconfig-mode 1)
 (which-key-mode 1)
