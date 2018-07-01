@@ -1,7 +1,10 @@
 ;; -*- lexical-binding: t -*-
 
 (with-eval-after-load 'd-mode
-  (custom-set-variables '(c-default-style (cons '(d-mode . "java") c-default-style)))
+  (custom-set-variables
+   '(c-default-style (cons '(d-mode . "java") c-default-style))
+   '(dfmt-flags '("--max_line_length=80"))
+   )
   (defun dfmt-save-buffer-force ()
     "セーブした後dfmt-bufferする.
 dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
