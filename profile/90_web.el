@@ -2,6 +2,7 @@
 
 (custom-set-variables
  '(js-indent-level 2)
+ '(typescript-indent-level 2)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-enable-auto-indentation nil)
