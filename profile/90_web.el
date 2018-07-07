@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (custom-set-variables
+ '(css-indent-offset 2)
  '(js-indent-level 2)
  '(typescript-indent-level 2)
  '(web-mode-code-indent-offset 2)
