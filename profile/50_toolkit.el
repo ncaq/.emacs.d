@@ -1,9 +1,9 @@
 ;; -*- lexical-binding: t -*-
-(menu-bar-mode 0)                       ; menu bar を表示させない
-(tool-bar-mode 0)                       ; tool bar を表示させない
+(menu-bar-mode 0)                       ; メニューバーを表示させない
+(tool-bar-mode 0)                       ; ツールバーを表示させない
 (toggle-frame-maximized)                ; 全画面化
 
-(auto-image-file-mode 1);画像表示
+(auto-image-file-mode 1)                ;画像を表示
 
 ;; ((ファイル名 or バッファ名) モード一覧)
 (setq frame-title-format
@@ -24,9 +24,6 @@
          "/%i"
          )))
 
-(custom-set-variables '(global-display-line-numbers-mode 1)) ; 行番号を左に表示
-
 (require 'uniquify)
+;; バッファの名前にディレクトリ名を付けることでユニークになりやすくする
 (custom-set-variables '(uniquify-buffer-name-style 'forward))
-
-(global-anzu-mode t)
