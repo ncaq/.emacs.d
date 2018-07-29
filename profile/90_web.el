@@ -32,9 +32,8 @@
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 (flycheck-add-mode 'typescript-tslint 'web-mode)
 
-(defun prettier-js-mode-and-key ()
-  (prettier-js-mode 1)
-  (local-set-key [remap indent-whole-buffer] 'prettier-js))
+(defun prettier-js-mode-enable ()
+  (prettier-js-mode 1))
 
 (defun web-mode-setting ()
   (cond
@@ -45,13 +44,13 @@
     (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint))))
   (when
       (some (lambda (type) (string= web-mode-content-type type)) '("css" "javascript" "json" "jsx"))
-    (prettier-js-mode-and-key)))
+    (prettier-js-mode-enable)))
 
 (add-hook 'web-mode-hook 'web-mode-setting)
 
-(add-hook 'json-mode-hook 'prettier-js-mode-and-key)
-(add-hook 'typescript-mode-hook 'prettier-js-mode-and-key)
-(add-hook 'scss-mode-hook 'prettier-js-mode-and-key)
+(add-hook 'json-mode-hook 'prettier-js-mode-enable)
+(add-hook 'typescript-mode-hook 'prettier-js-mode-enable)
+(add-hook 'scss-mode-hook 'prettier-js-mode-enable)
 
 (autoload 'apache-mode "apache-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
