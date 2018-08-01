@@ -35,11 +35,15 @@
 (defun prettier-js-mode-enable ()
   (prettier-js-mode 1))
 
+(defun tide-setting ()
+  (tide-setup)
+  (flycheck-select-checker 'typescript-tide))
+
 (defun web-mode-setting ()
   (cond
    ((string= web-mode-content-type "html")
     (when (executable-find "tidy") (flycheck-select-checker 'html-tidy)))
-   ((string-match-p "\\.tsx?$" (buffer-file-name)) (flycheck-select-checker 'typescript-tslint))
+   ((string-match-p "\\.tsx?$" (buffer-file-name)) (tide-setting))
    ((or (some (lambda (type) (string= web-mode-content-type type)) '("javascript" "jsx")))
     (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint))))
   (when
@@ -51,6 +55,8 @@
 (add-hook 'json-mode-hook 'prettier-js-mode-enable)
 (add-hook 'typescript-mode-hook 'prettier-js-mode-enable)
 (add-hook 'scss-mode-hook 'prettier-js-mode-enable)
+
+(add-hook 'typescript-mode-hook 'tide-setting)
 
 (autoload 'apache-mode "apache-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
