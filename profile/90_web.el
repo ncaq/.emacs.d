@@ -52,6 +52,8 @@
 
 (add-hook 'web-mode-hook 'web-mode-setting)
 
+(add-hook 'web-mode-hook 'flow-minor-enable-automatically)
+
 (add-hook 'json-mode-hook 'prettier-js-mode-enable)
 (add-hook 'typescript-mode-hook 'prettier-js-mode-enable)
 (add-hook 'scss-mode-hook 'prettier-js-mode-enable)
