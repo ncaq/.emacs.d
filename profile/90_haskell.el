@@ -5,6 +5,17 @@
  '(intero-global-mode 1)
  )
 
+(defun enable-stylish-haskell ()
+  (interactive)
+  (custom-set-variables '(haskell-stylish-on-save t)))
+
+(defun disable-stylish-haskell ()
+  (interactive)
+  (custom-set-variables '(haskell-stylish-on-save nil)))
+
+(with-eval-after-load 'haskell
+  (define-key haskell-mode-map [remap indent-whole-buffer] 'haskell-mode-stylish-buffer))
+
 (defun intero-repl-and-flycheck ()
   (interactive)
   (delete-other-windows)
