@@ -45,7 +45,10 @@
     (when (executable-find "tidy") (flycheck-select-checker 'html-tidy)))
    ((string-match-p "\\.tsx?$" (buffer-file-name)) (tide-setting))
    ((or (some (lambda (type) (string= web-mode-content-type type)) '("javascript" "jsx")))
-    (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint))))
+    (when (executable-find "eslint")
+      (progn
+        (flycheck-select-checker 'javascript-eslint)
+        (add-hook 'after-save-hook 'eslint-fix nil t)))))
   (when
       (some (lambda (type) (string= web-mode-content-type type)) '("css" "javascript" "json" "jsx"))
     (prettier-js-mode-enable)))
