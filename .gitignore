@@ -1,11 +1,11 @@
 .cache/
 auto-save-list/
 file-backup/
+server/
 undo-tree/
 url/
 
 %backup%~
-.emacs.desktop
 .emacs.desktop*
 abbrev_defs
 ac-comphist.dat
