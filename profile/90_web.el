@@ -39,6 +39,12 @@
   (tide-setup)
   (flycheck-select-checker 'typescript-tide))
 
+(set-face-background 'web-mode-jsx-depth-1-face "#073844")
+(set-face-background 'web-mode-jsx-depth-2-face "#083C49")
+(set-face-background 'web-mode-jsx-depth-3-face "#08404F")
+(set-face-background 'web-mode-jsx-depth-4-face "#094554")
+(set-face-background 'web-mode-jsx-depth-5-face "#0A4D5E")
+
 (defun web-mode-setting ()
   (cond
    ((string= web-mode-content-type "html")
