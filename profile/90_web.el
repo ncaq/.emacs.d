@@ -26,7 +26,14 @@
 (add-to-list 'auto-mode-alist '("\\.tpl\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'"      . web-mode))
 
-(with-eval-after-load 'web-mode (sp-local-pair '(web-mode) "<" ">" :actions :rem))
+(with-eval-after-load 'web-mode
+  (sp-local-pair '(web-mode) "<" ">" :actions :rem)
+  (set-face-background 'web-mode-jsx-depth-1-face "#073844")
+  (set-face-background 'web-mode-jsx-depth-2-face "#083C49")
+  (set-face-background 'web-mode-jsx-depth-3-face "#08404F")
+  (set-face-background 'web-mode-jsx-depth-4-face "#094554")
+  (set-face-background 'web-mode-jsx-depth-5-face "#0A4D5E")
+  )
 
 (flycheck-add-mode 'html-tidy 'web-mode)
 (flycheck-add-mode 'javascript-eslint 'web-mode)
@@ -38,12 +45,6 @@
 (defun tide-setting ()
   (tide-setup)
   (flycheck-select-checker 'typescript-tide))
-
-(set-face-background 'web-mode-jsx-depth-1-face "#073844")
-(set-face-background 'web-mode-jsx-depth-2-face "#083C49")
-(set-face-background 'web-mode-jsx-depth-3-face "#08404F")
-(set-face-background 'web-mode-jsx-depth-4-face "#094554")
-(set-face-background 'web-mode-jsx-depth-5-face "#0A4D5E")
 
 (defun web-mode-setting ()
   (cond
