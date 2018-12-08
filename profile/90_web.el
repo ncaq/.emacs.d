@@ -44,6 +44,7 @@
 
 (defun tide-setting ()
   (tide-setup)
+  (flycheck-add-mode 'typescript-tide 'web-mode)
   (flycheck-select-checker 'typescript-tide))
 
 (defun web-mode-setting ()
