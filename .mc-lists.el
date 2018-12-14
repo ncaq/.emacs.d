@@ -15,6 +15,7 @@
         c-electric-star
         c-hungry-backspace
         comment-dwim
+        company-indent-or-complete-common
         delete-horizontal-space
         dired-next-line
         dired-previous-line
