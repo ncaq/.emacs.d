@@ -1,6 +1,11 @@
 ;; -*- lexical-binding: t -*-
 
-(custom-set-variables '(rust-format-on-save t))
+(require 'lsp-mode)
 
-(with-eval-after-load 'rust-mode
-  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+(add-to-list 'auto-mode-alist '("\\.rs$" . rustic-mode))
+
+(add-hook 'rustic-mode-hook 'racer-mode)
+(add-hook 'racer-mode-hook 'eldoc-mode)
+
+(with-eval-after-load 'racer
+  (define-key racer-mode-map (kbd "C-c C-d") 'racer-describe))
