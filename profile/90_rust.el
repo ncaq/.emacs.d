@@ -16,4 +16,4 @@
     ()))
 
 (with-eval-after-load 'racer
-  (define-key racer-mode-map (kbd "C-c C-d") 'racer-describe))
+  (define-key racer-mode-map (kbd "C-c C-d") 'rustic-racer-describe))
