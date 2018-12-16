@@ -27,7 +27,7 @@
 
 (defun insert-iso-datetime ()
   (interactive)
-  (insert (format-time-string "%Y-%m-%dT%H:%M:%S" (current-time))))
+  (insert (format-time-string "%Y-%m-%dT%H:%M:%S%:z" (current-time))))
 
 (editorconfig-mode 1)
 (which-key-mode 1)
