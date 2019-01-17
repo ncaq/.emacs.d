@@ -5,6 +5,7 @@
       '(
         LaTeX-babel-insert-hyphen
         backward-sexp
+        beginning-of-buffer
         c-electric-colon
         c-electric-delete-forward
         c-electric-lt-gt
