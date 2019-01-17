@@ -49,6 +49,7 @@
         symbolword-forward
         symbolword-kill
         tab-to-tab-stop
+        typescript-insert-and-autoconvert-to-template
         typescript-insert-and-indent
         undefined
         undo-tree-visualizer-quit
