@@ -6,4 +6,6 @@
  '(ruby-insert-encoding-magic-comment nil)
  )
 
-(with-eval-after-load 'ruby-mode (ncaq-set-key ruby-mode-map))
+(with-eval-after-load 'ruby-mode
+  (add-hook 'ruby-mode-hook 'eglot-ensure)
+  (ncaq-set-key ruby-mode-map))
