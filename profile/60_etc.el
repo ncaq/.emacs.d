@@ -41,6 +41,8 @@
  '(skype--my-user-handle "ncaq__")
  ;; 常にシンボリックリンクをたどる
  '(vc-follow-symlinks t)
+ ;; インデント幅はデフォルト2
+ '(tab-width 2)
  ;; 警告をエラーレベルでないと表示しない
  '(warning-minimum-level :error)
  ;; クリップボードをX11と共有
