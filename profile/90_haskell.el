@@ -5,11 +5,11 @@
  '(intero-global-mode 1)
  )
 
-(defun enable-stylish-haskell ()
+(defun stylish-haskell-enable ()
   (interactive)
   (custom-set-variables '(haskell-stylish-on-save t)))
 
-(defun disable-stylish-haskell ()
+(defun stylish-haskell-disable ()
   (interactive)
   (custom-set-variables '(haskell-stylish-on-save nil)))
 
