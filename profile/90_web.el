@@ -40,7 +40,12 @@
 (flycheck-add-mode 'typescript-tslint 'web-mode)
 
 (defun prettier-js-mode-enable ()
-  (prettier-js-mode 1))
+  (interactive)
+  (prettier-js-mode t))
+
+(defun prettier-js-mode-disable ()
+  (interactive)
+  (prettier-js-mode nil))
 
 (defun tide-setting ()
   (tide-setup)
@@ -50,7 +55,9 @@
 (defun web-mode-setting ()
   (cond
    ((string= web-mode-content-type "html")
-    (when (executable-find "tidy") (flycheck-select-checker 'html-tidy)))
+    (progn
+      (prettier-js-mode-enable)
+      (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
    ((string-match-p "\\.tsx?$" (buffer-file-name)) (tide-setting))
    ((or (some (lambda (type) (string= web-mode-content-type type)) '("javascript" "jsx")))
     (when (executable-find "eslint")
@@ -65,9 +72,12 @@
 
 (add-hook 'web-mode-hook 'flow-minor-enable-automatically)
 
+(add-hook 'css-mode-hook 'prettier-js-mode-enable)
 (add-hook 'json-mode-hook 'prettier-js-mode-enable)
-(add-hook 'typescript-mode-hook 'prettier-js-mode-enable)
+(add-hook 'less-css-mode-hook 'prettier-js-mode-enable)
 (add-hook 'scss-mode-hook 'prettier-js-mode-enable)
+(add-hook 'typescript-mode-hook 'prettier-js-mode-enable)
+(add-hook 'yaml-mode-hook 'prettier-js-mode-enable)
 
 (add-hook 'typescript-mode-hook 'tide-setting)
 
