@@ -1,8 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
-(require 'flycheck-ensime)
+(with-eval-after-load 'ensime-startup
+  (custom-set-variables '(ensime-startup-notification nil)))
 
-(custom-set-variables '(ensime-startup-notification nil))
-
-(define-key ensime-mode-map (kbd "M-n") nil)
-(define-key ensime-mode-map (kbd "M-p") nil)
+(with-eval-after-load 'ensime-mode
+  (define-key ensime-mode-map (kbd "M-n") nil)
+  (define-key ensime-mode-map (kbd "M-p") nil)
+  )

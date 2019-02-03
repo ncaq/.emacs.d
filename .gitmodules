@@ -1,6 +1,3 @@
 [submodule "module/ncaq-emacs-utils"]
 	path = module/ncaq-emacs-utils
 	url = https://github.com/ncaq/ncaq-emacs-utils.git
-[submodule "module/flycheck-ensime"]
-	path = module/flycheck-ensime
-	url = https://github.com/ncaq/flycheck-ensime.git
