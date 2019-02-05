@@ -1,9 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(custom-set-variables
- '(haskell-stylish-on-save t)
- '(intero-global-mode 1)
- )
+(custom-set-variables '(haskell-stylish-on-save t))
 
 (defun stylish-haskell-enable ()
   (interactive)
@@ -13,23 +10,27 @@
   (interactive)
   (custom-set-variables '(haskell-stylish-on-save nil)))
 
-(with-eval-after-load 'haskell
-  (define-key haskell-mode-map [remap indent-whole-buffer] 'haskell-mode-stylish-buffer))
+(add-hook 'haskell-mode-hook 'eglot-ensure)
 
-(defun intero-repl-and-flycheck ()
+(with-eval-after-load 'haskell-mode
+  (setq flymake-allowed-file-name-masks (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
+
+  (define-key haskell-mode-map (kbd "C-M-z")               'haskell-repl-and-flycheck)
+  (define-key haskell-mode-map (kbd "C-c C-l")             'haskell-process-load-file)
+  (define-key haskell-mode-map (kbd "C-c C-z")             'haskell-interactive-switch-back)
+  (define-key haskell-mode-map [remap indent-whole-buffer] 'haskell-mode-stylish-buffer)
+  )
+
+(defun haskell-repl-and-flycheck ()
   (interactive)
   (delete-other-windows)
   (flycheck-list-errors)
-  (intero-repl)
+  (haskell-process-load-file)
+  (haskell-interactive-switch)
   (split-window-below)
   (other-window 1)
   (switch-to-buffer flycheck-error-list-buffer)
   (other-window 1)
-  )
-
-(with-eval-after-load 'intero
-  (define-key intero-mode-map (kbd "C-M-z") 'intero-repl-and-flycheck)
-  (flycheck-add-next-checker 'intero '(warning . haskell-hlint))
   )
 
 (with-eval-after-load 'haskell-cabal (ncaq-set-key haskell-cabal-mode-map))
