@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 ;; 何かしらを割り当てることで,C-iと別扱いになる
-(global-set-key (kbd "<tab>") 'company-indent-or-complete-common)
+(global-set-key (kbd "<tab>") 'indent-for-tab-command)
 
 (global-set-key (kbd "C-'") 'mc/mark-all-dwim)
 (global-set-key (kbd "C-+") 'text-scale-increase)
@@ -20,8 +20,9 @@
 (global-set-key (kbd "C-w") 'kill-region-or-word-at-point)
 (global-set-key (kbd "C-z") 'flycheck-list-errors)
 
-(global-set-key (kbd "C-<tab>") 'company-dabbrev)
-(global-set-key (kbd "C-\\")    'quoted-insert)
+(global-set-key (kbd "<C-iso-lefttab>") 'company-dabbrev)
+(global-set-key (kbd "C-<tab>")         'company-complete)
+(global-set-key (kbd "C-\\")            'quoted-insert)
 
 (global-set-key (kbd "C-S-b") 'smart-delete-whitespace-backward)
 (global-set-key (kbd "C-S-d") 'smart-delete-whitespace-forward)
@@ -31,7 +32,6 @@
 (global-set-key (kbd "M-b") 'backward-kill-word)
 (global-set-key (kbd "M-c") 'help-command)
 (global-set-key (kbd "M-f") 'helm-occur)
-(global-set-key (kbd "M-i") 'indent-for-tab-command)
 (global-set-key (kbd "M-j") 'helm-ag-pop-stack)
 (global-set-key (kbd "M-l") 'sort-dwim)
 (global-set-key (kbd "M-m") 'newline-under)
