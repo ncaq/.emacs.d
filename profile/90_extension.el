@@ -13,3 +13,6 @@
 (add-to-list 'auto-mode-alist '("sshd?_config$" . ssh-config-mode))
 
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
+
+(autoload 'mediawiki-mode "mediawiki")
+(add-to-list 'auto-mode-alist '("\\.wiki$" . mediawiki-mode))
