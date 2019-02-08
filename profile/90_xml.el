@@ -7,6 +7,7 @@
 (with-eval-after-load 'nxml-mode
   (with-eval-after-load 'smartparens (sp-local-pair '(nxml-mode) "<" ">" :actions :rem))
   (ncaq-set-key nxml-mode-map)
+  (define-key nxml-mode-map (kbd "M-b") 'nil)
   (define-key nxml-mode-map (kbd "C-M-p") 'nil)
   (define-key nxml-mode-map (kbd "C-M-t") 'nxml-backward-element)
   )
