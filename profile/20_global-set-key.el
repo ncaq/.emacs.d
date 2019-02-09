@@ -87,5 +87,7 @@
 
 (global-set-key (kbd "<help> w") 'helm-man-woman)
 
+(global-set-key (kbd "C-x <RET> s") (lambda () (interactive) (revert-buffer-with-coding-system 'japanese-cp932-dos)))
+
 (global-set-key [remap query-replace] 'anzu-query-replace)
 (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
