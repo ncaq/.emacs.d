@@ -75,6 +75,7 @@
 
 (global-set-key (kbd "C-x d") 'mark-defun)
 (global-set-key (kbd "C-x p") 'mark-paragraph)
+(global-set-key (kbd "C-x t") 'insert-iso-datetime)
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
