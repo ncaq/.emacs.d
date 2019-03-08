@@ -5,7 +5,8 @@
 (global-undo-tree-mode)
 
 (custom-set-variables
- '(undo-tree-auto-save-history t)
+ ;; バグでスタックオーバーフローを引き起こすので無効化しておく
+ ;; '(undo-tree-auto-save-history t)
  '(undo-tree-enable-undo-in-region nil)
  '(undo-tree-history-directory-alist `(("" . ,(concat user-emacs-directory "undo-tree/"))))
  '(undo-tree-visualizer-timestamps t)
