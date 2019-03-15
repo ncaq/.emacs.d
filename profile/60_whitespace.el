@@ -9,6 +9,7 @@
  )
 
 (set-face-background 'whitespace-space "#073642")
+(set-face-foreground 'whitespace-empty "#dc322f")
 (set-face-foreground 'whitespace-tab "#0C2B33")
 (set-face-foreground 'whitespace-trailing "#332B28")
 
