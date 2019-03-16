@@ -23,8 +23,8 @@
  '(google-translate-default-target-language "ja")
  ;; dotファイルで自動セミコロン挿入しない
  '(graphviz-dot-auto-indent-on-semi nil)
- ;; maximaの文字を大きく
- '(imaxima-fnt-size "LARGE")
+ ;; imaximaの全体を大きくする
+ '(imaxima-scale-factor 10.0)
  ;; インデントをスペースで行う
  '(indent-tabs-mode nil)
  ;; 大文字と小文字を区別しない バッファ名
