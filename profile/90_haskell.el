@@ -22,6 +22,8 @@
   (define-key haskell-mode-map [remap indent-whole-buffer] 'haskell-mode-stylish-buffer)
   )
 
+(with-eval-after-load 'haskell-interactive-mode (ncaq-set-key haskell-interactive-mode-map))
+
 (defun haskell-repl-and-flycheck ()
   (interactive)
   (delete-other-windows)
