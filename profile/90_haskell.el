@@ -18,7 +18,7 @@
   (define-key haskell-mode-map (kbd "C-M-z")               'haskell-repl-and-flycheck)
   (define-key haskell-mode-map (kbd "C-c C-c")             'haskell-session-change-target)
   (define-key haskell-mode-map (kbd "C-c C-l")             'haskell-process-load-file)
-  (define-key haskell-mode-map (kbd "C-c C-z")             'haskell-interactive-switch-back)
+  (define-key haskell-mode-map (kbd "C-c C-z")             'haskell-interactive-switch)
   (define-key haskell-mode-map [remap indent-whole-buffer] 'haskell-mode-stylish-buffer)
   )
 
