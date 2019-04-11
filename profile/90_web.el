@@ -39,14 +39,6 @@
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 (flycheck-add-mode 'typescript-tslint 'web-mode)
 
-(defun prettier-js-mode-enable ()
-  (interactive)
-  (prettier-js-mode t))
-
-(defun prettier-js-mode-disable ()
-  (interactive)
-  (prettier-js-mode nil))
-
 (defun tide-setting ()
   (tide-setup)
   (flycheck-add-mode 'typescript-tide 'web-mode)
