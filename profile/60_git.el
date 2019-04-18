@@ -10,6 +10,8 @@
  '(global-git-gutter-mode t)
  )
 
+(define-key magit-file-mode-map (kbd "C-x g") 'nil)
+
 (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t")))
 (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))
 (swap-set-key magit-mode-map '(("p" . "t") ("M-p" . "M-t")))

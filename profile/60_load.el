@@ -29,5 +29,9 @@
   (interactive)
   (insert (format-time-string "%Y-%m-%dT%H:%M:%S%:z" (current-time))))
 
+(defun insert-random-uuid ()
+  (interactive)
+  (insert (s-trim (shell-command-to-string "uuidgen"))))
+
 (editorconfig-mode 1)
 (which-key-mode 1)

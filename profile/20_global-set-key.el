@@ -74,6 +74,7 @@
 (global-set-key (kbd "C-c u") 'open-document-current)
 
 (global-set-key (kbd "C-x d") 'mark-defun)
+(global-set-key (kbd "C-x g") 'insert-random-uuid)
 (global-set-key (kbd "C-x p") 'mark-paragraph)
 (global-set-key (kbd "C-x t") 'insert-iso-datetime)
 
