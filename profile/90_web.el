@@ -44,6 +44,10 @@
   (flycheck-add-mode 'typescript-tide 'web-mode)
   (flycheck-select-checker 'typescript-tide))
 
+(defun prettier-js-mode-enable ()
+  (interactive)
+  (prettier-js-mode t))
+
 (defun web-mode-setting ()
   (cond
    ((string= web-mode-content-type "html")
