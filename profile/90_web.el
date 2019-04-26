@@ -39,11 +39,6 @@
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 (flycheck-add-mode 'typescript-tslint 'web-mode)
 
-(defun tide-setting ()
-  (tide-setup)
-  (flycheck-add-mode 'typescript-tide 'web-mode)
-  (flycheck-select-checker 'typescript-tide))
-
 (defun prettier-js-mode-enable ()
   (interactive)
   (prettier-js-mode t))
@@ -54,7 +49,6 @@
     (progn
       (prettier-js-mode-enable)
       (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
-   ((string-match-p "\\.tsx?$" (buffer-file-name)) (tide-setting))
    ((or (some (lambda (type) (string= web-mode-content-type type)) '("javascript" "jsx")))
     (when (executable-find "eslint")
       (progn
