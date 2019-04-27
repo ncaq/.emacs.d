@@ -33,15 +33,32 @@
   (set-face-background 'web-mode-jsx-depth-3-face "#08404F")
   (set-face-background 'web-mode-jsx-depth-4-face "#094554")
   (set-face-background 'web-mode-jsx-depth-5-face "#0A4D5E")
-  )
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs (cons 'web-mode (cdr (assoc '(js-mode typescript-mode) eglot-server-programs))))))
+
+(defun prettier-js-mode-enable ()
+  (interactive)
+  (prettier-js-mode t))
 
 (flycheck-add-mode 'html-tidy 'web-mode)
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 (flycheck-add-mode 'typescript-tslint 'web-mode)
 
-(defun prettier-js-mode-enable ()
-  (interactive)
-  (prettier-js-mode t))
+(defun flycheck-select-tslint-or-eslint ()
+  "tslintが使えるプロジェクトだとtslintを有効化して,それ以外ではeslintを有効化する"
+  (if (and
+       ;; 大前提としてtslint.jsonがないとだめ
+       (locate-dominating-file default-directory "tslint.json")
+       (or
+        ;; メジャーモードがTypeScriptなら良い
+        (equal major-mode 'typescript-mode)
+        ;; それ以外のメジャーモード(web-modeとか)でも拡張子がts, tsxなら良い
+        (member (file-name-extension (buffer-file-name)) '("ts" "tsx"))))
+      (flycheck-select-checker 'typescript-tslint)
+    (when (executable-find "eslint")
+      (progn
+        (flycheck-select-checker 'javascript-eslint)
+        (add-hook 'after-save-hook 'eslint-fix nil t)))))
 
 (defun web-mode-setting ()
   (cond
@@ -49,16 +66,17 @@
     (progn
       (prettier-js-mode-enable)
       (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
-   ((or (some (lambda (type) (string= web-mode-content-type type)) '("javascript" "jsx")))
-    (when (executable-find "eslint")
-      (progn
-        (flycheck-select-checker 'javascript-eslint)
-        (add-hook 'after-save-hook 'eslint-fix nil t)))))
-  (when
-      (some (lambda (type) (string= web-mode-content-type type)) '("css" "javascript" "json" "jsx"))
+   ((member web-mode-content-type '("javascript" "jsx"))
+    (progn
+      (eglot-ensure)
+      (flycheck-select-tslint-or-eslint))))
+  (when (member web-mode-content-type '("css" "javascript" "json" "jsx"))
     (prettier-js-mode-enable)))
 
 (add-hook 'web-mode-hook 'web-mode-setting)
+
+(add-hook 'typescript-mode-hook 'eglot-ensure)
+(add-hook 'typescript-mode-hook 'flycheck-select-tslint-or-eslint)
 
 (add-hook 'web-mode-hook 'flow-minor-enable-automatically)
 
@@ -68,8 +86,6 @@
 (add-hook 'scss-mode-hook 'prettier-js-mode-enable)
 (add-hook 'typescript-mode-hook 'prettier-js-mode-enable)
 (add-hook 'yaml-mode-hook 'prettier-js-mode-enable)
-
-(add-hook 'typescript-mode-hook 'tide-setting)
 
 (advice-add 'eslint-fix :after 'flycheck-buffer)
 
