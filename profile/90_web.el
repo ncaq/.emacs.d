@@ -44,6 +44,8 @@
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 (flycheck-add-mode 'typescript-tslint 'web-mode)
 
+(flycheck-add-mode 'javascript-eslint 'typescript-mode)
+
 (defun flycheck-select-tslint-or-eslint ()
   "tslintが使えるプロジェクトだとtslintを有効化して,それ以外ではeslintを有効化する"
   (if (and
