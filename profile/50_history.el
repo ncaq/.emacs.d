@@ -16,7 +16,6 @@
  '(kept-new-versions 50)                ; backupに新しいものをいくつ残すか
  '(kept-old-versions 0)                 ; backupに古いものをいくつ残すか
  '(make-backup-files t)                 ; バックアップファイルを作成する。
- '(vc-make-backup-files t)              ; VCS以下のファイルもバックアップを作成する
  '(version-control t)                   ; 複数バックアップ
 
  '(message-log-max 100000)
