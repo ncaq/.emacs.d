@@ -7,6 +7,9 @@
 (require 'ncaq-emacs-utils)
 (require 'symbolword-mode)
 
+(editorconfig-mode 1)
+(which-key-mode 1)
+
 (defun open-desktop ()
   (interactive)
   (find-file "~/Desktop/"))
@@ -32,6 +35,3 @@
 (defun insert-random-uuid ()
   (interactive)
   (insert (s-trim (shell-command-to-string "uuidgen"))))
-
-(editorconfig-mode 1)
-(which-key-mode 1)
