@@ -2,6 +2,8 @@
 
 (with-eval-after-load 'rg (ncaq-set-key rg-mode-map))
 
+(custom-set-variables '(helm-rg-default-directory 'git-root))
+
 (with-eval-after-load 'helm-rg
   (swap-set-key helm-rg-map
                 '(("M-b" . "M-u")
