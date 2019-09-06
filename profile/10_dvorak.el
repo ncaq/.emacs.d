@@ -63,6 +63,16 @@
 
 (with-eval-after-load 'ag (swap-set-key ag-mode-map '(("p" . "t"))))
 
+(with-eval-after-load 'popup
+  ;; 何故か`popup-close'などは`interactive'ではないため自前で書いて強制的に書き換える
+  ;; 何故`interactive'じゃないのに動くんでしょう…
+  (define-key popup-menu-keymap (kbd "C-f") 'popup-isearch)
+  (define-key popup-menu-keymap (kbd "C-b") 'nil)
+  (define-key popup-menu-keymap (kbd "C-p") 'nil)
+  (define-key popup-menu-keymap (kbd "C-t") 'popup-previous)
+  (define-key popup-menu-keymap (kbd "C-s") 'popup-open)
+  )
+
 (with-eval-after-load 'compile
   (ncaq-set-key compilation-minor-mode-map)
   (ncaq-set-key compilation-mode-map)
