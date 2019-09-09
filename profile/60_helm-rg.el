@@ -1,7 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(with-eval-after-load 'rg (ncaq-set-key rg-mode-map))
-
 ;; helm-rgを使わない時は無いと言っても過言ではないのでちまちまautoloadせずrequireしてしまう
 (require 'helm-rg)
 

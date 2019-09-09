@@ -95,3 +95,4 @@
 (with-eval-after-load 'pascal    (ncaq-set-key pascal-mode-map))
 (with-eval-after-load 'prolog    (ncaq-set-key prolog-mode-map))
 (with-eval-after-load 'rect      (ncaq-set-key rectangle-mark-mode-map))
+(with-eval-after-load 'rg        (ncaq-set-key rg-mode-map))
