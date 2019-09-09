@@ -19,9 +19,18 @@
 (advice-add 'helm-rg :before 'helm-rg-marker-save)
 (advice-add 'helm-rg--do-helm-rg :after 'helm-rg-marker-push)
 
+(defun default-directory-is-git-dir? ()
+  (eq 0 (call-process "git" nil nil nil "rev-parse" "--git-dir")))
+
 (defun helm-rg-project-root (rg-pattern &optional pfx paths)
   (interactive (list (helm-rg--get-thing-at-pt) current-prefix-arg nil))
   (let ((helm-rg-default-directory 'git-root))
+    (helm-rg rg-pattern pfx paths)))
+
+(defun helm-rg-project-root-or-default (rg-pattern &optional pfx paths)
+  (interactive (list (helm-rg--get-thing-at-pt) current-prefix-arg nil))
+  (if (default-directory-is-git-dir?)
+      (helm-rg-project-root rg-pattern pfx paths)
     (helm-rg rg-pattern pfx paths)))
 
 (defun helm-rg-empty (&optional pfx paths)
@@ -31,6 +40,10 @@
 (defun helm-rg-project-root-empty (&optional pfx paths)
   (interactive (list current-prefix-arg nil))
   (helm-rg-project-root "" pfx paths))
+
+(defun helm-rg-project-root-or-default-empty (&optional pfx paths)
+  (interactive (list current-prefix-arg nil))
+  (helm-rg-project-root-or-default "" pfx paths))
 
 (swap-set-key helm-rg-map
               '(("M-b" . "M-u")
