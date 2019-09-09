@@ -34,8 +34,7 @@
   (set-face-background 'web-mode-jsx-depth-3-face "#08404F")
   (set-face-background 'web-mode-jsx-depth-4-face "#094554")
   (set-face-background 'web-mode-jsx-depth-5-face "#0A4D5E")
-  (with-eval-after-load 'eglot
-    (add-to-list 'eglot-server-programs (cons 'web-mode (cdr (assoc '(js-mode typescript-mode) eglot-server-programs))))))
+  )
 
 (defun prettier-js-mode-enable ()
   (interactive)
@@ -91,6 +90,8 @@
 (add-hook 'yaml-mode-hook 'prettier-js-mode-enable)
 
 (advice-add 'eslint-fix :after 'flycheck-buffer)
+
+(add-hook 'css-mode-hook 'eglot-ensure)
 
 (autoload 'apache-mode "apache-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
