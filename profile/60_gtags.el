@@ -1,6 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
-(custom-set-variables '(ggtags-global-ignore-case t))
+(custom-set-variables
+ '(ggtags-enable-navigation-keys nil)
+ '(ggtags-global-ignore-case t)
+ )
 
 (defun gtags-dir? ()
   (locate-dominating-file default-directory "GTAGS"))
