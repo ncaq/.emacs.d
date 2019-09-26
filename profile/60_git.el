@@ -5,10 +5,7 @@
 (require 'git-rebase)
 (require 'magit-mode)
 
-(custom-set-variables
- '(fill-column 100)
- '(global-git-gutter-mode t)
- )
+(custom-set-variables '(global-git-gutter-mode t))
 
 (define-key magit-file-mode-map (kbd "C-x g") 'nil)
 

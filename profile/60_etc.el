@@ -15,6 +15,8 @@
  '(ediff-split-window-function 'split-window-horizontally)
  ;; ediffにframeを生成させない
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
+ ;; 自動折り返しを無効化
+ '(fill-column nil)
  ;; 自動再読込
  '(global-auto-revert-mode 1)
  ;; google翻訳のソースを英語に
