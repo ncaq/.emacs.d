@@ -8,6 +8,7 @@
   (ncaq-set-key markdown-mode-map)
   (custom-set-variables
    '(markdown-command "pandoc")
+   '(markdown-fontify-code-blocks-natively t)
    '(markdown-hide-urls nil)
    )
   (add-hook 'markdown-mode-hook 'pandoc-mode)
