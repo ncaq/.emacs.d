@@ -8,6 +8,9 @@
 (require 'git-rebase)
 (require 'magit-mode)
 
+;; [cannot commit with git-commit-20191106.1247 · Issue #3997 · magit/magit](https://github.com/magit/magit/issues/3997)
+(require 'subr-x)
+
 (custom-set-variables '(global-git-gutter-mode t))
 
 (define-key magit-file-mode-map (kbd "C-x g") 'nil)
