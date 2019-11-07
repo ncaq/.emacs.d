@@ -1,5 +1,8 @@
 ;; -*- lexical-binding: t -*-
 
+;; [cannot commit with git-commit-20191106.1247 · Issue #3997 · magit/magit](https://github.com/magit/magit/issues/3997)
+(require 'subr-x)
+
 (require 'git-commit)
 (require 'git-gutter)
 (require 'git-rebase)
