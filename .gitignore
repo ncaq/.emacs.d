@@ -1,13 +1,16 @@
 .cache/
 auto-save-list/
+eclipse.jdt.ls/
 file-backup/
 server/
 transient/
 undo-tree/
 url/
+workspace/
 
 %backup%~
 .emacs.desktop*
+.lsp-session*
 abbrev_defs
 ac-comphist.dat
 custom.el*

@@ -7,4 +7,5 @@
  )
 
 (with-eval-after-load 'ruby-mode
+  (add-hook 'ruby-mode-hook 'lsp)
   (ncaq-set-key ruby-mode-map))

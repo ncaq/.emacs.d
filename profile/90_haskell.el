@@ -11,6 +11,10 @@
   (custom-set-variables '(haskell-stylish-on-save nil)))
 
 (with-eval-after-load 'haskell-mode
+  (require 'lsp)
+  (require 'lsp-haskell)
+  (add-hook 'haskell-mode-hook 'lsp)
+
   (setq flymake-allowed-file-name-masks (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
 
   (define-key haskell-mode-map (kbd "C-M-z")               'haskell-repl-and-flycheck)
