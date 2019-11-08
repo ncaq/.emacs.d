@@ -14,6 +14,4 @@
 (custom-set-variables
  ;; エラーポップアップにフォーカスを移さない
  '(rustic-format-display-method 'pop-to-buffer-without-switch)
- ;; eglotの方がシンプルで量が少なく一時期rusticのデフォルトだった
- '(rustic-rls-pkg 'eglot)
  )

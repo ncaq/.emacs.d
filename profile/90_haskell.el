@@ -10,8 +10,6 @@
   (interactive)
   (custom-set-variables '(haskell-stylish-on-save nil)))
 
-(add-hook 'haskell-mode-hook 'eglot-ensure)
-
 (with-eval-after-load 'haskell-mode
   (setq flymake-allowed-file-name-masks (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
 

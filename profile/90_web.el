@@ -70,14 +70,12 @@
       (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
    ((member web-mode-content-type '("javascript" "jsx"))
     (progn
-      (eglot-ensure)
       (flycheck-select-tslint-or-eslint))))
   (when (member web-mode-content-type '("css" "javascript" "json" "jsx"))
     (prettier-js-mode-enable)))
 
 (add-hook 'web-mode-hook 'web-mode-setting)
 
-(add-hook 'typescript-mode-hook 'eglot-ensure)
 (add-hook 'typescript-mode-hook 'flycheck-select-tslint-or-eslint)
 
 (add-hook 'web-mode-hook 'flow-minor-enable-automatically)
@@ -90,8 +88,6 @@
 (add-hook 'yaml-mode-hook 'prettier-js-mode-enable)
 
 (advice-add 'eslint-fix :after 'flycheck-buffer)
-
-(add-hook 'css-mode-hook 'eglot-ensure)
 
 (autoload 'apache-mode "apache-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))

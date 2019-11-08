@@ -7,7 +7,7 @@
 
 (custom-set-variables
  '(helm-boring-buffer-regexp-list
-   (append '("\\*EGLOT" "\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list))
+   (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list))
  '(helm-buffer-max-len-mode 25)                  ;モードを短縮する基準
  '(helm-buffer-max-length 50)                    ;デフォルトはファイル名を短縮する区切りが20
  '(helm-delete-minibuffer-contents-from-point t) ;kill-line sim

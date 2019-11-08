@@ -7,5 +7,4 @@
  )
 
 (with-eval-after-load 'ruby-mode
-  (add-hook 'ruby-mode-hook 'eglot-ensure)
   (ncaq-set-key ruby-mode-map))
