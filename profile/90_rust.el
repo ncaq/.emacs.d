@@ -15,3 +15,9 @@
  ;; エラーポップアップにフォーカスを移さない
  '(rustic-format-display-method 'pop-to-buffer-without-switch)
  )
+
+;; rusticの場合のみlspではなくrustic特有のflycheckを使う
+;; clippyが見えるようになるので
+(defun flycheck-select-checker-rustic ()
+  (flycheck-select-checker 'rustic-clippy))
+(add-hook 'rustic-mode-hook 'flycheck-select-checker-rustic)
