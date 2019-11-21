@@ -14,6 +14,8 @@
 (custom-set-variables
  ;; エラーポップアップにフォーカスを移さない
  '(rustic-format-display-method 'pop-to-buffer-without-switch)
+ ;; 保存時にrustfmtを動かす
+ '(rustic-format-on-save t)
  )
 
 ;; rusticの場合のみlspではなくrustic特有のflycheckを使う
