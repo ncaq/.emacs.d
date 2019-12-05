@@ -21,6 +21,7 @@
         delete-horizontal-space
         dired-next-line
         dired-previous-line
+        downcase-region
         ess-smart-comma
         forward-sexp
         haskell-indentation-common-electric-command
