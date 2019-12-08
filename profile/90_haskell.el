@@ -40,6 +40,12 @@
 
 (with-eval-after-load 'haskell-cabal (ncaq-set-key haskell-cabal-mode-map))
 
+(with-eval-after-load 'quickrun
+  (quickrun-add-command "haskell"
+    '((:command . "stack runghc")
+      (:description . "Run Haskell file with Stack runghc(GHC)"))
+    :override t))
+
 (defun hamlet-mode-config ()
   (local-set-key (kbd "C-m") 'newline-and-indent)
   (electric-indent-local-mode -1)
