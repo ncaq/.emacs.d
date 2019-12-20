@@ -3,6 +3,7 @@
 (with-eval-after-load 'lsp-mode
   (custom-set-variables '(lsp-prefer-flymake nil)) ; flycheckを優先する
 
+  (define-key lsp-mode-map (kbd "C-.")     'helm-lsp-workspace-symbol)
   (define-key lsp-mode-map (kbd "C-c C-e") 'lsp-workspace-restart)
   (define-key lsp-mode-map (kbd "C-c C-i") 'lsp-format-buffer)
   (define-key lsp-mode-map (kbd "C-c C-n") 'lsp-rename)
