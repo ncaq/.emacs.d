@@ -51,5 +51,8 @@
  '(x-select-enable-clipboard t)
  )
 
+;;スクリプトに実行権限付加
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
 ;;"yes or no"を"y or n"に
 (fset 'yes-or-no-p 'y-or-n-p)
