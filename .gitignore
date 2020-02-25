@@ -1,6 +1,7 @@
 .cache/
 auto-save-list/
 eclipse.jdt.ls/
+elpa/
 file-backup/
 server/
 transient/
