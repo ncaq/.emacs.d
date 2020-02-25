@@ -758,7 +758,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :ensure t
   :after haskell-mode
   :defvar flymake-allowed-file-name-masks
-  :require lsp lsp-haskell
   :bind (:haskell-mode-map
          (("C-M-z" . haskell-repl-and-flycheck)
           ("C-c C-c" . haskell-session-change-target)
@@ -766,6 +765,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
           ("C-c C-z" . haskell-interactive-switch)
           ([remap indent-whole-buffer] . haskell-mode-stylish-buffer)))
   :config
+  (leaf lsp-haskell :ensure t :require t)
   (setq flymake-allowed-file-name-masks (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
   (leaf haskell-interactive-mode
     :after haskell-interactive-mode
