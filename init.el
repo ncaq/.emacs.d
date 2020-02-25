@@ -317,7 +317,6 @@
  '(desktop-restore-frames nil)
 
  '(recentf-max-saved-items 2000)
- '(helm-ff-file-name-history-use-recentf t)
  '(recentf-auto-cleanup (* 15 60))
  '(recentf-exclude '("\\.elc$"
                      "\\.o$"
@@ -471,11 +470,11 @@ Letters do not insert themselves; instead, they are commands.
    helm-map
    '(("C-t" . "C-p")
      ("C-s" . "C-f")))
-  :custom ((helm-boring-buffer-regexp-list . (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list))
-           (helm-buffer-max-len-mode . 25) ; モードを短縮する基準
+  :custom ((helm-buffer-max-len-mode . 25) ; モードを短縮する基準
            (helm-buffer-max-length . 50)   ; デフォルトはファイル名を短縮する区切りが20
            (helm-delete-minibuffer-contents-from-point . t) ; kill-line sim
            (helm-descbinds-mode . t)
+           (helm-ff-file-name-history-use-recentf . t)
            (helm-samewindow . t)        ; ウインドウ全体に表示
            (helm-for-files-preferred-list . '(helm-source-buffers-list
                                               helm-source-recentf
@@ -484,7 +483,9 @@ Letters do not insert themselves; instead, they are commands.
                                               helm-source-ls-git
                                               helm-source-file-cache
                                               helm-source-locate
-                                              ))))
+                                              )))
+  :config (custom-set-variables '(helm-boring-buffer-regexp-list (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list)))
+  )
 
 (leaf helm-ag
   :ensure t
