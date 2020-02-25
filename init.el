@@ -1,15 +1,16 @@
 ;; -*- lexical-binding: t -*-
 
-;; 初期の初期から設定しておきたい
 (custom-set-variables
  '(custom-file "~/.emacs.d/custom.el")  ; init.elに設定ファイルを書き込ませない
- ;; gcの起動条件を緩くしてメモリを犠牲にパフォーマンスを向上
- '(gc-cons-percentage (* gc-cons-percentage 5))
- '(gc-cons-threshold (* gc-cons-threshold 5))
- ;; 再帰回数の制限緩くしてフリーズの危険性を犠牲にエラー落ちを減らす
- '(max-lisp-eval-depth (* max-lisp-eval-depth 20))
- '(max-specpdl-size (* max-specpdl-size 20))
+ '(inhibit-startup-screen t)            ; スタートアップ画面を出さない
  )
+
+(defun kill-buffer-if-exist (BUFFER-OR-NAME)
+  (when (get-buffer BUFFER-OR-NAME)
+    (kill-buffer BUFFER-OR-NAME)))
+
+(kill-buffer-if-exist "*Compile-Log*")
+(kill-buffer-if-exist "*scratch*")
 
 ;; set load-path
 (mapc (lambda (path)
@@ -29,15 +30,6 @@
     (leaf leaf-keywords
       :ensure t
       :config (leaf-keywords-init))))
-
-(custom-set-variables '(inhibit-startup-screen t)) ; スタートアップ画面を出さない
-
-(defun kill-buffer-if-exist (BUFFER-OR-NAME)
-  (when (get-buffer BUFFER-OR-NAME)
-    (kill-buffer BUFFER-OR-NAME)))
-
-(kill-buffer-if-exist "*Compile-Log*")
-(kill-buffer-if-exist "*scratch*")
 
 (leaf server
   :require t
