@@ -882,6 +882,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :config (add-hook 'scala-mode-hook 'scala-mode-setting))
 
 ;; Web
+(leaf prettier-js :ensure t)
+
 (defun prettier-js-mode-enable ()
   (interactive)
   (prettier-js-mode t))
