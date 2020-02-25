@@ -836,6 +836,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   )
 
 ;; Markdown
+(cl-delete-if (lambda (element) (equal (cdr element) 'markdown-mode)) auto-mode-alist)
 (leaf markdown-mode
   :ensure t
   :mode "\\.md\\'" "\\.markdown\\'"
@@ -859,8 +860,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
            (markdown-hide-urls . nil))
   :after markdown-mode
   :defvar markdown-mode-map
-  :config (ncaq-set-key markdown-mode-map)
-  )
+  :config (ncaq-set-key markdown-mode-map))
 
 ;; Raku/Perl6
 (leaf perl6-mode
