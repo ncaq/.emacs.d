@@ -321,8 +321,7 @@
                      "PATH"
                      "TAGS"
                      "autoloads"
-                     ))
- )
+                     )))
 
 (defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
 (advice-add 'save-buffer :before 'setq-buffer-backed-up-nil)
@@ -378,9 +377,7 @@
   (leaf company-quickhelp
     :ensure t
     :config
-    (company-quickhelp-mode 1)
-    )
-  )
+    (company-quickhelp-mode 1)))
 
 (defun dired-jump-to-current ()
   (interactive)
@@ -407,9 +404,7 @@
            ("C-^" . dired-up-directory)
            ("C-c C-p" . wdired-change-to-wdired-mode)
            )
-    :config (ncaq-set-key dired-mode-map)
-    )
-  )
+    :config (ncaq-set-key dired-mode-map)))
 
 (define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
   "Major mode for browsing a list of packages.
@@ -476,8 +471,7 @@ Letters do not insert themselves; instead, they are commands.
                                               helm-source-file-cache
                                               helm-source-locate
                                               )))
-  :config (custom-set-variables '(helm-boring-buffer-regexp-list (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list)))
-  )
+  :config (custom-set-variables '(helm-boring-buffer-regexp-list (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list))))
 
 (leaf helm-ag
   :ensure t
@@ -538,8 +532,7 @@ Letters do not insert themselves; instead, they are commands.
     :after git-rebase
     :defvar git-rebase-mode-map
     :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))
-    )
-  )
+    ))
 
 (leaf mozc-im
   :ensure t
@@ -590,8 +583,7 @@ Letters do not insert themselves; instead, they are commands.
   :config
   (smartparens-global-mode 1)
   (show-smartparens-global-mode 1)
-  (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
-  )
+  (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET"))))
 
 ;; based on https://github.com/Fuco1/smartparens/wiki/Permissions
 (defun my-create-newline-and-enter-sexp (&rest _ignored)
@@ -611,8 +603,7 @@ Letters do not insert themselves; instead, they are commands.
   :config
   (global-undo-tree-mode)
   (ncaq-set-key undo-tree-visualizer-mode-map)
-  (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit)
-  )
+  (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit))
 
 (leaf whitespace
   :require t
@@ -729,8 +720,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
     (interactive)
     (when (buffer-modified-p)
       (save-buffer)
-      (when (and (dfmt-buffer) (buffer-modified-p)) (save-buffer))))
-  )
+      (when (and (dfmt-buffer) (buffer-modified-p)) (save-buffer)))))
 
 ;; Emacs Lisp
 (custom-set-variables
@@ -751,8 +741,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 
 (leaf elisp-slime-nav
   :ensure t
-  :bind (:elisp-slime-nav-mode-map ("C-c C-d" . elisp-slime-nav-describe-elisp-thing-at-point))
-  )
+  :bind (:elisp-slime-nav-mode-map ("C-c C-d" . elisp-slime-nav-describe-elisp-thing-at-point)))
 
 ;; Haskell
 (custom-set-variables '(haskell-stylish-on-save t))
@@ -781,14 +770,11 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (leaf haskell-interactive-mode
     :after haskell-interactive-mode
     :defvar haskell-interactive-mode-map
-    :config (ncaq-set-key haskell-interactive-mode-map)
-    )
+    :config (ncaq-set-key haskell-interactive-mode-map))
   (leaf haskell-cabal
     :after haskell-cabal
     :defvar haskell-cabal-mode-map
-    :config (ncaq-set-key haskell-cabal-mode-map)
-    )
-  )
+    :config (ncaq-set-key haskell-cabal-mode-map)))
 
 (defun haskell-repl-and-flycheck ()
   (interactive)
@@ -803,13 +789,11 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 
 (leaf hamlet-mode
   :ensure t
-  :config (add-hook 'hamlet-mode-hook 'hamlet-mode-config)
-  )
+  :config (add-hook 'hamlet-mode-hook 'hamlet-mode-config))
 
 (defun hamlet-mode-config ()
   (local-set-key (kbd "C-m") 'newline-and-indent)
-  (electric-indent-local-mode -1)
-  )
+  (electric-indent-local-mode -1))
 
 (leaf quickrun
   :ensure t
@@ -824,8 +808,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 (leaf lsp-java
   :ensure t
   :require t
-  :after cc-mode
-  )
+  :after cc-mode)
 
 ;; Markdown
 (cl-delete-if (lambda (element) (equal (cdr element) 'markdown-mode)) auto-mode-alist)
@@ -876,7 +859,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :ensure t
   :mode "\\.rs$"
   :custom ((rustic-format-display-method . 'pop-to-buffer-without-switch) ; エラーポップアップにフォーカスを移さない
-           (rustic-format-on-save . t))                                     ; 保存時にrustfmtを動かす
+           (rustic-format-on-save . t))                                   ; 保存時にrustfmtを動かす
   )
 
 ;; 本当にwithout switchしているわけではなく前のウィンドウにフォーカスを戻すだけ
@@ -967,8 +950,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (flycheck-add-mode 'html-tidy 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-mode 'typescript-tslint 'web-mode)
-  (add-hook 'web-mode-hook 'web-mode-setting)
-  )
+  (add-hook 'web-mode-hook 'web-mode-setting))
 
 (leaf typescript-mode
   :ensure t
@@ -976,8 +958,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :config
   (flycheck-add-mode 'javascript-eslint 'typescript-mode)
   (add-hook 'typescript-mode-hook 'flycheck-select-tslint-or-eslint)
-  (add-hook 'typescript-mode-hook 'prettier-js-mode-enable)
-  )
+  (add-hook 'typescript-mode-hook 'prettier-js-mode-enable))
 
 (add-hook 'css-mode-hook 'prettier-js-mode-enable)
 (add-hook 'json-mode-hook 'prettier-js-mode-enable)
@@ -990,8 +971,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 
 (leaf eslint-fix
   :ensure t
-  :config (advice-add 'eslint-fix :after 'flycheck-buffer) ; fixされたらエラーバッファを更新する
-  )
+  :config (advice-add 'eslint-fix :after 'flycheck-buffer)) ; fixされたらエラーバッファを更新する
 
 ;; XML
 (leaf nxml-mode
