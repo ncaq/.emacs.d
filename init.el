@@ -670,7 +670,7 @@ Letters do not insert themselves; instead, they are commands.
   typescript-mode-hook
   )
 
-(leaf lsp-ui-doc
+(leaf lsp-ui
   :ensure t
   :defun lsp-ui-doc--display lsp-ui-doc--extract lsp-request, lsp--text-document-position-params
   :custom (lsp-ui-doc-delay . 2)         ; 初期値の0.2はせわしなさすぎる
