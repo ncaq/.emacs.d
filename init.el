@@ -642,16 +642,16 @@ Letters do not insert themselves; instead, they are commands.
          ("C-c C-r" . lsp-execute-code-action)
          ("C-c C-t" . lsp-describe-thing-at-point))
   :hook
-  css-mode-hook
-  dockerfile-mode-hook
-  go-mode-hook
-  haskell-mode-hook
-  java-mode-hook
-  python-mode-hook
-  ruby-mode-hook
-  scala-mode-hook
-  typescript-mode-hook
-  )
+  ((css-mode-hook
+    dockerfile-mode-hook
+    go-mode-hook
+    haskell-mode-hook
+    java-mode-hook
+    python-mode-hook
+    ruby-mode-hook
+    scala-mode-hook
+    typescript-mode-hook
+    ) . lsp))
 
 (leaf lsp-ui
   :ensure t
