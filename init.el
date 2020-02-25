@@ -566,7 +566,7 @@ Letters do not insert themselves; instead, they are commands.
 (defun cursor-color-direct ()
   (set-face-background 'cursor "#839496"))
 
-(leaf auto-sudedit :ensure t :config (auto-sudoedit-mode 1))
+(leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :config (editorconfig-mode 1))
 (leaf help-fns+ :ensure t :require t)
 (leaf ncaq-emacs-utils :require t)
