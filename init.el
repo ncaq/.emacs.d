@@ -996,7 +996,10 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :ensure t
   :config (add-hook 'yaml-mode-hook 'prettier-js-mode-enable))
 
-(advice-add 'eslint-fix :after 'flycheck-buffer)
+(leaf eslint-fix
+  :ensure t
+  :config (advice-add 'eslint-fix :after 'flycheck-buffer) ; fixされたらエラーバッファを更新する
+  )
 
 ;; XML
 (leaf nxml-mode
