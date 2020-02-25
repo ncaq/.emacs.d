@@ -465,8 +465,8 @@ Letters do not insert themselves; instead, they are commands.
     :ensure t
     :require t
     :custom ((helm-source-ls-git . (helm-ls-git-build-ls-git-source))
-             (helm-source-ls-git-status . (helm-ls-git-build-git-status-source)))
-    )
+             (helm-source-ls-git-status . (helm-ls-git-build-git-status-source))))
+  (helm-mode 1)
   (swap-set-key
    helm-map
    '(("C-t" . "C-p")
