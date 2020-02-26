@@ -106,7 +106,10 @@
   (interactive)
   (insert (format-time-string "%Y-%m-%dT%H:%M:%S%:z" (current-time))))
 
-(leaf s :ensure t :require t
+(leaf s
+  :ensure t
+  :require t
+  :defun s-trim
   :config
   (defun insert-random-uuid ()
     (interactive)
@@ -124,8 +127,8 @@
 
 (leaf server
   :require t
-  :config (unless (server-running-p)
-            (server-start)))
+  :defun server-running-p
+  :config (unless (server-running-p) (server-start)))
 
 ;; Dvorak設定をするための関数
 (defun reverse-cons (c)
@@ -413,42 +416,37 @@
    (version-control . t)
    ))
 
-(leaf tramp
-  :custom
-  (tramp-auto-save-directory . temporary-file-directory)) ; trampの自動保存ディレクトリをtmpにする
-
-(leaf *history
-  :custom
-  (create-lockfiles . nil)) ; ロックファイルとしてシンボリックリンクを作らない. parcelがバグる.
+(leaf tramp :custom (tramp-auto-save-directory . temporary-file-directory)) ; trampの自動保存ディレクトリをtmpにする
+(leaf *history :custom (create-lockfiles . nil)) ; ロックファイルとしてシンボリックリンクを作らない. parcelがバグる.
 
 (defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
 (advice-add 'save-buffer :before 'setq-buffer-backed-up-nil)
 
 ;; toolkit
-(menu-bar-mode 0)                       ; メニューバーを表示させない
-(tool-bar-mode 0)                       ; ツールバーを表示させない
-(toggle-frame-maximized)                ; 全画面化
-
-(auto-image-file-mode 1)                ; 画像を表示
+(leaf menu-bar :custom (menu-bar-mode . nil))          ; メニューバーを表示させない
+(leaf tool-bar :custom (tool-bar-mode . nil))          ; ツールバーを表示させない
+(leaf frame :config (toggle-frame-maximized))        ; 全画面化
+(leaf image-file :custom (auto-image-file-mode . 1)) ; 画像を表示
 
 ;; ((ファイル名 or バッファ名) モード一覧)
-(setq frame-title-format
-      '(:eval (list (or (buffer-file-name) (buffer-name)) " " mode-line-modes)))
+(setq frame-title-format '(:eval (list (or (buffer-file-name) (buffer-name)) " " mode-line-modes)))
 
-;; mode-line line and column and sum char numbar
-(setq mode-line-position
-      '(:eval
-        (list
-         "l%l/"
-         (number-to-string (count-lines (point-min) (point-max)))
-         " c"
-         (number-to-string (- (point) (line-beginning-position)))
-         "/"
-         (number-to-string (- (line-end-position) (line-beginning-position)))
-         " s"
-         (number-to-string (point))
-         "/%i"
-         )))
+(leaf bindings
+  :config
+  ;; mode-line line and column and sum char numbar
+  (setq mode-line-position
+        '(:eval
+          (list
+           "l%l/"
+           (number-to-string (count-lines (point-min) (point-max)))
+           " c"
+           (number-to-string (- (point) (line-beginning-position)))
+           "/"
+           (number-to-string (- (line-end-position) (line-beginning-position)))
+           " s"
+           (number-to-string (point))
+           "/%i"
+           ))))
 
 ;; バッファの名前にディレクトリ名を付けることでユニークになりやすくする
 (leaf uniquify
@@ -461,12 +459,16 @@
   :ensure t
   :require t
   :defvar company-search-map
+  :preface (defvar ls-option (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
   :custom ((company-dabbrev-code-other-buffers . 'all) (company-dabbrev-downcase . nil) (company-dabbrev-other-buffers . 'all))
   :bind (:company-active-map
          ("<backtab>" . company-select-previous)
          ("<tab>" . company-complete-common-or-cycle)
          ("C-b" . 'nil))
   :config
+  (defun dired-jump-to-current ()
+    (interactive)
+    (dired "."))
   (global-company-mode 1)
   (ncaq-set-key company-active-map)
   (dvorak-set-key company-search-map)
@@ -474,12 +476,6 @@
     :ensure t
     :config
     (company-quickhelp-mode 1)))
-
-(defun dired-jump-to-current ()
-  (interactive)
-  (dired "."))
-
-(defvar ls-option (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
 
 (leaf dired
   :require t
@@ -515,13 +511,13 @@ Letters do not insert themselves; instead, they are commands.
   (setq tabulated-list-sort-key (cons "Status" nil))
   (tabulated-list-init-header))
 
-(defvar ibuffer-formats '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
-                          (mark " " (name 60 -1) " " filename)))
-
 (leaf ibuffer
   :after ibuffer
   :defvar ibuffer-mode-map
-  :custom (ibuffer-formats . ibuffer-formats)
+  :preface (defvar ibuffer-formats-conf
+             '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
+               (mark " " (name 60 -1) " " filename)))
+  :custom (ibuffer-formats . ibuffer-formats-conf)
   :config
   (define-key ibuffer-mode-map (kbd "M-g") 'nil)
   (ncaq-set-key ibuffer-mode-map)
@@ -574,19 +570,20 @@ Letters do not insert themselves; instead, they are commands.
   :require t
   :custom ((helm-ag-base-command . "rg --no-heading --smart-case")
            (helm-grep-ag-command . "rg --color=always --smart-case --no-heading --line-number %s %s %s"))
-  :config (advice-add 'helm-ag--save-current-context :after 'xref-push-marker-stack))
+  :commands helm-ag--project-root
+  :config
+  (advice-add 'helm-ag--save-current-context :after 'xref-push-marker-stack)
 
-(autoload 'helm-ag--project-root "helm-ag")
-(defun helm-do-ag-project-root-or-default ()
-  (interactive)
-  (if (helm-ag--project-root)
-      (helm-do-ag-project-root)
-    (helm-do-ag)))
+  (defun helm-do-ag-project-root-or-default ()
+    (interactive)
+    (if (helm-ag--project-root)
+        (helm-do-ag-project-root)
+      (helm-do-ag)))
 
-(defun helm-do-ag-project-root-or-default-at-point ()
-  (interactive)
-  (let ((helm-ag-insert-at-point 'symbol))
-    (helm-do-ag-project-root-or-default)))
+  (defun helm-do-ag-project-root-or-default-at-point ()
+    (interactive)
+    (let ((helm-ag-insert-at-point 'symbol))
+      (helm-do-ag-project-root-or-default))))
 
 (leaf git-gutter
   :ensure t
@@ -594,17 +591,18 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf ggtags
   :ensure t
+  :preface
+  (eval-and-compile
+    (defun gtags-dir? ()
+      (locate-dominating-file default-directory "GTAGS")))
+
+  (defun ggtags-mode-when-gtags-dir ()
+    (when (gtags-dir?)
+      (ggtags-mode 1)))
+
+  (add-hook 'find-file-hook 'ggtags-mode-when-gtags-dir)
   :custom ((ggtags-enable-navigation-keys . nil)
            (ggtags-global-ignore-case . t)))
-
-(defun gtags-dir? ()
-  (locate-dominating-file default-directory "GTAGS"))
-
-(defun ggtags-mode-when-gtags-dir ()
-  (when (gtags-dir?)
-    (ggtags-mode 1)))
-
-(add-hook 'find-file-hook 'ggtags-mode-when-gtags-dir)
 
 (leaf smart-jump
   :ensure t
@@ -635,18 +633,22 @@ Letters do not insert themselves; instead, they are commands.
   :require t
   :custom ((default-input-method . "japanese-mozc-im") (mozc-candidate-style . 'echo-area))
   :config
+  (defun cursor-color-toggle ()
+    (if current-input-method
+        (set-face-background 'cursor "#00629D")
+      (set-face-background 'cursor "#839496")))
+
+  (defun cursor-color-direct ()
+    (set-face-background 'cursor "#839496"))
+
   (set-face-background 'mozc-preedit-selected-face "#268bd2")
   (add-hook 'input-method-activate-hook 'cursor-color-toggle)
   (add-hook 'input-method-deactivate-hook 'cursor-color-direct)
   (add-hook 'window-configuration-change-hook 'cursor-color-toggle))
 
-(defun cursor-color-toggle ()
-  (if current-input-method
-      (set-face-background 'cursor "#00629D")
-    (set-face-background 'cursor "#839496")))
-
-(defun cursor-color-direct ()
-  (set-face-background 'cursor "#839496"))
+(leaf docker
+  :ensure t
+  :custom (docker-container-shell-file-name . "/bin/bash"))
 
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :config (editorconfig-mode 1))
@@ -680,15 +682,16 @@ Letters do not insert themselves; instead, they are commands.
   :config
   (smartparens-global-mode 1)
   (show-smartparens-global-mode 1)
-  (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET"))))
 
-;; based on https://github.com/Fuco1/smartparens/wiki/Permissions
-(defun my-create-newline-and-enter-sexp (&rest _ignored)
-  "Open a new brace or bracket expression, with relevant newlines and indent. "
-  (newline)
-  (indent-according-to-mode)
-  (forward-line -1)
-  (indent-according-to-mode))
+  ;; based on https://github.com/Fuco1/smartparens/wiki/Permissions
+  (defun my-create-newline-and-enter-sexp (&rest _ignored)
+    "Open a new brace or bracket expression, with relevant newlines and indent. "
+    (newline)
+    (indent-according-to-mode)
+    (forward-line -1)
+    (indent-according-to-mode))
+
+  (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET"))))
 
 (leaf undo-tree
   :ensure t
@@ -720,6 +723,7 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf flycheck
   :ensure t
+  :require t
   :custom ((global-flycheck-mode . t)
            (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
            (flycheck-highlighting-mode . nil)       ; 下線があると_が見えなくなる
@@ -738,8 +742,10 @@ Letters do not insert themselves; instead, they are commands.
          ("C-c C-n" . lsp-rename)
          ("C-c C-r" . lsp-execute-code-action)
          ("C-c C-t" . lsp-describe-thing-at-point))
-  :hook
-  ((css-mode-hook
+  :config
+  (leaf lsp
+    :hook
+    css-mode-hook
     dockerfile-mode-hook
     go-mode-hook
     haskell-mode-hook
@@ -748,7 +754,7 @@ Letters do not insert themselves; instead, they are commands.
     ruby-mode-hook
     scala-mode-hook
     typescript-mode-hook
-    ) . lsp))
+    ))
 
 (leaf lsp-ui
   :ensure t
@@ -763,20 +769,23 @@ Letters do not insert themselves; instead, they are commands.
      (thing-at-point 'symbol t)
      (lsp-ui-doc--extract (gethash "contents" (lsp-request "textDocument/hover" (lsp--text-document-position-params)))))))
 
-(leaf docker
-  :ensure t
-  :custom (docker-container-shell-file-name . "/bin/bash"))
-
 (leaf generic-x :require t)
 
-(add-to-list 'auto-mode-alist '("\\.accept_keywords$" . conf-space-mode))
-(add-to-list 'auto-mode-alist '("\\.keywords$" . conf-space-mode))
-(add-to-list 'auto-mode-alist '("\\.license$" . conf-space-mode))
-(add-to-list 'auto-mode-alist '("\\.mask$" . conf-space-mode))
-(add-to-list 'auto-mode-alist '("\\.unmask$" . conf-space-mode))
-(add-to-list 'auto-mode-alist '("\\.use$" . conf-space-mode))
+(leaf conf-mode
+  :config
+  (leaf conf-space-mode
+    :mode
+    "\\.accept_keywords$"
+    "\\.keywords$"
+    "\\.license$"
+    "\\.mask$"
+    "\\.unmask$"
+    "\\.use$"
+    ))
 
-(add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
+(leaf sh-script
+  :config
+  (leaf shell-script-mode :mode "\\.zsh$"))
 
 (leaf csharp-mode :ensure t)
 (leaf dockerfile-mode :ensure t)
@@ -784,14 +793,12 @@ Letters do not insert themselves; instead, they are commands.
 (leaf mediawiki :ensure t :mode "\\.wiki$")
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 
-;;  cc
-(defun set-hook-after-save-clang-format ()
-  (add-hook 'after-save-hook 'clang-format-buffer t t))
-
 (leaf cc-mode
   :after cc-mode
   :defvar c-mode-base-map c-mode-map c++-mode-map
   :config
+  (defun set-hook-after-save-clang-format ()
+    (add-hook 'after-save-hook 'clang-format-buffer t t))
   (add-hook 'c-mode-hook 'set-hook-after-save-clang-format)
   (add-hook 'c++-mode-hook 'set-hook-after-save-clang-format)
 
@@ -800,14 +807,15 @@ Letters do not insert themselves; instead, they are commands.
   (define-key c++-mode-map [remap indent-whole-buffer] 'clang-format-buffer)
   )
 
-;; D
 (leaf d-mode
   :ensure t
+  :after cc-vars
   :custom ((c-default-style . (cons '(d-mode . "java") c-default-style))
            (dfmt-flags . '("--max_line_length=80")))
   :bind (:d-mode-map
          ([remap indent-whole-buffer] . dfmt-region-or-buffer)
          ([remap save-buffer] . 'save-buffer-and-dfmt))
+  :defun dfmt-buffer
   :config
   (defun save-buffer-and-dfmt ()
     "セーブした後dfmt-bufferする.
@@ -819,42 +827,25 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
       (save-buffer)
       (when (and (dfmt-buffer) (buffer-modified-p)) (save-buffer)))))
 
-;; Emacs Lisp
-(custom-set-variables
- ;; emacs-lisp-checkdocは設定ファイルには不向き
- '(flycheck-disabled-checkers (append '(emacs-lisp-checkdoc) flycheck-disabled-checkers))
- '(flycheck-emacs-lisp-load-path load-path)
- )
-
-(define-key emacs-lisp-mode-map (kbd "C-M-q") 'nil)
-
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-
-(add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
-(add-hook 'help-mode-hook 'elisp-slime-nav-mode)
-
-(define-key read-expression-map (kbd "<tab>") 'completion-at-point)
-
-(leaf elisp-slime-nav
-  :ensure t
-  :bind (:elisp-slime-nav-mode-map ("C-c C-d" . elisp-slime-nav-describe-elisp-thing-at-point)))
-
-;; Haskell
-(custom-set-variables '(haskell-stylish-on-save t))
-
-(defun stylish-haskell-enable ()
-  (interactive)
-  (custom-set-variables '(haskell-stylish-on-save t)))
-
-(defun stylish-haskell-disable ()
-  (interactive)
-  (custom-set-variables '(haskell-stylish-on-save nil)))
+(leaf elisp-mode
+  :bind (:emacs-lisp-mode-map ("C-M-q" . nil))
+  :custom
+  ((flycheck-emacs-lisp-load-path . load-path))
+  :config
+  ;; emacs-lisp-checkdocは設定ファイルには不向き
+  (custom-set-variables '(flycheck-disabled-checkers (append '(emacs-lisp-checkdoc) flycheck-disabled-checkers)))
+  (leaf eldoc :hook ((emacs-lisp-mode-hook ielm-mode-hook) . turn-on-eldoc-mode))
+  (leaf elisp-slime-nav
+    :ensure t
+    :hook ((emacs-lisp-mode-hook help-mode-hook) . elisp-slime-nav-mode)
+    :bind (:elisp-slime-nav-mode-map ("C-c C-d" . elisp-slime-nav-describe-elisp-thing-at-point)))
+  (leaf simple
+    :bind (:read-expression-map ("<tab>" . completion-at-point))))
 
 (leaf haskell-mode
   :ensure t
   :after haskell-mode
-  :defvar flymake-allowed-file-name-masks
+  :defvar flycheck-error-list-buffer flymake-allowed-file-name-masks
   :bind (:haskell-mode-map
          (("C-M-z" . haskell-repl-and-flycheck)
           ("C-c C-c" . haskell-session-change-target)
@@ -862,8 +853,21 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
           ("C-c C-z" . haskell-interactive-switch)
           ([remap indent-whole-buffer] . haskell-mode-stylish-buffer)))
   :config
-  (leaf lsp-haskell :ensure t :require t)
-  (setq flymake-allowed-file-name-masks (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
+  (leaf lsp-haskell
+    :ensure t
+    :require t
+    :custom (flymake-proc-allowed-file-name-masks . (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
+    )
+  (leaf haskell-customize
+    :custom (haskell-stylish-on-save . t)
+    :config
+    (defun stylish-haskell-enable ()
+      (interactive)
+      (custom-set-variables '(haskell-stylish-on-save t)))
+    (defun stylish-haskell-disable ()
+      (interactive)
+      (custom-set-variables '(haskell-stylish-on-save nil)))
+    )
   (leaf haskell-interactive-mode
     :after haskell-interactive-mode
     :defvar haskell-interactive-mode-map
@@ -871,26 +875,25 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (leaf haskell-cabal
     :after haskell-cabal
     :defvar haskell-cabal-mode-map
-    :config (ncaq-set-key haskell-cabal-mode-map)))
-
-(defun haskell-repl-and-flycheck ()
-  (interactive)
-  (delete-other-windows)
-  (flycheck-list-errors)
-  (haskell-process-load-file)
-  (haskell-interactive-switch)
-  (split-window-below)
-  (other-window 1)
-  (switch-to-buffer flycheck-error-list-buffer)
-  (other-window 1))
+    :config (ncaq-set-key haskell-cabal-mode-map))
+  (defun haskell-repl-and-flycheck ()
+    (interactive)
+    (delete-other-windows)
+    (flycheck-list-errors)
+    (haskell-process-load-file)
+    (haskell-interactive-switch)
+    (split-window-below)
+    (other-window 1)
+    (switch-to-buffer flycheck-error-list-buffer)
+    (other-window 1)))
 
 (leaf hamlet-mode
   :ensure t
-  :config (add-hook 'hamlet-mode-hook 'hamlet-mode-config))
-
-(defun hamlet-mode-config ()
-  (local-set-key (kbd "C-m") 'newline-and-indent)
-  (electric-indent-local-mode -1))
+  :config
+  (defun hamlet-mode-config ()
+    (local-set-key (kbd "C-m") 'newline-and-indent)
+    (electric-indent-local-mode -1))
+  (add-hook 'hamlet-mode-hook 'hamlet-mode-config))
 
 (leaf quickrun
   :ensure t
@@ -901,16 +904,15 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
       (:description . "Run Haskell file with Stack runghc(GHC)"))
     :override t))
 
-;; Java
 (leaf lsp-java
   :ensure t
   :require t
   :after cc-mode)
 
-;; Markdown
-(cl-delete-if (lambda (element) (equal (cdr element) 'markdown-mode)) auto-mode-alist)
 (leaf markdown-mode
   :ensure t
+  ;; 順序が保たれてないので一度auto-mode-alistから消す必要がある
+  :preface (cl-delete-if (lambda (element) (equal (cdr element) 'markdown-mode)) auto-mode-alist)
   :mode "\\.md\\'" "\\.markdown\\'"
   :custom ((markdown-fontify-code-blocks-natively . t)
            (markdown-hide-urls . nil))
@@ -936,13 +938,11 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
                                                     markdown-code-lang-modes)))
   (ncaq-set-key markdown-mode-map))
 
-;; Raku/Perl6
 (leaf perl6-mode
   :ensure t
   :custom (perl6-indent-offset . 2)
   :config (leaf flycheck-perl6 :ensure t))
 
-;; Ruby
 (leaf ruby-mode
   :custom ((inf-ruby-default-implementation . "pry")
            (inf-ruby-eval-binding . "Pry.toplevel_binding")
@@ -951,137 +951,141 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :defvar ruby-mode-map
   :config (ncaq-set-key ruby-mode-map))
 
-;; Rust
 (leaf rustic
   :ensure t
   :mode "\\.rs$"
   :custom ((rustic-format-display-method . 'pop-to-buffer-without-switch) ; エラーポップアップにフォーカスを移さない
            (rustic-format-on-save . t))                                   ; 保存時にrustfmtを動かす
-  )
+  :after flycheck
+  :defun flycheck-select-checker
+  :config
+  (defun pop-to-buffer-without-switch (buffer-or-name &optional action norecord)
+    "本当にwithout switchしているわけではなく前のウィンドウにフォーカスを戻すだけ"
+    (pop-to-buffer buffer-or-name action norecord)
+    (other-window -1))
 
-;; 本当にwithout switchしているわけではなく前のウィンドウにフォーカスを戻すだけ
-(defun pop-to-buffer-without-switch (buffer-or-name &optional action norecord)
-  (pop-to-buffer buffer-or-name action norecord)
-  (other-window -1))
-
-;; rusticの場合のみlspではなくrustic特有のflycheckを使う
-;; clippyが見えるようになるので
-(defun flycheck-select-checker-rustic ()
-  (flycheck-select-checker 'rustic-clippy))
-(add-hook 'rustic-mode-hook 'flycheck-select-checker-rustic)
-
-;; Scala
-(defun scala-mode-setting ()
-  (add-hook 'after-save-hook 'lsp-format-buffer nil t))
+  (defun flycheck-select-checker-rustic ()
+    "rusticの場合のみclippyが見えるようになるのでlspではなくrustic特有のflycheckを使う"
+    (flycheck-select-checker 'rustic-clippy))
+  (add-hook 'rustic-mode-hook 'flycheck-select-checker-rustic))
 
 (leaf scala-mode
   :ensure t
-  :config (add-hook 'scala-mode-hook 'scala-mode-setting))
-
-;; Web
-(leaf prettier-js :ensure t)
-
-(defun prettier-js-mode-enable ()
-  (interactive)
-  (prettier-js-mode t))
-
-(defun flycheck-select-tslint-or-eslint ()
-  "tslintが使えるプロジェクトだとtslintを有効化して,それ以外ではeslintを有効化する"
-  (if (and
-       ;; 大前提としてtslint.jsonがないとだめ
-       (locate-dominating-file default-directory "tslint.json")
-       (or
-        ;; メジャーモードがTypeScriptなら良い
-        (equal major-mode 'typescript-mode)
-        ;; それ以外のメジャーモード(web-modeとか)でも拡張子がts, tsxなら良い
-        (member (file-name-extension (buffer-file-name)) '("ts" "tsx"))))
-      (flycheck-select-checker 'typescript-tslint)
-    (when (executable-find "eslint")
-      (progn
-        (flycheck-select-checker 'javascript-eslint)
-        (add-hook 'after-save-hook 'eslint-fix nil t)))))
-
-(defun web-mode-setting ()
-  (cond
-   ((string= web-mode-content-type "html")
-    (progn
-      (prettier-js-mode-enable)
-      (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
-   ((member web-mode-content-type '("javascript" "jsx"))
-    (progn
-      (lsp)
-      (flycheck-select-tslint-or-eslint))))
-  (when (member web-mode-content-type '("css" "javascript" "json" "jsx"))
-    (prettier-js-mode-enable)))
-
-(leaf web-mode
-  :ensure t
-  :require t
-  :mode
-  "\\.[agj]sp\\'"
-  "\\.as[cp]x\\'"
-  "\\.djhtml\\'"
-  "\\.ejs\\'"
-  "\\.erb\\'"
-  "\\.html?\\'"
-  "\\.js\\'"
-  "\\.jsx\\'"
-  "\\.mustache\\'"
-  "\\.php\\'"
-  "\\.phtml\\'"
-  "\\.tpl\\'"
-  "\\.tsx\\'"
-  :custom ((web-mode-code-indent-offset . 2)
-           (web-mode-css-indent-offset . 2)
-           (web-mode-enable-auto-indentation . nil)
-           (web-mode-enable-auto-quoting . nil)
-           (web-mode-enable-current-column-highlight . t)
-           (web-mode-enable-current-element-highlight . t)
-           (web-mode-markup-indent-offset . 2))
   :config
-  (sp-local-pair '(web-mode) "<" ">" :actions :rem)
-  (set-face-background 'web-mode-jsx-depth-1-face "#073844")
-  (set-face-background 'web-mode-jsx-depth-2-face "#083C49")
-  (set-face-background 'web-mode-jsx-depth-3-face "#08404F")
-  (set-face-background 'web-mode-jsx-depth-4-face "#094554")
-  (set-face-background 'web-mode-jsx-depth-5-face "#0A4D5E")
+  (defun lsp-format-buffer-after-save ()
+    (add-hook 'after-save-hook 'lsp-format-buffer nil t))
+  (add-hook 'scala-mode-hook 'lsp-format-buffer-after-save))
 
-  (flycheck-add-mode 'html-tidy 'web-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (flycheck-add-mode 'typescript-tslint 'web-mode)
-  (add-hook 'web-mode-hook 'web-mode-setting))
-
-(leaf typescript-mode
-  :ensure t
-  :custom (typescript-indent-level . 2)
+(leaf *web
   :config
-  (flycheck-add-mode 'javascript-eslint 'typescript-mode)
-  (add-hook 'typescript-mode-hook 'flycheck-select-tslint-or-eslint)
-  (add-hook 'typescript-mode-hook 'prettier-js-mode-enable))
+  (leaf prettier-js
+    :ensure t
+    :config
+    (eval-and-compile
+      (defun prettier-js-mode-enable ()
+        (interactive)
+        (prettier-js-mode t)))
+    (leaf prettier-js-mode
+      :hook
+      css-mode-hook
+      json-mode-hook
+      less-css-mode-hook
+      scss-mode-hook
+      typescript-mode-hook
+      yaml-mode-hook
+      ))
 
-(add-hook 'css-mode-hook 'prettier-js-mode-enable)
-(add-hook 'json-mode-hook 'prettier-js-mode-enable)
-(add-hook 'less-css-mode-hook 'prettier-js-mode-enable)
-(add-hook 'scss-mode-hook 'prettier-js-mode-enable)
+  (eval-and-compile
+    (defun flycheck-select-tslint-or-eslint ()
+      "tslintが使えるプロジェクトだとtslintを有効化して,それ以外ではeslintを有効化する"
+      (if (and
+           ;; 大前提としてtslint.jsonがないとだめ
+           (locate-dominating-file default-directory "tslint.json")
+           (or
+            ;; メジャーモードがTypeScriptなら良い
+            (equal major-mode 'typescript-mode)
+            ;; それ以外のメジャーモード(web-modeとか)でも拡張子がts, tsxなら良い
+            (member (file-name-extension (buffer-file-name)) '("ts" "tsx"))))
+          (flycheck-select-checker 'typescript-tslint)
+        (when (executable-find "eslint")
+          (progn
+            (flycheck-select-checker 'javascript-eslint)
+            (add-hook 'after-save-hook 'eslint-fix nil t))))))
 
-(leaf yaml-mode
-  :ensure t
-  :config (add-hook 'yaml-mode-hook 'prettier-js-mode-enable))
+  (leaf web-mode
+    :ensure t
+    :require t
+    :defvar web-mode-content-type
+    :defun flycheck-add-mode sp-local-pair
+    :mode
+    "\\.[agj]sp\\'"
+    "\\.as[cp]x\\'"
+    "\\.djhtml\\'"
+    "\\.ejs\\'"
+    "\\.erb\\'"
+    "\\.html?\\'"
+    "\\.js\\'"
+    "\\.jsx\\'"
+    "\\.mustache\\'"
+    "\\.php\\'"
+    "\\.phtml\\'"
+    "\\.tpl\\'"
+    "\\.tsx\\'"
+    :custom ((web-mode-code-indent-offset . 2)
+             (web-mode-css-indent-offset . 2)
+             (web-mode-enable-auto-indentation . nil)
+             (web-mode-enable-auto-quoting . nil)
+             (web-mode-enable-current-column-highlight . t)
+             (web-mode-enable-current-element-highlight . t)
+             (web-mode-markup-indent-offset . 2))
+    :config
+    (sp-local-pair '(web-mode) "<" ">" :actions :rem)
+    (set-face-background 'web-mode-jsx-depth-1-face "#073844")
+    (set-face-background 'web-mode-jsx-depth-2-face "#083C49")
+    (set-face-background 'web-mode-jsx-depth-3-face "#08404F")
+    (set-face-background 'web-mode-jsx-depth-4-face "#094554")
+    (set-face-background 'web-mode-jsx-depth-5-face "#0A4D5E")
 
-(leaf eslint-fix
-  :ensure t
-  :config (advice-add 'eslint-fix :after 'flycheck-buffer)) ; fixされたらエラーバッファを更新する
+    (flycheck-add-mode 'html-tidy 'web-mode)
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    (flycheck-add-mode 'typescript-tslint 'web-mode)
+    (defun web-mode-setting ()
+      (cond
+       ((string= web-mode-content-type "html")
+        (progn
+          (prettier-js-mode-enable)
+          (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
+       ((member web-mode-content-type '("javascript" "jsx"))
+        (progn
+          (lsp)
+          (flycheck-select-tslint-or-eslint))))
+      (when (member web-mode-content-type '("css" "javascript" "json" "jsx"))
+        (prettier-js-mode-enable)))
+    (add-hook 'web-mode-hook 'web-mode-setting))
 
-;; XML
+  (leaf typescript-mode
+    :ensure t
+    :custom (typescript-indent-level . 2)
+    :config
+    (flycheck-add-mode 'javascript-eslint 'typescript-mode)
+    (add-hook 'typescript-mode-hook 'flycheck-select-tslint-or-eslint))
+  (leaf yaml-mode :ensure t)
+
+  (leaf eslint-fix
+    :ensure t
+    :config (advice-add 'eslint-fix :after 'flycheck-buffer)) ; fixされたらエラーバッファを更新する
+  )
+
 (leaf nxml-mode
   :mode "\\.fxml\\'"
   :custom (nxml-slash-auto-complete-flag . t)
   :after nxml-mode
   :defvar nxml-mode-map
+  :bind (:nxml-mode-map
+         ("M-b" . nil)
+         ("C-M-p" . nil)
+         ("C-M-t" . nxml-backward-element)
+         )
   :config
   (leaf smartparens :config (sp-local-pair '(nxml-mode) "<" ">" :actions :rem))
-  (ncaq-set-key nxml-mode-map)
-  (define-key nxml-mode-map (kbd "M-b") 'nil)
-  (define-key nxml-mode-map (kbd "C-M-p") 'nil)
-  (define-key nxml-mode-map (kbd "C-M-t") 'nxml-backward-element)
-  )
+  (ncaq-set-key nxml-mode-map))
