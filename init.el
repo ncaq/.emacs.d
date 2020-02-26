@@ -441,6 +441,7 @@
 ;; toolkit end
 
 (leaf tabulated-list
+  :config
   (define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
     "Major mode for browsing a list of packages.
 Letters do not insert themselves; instead, they are commands.
