@@ -803,6 +803,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf prolog :after prolog :defvar prolog-mode-map :config (ncaq-set-key prolog-mode-map))
 (leaf sh-script :config (leaf shell-script-mode :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
+(leaf systemd :ensure t)
 
 (leaf cc-mode
   :after cc-mode
