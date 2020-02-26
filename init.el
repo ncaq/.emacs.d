@@ -905,9 +905,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 
 (leaf markdown-mode
   :ensure t
-  ;; 順序が保たれてないので一度auto-mode-alistから消す必要がある
-  :preface (cl-delete-if (lambda (element) (equal (cdr element) 'markdown-mode)) auto-mode-alist)
-  :mode "\\.md\\'" "\\.markdown\\'"
   :custom ((markdown-fontify-code-blocks-natively . t)
            (markdown-hide-urls . nil))
   :after markdown-mode
