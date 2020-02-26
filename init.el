@@ -1,14 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(defun kill-buffer-if-exist (BUFFER-OR-NAME)
-  "バッファが存在すればkillする,無ければ何もしない"
-  (when (get-buffer BUFFER-OR-NAME)
-    (kill-buffer BUFFER-OR-NAME)))
-
-;; 起動時に作られる使わないバッファを削除する
-(kill-buffer-if-exist "*Compile-Log*")
-(kill-buffer-if-exist "*scratch*")
-
 ;; load-pathに野良submoduleを追加する
 (mapc (lambda (path)
         (let ((default-directory path))
@@ -27,6 +18,14 @@
     (leaf leaf-keywords
       :ensure t
       :config (leaf-keywords-init))))
+
+(defun kill-buffer-if-exist (BUFFER-OR-NAME)
+  "バッファが存在すればkillする,無ければ何もしない."
+  (when (get-buffer BUFFER-OR-NAME)
+    (kill-buffer BUFFER-OR-NAME)))
+
+;; 起動時に作られる使わないバッファを削除する
+(kill-buffer-if-exist "*scratch*")
 
 ;; 個別に分けるまでもない設定
 (custom-set-variables
