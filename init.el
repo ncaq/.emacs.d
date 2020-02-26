@@ -117,12 +117,6 @@
   (interactive)
   (revert-buffer-with-coding-system 'japanese-cp932-dos))
 
-;;スクリプトに実行権限付加
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
-;; "yes or no"を"y or n"に
-(fset 'yes-or-no-p 'y-or-n-p)
-
 (leaf server
   :require t
   :defun server-running-p
@@ -327,16 +321,14 @@
 
 ;; 見た目
 ;; 等幅になるようにRictyを設定
-(set-face-attribute 'default nil :family "Ricty" :height 135)
-(set-fontset-font t 'unicode (font-spec :name "Ricty") nil 'append)
+(leaf faces :config (set-face-attribute 'default nil :family "Ricty" :height 135))
+(leaf *set-fontset-font :config (set-fontset-font t 'unicode (font-spec :name "Ricty") nil 'append))
 
 ;; シンタックスハイライトをグローバルで有効化
-(global-font-lock-mode 1)
+(leaf font-core :config (global-font-lock-mode 1))
 
 ;; テーマを読み込む
-(leaf solarized-theme
-  :ensure t
-  :config (load-theme 'solarized-dark t))
+(leaf solarized-theme :ensure t :config (load-theme 'solarized-dark t))
 
 ;; 以下の順番で読み込まないと正常に動かなかった
 ;; rainbow-delimiters -> rainbow-mode
@@ -410,10 +402,12 @@
    ))
 
 (leaf tramp :custom (tramp-auto-save-directory . temporary-file-directory)) ; trampの自動保存ディレクトリをtmpにする
-(leaf *history :custom (create-lockfiles . nil)) ; ロックファイルとしてシンボリックリンクを作らない. parcelがバグる.
-
-(defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
-(advice-add 'save-buffer :before 'setq-buffer-backed-up-nil)
+(leaf *history
+  :custom (create-lockfiles . nil)      ; ロックファイルとしてシンボリックリンクを作らない. parcelがバグる.
+  :config
+  (defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
+  (advice-add 'save-buffer :before 'setq-buffer-backed-up-nil)
+  )
 
 ;; toolkit
 (leaf menu-bar :custom (menu-bar-mode . nil))          ; メニューバーを表示させない
@@ -421,11 +415,10 @@
 (leaf frame :config (toggle-frame-maximized))        ; 全画面化
 (leaf image-file :custom (auto-image-file-mode . 1)) ; 画像を表示
 
-;; ((ファイル名 or バッファ名) モード一覧)
-(setq frame-title-format '(:eval (list (or (buffer-file-name) (buffer-name)) " " mode-line-modes)))
-
 (leaf bindings
   :config
+  ;; ((ファイル名 or バッファ名) モード一覧)
+  (setq frame-title-format '(:eval (list (or (buffer-file-name) (buffer-name)) " " mode-line-modes)))
   ;; mode-line line and column and sum char numbar
   (setq mode-line-position
         '(:eval
@@ -448,19 +441,20 @@
 
 ;; toolkit end
 
-(define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
-  "Major mode for browsing a list of packages.
+(leaf tabulated-list
+  (define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
+    "Major mode for browsing a list of packages.
 Letters do not insert themselves; instead, they are commands.
 \\<package-menu-mode-map>
 \\{package-menu-mode-map}"
-  (setq tabulated-list-format
-        [("Package" 35 package-menu--name-predicate)
-         ("Version" 15 package-menu--version-predicate)
-         ("Status"  10 package-menu--status-predicate)
-         ("Description" 10 package-menu--description-predicate)])
-  (setq tabulated-list-padding 1)
-  (setq tabulated-list-sort-key (cons "Status" nil))
-  (tabulated-list-init-header))
+    (setq tabulated-list-format
+          [("Package" 35 package-menu--name-predicate)
+           ("Version" 15 package-menu--version-predicate)
+           ("Status"  10 package-menu--status-predicate)
+           ("Description" 10 package-menu--description-predicate)])
+    (setq tabulated-list-padding 1)
+    (setq tabulated-list-sort-key (cons "Status" nil))
+    (tabulated-list-init-header)))
 
 (leaf dired
   :require t
@@ -489,6 +483,29 @@ Letters do not insert themselves; instead, they are commands.
   :custom (Man-notify-method . 'bully)  ; Manページを現在のウィンドウで表示
   :config (ncaq-set-key Man-mode-map))
 
+(leaf executable :config (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
+(leaf subr :config (fset 'yes-or-no-p 'y-or-n-p)) ; "yes or no"を"y or n"に
+
+(leaf ibuffer
+  :after ibuffer
+  :defvar ibuffer-mode-map
+  :preface (defvar ibuffer-formats-conf
+             '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
+               (mark " " (name 60 -1) " " filename)))
+  :custom (ibuffer-formats . ibuffer-formats-conf)
+  :config
+  (define-key ibuffer-mode-map (kbd "M-g") 'nil)
+  (ncaq-set-key ibuffer-mode-map)
+  (define-key ibuffer-mode-map (kbd "C-o") 'nil)
+  )
+
+(leaf profiler
+  :after profiler-report-mode-map
+  :defvar profiler-report-mode-map profiler-report-cpu-line-format
+  :config
+  (ncaq-set-key profiler-report-mode-map)
+  (setq profiler-report-cpu-line-format '((100 left) (24 right ((19 right) (5 right))))))
+
 (leaf company
   :ensure t
   :require t
@@ -510,26 +527,6 @@ Letters do not insert themselves; instead, they are commands.
     :ensure t
     :config
     (company-quickhelp-mode 1)))
-
-(leaf ibuffer
-  :after ibuffer
-  :defvar ibuffer-mode-map
-  :preface (defvar ibuffer-formats-conf
-             '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
-               (mark " " (name 60 -1) " " filename)))
-  :custom (ibuffer-formats . ibuffer-formats-conf)
-  :config
-  (define-key ibuffer-mode-map (kbd "M-g") 'nil)
-  (ncaq-set-key ibuffer-mode-map)
-  (define-key ibuffer-mode-map (kbd "C-o") 'nil)
-  )
-
-(leaf profiler
-  :after profiler-report-mode-map
-  :defvar profiler-report-mode-map profiler-report-cpu-line-format
-  :config
-  (ncaq-set-key profiler-report-mode-map)
-  (setq profiler-report-cpu-line-format '((100 left) (24 right ((19 right) (5 right))))))
 
 (leaf helm
   :ensure t
