@@ -734,6 +734,7 @@ Letters do not insert themselves; instead, they are commands.
          ("C-c C-r" . lsp-execute-code-action)
          ("C-c C-t" . lsp-describe-thing-at-point))
   :config
+  (leaf yasnippet :ensure t :require t)
   (leaf lsp
     :hook
     css-mode-hook
