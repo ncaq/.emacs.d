@@ -539,7 +539,8 @@ Letters do not insert themselves; instead, they are commands.
                                               helm-source-file-cache
                                               helm-source-locate
                                               )))
-  :config (custom-set-variables '(helm-boring-buffer-regexp-list (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list))))
+  :config (custom-set-variables '(helm-boring-buffer-regexp-list
+                                  (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list))))
 
 (leaf helm-ag
   :ensure t
