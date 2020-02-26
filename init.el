@@ -760,6 +760,15 @@ Letters do not insert themselves; instead, they are commands.
      (thing-at-point 'symbol t)
      (lsp-ui-doc--extract (gethash "contents" (lsp-request "textDocument/hover" (lsp--text-document-position-params)))))))
 
+(leaf quickrun
+  :ensure t
+  :after quickrun
+  :config
+  (quickrun-add-command "haskell"
+    '((:command . "stack runghc")
+      (:description . "Run Haskell file with Stack runghc(GHC)"))
+    :override t))
+
 (leaf generic-x :require t)
 
 (leaf conf-mode
@@ -888,15 +897,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
     (local-set-key (kbd "C-m") 'newline-and-indent)
     (electric-indent-local-mode -1))
   (add-hook 'hamlet-mode-hook 'hamlet-mode-config))
-
-(leaf quickrun
-  :ensure t
-  :after quickrun
-  :config
-  (quickrun-add-command "haskell"
-    '((:command . "stack runghc")
-      (:description . "Run Haskell file with Stack runghc(GHC)"))
-    :override t))
 
 (leaf lsp-java
   :ensure t
