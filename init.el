@@ -733,13 +733,16 @@ Letters do not insert themselves; instead, they are commands.
   :ensure t
   :custom (lsp-prefer-flymake . nil)    ; flycheckを優先する
   :bind (:lsp-mode-map
-         ("C-." . helm-lsp-workspace-symbol)
          ("C-c C-e" . lsp-workspace-restart)
          ("C-c C-i" . lsp-format-buffer)
          ("C-c C-n" . lsp-rename)
          ("C-c C-r" . lsp-execute-code-action)
          ("C-c C-t" . lsp-describe-thing-at-point))
   :config
+  (leaf helm-lsp
+    :ensure t
+    :bind (:lsp-mode-map :package lsp-mode
+           ("C-." . helm-lsp-workspace-symbol)))
   (leaf yasnippet :ensure t :require t)
   (leaf lsp
     :hook
