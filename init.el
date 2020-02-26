@@ -541,6 +541,7 @@ Letters do not insert themselves; instead, they are commands.
     :require t
     :custom ((helm-source-ls-git . (helm-ls-git-build-ls-git-source))
              (helm-source-ls-git-status . (helm-ls-git-build-git-status-source))))
+  (leaf helm-descbinds :ensure t :config (helm-descbinds-mode))
   (helm-mode 1)
   (swap-set-key
    helm-map
