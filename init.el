@@ -952,12 +952,12 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 
 (leaf rustic
   :ensure t
-  :mode "\\.rs$"
   :custom ((rustic-format-display-method . 'pop-to-buffer-without-switch) ; エラーポップアップにフォーカスを移さない
            (rustic-format-on-save . t))                                   ; 保存時にrustfmtを動かす
   :after flycheck
   :defun flycheck-select-checker
   :config
+  (leaf rustic-mode :mode "\\.rs$")
   (defun pop-to-buffer-without-switch (buffer-or-name &optional action norecord)
     "本当にwithout switchしているわけではなく前のウィンドウにフォーカスを戻すだけ"
     (pop-to-buffer buffer-or-name action norecord)
