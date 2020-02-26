@@ -406,6 +406,7 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf dired
   :require t
+  :preface (defvar ls-option (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
   :custom ((dired-auto-revert-buffer . t) ; diredの自動再読込
            (dired-dwim-target . t)
            (dired-isearch-filenames . t)
@@ -487,7 +488,6 @@ Letters do not insert themselves; instead, they are commands.
   :ensure t
   :require t
   :defvar company-search-map
-  :preface (defvar ls-option (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
   :custom ((company-dabbrev-code-other-buffers . 'all) (company-dabbrev-downcase . nil) (company-dabbrev-other-buffers . 'all))
   :bind (:company-active-map
          ("<backtab>" . company-select-previous)
