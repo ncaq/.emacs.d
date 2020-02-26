@@ -1,25 +1,22 @@
 ;; -*- lexical-binding: t -*-
 
-(custom-set-variables
- '(custom-file "~/.emacs.d/custom.el")  ; init.elに設定ファイルを書き込ませない
- '(inhibit-startup-screen t)            ; スタートアップ画面を出さない
- )
-
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
+  "バッファが存在すればkillする,無ければ何もしない"
   (when (get-buffer BUFFER-OR-NAME)
     (kill-buffer BUFFER-OR-NAME)))
 
+;; 起動時に作られる使わないバッファを削除する
 (kill-buffer-if-exist "*Compile-Log*")
 (kill-buffer-if-exist "*scratch*")
 
-;; set load-path
+;; load-pathに野良submoduleを追加する
 (mapc (lambda (path)
         (let ((default-directory path))
           (normal-top-level-add-subdirs-to-load-path)))
       (list (concat user-emacs-directory "module/")))
 
 (eval-and-compile
-  (prog1 "leaf init"
+  (prog1 "leafを初期化する"
     (custom-set-variables
      '(package-archives '(("melpa" . "https://melpa.org/packages/")
                           ("gnu"   . "https://elpa.gnu.org/packages/"))))
@@ -30,6 +27,100 @@
     (leaf leaf-keywords
       :ensure t
       :config (leaf-keywords-init))))
+
+;; 個別に分けるまでもない設定
+(custom-set-variables
+ ;; Manページを現在のウィンドウで表示
+ '(Man-notify-method 'bully)
+ ;; 括弧移動無効
+ '(blink-matching-paren nil)
+ ;; init.elに設定ファイルを書き込ませない
+ '(custom-file "~/.emacs.d/custom.el")
+ ;; ごみ箱を有効
+ '(delete-by-moving-to-trash t)
+ ;; diffをunifitedモードで
+ '(diff-switches "-u")
+ ;; 一部のコマンドを有効にする
+ '(disabled-command-function nil)
+ ;; ediffでウィンドウを横分割
+ '(ediff-split-window-function 'split-window-horizontally)
+ ;; ediffにframeを生成させない
+ '(ediff-window-setup-function 'ediff-setup-windows-plain)
+ ;; 自動折り返しを実質無効化
+ '(fill-column 10000)
+ ;; 自動再読込
+ '(global-auto-revert-mode 1)
+ ;; google翻訳のソースを英語に
+ '(google-translate-default-source-language "en")
+ ;; google翻訳の対象を日本語に
+ '(google-translate-default-target-language "ja")
+ ;; dotファイルで自動セミコロン挿入しない
+ '(graphviz-dot-auto-indent-on-semi nil)
+ ;; imaximaの全体を大きくする
+ '(imaxima-scale-factor 10.0)
+ ;; インデントをスペースで行う
+ '(indent-tabs-mode nil)
+ ;; スタートアップ画面を出さない
+ '(inhibit-startup-screen t)
+ ;; メッセージをたくさん残す
+ '(message-log-max 100000)
+ ;; 大文字と小文字を区別しない バッファ名
+ '(read-buffer-completion-ignore-case t)
+ ;; 大文字と小文字を区別しない ファイル名
+ '(read-file-name-completion-ignore-case t)
+ ;; ファイルの最後に改行
+ '(require-final-newline t)
+ ;; schemeの処理系はgauche
+ '(scheme-program-name "gosh")
+ ;; 最下段までスクロールしてもカーソルを中心に戻さない
+ '(scroll-step 1)
+ ;; 常にシンボリックリンクをたどる
+ '(vc-follow-symlinks t)
+ ;; インデント幅はデフォルト2
+ '(tab-width 2)
+ ;; 警告をエラーレベルでないと表示しない
+ '(warning-minimum-level :error)
+ ;; クリップボードをX11と共有
+ '(x-select-enable-clipboard t)
+ )
+
+(defun open-desktop ()
+  (interactive)
+  (find-file "~/Desktop/"))
+
+(defun open-downloads ()
+  (interactive)
+  (find-file "~/Downloads/"))
+
+(defun open-document-current ()
+  (interactive)
+  (let ((find-file-visit-truename t))
+    (find-file "~/Documents/current/")))
+
+(defun open-ncaq-entry ()
+  (interactive)
+  (find-file (concat "~/Desktop/www.ncaq.net/entry/"
+                     (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
+
+(defun insert-iso-datetime ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%dT%H:%M:%S%:z" (current-time))))
+
+(leaf s :ensure t :require t
+  :config
+  (defun insert-random-uuid ()
+    (interactive)
+    (insert (s-trim (shell-command-to-string "uuidgen")))))
+
+(defun revert-buffer-with-coding-system-japanese-cp932-dos ()
+  (interactive)
+  (revert-buffer-with-coding-system 'japanese-cp932-dos))
+
+;;スクリプトに実行権限付加
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
+;; "yes or no"を"y or n"に
+(fset 'yes-or-no-p 'y-or-n-p)
 
 (leaf server
   :require t
@@ -276,6 +367,13 @@
   :config (global-anzu-mode t))
 
 ;; History
+(leaf recentf
+  :custom
+  ((recentf-max-saved-items . 2000)
+   (recentf-auto-cleanup . 600)
+   (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))
+   ))
+
 (leaf recentf-ext
   :ensure t
   :require t)
@@ -284,50 +382,47 @@
   :ensure t
   :config (recentf-remove-sudo-tramp-prefix-mode 1))
 
-(custom-set-variables
- ;; バックアップ先をカレントディレクトリから変更
- '(backup-directory-alist `(("" . ,(concat user-emacs-directory "file-backup/"))))
+(leaf savehist
+  :custom
+  ((savehist-mode . t)
+   (savehist-minibuffer-history-variables . (cons 'extended-command-history savehist-minibuffer-history-variables))))
 
- ;; 自動保存(クラッシュ時の対応)先をカレントディレクトリから変更
- '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
- '(tramp-auto-save-directory temporary-file-directory)
+(leaf desktop
+  :custom
+  ((desktop-save-mode . t)
+   (desktop-globals-to-save . nil)
+   (desktop-restore-frames . nil)))
 
- '(create-lockfiles nil)                ; ロックファイルとしてシンボリックリンクを作らない.parcelが大変なことになるので.
- '(delete-old-versions t)               ; askだと削除時に一々聞いてくる
- '(kept-new-versions 50)                ; backupに新しいものをいくつ残すか
- '(kept-old-versions 0)                 ; backupに古いものをいくつ残すか
- '(make-backup-files t)                 ; バックアップファイルを作成する。
- '(version-control t)                   ; 複数バックアップ
+(leaf save-place-mode :config (save-place-mode 1))
 
- '(message-log-max 100000)
+(leaf files
+  :custom
+  (;; バックアップ先をカレントディレクトリから変更
+   (backup-directory-alist . `(("" . ,(concat user-emacs-directory "file-backup/"))))
+   ;; 自動保存(クラッシュ時の対応)先をカレントディレクトリから変更
+   (auto-save-file-name-transforms . `((".*" ,temporary-file-directory t)))
+   ;; askだと件数を超えた自動削除時時に一々聞いてくるのでtに変更
+   (delete-old-versions . t)
+   ;; backupに新しいものをいくつ残すか
+   (kept-new-versions . 50)
+   ;; backupに古いものをいくつ残すか
+   (kept-old-versions . 0)
+   ;; バックアップファイルを作成する。
+   (make-backup-files . t)
+   ;; 複数バックアップ
+   (version-control . t)
+   ))
 
- '(savehist-mode t)
- '(savehist-minibuffer-history-variables
-   (cons 'extended-command-history savehist-minibuffer-history-variables))
+(leaf tramp
+  :custom
+  (tramp-auto-save-directory . temporary-file-directory)) ; trampの自動保存ディレクトリをtmpにする
 
- '(desktop-save-mode t)
- '(desktop-globals-to-save nil)
- '(desktop-restore-frames nil)
-
- '(recentf-max-saved-items 2000)
- '(recentf-auto-cleanup (* 15 60))
- '(recentf-exclude '("\\.elc$"
-                     "\\.o$"
-                     "~$"
-
-                     "\\.file-backup/"
-                     "\\.undo-tree/"
-
-                     "EDITMSG"
-                     "PATH"
-                     "TAGS"
-                     "autoloads"
-                     )))
+(leaf *history
+  :custom
+  (create-lockfiles . nil)) ; ロックファイルとしてシンボリックリンクを作らない. parcelがバグる.
 
 (defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
 (advice-add 'save-buffer :before 'setq-buffer-backed-up-nil)
-
-(leaf save-place-mode :config (save-place-mode 1))
 
 ;; toolkit
 (menu-bar-mode 0)                       ; メニューバーを表示させない
@@ -990,92 +1085,3 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (define-key nxml-mode-map (kbd "C-M-p") 'nil)
   (define-key nxml-mode-map (kbd "C-M-t") 'nxml-backward-element)
   )
-
-(custom-set-variables
- ;; Manページを現在のウィンドウで表示
- '(Man-notify-method 'bully)
- ;; 括弧移動無効
- '(blink-matching-paren nil)
- ;; ごみ箱を有効
- '(delete-by-moving-to-trash t)
- ;; diffをunifitedモードで
- '(diff-switches "-u")
- ;; 一部のコマンドを有効にする
- '(disabled-command-function nil)
- ;; ediffでウィンドウを横分割
- '(ediff-split-window-function 'split-window-horizontally)
- ;; ediffにframeを生成させない
- '(ediff-window-setup-function 'ediff-setup-windows-plain)
- ;; 自動折り返しを実質無効化
- '(fill-column 10000)
- ;; 自動再読込
- '(global-auto-revert-mode 1)
- ;; google翻訳のソースを英語に
- '(google-translate-default-source-language "en")
- ;; google翻訳の対象を日本語に
- '(google-translate-default-target-language "ja")
- ;; dotファイルで自動セミコロン挿入しない
- '(graphviz-dot-auto-indent-on-semi nil)
- ;; imaximaの全体を大きくする
- '(imaxima-scale-factor 10.0)
- ;; インデントをスペースで行う
- '(indent-tabs-mode nil)
- ;; 大文字と小文字を区別しない バッファ名
- '(read-buffer-completion-ignore-case t)
- ;; 大文字と小文字を区別しない ファイル名
- '(read-file-name-completion-ignore-case t)
- ;; ファイルの最後に改行
- '(require-final-newline t)
- ;; schemeの処理系はgauche
- '(scheme-program-name "gosh")
- ;; 最下段までスクロールしてもカーソルを中心に戻さない
- '(scroll-step 1)
- ;; skypeのid
- '(skype--my-user-handle "ncaq__")
- ;; 常にシンボリックリンクをたどる
- '(vc-follow-symlinks t)
- ;; インデント幅はデフォルト2
- '(tab-width 2)
- ;; 警告をエラーレベルでないと表示しない
- '(warning-minimum-level :error)
- ;; クリップボードをX11と共有
- '(x-select-enable-clipboard t)
- )
-
-;;スクリプトに実行権限付加
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
-;; "yes or no"を"y or n"に
-(fset 'yes-or-no-p 'y-or-n-p)
-
-(defun open-desktop ()
-  (interactive)
-  (find-file "~/Desktop/"))
-
-(defun open-downloads ()
-  (interactive)
-  (find-file "~/Downloads/"))
-
-(defun open-document-current ()
-  (interactive)
-  (let ((find-file-visit-truename t))
-    (find-file "~/Documents/current/")))
-
-(defun open-ncaq-entry ()
-  (interactive)
-  (find-file (concat "~/Desktop/www.ncaq.net/entry/"
-                     (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
-
-(defun insert-iso-datetime ()
-  (interactive)
-  (insert (format-time-string "%Y-%m-%dT%H:%M:%S%:z" (current-time))))
-
-(leaf s :ensure t :require t
-  :config
-  (defun insert-random-uuid ()
-    (interactive)
-    (insert (s-trim (shell-command-to-string "uuidgen")))))
-
-(defun revert-buffer-with-coding-system-japanese-cp932-dos ()
-  (interactive)
-  (revert-buffer-with-coding-system 'japanese-cp932-dos))
