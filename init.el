@@ -554,6 +554,7 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :config (editorconfig-mode 1))
+(leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :require t)
 (leaf symbolword-mode :ensure t :require t)
 (leaf which-key :ensure t :config (which-key-mode 1))
