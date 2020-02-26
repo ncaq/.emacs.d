@@ -789,8 +789,10 @@ Letters do not insert themselves; instead, they are commands.
   :after cc-mode
   :defvar c-mode-base-map c-mode-map c++-mode-map
   :config
-  (defun set-hook-after-save-clang-format ()
-    (add-hook 'after-save-hook 'clang-format-buffer t t))
+  (leaf clang-format
+    :ensure t
+    (defun set-hook-after-save-clang-format ()
+      (add-hook 'after-save-hook 'clang-format-buffer t t)))
   (add-hook 'c-mode-hook 'set-hook-after-save-clang-format)
   (add-hook 'c++-mode-hook 'set-hook-after-save-clang-format)
 
