@@ -443,10 +443,11 @@ Letters do not insert themselves; instead, they are commands.
   :custom (Man-notify-method . 'bully)  ; Manページを現在のウィンドウで表示
   :config (ncaq-set-key Man-mode-map))
 
-(leaf ediff-wind
+(leaf ediff
+  :config
   :custom
-  ((ediff-split-window-function . split-window-horizontally) ; ediffでウィンドウを横分割
-   (ediff-window-setup-function . ediff-setup-windows-plain) ; ediffにframeを生成させない
+  ((ediff-split-window-function . 'split-window-horizontally) ; ediffでウィンドウを横分割
+   (ediff-window-setup-function . 'ediff-setup-windows-plain) ; ediffにframeを生成させない
    ))
 
 (leaf autorevert :custom (global-auto-revert-mode . 1)) ; 自動再読込
