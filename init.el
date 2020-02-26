@@ -670,7 +670,7 @@ Letters do not insert themselves; instead, they are commands.
   :ensure t
   :custom (docker-container-shell-file-name . "/bin/bash"))
 
-(require 'generic-x)
+(leaf generic-x :require t)
 
 (add-to-list 'auto-mode-alist '("\\.accept_keywords$" . conf-space-mode))
 (add-to-list 'auto-mode-alist '("\\.keywords$" . conf-space-mode))
@@ -1068,7 +1068,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (interactive)
   (insert (format-time-string "%Y-%m-%dT%H:%M:%S%:z" (current-time))))
 
-(require 's)
-(defun insert-random-uuid ()
-  (interactive)
-  (insert (s-trim (shell-command-to-string "uuidgen"))))
+(leaf s :ensure t :require t
+  :config
+  (defun insert-random-uuid ()
+    (interactive)
+    (insert (s-trim (shell-command-to-string "uuidgen")))))
