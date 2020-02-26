@@ -30,8 +30,6 @@
 
 ;; 個別に分けるまでもない設定
 (custom-set-variables
- ;; Manページを現在のウィンドウで表示
- '(Man-notify-method 'bully)
  ;; 括弧移動無効
  '(blink-matching-paren nil)
  ;; init.elに設定ファイルを書き込ませない
@@ -228,12 +226,7 @@
 (leaf diff-mode :after diff-mode :defvar diff-mode-map           :config (ncaq-set-key diff-mode-map))
 (leaf doc-view  :after doc-view  :defvar doc-view-mode-map       :config (ncaq-set-key doc-view-mode-map))
 (leaf help-mode :after help-mode :defvar help-mode-map           :config (ncaq-set-key help-mode-map))
-(leaf make-mode :after make-mode :defvar makefile-mode-map       :config (ncaq-set-key makefile-mode-map))
-(leaf man       :after man       :defvar Man-mode-map            :config (ncaq-set-key Man-mode-map))
-(leaf pascal    :after pascal    :defvar pascal-mode-map         :config (ncaq-set-key pascal-mode-map))
-(leaf prolog    :after prolog    :defvar prolog-mode-map         :config (ncaq-set-key prolog-mode-map))
 (leaf rect      :after rect      :defvar rectangle-mark-mode-map :config (ncaq-set-key rectangle-mark-mode-map))
-(leaf rg        :after rg        :defvar rg-mode-map             :config (ncaq-set-key rg-mode-map))
 
 ;; global-set-key
 (leaf *global-set-key
@@ -455,27 +448,19 @@
 
 ;; toolkit end
 
-(leaf company
-  :ensure t
-  :require t
-  :defvar company-search-map
-  :preface (defvar ls-option (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
-  :custom ((company-dabbrev-code-other-buffers . 'all) (company-dabbrev-downcase . nil) (company-dabbrev-other-buffers . 'all))
-  :bind (:company-active-map
-         ("<backtab>" . company-select-previous)
-         ("<tab>" . company-complete-common-or-cycle)
-         ("C-b" . 'nil))
-  :config
-  (defun dired-jump-to-current ()
-    (interactive)
-    (dired "."))
-  (global-company-mode 1)
-  (ncaq-set-key company-active-map)
-  (dvorak-set-key company-search-map)
-  (leaf company-quickhelp
-    :ensure t
-    :config
-    (company-quickhelp-mode 1)))
+(define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
+  "Major mode for browsing a list of packages.
+Letters do not insert themselves; instead, they are commands.
+\\<package-menu-mode-map>
+\\{package-menu-mode-map}"
+  (setq tabulated-list-format
+        [("Package" 35 package-menu--name-predicate)
+         ("Version" 15 package-menu--version-predicate)
+         ("Status"  10 package-menu--status-predicate)
+         ("Description" 10 package-menu--description-predicate)])
+  (setq tabulated-list-padding 1)
+  (setq tabulated-list-sort-key (cons "Status" nil))
+  (tabulated-list-init-header))
 
 (leaf dired
   :require t
@@ -498,18 +483,33 @@
            )
     :config (ncaq-set-key dired-mode-map)))
 
-(define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
-  "Major mode for browsing a list of packages.
-Letters do not insert themselves; instead, they are commands.
-\\<package-menu-mode-map>
-\\{package-menu-mode-map}"
-  (setq tabulated-list-format [("Package" 35 package-menu--name-predicate)
-                               ("Version" 15 package-menu--version-predicate)
-                               ("Status"  10 package-menu--status-predicate)
-                               ("Description" 10 package-menu--description-predicate)])
-  (setq tabulated-list-padding 1)
-  (setq tabulated-list-sort-key (cons "Status" nil))
-  (tabulated-list-init-header))
+(leaf man
+  :after man
+  :defvar Man-mode-map
+  :custom (Man-notify-method . 'bully)  ; Manページを現在のウィンドウで表示
+  :config (ncaq-set-key Man-mode-map))
+
+(leaf company
+  :ensure t
+  :require t
+  :defvar company-search-map
+  :preface (defvar ls-option (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
+  :custom ((company-dabbrev-code-other-buffers . 'all) (company-dabbrev-downcase . nil) (company-dabbrev-other-buffers . 'all))
+  :bind (:company-active-map
+         ("<backtab>" . company-select-previous)
+         ("<tab>" . company-complete-common-or-cycle)
+         ("C-b" . 'nil))
+  :config
+  (defun dired-jump-to-current ()
+    (interactive)
+    (dired "."))
+  (global-company-mode 1)
+  (ncaq-set-key company-active-map)
+  (dvorak-set-key company-search-map)
+  (leaf company-quickhelp
+    :ensure t
+    :config
+    (company-quickhelp-mode 1)))
 
 (leaf ibuffer
   :after ibuffer
@@ -585,9 +585,11 @@ Letters do not insert themselves; instead, they are commands.
     (let ((helm-ag-insert-at-point 'symbol))
       (helm-do-ag-project-root-or-default))))
 
-(leaf git-gutter
+(leaf rg
   :ensure t
-  :custom (global-git-gutter-mode . t))
+  :after rg
+  :defvar rg-mode-map
+  :config (ncaq-set-key rg-mode-map))
 
 (leaf ggtags
   :ensure t
@@ -628,6 +630,10 @@ Letters do not insert themselves; instead, they are commands.
     :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))
     ))
 
+(leaf git-gutter
+  :ensure t
+  :custom (global-git-gutter-mode . t))
+
 (leaf mozc-im
   :ensure t
   :require t
@@ -649,13 +655,6 @@ Letters do not insert themselves; instead, they are commands.
 (leaf docker
   :ensure t
   :custom (docker-container-shell-file-name . "/bin/bash"))
-
-(leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
-(leaf editorconfig :ensure t :config (editorconfig-mode 1))
-(leaf multiple-cursors :ensure t)
-(leaf ncaq-emacs-utils :require t)
-(leaf symbolword-mode :ensure t :require t)
-(leaf which-key :ensure t :config (which-key-mode 1))
 
 (leaf smartparens
   :ensure t
@@ -721,6 +720,13 @@ Letters do not insert themselves; instead, they are commands.
   (set-face-foreground 'whitespace-trailing "#332B28")
   )
 
+(leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
+(leaf editorconfig :ensure t :config (editorconfig-mode 1))
+(leaf multiple-cursors :ensure t)
+(leaf ncaq-emacs-utils :require t)
+(leaf symbolword-mode :ensure t :require t)
+(leaf which-key :ensure t :config (which-key-mode 1))
+
 (leaf flycheck
   :ensure t
   :require t
@@ -783,14 +789,14 @@ Letters do not insert themselves; instead, they are commands.
     "\\.use$"
     ))
 
-(leaf sh-script
-  :config
-  (leaf shell-script-mode :mode "\\.zsh$"))
-
 (leaf csharp-mode :ensure t)
 (leaf dockerfile-mode :ensure t)
 (leaf go-mode :ensure t)
+(leaf make-mode :after make-mode :defvar makefile-mode-map :config (ncaq-set-key makefile-mode-map))
 (leaf mediawiki :ensure t :mode "\\.wiki$")
+(leaf pascal :after pascal :defvar pascal-mode-map :config (ncaq-set-key pascal-mode-map))
+(leaf prolog :after prolog :defvar prolog-mode-map :config (ncaq-set-key prolog-mode-map))
+(leaf sh-script :config (leaf shell-script-mode :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 
 (leaf cc-mode
