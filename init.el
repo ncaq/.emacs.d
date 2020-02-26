@@ -19,6 +19,8 @@
       :ensure t
       :config (leaf-keywords-init))))
 
+(leaf cus-edit :custom (custom-file . "~/.emacs.d/custom.el")) ; init.elに設定ファイルを書き込ませない
+
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
   "バッファが存在すればkillする,無ければ何もしない."
   (when (get-buffer BUFFER-OR-NAME)
@@ -26,60 +28,6 @@
 
 ;; 起動時に作られる使わないバッファを削除する
 (kill-buffer-if-exist "*scratch*")
-
-;; 個別に分けるまでもない設定
-(custom-set-variables
- ;; 括弧移動無効
- '(blink-matching-paren nil)
- ;; init.elに設定ファイルを書き込ませない
- '(custom-file "~/.emacs.d/custom.el")
- ;; ごみ箱を有効
- '(delete-by-moving-to-trash t)
- ;; diffをunifitedモードで
- '(diff-switches "-u")
- ;; 一部のコマンドを有効にする
- '(disabled-command-function nil)
- ;; ediffでウィンドウを横分割
- '(ediff-split-window-function 'split-window-horizontally)
- ;; ediffにframeを生成させない
- '(ediff-window-setup-function 'ediff-setup-windows-plain)
- ;; 自動折り返しを実質無効化
- '(fill-column 10000)
- ;; 自動再読込
- '(global-auto-revert-mode 1)
- ;; google翻訳のソースを英語に
- '(google-translate-default-source-language "en")
- ;; google翻訳の対象を日本語に
- '(google-translate-default-target-language "ja")
- ;; dotファイルで自動セミコロン挿入しない
- '(graphviz-dot-auto-indent-on-semi nil)
- ;; imaximaの全体を大きくする
- '(imaxima-scale-factor 10.0)
- ;; インデントをスペースで行う
- '(indent-tabs-mode nil)
- ;; スタートアップ画面を出さない
- '(inhibit-startup-screen t)
- ;; メッセージをたくさん残す
- '(message-log-max 100000)
- ;; 大文字と小文字を区別しない バッファ名
- '(read-buffer-completion-ignore-case t)
- ;; 大文字と小文字を区別しない ファイル名
- '(read-file-name-completion-ignore-case t)
- ;; ファイルの最後に改行
- '(require-final-newline t)
- ;; schemeの処理系はgauche
- '(scheme-program-name "gosh")
- ;; 最下段までスクロールしてもカーソルを中心に戻さない
- '(scroll-step 1)
- ;; 常にシンボリックリンクをたどる
- '(vc-follow-symlinks t)
- ;; インデント幅はデフォルト2
- '(tab-width 2)
- ;; 警告をエラーレベルでないと表示しない
- '(warning-minimum-level :error)
- ;; クリップボードをX11と共有
- '(x-select-enable-clipboard t)
- )
 
 (defun open-desktop ()
   (interactive)
@@ -477,14 +425,43 @@ Letters do not insert themselves; instead, they are commands.
            )
     :config (ncaq-set-key dired-mode-map)))
 
+(leaf *c-source-code
+  :custom
+  ((delete-by-moving-to-trash . t)      ; ごみ箱を有効
+   (indent-tabs-mode . nil)             ; インデントをスペースで行う
+   (message-log-max . 100000)           ; メッセージをたくさん残す
+   (read-buffer-completion-ignore-case . t) ; 大文字と小文字を区別しない バッファ名
+   (read-file-name-completion-ignore-case . t) ; 大文字と小文字を区別しない ファイル名
+   (scroll-conservatively . 1) ; 最下段までスクロールした時のカーソルの移動量を減らす
+   (scroll-margin . 5)    ; 最下段までスクロールしたという判定を伸ばす
+   ))
+
 (leaf man
   :after man
   :defvar Man-mode-map
   :custom (Man-notify-method . 'bully)  ; Manページを現在のウィンドウで表示
   :config (ncaq-set-key Man-mode-map))
 
+(leaf ediff-wind
+  :custom
+  ((ediff-split-window-function . split-window-horizontally) ; ediffでウィンドウを横分割
+   (ediff-window-setup-function . ediff-setup-windows-plain) ; ediffにframeを生成させない
+   ))
+
+(leaf autorevert :custom (global-auto-revert-mode . 1)) ; 自動再読込
+(leaf diff :custom (diff-switches . "-u")) ; diffをunifitedモードで
 (leaf executable :config (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
+(leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
+(leaf imaxima :custom (imaxima-scale-factor . 10.0)) ; imaximaの全体を大きくする
+(leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
+(leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
+(leaf scheme :custom (scheme-program-name . "gosh")) ; schemeの処理系をgaucheに
+(leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
+(leaf simple :custom (blink-matching-paren . nil)) ; 括弧移動無効
+(leaf startup :custom (inhibit-startup-screen . t)) ; スタートアップ画面を出さない
 (leaf subr :config (fset 'yes-or-no-p 'y-or-n-p)) ; "yes or no"を"y or n"に
+(leaf vc-hooks :custom (vc-follow-symlinks . t)) ; 常にシンボリックリンクをたどる
+(leaf warnings :custom (warning-minimum-level . :error)) ; 警告はエラーレベルでないとポップアップ表示しない
 
 (leaf ibuffer
   :after ibuffer
@@ -718,6 +695,13 @@ Letters do not insert themselves; instead, they are commands.
   (set-face-foreground 'whitespace-trailing "#332B28")
   )
 
+(leaf google-translate
+  :ensure t
+  :custom
+  ((google-translate-default-source-language . "en") ; google翻訳のソースを英語に
+   (google-translate-default-target-language . "ja") ; google翻訳のターゲットを日本語に
+   ))
+
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :config (editorconfig-mode 1))
 (leaf multiple-cursors :ensure t)
@@ -790,6 +774,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf csharp-mode :ensure t)
 (leaf dockerfile-mode :ensure t)
 (leaf go-mode :ensure t)
+(leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil)) ; dotファイルで自動セミコロン挿入しない
 (leaf make-mode :after make-mode :defvar makefile-mode-map :config (ncaq-set-key makefile-mode-map))
 (leaf mediawiki :ensure t :mode "\\.wiki$")
 (leaf pascal :after pascal :defvar pascal-mode-map :config (ncaq-set-key pascal-mode-map))
