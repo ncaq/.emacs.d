@@ -585,7 +585,8 @@ Letters do not insert themselves; instead, they are commands.
 (leaf smart-jump
   :ensure t
   :custom (smart-jump-refs-key . "C-,")
-  :config (smart-jump-setup-default-registers))
+  :config (smart-jump-setup-default-registers)
+  (leaf ag :ensure t))
 
 (leaf magit
   :ensure t
