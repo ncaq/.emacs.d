@@ -801,6 +801,7 @@ Letters do not insert themselves; instead, they are commands.
   :config
   (leaf clang-format
     :ensure t
+    :config
     (defun set-hook-after-save-clang-format ()
       (add-hook 'after-save-hook 'clang-format-buffer t t)))
   (add-hook 'c-mode-hook 'set-hook-after-save-clang-format)
