@@ -564,6 +564,7 @@ Letters do not insert themselves; instead, they are commands.
 
   (defun helm-do-ag-project-root-or-default-at-point ()
     (interactive)
+    (defvar helm-ag-insert-at-point)
     (let ((helm-ag-insert-at-point 'symbol))
       (helm-do-ag-project-root-or-default))))
 
