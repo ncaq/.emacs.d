@@ -289,17 +289,22 @@
 ;; 色コードを可視化
 (leaf rainbow-mode
   :ensure t
-  :hook css-mode-hook emacs-lisp-mode-hook hamlet-mode-hook help-mode-hook lisp-mode-hook sass-mode-hook scss-mode-hook web-mode-hook)
+  :hook
+  css-mode-hook
+  emacs-lisp-mode-hook
+  hamlet-mode-hook
+  help-mode-hook
+  lisp-mode-hook
+  sass-mode-hook
+  scss-mode-hook
+  web-mode-hook
+  )
 
 ;; カットペーストなど挿入削除時にハイライト
-(leaf volatile-highlights
-  :ensure t
-  :config (volatile-highlights-mode t))
+(leaf volatile-highlights :ensure t :config (volatile-highlights-mode t))
 
 ;; 置換の動きを可視化
-(leaf anzu
-  :ensure t
-  :config (global-anzu-mode t))
+(leaf anzu :ensure t :config (global-anzu-mode t))
 
 ;; History
 (leaf recentf
