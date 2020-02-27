@@ -437,6 +437,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf *c-source-code
   :custom
   ((delete-by-moving-to-trash . t)      ; ごみ箱を有効
+   (fill-column . 1000)                 ; auto fillを実質無効化(ちゃんとした無効化方法がわからない)
    (indent-tabs-mode . nil)             ; インデントをスペースで行う
    (message-log-max . 100000)           ; メッセージをたくさん残す
    (read-buffer-completion-ignore-case . t) ; 大文字と小文字を区別しない バッファ名
