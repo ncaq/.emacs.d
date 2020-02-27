@@ -760,7 +760,7 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf lsp-ui
   :ensure t
-  :defun lsp-ui-doc--display lsp-ui-doc--extract lsp-request, lsp--text-document-position-params
+  :defun lsp--text-document-position-params lsp-request lsp-ui-doc--display lsp-ui-doc--extract
   :custom (lsp-ui-doc-delay . 2)         ; 初期値の0.2はせわしなさすぎる
   :bind (:lsp-mode-map ("C-c C-d" . lsp-ui-doc-show-manual))
   :config
