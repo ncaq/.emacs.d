@@ -420,6 +420,9 @@ Letters do not insert themselves; instead, they are commands.
            (dired-recursive-deletes . 'always) ; 聞かずに再帰的削除
            )
   :config
+  (defun dired-jump-to-current ()
+    (interactive)
+    (dired "."))
   (leaf wdired
     :require t
     :bind (:dired-mode-map
@@ -500,9 +503,6 @@ Letters do not insert themselves; instead, they are commands.
          ("<tab>" . company-complete-common-or-cycle)
          ("C-b" . 'nil))
   :config
-  (defun dired-jump-to-current ()
-    (interactive)
-    (dired "."))
   (global-company-mode 1)
   (ncaq-set-key company-active-map)
   (dvorak-set-key company-search-map)
