@@ -754,7 +754,6 @@ Letters do not insert themselves; instead, they are commands.
   (leaf lsp
     :hook
     css-mode-hook
-    dockerfile-mode-hook
     go-mode-hook
     haskell-mode-hook
     java-mode-hook
