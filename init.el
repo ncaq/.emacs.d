@@ -508,6 +508,7 @@ Letters do not insert themselves; instead, they are commands.
   (dvorak-set-key company-search-map)
   (leaf company-quickhelp
     :ensure t
+    :require t
     :config
     (company-quickhelp-mode 1)))
 
@@ -743,7 +744,12 @@ Letters do not insert themselves; instead, they are commands.
   (leaf helm-lsp
     :ensure t
     :bind (:lsp-mode-map :package lsp-mode ("C-." . helm-lsp-workspace-symbol)))
-  (leaf yasnippet :ensure t :require t)
+  (leaf company-lsp
+    :ensure t
+    :require t
+    :config
+    (push 'company-lsp company-backends)
+    (leaf yasnippet :ensure t :require t))
   (leaf lsp
     :hook
     css-mode-hook
