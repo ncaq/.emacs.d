@@ -742,8 +742,7 @@ Letters do not insert themselves; instead, they are commands.
   :config
   (leaf helm-lsp
     :ensure t
-    :bind (:lsp-mode-map :package lsp-mode
-           ("C-." . helm-lsp-workspace-symbol)))
+    :bind (:lsp-mode-map :package lsp-mode ("C-." . helm-lsp-workspace-symbol)))
   (leaf yasnippet :ensure t :require t)
   (leaf lsp
     :hook
