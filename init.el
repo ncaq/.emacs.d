@@ -761,14 +761,7 @@ Letters do not insert themselves; instead, they are commands.
   :ensure t
   :defun lsp--text-document-position-params lsp-request lsp-ui-doc--display lsp-ui-doc--extract
   :custom (lsp-ui-doc-delay . 2)         ; 初期値の0.2はせわしなさすぎる
-  :bind (:lsp-mode-map ("C-c C-d" . lsp-ui-doc-show-manual))
-  :config
-  ;; 普通はアイドル時に自動でしかポップアップしないものを手動のキーバウンドで出す
-  (defun lsp-ui-doc-show-manual ()
-    (interactive)
-    (lsp-ui-doc--display
-     (thing-at-point 'symbol t)
-     (lsp-ui-doc--extract (gethash "contents" (lsp-request "textDocument/hover" (lsp--text-document-position-params)))))))
+  :bind (:lsp-mode-map ("C-c C-d" . lsp-ui-doc-show)))
 
 (leaf quickrun
   :ensure t
