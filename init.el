@@ -1065,6 +1065,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
         (prettier-js-mode-enable)))
     (add-hook 'web-mode-hook 'web-mode-setting))
 
+  (leaf js :custom (js-indent-level . 2))
   (leaf typescript-mode
     :ensure t
     :custom (typescript-indent-level . 2)
