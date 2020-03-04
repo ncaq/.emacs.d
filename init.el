@@ -502,10 +502,11 @@ Letters do not insert themselves; instead, they are commands.
   :bind (:company-active-map
          ("<backtab>" . company-select-previous)
          ("<tab>" . company-complete-common-or-cycle)
-         ("C-b" . 'nil))
+         )
   :config
   (global-company-mode 1)
   (ncaq-set-key company-active-map)
+  (define-key company-active-map (kbd"C-b") 'nil)
   (dvorak-set-key company-search-map)
   (leaf company-quickhelp
     :ensure t
