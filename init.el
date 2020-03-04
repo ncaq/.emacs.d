@@ -740,6 +740,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf lsp-mode
   :ensure t
   :require t
+  :defvar company-backends
   :custom (lsp-prefer-flymake . nil)    ; flycheckを優先する
   :bind (:lsp-mode-map
          ("C-c C-e" . lsp-workspace-restart)
