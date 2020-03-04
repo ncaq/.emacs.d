@@ -516,22 +516,6 @@ Letters do not insert themselves; instead, they are commands.
 (leaf helm
   :ensure t
   :require t helm-config
-  :bind (:helm-map ("C-M-b" . nil) ("C-b" . nil) ("C-h" . nil) ("M-b" . nil) ("M-s" . nil) ("<tab>" . helm-select-action))
-  :config
-  (leaf helm-buffers :bind (:helm-buffer-map ("C-s" . nil)))
-  (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
-  (leaf helm-types :bind (:helm-generic-files-map ("C-s" . nil)))
-  (leaf helm-ls-git
-    :ensure t
-    :require t
-    :custom ((helm-source-ls-git . (helm-ls-git-build-ls-git-source))
-             (helm-source-ls-git-status . (helm-ls-git-build-git-status-source))))
-  (leaf helm-descbinds :ensure t :config (helm-descbinds-mode))
-  (helm-mode 1)
-  (swap-set-key
-   helm-map
-   '(("C-t" . "C-p")
-     ("C-s" . "C-f")))
   :custom ((helm-buffer-max-len-mode . 25) ; モードを短縮する基準
            (helm-buffer-max-length . 50)   ; デフォルトはファイル名を短縮する区切りが20
            (helm-delete-minibuffer-contents-from-point . t) ; kill-line sim
@@ -546,8 +530,30 @@ Letters do not insert themselves; instead, they are commands.
                                               helm-source-file-cache
                                               helm-source-locate
                                               )))
-  :config (custom-set-variables '(helm-boring-buffer-regexp-list
-                                  (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list))))
+  :bind (:helm-map ("C-M-b" . nil) ("C-b" . nil) ("C-h" . nil) ("M-b" . nil) ("M-s" . nil) ("<tab>" . helm-select-action))
+  :config
+  (helm-mode 1)
+  (custom-set-variables '(helm-boring-buffer-regexp-list (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list)))
+  (swap-set-key
+   helm-map
+   '(("C-t" . "C-p")
+     ("C-s" . "C-f")))
+  (leaf helm-buffers :bind (:helm-buffer-map ("C-s" . nil)))
+  (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
+  (leaf helm-types :bind (:helm-generic-files-map ("C-s" . nil)))
+  (leaf helm-ls-git
+    :ensure t
+    :require t
+    :defvar helm-source-ls-git-status helm-source-ls-git helm-source-ls-git-buffers
+    :defun helm-ls-git-build-git-status-source helm-ls-git-build-ls-git-source helm-ls-git-build-buffers-source
+    :config
+    (setq helm-source-ls-git-status
+          (helm-ls-git-build-git-status-source)
+          helm-source-ls-git
+          (helm-ls-git-build-ls-git-source)
+          helm-source-ls-git-buffers
+          (helm-ls-git-build-buffers-source)))
+  (leaf helm-descbinds :ensure t :config (helm-descbinds-mode)))
 
 (leaf helm-ag
   :ensure t
