@@ -757,8 +757,7 @@ Letters do not insert themselves; instead, they are commands.
     :ensure t
     :require t
     :config
-    (push 'company-lsp company-backends)
-    (leaf yasnippet :ensure t :require t))
+    (push 'company-lsp company-backends))
   (leaf lsp
     :hook
     css-mode-hook
@@ -770,6 +769,8 @@ Letters do not insert themselves; instead, they are commands.
     scala-mode-hook
     typescript-mode-hook
     ))
+
+(leaf yasnippet :ensure t :require t :config (yas-global-mode))
 
 (leaf lsp-ui
   :ensure t
