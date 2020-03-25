@@ -146,7 +146,7 @@
          ))
 
 (leaf compile
-  :after compile
+  :after t
   :defvar compilation-minor-mode-map compilation-mode-map compilation-shell-minor-mode-map
   :config
   (ncaq-set-key compilation-minor-mode-map)
@@ -160,14 +160,14 @@
          )
   :config (ncaq-set-key hexl-mode-map))
 
-(leaf info      :after info      :config (ncaq-set-key Info-mode-map))
-(leaf prog-mode :after prog-mode :config (ncaq-set-key prog-mode-map))
+(leaf info      :after t :config (ncaq-set-key Info-mode-map))
+(leaf prog-mode :after t :config (ncaq-set-key prog-mode-map))
 
-(leaf comint    :after comint    :defvar comint-mode-map         :config (ncaq-set-key comint-mode-map))
-(leaf diff-mode :after diff-mode :defvar diff-mode-map           :config (ncaq-set-key diff-mode-map))
-(leaf doc-view  :after doc-view  :defvar doc-view-mode-map       :config (ncaq-set-key doc-view-mode-map))
-(leaf help-mode :after help-mode :defvar help-mode-map           :config (ncaq-set-key help-mode-map))
-(leaf rect      :after rect      :defvar rectangle-mark-mode-map :config (ncaq-set-key rectangle-mark-mode-map))
+(leaf comint    :after t :defvar comint-mode-map         :config (ncaq-set-key comint-mode-map))
+(leaf diff-mode :after t :defvar diff-mode-map           :config (ncaq-set-key diff-mode-map))
+(leaf doc-view  :after t :defvar doc-view-mode-map       :config (ncaq-set-key doc-view-mode-map))
+(leaf help-mode :after t :defvar help-mode-map           :config (ncaq-set-key help-mode-map))
+(leaf rect      :after t :defvar rectangle-mark-mode-map :config (ncaq-set-key rectangle-mark-mode-map))
 
 ;; global-set-key
 (leaf *global-set-key
@@ -447,7 +447,7 @@ Letters do not insert themselves; instead, they are commands.
    ))
 
 (leaf man
-  :after man
+  :after t
   :defvar Man-mode-map
   :custom (Man-notify-method . 'bully)  ; Manページを現在のウィンドウで表示
   :config (ncaq-set-key Man-mode-map))
@@ -475,7 +475,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf warnings :custom (warning-minimum-level . :error)) ; 警告はエラーレベルでないとポップアップ表示しない
 
 (leaf ibuffer
-  :after ibuffer
+  :after t
   :defvar ibuffer-mode-map
   :preface (defvar ibuffer-formats-conf
              '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
@@ -489,7 +489,7 @@ Letters do not insert themselves; instead, they are commands.
   )
 
 (leaf profiler
-  :after profiler-report-mode-map
+  :after t
   :defvar profiler-report-mode-map profiler-report-cpu-line-format
   :config
   (ncaq-set-key profiler-report-mode-map)
@@ -580,7 +580,7 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf rg
   :ensure t
-  :after rg
+  :after t
   :defvar rg-mode-map
   :config (ncaq-set-key rg-mode-map))
 
@@ -611,15 +611,15 @@ Letters do not insert themselves; instead, they are commands.
   (leaf magit-files
     :bind (:magit-file-mode-map ("C-x g" . nil)))
   (leaf magit-mode
-    :after magit-mode
+    :after t
     :defvar magit-mode-map
     :config (swap-set-key magit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
   (leaf git-commit
-    :after git-commit
+    :after t
     :defvar git-commit-mode-map
     :config (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
   (leaf git-rebase
-    :after git-rebase
+    :after t
     :defvar git-rebase-mode-map
     :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))
     ))
@@ -780,7 +780,7 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf quickrun
   :ensure t
-  :after quickrun
+  :after t
   :config
   (quickrun-add-command "haskell"
     '((:command . "stack runghc")
@@ -805,16 +805,16 @@ Letters do not insert themselves; instead, they are commands.
 (leaf dockerfile-mode :ensure t)
 (leaf go-mode :ensure t)
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil)) ; dotファイルで自動セミコロン挿入しない
-(leaf make-mode :after make-mode :defvar makefile-mode-map :config (ncaq-set-key makefile-mode-map))
+(leaf make-mode :after t :defvar makefile-mode-map :config (ncaq-set-key makefile-mode-map))
 (leaf mediawiki :ensure t :mode "\\.wiki$")
-(leaf pascal :after pascal :defvar pascal-mode-map :config (ncaq-set-key pascal-mode-map))
-(leaf prolog :after prolog :defvar prolog-mode-map :config (ncaq-set-key prolog-mode-map))
+(leaf pascal :after t :defvar pascal-mode-map :config (ncaq-set-key pascal-mode-map))
+(leaf prolog :after t :defvar prolog-mode-map :config (ncaq-set-key prolog-mode-map))
 (leaf sh-script :config (leaf shell-script-mode :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
 
 (leaf cc-mode
-  :after cc-mode
+  :after t
   :defvar c-mode-base-map c-mode-map c++-mode-map
   :config
   (leaf clang-format
@@ -867,7 +867,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 
 (leaf haskell-mode
   :ensure t
-  :after haskell-mode
+  :after t
   :defvar flycheck-error-list-buffer flymake-allowed-file-name-masks
   :bind (:haskell-mode-map
          (("C-M-z" . haskell-repl-and-flycheck)
@@ -892,11 +892,11 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
       (custom-set-variables '(haskell-stylish-on-save nil)))
     )
   (leaf haskell-interactive-mode
-    :after haskell-interactive-mode
+    :after t
     :defvar haskell-interactive-mode-map
     :config (ncaq-set-key haskell-interactive-mode-map))
   (leaf haskell-cabal
-    :after haskell-cabal
+    :after t
     :defvar haskell-cabal-mode-map
     :config (ncaq-set-key haskell-cabal-mode-map))
   (defun haskell-repl-and-flycheck ()
@@ -925,9 +925,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 
 (leaf markdown-mode
   :ensure t
+  :after t
   :custom ((markdown-fontify-code-blocks-natively . t)
            (markdown-hide-urls . nil))
-  :after markdown-mode
   :defvar markdown-mode-map
   :config
   (custom-set-variables '(markdown-code-lang-modes (append
@@ -958,7 +958,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :custom ((inf-ruby-default-implementation . "pry")
            (inf-ruby-eval-binding . "Pry.toplevel_binding")
            (ruby-insert-encoding-magic-comment . nil))
-  :after ruby-mode
+  :after t
   :defvar ruby-mode-map
   :config (ncaq-set-key ruby-mode-map))
 
@@ -1091,7 +1091,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 (leaf nxml-mode
   :mode "\\.fxml\\'"
   :custom (nxml-slash-auto-complete-flag . t)
-  :after nxml-mode
+  :after t
   :defvar nxml-mode-map
   :bind (:nxml-mode-map
          ("M-b" . nil)
