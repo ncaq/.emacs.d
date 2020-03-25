@@ -485,6 +485,7 @@ Letters do not insert themselves; instead, they are commands.
   (define-key ibuffer-mode-map (kbd "M-g") 'nil)
   (ncaq-set-key ibuffer-mode-map)
   (define-key ibuffer-mode-map (kbd "C-o") 'nil)
+  (define-key ibuffer-mode-map (kbd "C-p") 'nil)
   )
 
 (leaf profiler
