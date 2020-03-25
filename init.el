@@ -283,7 +283,9 @@
 ;; 括弧の対応を色対応でわかりやすく
 (leaf rainbow-delimiters
   :ensure t
-  :hook ((prog-mode-hook web-mode-hook) . rainbow-delimiters-mode-enable)
+  :hook
+  prog-mode-hook
+  web-mode-hook
   :config (set-face-foreground 'rainbow-delimiters-depth-1-face "#586e75")) ;文字列の色と被るため,変更
 
 ;; 色コードを可視化
@@ -745,6 +747,16 @@ Letters do not insert themselves; instead, they are commands.
   :require t
   :defvar company-backends
   :custom (lsp-prefer-flymake . nil)    ; flycheckを優先する
+  :hook
+  (css-mode-hook
+   go-mode-hook
+   haskell-mode-hook
+   java-mode-hook
+   python-mode-hook
+   ruby-mode-hook
+   scala-mode-hook
+   typescript-mode-hook
+   . lsp)
   :bind (:lsp-mode-map
          ("C-c C-e" . lsp-workspace-restart)
          ("C-c C-i" . lsp-format-buffer)
@@ -759,18 +771,7 @@ Letters do not insert themselves; instead, they are commands.
     :ensure t
     :require t
     :config
-    (push 'company-lsp company-backends))
-  (leaf lsp
-    :hook
-    css-mode-hook
-    go-mode-hook
-    haskell-mode-hook
-    java-mode-hook
-    python-mode-hook
-    ruby-mode-hook
-    scala-mode-hook
-    typescript-mode-hook
-    ))
+    (push 'company-lsp company-backends)))
 
 (leaf lsp-ui
   :ensure t
@@ -857,10 +858,10 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :config
   ;; emacs-lisp-checkdocは設定ファイルには不向き
   (custom-set-variables '(flycheck-disabled-checkers (append '(emacs-lisp-checkdoc) flycheck-disabled-checkers)))
-  (leaf eldoc :hook ((emacs-lisp-mode-hook ielm-mode-hook) . turn-on-eldoc-mode))
+  (leaf eldoc :hook emacs-lisp-mode-hook ielm-mode-hook)
   (leaf elisp-slime-nav
     :ensure t
-    :hook ((emacs-lisp-mode-hook help-mode-hook) . elisp-slime-nav-mode)
+    :hook emacs-lisp-mode-hook help-mode-hook
     :bind (:elisp-slime-nav-mode-map ("C-c C-d" . elisp-slime-nav-describe-elisp-thing-at-point)))
   (leaf simple
     :bind (:read-expression-map ("<tab>" . completion-at-point))))
@@ -964,12 +965,12 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 
 (leaf rustic
   :ensure t
+  :mode "\\.rs$"
   :custom ((rustic-format-display-method . 'pop-to-buffer-without-switch) ; エラーポップアップにフォーカスを移さない
            (rustic-format-on-save . t))                                   ; 保存時にrustfmtを動かす
   :after flycheck
   :defun flycheck-select-checker
   :config
-  (leaf rustic-mode :mode "\\.rs$")
   (defun pop-to-buffer-without-switch (buffer-or-name &optional action norecord)
     "本当にwithout switchしているわけではなく前のウィンドウにフォーカスを戻すだけ"
     (pop-to-buffer buffer-or-name action norecord)
@@ -991,20 +992,18 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :config
   (leaf prettier-js
     :ensure t
+    :hook
+    css-mode-hook
+    json-mode-hook
+    less-css-mode-hook
+    scss-mode-hook
+    typescript-mode-hook
+    yaml-mode-hook
     :config
     (eval-and-compile
       (defun prettier-js-mode-enable ()
         (interactive)
-        (prettier-js-mode t)))
-    (leaf prettier-js-mode
-      :hook
-      css-mode-hook
-      json-mode-hook
-      less-css-mode-hook
-      scss-mode-hook
-      typescript-mode-hook
-      yaml-mode-hook
-      ))
+        (prettier-js-mode t))))
 
   (eval-and-compile
     (defun flycheck-select-tslint-or-eslint ()
