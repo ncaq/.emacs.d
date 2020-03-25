@@ -727,6 +727,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf ncaq-emacs-utils :require t)
 (leaf symbolword-mode :ensure t :require t)
 (leaf which-key :ensure t :config (which-key-mode 1))
+(leaf yasnippet :ensure t :require t :config (yas-global-mode))
 
 (leaf flycheck
   :ensure t
@@ -770,8 +771,6 @@ Letters do not insert themselves; instead, they are commands.
     scala-mode-hook
     typescript-mode-hook
     ))
-
-(leaf yasnippet :ensure t :require t :config (yas-global-mode))
 
 (leaf lsp-ui
   :ensure t
