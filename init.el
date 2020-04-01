@@ -313,8 +313,7 @@
   :custom
   ((recentf-max-saved-items . 2000)
    (recentf-auto-cleanup . 600)
-   (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))
-   ))
+   (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
 
 (leaf recentf-ext
   :ensure t
@@ -360,8 +359,7 @@
   :custom (create-lockfiles . nil)      ; ロックファイルとしてシンボリックリンクを作らない. parcelがバグる.
   :config
   (defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
-  (advice-add 'save-buffer :before 'setq-buffer-backed-up-nil)
-  )
+  (advice-add 'save-buffer :before 'setq-buffer-backed-up-nil))
 
 ;; toolkit
 (leaf menu-bar :custom (menu-bar-mode . nil))          ; メニューバーを表示させない
@@ -457,9 +455,8 @@ Letters do not insert themselves; instead, they are commands.
 (leaf ediff
   :config
   :custom
-  ((ediff-split-window-function . 'split-window-horizontally) ; ediffでウィンドウを横分割
-   (ediff-window-setup-function . 'ediff-setup-windows-plain) ; ediffにframeを生成させない
-   ))
+  ((ediff-split-window-function . 'split-window-horizontally)   ; ediffでウィンドウを横分割
+   (ediff-window-setup-function . 'ediff-setup-windows-plain))) ; ediffにframeを生成させない
 
 (leaf autorevert :custom (global-auto-revert-mode . 1)) ; 自動再読込
 (leaf diff :custom (diff-switches . "-u")) ; diffをunifitedモードで
@@ -504,8 +501,7 @@ Letters do not insert themselves; instead, they are commands.
   :custom ((company-dabbrev-code-other-buffers . 'all) (company-dabbrev-downcase . nil) (company-dabbrev-other-buffers . 'all))
   :bind (:company-active-map
          ("<backtab>" . company-select-previous)
-         ("<tab>" . company-complete-common-or-cycle)
-         )
+         ("<tab>" . company-complete-common-or-cycle))
   :config
   (global-company-mode 1)
   (ncaq-set-key company-active-map)
@@ -623,8 +619,7 @@ Letters do not insert themselves; instead, they are commands.
   (leaf git-rebase
     :after t
     :defvar git-rebase-mode-map
-    :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))
-    ))
+    :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))))
 
 (leaf git-gutter
   :ensure t
@@ -713,15 +708,13 @@ Letters do not insert themselves; instead, they are commands.
   (set-face-background 'whitespace-space "#073642")
   (set-face-foreground 'whitespace-empty "#5a2c2b")
   (set-face-foreground 'whitespace-tab "#0C2B33")
-  (set-face-foreground 'whitespace-trailing "#332B28")
-  )
+  (set-face-foreground 'whitespace-trailing "#332B28"))
 
 (leaf google-translate
   :ensure t
   :custom
-  ((google-translate-default-source-language . "en") ; google翻訳のソースを英語に
-   (google-translate-default-target-language . "ja") ; google翻訳のターゲットを日本語に
-   ))
+  ((google-translate-default-source-language . "en")   ; google翻訳のソースを英語に
+   (google-translate-default-target-language . "ja"))) ; google翻訳のターゲットを日本語に
 
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :config (editorconfig-mode 1))
@@ -828,8 +821,7 @@ Letters do not insert themselves; instead, they are commands.
 
   (ncaq-set-key c-mode-base-map)
   (define-key c-mode-map [remap indent-whole-buffer] 'clang-format-buffer)
-  (define-key c++-mode-map [remap indent-whole-buffer] 'clang-format-buffer)
-  )
+  (define-key c++-mode-map [remap indent-whole-buffer] 'clang-format-buffer))
 
 (leaf d-mode
   :ensure t
@@ -880,8 +872,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (leaf lsp-haskell
     :ensure t
     :require t
-    :custom (flymake-proc-allowed-file-name-masks . (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
-    )
+    :custom (flymake-proc-allowed-file-name-masks . (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks)))
   (leaf haskell-customize
     :custom (haskell-stylish-on-save . t)
     :config
@@ -890,8 +881,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
       (custom-set-variables '(haskell-stylish-on-save t)))
     (defun stylish-haskell-disable ()
       (interactive)
-      (custom-set-variables '(haskell-stylish-on-save nil)))
-    )
+      (custom-set-variables '(haskell-stylish-on-save nil))))
   (leaf haskell-interactive-mode
     :after t
     :defvar haskell-interactive-mode-map
@@ -1084,8 +1074,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 
   (leaf eslint-fix
     :ensure t
-    :config (advice-add 'eslint-fix :after 'flycheck-buffer)) ; fixされたらエラーバッファを更新する
-  )
+    :config (advice-add 'eslint-fix :after 'flycheck-buffer))) ; fixされたらエラーバッファを更新する
 
 (leaf nxml-mode
   :mode "\\.fxml\\'"
