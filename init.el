@@ -978,6 +978,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
     (add-hook 'after-save-hook 'lsp-format-buffer nil t))
   (add-hook 'scala-mode-hook 'lsp-format-buffer-after-save))
 
+(leaf sbt-mode :ensure t :bind (:sbt:mode-map ("M-t" . comint-previous-input)))
+
 (leaf *web
   :config
   (leaf prettier-js
@@ -1085,8 +1087,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :bind (:nxml-mode-map
          ("M-b" . nil)
          ("C-M-p" . nil)
-         ("C-M-t" . nxml-backward-element)
-         )
+         ("C-M-t" . nxml-backward-element))
   :config
   (leaf smartparens :config (sp-local-pair '(nxml-mode) "<" ">" :actions :rem))
   (ncaq-set-key nxml-mode-map))
