@@ -221,7 +221,7 @@
    ("C-M-;" . align-space)
    ("C-M-b" . backward-kill-sexp)
    ("C-M-d" . kill-sexp)
-   ("C-M-j" . helm-do-ag)
+   ("C-M-j" . helm-do-ag-current-dir)
    ("C-M-l" . sort-lines-whole-buffer)
    ("C-M-m" . newline-upper)
    ("C-M-o" . ibuffer)
@@ -574,7 +574,11 @@ Letters do not insert themselves; instead, they are commands.
     (interactive)
     (defvar helm-ag-insert-at-point)
     (let ((helm-ag-insert-at-point 'symbol))
-      (helm-do-ag-project-root-or-default))))
+      (helm-do-ag-project-root-or-default)))
+
+  (defun helm-do-ag-current-dir ()
+    (interactive)
+    (helm-do-ag default-directory)))
 
 (leaf rg
   :ensure t
