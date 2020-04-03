@@ -852,6 +852,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :bind (:emacs-lisp-mode-map ("C-M-q" . nil))
   :custom ((flycheck-emacs-lisp-load-path . 'inherit))
   :config
+  (leaf flycheck-package :ensure t :after flycheck :defun flycheck-package-setup :config (flycheck-package-setup))
   (leaf eldoc :hook emacs-lisp-mode-hook ielm-mode-hook)
   (leaf elisp-slime-nav
     :ensure t
