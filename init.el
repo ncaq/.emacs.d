@@ -850,11 +850,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 
 (leaf elisp-mode
   :bind (:emacs-lisp-mode-map ("C-M-q" . nil))
-  :custom
-  ((flycheck-emacs-lisp-load-path . load-path))
+  :custom ((flycheck-emacs-lisp-load-path . 'inherit))
   :config
-  ;; emacs-lisp-checkdocは設定ファイルには不向き
-  (custom-set-variables '(flycheck-disabled-checkers (append '(emacs-lisp-checkdoc) flycheck-disabled-checkers)))
   (leaf eldoc :hook emacs-lisp-mode-hook ielm-mode-hook)
   (leaf elisp-slime-nav
     :ensure t
@@ -1096,3 +1093,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :config
   (leaf smartparens :config (sp-local-pair '(nxml-mode) "<" ">" :actions :rem))
   (ncaq-set-key nxml-mode-map))
+
+;; Local Variables:
+;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
+;; End:
