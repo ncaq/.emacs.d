@@ -176,6 +176,7 @@
 
    ("C-'" . mc/mark-all-dwim)
    ("C-+" . text-scale-increase)
+   ("C-," . my-string-inflection-cycle-auto)
    ("C--" . text-scale-decrease)
    ("C-;" . toggle-input-method)
    ("C-=" . text-scale-reset)
@@ -603,7 +604,6 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf smart-jump
   :ensure t
-  :custom (smart-jump-refs-key . "C-,")
   :config (smart-jump-setup-default-registers)
   (leaf ag :ensure t))
 
@@ -687,6 +687,26 @@ Letters do not insert themselves; instead, they are commands.
     (indent-according-to-mode))
 
   (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET"))))
+
+(leaf string-inflection
+  :ensure t
+  :config
+  (defun my-string-inflection-cycle-auto ()
+    "switching by major-mode"
+    (interactive)
+    (cond
+     ;; for emacs-lisp-mode
+     ((eq major-mode 'emacs-lisp-mode)
+      (string-inflection-all-cycle))
+     ;; for python
+     ((eq major-mode 'python-mode)
+      (string-inflection-python-style-cycle))
+     ;; for java
+     ((eq major-mode 'java-mode)
+      (string-inflection-java-style-cycle))
+     (t
+      ;; default
+      (string-inflection-ruby-style-cycle)))))
 
 (leaf undo-tree
   :ensure t
