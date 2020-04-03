@@ -610,6 +610,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf magit
   :ensure t
   :config
+  (leaf gitignore-mode :ensure t)
   (leaf magit-files
     :bind (:magit-file-mode-map ("C-x g" . nil)))
   (leaf magit-mode
