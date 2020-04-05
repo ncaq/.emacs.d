@@ -261,10 +261,7 @@
 
    ("<help> w" . helm-man-woman)
 
-   ("C-x <RET> s" . revert-buffer-with-coding-system-japanese-cp932-dos)
-
-   ([remap query-replace] . anzu-query-replace)
-   ([remap query-replace-regexp] . anzu-query-replace-regexp)))
+   ("C-x <RET> s" . revert-buffer-with-coding-system-japanese-cp932-dos)))
 
 ;; 見た目
 ;; 等幅になるようにRictyを設定
@@ -305,7 +302,12 @@
 (leaf volatile-highlights :ensure t :config (volatile-highlights-mode t))
 
 ;; 置換の動きを可視化
-(leaf anzu :ensure t :config (global-anzu-mode t))
+(leaf anzu
+  :ensure t
+  :bind
+  ([remap query-replace] . anzu-query-replace)
+  ([remap query-replace-regexp] . anzu-query-replace-regexp)
+  :config (global-anzu-mode t))
 
 ;; History
 (leaf recentf
