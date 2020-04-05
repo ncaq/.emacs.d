@@ -601,8 +601,23 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf smart-jump
   :ensure t
-  :config (smart-jump-setup-default-registers)
-  (leaf ag :ensure t))
+  :custom (smart-jump-find-references-fallback-function . #'smart-jump-find-references-with-rg)
+  :config
+  (smart-jump-setup-default-registers)
+  (defun smart-jump-find-references-with-rg ()
+    "Use `rg' to find references."
+    (interactive)
+    (if (fboundp 'rg-project)
+        (rg-project (cond ((use-region-p)
+                           (buffer-substring-no-properties (region-beginning)
+                                                           (region-end)))
+                          ((symbol-at-point)
+                           (substring-no-properties
+                            (symbol-name (symbol-at-point)))))
+                    ".*")
+      (message
+       "Install the emacs package rg to use\
+ `smart-jump-simple-find-references-with-rg'."))))
 
 ;; テキスト処理
 
