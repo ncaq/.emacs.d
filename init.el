@@ -959,7 +959,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
                                                       ("sqlite3" . sql-mode)
                                                       ("ts" . typescript-mode)
                                                       ("tsx" . web-mode)
-                                                      ("yml". yaml-mode)
+                                                      ("yaml". yaml-mode)
                                                       ("zsh" . sh-mode))
                                                     markdown-code-lang-modes)))
   (ncaq-set-key markdown-mode-map))
