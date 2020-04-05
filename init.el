@@ -517,6 +517,7 @@ Letters do not insert themselves; instead, they are commands.
   ([remap describe-key]      . helpful-key)
   ([remap describe-variable] . helpful-variable)
   :defvar helpful-mode-map
+  :advice (:after helpful-at-point other-window-backward)
   :config (ncaq-set-key helpful-mode-map))
 
 (leaf helm
