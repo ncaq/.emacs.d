@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
+;;; 初期化
+
 ;; load-pathに野良submoduleを追加する
 (mapc (lambda (path)
         (let ((default-directory path))
@@ -28,6 +30,13 @@
 
 ;; 起動時に作られる使わないバッファを削除する
 (kill-buffer-if-exist "*scratch*")
+
+(leaf server
+  :require t
+  :defun server-running-p
+  :config (unless (server-running-p) (server-start)))
+
+;; ある程度独立した関数定義
 
 (defun open-desktop ()
   (interactive)
@@ -64,12 +73,8 @@
   (interactive)
   (revert-buffer-with-coding-system 'japanese-cp932-dos))
 
-(leaf server
-  :require t
-  :defun server-running-p
-  :config (unless (server-running-p) (server-start)))
+;; Dvorak設定をするための関数達
 
-;; Dvorak設定をするための関数
 (defun reverse-cons (c)
   (cons (cdr c) (car c)))
 
@@ -100,8 +105,7 @@
                     ("C-"     . "C-")
                     ("M-"     . "M-")
                     ("C-M-"   . "C-M-")
-                    ("M-g M-" . "M-g M-")
-                    )))
+                    ("M-g M-" . "M-g M-"))))
     (mapc
      (lambda (pp)
        (swap-set-key key-map (mapcar
@@ -118,7 +122,8 @@
    '("C-o" "M-b" "C-M-b" "C-q" "M-q" "C-M-q"))
   (dvorak-set-key key-map))
 
-;; 分割できないDvorak設定
+;; Dvorak設定をするだけのコード
+
 (dvorak-set-key global-map)
 (swap-set-key global-map '(("M-g p" . "M-g t")))
 
@@ -129,8 +134,7 @@
   :bind (:isearch-mode-map
          ("C-b" . isearch-delete-char)
          ("M-b" . isearc-del-char)
-         ("M-m" . isearch-exit-previous)
-         )
+         ("M-m" . isearch-exit-previous))
   :config (ncaq-set-key isearch-mode-map))
 
 (leaf popup
@@ -142,8 +146,7 @@
          ("C-b" . nil)
          ("C-p" . nil)
          ("C-t" . popup-previous)
-         ("C-s" . popup-open)
-         ))
+         ("C-s" . popup-open)))
 
 (leaf compile
   :after t
@@ -156,8 +159,7 @@
 (leaf hexl
   :bind (:hexl-mode-map
          ("M-g" . nil)
-         ([remap quoted-insert] . hexl-quoted-insert)
-         )
+         ([remap quoted-insert] . hexl-quoted-insert))
   :config (ncaq-set-key hexl-mode-map))
 
 (leaf info      :after t :config (ncaq-set-key Info-mode-map))
@@ -262,8 +264,7 @@
    ("C-x <RET> s" . revert-buffer-with-coding-system-japanese-cp932-dos)
 
    ([remap query-replace] . anzu-query-replace)
-   ([remap query-replace-regexp] . anzu-query-replace-regexp)
-   ))
+   ([remap query-replace-regexp] . anzu-query-replace-regexp)))
 
 ;; 見た目
 ;; 等幅になるようにRictyを設定
@@ -298,8 +299,7 @@
   lisp-mode-hook
   sass-mode-hook
   scss-mode-hook
-  web-mode-hook
-  )
+  web-mode-hook)
 
 ;; カットペーストなど挿入削除時にハイライト
 (leaf volatile-highlights :ensure t :config (volatile-highlights-mode t))
@@ -350,8 +350,7 @@
    ;; バックアップファイルを作成する。
    (make-backup-files . t)
    ;; 複数バックアップ
-   (version-control . t)
-   ))
+   (version-control . t)))
 
 (leaf tramp :custom (tramp-auto-save-directory . temporary-file-directory)) ; trampの自動保存ディレクトリをtmpにする
 (leaf *history
@@ -382,15 +381,14 @@
            (number-to-string (- (line-end-position) (line-beginning-position)))
            " s"
            (number-to-string (point))
-           "/%i"
-           ))))
+           "/%i"))))
 
 ;; バッファの名前にディレクトリ名を付けることでユニークになりやすくする
 (leaf uniquify
   :require t
   :custom (uniquify-buffer-name-style . 'forward))
 
-;; toolkit end
+;; その他
 
 (leaf tabulated-list
   :config
@@ -415,9 +413,8 @@ Letters do not insert themselves; instead, they are commands.
            (dired-dwim-target . t)
            (dired-isearch-filenames . t)
            (dired-listing-switches . ls-option)
-           (dired-recursive-copies . 'always)  ; 聞かずに再帰的コピー
-           (dired-recursive-deletes . 'always) ; 聞かずに再帰的削除
-           )
+           (dired-recursive-copies . 'always)   ; 聞かずに再帰的コピー
+           (dired-recursive-deletes . 'always)) ; 聞かずに再帰的削除
   :config
   (defun dired-jump-to-current ()
     (interactive)
@@ -429,21 +426,19 @@ Letters do not insert themselves; instead, they are commands.
            ("C-p" . nil)
            ("M-o" . nil)
            ("C-^" . dired-up-directory)
-           ("C-c C-p" . wdired-change-to-wdired-mode)
-           )
+           ("C-c C-p" . wdired-change-to-wdired-mode))
     :config (ncaq-set-key dired-mode-map)))
 
 (leaf *c-source-code
   :custom
-  ((delete-by-moving-to-trash . t)      ; ごみ箱を有効
-   (fill-column . 1000)                 ; auto fillを実質無効化(ちゃんとした無効化方法がわからない)
-   (indent-tabs-mode . nil)             ; インデントをスペースで行う
-   (message-log-max . 100000)           ; メッセージをたくさん残す
-   (read-buffer-completion-ignore-case . t) ; 大文字と小文字を区別しない バッファ名
+  ((delete-by-moving-to-trash . t)             ; ごみ箱を有効
+   (fill-column . 1000)                        ; auto fillを実質無効化(ちゃんとした無効化方法がわからない)
+   (indent-tabs-mode . nil)                    ; インデントをスペースで行う
+   (message-log-max . 100000)                  ; メッセージをたくさん残す
+   (read-buffer-completion-ignore-case . t)    ; 大文字と小文字を区別しない バッファ名
    (read-file-name-completion-ignore-case . t) ; 大文字と小文字を区別しない ファイル名
-   (scroll-conservatively . 1) ; 最下段までスクロールした時のカーソルの移動量を減らす
-   (scroll-margin . 5)    ; 最下段までスクロールしたという判定を伸ばす
-   ))
+   (scroll-conservatively . 1)                 ; 最下段までスクロールした時のカーソルの移動量を減らす
+   (scroll-margin . 5)))                       ; 最下段までスクロールしたという判定を伸ばす
 
 (leaf man
   :after t
@@ -479,19 +474,19 @@ Letters do not insert themselves; instead, they are commands.
              '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
                (mark " " (name 60 -1) " " filename)))
   :custom (ibuffer-formats . ibuffer-formats-conf)
+  :bind (:ibuffer-mode-map
+         ("C-o" . nil)
+         ("C-t" . nil)
+         ("M-g" . nil))
   :config
-  (define-key ibuffer-mode-map (kbd "M-g") 'nil)
-  (ncaq-set-key ibuffer-mode-map)
-  (define-key ibuffer-mode-map (kbd "C-o") 'nil)
-  (define-key ibuffer-mode-map (kbd "C-p") 'nil)
-  )
+  (ncaq-set-key ibuffer-mode-map))
 
 (leaf profiler
   :after t
-  :defvar profiler-report-mode-map profiler-report-cpu-line-format
+  :defvar profiler-report-mode-map
+  :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right)))))
   :config
-  (ncaq-set-key profiler-report-mode-map)
-  (setq profiler-report-cpu-line-format '((100 left) (24 right ((19 right) (5 right))))))
+  (ncaq-set-key profiler-report-mode-map))
 
 (leaf company
   :ensure t
@@ -500,11 +495,11 @@ Letters do not insert themselves; instead, they are commands.
   :custom ((company-dabbrev-code-other-buffers . 'all) (company-dabbrev-downcase . nil) (company-dabbrev-other-buffers . 'all))
   :bind (:company-active-map
          ("<backtab>" . company-select-previous)
-         ("<tab>" . company-complete-common-or-cycle))
+         ("<tab>" . company-complete-common-or-cycle)
+         ("C-h" . nil))
   :config
   (global-company-mode 1)
   (ncaq-set-key company-active-map)
-  (define-key company-active-map (kbd"C-b") 'nil)
   (dvorak-set-key company-search-map)
   (leaf company-quickhelp
     :ensure t
@@ -521,14 +516,14 @@ Letters do not insert themselves; instead, they are commands.
            (helm-descbinds-mode . t)
            (helm-ff-file-name-history-use-recentf . t)
            (helm-samewindow . t)        ; ウインドウ全体に表示
-           (helm-for-files-preferred-list . '(helm-source-buffers-list
-                                              helm-source-recentf
-                                              helm-source-files-in-current-dir
-                                              helm-source-ls-git-status
-                                              helm-source-ls-git
-                                              helm-source-file-cache
-                                              helm-source-locate
-                                              )))
+           (helm-for-files-preferred-list
+            . '(helm-source-buffers-list
+                helm-source-recentf
+                helm-source-files-in-current-dir
+                helm-source-ls-git-status
+                helm-source-ls-git
+                helm-source-file-cache
+                helm-source-locate)))
   :bind (:helm-map ("C-M-b" . nil) ("C-b" . nil) ("C-h" . nil) ("M-b" . nil) ("M-s" . nil) ("<tab>" . helm-select-action))
   :config
   (helm-mode 1)
@@ -553,6 +548,8 @@ Letters do not insert themselves; instead, they are commands.
           helm-source-ls-git-buffers
           (helm-ls-git-build-buffers-source)))
   (leaf helm-descbinds :ensure t :config (helm-descbinds-mode)))
+
+;; ジャンプ
 
 (leaf helm-ag
   :ensure t
@@ -605,50 +602,7 @@ Letters do not insert themselves; instead, they are commands.
   :config (smart-jump-setup-default-registers)
   (leaf ag :ensure t))
 
-(leaf magit
-  :ensure t
-  :config
-  (leaf gitignore-mode :ensure t)
-  (leaf magit-files
-    :bind (:magit-file-mode-map ("C-x g" . nil)))
-  (leaf magit-mode
-    :after t
-    :defvar magit-mode-map
-    :config (swap-set-key magit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
-  (leaf git-commit
-    :after t
-    :defvar git-commit-mode-map
-    :config (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
-  (leaf git-rebase
-    :after t
-    :defvar git-rebase-mode-map
-    :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))))
-
-(leaf git-gutter
-  :ensure t
-  :custom (global-git-gutter-mode . t))
-
-(leaf mozc-im
-  :ensure t
-  :require t
-  :custom ((default-input-method . "japanese-mozc-im") (mozc-candidate-style . 'echo-area))
-  :config
-  (defun cursor-color-toggle ()
-    (if current-input-method
-        (set-face-background 'cursor "#00629D")
-      (set-face-background 'cursor "#839496")))
-
-  (defun cursor-color-direct ()
-    (set-face-background 'cursor "#839496"))
-
-  (set-face-background 'mozc-preedit-selected-face "#268bd2")
-  (add-hook 'input-method-activate-hook 'cursor-color-toggle)
-  (add-hook 'input-method-deactivate-hook 'cursor-color-direct)
-  (add-hook 'window-configuration-change-hook 'cursor-color-toggle))
-
-(leaf docker
-  :ensure t
-  :custom (docker-container-shell-file-name . "/bin/bash"))
+;; テキスト処理
 
 (leaf smartparens
   :ensure t
@@ -670,8 +624,7 @@ Letters do not insert themselves; instead, they are commands.
          ([remap end-of-defun] . sp-down-sexp)
          ([remap forward-list] . sp-forward-symbol)
          ([remap forward-sexp] . sp-forward-sexp)
-         ([remap kill-sexp] . sp-kill-sexp)
-         )
+         ([remap kill-sexp] . sp-kill-sexp))
   :config
   (smartparens-global-mode 1)
   (show-smartparens-global-mode 1)
@@ -733,6 +686,55 @@ Letters do not insert themselves; instead, they are commands.
   (set-face-foreground 'whitespace-tab "#0C2B33")
   (set-face-foreground 'whitespace-trailing "#332B28"))
 
+;; Emacsと外部プロセスの連携
+
+(leaf magit
+  :ensure t
+  :config
+  (leaf gitignore-mode :ensure t)
+  (leaf magit-files
+    :bind (:magit-file-mode-map ("C-x g" . nil)))
+  (leaf magit-mode
+    :after t
+    :defvar magit-mode-map
+    :config (swap-set-key magit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
+  (leaf git-commit
+    :after t
+    :defvar git-commit-mode-map
+    :config (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
+  (leaf git-rebase
+    :after t
+    :defvar git-rebase-mode-map
+    :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))))
+
+(leaf git-gutter
+  :ensure t
+  :custom (global-git-gutter-mode . t))
+
+(leaf docker
+  :ensure t
+  :custom (docker-container-shell-file-name . "/bin/bash"))
+
+(leaf mozc-im
+  :ensure t
+  :require t
+  :custom ((default-input-method . "japanese-mozc-im") (mozc-candidate-style . 'echo-area))
+  :config
+  (defun cursor-color-toggle ()
+    (if current-input-method
+        (set-face-background 'cursor "#00629D")
+      (set-face-background 'cursor "#839496")))
+
+  (defun cursor-color-direct ()
+    (set-face-background 'cursor "#839496"))
+
+  (set-face-background 'mozc-preedit-selected-face "#268bd2")
+  (add-hook 'input-method-activate-hook 'cursor-color-toggle)
+  (add-hook 'input-method-deactivate-hook 'cursor-color-direct)
+  (add-hook 'window-configuration-change-hook 'cursor-color-toggle))
+
+;; 有効にするだけの短いコード
+
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :config (editorconfig-mode 1))
 (leaf multiple-cursors :ensure t)
@@ -740,6 +742,8 @@ Letters do not insert themselves; instead, they are commands.
 (leaf symbolword-mode :ensure t :require t)
 (leaf which-key :ensure t :config (which-key-mode 1))
 (leaf yasnippet :ensure t :require t :config (yas-global-mode))
+
+;; テキストを超えたプログラミング機能
 
 (leaf flycheck
   :ensure t
