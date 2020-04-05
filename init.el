@@ -509,6 +509,16 @@ Letters do not insert themselves; instead, they are commands.
     :config
     (company-quickhelp-mode 1)))
 
+(leaf helpful
+  :ensure t
+  :require t
+  :bind
+  ([remap describe-function] . helpful-callable)
+  ([remap describe-key]      . helpful-key)
+  ([remap describe-variable] . helpful-variable)
+  :defvar helpful-mode-map
+  :config (ncaq-set-key helpful-mode-map))
+
 (leaf helm
   :ensure t
   :require t helm-config
@@ -889,8 +899,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (leaf eldoc :hook emacs-lisp-mode-hook ielm-mode-hook)
   (leaf elisp-slime-nav
     :ensure t
-    :hook emacs-lisp-mode-hook help-mode-hook
-    :bind (:elisp-slime-nav-mode-map ("C-c C-d" . elisp-slime-nav-describe-elisp-thing-at-point)))
+    :bind (:elisp-slime-nav-mode-map ("C-c C-d" . helpful-at-point))
+    :hook emacs-lisp-mode-hook help-mode-hook)
   (leaf simple
     :bind (:read-expression-map ("<tab>" . completion-at-point))))
 
