@@ -239,10 +239,8 @@
    ("C-c e" . open-ncaq-entry)
    ("C-c j" . rg)
    ("C-c l" . recentf-cleanup)
-   ("C-c n" . google-translate-at-point-reverse)
    ("C-c o" . open-desktop)
    ("C-c p" . tramp-cleanup-all-connections)
-   ("C-c t" . google-translate-at-point)
    ("C-c u" . open-document-current)
 
    ("C-x d" . mark-defun)
@@ -734,12 +732,6 @@ Letters do not insert themselves; instead, they are commands.
   (set-face-foreground 'whitespace-empty "#5a2c2b")
   (set-face-foreground 'whitespace-tab "#0C2B33")
   (set-face-foreground 'whitespace-trailing "#332B28"))
-
-(leaf google-translate
-  :ensure t
-  :custom
-  ((google-translate-default-source-language . "en")   ; google翻訳のソースを英語に
-   (google-translate-default-target-language . "ja"))) ; google翻訳のターゲットを日本語に
 
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :config (editorconfig-mode 1))
