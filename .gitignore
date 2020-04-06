@@ -1,3 +1,5 @@
+flycheck_*
+
 .cache/
 auto-save-list/
 eclipse.jdt.ls/
