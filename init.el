@@ -19,7 +19,9 @@
       (package-install 'leaf))
     (leaf leaf-keywords
       :ensure t
-      :config (leaf-keywords-init))))
+      :config
+      (leaf diminish :ensure t)
+      (leaf-keywords-init))))
 
 (leaf cus-edit :custom (custom-file . "~/.emacs.d/custom.el")) ; init.elに設定ファイルを書き込ませない
 
@@ -701,6 +703,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf undo-tree
   :ensure t
   :require t
+  :diminish "UT"
   :defvar undo-tree-visualizer-mode-map
   :custom ((undo-tree-enable-undo-in-region . nil)
            (undo-tree-history-directory-alist . `(("" . ,(concat user-emacs-directory "undo-tree/"))))
@@ -748,6 +751,7 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf git-gutter
   :ensure t
+  :diminish "GG"
   :custom (global-git-gutter-mode . t))
 
 (leaf docker
@@ -775,7 +779,7 @@ Letters do not insert themselves; instead, they are commands.
 ;; 有効にするだけの短いコード
 
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
-(leaf editorconfig :ensure t :config (editorconfig-mode 1))
+(leaf editorconfig :ensure t :diminish "EC" :config (editorconfig-mode 1))
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :require t)
 (leaf symbolword-mode :ensure t :require t)
