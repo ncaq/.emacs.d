@@ -684,21 +684,26 @@ Letters do not insert themselves; instead, they are commands.
   :ensure t
   :config
   (defun my-string-inflection-cycle-auto ()
-    "switching by major-mode"
+    "メジャーモードに従って挙動を変える.
+lisp, shell, perl系列はハイフンを含むのでall.
+python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのalias).
+その他はjavaスタイル.
+"
     (interactive)
-    (cond
-     ;; for emacs-lisp-mode
-     ((eq major-mode 'emacs-lisp-mode)
-      (string-inflection-all-cycle))
-     ;; for python
-     ((eq major-mode 'python-mode)
-      (string-inflection-python-style-cycle))
-     ;; for java
-     ((eq major-mode 'java-mode)
-      (string-inflection-java-style-cycle))
-     (t
-      ;; default
-      (string-inflection-ruby-style-cycle)))))
+    (pcase major-mode
+      ((or 'common-lisp-mode
+           'emacs-lisp-mode
+           'scheme-mode
+           'shell-script-mode
+           'perl-mode
+           'perl6-mode)
+       (string-inflection-all-cycle))
+      ((or 'python-mode
+           'ruby-mode
+           'rustic-mode)
+       (string-inflection-ruby-style-cycle))
+      (t
+       (string-inflection-java-style-cycle)))))
 
 (leaf undo-tree
   :ensure t
