@@ -830,6 +830,8 @@ Letters do not insert themselves; instead, they are commands.
       (:description . "Run Haskell file with Stack runghc(GHC)"))
     :override t))
 
+;; 各言語モード
+
 (leaf generic-x :require t)
 
 (leaf conf-mode
@@ -845,6 +847,7 @@ Letters do not insert themselves; instead, they are commands.
     ))
 
 (leaf csharp-mode :ensure t)
+(leaf csv-mode :ensure t)
 (leaf dockerfile-mode :ensure t)
 (leaf go-mode :ensure t)
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil)) ; dotファイルで自動セミコロン挿入しない
