@@ -685,7 +685,7 @@ Letters do not insert themselves; instead, they are commands.
   :config
   (defun my-string-inflection-cycle-auto ()
     "メジャーモードに従って挙動を変える.
-lisp, shell, perl系列はハイフンを含むのでall.
+lisp, shell, perl6はハイフンを含めることが出来るのでall.
 python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのalias).
 その他はjavaスタイル.
 "
@@ -695,7 +695,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
            'emacs-lisp-mode
            'scheme-mode
            'shell-script-mode
-           'perl-mode
            'perl6-mode)
        (string-inflection-all-cycle))
       ((or 'python-mode
