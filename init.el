@@ -509,6 +509,17 @@ Letters do not insert themselves; instead, they are commands.
     :config
     (company-quickhelp-mode 1)))
 
+(leaf yasnippet
+  :ensure t
+  :require t
+  :bind (:yas-minor-mode-map
+         ("<tab>" . nil)
+         ("TAB" . nil)
+         ("C-c y" . company-yasnippet))
+  :config
+  (yas-global-mode)
+  (leaf yasnippet-snippets :ensure t))
+
 (leaf helpful
   :ensure t
   :require t
@@ -769,7 +780,6 @@ Letters do not insert themselves; instead, they are commands.
 (leaf ncaq-emacs-utils :require t)
 (leaf symbolword-mode :ensure t :require t)
 (leaf which-key :ensure t :config (which-key-mode 1))
-(leaf yasnippet :ensure t :require t :config (yas-global-mode) (leaf yasnippet-snippets :ensure t))
 
 ;; テキストを超えたプログラミング機能
 
