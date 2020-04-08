@@ -694,7 +694,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
       ((or 'common-lisp-mode
            'emacs-lisp-mode
            'scheme-mode
-           'shell-script-mode
+           'sh-mode
            'perl6-mode)
        (string-inflection-all-cycle))
       ((or 'python-mode
@@ -873,7 +873,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf mediawiki :ensure t :mode "\\.wiki$")
 (leaf pascal :after t :defvar pascal-mode-map :config (ncaq-set-key pascal-mode-map))
 (leaf prolog :after t :defvar prolog-mode-map :config (ncaq-set-key prolog-mode-map))
-(leaf sh-script :config (leaf shell-script-mode :mode "\\.zsh$"))
+(leaf sh-script (leaf sh :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
 
