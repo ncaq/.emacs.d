@@ -1063,10 +1063,12 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
      less-css-mode-hook
      scss-mode-hook
      typescript-mode-hook
-     yaml-mode-hook . prettier-js-mode-wrapper)
+     yaml-mode-hook
+     . prettier-js-mode-wrapper)
     :config
     (eval-and-compile
       (defun prettier-js-mode-wrapper ()
+        "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにする"
         (interactive)
         (local-set-key (kbd "M-i") 'prettier-js-mode)
         (prettier-js-mode t))))
