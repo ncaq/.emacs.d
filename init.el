@@ -810,6 +810,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
    go-mode-hook
    haskell-mode-hook
    java-mode-hook
+   json-mode-hook
    python-mode-hook
    ruby-mode-hook
    scala-mode-hook
@@ -1138,7 +1139,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
            (flycheck-select-tslint-or-eslint)
            (prettier-js-mode-wrapper)))
         ((or "json" "css")
-         (prettier-js-mode-wrapper))))
+         (progn
+           (lsp)
+           (prettier-js-mode-wrapper)))))
     (add-hook 'web-mode-hook 'web-mode-setting))
 
   (leaf js :custom (js-indent-level . 2))
