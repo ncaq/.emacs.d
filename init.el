@@ -795,8 +795,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :ensure t
   :require t
   :custom ((global-flycheck-mode . t)
-           (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
-           (flycheck-indication-mode 'left-fringe))
+           (flycheck-display-errors-function . nil)) ; Echoエリアにエラーを表示しない
   :bind (:flycheck-mode-map
          ([remap previous-error] . flycheck-previous-error)
          ([remap next-error] . flycheck-next-error)))
