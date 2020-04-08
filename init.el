@@ -221,7 +221,6 @@
    ("M-w" . kill-ring-save-region-or-word-at-point)
    ("M-x" . helm-M-x)
    ("M-y" . helm-show-kill-ring)
-   ("M-z" . flycheck-compile)
 
    ("C-M-;" . align-space)
    ("C-M-b" . backward-kill-sexp)
