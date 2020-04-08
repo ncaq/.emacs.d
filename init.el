@@ -701,7 +701,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
            'ruby-mode
            'rustic-mode)
        (string-inflection-ruby-style-cycle))
-      (t
+      (_
        (string-inflection-java-style-cycle)))))
 
 (leaf undo-tree
@@ -929,7 +929,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :after t
   :defvar flycheck-error-list-buffer flymake-allowed-file-name-masks
   :bind (:haskell-mode-map
-         (("C-M-z" . haskell-repl-and-flycheck)
+         (("M-i" . stylish-haskell-toggle)
+          ("C-M-z" . haskell-repl-and-flycheck)
           ("C-c C-c" . haskell-session-change-target)
           ("C-c C-l" . haskell-process-load-file)
           ("C-c C-z" . haskell-interactive-switch)
@@ -947,7 +948,10 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
       (custom-set-variables '(haskell-stylish-on-save t)))
     (defun stylish-haskell-disable ()
       (interactive)
-      (custom-set-variables '(haskell-stylish-on-save nil))))
+      (custom-set-variables '(haskell-stylish-on-save nil)))
+    (defun stylish-haskell-toggle ()
+      (interactive)
+      (custom-set-variables '(haskell-stylish-on-save (not haskell-stylish-on-save)))))
   (leaf haskell-interactive-mode
     :after t
     :defvar haskell-interactive-mode-map
@@ -1054,16 +1058,17 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (leaf prettier-js
     :ensure t
     :hook
-    css-mode-hook
-    json-mode-hook
-    less-css-mode-hook
-    scss-mode-hook
-    typescript-mode-hook
-    yaml-mode-hook
+    (css-mode-hook
+     json-mode-hook
+     less-css-mode-hook
+     scss-mode-hook
+     typescript-mode-hook
+     yaml-mode-hook . prettier-js-mode-wrapper)
     :config
     (eval-and-compile
-      (defun prettier-js-mode-enable ()
+      (defun prettier-js-mode-wrapper ()
         (interactive)
+        (local-set-key (kbd "M-i") 'prettier-js-mode)
         (prettier-js-mode t))))
 
   (eval-and-compile
@@ -1122,17 +1127,18 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
     (flycheck-add-mode 'javascript-eslint 'web-mode)
     (flycheck-add-mode 'typescript-tslint 'web-mode)
     (defun web-mode-setting ()
-      (cond
-       ((string= web-mode-content-type "html")
-        (progn
-          (prettier-js-mode-enable)
-          (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
-       ((member web-mode-content-type '("javascript" "jsx"))
-        (progn
-          (lsp)
-          (flycheck-select-tslint-or-eslint))))
-      (when (member web-mode-content-type '("css" "javascript" "json" "jsx"))
-        (prettier-js-mode-enable)))
+      (pcase web-mode-content-type
+        ("html"
+         (progn
+           (prettier-js-mode-wrapper)
+           (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
+        ((or "javascript" "jsx")
+         (progn
+           (lsp)
+           (flycheck-select-tslint-or-eslint)
+           (prettier-js-mode-wrapper)))
+        ((or "json" "css")
+         (prettier-js-mode-wrapper))))
     (add-hook 'web-mode-hook 'web-mode-setting))
 
   (leaf js :custom (js-indent-level . 2))
