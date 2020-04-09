@@ -1070,6 +1070,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
       (defun prettier-js-mode-wrapper ()
         "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにする"
         (interactive)
+        (local-set-key [remap indent-whole-buffer] 'prettier-js)
         (local-set-key (kbd "M-i") 'prettier-js-mode)
         (prettier-js-mode t))))
 
