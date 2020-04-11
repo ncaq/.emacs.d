@@ -266,6 +266,7 @@
    ("M-g s" . magit-status)
    ("M-g u" . magit-pull)
    ("M-g w" . magit-branch-checkout)
+   ("M-g z" . magit-stash-both)
 
    ("<help> c" . helpful-command)
    ("<help> w" . helm-man-woman)
