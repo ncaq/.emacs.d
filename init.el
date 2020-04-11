@@ -116,7 +116,7 @@
                               qwerty-dvorak)))
      prefixes)))
 
-(defun prog-dvorak-set-key (key-map)
+(defun dvorak-set-key-prog (key-map)
   (swap-set-key key-map '(("M-h" . "C-x p") ("C-M-h" . "C-x d")))
   (mapc
    (lambda (key)
@@ -130,14 +130,14 @@
 (swap-set-key global-map '(("M-g p" . "M-g t")))
 
 ;; minibuffer-local-map is a variable defined in `C source code'.
-(prog-dvorak-set-key minibuffer-local-map)
+(dvorak-set-key-prog minibuffer-local-map)
 
 (leaf isearch
   :bind (:isearch-mode-map
          ("C-b" . isearch-delete-char)
          ("M-b" . isearc-del-char)
          ("M-m" . isearch-exit-previous))
-  :config (prog-dvorak-set-key isearch-mode-map))
+  :config (dvorak-set-key-prog isearch-mode-map))
 
 (leaf popup
   :ensure t
@@ -154,24 +154,24 @@
   :after t
   :defvar compilation-minor-mode-map compilation-mode-map compilation-shell-minor-mode-map
   :config
-  (prog-dvorak-set-key compilation-minor-mode-map)
-  (prog-dvorak-set-key compilation-mode-map)
-  (prog-dvorak-set-key compilation-shell-minor-mode-map))
+  (dvorak-set-key-prog compilation-minor-mode-map)
+  (dvorak-set-key-prog compilation-mode-map)
+  (dvorak-set-key-prog compilation-shell-minor-mode-map))
 
 (leaf hexl
   :bind (:hexl-mode-map
          ("M-g" . nil)
          ([remap quoted-insert] . hexl-quoted-insert))
-  :config (prog-dvorak-set-key hexl-mode-map))
+  :config (dvorak-set-key-prog hexl-mode-map))
 
-(leaf info      :after t :config (prog-dvorak-set-key Info-mode-map))
-(leaf prog-mode :after t :config (prog-dvorak-set-key prog-mode-map))
+(leaf info      :after t :config (dvorak-set-key-prog Info-mode-map))
+(leaf prog-mode :after t :config (dvorak-set-key-prog prog-mode-map))
 
-(leaf comint    :after t :defvar comint-mode-map         :config (prog-dvorak-set-key comint-mode-map))
-(leaf diff-mode :after t :defvar diff-mode-map           :config (prog-dvorak-set-key diff-mode-map))
-(leaf doc-view  :after t :defvar doc-view-mode-map       :config (prog-dvorak-set-key doc-view-mode-map))
-(leaf help-mode :after t :defvar help-mode-map           :config (prog-dvorak-set-key help-mode-map))
-(leaf rect      :after t :defvar rectangle-mark-mode-map :config (prog-dvorak-set-key rectangle-mark-mode-map))
+(leaf comint    :after t :defvar comint-mode-map         :config (dvorak-set-key-prog comint-mode-map))
+(leaf diff-mode :after t :defvar diff-mode-map           :config (dvorak-set-key-prog diff-mode-map))
+(leaf doc-view  :after t :defvar doc-view-mode-map       :config (dvorak-set-key-prog doc-view-mode-map))
+(leaf help-mode :after t :defvar help-mode-map           :config (dvorak-set-key-prog help-mode-map))
+(leaf rect      :after t :defvar rectangle-mark-mode-map :config (dvorak-set-key-prog rectangle-mark-mode-map))
 
 ;; global-set-key
 (leaf *global-set-key
@@ -438,7 +438,7 @@ Letters do not insert themselves; instead, they are commands.
            ("M-o" . nil)
            ("C-^" . dired-up-directory)
            ("C-c C-p" . wdired-change-to-wdired-mode))
-    :config (prog-dvorak-set-key dired-mode-map)))
+    :config (dvorak-set-key-prog dired-mode-map)))
 
 (leaf *c-source-code
   :custom
@@ -455,7 +455,7 @@ Letters do not insert themselves; instead, they are commands.
   :after t
   :defvar Man-mode-map
   :custom (Man-notify-method . 'bully)  ; Manページを現在のウィンドウで表示
-  :config (prog-dvorak-set-key Man-mode-map))
+  :config (dvorak-set-key-prog Man-mode-map))
 
 (leaf ediff
   :config
@@ -490,14 +490,14 @@ Letters do not insert themselves; instead, they are commands.
          ("C-t" . nil)
          ("M-g" . nil))
   :config
-  (prog-dvorak-set-key ibuffer-mode-map))
+  (dvorak-set-key-prog ibuffer-mode-map))
 
 (leaf profiler
   :after t
   :defvar profiler-report-mode-map
   :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right)))))
   :config
-  (prog-dvorak-set-key profiler-report-mode-map))
+  (dvorak-set-key-prog profiler-report-mode-map))
 
 (leaf company
   :ensure t
@@ -510,7 +510,7 @@ Letters do not insert themselves; instead, they are commands.
          ("C-h" . nil))
   :config
   (global-company-mode 1)
-  (prog-dvorak-set-key company-active-map)
+  (dvorak-set-key-prog company-active-map)
   (dvorak-set-key company-search-map)
   (leaf company-quickhelp
     :ensure t
@@ -538,7 +538,7 @@ Letters do not insert themselves; instead, they are commands.
   ([remap describe-variable] . helpful-variable)
   :defvar helpful-mode-map
   :advice (:after helpful-at-point other-window-backward)
-  :config (prog-dvorak-set-key helpful-mode-map))
+  :config (dvorak-set-key-prog helpful-mode-map))
 
 (leaf helm
   :ensure t
@@ -613,7 +613,7 @@ Letters do not insert themselves; instead, they are commands.
   :ensure t
   :after t
   :defvar rg-mode-map
-  :config (prog-dvorak-set-key rg-mode-map))
+  :config (dvorak-set-key-prog rg-mode-map))
 
 (leaf ggtags
   :ensure t
@@ -721,7 +721,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
            (undo-tree-visualizer-timestamps . t))
   :config
   (global-undo-tree-mode)
-  (prog-dvorak-set-key undo-tree-visualizer-mode-map)
+  (dvorak-set-key-prog undo-tree-visualizer-mode-map)
   (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit))
 
 (leaf whitespace
@@ -875,10 +875,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf dockerfile-mode :ensure t)
 (leaf go-mode :ensure t)
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil)) ; dotファイルで自動セミコロン挿入しない
-(leaf make-mode :after t :defvar makefile-mode-map :config (prog-dvorak-set-key makefile-mode-map))
+(leaf make-mode :after t :defvar makefile-mode-map :config (dvorak-set-key-prog makefile-mode-map))
 (leaf mediawiki :ensure t :mode "\\.wiki$")
-(leaf pascal :after t :defvar pascal-mode-map :config (prog-dvorak-set-key pascal-mode-map))
-(leaf prolog :after t :defvar prolog-mode-map :config (prog-dvorak-set-key prolog-mode-map))
+(leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
+(leaf prolog :after t :defvar prolog-mode-map :config (dvorak-set-key-prog prolog-mode-map))
 (leaf sh-script (leaf sh :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
@@ -895,7 +895,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (add-hook 'c-mode-hook 'set-hook-after-save-clang-format)
   (add-hook 'c++-mode-hook 'set-hook-after-save-clang-format)
 
-  (prog-dvorak-set-key c-mode-base-map)
+  (dvorak-set-key-prog c-mode-base-map)
   (define-key c-mode-map [remap indent-whole-buffer] 'clang-format-buffer)
   (define-key c++-mode-map [remap indent-whole-buffer] 'clang-format-buffer))
 
@@ -963,11 +963,11 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (leaf haskell-interactive-mode
     :after t
     :defvar haskell-interactive-mode-map
-    :config (prog-dvorak-set-key haskell-interactive-mode-map))
+    :config (dvorak-set-key-prog haskell-interactive-mode-map))
   (leaf haskell-cabal
     :after t
     :defvar haskell-cabal-mode-map
-    :config (prog-dvorak-set-key haskell-cabal-mode-map))
+    :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (defun haskell-repl-and-flycheck ()
     (interactive)
     (delete-other-windows)
@@ -1019,7 +1019,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
         ("yaml". yaml-mode)
         ("zsh" . sh-mode))
       markdown-code-lang-modes)))
-  (prog-dvorak-set-key markdown-mode-map))
+  (dvorak-set-key-prog markdown-mode-map))
 
 (leaf perl6-mode
   :ensure t
@@ -1032,7 +1032,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
            (ruby-insert-encoding-magic-comment . nil))
   :after t
   :defvar ruby-mode-map
-  :config (prog-dvorak-set-key ruby-mode-map))
+  :config (dvorak-set-key-prog ruby-mode-map))
 
 (leaf rustic
   :ensure t
@@ -1180,7 +1180,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
          ("C-M-t" . nxml-backward-element))
   :config
   (leaf smartparens :config (sp-local-pair '(nxml-mode) "<" ">" :actions :rem))
-  (prog-dvorak-set-key nxml-mode-map))
+  (dvorak-set-key-prog nxml-mode-map))
 
 ;; Local Variables:
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
