@@ -880,7 +880,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf mediawiki :ensure t :mode "\\.wiki$")
 (leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
 (leaf prolog :after t :defvar prolog-mode-map :config (dvorak-set-key-prog prolog-mode-map))
-(leaf sh-script (leaf sh :mode "\\.zsh$"))
+(leaf sh-script :custom (sh-basic-offset . 2) :config (leaf sh :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
 
