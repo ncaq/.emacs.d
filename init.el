@@ -792,8 +792,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :diminish "EC" :config (editorconfig-mode 1))
 (leaf multiple-cursors :ensure t)
-(leaf ncaq-emacs-utils :ensure t :el-get ncaq/ncaq-emacs-utils :require t)
-(leaf point-undo :ensure t :el-get emacsmirror/point-undo :require t)
+(leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
+(leaf point-undo :el-get emacsmirror/point-undo :require t)
 (leaf symbolword-mode :ensure t :require t)
 (leaf which-key :ensure t :config (which-key-mode 1))
 
