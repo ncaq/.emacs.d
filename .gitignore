@@ -1,23 +1,7 @@
-flycheck_*
+/*
 
-.cache/
-auto-save-list/
-eclipse.jdt.ls/
-elpa/
-file-backup/
-server/
-transient/
-undo-tree/
-url/
-workspace/
+!/snippets/
 
-%backup%~
-.emacs.desktop*
-.lsp-session*
-abbrev_defs
-ac-comphist.dat
-custom.el*
-history
-places
-recentf
-tramp
+!.gitignore
+!.mc-lists.el
+!init.el

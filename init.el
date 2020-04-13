@@ -2,12 +2,6 @@
 
 ;;; 初期化
 
-;; load-pathに野良submoduleを追加する
-(mapc (lambda (path)
-        (let ((default-directory path))
-          (normal-top-level-add-subdirs-to-load-path)))
-      (list (concat user-emacs-directory "module/")))
-
 (eval-and-compile
   (prog1 "leafを初期化する"
     (custom-set-variables
@@ -21,6 +15,7 @@
       :ensure t
       :config
       (leaf diminish :ensure t)
+      (leaf el-get :ensure t :custom ((el-get-git-shallow-clone . t)))
       (leaf-keywords-init))))
 
 (leaf cus-edit :custom (custom-file . "~/.emacs.d/custom.el")) ; init.elに設定ファイルを書き込ませない
@@ -793,7 +788,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :diminish "EC" :config (editorconfig-mode 1))
 (leaf multiple-cursors :ensure t)
-(leaf ncaq-emacs-utils :require t)
+(leaf ncaq-emacs-utils :ensure t :el-get ncaq/ncaq-emacs-utils :require t)
 (leaf symbolword-mode :ensure t :require t)
 (leaf which-key :ensure t :config (which-key-mode 1))
 
