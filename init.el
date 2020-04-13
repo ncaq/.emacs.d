@@ -803,6 +803,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :ensure t
   :require t
   :custom ((global-flycheck-mode . t)
+           (flycheck-highlighting-mode . nil)        ; 下線が鬱陶しい
            (flycheck-display-errors-function . nil)) ; Echoエリアにエラーを表示しない
   :bind (:flycheck-mode-map
          ([remap previous-error] . flycheck-previous-error)
