@@ -936,10 +936,14 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 (leaf haskell-mode
   :ensure t
   :after t
+  :custom
+  (haskell-hoogle-command . nil)
+  (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s")
   :defvar flycheck-error-list-buffer flymake-allowed-file-name-masks
   :bind (:haskell-mode-map
          (("M-i" . stylish-haskell-toggle)
           ("C-M-z" . haskell-repl-and-flycheck)
+          ("C-c C-b" . haskell-hoogle)
           ("C-c C-c" . haskell-session-change-target)
           ("C-c C-l" . haskell-process-load-file)
           ("C-c C-z" . haskell-interactive-switch)
