@@ -200,6 +200,8 @@
    ("C-S-m" . quoted-newline)
 
    ("M-'" . mc/edit-lines)
+   ("M-/" . point-undo)
+   ("M-?" . point-redo)
    ("M-b" . backward-kill-word)
    ("M-c" . help-command)
    ("M-f" . helm-occur)
@@ -628,7 +630,9 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf smart-jump
   :ensure t
-  :custom (smart-jump-find-references-fallback-function . #'smart-jump-find-references-with-rg)
+  :custom
+  (smart-jump-find-references-fallback-function . #'smart-jump-find-references-with-rg)
+  (smart-jump-refs-key . "C-M-,")
   :config
   (smart-jump-setup-default-registers)
   (defun smart-jump-find-references-with-rg ()
@@ -789,6 +793,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf editorconfig :ensure t :diminish "EC" :config (editorconfig-mode 1))
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :ensure t :el-get ncaq/ncaq-emacs-utils :require t)
+(leaf point-undo :ensure t :el-get emacsmirror/point-undo :require t)
 (leaf symbolword-mode :ensure t :require t)
 (leaf which-key :ensure t :config (which-key-mode 1))
 
