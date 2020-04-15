@@ -177,9 +177,9 @@
    ("C-+" . text-scale-increase)
    ("C-," . my-string-inflection-cycle-auto)
    ("C--" . text-scale-decrease)
+   ("C-." . dired-jump-to-current)
    ("C-;" . toggle-input-method)
    ("C-=" . text-scale-reset)
-   ("C-^" . dired-jump-to-current)
    ("C-a" . smart-move-beginning-of-line)
    ("C-b" . backward-delete-char-untabify)
    ("C-i" . indent-whole-buffer)
@@ -323,9 +323,7 @@
    (recentf-auto-cleanup . 600)
    (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
 
-(leaf recentf-ext
-  :ensure t
-  :require t)
+(leaf recentf-ext :ensure t :require t)
 
 (leaf recentf-remove-sudo-tramp-prefix
   :ensure t
@@ -424,18 +422,17 @@ Letters do not insert themselves; instead, they are commands.
            (dired-listing-switches . ls-option)
            (dired-recursive-copies . 'always)   ; 聞かずに再帰的コピー
            (dired-recursive-deletes . 'always)) ; 聞かずに再帰的削除
+  :bind (:dired-mode-map
+         ("C-o" . nil)
+         ("C-p" . nil)
+         ("M-o" . nil))
   :config
   (defun dired-jump-to-current ()
     (interactive)
     (dired "."))
   (leaf wdired
     :require t
-    :bind (:dired-mode-map
-           ("C-o" . nil)
-           ("C-p" . nil)
-           ("M-o" . nil)
-           ("C-^" . dired-up-directory)
-           ("C-c C-p" . wdired-change-to-wdired-mode))
+    :bind (:dired-mode-map ("C-c C-p" . wdired-change-to-wdired-mode))
     :config (dvorak-set-key-prog dired-mode-map)))
 
 (leaf *c-source-code
@@ -456,7 +453,6 @@ Letters do not insert themselves; instead, they are commands.
   :config (dvorak-set-key-prog Man-mode-map))
 
 (leaf ediff
-  :config
   :custom
   ((ediff-split-window-function . 'split-window-horizontally)   ; ediffでウィンドウを横分割
    (ediff-window-setup-function . 'ediff-setup-windows-plain))) ; ediffにframeを生成させない
@@ -487,21 +483,22 @@ Letters do not insert themselves; instead, they are commands.
          ("C-o" . nil)
          ("C-t" . nil)
          ("M-g" . nil))
-  :config
-  (dvorak-set-key-prog ibuffer-mode-map))
+  :config (dvorak-set-key-prog ibuffer-mode-map))
 
 (leaf profiler
   :after t
   :defvar profiler-report-mode-map
   :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right)))))
-  :config
-  (dvorak-set-key-prog profiler-report-mode-map))
+  :config (dvorak-set-key-prog profiler-report-mode-map))
 
 (leaf company
   :ensure t
   :require t
   :defvar company-search-map
-  :custom ((company-dabbrev-code-other-buffers . 'all) (company-dabbrev-downcase . nil) (company-dabbrev-other-buffers . 'all))
+  :custom
+  (company-dabbrev-code-other-buffers . 'all)
+  (company-dabbrev-downcase . nil)
+  (company-dabbrev-other-buffers . 'all)
   :bind (:company-active-map
          ("<backtab>" . company-select-previous)
          ("<tab>" . company-complete-common-or-cycle)
@@ -513,8 +510,13 @@ Letters do not insert themselves; instead, they are commands.
   (leaf company-quickhelp
     :ensure t
     :require t
-    :config
-    (company-quickhelp-mode 1)))
+    :custom (company-quickhelp-delay . 0)
+    :config (company-quickhelp-mode 1))
+  (leaf company-lsp
+    :ensure t
+    :require t
+    :defvar company-backends
+    :config (push 'company-lsp company-backends)))
 
 (leaf yasnippet
   :ensure t
@@ -633,9 +635,10 @@ Letters do not insert themselves; instead, they are commands.
   :ensure t
   :custom
   (smart-jump-find-references-fallback-function . #'smart-jump-find-references-with-rg)
-  (smart-jump-refs-key . "C-M-,")
+  (smart-jump-refs-key . "C-M-.")
   :config
   (smart-jump-setup-default-registers)
+  (smart-jump-lsp-mode-register)
   (defun smart-jump-find-references-with-rg ()
     "Use `rg' to find references."
     (interactive)
@@ -800,12 +803,22 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 ;; テキストを超えたプログラミング機能
 
+(leaf quickrun
+  :ensure t
+  :after t
+  :config
+  (quickrun-add-command "haskell"
+    '((:command . "stack runghc")
+      (:description . "Run Haskell file with Stack runghc(GHC)"))
+    :override t))
+
 (leaf flycheck
   :ensure t
   :require t
-  :custom ((global-flycheck-mode . t)
-           (flycheck-highlighting-mode . nil)        ; 下線が鬱陶しい
-           (flycheck-display-errors-function . nil)) ; Echoエリアにエラーを表示しない
+  :custom
+  (global-flycheck-mode . t)
+  (flycheck-highlighting-mode . nil)       ; 下線が鬱陶しい
+  (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
   :bind (:flycheck-mode-map
          ([remap previous-error] . flycheck-previous-error)
          ([remap next-error] . flycheck-next-error)))
@@ -813,7 +826,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf lsp-mode
   :ensure t
   :require t
-  :defvar company-backends
   :custom (lsp-prefer-flymake . nil)    ; flycheckを優先する
   :hook
   (css-mode-hook
@@ -833,28 +845,14 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ("C-c C-r" . lsp-execute-code-action)
          ("C-c C-t" . lsp-describe-thing-at-point))
   :config
-  (leaf helm-lsp
+  (leaf lsp-ui
     :ensure t
-    :bind (:lsp-mode-map :package lsp-mode ("C-." . helm-lsp-workspace-symbol)))
-  (leaf company-lsp
-    :ensure t
-    :require t
-    :config
-    (push 'company-lsp company-backends)))
-
-(leaf lsp-ui
-  :ensure t
-  :custom (lsp-ui-doc-delay . 2)         ; 初期値の0.2はせわしなさすぎる
-  :bind (:lsp-mode-map ("C-c C-d" . lsp-ui-doc-show)))
-
-(leaf quickrun
-  :ensure t
-  :after t
-  :config
-  (quickrun-add-command "haskell"
-    '((:command . "stack runghc")
-      (:description . "Run Haskell file with Stack runghc(GHC)"))
-    :override t))
+    :custom
+    (lsp-ui-doc-delay . 2)                                ; 初期値の0.2はせわしなさすぎる
+    (lsp-ui-doc-header . t)                               ; 何を見ているのかわからなくなりがちなのでそれも表示
+    (lsp-ui-doc-include-signature . t)                    ; シグネチャも表示する
+    (lsp-ui-doc-position . 'top)                          ; カーソル位置に表示されると下のコードが見えなくなるので上
+    :bind (:lsp-mode-map ("C-c C-d" . lsp-ui-doc-show)))) ; 手動でドキュメントを表示するコマンド
 
 ;; 各言語モード
 
