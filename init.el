@@ -533,6 +533,7 @@ Letters do not insert themselves; instead, they are commands.
   :bind
   ([remap describe-function] . helpful-callable)
   ([remap describe-key]      . helpful-key)
+  ([remap describe-symbol]   . helpful-symbol)
   ([remap describe-variable] . helpful-variable)
   :defvar helpful-mode-map
   :advice (:after helpful-at-point other-window-backward)
