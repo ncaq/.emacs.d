@@ -425,7 +425,8 @@ Letters do not insert themselves; instead, they are commands.
   :bind (:dired-mode-map
          ("C-o" . nil)
          ("C-p" . nil)
-         ("M-o" . nil))
+         ("M-o" . nil)
+         ("C-." . dired-up-directory))
   :config
   (defun dired-jump-to-current ()
     (interactive)
