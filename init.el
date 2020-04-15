@@ -843,7 +843,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf lsp-ui
   :ensure t
-  :defun lsp--text-document-position-params lsp-request lsp-ui-doc--display lsp-ui-doc--extract
   :custom (lsp-ui-doc-delay . 2)         ; 初期値の0.2はせわしなさすぎる
   :bind (:lsp-mode-map ("C-c C-d" . lsp-ui-doc-show)))
 
