@@ -924,14 +924,14 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :bind (:emacs-lisp-mode-map ("C-M-q" . nil))
   :custom ((flycheck-emacs-lisp-load-path . 'inherit))
   :config
-  (leaf flycheck-package :ensure t :after flycheck :defun flycheck-package-setup :config (flycheck-package-setup))
-  (leaf eldoc :hook emacs-lisp-mode-hook ielm-mode-hook)
   (leaf elisp-slime-nav
     :ensure t
     :bind (:elisp-slime-nav-mode-map ("C-c C-d" . helpful-at-point))
     :hook emacs-lisp-mode-hook help-mode-hook)
-  (leaf simple
-    :bind (:read-expression-map ("<tab>" . completion-at-point))))
+  (leaf eldoc :hook emacs-lisp-mode-hook ielm-mode-hook)
+  (leaf flycheck-package :ensure t :after flycheck :defun flycheck-package-setup :config (flycheck-package-setup))
+  (leaf ielm :bind (:ielm-map ("C-c C-d" . helpful-at-point)))
+  (leaf simple :bind (:read-expression-map ("<tab>" . completion-at-point))))
 
 (leaf haskell-mode
   :ensure t
