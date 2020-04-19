@@ -18,7 +18,11 @@
       (leaf el-get :ensure t :custom ((el-get-git-shallow-clone . t)))
       (leaf-keywords-init))))
 
-(leaf cus-edit :custom (custom-file . "~/.emacs.d/custom.el")) ; init.elに設定ファイルを書き込ませない
+(leaf cus-edit :custom `((custom-file . ,(locate-user-emacs-file "custom.el")))) ; init.elに自動的に書き込ませない
+
+(leaf leaf-convert :ensure t)
+(leaf leaf-tree :ensure t)
+(leaf macrostep :ensure t :bind (:emacs-lisp-mode-map ("C-c C-e" . macrostep-expand)))
 
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
   "バッファが存在すればkillする,無ければ何もしない."
