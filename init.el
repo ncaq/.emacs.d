@@ -251,7 +251,9 @@
   ("C-x d" . mark-defun)
   ("C-x g" . insert-random-uuid)
   ("C-x p" . mark-paragraph)
+  ("C-x s" . mark-sexp)
   ("C-x t" . insert-iso-datetime)
+  ("C-x w" . mark-word)
 
   ("C-x C-f" . helm-find-files)
 
@@ -675,7 +677,8 @@ Letters do not insert themselves; instead, they are commands.
          ([remap end-of-defun] . sp-down-sexp)
          ([remap forward-list] . sp-forward-symbol)
          ([remap forward-sexp] . sp-forward-sexp)
-         ([remap kill-sexp] . sp-kill-sexp))
+         ([remap kill-sexp] . sp-kill-sexp)
+         ([remap mark-sexp] . sp-mark-sexp))
   :config
   (smartparens-global-mode 1)
   (show-smartparens-global-mode 1)
