@@ -191,7 +191,7 @@
   ("C-p" . other-window-fallback-split)
   ("C-q" . kill-this-buffer)
   ("C-u" . kill-whole-line)
-  ("C-w" . kill-region-or-word-at-point)
+  ("C-w" . kill-region-or-sexp-at-point)
   ("C-z" . flycheck-list-errors)
 
   ("<C-iso-lefttab>" . company-dabbrev)
@@ -218,7 +218,7 @@
   ("M-r" . revert-buffer-safe-confirm)
   ("M-t" . scroll-down-one)
   ("M-u" . copy-whole-line)
-  ("M-w" . kill-ring-save-region-or-word-at-point)
+  ("M-w" . kill-ring-save-region-or-sexp-at-point)
   ("M-x" . helm-M-x)
   ("M-y" . helm-show-kill-ring)
 
@@ -251,7 +251,7 @@
   ("C-x d" . mark-defun)
   ("C-x g" . insert-random-uuid)
   ("C-x p" . mark-paragraph)
-  ("C-x s" . mark-sexp)
+  ("C-x s" . mark-whole-sexp)
   ("C-x t" . insert-iso-datetime)
   ("C-x w" . mark-word)
 
