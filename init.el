@@ -22,7 +22,6 @@
 
 (leaf leaf-convert :ensure t)
 (leaf leaf-tree :ensure t)
-(leaf macrostep :ensure t :bind (:emacs-lisp-mode-map ("C-c C-e" . macrostep-expand)))
 
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
   "バッファが存在すればkillする,無ければ何もしない."
@@ -175,104 +174,104 @@
 ;; global-set-key
 (leaf *global-set-key
   :bind
-  (("<tab>" . indent-for-tab-command) ; 何かしらを割り当てることで, C-iと別扱いになる
+  ("<tab>" . indent-for-tab-command) ; 何かしらを割り当てることで, C-iと別扱いになる
 
-   ("C-'" . mc/mark-all-dwim)
-   ("C-+" . text-scale-increase)
-   ("C-," . my-string-inflection-cycle-auto)
-   ("C--" . text-scale-decrease)
-   ("C-." . dired-jump-to-current)
-   ("C-;" . toggle-input-method)
-   ("C-=" . text-scale-reset)
-   ("C-a" . smart-move-beginning-of-line)
-   ("C-b" . backward-delete-char-untabify)
-   ("C-i" . indent-whole-buffer)
-   ("C-j" . helm-do-ag-project-root-or-default)
-   ("C-o" . helm-for-files)
-   ("C-p" . other-window-fallback-split)
-   ("C-q" . kill-this-buffer)
-   ("C-u" . kill-whole-line)
-   ("C-w" . kill-region-or-word-at-point)
-   ("C-z" . flycheck-list-errors)
+  ("C-'" . mc/mark-all-dwim)
+  ("C-+" . text-scale-increase)
+  ("C-," . my-string-inflection-cycle-auto)
+  ("C--" . text-scale-decrease)
+  ("C-." . dired-jump-to-current)
+  ("C-;" . toggle-input-method)
+  ("C-=" . text-scale-reset)
+  ("C-a" . smart-move-beginning-of-line)
+  ("C-b" . backward-delete-char-untabify)
+  ("C-i" . indent-whole-buffer)
+  ("C-j" . helm-do-ag-project-root-or-default)
+  ("C-o" . helm-for-files)
+  ("C-p" . other-window-fallback-split)
+  ("C-q" . kill-this-buffer)
+  ("C-u" . kill-whole-line)
+  ("C-w" . kill-region-or-word-at-point)
+  ("C-z" . flycheck-list-errors)
 
-   ("<C-iso-lefttab>" . company-dabbrev)
-   ("C-<tab>" .         company-complete)
-   ("C-\\" .            quoted-insert)
+  ("<C-iso-lefttab>" . company-dabbrev)
+  ("C-<tab>" .         company-complete)
+  ("C-\\" .            quoted-insert)
 
-   ("C-S-b" . smart-delete-whitespace-backward)
-   ("C-S-d" . smart-delete-whitespace-forward)
-   ("C-S-m" . quoted-newline)
+  ("C-S-b" . smart-delete-whitespace-backward)
+  ("C-S-d" . smart-delete-whitespace-forward)
+  ("C-S-m" . quoted-newline)
 
-   ("M-'" . mc/edit-lines)
-   ("M-/" . point-undo)
-   ("M-?" . point-redo)
-   ("M-b" . backward-kill-word)
-   ("M-c" . help-command)
-   ("M-f" . helm-occur)
-   ("M-j" . helm-do-ag-project-root-or-default-at-point)
-   ("M-l" . sort-dwim)
-   ("M-m" . newline-under)
-   ("M-n" . scroll-up-one)
-   ("M-o" . helm-multi-files)
-   ("M-p" . other-window-backward)
-   ("M-q" . delete-other-windows)
-   ("M-r" . revert-buffer-safe-confirm)
-   ("M-t" . scroll-down-one)
-   ("M-u" . copy-whole-line)
-   ("M-w" . kill-ring-save-region-or-word-at-point)
-   ("M-x" . helm-M-x)
-   ("M-y" . helm-show-kill-ring)
+  ("M-'" . mc/edit-lines)
+  ("M-/" . point-undo)
+  ("M-?" . point-redo)
+  ("M-b" . backward-kill-word)
+  ("M-c" . help-command)
+  ("M-f" . helm-occur)
+  ("M-j" . helm-do-ag-project-root-or-default-at-point)
+  ("M-l" . sort-dwim)
+  ("M-m" . newline-under)
+  ("M-n" . scroll-up-one)
+  ("M-o" . helm-multi-files)
+  ("M-p" . other-window-backward)
+  ("M-q" . delete-other-windows)
+  ("M-r" . revert-buffer-safe-confirm)
+  ("M-t" . scroll-down-one)
+  ("M-u" . copy-whole-line)
+  ("M-w" . kill-ring-save-region-or-word-at-point)
+  ("M-x" . helm-M-x)
+  ("M-y" . helm-show-kill-ring)
 
-   ("C-M-;" . align-space)
-   ("C-M-b" . backward-kill-sexp)
-   ("C-M-d" . kill-sexp)
-   ("C-M-j" . helm-do-ag-current-dir)
-   ("C-M-l" . sort-lines-whole-buffer)
-   ("C-M-m" . newline-upper)
-   ("C-M-o" . ibuffer)
-   ("C-M-p" . split-window-dwim-and-other)
-   ("C-M-q" . kill-buffer-and-window)
-   ("C-M-w" . copy-to-register-@)
-   ("C-M-y" . yank-register-@)
+  ("C-M-;" . align-space)
+  ("C-M-b" . backward-kill-sexp)
+  ("C-M-d" . kill-sexp)
+  ("C-M-j" . helm-do-ag-current-dir)
+  ("C-M-l" . sort-lines-whole-buffer)
+  ("C-M-m" . newline-upper)
+  ("C-M-o" . ibuffer)
+  ("C-M-p" . split-window-dwim-and-other)
+  ("C-M-q" . kill-buffer-and-window)
+  ("C-M-w" . copy-to-register-@)
+  ("C-M-y" . yank-register-@)
 
-   ("C-M-S-q" . kill-file-or-dired-buffers)
+  ("C-M-S-q" . kill-file-or-dired-buffers)
 
-   ("C-c ;" . align-regexp)
-   ("C-c a" . open-downloads)
-   ("C-c c" . quickrun)
-   ("C-c d" . diff)
-   ("C-c e" . open-ncaq-entry)
-   ("C-c j" . rg)
-   ("C-c o" . open-desktop)
-   ("C-c p" . package-list-packages)
-   ("C-c r" . recentf-cleanup)
-   ("C-c s" . customize-set-variable)
-   ("C-c u" . open-document-current)
+  ("C-c ;" . align-regexp)
+  ("C-c a" . open-downloads)
+  ("C-c c" . quickrun)
+  ("C-c d" . diff)
+  ("C-c e" . open-ncaq-entry)
+  ("C-c j" . rg)
+  ("C-c o" . open-desktop)
+  ("C-c p" . package-list-packages)
+  ("C-c r" . recentf-cleanup)
+  ("C-c s" . customize-set-variable)
+  ("C-c u" . open-document-current)
 
-   ("C-x d" . mark-defun)
-   ("C-x g" . insert-random-uuid)
-   ("C-x p" . mark-paragraph)
-   ("C-x t" . insert-iso-datetime)
+  ("C-x d" . mark-defun)
+  ("C-x g" . insert-random-uuid)
+  ("C-x p" . mark-paragraph)
+  ("C-x t" . insert-iso-datetime)
 
-   ("C-x C-f" . helm-find-files)
+  ("C-x C-f" . helm-find-files)
 
-   ("M-g b" . magit-blame)
-   ("M-g c" . magit-commit)
-   ("M-g d" . magit-diff)
-   ("M-g f" . magit-find-file)
-   ("M-g g" . magit-dispatch-popup)
-   ("M-g l" . magit-log-buffer-file)
-   ("M-g p" . magit-push)
-   ("M-g r" . magit-reset)
-   ("M-g s" . magit-status)
-   ("M-g u" . magit-pull)
-   ("M-g w" . magit-branch-checkout)
-   ("M-g z" . magit-stash-both)
+  ("M-g b" . magit-blame)
+  ("M-g c" . magit-commit)
+  ("M-g d" . magit-diff)
+  ("M-g f" . magit-find-file)
+  ("M-g g" . magit-dispatch-popup)
+  ("M-g l" . magit-log-buffer-file)
+  ("M-g p" . magit-push)
+  ("M-g r" . magit-reset)
+  ("M-g s" . magit-status)
+  ("M-g u" . magit-pull)
+  ("M-g w" . magit-branch-checkout)
+  ("M-g z" . magit-stash-both)
 
-   ("<help> c" . helpful-command)
-   ("<help> w" . helm-man-woman)
+  ("<help> c" . helpful-command)
+  ("<help> w" . helm-man-woman)
 
-   ("C-x <RET> s" . revert-buffer-with-coding-system-japanese-cp932-dos)))
+  ("C-x <RET> s" . revert-buffer-with-coding-system-japanese-cp932-dos))
 
 ;; 見た目
 ;; 等幅になるようにRictyを設定
@@ -294,7 +293,7 @@
   :hook
   prog-mode-hook
   web-mode-hook
-  :config (set-face-foreground 'rainbow-delimiters-depth-1-face "#586e75")) ;文字列の色と被るため,変更
+  :custom-face (rainbow-delimiters-depth-1-face . '((t (:foreground "#586e75"))))) ; 文字列の色と被るため,変更
 
 ;; 色コードを可視化
 (leaf rainbow-mode
@@ -315,10 +314,10 @@
 ;; 置換の動きを可視化
 (leaf anzu
   :ensure t
+  :custom (global-anzu-mode . t)
   :bind
   ([remap query-replace] . anzu-query-replace)
-  ([remap query-replace-regexp] . anzu-query-replace-regexp)
-  :config (global-anzu-mode t))
+  ([remap query-replace-regexp] . anzu-query-replace-regexp))
 
 ;; History
 (leaf recentf
@@ -328,51 +327,48 @@
    (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
 
 (leaf recentf-ext :ensure t :require t)
-
-(leaf recentf-remove-sudo-tramp-prefix
-  :ensure t
-  :config (recentf-remove-sudo-tramp-prefix-mode 1))
+(leaf recentf-remove-sudo-tramp-prefix :ensure t :config (recentf-remove-sudo-tramp-prefix-mode 1))
 
 (leaf savehist
   :custom
-  ((savehist-mode . t)
-   (savehist-minibuffer-history-variables . (cons 'extended-command-history savehist-minibuffer-history-variables))))
+  (savehist-mode . t)
+  (savehist-minibuffer-history-variables . (cons 'extended-command-history savehist-minibuffer-history-variables)))
 
 (leaf desktop
   :custom
-  ((desktop-save-mode . t)
-   (desktop-globals-to-save . nil)
-   (desktop-restore-frames . nil)))
+  (desktop-save-mode . t)
+  (desktop-globals-to-save . nil)
+  (desktop-restore-frames . nil))
 
 (leaf save-place-mode :config (save-place-mode 1))
 
 (leaf files
   :custom
-  (;; バックアップ先をカレントディレクトリから変更
-   (backup-directory-alist . `(("" . ,(concat user-emacs-directory "file-backup/"))))
-   ;; 自動保存(クラッシュ時の対応)先をカレントディレクトリから変更
-   (auto-save-file-name-transforms . `((".*" ,temporary-file-directory t)))
-   ;; askだと件数を超えた自動削除時時に一々聞いてくるのでtに変更
-   (delete-old-versions . t)
-   ;; backupに新しいものをいくつ残すか
-   (kept-new-versions . 50)
-   ;; backupに古いものをいくつ残すか
-   (kept-old-versions . 0)
-   ;; バックアップファイルを作成する。
-   (make-backup-files . t)
-   ;; 複数バックアップ
-   (version-control . t)))
+  ;; バックアップ先をカレントディレクトリから変更
+  (backup-directory-alist . `(("" . ,(concat user-emacs-directory "file-backup/"))))
+  ;; 自動保存(クラッシュ時の対応)先をカレントディレクトリから変更
+  (auto-save-file-name-transforms . `((".*" ,temporary-file-directory t)))
+  ;; askだと件数を超えた自動削除時時に一々聞いてくるのでtに変更
+  (delete-old-versions . t)
+  ;; backupに新しいものをいくつ残すか
+  (kept-new-versions . 50)
+  ;; backupに古いものをいくつ残すか
+  (kept-old-versions . 0)
+  ;; バックアップファイルを作成する
+  (make-backup-files . t)
+  ;; 複数バックアップ
+  (version-control . t))
 
 (leaf tramp :custom (tramp-auto-save-directory . temporary-file-directory)) ; trampの自動保存ディレクトリをtmpにする
-(leaf *history
-  :custom (create-lockfiles . nil)      ; ロックファイルとしてシンボリックリンクを作らない. parcelがバグる.
-  :config
-  (defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
-  (advice-add 'save-buffer :before 'setq-buffer-backed-up-nil))
+(leaf filelock :custom (create-lockfiles . nil)) ; percelがバグるのでロックファイルとしてシンボリックリンクを作らない
+
+(leaf files
+  :init (defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
+  :advice (:before save-buffer setq-buffer-backed-up-nil)) ; バックアップファイルを毎回作成する
 
 ;; toolkit
-(leaf menu-bar :custom (menu-bar-mode . nil))          ; メニューバーを表示させない
-(leaf tool-bar :custom (tool-bar-mode . nil))          ; ツールバーを表示させない
+(leaf menu-bar :custom (menu-bar-mode . nil))        ; メニューバーを表示させない
+(leaf tool-bar :custom (tool-bar-mode . nil))        ; ツールバーを表示させない
 (leaf frame :config (toggle-frame-maximized))        ; 全画面化
 (leaf image-file :custom (auto-image-file-mode . 1)) ; 画像を表示
 
@@ -395,14 +391,13 @@
            "/%i"))))
 
 ;; バッファの名前にディレクトリ名を付けることでユニークになりやすくする
-(leaf uniquify
-  :require t
-  :custom (uniquify-buffer-name-style . 'forward))
+(leaf uniquify :require t :custom (uniquify-buffer-name-style . 'forward))
 
 ;; その他
 
 (leaf tabulated-list
   :config
+  ;; パッケージの名前などの幅を大きくとる
   (define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
     "Major mode for browsing a list of packages.
 Letters do not insert themselves; instead, they are commands.
@@ -418,38 +413,36 @@ Letters do not insert themselves; instead, they are commands.
     (tabulated-list-init-header)))
 
 (leaf dired
-  :require t
-  :preface (defvar ls-option (concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
-  :custom ((dired-auto-revert-buffer . t) ; diredの自動再読込
-           (dired-dwim-target . t)
-           (dired-isearch-filenames . t)
-           (dired-listing-switches . ls-option)
-           (dired-recursive-copies . 'always)   ; 聞かずに再帰的コピー
-           (dired-recursive-deletes . 'always)) ; 聞かずに再帰的削除
+  :init
+  (defun dired-jump-to-current ()
+    (interactive)
+    (dired "."))
+  :custom
+  (dired-auto-revert-buffer . t)        ; diredの自動再読込
+  (dired-dwim-target . t)               ; コピーなどを行う時に隣のバッファを対象にする
+  (dired-isearch-filenames . t)         ; isearchの対象をファイル名のみにする
+  (dired-recursive-copies . 'always)    ; 聞かずに再帰的コピー
+  (dired-recursive-deletes . 'always)   ; 聞かずに再帰的削除
+  `(dired-listing-switches . ,(concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
   :bind (:dired-mode-map
          ("C-o" . nil)
          ("C-p" . nil)
          ("M-o" . nil)
          ("C-." . dired-up-directory))
   :config
-  (defun dired-jump-to-current ()
-    (interactive)
-    (dired "."))
-  (leaf wdired
-    :require t
-    :bind (:dired-mode-map ("C-c C-p" . wdired-change-to-wdired-mode))
-    :config (dvorak-set-key-prog dired-mode-map)))
+  (dvorak-set-key-prog dired-mode-map)
+  (leaf wdired :bind (:dired-mode-map ("C-c C-p" . wdired-change-to-wdired-mode))))
 
 (leaf *c-source-code
   :custom
-  ((delete-by-moving-to-trash . t)             ; ごみ箱を有効
-   (fill-column . 1000)                        ; auto fillを実質無効化(ちゃんとした無効化方法がわからない)
-   (indent-tabs-mode . nil)                    ; インデントをスペースで行う
-   (message-log-max . 100000)                  ; メッセージをたくさん残す
-   (read-buffer-completion-ignore-case . t)    ; 大文字と小文字を区別しない バッファ名
-   (read-file-name-completion-ignore-case . t) ; 大文字と小文字を区別しない ファイル名
-   (scroll-conservatively . 1)                 ; 最下段までスクロールした時のカーソルの移動量を減らす
-   (scroll-margin . 5)))                       ; 最下段までスクロールしたという判定を伸ばす
+  (delete-by-moving-to-trash . t)             ; ごみ箱を有効
+  (fill-column . 1000)                        ; auto fillを実質無効化(ちゃんとした無効化方法がわからない)
+  (indent-tabs-mode . nil)                    ; インデントをスペースで行う
+  (message-log-max . 100000)                  ; メッセージをたくさん残す
+  (read-buffer-completion-ignore-case . t)    ; 大文字と小文字を区別しない バッファ名
+  (read-file-name-completion-ignore-case . t) ; 大文字と小文字を区別しない ファイル名
+  (scroll-conservatively . 1)                 ; 最下段までスクロールした時のカーソルの移動量を減らす
+  (scroll-margin . 5))                        ; 最下段までスクロールしたという判定を伸ばす
 
 (leaf man
   :after t
@@ -459,12 +452,12 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf ediff
   :custom
-  ((ediff-split-window-function . 'split-window-horizontally)   ; ediffでウィンドウを横分割
-   (ediff-window-setup-function . 'ediff-setup-windows-plain))) ; ediffにframeを生成させない
+  (ediff-split-window-function . 'split-window-horizontally)  ; ediffでウィンドウを横分割
+  (ediff-window-setup-function . 'ediff-setup-windows-plain)) ; ediffにframeを生成させない
 
 (leaf autorevert :custom (global-auto-revert-mode . 1)) ; 自動再読込
 (leaf diff :custom (diff-switches . "-u")) ; diffをunifitedモードで
-(leaf executable :config (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
+(leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
 (leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
 (leaf imaxima :custom (imaxima-scale-factor . 10.0)) ; imaximaの全体を大きくする
 (leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
@@ -480,10 +473,8 @@ Letters do not insert themselves; instead, they are commands.
 (leaf ibuffer
   :after t
   :defvar ibuffer-mode-map
-  :preface (defvar ibuffer-formats-conf
-             '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
-               (mark " " (name 60 -1) " " filename)))
-  :custom (ibuffer-formats . ibuffer-formats-conf)
+  :custom `(ibuffer-formats . '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
+                                (mark " " (name 60 -1) " " filename))) ; 幅を大きくする
   :bind (:ibuffer-mode-map
          ("C-o" . nil)
          ("C-t" . nil)
@@ -493,7 +484,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf profiler
   :after t
   :defvar profiler-report-mode-map
-  :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right)))))
+  :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right))))) ; 幅を大きくする
   :config (dvorak-set-key-prog profiler-report-mode-map))
 
 (leaf company
@@ -549,21 +540,27 @@ Letters do not insert themselves; instead, they are commands.
 (leaf helm
   :ensure t
   :require t helm-config
-  :custom ((helm-buffer-max-len-mode . 25) ; モードを短縮する基準
-           (helm-buffer-max-length . 50)   ; デフォルトはファイル名を短縮する区切りが20
-           (helm-delete-minibuffer-contents-from-point . t) ; kill-line sim
-           (helm-descbinds-mode . t)
-           (helm-ff-file-name-history-use-recentf . t)
-           (helm-samewindow . t)        ; ウインドウ全体に表示
-           (helm-for-files-preferred-list
-            . '(helm-source-buffers-list
-                helm-source-recentf
-                helm-source-files-in-current-dir
-                helm-source-ls-git-status
-                helm-source-ls-git
-                helm-source-file-cache
-                helm-source-locate)))
-  :bind (:helm-map ("C-M-b" . nil) ("C-b" . nil) ("C-h" . nil) ("M-b" . nil) ("M-s" . nil) ("<tab>" . helm-select-action))
+  :custom
+  (helm-buffer-max-len-mode . 25)                  ; モードを短縮する基準
+  (helm-buffer-max-length . 50)                    ; デフォルトはファイル名を短縮する区切りが20
+  (helm-delete-minibuffer-contents-from-point . t) ; kill-line sim
+  (helm-ff-file-name-history-use-recentf . t)      ; helm-find-filesにrecentfを使用する
+  (helm-samewindow . t)                            ; ウインドウ全体に表示
+  (helm-for-files-preferred-list                   ; helm-for-filesのソースを充実化
+   . '(helm-source-buffers-list
+       helm-source-recentf
+       helm-source-files-in-current-dir
+       helm-source-ls-git-status
+       helm-source-ls-git
+       helm-source-file-cache
+       helm-source-locate))
+  :bind (:helm-map
+         ("C-M-b" . nil)
+         ("C-b" . nil)
+         ("C-h" . nil)
+         ("M-b" . nil)
+         ("M-s" . nil)
+         ("<tab>" . helm-select-action))
   :config
   (helm-mode 1)
   (custom-set-variables '(helm-boring-buffer-regexp-list (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list)))
@@ -580,37 +577,35 @@ Letters do not insert themselves; instead, they are commands.
     :defvar helm-source-ls-git-status helm-source-ls-git helm-source-ls-git-buffers
     :defun helm-ls-git-build-git-status-source helm-ls-git-build-ls-git-source helm-ls-git-build-buffers-source
     :config
+    ;; helm-for-filesで出力するのには手動初期化が必要
     (setq helm-source-ls-git-status
           (helm-ls-git-build-git-status-source)
           helm-source-ls-git
           (helm-ls-git-build-ls-git-source)
           helm-source-ls-git-buffers
           (helm-ls-git-build-buffers-source)))
-  (leaf helm-descbinds :ensure t :config (helm-descbinds-mode)))
+  (leaf helm-descbinds :ensure t :custom (helm-descbinds-mode . t)))
 
 ;; ジャンプ
 
 (leaf helm-ag
   :ensure t
-  :require t
-  :custom ((helm-ag-base-command . "rg --no-heading --smart-case")
-           (helm-grep-ag-command . "rg --color=always --smart-case --no-heading --line-number %s %s %s"))
+  :custom
+  (helm-ag-base-command . "rg --no-heading --smart-case")
+  (helm-grep-ag-command . "rg --color=always --smart-case --no-heading --line-number %s %s %s")
+  :advice (:after helm-ag--save-current-context xref-push-marker-stack)
   :commands helm-ag--project-root
-  :config
-  (advice-add 'helm-ag--save-current-context :after 'xref-push-marker-stack)
-
+  :init
   (defun helm-do-ag-project-root-or-default ()
     (interactive)
     (if (helm-ag--project-root)
         (helm-do-ag-project-root)
       (helm-do-ag)))
-
   (defun helm-do-ag-project-root-or-default-at-point ()
     (interactive)
     (defvar helm-ag-insert-at-point)
     (let ((helm-ag-insert-at-point 'symbol))
       (helm-do-ag-project-root-or-default)))
-
   (defun helm-do-ag-current-dir ()
     (interactive)
     (helm-do-ag default-directory)))
@@ -623,18 +618,17 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf ggtags
   :ensure t
-  :preface
+  :init
   (eval-and-compile
     (defun gtags-dir? ()
       (locate-dominating-file default-directory "GTAGS")))
-
   (defun ggtags-mode-when-gtags-dir ()
     (when (gtags-dir?)
       (ggtags-mode 1)))
-
-  (add-hook 'find-file-hook 'ggtags-mode-when-gtags-dir)
-  :custom ((ggtags-enable-navigation-keys . nil)
-           (ggtags-global-ignore-case . t)))
+  :hook (find-file-hook . ggtags-mode-when-gtags-dir)
+  :custom
+  (ggtags-enable-navigation-keys . nil)
+  (ggtags-global-ignore-case . t))
 
 (leaf smart-jump
   :ensure t
@@ -693,7 +687,6 @@ Letters do not insert themselves; instead, they are commands.
     (indent-according-to-mode)
     (forward-line -1)
     (indent-according-to-mode))
-
   (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET"))))
 
 (leaf string-inflection
@@ -725,35 +718,37 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :require t
   :diminish "UT"
   :defvar undo-tree-visualizer-mode-map
-  :custom ((undo-tree-enable-undo-in-region . nil)
-           (undo-tree-history-directory-alist . `(("" . ,(concat user-emacs-directory "undo-tree/"))))
-           (undo-tree-visualizer-timestamps . t))
+  :custom
+  (global-undo-tree-mode . t)
+  (undo-tree-enable-undo-in-region . nil)
+  (undo-tree-history-directory-alist . `(("" . ,(concat user-emacs-directory "undo-tree/"))))
+  (undo-tree-visualizer-timestamps . t)
   :config
-  (global-undo-tree-mode)
   (dvorak-set-key-prog undo-tree-visualizer-mode-map)
   (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit))
 
 (leaf whitespace
   :require t
-  :custom ((global-whitespace-mode . 1)
-           (whitespace-action . '(auto-cleanup))
-           (whitespace-style . '(face tabs spaces trailing empty)))
+  :custom
+  (global-whitespace-mode . 1)
+  (whitespace-action . '(auto-cleanup))
+  (whitespace-style . '(face tabs spaces trailing empty))
+  :custom-face
+  (whitespace-empty . '((t (:foreground "#5a2c2b"))))
+  (whitespace-space . '((t (:background "#073642"))))
+  (whitespace-tab . '((t (:foreground "#0C2B33"))))
+  (whitespace-trailing . '((t (:foreground "#332B28"))))
   :defvar whitespace-action
-  :config
+  :init
   (defun whitespace-cleanup-turn-off ()
     (interactive)
-    (setq-local whitespace-action (remove 'auto-cleanup whitespace-action)))
-  (set-face-background 'whitespace-space "#073642")
-  (set-face-foreground 'whitespace-empty "#5a2c2b")
-  (set-face-foreground 'whitespace-tab "#0C2B33")
-  (set-face-foreground 'whitespace-trailing "#332B28"))
+    (setq-local whitespace-action (remove 'auto-cleanup whitespace-action))))
 
 ;; Emacsと外部プロセスの連携
 
 (leaf magit
   :ensure t
   :config
-  (leaf gitignore-mode :ensure t)
   (leaf magit-files
     :bind (:magit-file-mode-map ("C-x g" . nil)))
   (leaf magit-mode
@@ -769,42 +764,43 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :defvar git-rebase-mode-map
     :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))))
 
+(leaf gitignore-mode :ensure t)
+
 (leaf git-gutter
   :ensure t
   :diminish "GG"
   :custom (global-git-gutter-mode . t))
 
-(leaf docker
-  :ensure t
-  :custom (docker-container-shell-file-name . "/bin/bash"))
+(leaf docker :ensure t :custom (docker-container-shell-file-name . "/bin/bash"))
 
 (leaf mozc-im
   :ensure t
   :require t
-  :custom ((default-input-method . "japanese-mozc-im") (mozc-candidate-style . 'echo-area))
-  :config
+  :custom
+  (default-input-method . "japanese-mozc-im")
+  (mozc-candidate-style . 'echo-area)
+  :custom-face (mozc-preedit-selected-face . '((t (:background "#268bd2"))))
+  :init
   (defun cursor-color-toggle ()
     (if current-input-method
         (set-face-background 'cursor "#00629D")
       (set-face-background 'cursor "#839496")))
-
   (defun cursor-color-direct ()
     (set-face-background 'cursor "#839496"))
-
-  (set-face-background 'mozc-preedit-selected-face "#268bd2")
-  (add-hook 'input-method-activate-hook 'cursor-color-toggle)
-  (add-hook 'input-method-deactivate-hook 'cursor-color-direct)
-  (add-hook 'window-configuration-change-hook 'cursor-color-toggle))
+  :hook
+  (input-method-activate-hook . cursor-color-toggle)
+  (input-method-deactivate-hook . cursor-color-direct)
+  (window-configuration-change-hook . cursor-color-toggle))
 
 ;; 有効にするだけの短いコード
 
-(leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
-(leaf editorconfig :ensure t :diminish "EC" :config (editorconfig-mode 1))
+(leaf auto-sudoedit :ensure t :custom (auto-sudoedit-mode . 1))
+(leaf editorconfig :ensure t :diminish "EC" :custom (editorconfig-mode . 1))
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
 (leaf point-undo :el-get emacsmirror/point-undo :require t)
 (leaf symbolword-mode :ensure t :require t)
-(leaf which-key :ensure t :config (which-key-mode 1))
+(leaf which-key :ensure t :custom (which-key-mode . 1))
 
 ;; テキストを超えたプログラミング機能
 
@@ -819,7 +815,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf flycheck
   :ensure t
-  :require t
   :custom
   (global-flycheck-mode . t)
   (flycheck-highlighting-mode . nil)       ; 下線が鬱陶しい
@@ -864,16 +859,14 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf generic-x :require t)
 
 (leaf conf-mode
-  :config
-  (leaf conf-space-mode
-    :mode
-    "\\.accept_keywords$"
-    "\\.keywords$"
-    "\\.license$"
-    "\\.mask$"
-    "\\.unmask$"
-    "\\.use$"
-    ))
+  :mode
+  "\\.accept_keywords$"
+  "\\.keywords$"
+  "\\.license$"
+  "\\.mask$"
+  "\\.unmask$"
+  "\\.use$"
+  )
 
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
@@ -890,30 +883,30 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf cc-mode
   :after t
-  :defvar c-mode-base-map c-mode-map c++-mode-map
+  :defvar c-mode-base-map
   :config
   (leaf clang-format
     :ensure t
-    :config
+    :init
     (defun set-hook-after-save-clang-format ()
-      (add-hook 'after-save-hook 'clang-format-buffer t t)))
-  (add-hook 'c-mode-hook 'set-hook-after-save-clang-format)
-  (add-hook 'c++-mode-hook 'set-hook-after-save-clang-format)
-
-  (dvorak-set-key-prog c-mode-base-map)
-  (define-key c-mode-map [remap indent-whole-buffer] 'clang-format-buffer)
-  (define-key c++-mode-map [remap indent-whole-buffer] 'clang-format-buffer))
+      (add-hook 'after-save-hook 'clang-format-buffer t t))
+    :hook ((c-mode-hook . set-hook-after-save-clang-format)
+           (c++-mode-hook . set-hook-after-save-clang-format))
+    :bind ((:c-mode-map ([remap indent-whole-buffer] . clang-format-buffer))
+           (:c++-mode-map ([remap indent-whole-buffer] . clang-format-buffer))))
+  (dvorak-set-key-prog c-mode-base-map))
 
 (leaf d-mode
   :ensure t
   :after cc-vars
-  :custom ((c-default-style . (cons '(d-mode . "java") c-default-style))
-           (dfmt-flags . '("--max_line_length=80")))
+  :custom
+  (c-default-style . (cons '(d-mode . "java") c-default-style))
+  (dfmt-flags . '("--max_line_length=80"))
   :bind (:d-mode-map
          ([remap indent-whole-buffer] . dfmt-region-or-buffer)
          ([remap save-buffer] . 'save-buffer-and-dfmt))
   :defun dfmt-buffer
-  :config
+  :init
   (defun save-buffer-and-dfmt ()
     "セーブした後dfmt-bufferする.
 dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
@@ -925,8 +918,10 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
       (when (and (dfmt-buffer) (buffer-modified-p)) (save-buffer)))))
 
 (leaf elisp-mode
-  :bind (:emacs-lisp-mode-map ("C-M-q" . nil))
-  :custom ((flycheck-emacs-lisp-load-path . 'inherit))
+  :custom (flycheck-emacs-lisp-load-path . 'inherit)
+  :bind (:emacs-lisp-mode-map
+         ("C-M-q" . nil)
+         ("C-c C-e" . macrostep-expand))
   :config
   (leaf elisp-slime-nav
     :ensure t
@@ -935,6 +930,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (leaf eldoc :hook emacs-lisp-mode-hook ielm-mode-hook)
   (leaf flycheck-package :ensure t :after flycheck :defun flycheck-package-setup :config (flycheck-package-setup))
   (leaf ielm :bind (:ielm-map ("C-c C-d" . helpful-at-point)))
+  (leaf macrostep :ensure t)
   (leaf simple :bind (:read-expression-map ("<tab>" . completion-at-point))))
 
 (leaf haskell-mode
@@ -943,15 +939,26 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :custom
   (haskell-hoogle-command . nil)
   (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s")
-  :defvar flycheck-error-list-buffer flymake-allowed-file-name-masks
+  :defvar flycheck-error-list-buffer
   :bind (:haskell-mode-map
-         (("M-i" . stylish-haskell-toggle)
-          ("C-M-z" . haskell-repl-and-flycheck)
-          ("C-c C-b" . haskell-hoogle)
-          ("C-c C-c" . haskell-session-change-target)
-          ("C-c C-l" . haskell-process-load-file)
-          ("C-c C-z" . haskell-interactive-switch)
-          ([remap indent-whole-buffer] . haskell-mode-stylish-buffer)))
+         ("M-i" . stylish-haskell-toggle)
+         ("C-M-z" . haskell-repl-and-flycheck)
+         ("C-c C-b" . haskell-hoogle)
+         ("C-c C-c" . haskell-session-change-target)
+         ("C-c C-l" . haskell-process-load-file)
+         ("C-c C-z" . haskell-interactive-switch)
+         ([remap indent-whole-buffer] . haskell-mode-stylish-buffer))
+  :init
+  (defun haskell-repl-and-flycheck ()
+    (interactive)
+    (delete-other-windows)
+    (flycheck-list-errors)
+    (haskell-process-load-file)
+    (haskell-interactive-switch)
+    (split-window-below)
+    (other-window 1)
+    (switch-to-buffer flycheck-error-list-buffer)
+    (other-window 1))
   :config
   (leaf lsp-haskell
     :ensure t
@@ -976,25 +983,15 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (leaf haskell-cabal
     :after t
     :defvar haskell-cabal-mode-map
-    :config (dvorak-set-key-prog haskell-cabal-mode-map))
-  (defun haskell-repl-and-flycheck ()
-    (interactive)
-    (delete-other-windows)
-    (flycheck-list-errors)
-    (haskell-process-load-file)
-    (haskell-interactive-switch)
-    (split-window-below)
-    (other-window 1)
-    (switch-to-buffer flycheck-error-list-buffer)
-    (other-window 1)))
+    :config (dvorak-set-key-prog haskell-cabal-mode-map)))
 
 (leaf hamlet-mode
   :ensure t
-  :config
+  :init
   (defun hamlet-mode-config ()
     (local-set-key (kbd "C-m") 'newline-and-indent)
     (electric-indent-local-mode -1))
-  (add-hook 'hamlet-mode-hook 'hamlet-mode-config))
+  :hook (hamlet-mode-hook . hamlet-mode-config))
 
 (leaf lsp-java
   :ensure t
@@ -1004,8 +1001,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 (leaf markdown-mode
   :ensure t
   :after t
-  :custom ((markdown-fontify-code-blocks-natively . t)
-           (markdown-hide-urls . nil))
+  :custom
+  (markdown-fontify-code-blocks-natively . t)
+  (markdown-hide-urls . nil)
   :defvar markdown-mode-map
   :config
   (custom-set-variables
@@ -1036,9 +1034,10 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :config (leaf flycheck-perl6 :ensure t))
 
 (leaf ruby-mode
-  :custom ((inf-ruby-default-implementation . "pry")
-           (inf-ruby-eval-binding . "Pry.toplevel_binding")
-           (ruby-insert-encoding-magic-comment . nil))
+  :custom
+  (inf-ruby-default-implementation . "pry")
+  (inf-ruby-eval-binding . "Pry.toplevel_binding")
+  (ruby-insert-encoding-magic-comment . nil)
   :after t
   :defvar ruby-mode-map
   :config (dvorak-set-key-prog ruby-mode-map))
@@ -1046,51 +1045,32 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 (leaf rustic
   :ensure t
   :mode "\\.rs$"
-  :custom ((rustic-format-display-method . 'pop-to-buffer-without-switch) ; エラーポップアップにフォーカスを移さない
-           (rustic-format-on-save . t))                                   ; 保存時にrustfmtを動かす
+  :custom
+  (rustic-format-display-method . 'pop-to-buffer-without-switch) ; エラーポップアップにフォーカスを移さない
+  (rustic-format-on-save . t)                                    ; 保存時にrustfmtを動かす
   :after flycheck
   :defun flycheck-select-checker
-  :config
+  :init
   (defun pop-to-buffer-without-switch (buffer-or-name &optional action norecord)
     "本当にwithout switchしているわけではなく前のウィンドウにフォーカスを戻すだけ"
     (pop-to-buffer buffer-or-name action norecord)
     (other-window -1))
-
   (defun flycheck-select-checker-rustic ()
     "rusticの場合のみclippyが見えるようになるのでlspではなくrustic特有のflycheckを使う"
     (flycheck-select-checker 'rustic-clippy))
-  (add-hook 'rustic-mode-hook 'flycheck-select-checker-rustic))
+  :hook (rustic-mode-hook . flycheck-select-checker-rustic))
 
 (leaf scala-mode
   :ensure t
-  :config
+  :init
   (defun lsp-format-buffer-after-save ()
     (add-hook 'after-save-hook 'lsp-format-buffer nil t))
-  (add-hook 'scala-mode-hook 'lsp-format-buffer-after-save))
+  :hook (scala-mode-hook . lsp-format-buffer-after-save))
 
 (leaf sbt-mode :ensure t :bind (:sbt:mode-map ("M-t" . comint-previous-input)))
 
 (leaf *web
-  :config
-  (leaf prettier-js
-    :ensure t
-    :hook
-    (css-mode-hook
-     json-mode-hook
-     less-css-mode-hook
-     scss-mode-hook
-     typescript-mode-hook
-     yaml-mode-hook
-     . prettier-js-mode-wrapper)
-    :config
-    (eval-and-compile
-      (defun prettier-js-mode-wrapper ()
-        "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにする"
-        (interactive)
-        (local-set-key [remap indent-whole-buffer] 'prettier-js)
-        (local-set-key (kbd "M-i") 'prettier-js-mode)
-        (prettier-js-mode t))))
-
+  :init
   (eval-and-compile
     (defun flycheck-select-tslint-or-eslint ()
       "tslintが使えるプロジェクトだとtslintを有効化して,それ以外ではeslintを有効化する"
@@ -1107,10 +1087,28 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
           (progn
             (flycheck-select-checker 'javascript-eslint)
             (add-hook 'after-save-hook 'eslint-fix nil t))))))
+  :config
+  (leaf prettier-js
+    :ensure t
+    :init
+    (eval-and-compile
+      (defun prettier-js-mode-wrapper ()
+        "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにする"
+        (interactive)
+        (local-set-key [remap indent-whole-buffer] 'prettier-js)
+        (local-set-key (kbd "M-i") 'prettier-js-mode)
+        (prettier-js-mode t)))
+    :hook
+    (css-mode-hook
+     json-mode-hook
+     less-css-mode-hook
+     scss-mode-hook
+     typescript-mode-hook
+     yaml-mode-hook
+     . prettier-js-mode-wrapper))
 
   (leaf web-mode
     :ensure t
-    :require t
     :defvar web-mode-content-type
     :defun flycheck-add-mode sp-local-pair
     :mode
@@ -1128,24 +1126,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
     "\\.phtml\\'"
     "\\.tpl\\'"
     "\\.tsx\\'"
-    :custom ((web-mode-code-indent-offset . 2)
-             (web-mode-css-indent-offset . 2)
-             (web-mode-enable-auto-indentation . nil)
-             (web-mode-enable-auto-quoting . nil)
-             (web-mode-enable-current-column-highlight . t)
-             (web-mode-enable-current-element-highlight . t)
-             (web-mode-markup-indent-offset . 2))
-    :config
-    (sp-local-pair '(web-mode) "<" ">" :actions :rem)
-    (set-face-background 'web-mode-jsx-depth-1-face "#073844")
-    (set-face-background 'web-mode-jsx-depth-2-face "#083C49")
-    (set-face-background 'web-mode-jsx-depth-3-face "#08404F")
-    (set-face-background 'web-mode-jsx-depth-4-face "#094554")
-    (set-face-background 'web-mode-jsx-depth-5-face "#0A4D5E")
-
-    (flycheck-add-mode 'html-tidy 'web-mode)
-    (flycheck-add-mode 'javascript-eslint 'web-mode)
-    (flycheck-add-mode 'typescript-tslint 'web-mode)
+    :init
     (defun web-mode-setting ()
       (pcase web-mode-content-type
         ("html"
@@ -1161,7 +1142,26 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
          (progn
            (lsp)
            (prettier-js-mode-wrapper)))))
-    (add-hook 'web-mode-hook 'web-mode-setting))
+    :hook (web-mode-hook . web-mode-setting)
+    :custom
+    (web-mode-code-indent-offset . 2)
+    (web-mode-css-indent-offset . 2)
+    (web-mode-enable-auto-indentation . nil)
+    (web-mode-enable-auto-quoting . nil)
+    (web-mode-enable-current-column-highlight . t)
+    (web-mode-enable-current-element-highlight . t)
+    (web-mode-markup-indent-offset . 2)
+    :custom-face
+    (web-mode-jsx-depth-1-face . '((t (:background "#073844"))))
+    (web-mode-jsx-depth-2-face . '((t (:background "#083C49"))))
+    (web-mode-jsx-depth-3-face . '((t (:background "#08404F"))))
+    (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
+    (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
+    :config
+    (sp-local-pair '(web-mode) "<" ">" :actions :rem)
+    (flycheck-add-mode 'html-tidy 'web-mode)
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    (flycheck-add-mode 'typescript-tslint 'web-mode))
 
   (leaf css-mode :custom (css-indent-offset . 2))
   (leaf js :custom (js-indent-level . 2))
@@ -1169,14 +1169,12 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (leaf typescript-mode
     :ensure t
     :custom (typescript-indent-level . 2)
-    :config
-    (flycheck-add-mode 'javascript-eslint 'typescript-mode)
-    (add-hook 'typescript-mode-hook 'flycheck-select-tslint-or-eslint))
+    :hook (typescript-mode-hook . flycheck-select-tslint-or-eslint)
+    :config (flycheck-add-mode 'javascript-eslint 'typescript-mode))
+
   (leaf yaml-mode :ensure t)
 
-  (leaf eslint-fix
-    :ensure t
-    :config (advice-add 'eslint-fix :after 'flycheck-buffer))) ; fixされたらエラーバッファを更新する
+  (leaf eslint-fix :ensure t :advice (:after eslint-fix flycheck-buffer))) ; fixされたらエラーバッファを更新する
 
 (leaf nxml-mode
   :mode "\\.fxml\\'"
