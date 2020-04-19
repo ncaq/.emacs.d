@@ -840,10 +840,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
    typescript-mode-hook
    . lsp)
   :bind (:lsp-mode-map
-         ("C-c C-e" . lsp-workspace-restart)
+         ("C-c C-a" . lsp-execute-code-action)
          ("C-c C-i" . lsp-format-buffer)
          ("C-c C-n" . lsp-rename)
-         ("C-c C-r" . lsp-execute-code-action)
+         ("C-c C-r" . lsp-workspace-restart)
          ("C-c C-t" . lsp-describe-thing-at-point))
   :config
   (leaf lsp-ui
