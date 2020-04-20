@@ -871,6 +871,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   "\\.use$"
   )
 
+(leaf apache-mode :ensure t)
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
 (leaf dockerfile-mode :ensure t)
@@ -878,8 +879,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil)) ; dotファイルで自動セミコロン挿入しない
 (leaf make-mode :after t :defvar makefile-mode-map :config (dvorak-set-key-prog makefile-mode-map))
 (leaf mediawiki :ensure t :mode "\\.wiki$")
+(leaf nginx-mode :ensure t)
 (leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
 (leaf prolog :after t :defvar prolog-mode-map :config (dvorak-set-key-prog prolog-mode-map))
+(leaf robots-txt-mode :ensure t)
 (leaf sh-script :custom (sh-basic-offset . 2) :config (leaf sh :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
