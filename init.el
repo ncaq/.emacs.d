@@ -887,6 +887,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf sh-script :custom (sh-basic-offset . 2) :config (leaf sh :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
+(leaf yarn-mode :ensure t)
 
 (leaf cc-mode
   :after t
