@@ -207,7 +207,7 @@
   ("M-?" . point-redo)
   ("M-b" . backward-kill-word)
   ("M-c" . help-command)
-  ("M-f" . helm-occur)
+  ("M-f" . helm-swoop)
   ("M-j" . helm-do-ag-project-root-or-default-at-point)
   ("M-l" . sort-dwim)
   ("M-m" . newline-under)
@@ -586,7 +586,8 @@ Letters do not insert themselves; instead, they are commands.
           (helm-ls-git-build-ls-git-source)
           helm-source-ls-git-buffers
           (helm-ls-git-build-buffers-source)))
-  (leaf helm-descbinds :ensure t :custom (helm-descbinds-mode . t)))
+  (leaf helm-descbinds :ensure t :custom (helm-descbinds-mode . t))
+  (leaf helm-swoop :ensure t))
 
 ;; ジャンプ
 
