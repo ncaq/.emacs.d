@@ -251,9 +251,9 @@
   ("C-x d" . mark-defun)
   ("C-x g" . insert-random-uuid)
   ("C-x p" . mark-paragraph)
-  ("C-x s" . mark-whole-sexp)
   ("C-x t" . insert-iso-datetime)
   ("C-x w" . mark-whole-word)
+  ("C-x x" . mark-whole-sexp)
 
   ("C-x C-f" . helm-find-files)
 
