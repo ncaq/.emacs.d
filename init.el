@@ -430,10 +430,9 @@ Letters do not insert themselves; instead, they are commands.
          ("C-o" . nil)
          ("C-p" . nil)
          ("M-o" . nil)
-         ("C-." . dired-up-directory))
-  :config
-  (dvorak-set-key-prog dired-mode-map)
-  (leaf wdired :bind (:dired-mode-map ("C-c C-p" . wdired-change-to-wdired-mode))))
+         ("C-." . dired-up-directory)
+         ("C-c C-p" . wdired-change-to-wdired-mode))
+  :config (dvorak-set-key-prog dired-mode-map))
 
 (leaf *c-source-code
   :custom
