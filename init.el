@@ -1071,9 +1071,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
 (leaf scala-mode
   :ensure t
   :init
-  (defun lsp-format-buffer-after-save ()
-    (add-hook 'after-save-hook 'lsp-format-buffer nil t))
-  :hook (scala-mode-hook . lsp-format-buffer-after-save))
+  (defun lsp-format-before-save ()
+    (add-hook 'before-save-hook 'lsp-format-buffer nil t))
+  :hook (scala-mode-hook . lsp-format-before-save))
 
 (leaf sbt-mode :ensure t :bind (:sbt:mode-map ("M-t" . comint-previous-input)))
 
