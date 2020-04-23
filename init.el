@@ -872,6 +872,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   )
 
 (leaf apache-mode :ensure t)
+(leaf bnf-mode :ensure t)
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
 (leaf dockerfile-mode :ensure t)
