@@ -797,7 +797,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 ;; 有効にするだけの短いコード
 
-(leaf auto-sudoedit :ensure t :custom (auto-sudoedit-mode . 1))
+(leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :diminish "EC" :custom (editorconfig-mode . 1))
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
