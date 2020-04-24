@@ -843,6 +843,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
    . lsp)
   :bind (:lsp-mode-map
          ("C-c C-a" . lsp-execute-code-action)
+         ("C-c C-d" . lsp-ui-doc-show) ; 手動でドキュメントを表示するコマンド
          ("C-c C-i" . lsp-format-buffer)
          ("C-c C-n" . lsp-rename)
          ("C-c C-r" . lsp-workspace-restart)
@@ -851,10 +852,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (leaf lsp-ui
     :ensure t
     :custom
-    (lsp-ui-doc-header . t)                               ; 何を見ているのかわからなくなりがちなのでそれも表示
-    (lsp-ui-doc-include-signature . t)                    ; シグネチャも表示する
-    (lsp-ui-doc-position . 'top)                          ; カーソル位置に表示されると下のコードが見えなくなるので上
-    :bind (:lsp-mode-map ("C-c C-d" . lsp-ui-doc-show)))) ; 手動でドキュメントを表示するコマンド
+    (lsp-ui-doc-header . t)             ; 何を見ているのかわからなくなりがちなのでそれも表示
+    (lsp-ui-doc-include-signature . t)  ; シグネチャも表示する
+    (lsp-ui-doc-position . 'top)        ; カーソル位置に表示されると下のコードが見えなくなるので上
+    (lsp-ui-sideline-enable . nil)))    ; エラーはflycheckで出して型はdocで出すので幅を取るのは不要
 
 ;; 各言語モード
 
