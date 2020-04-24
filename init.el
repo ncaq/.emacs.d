@@ -859,8 +859,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 ;; 各言語モード
 
-(leaf generic-x :require t)
-
 (leaf conf-mode
   :mode
   "\\.accept_keywords$"
@@ -876,6 +874,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
 (leaf dockerfile-mode :ensure t)
+(leaf generic-x :require t)
 (leaf go-mode :ensure t)
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil)) ; dotファイルで自動セミコロン挿入しない
 (leaf make-mode :after t :defvar makefile-mode-map :config (dvorak-set-key-prog makefile-mode-map))
