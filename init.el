@@ -639,7 +639,6 @@ Letters do not insert themselves; instead, they are commands.
   (smart-jump-refs-key . "C-M-.")
   :config
   (smart-jump-setup-default-registers)
-  (smart-jump-lsp-mode-register)
   (defun smart-jump-find-references-with-rg ()
     "Use `rg' to find references."
     (interactive)
