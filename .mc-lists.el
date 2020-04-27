@@ -32,6 +32,7 @@
         kill-region-or-word-at-point
         kill-ring-save-region-or-word-at-point
         markdown-enter-key
+        my-string-inflection-cycle-auto
         nxml-down-element
         nxml-electric-slash
         sgml-slash
