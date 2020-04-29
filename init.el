@@ -1199,9 +1199,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :after t
   :defvar nxml-mode-map
   :bind (:nxml-mode-map
-         ("M-b" . nil)
-         ("C-M-p" . nil)
-         ("C-M-t" . nxml-backward-element))
+         ("M-h" . nil)
+         ("C-M-t" . nil)
+         ("C-M-p" . nxml-backward-element))
   :config
   (leaf smartparens :config (sp-local-pair '(nxml-mode) "<" ">" :actions :rem))
   (dvorak-set-key-prog nxml-mode-map))
