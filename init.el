@@ -222,6 +222,7 @@
   ("M-x" . helm-M-x)
   ("M-y" . helm-show-kill-ring)
 
+  ("C-M-," . helm-semantic-or-imenu)
   ("C-M-;" . align-space)
   ("C-M-b" . backward-kill-sexp)
   ("C-M-d" . kill-sexp)
