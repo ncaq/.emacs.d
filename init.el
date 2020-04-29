@@ -1131,7 +1131,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
     :mode
     "\\.[agj]sp\\'"
     "\\.as[cp]x\\'"
-    "\\.css\\'"
     "\\.djhtml\\'"
     "\\.ejs\\'"
     "\\.erb\\'"
