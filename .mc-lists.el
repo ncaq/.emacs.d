@@ -29,7 +29,9 @@
         indent-for-tab-command
         kill-region
         kill-region-or-sexp-at-point
+        kill-region-or-symbol-at-point
         kill-region-or-word-at-point
+        kill-ring-save-region-or-symbol-at-point
         kill-ring-save-region-or-word-at-point
         markdown-enter-key
         my-string-inflection-cycle-auto

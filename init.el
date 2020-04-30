@@ -191,7 +191,7 @@
   ("C-p" . other-window-fallback-split)
   ("C-q" . kill-this-buffer)
   ("C-u" . kill-whole-line)
-  ("C-w" . kill-region-or-sexp-at-point)
+  ("C-w" . kill-region-or-symbol-at-point)
   ("C-z" . flycheck-list-errors)
 
   ("<C-iso-lefttab>" . company-dabbrev)
@@ -218,7 +218,7 @@
   ("M-r" . revert-buffer-safe-confirm)
   ("M-t" . scroll-down-one)
   ("M-u" . copy-whole-line)
-  ("M-w" . kill-ring-save-region-or-sexp-at-point)
+  ("M-w" . kill-ring-save-region-or-symbol-at-point)
   ("M-x" . helm-M-x)
   ("M-y" . helm-show-kill-ring)
 
