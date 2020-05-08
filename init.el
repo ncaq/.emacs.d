@@ -271,6 +271,8 @@
   ("M-g w" . magit-branch-checkout)
   ("M-g z" . magit-stash-both)
 
+  ("M-g Z" . magit-snapshot-both)
+
   ("<help> c" . helpful-command)
   ("<help> w" . helm-man-woman)
 
