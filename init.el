@@ -263,7 +263,7 @@
   ("M-g c" . magit-commit)
   ("M-g d" . magit-diff)
   ("M-g f" . magit-find-file)
-  ("M-g g" . magit-dispatch-popup)
+  ("M-g g" . magit-dispatch)
   ("M-g l" . magit-log-buffer-file)
   ("M-g p" . magit-push)
   ("M-g r" . magit-reset)
