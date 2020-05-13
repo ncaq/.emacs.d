@@ -2,6 +2,9 @@
 
 ;;; 初期化
 
+;; (require 'cl) を見逃す
+(setq byte-compile-warnings '(cl-functions))
+
 (eval-and-compile
   (prog1 "leafを初期化する"
     (custom-set-variables
@@ -806,7 +809,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf editorconfig :ensure t :diminish "EC" :custom (editorconfig-mode . 1))
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
-(leaf point-undo :el-get emacsmirror/point-undo :require t)
+(leaf point-undo :el-get ncaq/point-undo :require t)
 (leaf symbolword-mode :ensure t :require t)
 (leaf which-key :ensure t :custom (which-key-mode . 1))
 
@@ -1211,5 +1214,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   (dvorak-set-key-prog nxml-mode-map))
 
 ;; Local Variables:
+;; byte-compile-warnings: (not cl-functions obsolete)
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; End:
