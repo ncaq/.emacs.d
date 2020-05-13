@@ -280,7 +280,10 @@
 ;; 見た目
 ;; 等幅になるようにRictyを設定
 (leaf faces :config (set-face-attribute 'default nil :family "Ricty" :height 135))
-(leaf *set-fontset-font :config (set-fontset-font t 'unicode (font-spec :name "Ricty") nil 'append))
+(leaf *set-fontset-font
+  :config
+  (set-fontset-font t 'unicode (font-spec :name "Ricty") nil 'append)
+  (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append))
 
 ;; シンタックスハイライトをグローバルで有効化
 (leaf font-core :config (global-font-lock-mode 1))
