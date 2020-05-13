@@ -698,17 +698,18 @@ Letters do not insert themselves; instead, they are commands.
   :config
   (defun my-string-inflection-cycle-auto ()
     "メジャーモードに従って挙動を変える.
-lisp, shell, perl6はハイフンを含めることが出来るのでall.
+lisp, shell, rakuはハイフンを含めることが出来るのでall.
 python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのalias).
 その他はjavaスタイル.
 "
     (interactive)
     (pcase major-mode
       ((or 'common-lisp-mode
+           'dired-mode
            'emacs-lisp-mode
+           'raku-mode
            'scheme-mode
-           'sh-mode
-           'perl6-mode)
+           'sh-mode)
        (string-inflection-all-cycle))
       ((or 'python-mode
            'ruby-mode
@@ -1030,7 +1031,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
         ("js" . web-mode)
         ("jsx" . web-mode)
         ("md" . markdown-mode)
-        ("pl6" . perl6-mode)
+        ("pl6" . raku-mode)
         ("py" . python-mode)
         ("rb" . ruby-mode)
         ("rs" . rustic-mode)
@@ -1042,7 +1043,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
       markdown-code-lang-modes)))
   (dvorak-set-key-prog markdown-mode-map))
 
-(leaf perl6-mode
+(leaf raku-mode
   :ensure t
   :custom (raku-indent-offset . 2)
   :config
