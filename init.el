@@ -842,6 +842,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :custom (lsp-prefer-flymake . nil)    ; flycheckを優先する
   :hook
   (css-mode-hook
+   caml-mode-hook
    go-mode-hook
    haskell-mode-hook
    java-mode-hook
@@ -872,18 +873,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 ;; 各言語モード
 
-(leaf conf-mode
-  :mode
-  "\\.accept_keywords$"
-  "\\.keywords$"
-  "\\.license$"
-  "\\.mask$"
-  "\\.unmask$"
-  "\\.use$"
-  )
-
 (leaf apache-mode :ensure t)
 (leaf bnf-mode :ensure t)
+(leaf caml :ensure t :after t :defvar caml-mode-map :config (dvorak-set-key-prog caml-mode-map))
+(leaf conf-mode :mode "\\.accept_keywords$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$")
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
 (leaf dockerfile-mode :ensure t)
