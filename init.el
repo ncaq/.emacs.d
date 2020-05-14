@@ -456,7 +456,9 @@ Letters do not insert themselves; instead, they are commands.
 (leaf man
   :after t
   :defvar Man-mode-map
-  :custom (Man-notify-method . 'bully)  ; Manページを現在のウィンドウで表示
+  :custom
+  (Man-notify-method . 'bully)          ; Manページを現在のウィンドウで表示
+  (Man-width-max . nil)                 ; Manページのwidthの最大幅を除去
   :config (dvorak-set-key-prog Man-mode-map))
 
 (leaf ediff
