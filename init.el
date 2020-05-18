@@ -978,8 +978,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
     :require t
     :custom
     (flymake-proc-allowed-file-name-masks . (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
-    (lsp-haskell-process-args-hie . '())
-    (lsp-haskell-process-path-hie . "ghcide"))
+    (lsp-haskell-process-path-hie . "haskell-language-server-wrapper"))
   (leaf haskell-customize
     :custom (haskell-stylish-on-save . t)
     :config
