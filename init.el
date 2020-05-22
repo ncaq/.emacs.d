@@ -863,6 +863,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (leaf lsp-ui
     :ensure t
     :custom
+    (lsp-signature-auto-activate . nil) ; lsp-signature-modeを有効にしない
     (lsp-ui-doc-header . t)             ; 何を見ているのかわからなくなりがちなのでそれも表示
     (lsp-ui-doc-include-signature . t)  ; シグネチャも表示する
     (lsp-ui-doc-position . 'top)        ; カーソル位置に表示されると下のコードが見えなくなるので上
