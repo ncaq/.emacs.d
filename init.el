@@ -467,7 +467,6 @@ Letters do not insert themselves; instead, they are commands.
   (ediff-window-setup-function . 'ediff-setup-windows-plain)) ; ediffにframeを生成させない
 
 (leaf autorevert :custom (global-auto-revert-mode . 1)) ; 自動再読込
-(leaf diff :custom (diff-switches . "-u")) ; diffをunifitedモードで
 (leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
 (leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
 (leaf imaxima :custom (imaxima-scale-factor . 10.0)) ; imaximaの全体を大きくする
