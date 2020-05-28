@@ -643,11 +643,7 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf smart-jump
   :ensure t
-  :custom
-  (smart-jump-find-references-fallback-function . #'smart-jump-find-references-with-rg)
-  (smart-jump-refs-key . "C-M-.")
-  :config
-  (smart-jump-setup-default-registers)
+  :init
   (defun smart-jump-find-references-with-rg ()
     "Use `rg' to find references."
     (interactive)
@@ -661,7 +657,13 @@ Letters do not insert themselves; instead, they are commands.
                     ".*")
       (message
        "Install the emacs package rg to use\
- `smart-jump-simple-find-references-with-rg'."))))
+ `smart-jump-simple-find-references-with-rg'.")))
+  :defun smart-jump-find-references-with-rg
+  :custom
+  (smart-jump-find-references-fallback-function . #'smart-jump-find-references-with-rg)
+  (smart-jump-refs-key . "C-M-.")
+  :config
+  (smart-jump-setup-default-registers))
 
 ;; テキスト処理
 
