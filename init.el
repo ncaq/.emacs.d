@@ -339,10 +339,7 @@
 (leaf recentf-ext :ensure t :require t)
 (leaf recentf-remove-sudo-tramp-prefix :ensure t :config (recentf-remove-sudo-tramp-prefix-mode 1))
 
-(leaf savehist
-  :custom
-  (savehist-mode . t)
-  (savehist-minibuffer-history-variables . (cons 'extended-command-history savehist-minibuffer-history-variables)))
+(leaf savehist :custom (savehist-mode . t))
 
 (leaf desktop
   :custom
