@@ -827,7 +827,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf lsp-mode
   :ensure t
   :require t
-  :custom (lsp-prefer-flymake . nil)    ; flycheckを優先する
+  :custom
+  (lsp-lens-mode . t)
+  (lsp-prefer-flymake . nil)            ; flycheckを優先する
   :hook
   (css-mode-hook
    caml-mode-hook
@@ -841,7 +843,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
    typescript-mode-hook
    . lsp)
   :bind (:lsp-mode-map
-         ("C-S-SPC". nil)
+         ("C-S-SPC" . nil)
          ("C-c C-a" . lsp-execute-code-action)
          ("C-c C-i" . lsp-format-buffer)
          ("C-c C-n" . lsp-rename)
@@ -859,7 +861,11 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :bind (:lsp-ui-mode-map
            ("C-c C-d" . lsp-ui-doc-show)  ; 手動でドキュメントを表示するコマンド
            ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-           ([remap xref-find-references] . lsp-ui-peek-find-references))))
+           ([remap xref-find-references] . lsp-ui-peek-find-references)))
+  (leaf dap-mode
+    :hook
+    (lsp-mode-hook . dap-mode)
+    (lsp-mode-hook . dap-ui-mode)))
 
 ;; 各言語モード
 
@@ -1074,9 +1080,22 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :init
   (defun lsp-format-before-save ()
     (add-hook 'before-save-hook 'lsp-format-buffer nil t))
-  :hook (scala-mode-hook . lsp-format-before-save))
+  :hook (scala-mode-hook . lsp-format-before-save)
+  :config (leaf lsp-metals :ensure t))
 
-(leaf sbt-mode :ensure t :bind (:sbt:mode-map ("M-t" . comint-previous-input)))
+(leaf sbt-mode
+  :ensure t
+  :commands sbt-start sbt-command
+  :bind (:sbt:mode-map ("M-t" . comint-previous-input))
+  :config
+  ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+  ;; allows using SPACE when in the minibuffer
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map)
+  ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
+  (defvar sbt:program-options '("-Dsbt.supershell=false")))
 
 (leaf *web
   :init
