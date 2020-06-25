@@ -27,7 +27,7 @@
 (leaf leaf-tree :ensure t)
 
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
-  "バッファが存在すればkillする,無ければ何もしない."
+  "バッファが存在すればkillする. 無ければ何もしない."
   (when (get-buffer BUFFER-OR-NAME)
     (kill-buffer BUFFER-OR-NAME)))
 
@@ -303,7 +303,7 @@
   :hook
   prog-mode-hook
   web-mode-hook
-  :custom-face (rainbow-delimiters-depth-1-face . '((t (:foreground "#586e75"))))) ; 文字列の色と被るため,変更
+  :custom-face (rainbow-delimiters-depth-1-face . '((t (:foreground "#586e75"))))) ; 文字列の色と被るため変更
 
 ;; 色コードを可視化
 (leaf rainbow-mode
@@ -1101,7 +1101,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :init
   (eval-and-compile
     (defun flycheck-select-tslint-or-eslint ()
-      "tslintが使えるプロジェクトだとtslintを有効化して,それ以外ではeslintを有効化する"
+      "tslintが使えるプロジェクトだとtslintを有効化して, それ以外ではeslintを有効化する"
       (if (and
            ;; 大前提としてtslint.jsonがないとだめ
            (locate-dominating-file default-directory "tslint.json")
