@@ -918,8 +918,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :init
   (defun save-buffer-and-dfmt ()
     "セーブした後dfmt-bufferする.
-dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
-保存がキャンセルされてflycheckの恩恵を受けられない
+dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
+保存がキャンセルされてflycheckの恩恵を受けられない.
 "
     (interactive)
     (when (buffer-modified-p)
@@ -1067,11 +1067,11 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :defun flycheck-select-checker
   :init
   (defun pop-to-buffer-without-switch (buffer-or-name &optional action norecord)
-    "本当にwithout switchしているわけではなく前のウィンドウにフォーカスを戻すだけ"
+    "本当にwithout switchしているわけではなく前のウィンドウにフォーカスを戻すだけ."
     (pop-to-buffer buffer-or-name action norecord)
     (other-window -1))
   (defun flycheck-select-checker-rustic ()
-    "rusticの場合のみclippyが見えるようになるのでlspではなくrustic特有のflycheckを使う"
+    "rusticの場合のみclippyが見えるようになるのでlspではなくrustic特有のflycheckを使う."
     (flycheck-select-checker 'rustic-clippy))
   :hook (rustic-mode-hook . flycheck-select-checker-rustic))
 
@@ -1101,7 +1101,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
   :init
   (eval-and-compile
     (defun flycheck-select-tslint-or-eslint ()
-      "tslintが使えるプロジェクトだとtslintを有効化して, それ以外ではeslintを有効化する"
+      "tslintが使えるプロジェクトだとtslintを有効化して, それ以外ではeslintを有効化する."
       (if (and
            ;; 大前提としてtslint.jsonがないとだめ
            (locate-dominating-file default-directory "tslint.json")
@@ -1121,7 +1121,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると
     :init
     (eval-and-compile
       (defun prettier-js-mode-wrapper ()
-        "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにする"
+        "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにする."
         (interactive)
         (local-set-key [remap indent-whole-buffer] 'prettier-js)
         (local-set-key (kbd "M-i") 'prettier-js-mode)
