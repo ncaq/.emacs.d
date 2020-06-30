@@ -201,8 +201,8 @@
   ("C-<tab>" .         company-complete)
   ("C-\\" .            quoted-insert)
 
-  ("C-S-b" . smart-delete-whitespace-backward)
-  ("C-S-d" . smart-delete-whitespace-forward)
+  ("C-S-b" . delete-whitespace-backward)
+  ("C-S-d" . delete-whitespace-forward)
   ("C-S-m" . quoted-newline)
 
   ("M-'" . mc/edit-lines)
