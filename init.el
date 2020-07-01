@@ -1064,7 +1064,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :custom
   (rustic-flycheck-clippy-params . "--message-format=json")
   (rustic-format-display-method . 'pop-to-buffer-without-switch) ; エラーポップアップにフォーカスを移さない
-  (rustic-format-on-save . t)                                    ; 保存時にrustfmtを動かす
+  (rustic-format-trigger . 'on-save)
   :after flycheck
   :defun flycheck-select-checker
   :init
