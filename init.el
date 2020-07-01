@@ -763,9 +763,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (leaf git-rebase
     :after t
     :defvar git-rebase-mode-map
-    :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t")))))
-
-(leaf gitignore-mode :ensure t)
+    :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t"))))
+  (leaf gitignore-mode :ensure t)
+  (leaf forge :ensure t))
 
 (leaf git-gutter
   :ensure t
