@@ -599,8 +599,8 @@ Letters do not insert themselves; instead, they are commands.
 (leaf helm-ag
   :ensure t
   :custom
-  (helm-ag-base-command . "rg --no-heading --smart-case")
-  (helm-grep-ag-command . "rg --color=always --smart-case --no-heading --line-number %s %s %s")
+  (helm-ag-base-command . "rg --no-heading --smart-case --type-not=svg --sort=path")
+  (helm-grep-ag-command . "rg --no-heading --smart-case --type-not=svg --sort=path --color=always --line-number %s %s %s")
   :advice (:after helm-ag--save-current-context xref-push-marker-stack)
   :commands helm-ag--project-root
   :init
