@@ -1080,11 +1080,12 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf scala-mode
   :ensure t
+  :after t
   :init
   (defun lsp-format-before-save ()
     (add-hook 'before-save-hook 'lsp-format-buffer nil t))
   :hook (scala-mode-hook . lsp-format-before-save)
-  :config (leaf lsp-metals :ensure t))
+  :config (leaf lsp-metals :ensure t :require t))
 
 (leaf sbt-mode
   :ensure t
