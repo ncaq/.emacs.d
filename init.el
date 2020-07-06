@@ -876,6 +876,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
 (leaf dockerfile-mode :ensure t)
+(leaf dotenv-mode :ensure t :mode "\\.env\\..*\\'")
 (leaf generic-x :require t)
 (leaf go-mode :ensure t)
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil)) ; dotファイルで自動セミコロン挿入しない
