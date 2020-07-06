@@ -828,6 +828,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :ensure t
   :require t
   :custom
+  (lsp-auto-guess-root . t)             ; 自動的にimportする
   (lsp-lens-mode . t)
   (lsp-prefer-flymake . nil)            ; flycheckを優先する
   :hook
