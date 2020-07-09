@@ -667,6 +667,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf smartparens
   :ensure t
   :require smartparens-config
+  :defun sp-pair
   :custom (sp-escape-quotes-after-insert . nil)
   :bind (:smartparens-mode-map
          ("C-(" . sp-backward-slurp-sexp)
@@ -687,7 +688,16 @@ Letters do not insert themselves; instead, they are commands.
          ([remap mark-sexp] . sp-mark-sexp))
   :config
   (smartparens-global-mode 1)
-  (show-smartparens-global-mode 1))
+  (show-smartparens-global-mode 1)
+
+  ;; based on https://github.com/Fuco1/smartparens/wiki/Permissions
+  (defun my-create-newline-and-enter-sexp (&rest _ignored)
+    "Open a new brace or bracket expression, with relevant newlines and indent. "
+    (newline)
+    (indent-according-to-mode)
+    (forward-line -1)
+    (indent-according-to-mode))
+  (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET"))))
 
 (leaf string-inflection
   :ensure t
