@@ -864,6 +864,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
            ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
            ([remap xref-find-references] . lsp-ui-peek-find-references)))
   (leaf dap-mode
+    :ensure t
     :hook
     (lsp-mode-hook . dap-mode)
     (lsp-mode-hook . dap-ui-mode)))
