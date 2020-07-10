@@ -690,6 +690,10 @@ Letters do not insert themselves; instead, they are commands.
   (smartparens-global-mode 1)
   (show-smartparens-global-mode 1)
 
+  (sp-pair "｢" "｣" :actions '(insert wrap autoskip navigate))
+  (sp-pair "「" "」" :actions '(insert wrap autoskip navigate))
+  (sp-pair "『" "』" :actions '(insert wrap autoskip navigate))
+
   ;; based on https://github.com/Fuco1/smartparens/wiki/Permissions
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
     "Open a new brace or bracket expression, with relevant newlines and indent. "
