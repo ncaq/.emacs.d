@@ -697,7 +697,9 @@ Letters do not insert themselves; instead, they are commands.
     (indent-according-to-mode)
     (forward-line -1)
     (indent-according-to-mode))
-  (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET"))))
+  (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+
+  (leaf scala-mode :after t :config (sp-local-pair 'scala-mode "{" nil :post-handlers '(:rem))))
 
 (leaf string-inflection
   :ensure t
