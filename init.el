@@ -780,6 +780,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :after t
     :defvar git-rebase-mode-map
     :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t"))))
+  (leaf gitattributes-mode :ensure t)
+  (leaf gitconfig-mode :ensure t)
   (leaf gitignore-mode :ensure t)
   (leaf forge :ensure t))
 
