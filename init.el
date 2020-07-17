@@ -181,10 +181,10 @@
 
   ("C-'" . mc/mark-all-dwim)
   ("C-+" . text-scale-increase)
-  ("C-," . my-string-inflection-cycle-auto)
+  ("C-," . off-input-method)
   ("C--" . text-scale-decrease)
-  ("C-." . dired-jump-to-current)
-  ("C-;" . toggle-input-method)
+  ("C-." . on-input-method)
+  ("C-;" . my-string-inflection-cycle-auto)
   ("C-=" . text-scale-reset)
   ("C-a" . smart-move-beginning-of-line)
   ("C-b" . backward-delete-char-untabify)
@@ -226,6 +226,7 @@
   ("M-y" . helm-show-kill-ring)
 
   ("C-M-," . helm-semantic-or-imenu)
+  ("C-M-." . dired-jump-to-current)
   ("C-M-;" . align-space)
   ("C-M-b" . backward-kill-sexp)
   ("C-M-d" . kill-sexp)
@@ -435,7 +436,7 @@ Letters do not insert themselves; instead, they are commands.
          ("C-o" . nil)
          ("C-p" . nil)
          ("M-o" . nil)
-         ("C-." . dired-up-directory)
+         ("C-M-." . dired-up-directory)
          ("C-c C-p" . wdired-change-to-wdired-mode))
   :config (dvorak-set-key-prog dired-mode-map))
 
@@ -658,7 +659,7 @@ Letters do not insert themselves; instead, they are commands.
   :defun smart-jump-find-references-with-rg
   :custom
   (smart-jump-find-references-fallback-function . #'smart-jump-find-references-with-rg)
-  (smart-jump-refs-key . "C-M-.")
+  (smart-jump-refs-key . "C-M->")
   :config
   (smart-jump-setup-default-registers))
 
@@ -800,6 +801,12 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (mozc-candidate-style . 'echo-area)
   :custom-face (mozc-preedit-selected-face . '((t (:background "#268bd2"))))
   :init
+  (defun off-input-method ()
+    (interactive)
+    (deactivate-input-method))
+  (defun on-input-method ()
+    (interactive)
+    (activate-input-method default-input-method))
   (defun cursor-color-toggle ()
     (if current-input-method
         (set-face-background 'cursor "#00629D")
