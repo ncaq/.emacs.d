@@ -19,6 +19,8 @@
         company-complete
         company-indent-or-complete-common
         delete-horizontal-space
+        delete-whitespace-backward
+        delete-whitespace-forward
         dired-next-line
         dired-previous-line
         downcase-region
