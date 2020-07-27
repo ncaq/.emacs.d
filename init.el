@@ -902,6 +902,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf conf-mode :mode "\\.accept_keywords$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$")
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
+(leaf docker-compose-mode :ensure t)
 (leaf dockerfile-mode :ensure t)
 (leaf dotenv-mode :ensure t :mode "\\.env\\..*\\'")
 (leaf generic-x :require t)
