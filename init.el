@@ -515,12 +515,7 @@ Letters do not insert themselves; instead, they are commands.
     :ensure t
     :require t
     :custom (company-quickhelp-delay . 0)
-    :config (company-quickhelp-mode 1))
-  (leaf company-lsp
-    :ensure t
-    :require t
-    :defvar company-backends
-    :config (push 'company-lsp company-backends)))
+    :config (company-quickhelp-mode 1)))
 
 (leaf yasnippet
   :ensure t
