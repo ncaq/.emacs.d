@@ -861,7 +861,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
    python-mode-hook
    ruby-mode-hook
    scala-mode-hook
-   typescript-mode-hook
    . lsp)
   :bind (:lsp-mode-map
          ("C-S-SPC" . nil)
@@ -1057,7 +1056,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
         ("rb" . ruby-mode)
         ("rs" . rustic-mode)
         ("sqlite3" . sql-mode)
-        ("ts" . typescript-mode)
+        ("ts" . web-mode)
         ("tsx" . web-mode)
         ("yaml". yaml-mode)
         ("zsh" . sh-mode))
@@ -1158,7 +1157,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
      json-mode-hook
      less-css-mode-hook
      scss-mode-hook
-     typescript-mode-hook
      yaml-mode-hook
      . prettier-js-mode-wrapper))
 
@@ -1179,7 +1177,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     "\\.php\\'"
     "\\.phtml\\'"
     "\\.tpl\\'"
-    "\\.tsx\\'"
+    "\\.tsx?\\'"
     :init
     (defun web-mode-setting ()
       (pcase web-mode-content-type
@@ -1187,7 +1185,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
          (progn
            (prettier-js-mode-wrapper)
            (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
-        ((or "javascript" "jsx")
+        ((or "javascript" "jsx" "typescript")
          (progn
            (lsp)
            (flycheck-select-tslint-or-eslint)
@@ -1219,12 +1217,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
   (leaf css-mode :custom (css-indent-offset . 2))
   (leaf js :custom (js-indent-level . 2))
-
-  (leaf typescript-mode
-    :ensure t
-    :custom (typescript-indent-level . 2)
-    :hook (typescript-mode-hook . flycheck-select-tslint-or-eslint)
-    :config (flycheck-add-mode 'javascript-eslint 'typescript-mode))
 
   (leaf yaml-mode :ensure t)
 
