@@ -851,6 +851,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (lsp-auto-guess-root . t)             ; 自動的にimportする
   (lsp-lens-mode . t)
   (lsp-prefer-flymake . nil)            ; flycheckを優先する
+  :init
+  (defun lsp-format-before-save ()
+    "保存する前にフォーマットする"
+    (add-hook 'before-save-hook 'lsp-format-buffer nil t))
   :hook
   (css-mode-hook
    caml-mode-hook
@@ -1103,9 +1107,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 (leaf scala-mode
   :ensure t
   :after t
-  :init
-  (defun lsp-format-before-save ()
-    (add-hook 'before-save-hook 'lsp-format-buffer nil t))
   :hook (scala-mode-hook . lsp-format-before-save)
   :config (leaf lsp-metals :ensure t :require t))
 
