@@ -862,7 +862,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
    haskell-mode-hook
    java-mode-hook
    json-mode-hook
-   python-mode-hook
    ruby-mode-hook
    scala-mode-hook
    . lsp)
@@ -1066,6 +1065,24 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
         ("zsh" . sh-mode))
       markdown-code-lang-modes)))
   (dvorak-set-key-prog markdown-mode-map))
+
+(leaf python
+  :custom (python-indent-guess-indent-offset-verbose . nil)
+  :config
+  (leaf elpy
+    :ensure t
+    :defvar elpy-modules python-shell-completion-native-disabled-interpreters
+    :defun elpy-enable
+    :after python
+    :custom
+    (python-shell-interpreter . "jupyter")
+    (python-shell-interpreter-args . "console --simple-prompt")
+    (python-shell-prompt-detect-failure-warning . nil)
+    :init (elpy-enable)
+    :hook (elpy-mode-hook . (lambda () (add-hook 'before-save-hook 'elpy-format-code nil t)))
+    :config
+    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+    (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter")))
 
 (leaf raku-mode
   :ensure t
