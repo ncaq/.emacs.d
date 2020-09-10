@@ -365,14 +365,12 @@
   ;; バックアップファイルを作成する
   (make-backup-files . t)
   ;; 複数バックアップ
-  (version-control . t))
+  (version-control . t)
+  :init (defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
+  :advice (:before save-buffer setq-buffer-backed-up-nil)) ; バックアップファイルを毎回作成する
 
 (leaf tramp :custom (tramp-auto-save-directory . temporary-file-directory)) ; trampの自動保存ディレクトリをtmpにする
 (leaf filelock :custom (create-lockfiles . nil)) ; percelがバグるのでロックファイルとしてシンボリックリンクを作らない
-
-(leaf files
-  :init (defun setq-buffer-backed-up-nil (&rest _) (interactive) (setq buffer-backed-up nil))
-  :advice (:before save-buffer setq-buffer-backed-up-nil)) ; バックアップファイルを毎回作成する
 
 ;; toolkit
 (leaf menu-bar :custom (menu-bar-mode . nil))        ; メニューバーを表示させない
