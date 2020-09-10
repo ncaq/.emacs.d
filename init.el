@@ -359,7 +359,7 @@
   ;; askだと件数を超えた自動削除時時に一々聞いてくるのでtに変更
   (delete-old-versions . t)
   ;; backupに新しいものをいくつ残すか
-  (kept-new-versions . 50)
+  (kept-new-versions . 10)
   ;; backupに古いものをいくつ残すか
   (kept-old-versions . 0)
   ;; バックアップファイルを作成する
