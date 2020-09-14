@@ -711,11 +711,11 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (interactive)
     (pcase major-mode
       ((or 'common-lisp-mode
-           'dired-mode
            'emacs-lisp-mode
            'raku-mode
            'scheme-mode
-           'sh-mode)
+           'sh-mode
+           'wdired-mode)
        (string-inflection-all-cycle))
       ((or 'python-mode
            'ruby-mode
