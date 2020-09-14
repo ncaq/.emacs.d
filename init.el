@@ -3,7 +3,7 @@
 ;;; 初期化
 
 ;; (require 'cl) を見逃す
-(setq byte-compile-warnings '(cl-functions))
+(setq byte-compile-warnings '(not cl-functions obsolete))
 
 (eval-and-compile
   (prog1 "leafを初期化する"
