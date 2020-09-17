@@ -1100,7 +1100,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :hook (elpy-mode-hook . pipenv-auto-activate)
     :config
     (pyvenv-tracking-mode)
-    (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv")))
+    (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv"))
+  (leaf ein :ensure t))
 
 (leaf raku-mode
   :ensure t
