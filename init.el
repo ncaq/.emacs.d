@@ -1080,7 +1080,27 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :hook (elpy-mode-hook . (lambda () (add-hook 'before-save-hook 'elpy-format-code nil t)))
     :config
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-    (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter")))
+    (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
+  (leaf pipenv
+    :ensure t
+    :after python
+    :require t
+    :defvar python-shell-interpreter python-shell-interpreter-args python-shell-virtualenv-root pyvenv-activate
+    :defun pipenv--force-wait pipenv-deactivate pipenv-projectile-after-switch-extended pipenv-venv
+    :custom
+    (pipenv-projectile-after-switch-function . #'pipenv-projectile-after-switch-extended)
+    :init
+    (defun pipenv-auto-activate ()
+      (pipenv-deactivate)
+      (pipenv--force-wait (pipenv-venv))
+      (when python-shell-virtualenv-root
+        (setq-local pyvenv-activate (directory-file-name python-shell-virtualenv-root))
+        (setq-local python-shell-interpreter "pipenv")
+        (setq-local python-shell-interpreter-args "run jupyter console --simple-prompt")))
+    :hook (elpy-mode-hook . pipenv-auto-activate)
+    :config
+    (pyvenv-tracking-mode)
+    (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv")))
 
 (leaf raku-mode
   :ensure t
