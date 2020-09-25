@@ -1223,6 +1223,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
         ((or "javascript" "jsx" "typescript")
          (progn
            (lsp)
+           (prettier-js-mode-wrapper)
            (flycheck-select-tslint-or-eslint)))
         ((or "json" "css")
          (progn
