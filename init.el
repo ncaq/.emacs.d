@@ -832,13 +832,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf flycheck
   :ensure t
+  :defvar flycheck-eslint-args
   :custom
   (global-flycheck-mode . t)
   (flycheck-highlighting-mode . nil)       ; 下線が鬱陶しい
   (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
   :bind (:flycheck-mode-map
          ([remap previous-error] . flycheck-previous-error)
-         ([remap next-error] . flycheck-next-error)))
+         ([remap next-error] . flycheck-next-error))
+  :config (add-to-list 'flycheck-eslint-args "--cache"))
 
 (leaf prettier-js
   :ensure t
