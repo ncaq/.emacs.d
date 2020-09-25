@@ -1158,7 +1158,24 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
   (defvar sbt:program-options '("-Dsbt.supershell=false")))
 
-(leaf *web
+(leaf web-mode
+  :ensure t
+  :defvar web-mode-content-type
+  :defun flycheck-add-mode sp-local-pair
+  :mode
+  "\\.[agj]sp\\'"
+  "\\.as[cp]x\\'"
+  "\\.djhtml\\'"
+  "\\.ejs\\'"
+  "\\.erb\\'"
+  "\\.html?\\'"
+  "\\.js\\'"
+  "\\.jsx\\'"
+  "\\.mustache\\'"
+  "\\.php\\'"
+  "\\.phtml\\'"
+  "\\.tpl\\'"
+  "\\.tsx?\\'"
   :init
   (eval-and-compile
     (defun flycheck-select-tslint-or-eslint ()
@@ -1176,7 +1193,41 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
           (progn
             (flycheck-select-checker 'javascript-eslint)
             (add-hook 'after-save-hook 'eslint-fix nil t))))))
+  (defun web-mode-setting ()
+    (pcase web-mode-content-type
+      ("html"
+       (progn
+         (prettier-js-mode-wrapper)
+         (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
+      ((or "javascript" "jsx" "typescript")
+       (progn
+         (lsp)
+         (prettier-js-mode-wrapper)
+         (flycheck-select-tslint-or-eslint)))
+      ((or "json" "css")
+       (progn
+         (lsp)
+         (prettier-js-mode-wrapper)))))
+  :hook (web-mode-hook . web-mode-setting)
+  :custom
+  (web-mode-code-indent-offset . 2)
+  (web-mode-css-indent-offset . 2)
+  (web-mode-enable-auto-indentation . nil)
+  (web-mode-enable-auto-quoting . nil)
+  (web-mode-enable-current-column-highlight . t)
+  (web-mode-enable-current-element-highlight . t)
+  (web-mode-markup-indent-offset . 2)
+  :custom-face
+  (web-mode-jsx-depth-1-face . '((t (:background "#073844"))))
+  (web-mode-jsx-depth-2-face . '((t (:background "#083C49"))))
+  (web-mode-jsx-depth-3-face . '((t (:background "#08404F"))))
+  (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
+  (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
   :config
+  (sp-local-pair '(web-mode) "<" ">" :actions :rem)
+  (flycheck-add-mode 'html-tidy 'web-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
   (leaf prettier-js
     :ensure t
     :init
@@ -1195,64 +1246,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
      yaml-mode-hook
      . prettier-js-mode-wrapper))
 
-  (leaf web-mode
-    :ensure t
-    :defvar web-mode-content-type
-    :defun flycheck-add-mode sp-local-pair
-    :mode
-    "\\.[agj]sp\\'"
-    "\\.as[cp]x\\'"
-    "\\.djhtml\\'"
-    "\\.ejs\\'"
-    "\\.erb\\'"
-    "\\.html?\\'"
-    "\\.js\\'"
-    "\\.jsx\\'"
-    "\\.mustache\\'"
-    "\\.php\\'"
-    "\\.phtml\\'"
-    "\\.tpl\\'"
-    "\\.tsx?\\'"
-    :init
-    (defun web-mode-setting ()
-      (pcase web-mode-content-type
-        ("html"
-         (progn
-           (prettier-js-mode-wrapper)
-           (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
-        ((or "javascript" "jsx" "typescript")
-         (progn
-           (lsp)
-           (prettier-js-mode-wrapper)
-           (flycheck-select-tslint-or-eslint)))
-        ((or "json" "css")
-         (progn
-           (lsp)
-           (prettier-js-mode-wrapper)))))
-    :hook (web-mode-hook . web-mode-setting)
-    :custom
-    (web-mode-code-indent-offset . 2)
-    (web-mode-css-indent-offset . 2)
-    (web-mode-enable-auto-indentation . nil)
-    (web-mode-enable-auto-quoting . nil)
-    (web-mode-enable-current-column-highlight . t)
-    (web-mode-enable-current-element-highlight . t)
-    (web-mode-markup-indent-offset . 2)
-    :custom-face
-    (web-mode-jsx-depth-1-face . '((t (:background "#073844"))))
-    (web-mode-jsx-depth-2-face . '((t (:background "#083C49"))))
-    (web-mode-jsx-depth-3-face . '((t (:background "#08404F"))))
-    (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
-    (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
-    :config
-    (sp-local-pair '(web-mode) "<" ">" :actions :rem)
-    (flycheck-add-mode 'html-tidy 'web-mode)
-    (flycheck-add-mode 'javascript-eslint 'web-mode)
-    (flycheck-add-mode 'typescript-tslint 'web-mode))
-
   (leaf css-mode :custom (css-indent-offset . 2))
   (leaf js :custom (js-indent-level . 2))
-
   (leaf yaml-mode :ensure t)
 
   (leaf eslint-fix
