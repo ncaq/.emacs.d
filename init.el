@@ -840,6 +840,16 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ([remap previous-error] . flycheck-previous-error)
          ([remap next-error] . flycheck-next-error)))
 
+(leaf prettier-js
+  :ensure t
+  :init
+  (defun prettier-js-enable-toggle ()
+    "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにする."
+    (interactive)
+    (local-set-key [remap indent-whole-buffer] 'prettier-js)
+    (local-set-key (kbd "M-i") 'prettier-js-mode)
+    (prettier-js-mode t)))
+
 (leaf lsp-mode
   :ensure t
   :require t
@@ -851,16 +861,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (defun lsp-format-before-save ()
     "保存する前にフォーマットする"
     (add-hook 'before-save-hook 'lsp-format-buffer nil t))
-  :hook
-  (css-mode-hook
-   caml-mode-hook
-   go-mode-hook
-   haskell-mode-hook
-   java-mode-hook
-   json-mode-hook
-   ruby-mode-hook
-   scala-mode-hook
-   . lsp)
   :bind (:lsp-mode-map
          ("C-S-SPC" . nil)
          ("C-c C-a" . lsp-execute-code-action)
@@ -891,7 +891,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf apache-mode :ensure t)
 (leaf bnf-mode :ensure t)
-(leaf caml :ensure t :after t :defvar caml-mode-map :config (dvorak-set-key-prog caml-mode-map))
+(leaf caml :ensure t :after t :defvar caml-mode-map :hook (caml-mode-hook . lsp) :config (dvorak-set-key-prog caml-mode-map))
 (leaf conf-mode :mode "\\.accept_keywords$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$")
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
@@ -899,9 +899,12 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf dockerfile-mode :ensure t)
 (leaf dotenv-mode :ensure t :mode "\\.env\\..*\\'")
 (leaf generic-x :require t)
-(leaf go-mode :ensure t)
+(leaf go-mode :ensure t :hook (go-mode-hook . lsp))
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil)) ; dotファイルで自動セミコロン挿入しない
 (leaf groovy-mode :ensure t)
+(leaf js :custom (js-indent-level . 2))
+(leaf json-mode :hook (json-mode-hook . lsp) (json-mode-hook . prettier-js-enable-toggle))
+(leaf less-css-mode :hook (less-css-mode-hook . prettier-js-enable-toggle))
 (leaf make-mode :after t :defvar makefile-mode-map :config (dvorak-set-key-prog makefile-mode-map))
 (leaf mediawiki :ensure t :mode "\\.wiki$")
 (leaf nginx-mode :ensure t)
@@ -911,6 +914,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf sh-script :custom (sh-basic-offset . 2) :config (leaf sh :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
+(leaf yaml-mode :ensure t :hook (yaml-mode-hook . prettier-js-enable-toggle))
 (leaf yarn-mode :ensure t)
 
 (leaf cc-mode
@@ -968,18 +972,10 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 (leaf haskell-mode
   :ensure t
   :after t
+  :defvar flycheck-error-list-buffer
   :custom
   (haskell-hoogle-command . nil)
   (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s")
-  :defvar flycheck-error-list-buffer
-  :bind (:haskell-mode-map
-         ("M-i" . stylish-haskell-toggle)
-         ("C-M-z" . haskell-repl-and-flycheck)
-         ("C-c C-b" . haskell-hoogle)
-         ("C-c C-c" . haskell-session-change-target)
-         ("C-c C-l" . haskell-process-load-file)
-         ("C-c C-z" . haskell-interactive-switch)
-         ([remap indent-whole-buffer] . haskell-mode-stylish-buffer))
   :init
   (defun haskell-repl-and-flycheck ()
     (interactive)
@@ -991,13 +987,22 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     (other-window 1)
     (switch-to-buffer flycheck-error-list-buffer)
     (other-window 1))
+  :bind (:haskell-mode-map
+         ("M-i" . stylish-haskell-toggle)
+         ("C-M-z" . haskell-repl-and-flycheck)
+         ("C-c C-b" . haskell-hoogle)
+         ("C-c C-c" . haskell-session-change-target)
+         ("C-c C-l" . haskell-process-load-file)
+         ("C-c C-z" . haskell-interactive-switch)
+         ([remap indent-whole-buffer] . haskell-mode-stylish-buffer))
   :config
   (leaf lsp-haskell
     :ensure t
     :require t
     :custom
     (flymake-proc-allowed-file-name-masks . (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
-    (lsp-haskell-process-path-hie . "haskell-language-server-wrapper"))
+    (lsp-haskell-process-path-hie . "haskell-language-server-wrapper")
+    :hook (haskell-mode-hook . lsp))
   (leaf haskell-customize
     :custom (haskell-stylish-on-save . t)
     :config
@@ -1030,7 +1035,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 (leaf lsp-java
   :ensure t
   :require t
-  :after cc-mode)
+  :after cc-mode
+  :hook (java-mode-hook . lsp))
 
 (leaf markdown-mode
   :ensure t
@@ -1067,9 +1073,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :config
   (leaf elpy
     :ensure t
+    :after python
     :defvar elpy-modules python-shell-completion-native-disabled-interpreters
     :defun elpy-enable
-    :after python
     :custom
     (python-shell-interpreter . "jupyter")
     (python-shell-interpreter-args . "console --simple-prompt")
@@ -1111,12 +1117,13 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :config (flycheck-add-mode 'perl6 'raku-mode)))
 
 (leaf ruby-mode
+  :after t
+  :defvar ruby-mode-map
   :custom
   (inf-ruby-default-implementation . "pry")
   (inf-ruby-eval-binding . "Pry.toplevel_binding")
   (ruby-insert-encoding-magic-comment . nil)
-  :after t
-  :defvar ruby-mode-map
+  :hook (ruby-mode-hook . lsp)
   :config (dvorak-set-key-prog ruby-mode-map))
 
 (leaf rustic
@@ -1141,7 +1148,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 (leaf scala-mode
   :ensure t
   :after t
-  :hook (scala-mode-hook . lsp-format-before-save)
+  :hook
+  (scala-mode-hook . lsp)
+  (scala-mode-hook . lsp-format-before-save)
   :config (leaf lsp-metals :ensure t :require t))
 
 (leaf sbt-mode
@@ -1197,17 +1206,17 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     (pcase web-mode-content-type
       ("html"
        (progn
-         (prettier-js-mode-wrapper)
+         (prettier-js-enable-toggle)
          (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
       ((or "javascript" "jsx" "typescript")
        (progn
          (lsp)
-         (prettier-js-mode-wrapper)
+         (prettier-js-enable-toggle)
          (flycheck-select-tslint-or-eslint)))
       ((or "json" "css")
        (progn
          (lsp)
-         (prettier-js-mode-wrapper)))))
+         (prettier-js-enable-toggle)))))
   :hook (web-mode-hook . web-mode-setting)
   :custom
   (web-mode-code-indent-offset . 2)
@@ -1227,41 +1236,24 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (sp-local-pair '(web-mode) "<" ">" :actions :rem)
   (flycheck-add-mode 'html-tidy 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (flycheck-add-mode 'typescript-tslint 'web-mode)
-  (leaf prettier-js
-    :ensure t
-    :init
-    (eval-and-compile
-      (defun prettier-js-mode-wrapper ()
-        "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにする."
-        (interactive)
-        (local-set-key [remap indent-whole-buffer] 'prettier-js)
-        (local-set-key (kbd "M-i") 'prettier-js-mode)
-        (prettier-js-mode t)))
-    :hook
-    (css-mode-hook
-     json-mode-hook
-     less-css-mode-hook
-     scss-mode-hook
-     yaml-mode-hook
-     . prettier-js-mode-wrapper))
+  (flycheck-add-mode 'typescript-tslint 'web-mode))
 
-  (leaf css-mode :custom (css-indent-offset . 2))
-  (leaf js :custom (js-indent-level . 2))
-  (leaf yaml-mode :ensure t)
+(leaf css-mode
+  :custom (css-indent-offset . 2)
+  :hook (css-mode-hook . lsp) ((css-mode-hook scss-mode-hook) . prettier-js-enable-toggle))
 
-  (leaf eslint-fix
-    :ensure t
-    :advice (:after eslint-fix flycheck-buffer) ; fixされたらエラーバッファを更新する
-    :custom
-    (eslint-fix-executable . "yarn")
-    (eslint-fix-options . '("eslint" "--cache"))))
+(leaf eslint-fix
+  :ensure t
+  :advice (:after eslint-fix flycheck-buffer) ; fixされたらエラーバッファを更新する
+  :custom
+  (eslint-fix-executable . "yarn")
+  (eslint-fix-options . '("eslint" "--cache")))
 
 (leaf nxml-mode
   :mode "\\.fxml\\'"
-  :custom (nxml-slash-auto-complete-flag . t)
   :after t
   :defvar nxml-mode-map
+  :custom (nxml-slash-auto-complete-flag . t)
   :bind (:nxml-mode-map
          ("M-h" . nil)
          ("C-M-t" . nil)
