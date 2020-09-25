@@ -1260,7 +1260,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :advice (:after eslint-fix flycheck-buffer) ; fixされたらエラーバッファを更新する
     :custom
     (eslint-fix-executable . "yarn")
-    (eslint-fix-options . '("eslint"))))
+    (eslint-fix-options . '("eslint" "--cache"))))
 
 (leaf nxml-mode
   :mode "\\.fxml\\'"
