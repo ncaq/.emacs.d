@@ -892,7 +892,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (lsp-mode-hook . dap-ui-mode)))
 
 ;; 各言語モード
-
+;; 一行で収まるもの
 (leaf apache-mode :ensure t)
 (leaf bnf-mode :ensure t)
 (leaf caml :ensure t :after t :defvar caml-mode-map :hook (caml-mode-hook . lsp) :config (dvorak-set-key-prog caml-mode-map))
@@ -900,7 +900,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
 (leaf docker-compose-mode :ensure t)
-(leaf dockerfile-mode :ensure t)
 (leaf dotenv-mode :ensure t :mode "\\.env\\..*\\'")
 (leaf generic-x :require t)
 (leaf go-mode :ensure t :hook (go-mode-hook . lsp))
@@ -956,6 +955,12 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     (when (buffer-modified-p)
       (save-buffer)
       (when (and (dfmt-buffer) (buffer-modified-p)) (save-buffer)))))
+
+(leaf dockerfile-mode
+  :el-get
+  (dockerfile-mode
+   :url "https://github.com/ncaq/dockerfile-mode.git"
+   :branch "add-dockerfile-indent-offset"))
 
 (leaf elisp-mode
   :custom (flycheck-emacs-lisp-load-path . 'inherit)
