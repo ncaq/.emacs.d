@@ -67,7 +67,7 @@
   :ensure t
   :require t
   :defun s-trim
-  :config
+  :init
   (defun insert-random-uuid ()
     (interactive)
     (insert (s-trim (shell-command-to-string "uuidgen")))))
@@ -527,7 +527,6 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf helpful
   :ensure t
-  :require t
   :bind
   ([remap describe-function] . helpful-callable)
   ([remap describe-key]      . helpful-key)
@@ -856,7 +855,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf lsp-mode
   :ensure t
-  :require t
   :custom
   (lsp-auto-guess-root . t)             ; 自動的にimportする
   (lsp-lens-mode . t)
