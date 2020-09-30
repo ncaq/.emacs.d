@@ -1243,7 +1243,17 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf yarn-mode :ensure t)
 
+(leaf eslint-fix
+  :ensure t
+  :advice (:after eslint-fix flycheck-buffer) ; fixされたらエラーバッファを更新する
+  :custom
+  (eslint-fix-executable . "yarn")
+  (eslint-fix-options . '("eslint" "--cache")))
+
 (leaf js :custom (js-indent-level . 2))
+
+(leaf ts-comint :ensure t)
+
 (leaf json-mode :hook (json-mode-hook . lsp) (json-mode-hook . prettier-js-enable-toggle))
 (leaf yaml-mode :ensure t :hook (yaml-mode-hook . prettier-js-enable-toggle))
 
@@ -1251,13 +1261,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :custom (css-indent-offset . 2)
   :hook (css-mode-hook . lsp) ((css-mode-hook scss-mode-hook) . prettier-js-enable-toggle))
 (leaf less-css-mode :hook (less-css-mode-hook . prettier-js-enable-toggle))
-
-(leaf eslint-fix
-  :ensure t
-  :advice (:after eslint-fix flycheck-buffer) ; fixされたらエラーバッファを更新する
-  :custom
-  (eslint-fix-executable . "yarn")
-  (eslint-fix-options . '("eslint" "--cache")))
 
 (leaf nxml-mode
   :mode "\\.fxml\\'"
