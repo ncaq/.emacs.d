@@ -892,22 +892,17 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (lsp-mode-hook . dap-ui-mode)))
 
 ;; 各言語モード
-;; 一行で収まるもの
+;; 一行で収まる他と関連性の薄いもの
 (leaf apache-mode :ensure t)
 (leaf bnf-mode :ensure t)
 (leaf caml :ensure t :after t :defvar caml-mode-map :hook (caml-mode-hook . lsp) :config (dvorak-set-key-prog caml-mode-map))
 (leaf conf-mode :mode "\\.accept_keywords$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$")
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
-(leaf docker-compose-mode :ensure t)
 (leaf dotenv-mode :ensure t :mode "\\.env\\..*\\'")
 (leaf generic-x :require t)
 (leaf go-mode :ensure t :hook (go-mode-hook . lsp))
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil)) ; dotファイルで自動セミコロン挿入しない
-(leaf groovy-mode :ensure t)
-(leaf js :custom (js-indent-level . 2))
-(leaf json-mode :hook (json-mode-hook . lsp) (json-mode-hook . prettier-js-enable-toggle))
-(leaf less-css-mode :hook (less-css-mode-hook . prettier-js-enable-toggle))
 (leaf make-mode :after t :defvar makefile-mode-map :config (dvorak-set-key-prog makefile-mode-map))
 (leaf mediawiki :ensure t :mode "\\.wiki$")
 (leaf nginx-mode :ensure t)
@@ -917,8 +912,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf sh-script :custom (sh-basic-offset . 2) :config (leaf sh :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
-(leaf yaml-mode :ensure t :hook (yaml-mode-hook . prettier-js-enable-toggle))
-(leaf yarn-mode :ensure t)
 
 (leaf cc-mode
   :after t
@@ -961,6 +954,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (dockerfile-mode
    :url "https://github.com/ncaq/dockerfile-mode.git"
    :branch "add-dockerfile-indent-offset"))
+
+(leaf docker-compose-mode :ensure t)
 
 (leaf elisp-mode
   :custom (flycheck-emacs-lisp-load-path . 'inherit)
@@ -1045,6 +1040,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :require t
   :after cc-mode
   :hook (java-mode-hook . lsp))
+
+(leaf groovy-mode :ensure t)
 
 (leaf markdown-mode
   :ensure t
@@ -1246,9 +1243,16 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-mode 'typescript-tslint 'web-mode))
 
+(leaf yarn-mode :ensure t)
+
+(leaf js :custom (js-indent-level . 2))
+(leaf json-mode :hook (json-mode-hook . lsp) (json-mode-hook . prettier-js-enable-toggle))
+(leaf yaml-mode :ensure t :hook (yaml-mode-hook . prettier-js-enable-toggle))
+
 (leaf css-mode
   :custom (css-indent-offset . 2)
   :hook (css-mode-hook . lsp) ((css-mode-hook scss-mode-hook) . prettier-js-enable-toggle))
+(leaf less-css-mode :hook (less-css-mode-hook . prettier-js-enable-toggle))
 
 (leaf eslint-fix
   :ensure t
