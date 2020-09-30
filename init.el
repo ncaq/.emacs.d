@@ -197,9 +197,7 @@
   ("C-w" . kill-region-or-symbol-at-point)
   ("C-z" . flycheck-list-errors)
 
-  ("<C-iso-lefttab>" . company-dabbrev)
-  ("C-<tab>" .         company-complete)
-  ("C-\\" .            quoted-insert)
+  ("C-\\" . quoted-insert)
 
   ("C-S-b" . delete-whitespace-backward)
   ("C-S-d" . delete-whitespace-forward)
@@ -499,10 +497,14 @@ Letters do not insert themselves; instead, they are commands.
   (company-dabbrev-code-other-buffers . 'all)
   (company-dabbrev-downcase . nil)
   (company-dabbrev-other-buffers . 'all)
-  :bind (:company-active-map
-         ("<backtab>" . company-select-previous)
-         ("<tab>" . company-complete-common-or-cycle)
-         ("C-h" . nil))
+  :bind
+  (:company-mode-map
+   ("<C-iso-lefttab>" . company-dabbrev)
+   ("C-<tab>" . company-complete))
+  (:company-active-map
+   ("<backtab>" . company-select-previous)
+   ("<tab>" . company-complete-common-or-cycle)
+   ("C-h" . nil))
   :config
   (global-company-mode 1)
   (dvorak-set-key-prog company-active-map)
