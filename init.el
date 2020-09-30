@@ -1030,7 +1030,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 (leaf hamlet-mode
   :ensure t
   :init
-  (defun hamlet-mode-config ()
+  (defun hamlet-mode-setup ()
     (local-set-key (kbd "C-m") 'newline-and-indent)
     (electric-indent-local-mode -1))
   :hook (hamlet-mode-hook . hamlet-mode-config))
@@ -1205,7 +1205,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
           (progn
             (flycheck-select-checker 'javascript-eslint)
             (add-hook 'after-save-hook 'eslint-fix nil t))))))
-  (defun web-mode-setting ()
+  (defun web-mode-setup ()
     (pcase web-mode-content-type
       ("html"
        (progn
@@ -1220,7 +1220,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
        (progn
          (lsp)
          (prettier-js-enable-toggle)))))
-  :hook (web-mode-hook . web-mode-setting)
+  :hook (web-mode-hook . web-mode-setup)
   :custom
   (web-mode-code-indent-offset . 2)
   (web-mode-css-indent-offset . 2)
