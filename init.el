@@ -195,7 +195,6 @@
   ("C-q" . kill-this-buffer)
   ("C-u" . kill-whole-line)
   ("C-w" . kill-region-or-symbol-at-point)
-  ("C-z" . flycheck-list-errors)
 
   ("C-\\" . quoted-insert)
 
@@ -840,6 +839,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (flycheck-highlighting-mode . nil)       ; 下線が鬱陶しい
   (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
   :bind (:flycheck-mode-map
+         ("C-z" . flycheck-list-errors)
          ([remap previous-error] . flycheck-previous-error)
          ([remap next-error] . flycheck-next-error))
   :config (add-to-list 'flycheck-eslint-args "--cache"))
