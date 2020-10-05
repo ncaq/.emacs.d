@@ -460,7 +460,6 @@ Letters do not insert themselves; instead, they are commands.
 (leaf autorevert :custom (global-auto-revert-mode . 1)) ; 自動再読込
 (leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
 (leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
-(leaf imaxima :custom (imaxima-scale-factor . 10.0)) ; imaximaの全体を大きくする
 (leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
 (leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
 (leaf scheme :custom (scheme-program-name . "gosh")) ; schemeの処理系をgaucheに
