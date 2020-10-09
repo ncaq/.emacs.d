@@ -1,5 +1,10 @@
 ;; -*- lexical-binding: t -*-
 
+;; GCの設定
+;; 起動にも影響するのでleaf無しで最初にやります
+(setq gc-cons-threshold 200000000)            ; 200MB
+(run-with-idle-timer 120 t #'garbage-collect) ; 2分のアイドル時間ごとに明示的にガベージコレクトを呼び出す
+
 ;;; 初期化
 
 ;; (require 'cl) を見逃す
@@ -856,8 +861,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :ensure t
   :custom
   (lsp-auto-guess-root . t)             ; 自動的にimportする
-  (lsp-lens-mode . t)
+  (lsp-file-watch-threshold . 10000)    ; 監視ファイル警告を緩める
+  (lsp-lens-mode . t)                   ; lens機能の有効化
   (lsp-prefer-flymake . nil)            ; flycheckを優先する
+  (read-process-output-max . 1048576)   ; プロセスから読み込む量を増やす
   :init
   (defun lsp-format-before-save ()
     "保存する前にフォーマットする"
