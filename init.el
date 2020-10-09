@@ -1201,9 +1201,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
             (member (file-name-extension (buffer-file-name)) '("ts" "tsx"))))
           (flycheck-select-checker 'typescript-tslint)
         (when (executable-find "eslint")
-          (progn
-            (flycheck-select-checker 'javascript-eslint)
-            (add-hook 'after-save-hook 'eslint-fix nil t))))))
+          (flycheck-select-checker 'javascript-eslint)))))
   (defun web-mode-setup ()
     (pcase web-mode-content-type
       ("html"
@@ -1241,13 +1239,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 (leaf yarn-mode :ensure t)
-
-(leaf eslint-fix
-  :ensure t
-  :advice (:after eslint-fix flycheck-buffer) ; fixされたらエラーバッファを更新する
-  :custom
-  (eslint-fix-executable . "yarn")
-  (eslint-fix-options . '("eslint" "--cache")))
 
 (leaf js :custom (js-indent-level . 2))
 
