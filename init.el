@@ -836,16 +836,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf flycheck
   :ensure t
-  :defvar flycheck-eslint-args
   :custom
   (global-flycheck-mode . t)
   (flycheck-highlighting-mode . nil)       ; 下線が鬱陶しい
   (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
+  (flycheck-javascript-eslint-executable . "eslint_d")
   :bind (:flycheck-mode-map
          ("C-z" . flycheck-list-errors)
          ([remap previous-error] . flycheck-previous-error)
-         ([remap next-error] . flycheck-next-error))
-  :config (add-to-list 'flycheck-eslint-args "--cache"))
+         ([remap next-error] . flycheck-next-error)))
 
 (leaf prettier-js
   :ensure t
@@ -1178,7 +1177,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf web-mode
   :ensure t
-  :defvar web-mode-content-type
+  :defvar web-mode-content-type flycheck-javascript-eslint-executable
   :defun flycheck-add-mode sp-local-pair
   :mode
   "\\.[agj]sp\\'"
@@ -1207,7 +1206,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
             ;; それ以外のメジャーモード(web-modeとか)でも拡張子がts, tsxなら良い
             (member (file-name-extension (buffer-file-name)) '("ts" "tsx"))))
           (flycheck-select-checker 'typescript-tslint)
-        (when (executable-find "eslint")
+        (when (executable-find flycheck-javascript-eslint-executable)
           (flycheck-select-checker 'javascript-eslint)))))
   (defun web-mode-setup ()
     (pcase web-mode-content-type
