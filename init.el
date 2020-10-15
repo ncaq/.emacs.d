@@ -233,7 +233,7 @@
   ("C-M-b" . backward-kill-sexp)
   ("C-M-d" . kill-sexp)
   ("C-M-j" . helm-do-ag-current-dir)
-  ("C-M-l" . sort-lines-whole-buffer)
+  ("C-M-l" . delete-duplicate-lines)
   ("C-M-m" . newline-upper)
   ("C-M-o" . ibuffer)
   ("C-M-p" . split-window-dwim-and-other)
