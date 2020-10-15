@@ -246,7 +246,7 @@
   ("C-c ;" . align-regexp)
   ("C-c a" . open-downloads)
   ("C-c c" . quickrun)
-  ("C-c d" . diff)
+  ("C-c d" . docker)
   ("C-c e" . open-ncaq-entry)
   ("C-c j" . rg)
   ("C-c o" . open-desktop)
