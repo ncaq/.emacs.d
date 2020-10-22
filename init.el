@@ -933,7 +933,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf d-mode
   :ensure t
-  :after cc-vars
+  :after cc-vars                        ; require c-default-style
   :custom
   (c-default-style . (cons '(d-mode . "java") c-default-style))
   (dfmt-flags . '("--max_line_length=80"))
@@ -1022,11 +1022,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
       (interactive)
       (custom-set-variables '(haskell-stylish-on-save (not haskell-stylish-on-save)))))
   (leaf haskell-interactive-mode
-    :after t
     :defvar haskell-interactive-mode-map
     :config (dvorak-set-key-prog haskell-interactive-mode-map))
   (leaf haskell-cabal
-    :after t
     :defvar haskell-cabal-mode-map
     :config (dvorak-set-key-prog haskell-cabal-mode-map)))
 
@@ -1125,7 +1123,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :config (flycheck-add-mode 'perl6 'raku-mode)))
 
 (leaf ruby-mode
-  :after t
   :defvar ruby-mode-map
   :custom
   (inf-ruby-default-implementation . "pry")
@@ -1155,7 +1152,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf scala-mode
   :ensure t
-  :after t
   :hook
   (scala-mode-hook . lsp)
   (scala-mode-hook . lsp-format-before-save)
@@ -1260,7 +1256,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf nxml-mode
   :mode "\\.fxml\\'"
-  :after t
   :defvar nxml-mode-map
   :custom (nxml-slash-auto-complete-flag . t)
   :bind (:nxml-mode-map
