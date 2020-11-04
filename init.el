@@ -1189,6 +1189,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   "\\.phtml\\'"
   "\\.tpl\\'"
   "\\.tsx?\\'"
+  "\\.vue\\'"
   :init
   (eval-and-compile
     (defun flycheck-select-tslint-or-eslint ()
