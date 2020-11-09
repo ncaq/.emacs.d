@@ -768,6 +768,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf magit
   :ensure t
   :config
+  (leaf magit-files
+    :bind (:magit-file-mode-map ("C-x g" . nil)))
   (leaf magit-mode
     :after t
     :defvar magit-mode-map
