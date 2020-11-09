@@ -284,12 +284,18 @@
   ("C-x <RET> s" . revert-buffer-with-coding-system-japanese-cp932-dos))
 
 ;; 見た目
-;; 等幅になるようにRictyを設定
-(leaf faces :config (set-face-attribute 'default nil :family "Ricty" :height 135))
-(leaf *set-fontset-font
+(leaf *font-unless-w32
+  :unless (eq window-system 'w32)
   :config
+  (set-face-attribute 'default nil :family "Ricty" :height 135)
   (set-fontset-font t 'unicode (font-spec :name "Ricty") nil 'append)
   (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append))
+(leaf *font-w32
+  :doc "RictyがWindowsで上手い文字幅にならないことに対処"
+  :when (eq window-system 'w32)
+  :config
+  (set-face-attribute 'default nil :family "HackGenNerd" :height 135)
+  (set-fontset-font t 'unicode (font-spec :name "HackGenNerd") nil 'append))
 
 ;; シンタックスハイライトをグローバルで有効化
 (leaf font-core :config (global-font-lock-mode 1))
