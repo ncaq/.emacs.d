@@ -287,14 +287,14 @@
 (leaf *font-unless-w32
   :unless (eq window-system 'w32)
   :config
-  (set-face-attribute 'default nil :family "Ricty" :height 120)
+  (set-face-attribute 'default nil :family "Ricty" :height 135)
   (set-fontset-font t 'unicode (font-spec :name "Ricty") nil 'append)
   (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append))
 (leaf *font-w32
   :doc "RictyがWindowsで上手い文字幅にならないことに対処"
   :when (eq window-system 'w32)
   :config
-  (set-face-attribute 'default nil :family "HackGenNerd" :height 120)
+  (set-face-attribute 'default nil :family "HackGenNerd" :height 135)
   (set-fontset-font t 'unicode (font-spec :name "HackGenNerd") nil 'append))
 
 ;; シンタックスハイライトをグローバルで有効化
@@ -865,7 +865,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (wrap-function-to-control-ime 'y-or-n-p nil nil)
   (wrap-function-to-control-ime 'yes-or-no-p nil nil)
   (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
-  (modify-all-frames-parameters '((ime-font . "HackGenNerd-12"))))
+  (modify-all-frames-parameters '((ime-font . "HackGenNerd-13.5"))))
 
 ;; 有効にするだけの短いコード
 
