@@ -524,6 +524,28 @@ Letters do not insert themselves; instead, they are commands.
     :custom (company-quickhelp-delay . 0)
     :config (company-quickhelp-mode 1)))
 
+(leaf auto-complete
+  :doc "基本はcompanyを使いますが、ライブラリが依存していることがあるので最低限設定をを整えます。"
+  :ensure t
+  :after t
+  :require auto-complete-config
+  :defun ac-config-default ac-set-trigger-key
+  :af
+  :custom
+  (ac-auto-show-menu . 0.4)
+  (ac-auto-start . nil)
+  (ac-menu-height . 22)
+  (ac-quick-help-delay . 0.4)
+  (ac-use-quick-help . t)
+  :bind
+  (:ac-completing-map
+   ("M-n" . ac-next)
+   ("M-t" . ac-previous)
+   ("RET" . nil))
+  :config
+  (ac-config-default)
+  (ac-set-trigger-key "<C-tab>"))
+
 (leaf yasnippet
   :ensure t
   :require t
