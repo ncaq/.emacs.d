@@ -435,7 +435,8 @@ Letters do not insert themselves; instead, they are commands.
   (dired-isearch-filenames . t)         ; isearchの対象をファイル名のみにする
   (dired-recursive-copies . 'always)    ; 聞かずに再帰的コピー
   (dired-recursive-deletes . 'always)   ; 聞かずに再帰的削除
-  `(dired-listing-switches . ,(concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
+  `(dired-listing-switches
+    . ,(concat "-Fhval" (when (string-prefix-p "gnu" (symbol-name system-type)) " --group-directories-first")))
   :bind (:dired-mode-map
          ("C-o" . nil)
          ("C-p" . nil)
@@ -453,7 +454,9 @@ Letters do not insert themselves; instead, they are commands.
   (read-buffer-completion-ignore-case . t)    ; 大文字と小文字を区別しない バッファ名
   (read-file-name-completion-ignore-case . t) ; 大文字と小文字を区別しない ファイル名
   (scroll-conservatively . 1)                 ; 最下段までスクロールした時のカーソルの移動量を減らす
-  (scroll-margin . 5))                        ; 最下段までスクロールしたという判定を伸ばす
+  (scroll-margin . 5)                         ; 最下段までスクロールしたという判定を伸ばす
+  :setq-default
+  (buffer-file-coding-system . 'utf-8-unix)) ; 新規ファイルではWindowsでもUTF-8を使う
 
 (leaf man
   :after t
