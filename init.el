@@ -1225,6 +1225,10 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
   (defvar sbt:program-options '("-Dsbt.supershell=false")))
 
+(leaf visual-basic-mode
+  :el-get emacsmirror/visual-basic-mode
+  :mode "\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'")
+
 (leaf web-mode
   :ensure t
   :defvar web-mode-content-type flycheck-javascript-eslint-executable
