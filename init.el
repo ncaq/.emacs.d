@@ -1234,7 +1234,10 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf visual-basic-mode
   :el-get emacsmirror/visual-basic-mode
-  :mode "\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'")
+  :mode "\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'"
+  :after t
+  :defvar visual-basic-mode-map
+  :config (dvorak-set-key-prog visual-basic-mode-map))
 
 (leaf web-mode
   :ensure t
