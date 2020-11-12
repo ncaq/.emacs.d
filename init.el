@@ -804,7 +804,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (leaf git-commit
     :after t
     :defvar git-commit-mode-map
-    :config (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
+    :config
+    (modify-coding-system-alist 'file "COMMIT_EDITMSG" 'utf-8-unix)
+    (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
   (leaf git-rebase
     :after t
     :defvar git-rebase-mode-map
