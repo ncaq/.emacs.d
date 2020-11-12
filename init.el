@@ -625,9 +625,6 @@ Letters do not insert themselves; instead, they are commands.
 
 (leaf helm-ag
   :ensure t
-  :custom
-  (helm-ag-base-command . "rg --no-heading --smart-case --type-not=svg --sort=path")
-  (helm-grep-ag-command . "rg --no-heading --smart-case --type-not=svg --sort=path --color=always --line-number %s %s %s")
   :advice (:after helm-ag--save-current-context xref-push-marker-stack)
   :commands helm-ag--project-root
   :init
@@ -643,7 +640,14 @@ Letters do not insert themselves; instead, they are commands.
       (helm-do-ag-project-root-or-default)))
   (defun helm-do-ag-current-dir ()
     (interactive)
-    (helm-do-ag default-directory)))
+    (helm-do-ag default-directory))
+  :config
+  ;; Windowsだとrgがバックスラッシュで結果を返すのでうまく動かない
+  ;; 仕方がないのでWindowsではデフォルト設定のagを使います
+  (unless (member system-type '(ms-dos windows-nt))
+    (custom-set-variables
+     '(helm-ag-base-command "rg --no-heading --smart-case --type-not=svg --sort=path")
+     '(helm-grep-ag-command "rg --no-heading --smart-case --type-not=svg --sort=path --color=always --line-number %s %s %s"))))
 
 (leaf rg
   :ensure t
