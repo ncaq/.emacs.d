@@ -77,6 +77,10 @@
     (interactive)
     (insert (s-trim (shell-command-to-string "uuidgen")))))
 
+(defun revert-buffer-with-coding-system-utf-8-unix ()
+  (interactive)
+  (revert-buffer-with-coding-system 'utf-8-unix))
+
 (defun revert-buffer-with-coding-system-japanese-cp932-dos ()
   (interactive)
   (revert-buffer-with-coding-system 'japanese-cp932-dos))
@@ -281,6 +285,7 @@
   ("<help> c" . helpful-command)
   ("<help> w" . helm-man-woman)
 
+  ("C-x <RET> u" . revert-buffer-with-coding-system-utf-8-unix)
   ("C-x <RET> s" . revert-buffer-with-coding-system-japanese-cp932-dos))
 
 ;; 見た目
