@@ -1192,12 +1192,16 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf ruby-mode
   :defvar ruby-mode-map
-  :custom
-  (inf-ruby-default-implementation . "pry")
-  (inf-ruby-eval-binding . "Pry.toplevel_binding")
-  (ruby-insert-encoding-magic-comment . nil)
+  :custom (ruby-insert-encoding-magic-comment . nil)
   :hook (ruby-mode-hook . lsp)
-  :config (dvorak-set-key-prog ruby-mode-map))
+  :config
+  (dvorak-set-key-prog ruby-mode-map)
+  (leaf inf-ruby
+    :ensure t
+    :custom
+    (inf-ruby-default-implementation . "pry")
+    (inf-ruby-eval-binding . "Pry.toplevel_binding")
+    :hook (ruby-mode-hook . inf-ruby-minor-mode)))
 
 (leaf rustic
   :ensure t
