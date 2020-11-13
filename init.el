@@ -1198,9 +1198,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (dvorak-set-key-prog ruby-mode-map)
   (leaf inf-ruby
     :ensure t
-    :custom
-    (inf-ruby-default-implementation . "pry")
-    (inf-ruby-eval-binding . "Pry.toplevel_binding")
     :hook (ruby-mode-hook . inf-ruby-minor-mode)))
 
 (leaf rustic
