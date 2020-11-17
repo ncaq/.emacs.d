@@ -1078,7 +1078,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     (flymake-proc-allowed-file-name-masks . (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
     :hook (haskell-mode-hook . lsp))
   (leaf haskell-customize
-    :custom (haskell-stylish-on-save . t)
+    :custom
+    (haskell-process-type . 'stack-ghci)
+    (haskell-stylish-on-save . t)
     :config
     (defun stylish-haskell-enable ()
       (interactive)
