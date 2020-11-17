@@ -538,7 +538,6 @@ Letters do not insert themselves; instead, they are commands.
   :after t
   :require auto-complete-config
   :defun ac-config-default ac-set-trigger-key
-  :af
   :custom
   (ac-auto-show-menu . 0.4)
   (ac-auto-start . nil)
