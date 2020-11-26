@@ -858,6 +858,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf tr-ime
   :doc "C-mでの確定にはEmacs側で対応していないのでKeyHacなどでの対処が必要"
   :when (eq window-system 'w32)
+  :ensure t
   :require t
   :defun tr-ime-advanced-install w32-ime-initialize wrap-function-to-control-ime
   :defvar w32-ime-mode-line-state-indicator-list
