@@ -1247,6 +1247,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :mode "\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'"
   :custom (visual-basic-mode-indent . 4)
   :defvar visual-basic-mode-map
+  :bind (:visual-basic-mode-map ("C-i" . nil))
   :config (dvorak-set-key-prog visual-basic-mode-map))
 
 (leaf web-mode
