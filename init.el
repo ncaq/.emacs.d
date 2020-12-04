@@ -170,6 +170,7 @@
 
 (leaf hexl
   :bind (:hexl-mode-map
+         ("C-t" . nil)                  ; undefinedを無効化する
          ("M-g" . nil)
          ([remap quoted-insert] . hexl-quoted-insert))
   :config (dvorak-set-key-prog hexl-mode-map))
