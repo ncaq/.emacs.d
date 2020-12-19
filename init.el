@@ -737,9 +737,7 @@ Letters do not insert themselves; instead, they are commands.
     (indent-according-to-mode)
     (forward-line -1)
     (indent-according-to-mode))
-  (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
-
-  (leaf scala-mode :after t :config (sp-local-pair 'scala-mode "{" nil :post-handlers '(:rem))))
+  (sp-pair "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET"))))
 
 (leaf string-inflection
   :ensure t
@@ -1227,7 +1225,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :hook
   (scala-mode-hook . lsp)
   (scala-mode-hook . lsp-format-before-save)
-  :config (leaf lsp-metals :ensure t :require t))
+  :config
+  (leaf lsp-metals :ensure t :require t)
+  (leaf smartparens :config (sp-local-pair 'scala-mode "{" nil :post-handlers '(:rem))))
 
 (leaf sbt-mode
   :ensure t
@@ -1246,10 +1246,14 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 (leaf visual-basic-mode
   :el-get emacsmirror/visual-basic-mode
   :mode "\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'"
-  :custom (visual-basic-mode-indent . 4)
+  :custom
+  (visual-basic-capitalize-keywords-p . nil) ; 文字列リテラルの内部の名前まで変更してしまうのでオフにします
+  (visual-basic-mode-indent . 4)             ; editorconfigに認識させようとしたのですがうまく行かなかったので固定設定
   :defvar visual-basic-mode-map
   :bind (:visual-basic-mode-map ("C-i" . nil))
-  :config (dvorak-set-key-prog visual-basic-mode-map))
+  :config
+  (leaf smartparens :config (sp-local-pair '(visual-basic-mode) "'" "'" :actions :rem))
+  (dvorak-set-key-prog visual-basic-mode-map))
 
 (leaf web-mode
   :ensure t
