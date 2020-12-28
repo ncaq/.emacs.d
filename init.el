@@ -1227,7 +1227,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (scala-mode-hook . lsp-format-before-save)
   :config
   (leaf lsp-metals :ensure t :require t)
-  (leaf smartparens :config (sp-local-pair 'scala-mode "{" nil :post-handlers '(:rem))))
+  (leaf smartparens :config (sp-local-pair 'scala-mode "{" nil :post-handlers nil)))
 
 (leaf sbt-mode
   :ensure t
@@ -1252,7 +1252,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :defvar visual-basic-mode-map
   :bind (:visual-basic-mode-map ("C-i" . nil))
   :config
-  (leaf smartparens :config (sp-local-pair '(visual-basic-mode) "'" "'" :actions :rem))
+  (leaf smartparens :config (sp-local-pair 'visual-basic-mode "'" "'" :actions nil))
   (dvorak-set-key-prog visual-basic-mode-map))
 
 (leaf web-mode
@@ -1320,7 +1320,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
   (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
   :config
-  (sp-local-pair '(web-mode) "<" ">" :actions :rem)
+  (sp-local-pair 'web-mode "<" ">" :actions nil)
   (flycheck-add-mode 'html-tidy 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-mode 'typescript-tslint 'web-mode))
@@ -1348,7 +1348,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
          ("C-M-t" . nil)
          ("C-M-p" . nxml-backward-element))
   :config
-  (leaf smartparens :config (sp-local-pair '(nxml-mode) "<" ">" :actions :rem))
+  (leaf smartparens :config (sp-local-pair 'nxml-mode "<" ">" :actions nil))
   (dvorak-set-key-prog nxml-mode-map))
 
 ;; Local Variables:
