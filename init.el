@@ -1160,6 +1160,17 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :config
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
     (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
+  (leaf lsp-pyright
+    :ensure t
+    :require t
+    :after python
+    :defvar lsp-pyright-venv-path
+    :init
+    (defun lsp-pyright-setup-when-pipenv ()
+      (setq-local lsp-pyright-venv-path python-shell-virtualenv-root)
+      (lsp-restart-workspace))
+    :hook
+    (python-mode-hook . lsp))
   (leaf pipenv
     :ensure t
     :after python
@@ -1175,7 +1186,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
       (when python-shell-virtualenv-root
         (setq-local pyvenv-activate (directory-file-name python-shell-virtualenv-root))
         (setq-local python-shell-interpreter "pipenv")
-        (setq-local python-shell-interpreter-args "run jupyter console --simple-prompt")))
+        (setq-local python-shell-interpreter-args "run jupyter console --simple-prompt")
+        (lsp-pyright-setup-when-pipenv)))
     :hook (elpy-mode-hook . pipenv-auto-activate)
     :config
     (pyvenv-tracking-mode)
