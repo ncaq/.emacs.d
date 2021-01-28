@@ -1164,6 +1164,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :ensure t
     :require t
     :after python
+    :defun lsp-restart-workspace lsp-pyright-setup-when-pipenv
     :defvar lsp-pyright-venv-path
     :init
     (defun lsp-pyright-setup-when-pipenv ()
