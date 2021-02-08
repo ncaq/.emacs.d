@@ -1103,7 +1103,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (defun hamlet-mode-setup ()
     (local-set-key (kbd "C-m") 'newline-and-indent)
     (electric-indent-local-mode -1))
-  :hook (hamlet-mode-hook . hamlet-mode-config))
+  :hook (hamlet-mode-hook . hamlet-mode-setup))
 
 (leaf lsp-java
   :ensure t
