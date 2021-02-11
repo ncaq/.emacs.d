@@ -889,10 +889,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf flycheck
   :ensure t
   :custom
-  (global-flycheck-mode . t)
+  (global-flycheck-mode . t)               ; グローバルに有効にすます
   (flycheck-highlighting-mode . nil)       ; 下線が鬱陶しい
   (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
-  (flycheck-javascript-eslint-executable . "eslint_d")
+  (flycheck-javascript-eslint-executable . "eslint_d") ; ESLintは起動が遅いのでデーモンを使います
   :bind (:flycheck-mode-map
          ("C-z" . flycheck-list-errors)
          ([remap previous-error] . flycheck-previous-error)
@@ -1205,13 +1205,11 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :custom
   (rustic-format-display-method . 'ignore) ; Rustfmtのメッセージをポップアップしない
   (rustic-format-trigger . 'on-save)
+  (rustic-lsp-server . 'rust-analyzer)
   :after flycheck
-  :defun flycheck-select-checker
-  :init
-  (defun flycheck-select-checker-rustic ()
-    "rusticの場合のみclippyが見えるようになるのでlspではなくrustic特有のflycheckを使う."
-    (flycheck-select-checker 'rustic-clippy))
-  :hook (rustic-mode-hook . flycheck-select-checker-rustic))
+  :defvar flycheck-checkers
+  :config
+  (push 'rustic-clippy flycheck-checkers))
 
 (leaf scala-mode
   :ensure t
@@ -1251,7 +1249,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 (leaf web-mode
   :ensure t
   :defvar web-mode-content-type flycheck-javascript-eslint-executable
-  :defun flycheck-add-mode sp-local-pair
+  :defun flycheck-add-mode flycheck-select-checker sp-local-pair
   :mode
   "\\.[agj]sp\\'"
   "\\.as[cp]x\\'"
