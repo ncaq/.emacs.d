@@ -1219,15 +1219,11 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :mode "\\.rs$"
   :custom
   (rustic-flycheck-clippy-params . "--message-format=json")
-  (rustic-format-display-method . 'pop-to-buffer-without-switch) ; エラーポップアップにフォーカスを移さない
+  (rustic-format-display-method . 'ignore) ; Rustfmtのメッセージをポップアップしない
   (rustic-format-trigger . 'on-save)
   :after flycheck
   :defun flycheck-select-checker
   :init
-  (defun pop-to-buffer-without-switch (buffer-or-name &optional action norecord)
-    "本当にwithout switchしているわけではなく前のウィンドウにフォーカスを戻すだけ."
-    (pop-to-buffer buffer-or-name action norecord)
-    (other-window -1))
   (defun flycheck-select-checker-rustic ()
     "rusticの場合のみclippyが見えるようになるのでlspではなくrustic特有のflycheckを使う."
     (flycheck-select-checker 'rustic-clippy))
