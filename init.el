@@ -1203,7 +1203,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :ensure t
   :mode "\\.rs$"
   :custom
-  (rustic-flycheck-clippy-params . "--message-format=json")
   (rustic-format-display-method . 'ignore) ; Rustfmtのメッセージをポップアップしない
   (rustic-format-trigger . 'on-save)
   :after flycheck
