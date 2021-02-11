@@ -890,7 +890,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :ensure t
   :custom
   (global-flycheck-mode . t)               ; グローバルに有効にすます
-  (flycheck-highlighting-mode . nil)       ; 下線が鬱陶しい
   (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
   (flycheck-javascript-eslint-executable . "eslint_d") ; ESLintは起動が遅いのでデーモンを使います
   :bind (:flycheck-mode-map
