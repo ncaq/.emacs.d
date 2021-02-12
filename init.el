@@ -947,6 +947,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 ;; 各言語モード
 ;; 一行で収まる他と関連性の薄いもの
+
 (leaf apache-mode :ensure t)
 (leaf bnf-mode :ensure t)
 (leaf caml :ensure t :after t :defvar caml-mode-map :hook (caml-mode-hook . lsp) :config (dvorak-set-key-prog caml-mode-map))
@@ -1010,6 +1011,13 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
    :branch "add-dockerfile-indent-offset"))
 
 (leaf docker-compose-mode :ensure t)
+
+(leaf ebuild-mode
+  :defvar sh-basic-offset
+  :init
+  (defun ebuild-mode-setup ()
+    (setq-local sh-basic-offset 4))     ; ebuildのインデントは伝統的に4
+  :hook (ebuild-mode-hook . ebuild-mode-setup))
 
 (leaf elisp-mode
   :custom (flycheck-emacs-lisp-load-path . 'inherit)
