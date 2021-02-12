@@ -196,6 +196,7 @@
   ("C-." . on-input-method)
   ("C-;" . my-string-inflection-cycle-auto)
   ("C-=" . text-scale-reset)
+  ("C-^" . dired-jump-to-current)
   ("C-a" . smart-move-beginning-of-line)
   ("C-b" . backward-delete-char-untabify)
   ("C-i" . indent-whole-buffer)
@@ -233,7 +234,6 @@
   ("M-y" . helm-show-kill-ring)
 
   ("C-M-," . helm-semantic-or-imenu)
-  ("C-M-." . dired-jump-to-current)
   ("C-M-;" . align-space)
   ("C-M-b" . backward-kill-sexp)
   ("C-M-d" . kill-sexp)
@@ -433,6 +433,7 @@ Letters do not insert themselves; instead, they are commands.
 (leaf dired
   :init
   (defun dired-jump-to-current ()
+    "バッファが属しているディレクトリを開きます。"
     (interactive)
     (dired "."))
   :custom
@@ -447,7 +448,7 @@ Letters do not insert themselves; instead, they are commands.
          ("C-o" . nil)
          ("C-p" . nil)
          ("M-o" . nil)
-         ("C-M-." . dired-up-directory)
+         ("C-^" . dired-up-directory)
          ("C-c C-p" . wdired-change-to-wdired-mode))
   :config (dvorak-set-key-prog dired-mode-map))
 
@@ -679,9 +680,11 @@ Letters do not insert themselves; instead, they are commands.
   :defun smart-jump-find-references-with-rg
   :custom
   (smart-jump-find-references-fallback-function . #'smart-jump-find-references-with-rg)
-  (smart-jump-refs-key . "C-M->")
-  :config
-  (smart-jump-setup-default-registers))
+  (smart-jump-refs-key . "C-M-.")
+  :bind
+  ("M-." . smart-jump-go)
+  ("M-," . smart-jump-back)
+  ("C-M-." . smart-jump-references))
 
 ;; テキスト処理
 
@@ -929,16 +932,18 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :config
   (leaf lsp-ui
     :ensure t
+    :defvar lsp-ui-peek-mode-map
     :custom
-    (lsp-signature-auto-activate . nil) ; lsp-signature-modeを有効にしない
-    (lsp-ui-doc-header . t)             ; 何を見ているのかわからなくなりがちなのでそれも表示
+    (lsp-ui-doc-header . t)             ; 何を見ているのかわからなくなりがちなので名前が含まれるヘッダも表示
     (lsp-ui-doc-include-signature . t)  ; シグネチャも表示する
     (lsp-ui-doc-position . 'top)        ; カーソル位置に表示されると下のコードが見えなくなるので上
-    (lsp-ui-sideline-enable . nil)      ; エラーはflycheckで出して型はdocで出すので幅を取るのは不要
+    (lsp-ui-sideline-enable . nil)      ; エラーはflycheckで出して型はdocで出すので幅を取るサイドラインは不要
     :bind (:lsp-ui-mode-map
            ("C-c C-d" . lsp-ui-doc-show)  ; 手動でドキュメントを表示するコマンド
-           ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-           ([remap xref-find-references] . lsp-ui-peek-find-references)))
+           ([remap smart-jump-go] . lsp-ui-peek-find-definitions)
+           ([remap smart-jump-references] . lsp-ui-peek-find-references)
+           ("C->". lsp-ui-peek-find-implementation))
+    :config (dvorak-set-key-prog lsp-ui-peek-mode-map))
   (leaf dap-mode
     :ensure t
     :hook
