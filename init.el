@@ -894,7 +894,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :custom
   (global-flycheck-mode . t)               ; グローバルに有効にすます
   (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
-  (flycheck-javascript-eslint-executable . "eslint_d") ; ESLintは起動が遅いのでデーモンを使います
   :bind (:flycheck-mode-map
          ("C-z" . flycheck-list-errors)
          ([remap previous-error] . flycheck-previous-error)
@@ -1309,6 +1308,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
          (prettier-js-enable-toggle)))))
   :hook (web-mode-hook . web-mode-setup)
   :custom
+  (flycheck-javascript-eslint-executable . "eslint_d") ; ESLintは起動が遅いのでデーモンを使います
   (web-mode-code-indent-offset . 2)
   (web-mode-css-indent-offset . 2)
   (web-mode-enable-auto-indentation . nil)
