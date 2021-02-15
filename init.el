@@ -1069,8 +1069,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (leaf lsp-haskell
     :ensure t
     :require t
-    :custom
-    (flymake-proc-allowed-file-name-masks . (delete '("\\.l?hs\\'" haskell-flymake-init) flymake-allowed-file-name-masks))
     :hook (haskell-mode-hook . lsp))
   (leaf haskell-customize
     :custom
