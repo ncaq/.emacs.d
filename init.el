@@ -183,6 +183,7 @@
 (leaf doc-view  :after t :defvar doc-view-mode-map       :config (dvorak-set-key-prog doc-view-mode-map))
 (leaf help-mode :after t :defvar help-mode-map           :config (dvorak-set-key-prog help-mode-map))
 (leaf rect      :after t :defvar rectangle-mark-mode-map :config (dvorak-set-key-prog rectangle-mark-mode-map))
+(leaf rst       :after t :defvar rst-mode-map            :config (dvorak-set-key-prog rst-mode-map))
 
 ;; global-set-key
 (leaf *global-set-key
