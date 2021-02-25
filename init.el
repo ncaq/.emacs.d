@@ -1009,11 +1009,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
       (save-buffer)
       (when (and (dfmt-buffer) (buffer-modified-p)) (save-buffer)))))
 
-(leaf dockerfile-mode
-  :el-get
-  (dockerfile-mode
-   :url "https://github.com/ncaq/dockerfile-mode.git"
-   :branch "add-dockerfile-indent-offset"))
+(leaf dockerfile-mode :ensure t)
 
 (leaf docker-compose-mode :ensure t)
 
