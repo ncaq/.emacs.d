@@ -414,22 +414,12 @@
 
 ;; その他
 
-(leaf tabulated-list
-  :config
-  ;; パッケージの名前などの幅を大きくとる
-  (define-derived-mode package-menu-mode tabulated-list-mode "Package Menu"
-    "Major mode for browsing a list of packages.
-Letters do not insert themselves; instead, they are commands.
-\\<package-menu-mode-map>
-\\{package-menu-mode-map}"
-    (setq tabulated-list-format
-          [("Package" 35 package-menu--name-predicate)
-           ("Version" 15 package-menu--version-predicate)
-           ("Status"  10 package-menu--status-predicate)
-           ("Description" 10 package-menu--description-predicate)])
-    (setq tabulated-list-padding 1)
-    (setq tabulated-list-sort-key (cons "Status" nil))
-    (tabulated-list-init-header)))
+(leaf package
+  :init
+  (defun package-menu-mode-setup ()
+    "パッケージ名の幅を広く取ります。"
+    (setf (cadr (aref tabulated-list-format 0)) 50))
+  :hook (package-menu-mode-hook . package-menu-mode-setup))
 
 (leaf dired
   :init
@@ -813,7 +803,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :diminish "GG"
   :custom (global-git-gutter-mode . t))
 
-(leaf docker :ensure t :custom (docker-container-shell-file-name . "/bin/bash"))
+(leaf docker
+  :ensure t
+  :custom (docker-container-shell-file-name . "/bin/bash")
+  :init
+  (defun docker-image-mode-setup ()
+    "イメージ名の幅を広く取ります。"
+    (setf (cadr (aref tabulated-list-format 0)) 100))
+  :hook
+  (docker-image-mode-hook . docker-image-mode-setup))
 
 (leaf *input-method
   :init
