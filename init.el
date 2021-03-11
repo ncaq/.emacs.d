@@ -954,7 +954,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf apache-mode :ensure t)
 (leaf bnf-mode :ensure t)
 (leaf caml :ensure t :after t :defvar caml-mode-map :hook (caml-mode-hook . lsp) :config (dvorak-set-key-prog caml-mode-map))
-(leaf conf-mode :mode "\\.accept_keywords$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$")
+(leaf conf-mode :mode "\\.accept_keywords$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$" "/credentials$")
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
 (leaf dotenv-mode :ensure t :mode "\\.env\\..*\\'")
