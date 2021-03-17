@@ -1273,7 +1273,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :init
   (eval-and-compile
     (defun flycheck-select-tslint-or-eslint ()
-      "tslintが使えるプロジェクトだとtslintを有効化して, それ以外ではeslintを有効化する."
+      "tslintが使えるプロジェクトではtslintを有効化して、それ以外ではeslintを有効化します。"
       (if (and
            ;; 大前提としてtslint.jsonがないとだめ
            (locate-dominating-file default-directory "tslint.json")
@@ -1286,20 +1286,12 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
         (when (executable-find flycheck-javascript-eslint-executable)
           (flycheck-select-checker 'javascript-eslint)))))
   (defun web-mode-setup ()
-    (pcase web-mode-content-type
-      ("html"
-       (progn
-         (prettier-js-enable-toggle)
-         (when (executable-find "tidy") (flycheck-select-checker 'html-tidy))))
-      ((or "javascript" "jsx" "typescript")
-       (progn
-         (lsp)
-         (prettier-js-enable-toggle)
-         (flycheck-select-tslint-or-eslint)))
-      ((or "json" "css")
-       (progn
-         (lsp)
-         (prettier-js-enable-toggle)))))
+    "web-modeの設定タイプによって使う編集支援を切り替えます。"
+    (lsp)
+    (prettier-js-enable-toggle)
+    (when (member web-mode-content-type (or "javascript" "jsx" "typescript"))
+      ;; lsp eslintはまだVSCode以外で使う準備が出来ていないので時期尚早のためflycheck内容を置き換えます
+      (flycheck-select-tslint-or-eslint)))
   :hook (web-mode-hook . web-mode-setup)
   :custom
   (flycheck-javascript-eslint-executable . "eslint_d") ; ESLintは起動が遅いのでデーモンを使います
