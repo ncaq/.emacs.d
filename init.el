@@ -187,6 +187,7 @@
 
 ;; global-set-key
 (leaf *global-set-key
+  :leaf-autoload nil
   :bind
   ("<tab>" . indent-for-tab-command) ; 何かしらを割り当てることで, C-iと別扱いになる
 
