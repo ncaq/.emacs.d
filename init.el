@@ -941,7 +941,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
            ("C-c C-d" . lsp-ui-doc-show)  ; 手動でドキュメントを表示するコマンド
            ([remap smart-jump-go] . lsp-ui-peek-find-definitions)
            ([remap smart-jump-references] . lsp-ui-peek-find-references)
-           ("C->". lsp-ui-peek-find-implementation))
+           ("C->" . lsp-find-type-definition)
+           ("C-c C-p" . lsp-ui-peek-find-implementation))
     :config (dvorak-set-key-prog lsp-ui-peek-mode-map))
   (leaf dap-mode
     :ensure t
