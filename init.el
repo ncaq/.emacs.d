@@ -1193,12 +1193,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 (leaf raku-mode
   :ensure t
   :custom (raku-indent-offset . 2)
-  :defun flycheck-add-mode
-  :config
-  (leaf flycheck-perl6
-    :ensure t
-    :require t
-    :config (flycheck-add-mode 'perl6 'raku-mode)))
+  :config (leaf flycheck-raku :ensure t :require t))
 
 (leaf ruby-mode
   :defvar ruby-mode-map
