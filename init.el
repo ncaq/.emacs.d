@@ -902,11 +902,14 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf prettier-js
   :ensure t
   :init
-  (defun prettier-js-enable-toggle ()
-    "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにする."
+  (defun prettier-js-mode-toggle-setup ()
+    "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにします。"
     (interactive)
+    ;; 全体フォーマットをEmacsではなくprettierが行うように
     (local-set-key [remap indent-whole-buffer] 'prettier-js)
+    ;; M-iでprettierの一時的無効化が出来るように
     (local-set-key (kbd "M-i") 'prettier-js-mode)
+    ;; prettierを有効化
     (prettier-js-mode t)))
 
 (leaf lsp-mode
@@ -1290,7 +1293,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (defun web-mode-setup ()
     "web-modeの設定タイプによって使う編集支援を切り替えます。"
     (lsp)
-    (prettier-js-enable-toggle)
+    (prettier-js-mode-toggle-setup)
     (when (member web-mode-content-type (or "javascript" "jsx" "typescript"))
       ;; lsp eslintはまだVSCode以外で使う準備が出来ていないので時期尚早のためflycheck内容を置き換えます
       (flycheck-select-tslint-or-eslint)))
@@ -1322,13 +1325,13 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf ts-comint :ensure t)
 
-(leaf json-mode :hook (json-mode-hook . lsp) (json-mode-hook . prettier-js-enable-toggle))
-(leaf yaml-mode :ensure t :hook (yaml-mode-hook . prettier-js-enable-toggle))
+(leaf json-mode :hook (json-mode-hook . lsp) (json-mode-hook . prettier-js-mode-toggle-setup))
+(leaf yaml-mode :ensure t :hook (yaml-mode-hook . prettier-js-mode-toggle-setup))
 
 (leaf css-mode
   :custom (css-indent-offset . 2)
-  :hook (css-mode-hook . lsp) ((css-mode-hook scss-mode-hook) . prettier-js-enable-toggle))
-(leaf less-css-mode :hook (less-css-mode-hook . prettier-js-enable-toggle))
+  :hook (css-mode-hook . lsp) ((css-mode-hook scss-mode-hook) . prettier-js-mode-toggle-setup))
+(leaf less-css-mode :hook (less-css-mode-hook . prettier-js-mode-toggle-setup))
 
 (leaf nxml-mode
   :mode "\\.fxml\\'"
