@@ -1193,6 +1193,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 (leaf raku-mode
   :ensure t
   :custom (raku-indent-offset . 2)
+  :defun flycheck-add-mode
   :config
   (leaf flycheck-perl6
     :ensure t
@@ -1258,8 +1259,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf web-mode
   :ensure t
-  :defvar web-mode-content-type flycheck-javascript-eslint-executable
-  :defun flycheck-add-mode flycheck-select-checker sp-local-pair
+  :defvar lsp-enabled-clients
+  :defun sp-local-pair
   :mode
   "\\.[agj]sp\\'"
   "\\.as[cp]x\\'"
@@ -1276,30 +1277,12 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   "\\.tsx?\\'"
   "\\.vue\\'"
   :init
-  (eval-and-compile
-    (defun flycheck-select-tslint-or-eslint ()
-      "tslintが使えるプロジェクトではtslintを有効化して、それ以外ではeslintを有効化します。"
-      (if (and
-           ;; 大前提としてtslint.jsonがないとだめ
-           (locate-dominating-file default-directory "tslint.json")
-           (or
-            ;; メジャーモードがTypeScriptなら良い
-            (equal major-mode 'typescript-mode)
-            ;; それ以外のメジャーモード(web-modeとか)でも拡張子がts, tsxなら良い
-            (member (file-name-extension (buffer-file-name)) '("ts" "tsx"))))
-          (flycheck-select-checker 'typescript-tslint)
-        (when (executable-find flycheck-javascript-eslint-executable)
-          (flycheck-select-checker 'javascript-eslint)))))
   (defun web-mode-setup ()
-    "web-modeの設定タイプによって使う編集支援を切り替えます。"
+    (setq-local lsp-enabled-clients '(ts-ls eslint))
     (lsp)
-    (prettier-js-mode-toggle-setup)
-    (when (member web-mode-content-type (or "javascript" "jsx" "typescript"))
-      ;; lsp eslintはまだVSCode以外で使う準備が出来ていないので時期尚早のためflycheck内容を置き換えます
-      (flycheck-select-tslint-or-eslint)))
+    (prettier-js-mode-toggle-setup))
   :hook (web-mode-hook . web-mode-setup)
   :custom
-  (flycheck-javascript-eslint-executable . "eslint_d") ; ESLintは起動が遅いのでデーモンを使います
   (web-mode-code-indent-offset . 2)
   (web-mode-css-indent-offset . 2)
   (web-mode-enable-auto-indentation . nil)
@@ -1314,10 +1297,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
   (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
   :config
-  (sp-local-pair 'web-mode "<" ">" :actions nil)
-  (flycheck-add-mode 'html-tidy 'web-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (flycheck-add-mode 'typescript-tslint 'web-mode))
+  (sp-local-pair 'web-mode "<" ">" :actions nil))
 
 (leaf yarn-mode :ensure t)
 
