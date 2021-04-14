@@ -1155,39 +1155,56 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :config
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
     (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
+  (leaf poetry
+    :ensure t
+    :require t
+    :after python
+    :config
+    (poetry-tracking-mode))
+  (leaf pipenv
+    :ensure t
+    :require t
+    :after python
+    :defun pipenv-projectile-after-switch-extended
+    :custom
+    (pipenv-projectile-after-switch-function . #'pipenv-projectile-after-switch-extended)
+    :config
+    (pyvenv-tracking-mode)
+    (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv"))
   (leaf lsp-pyright
     :ensure t
     :require t
     :after python
-    :defun lsp-restart-workspace lsp-pyright-setup-when-pipenv
-    :defvar lsp-pyright-venv-path
+    :defvar
+    lsp-pyright-venv-path
+    python-shell-interpreter
+    python-shell-interpreter-args
+    python-shell-virtualenv-root
+    pyvenv-activate
+    :defun
+    pipenv--force-wait
+    pipenv-deactivate
+    pipenv-venv
     :init
-    (defun lsp-pyright-setup-when-pipenv ()
-      (setq-local lsp-pyright-venv-path python-shell-virtualenv-root)
-      (lsp-restart-workspace))
-    :hook
-    (python-mode-hook . lsp))
-  (leaf pipenv
-    :ensure t
-    :after python
-    :require t
-    :defvar python-shell-interpreter python-shell-interpreter-args python-shell-virtualenv-root pyvenv-activate
-    :defun pipenv--force-wait pipenv-deactivate pipenv-projectile-after-switch-extended pipenv-venv
-    :custom
-    (pipenv-projectile-after-switch-function . #'pipenv-projectile-after-switch-extended)
-    :init
-    (defun pipenv-auto-activate ()
-      (pipenv-deactivate)
-      (pipenv--force-wait (pipenv-venv))
-      (when python-shell-virtualenv-root
-        (setq-local pyvenv-activate (directory-file-name python-shell-virtualenv-root))
-        (setq-local python-shell-interpreter "pipenv")
-        (setq-local python-shell-interpreter-args "run jupyter console --simple-prompt")
-        (lsp-pyright-setup-when-pipenv)))
-    :hook (elpy-mode-hook . pipenv-auto-activate)
-    :config
-    (pyvenv-tracking-mode)
-    (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv"))
+    (defun lsp-pyright-setup ()
+      "文脈に応じたPython環境のセットアップを行います"
+      (cond
+       ;; poetry環境
+       ((locate-dominating-file default-directory "pyproject.toml")
+        (setq-local lsp-pyright-venv-path python-shell-virtualenv-root)
+        (lsp))
+       ;; Pipenv環境
+       ((locate-dominating-file default-directory "Pipfile")
+        (pipenv-deactivate)
+        (pipenv--force-wait (pipenv-venv))
+        (when python-shell-virtualenv-root
+          (setq-local pyvenv-activate (directory-file-name python-shell-virtualenv-root))
+          (setq-local python-shell-interpreter "pipenv")
+          (setq-local python-shell-interpreter-args "run jupyter console --simple-prompt")
+          (setq-local lsp-pyright-venv-path python-shell-virtualenv-root))
+        (lsp))
+       (t (lsp))))
+    :hook (python-mode-hook . lsp-pyright-setup))
   (leaf ein :ensure t))
 
 (leaf raku-mode
