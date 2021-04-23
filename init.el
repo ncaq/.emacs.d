@@ -918,6 +918,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf lsp-mode
   :ensure t
+  :after t
+  :defvar lsp-signature-mode-map
   :custom
   (lsp-auto-guess-root . t)             ; 自動的にimportする
   (lsp-file-watch-threshold . 10000)    ; 監視ファイル警告を緩める
@@ -936,6 +938,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ("C-c C-r" . lsp-workspace-restart)
          ("C-c C-t" . lsp-describe-thing-at-point))
   :config
+  (dvorak-set-key-prog lsp-signature-mode-map)
   (leaf lsp-ui
     :ensure t
     :defvar lsp-ui-peek-mode-map
