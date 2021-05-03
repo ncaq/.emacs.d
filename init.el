@@ -196,7 +196,7 @@
   ("C-," . off-input-method)
   ("C--" . text-scale-decrease)
   ("C-." . on-input-method)
-  ("C-;" . my-string-inflection-cycle-auto)
+  ("C-;" . google-this)
   ("C-=" . text-scale-reset)
   ("C-^" . dired-jump-to-current)
   ("C-a" . smart-move-beginning-of-line)
@@ -234,6 +234,7 @@
   ("M-w" . kill-ring-save-region-or-symbol-at-point)
   ("M-x" . helm-M-x)
   ("M-y" . helm-show-kill-ring)
+  ("M-z" . my-string-inflection-cycle-auto)
 
   ("C-M-," . helm-semantic-or-imenu)
   ("C-M-;" . align-space)
@@ -876,6 +877,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :diminish "EC" :custom (editorconfig-mode . 1))
+(leaf google-this :ensure t)
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
 (leaf point-undo :el-get ncaq/point-undo :require t)
