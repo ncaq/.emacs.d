@@ -842,10 +842,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (default-input-method . "japanese-mozc-im")
   (mozc-candidate-style . 'echo-area)
   :custom-face
-  (mozc-preedit-selected-face
-   . '((t
-        (:background "#073642")
-        (:foreground "#839496")))))
+  (mozc-preedit-selected-face . '((t (:background "#657b83")))))
 
 (leaf tr-ime
   :doc "C-mでの確定にはEmacs側で対応していないのでKeyHacなどでの対処が必要"
