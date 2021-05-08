@@ -1076,7 +1076,12 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (leaf lsp-haskell
     :ensure t
     :require t
-    :hook (haskell-mode-hook . lsp))
+    :hook (haskell-mode-hook . lsp)
+    :custom
+    ;; フォーマッターをfourmoluにします。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
+    (lsp-haskell-formatting-provider . "fourmolu")
+    ;; 補完時にスニペット展開(型が出てくるやつ)を行わないようにします。
+    (lsp-haskell-completion-snippets-on . nil))
   (leaf haskell-customize
     :custom
     (haskell-process-type . 'stack-ghci)
