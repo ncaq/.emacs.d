@@ -1083,11 +1083,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     ;; 補完時にスニペット展開(型が出てくるやつ)を行わないようにします。
     (lsp-haskell-completion-snippets-on . nil))
   (leaf haskell-customize
-    :custom
-    (haskell-process-type . 'stack-ghci)
-    (haskell-stylish-on-save . t)
-    :config
+    :init
     (defun stylish-haskell-enable ()
+      "保存したときに自動的にstylish-haskellを適用する。"
       (interactive)
       (custom-set-variables '(haskell-stylish-on-save t)))
     (defun stylish-haskell-disable ()
@@ -1095,7 +1093,12 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
       (custom-set-variables '(haskell-stylish-on-save nil)))
     (defun stylish-haskell-toggle ()
       (interactive)
-      (custom-set-variables '(haskell-stylish-on-save (not haskell-stylish-on-save)))))
+      (custom-set-variables '(haskell-stylish-on-save (not haskell-stylish-on-save))))
+    (defun stylish-haskell-setup ()
+      "プロジェクトディレクトリにstylish-haskellの設定ファイルがある場合、保存したときに自動的にstylish-haskellを適用する。"
+      (when (locate-dominating-file default-directory ".stylish-haskell.yaml")
+        (stylish-haskell-enable)))
+    :hook (haskell-mode-hook . stylish-haskell-setup))
   (leaf haskell-interactive-mode
     :defvar haskell-interactive-mode-map
     :config (dvorak-set-key-prog haskell-interactive-mode-map))
