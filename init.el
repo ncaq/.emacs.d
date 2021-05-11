@@ -1084,20 +1084,21 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     (lsp-haskell-completion-snippets-on . nil))
   (leaf haskell-customize
     :init
-    (defun stylish-haskell-enable ()
-      "保存したときに自動的にstylish-haskellを適用する。"
-      (interactive)
-      (custom-set-variables '(haskell-stylish-on-save t)))
-    (defun stylish-haskell-disable ()
-      (interactive)
-      (custom-set-variables '(haskell-stylish-on-save nil)))
-    (defun stylish-haskell-toggle ()
-      (interactive)
-      (custom-set-variables '(haskell-stylish-on-save (not haskell-stylish-on-save))))
-    (defun stylish-haskell-setup ()
-      "プロジェクトディレクトリにstylish-haskellの設定ファイルがある場合、保存したときに自動的にstylish-haskellを適用する。"
-      (when (locate-dominating-file default-directory ".stylish-haskell.yaml")
-        (stylish-haskell-enable)))
+    (eval-and-compile
+      (defun stylish-haskell-enable ()
+        "保存したときに自動的にstylish-haskellを適用する。"
+        (interactive)
+        (custom-set-variables '(haskell-stylish-on-save t)))
+      (defun stylish-haskell-disable ()
+        (interactive)
+        (custom-set-variables '(haskell-stylish-on-save nil)))
+      (defun stylish-haskell-toggle ()
+        (interactive)
+        (custom-set-variables '(haskell-stylish-on-save (not haskell-stylish-on-save))))
+      (defun stylish-haskell-setup ()
+        "プロジェクトディレクトリにstylish-haskellの設定ファイルがある場合、保存したときに自動的にstylish-haskellを適用する。"
+        (when (locate-dominating-file default-directory ".stylish-haskell.yaml")
+          (stylish-haskell-enable))))
     :hook (haskell-mode-hook . stylish-haskell-setup))
   (leaf haskell-interactive-mode
     :defvar haskell-interactive-mode-map
