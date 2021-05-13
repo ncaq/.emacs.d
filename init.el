@@ -932,7 +932,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :bind (:lsp-mode-map
          ("C-S-SPC" . nil)
          ("C-c C-a" . lsp-execute-code-action)
-         ("C-c C-i" . lsp-format-buffer)
+         ("C-c C-i" . lsp-format-region)
          ("C-c C-n" . lsp-rename)
          ("C-c C-r" . lsp-workspace-restart)
          ("C-c C-t" . lsp-describe-thing-at-point))
