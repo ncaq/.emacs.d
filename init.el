@@ -1083,6 +1083,9 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     ;; 補完時にスニペット展開(型が出てくるやつ)を行わないようにします。
     (lsp-haskell-completion-snippets-on . nil))
   (leaf haskell-customize
+    :custom
+    ;; グローバル環境で起動した場合、stack ghciを使います。
+    (haskell-process-type . 'stack-ghci)
     :init
     (eval-and-compile
       (defun stylish-haskell-enable ()
