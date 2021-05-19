@@ -196,7 +196,7 @@
   ("C-," . off-input-method)
   ("C--" . text-scale-decrease)
   ("C-." . on-input-method)
-  ("C-;" . google-this)
+  ("C-;" . my-string-inflection-cycle-auto)
   ("C-=" . text-scale-reset)
   ("C-^" . dired-jump-to-current)
   ("C-a" . smart-move-beginning-of-line)
@@ -234,7 +234,7 @@
   ("M-w" . kill-ring-save-region-or-symbol-at-point)
   ("M-x" . helm-M-x)
   ("M-y" . helm-show-kill-ring)
-  ("M-z" . my-string-inflection-cycle-auto)
+  ("M-z" . google-this)
 
   ("C-M-," . helm-semantic-or-imenu)
   ("C-M-;" . align-space)
