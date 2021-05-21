@@ -964,7 +964,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf apache-mode :ensure t)
 (leaf bnf-mode :ensure t)
-(leaf caml :ensure t :after t :defvar caml-mode-map :hook (caml-mode-hook . lsp) :config (dvorak-set-key-prog caml-mode-map))
 (leaf conf-mode :mode "\\.accept_keywords$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$" "/credentials$")
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
@@ -1152,6 +1151,40 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
         ("zsh" . sh-mode))
       markdown-code-lang-modes)))
   (dvorak-set-key-prog markdown-mode-map))
+
+(leaf tuareg
+  :ensure t
+  :config
+  (leaf merlin
+    :ensure t
+    :after tuareg
+    :defvar
+    merlin-mode-map
+    :hook
+    (tuareg-mode-hook . merlin-mode)
+    :config
+    (dvorak-set-key-prog merlin-mode-map)
+    (leaf merlin-company :ensure t :require t :after merlin)
+    (leaf merlin-eldoc :ensure t :require t :after merlin))
+  (leaf ocamlformat
+    :ensure t
+    :after tuareg
+    :custom
+    (ocamlformat-enable 'enable-outside-detected-project)
+    :init
+    (defun ocamlformat-setup ()
+      (add-hook 'before-save-hook 'ocamlformat-before-save nil t)
+      )
+    :hook
+    (tuareg-mode-hook . merlin-mode)))
+
+(leaf dune
+  :ensure t
+  (leaf dune-format
+    :ensure t
+    :after dune
+    :hook
+    (dune-mode-hook . dune-format-on-save-mode)))
 
 (leaf python
   :custom (python-indent-guess-indent-offset-verbose . nil)
