@@ -968,6 +968,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
 (leaf dotenv-mode :ensure t :mode "\\.env\\..*\\'")
+(leaf egison-mode :ensure t :mode ("\\.egi$" . egison-mode))
 (leaf envrc :ensure t)
 (leaf generic-x :require t)
 (leaf go-mode :ensure t :hook (go-mode-hook . lsp))
