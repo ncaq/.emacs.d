@@ -1181,6 +1181,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf dune
   :ensure t
+  :config
   (leaf dune-format
     :ensure t
     :after dune
