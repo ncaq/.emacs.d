@@ -1155,6 +1155,7 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 
 (leaf tuareg
   :ensure t
+  :mode ("\\.ml[iylp]?$" . tuareg-mode)
   :config
   (leaf merlin
     :ensure t
@@ -1164,9 +1165,17 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :hook
     (tuareg-mode-hook . merlin-mode)
     :config
-    (dvorak-set-key-prog merlin-mode-map)
-    (leaf merlin-company :ensure t :require t :after merlin)
-    (leaf merlin-eldoc :ensure t :require t :after merlin))
+    (swap-set-key merlin-mode-map '(("C-c C-p" . "C-c C-t")))
+    (leaf merlin-company
+      :ensure t
+      :require t
+      :after merlin)
+    (leaf merlin-eldoc
+      :ensure t
+      :require t
+      :after merlin
+      :hook
+      (merlin-mode-hook . merlin-eldoc-setup)))
   (leaf ocamlformat
     :ensure t
     :after tuareg
@@ -1174,10 +1183,14 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     (ocamlformat-enable 'enable-outside-detected-project)
     :init
     (defun ocamlformat-setup ()
-      (add-hook 'before-save-hook 'ocamlformat-before-save nil t)
-      )
+      (add-hook 'before-save-hook 'ocamlformat-before-save nil t))
     :hook
-    (tuareg-mode-hook . merlin-mode)))
+    (tuareg-mode-hook . merlin-mode))
+  (leaf utop
+    :ensure t
+    :after tuareg
+    :hook
+    (tuareg-mode-hook . utop-minor-mode)))
 
 (leaf dune
   :ensure t
