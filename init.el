@@ -351,7 +351,6 @@
 (leaf recentf
   :custom
   ((recentf-max-saved-items . 2000)
-   (recentf-auto-cleanup . 600)
    (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
 
 (leaf recentf-ext :ensure t :require t)
