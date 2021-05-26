@@ -1288,7 +1288,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :custom
   (rustic-format-display-method . 'ignore) ; Rustfmtのメッセージをポップアップしない
   (rustic-format-trigger . 'on-save)
-  (rustic-lsp-server . 'rust-analyzer)
   :after flycheck
   :defvar flycheck-checkers
   :config
