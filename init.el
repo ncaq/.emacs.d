@@ -1217,19 +1217,15 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
   (leaf poetry
     :ensure t
-    :require t
-    :after python
-    :config
-    (poetry-tracking-mode))
+    :commands poetry-track-virtualenv)
   (leaf pipenv
     :ensure t
-    :require t
     :after python
+    :commands pyvenv-track-virtualenv
     :defun pipenv-projectile-after-switch-extended
     :custom
     (pipenv-projectile-after-switch-function . #'pipenv-projectile-after-switch-extended)
     :config
-    (pyvenv-tracking-mode)
     (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv"))
   (leaf lsp-pyright
     :ensure t
@@ -1242,20 +1238,23 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     python-shell-virtualenv-root
     pyvenv-activate
     :defun
+    lsp-restart-workspace
     pipenv--force-wait
-    pipenv-deactivate
     pipenv-venv
+    poetry-track-virtualenv
+    pyvenv-track-virtualenv
     :init
     (defun lsp-pyright-setup ()
-      "文脈に応じたPython環境のセットアップを行います"
+      "文脈に応じたPython環境のセットアップを行います。"
       (cond
        ;; poetry環境
        ((locate-dominating-file default-directory "pyproject.toml")
+        (poetry-track-virtualenv)
         (setq-local lsp-pyright-venv-path python-shell-virtualenv-root)
         (lsp))
        ;; Pipenv環境
        ((locate-dominating-file default-directory "Pipfile")
-        (pipenv-deactivate)
+        (pyvenv-track-virtualenv)
         (pipenv--force-wait (pipenv-venv))
         (when python-shell-virtualenv-root
           (setq-local pyvenv-activate (directory-file-name python-shell-virtualenv-root))
@@ -1263,7 +1262,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
           (setq-local python-shell-interpreter-args "run jupyter console --simple-prompt")
           (setq-local lsp-pyright-venv-path python-shell-virtualenv-root))
         (lsp))
-       (t (lsp))))
+       (t
+        (lsp))))
     :hook (python-mode-hook . lsp-pyright-setup))
   (leaf ein :ensure t))
 
