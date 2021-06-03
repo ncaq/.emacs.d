@@ -44,7 +44,7 @@
   :defun server-running-p
   :config (unless (server-running-p) (server-start)))
 
-;; ある程度独立した関数定義
+;;; ある程度独立した関数定義
 
 (defun open-desktop ()
   (interactive)
@@ -85,7 +85,7 @@
   (interactive)
   (revert-buffer-with-coding-system 'japanese-cp932-dos))
 
-;; Dvorak設定をするための関数達
+;;; Dvorak設定をするための関数達
 
 (defun reverse-cons (c)
   (cons (cdr c) (car c)))
@@ -134,7 +134,7 @@
    '("C-o" "M-b" "C-M-b" "C-q" "M-q" "C-M-q"))
   (dvorak-set-key key-map))
 
-;; Dvorak設定をするだけのコード
+;;; Dvorak設定をするだけのコード
 
 (dvorak-set-key global-map)
 (swap-set-key global-map '(("M-g p" . "M-g t")))
@@ -185,7 +185,8 @@
 (leaf rect      :after t :defvar rectangle-mark-mode-map :config (dvorak-set-key-prog rectangle-mark-mode-map))
 (leaf rst       :after t :defvar rst-mode-map            :config (dvorak-set-key-prog rst-mode-map))
 
-;; global-set-key
+;;; global-set-key
+
 (leaf *global-set-key
   :leaf-autoload nil
   :bind
@@ -292,7 +293,8 @@
   ("C-x <RET> u" . revert-buffer-with-coding-system-utf-8-unix)
   ("C-x <RET> s" . revert-buffer-with-coding-system-japanese-cp932-dos))
 
-;; 見た目
+;;; 見た目
+
 (leaf *font-unless-w32
   :unless (eq window-system 'w32)
   :config
@@ -347,7 +349,8 @@
   ([remap query-replace] . anzu-query-replace)
   ([remap query-replace-regexp] . anzu-query-replace-regexp))
 
-;; History
+;;; History
+
 (leaf recentf
   :custom
   ((recentf-max-saved-items . 2000)
@@ -386,7 +389,8 @@
 (leaf tramp :custom (tramp-auto-save-directory . temporary-file-directory)) ; trampの自動保存ディレクトリをtmpにする
 (leaf filelock :custom (create-lockfiles . nil)) ; percelがバグるのでロックファイルとしてシンボリックリンクを作らない
 
-;; toolkit
+;;; toolkit
+
 (leaf menu-bar :custom (menu-bar-mode . nil))        ; メニューバーを表示させない
 (leaf tool-bar :custom (tool-bar-mode . nil))        ; ツールバーを表示させない
 (leaf frame :config (toggle-frame-maximized))        ; 全画面化
@@ -413,7 +417,7 @@
 ;; バッファの名前にディレクトリ名を付けることでユニークになりやすくする
 (leaf uniquify :require t :custom (uniquify-buffer-name-style . 'forward))
 
-;; その他
+;;; その他
 
 (leaf package
   :init
@@ -619,7 +623,7 @@
   (leaf helm-descbinds :ensure t :custom (helm-descbinds-mode . t))
   (leaf helm-swoop :ensure t))
 
-;; ジャンプ
+;;; ジャンプ
 
 (leaf helm-ag
   :ensure t
@@ -678,7 +682,7 @@
   ("M-," . smart-jump-back)
   ("C-M-." . smart-jump-references))
 
-;; テキスト処理
+;;; テキスト処理
 
 (leaf smartparens
   :ensure t
@@ -775,7 +779,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (interactive)
     (setq-local whitespace-action (remove 'auto-cleanup whitespace-action))))
 
-;; Emacsと外部プロセスの連携
+;;; Emacsと外部プロセスの連携
 
 (leaf magit
   :ensure t
@@ -878,7 +882,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf symbolword-mode :ensure t :require t)
 (leaf which-key :ensure t :custom (which-key-mode . 1))
 
-;; テキストを超えたプログラミング機能
+;;; テキストを超えたプログラミング機能
 
 (leaf quickrun
   :ensure t
@@ -956,7 +960,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (lsp-mode-hook . dap-mode)
     (lsp-mode-hook . dap-ui-mode)))
 
-;; 各言語モード
+;;; 各言語モード
+
 ;; 一行で収まる他と関連性の薄いもの
 
 (leaf apache-mode :ensure t)
@@ -980,6 +985,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
 
+;;; C/C++
+
 (leaf cc-mode
   :after t
   :defvar c-mode-base-map
@@ -994,6 +1001,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :bind ((:c-mode-map ([remap indent-whole-buffer] . clang-format-buffer))
            (:c++-mode-map ([remap indent-whole-buffer] . clang-format-buffer))))
   (dvorak-set-key-prog c-mode-base-map))
+
+;;; D
 
 (leaf d-mode
   :ensure t
@@ -1016,9 +1025,13 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
       (save-buffer)
       (when (and (dfmt-buffer) (buffer-modified-p)) (save-buffer)))))
 
+;;; Docker
+
 (leaf dockerfile-mode :ensure t)
 
 (leaf docker-compose-mode :ensure t)
+
+;;; ebuild
 
 (leaf ebuild-mode
   :defvar sh-basic-offset
@@ -1026,6 +1039,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (defun ebuild-mode-setup ()
     (setq-local sh-basic-offset 4))     ; ebuildのインデントは伝統的に4
   :hook (ebuild-mode-hook . ebuild-mode-setup))
+
+;;; Emacs Lisp
 
 (leaf elisp-mode
   :custom (flycheck-emacs-lisp-load-path . 'inherit)
@@ -1042,6 +1057,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   (leaf ielm :bind (:ielm-map ("C-c C-d" . helpful-at-point)))
   (leaf macrostep :ensure t)
   (leaf simple :bind (:read-expression-map ("<tab>" . completion-at-point))))
+
+;;; Haskell
 
 (leaf haskell-mode
   :ensure t
@@ -1112,6 +1129,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     (electric-indent-local-mode -1))
   :hook (hamlet-mode-hook . hamlet-mode-setup))
 
+;;; Java
+
 (leaf lsp-java
   :ensure t
   :require t
@@ -1119,6 +1138,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :hook (java-mode-hook . lsp))
 
 (leaf groovy-mode :ensure t)
+
+;;; Markdown
 
 (leaf markdown-mode
   :ensure t
@@ -1149,6 +1170,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
         ("zsh" . sh-mode))
       markdown-code-lang-modes)))
   (dvorak-set-key-prog markdown-mode-map))
+
+;;; OCaml
 
 (leaf tuareg
   :ensure t
@@ -1197,6 +1220,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :after dune
     :hook
     (dune-mode-hook . dune-format-on-save-mode)))
+
+;;; Python
 
 (leaf python
   :custom (python-indent-guess-indent-offset-verbose . nil)
@@ -1264,13 +1289,18 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
         (lsp))
        (t
         (lsp))))
-    :hook (python-mode-hook . lsp-pyright-setup))
-  (leaf ein :ensure t))
+    :hook (python-mode-hook . lsp-pyright-setup)))
+
+(leaf ein :ensure t)
+
+;;; Raku
 
 (leaf raku-mode
   :ensure t
   :custom (raku-indent-offset . 2)
   :config (leaf flycheck-raku :ensure t :require t))
+
+;;; Ruby
 
 (leaf ruby-mode
   :defvar ruby-mode-map
@@ -1282,6 +1312,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :ensure t
     :hook (ruby-mode-hook . inf-ruby-minor-mode)))
 
+;;; Rust
+
 (leaf rustic
   :ensure t
   :mode "\\.rs$"
@@ -1292,6 +1324,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :defvar flycheck-checkers
   :config
   (push 'rustic-clippy flycheck-checkers))
+
+;;; Scala
 
 (leaf scala-mode
   :ensure t
@@ -1316,6 +1350,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
   (defvar sbt:program-options '("-Dsbt.supershell=false")))
 
+;; VB
+
 (leaf visual-basic-mode
   :el-get emacsmirror/visual-basic-mode
   :mode "\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'"
@@ -1327,6 +1363,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
   :config
   (leaf smartparens :config (sp-local-pair 'visual-basic-mode "'" "'" :actions nil))
   (dvorak-set-key-prog visual-basic-mode-map))
+
+;;; Web
 
 (leaf web-mode
   :ensure t
