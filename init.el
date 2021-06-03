@@ -1263,7 +1263,6 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     python-shell-virtualenv-root
     pyvenv-activate
     :defun
-    lsp-restart-workspace
     pipenv--force-wait
     pipenv-venv
     poetry-track-virtualenv
