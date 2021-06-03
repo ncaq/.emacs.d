@@ -1224,17 +1224,17 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
 ;;; Python
 
 (leaf python
-  :custom (python-indent-guess-indent-offset-verbose . nil)
+  :custom
+  (python-indent-guess-indent-offset-verbose . nil)
+  (python-shell-interpreter . "jupyter")
+  (python-shell-interpreter-args . "console --simple-prompt")
+  (python-shell-prompt-detect-failure-warning . nil)
   :config
   (leaf elpy
     :ensure t
     :after python
     :defvar elpy-modules python-shell-completion-native-disabled-interpreters
     :defun elpy-enable
-    :custom
-    (python-shell-interpreter . "jupyter")
-    (python-shell-interpreter-args . "console --simple-prompt")
-    (python-shell-prompt-detect-failure-warning . nil)
     :init (elpy-enable)
     :hook (elpy-mode-hook . (lambda () (add-hook 'before-save-hook 'elpy-format-code nil t)))
     :config
@@ -1269,7 +1269,10 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     pyvenv-track-virtualenv
     :init
     (defun lsp-pyright-setup ()
-      "文脈に応じたPython環境のセットアップを行います。"
+      "文脈に応じたPython環境のセットアップを行います。
+poetryなどの自動的なトラッキングを使わずにマニュアルで有効にしてからlanguage serverを起動します。
+そうしないとlsp-pyright-venv-pathに入る値が空になってしまうことがあるためです。
+"
       (cond
        ;; poetry環境
        ((locate-dominating-file default-directory "pyproject.toml")
