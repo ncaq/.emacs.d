@@ -1240,6 +1240,10 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :config
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
     (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
+  (leaf python-isort
+    :ensure t
+    :after python
+    :hook (python-mode-hook . python-isort-on-save-mode))
   (leaf poetry
     :ensure t
     :commands poetry-track-virtualenv)
