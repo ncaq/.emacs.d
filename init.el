@@ -1237,6 +1237,8 @@ dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
     :defun elpy-enable
     :init (elpy-enable)
     :hook (elpy-mode-hook . (lambda () (add-hook 'before-save-hook 'elpy-format-code nil t)))
+    :custom
+    (elpy-formatter . 'black)
     :config
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
     (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
