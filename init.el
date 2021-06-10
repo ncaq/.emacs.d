@@ -980,6 +980,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf mediawiki :ensure t :mode "\\.wiki$")
 (leaf nginx-mode :ensure t)
 (leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
+(leaf powershell :ensure t)
 (leaf prolog :after t :defvar prolog-mode-map :config (dvorak-set-key-prog prolog-mode-map))
 (leaf robots-txt-mode :ensure t)
 (leaf sh-script :custom (sh-basic-offset . 2) :config (leaf sh :mode "\\.zsh$"))
