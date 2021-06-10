@@ -922,6 +922,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :defvar lsp-signature-mode-map
   :custom
   (lsp-auto-guess-root . t)             ; 自動的にimportする
+  (lsp-enable-snippet . nil)            ; 補完からスニペット展開をするのを無効化
   (lsp-file-watch-threshold . 10000)    ; 監視ファイル警告を緩める
   (lsp-lens-mode . t)                   ; lens機能の有効化
   (lsp-prefer-flymake . nil)            ; flycheckを優先する
