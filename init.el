@@ -1013,6 +1013,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :config
   (leaf dfmt
     :ensure t
+    :require t
     :after d-mode
     :bind (:d-mode-map
            ([remap indent-whole-buffer] . dfmt-buffer)
