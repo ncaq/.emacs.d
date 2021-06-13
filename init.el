@@ -1022,7 +1022,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :after d-mode
     :hook (d-mode-hook . company-dcd-mode)
     :bind
-    :bind (:d-mode-map
+    :bind (:company-dcd-mode-map
            ("C-c C-d" . company-dcd-show-ddoc-with-buffer)
            ("M-." . company-dcd-goto-definition))))
 
