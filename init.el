@@ -1009,23 +1009,22 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf d-mode
   :ensure t
   :after cc-vars                        ; require c-default-style
-  :custom
-  (c-default-style . (cons '(d-mode . "java") c-default-style))
-  (dfmt-flags . '("--max_line_length=80"))
-  :bind (:d-mode-map
-         ([remap indent-whole-buffer] . dfmt-region-or-buffer)
-         ([remap save-buffer] . 'save-buffer-and-dfmt))
-  :defun dfmt-buffer
-  :init
-  (defun save-buffer-and-dfmt ()
-    "セーブした後dfmt-bufferする.
-dfmt-bufferを先にしたりbefore-save-hookを使ったりすると,
-保存がキャンセルされてflycheckの恩恵を受けられない.
-"
-    (interactive)
-    (when (buffer-modified-p)
-      (save-buffer)
-      (when (and (dfmt-buffer) (buffer-modified-p)) (save-buffer)))))
+  :custom (c-default-style . (cons '(d-mode . "java") c-default-style))
+  :config
+  (leaf dfmt
+    :ensure t
+    :after d-mode
+    :bind (:d-mode-map
+           ([remap indent-whole-buffer] . dfmt-buffer)
+           ([remap save-buffer] . 'dfmt-save-buffer)))
+  (leaf company-dcd
+    :ensure t
+    :after d-mode
+    :hook (d-mode-hook . company-dcd-mode)
+    :bind
+    :bind (:d-mode-map
+           ("C-c C-d" . company-dcd-show-ddoc-with-buffer)
+           ("M-." . company-dcd-goto-definition))))
 
 ;;; Docker
 
