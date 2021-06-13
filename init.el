@@ -1016,7 +1016,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :after d-mode
     :bind (:d-mode-map
            ([remap indent-whole-buffer] . dfmt-buffer)
-           ([remap save-buffer] . 'dfmt-save-buffer)))
+           ([remap save-buffer] . dfmt-save-buffer)))
   (leaf company-dcd
     :ensure t
     :after d-mode
