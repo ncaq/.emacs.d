@@ -1008,11 +1008,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf d-mode
   :ensure t
-  :init
-  (defun d-mode-setup ()
-    (c-set-style "java"))
-  :hook (d-mode-hook . d-mode-setup)
+  :after cc-vars
+  :defvar c-default-style
   :config
+  (add-to-list 'c-default-style '(d-mode . "java"))
   (leaf dfmt
     :ensure t
     :require t
