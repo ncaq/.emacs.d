@@ -967,7 +967,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf apache-mode :ensure t)
 (leaf bnf-mode :ensure t)
-(leaf conf-mode :mode "\\.accept_keywords$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$" "/credentials$")
+(leaf conf-mode :mode "/credentials$" "\\.accept_keywords$" "\\.dsk$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$")
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
 (leaf dotenv-mode :ensure t :mode "\\.env\\..*\\'")
@@ -980,6 +980,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf make-mode :after t :defvar makefile-mode-map :config (dvorak-set-key-prog makefile-mode-map))
 (leaf mediawiki :ensure t :mode "\\.wiki$")
 (leaf nginx-mode :ensure t)
+(leaf opascal-mode :mode "\\.dfm$" "\\.pas$")
 (leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
 (leaf powershell :ensure t)
 (leaf prolog :after t :defvar prolog-mode-map :config (dvorak-set-key-prog prolog-mode-map))
