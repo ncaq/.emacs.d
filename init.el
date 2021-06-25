@@ -1100,7 +1100,18 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     ;; フォーマッターをfourmoluにします。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
     (lsp-haskell-formatting-provider . "fourmolu")
     ;; 補完時にスニペット展開(型が出てくるやつ)を行わないようにします。
-    (lsp-haskell-completion-snippets-on . nil))
+    (lsp-haskell-completion-snippets-on . nil)
+    :defun lsp-code-actions-at-point
+    :init
+    (defun lsp-haskell-execute-code-action-add-signature ()
+      "Execute code action of add signature."
+      (interactive)
+      (let ((action (seq-find (lambda (e) (string-prefix-p "add signature" (gethash "title" e))) (lsp-code-actions-at-point))))
+        (if (hash-table-p action)
+            (lsp-execute-code-action action)
+          (message "I Can't find add signature action for this point"))))
+    :bind (:haskell-mode-map
+           ("C-c C-o" . lsp-haskell-execute-code-action-add-signature)))
   (leaf haskell-customize
     :init
     (eval-and-compile
