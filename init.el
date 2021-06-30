@@ -417,6 +417,13 @@
 ;; バッファの名前にディレクトリ名を付けることでユニークになりやすくする
 (leaf uniquify :require t :custom (uniquify-buffer-name-style . 'forward))
 
+(leaf mule-util
+  :doc
+  "省略記号に使う文字列幅を3文字から1文字にします。"
+  :require t
+  :defvar truncate-string-ellipsis
+  :setq (truncate-string-ellipsis . "…"))
+
 ;;; その他
 
 (leaf package
@@ -898,6 +905,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :custom
   (global-flycheck-mode . t)               ; グローバルに有効にすます
   (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
+  :defvar
+  flycheck-error-list-format
+  :init
+  (defun flycheck-error-list-mode-setup ()
+    ;; levelを幅10に、idを幅20にします。
+    ;; flycheck-error-list-formatがdefconstなので強引に変更せざるを得ません。
+    (setf (cadr (aref flycheck-error-list-format 3)) 10)
+    (setf (cadr (aref flycheck-error-list-format 4)) 20))
+  :hook (flycheck-error-list-mode-hook . flycheck-error-list-mode-setup)
   :bind (:flycheck-mode-map
          ("C-z" . flycheck-list-errors)
          ([remap previous-error] . flycheck-previous-error)
