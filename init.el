@@ -1101,7 +1101,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (lsp-haskell-formatting-provider . "fourmolu")
     ;; 補完時にスニペット展開(型が出てくるやつ)を行わないようにします。
     (lsp-haskell-completion-snippets-on . nil)
-    :defun lsp-code-actions-at-point
+    :defun
+    lsp-code-actions-at-point
+    lsp:code-action-title
     :init
     (defun lsp-haskell-execute-code-action-add-signature ()
       "Execute code action of add signature.
