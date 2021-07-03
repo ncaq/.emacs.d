@@ -234,6 +234,7 @@
   ("M-w" . kill-ring-save-region-or-symbol-at-point)
   ("M-x" . helm-M-x)
   ("M-y" . helm-show-kill-ring)
+  ("M-z" . lsp)
 
   ("C-M-'" . mc/edit-lines)
   ("C-M-," . helm-semantic-or-imenu)
