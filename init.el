@@ -564,7 +564,7 @@
   :bind (:yas-minor-mode-map
          ("<tab>" . nil)
          ("TAB" . nil)
-         ("C-c y" . company-yasnippet))
+         ("C-c C-y" . company-yasnippet))
   :config
   (yas-global-mode)
   (leaf yasnippet-snippets :ensure t))
