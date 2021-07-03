@@ -234,7 +234,6 @@
   ("M-w" . kill-ring-save-region-or-symbol-at-point)
   ("M-x" . helm-M-x)
   ("M-y" . helm-show-kill-ring)
-  ("M-z" . google-this)
 
   ("C-M-'" . mc/edit-lines)
   ("C-M-," . helm-semantic-or-imenu)
@@ -252,6 +251,7 @@
 
   ("C-M-S-q" . kill-file-or-dired-buffers)
 
+  ("C-c '" . google-this)
   ("C-c ;" . align-regexp)
   ("C-c a" . open-downloads)
   ("C-c c" . quickrun)
@@ -939,11 +939,13 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf lsp-mode
   :ensure t
   :after t
-  :defvar lsp-signature-mode-map
+  :defun lsp-enable-which-key-integration
+  :defvar lsp-command-map lsp-signature-mode-map
   :custom
   (lsp-auto-guess-root . t)             ; 自動的にimportする
   (lsp-enable-snippet . nil)            ; 補完からスニペット展開をするのを無効化
   (lsp-file-watch-threshold . 10000)    ; 監視ファイル警告を緩める
+  (lsp-keymap-prefix . "M-z")           ; s-lだとデスクトップがロックされてしまうので変更
   (lsp-lens-mode . t)                   ; lens機能の有効化
   (lsp-prefer-flymake . nil)            ; flycheckを優先する
   (read-process-output-max . 1048576)   ; プロセスから読み込む量を増やす
@@ -959,6 +961,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ("C-c C-r" . lsp-workspace-restart)
          ("C-c C-t" . lsp-describe-thing-at-point))
   :config
+  ;; lsp-keymap-prefixはドキュメント用なのでこちらでの設定も必要。
+  ;; bindだとうまく行かなかった。
+  (define-key lsp-mode-map (kbd "M-z") lsp-command-map)
   (dvorak-set-key-prog lsp-signature-mode-map)
   (leaf lsp-ui
     :ensure t
