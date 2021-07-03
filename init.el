@@ -1053,6 +1053,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :hook (d-mode-hook . company-dcd-mode)
     :bind
     :bind (:company-dcd-mode-map
+           ("C-c ," . nil)
+           ("C-c ." . nil)
+           ("C-c ?" . nil)
+           ("C-c s" . nil)
            ("C-c C-d" . company-dcd-show-ddoc-with-buffer)
            ("M-." . company-dcd-goto-definition))))
 
