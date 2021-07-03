@@ -238,7 +238,6 @@
 
   ("C-M-'" . mc/edit-lines)
   ("C-M-," . helm-semantic-or-imenu)
-  ("C-M-;" . align-space)
   ("C-M-b" . backward-kill-sexp)
   ("C-M-d" . kill-sexp)
   ("C-M-j" . helm-do-ag-current-dir)
@@ -271,6 +270,8 @@
   ("C-x t" . insert-iso-datetime)
   ("C-x w" . mark-whole-word)
   ("C-x x" . mark-whole-sexp)
+
+  ("C-c C-;" . align-space)
 
   ("C-x C-f" . helm-find-files)
 
