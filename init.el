@@ -216,7 +216,6 @@
   ("C-S-d" . delete-whitespace-forward)
   ("C-S-m" . quoted-newline)
 
-  ("M-'" . mc/edit-lines)
   ("M-/" . point-undo)
   ("M-?" . point-redo)
   ("M-b" . backward-kill-word)
@@ -237,6 +236,7 @@
   ("M-y" . helm-show-kill-ring)
   ("M-z" . google-this)
 
+  ("C-M-'" . mc/edit-lines)
   ("C-M-," . helm-semantic-or-imenu)
   ("C-M-;" . align-space)
   ("C-M-b" . backward-kill-sexp)
@@ -754,6 +754,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
        (string-inflection-ruby-style-cycle))
       (_
        (string-inflection-java-style-cycle)))))
+
+(leaf expand-region
+  :ensure t
+  :bind ("M-'" . er/expand-region))
 
 (leaf undo-tree
   :ensure t
