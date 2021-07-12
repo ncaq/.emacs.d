@@ -301,7 +301,7 @@
   :config
   (set-face-attribute 'default nil :family "HackGenNerdConsole" :height 135)
   (set-fontset-font t 'unicode (font-spec :name "HackGenNerdConsole") nil 'append)
-  (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "HackGenNerdConsole") nil 'append))
+  (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append))
 
 ;; シンタックスハイライトをグローバルで有効化
 (leaf font-core :config (global-font-lock-mode 1))
