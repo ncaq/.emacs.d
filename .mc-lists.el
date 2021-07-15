@@ -72,6 +72,7 @@
         haskell-process-load-file
         helm-M-x
         indent-whole-buffer
+        on-input-method
         scroll-down-one
         scroll-up-one
         toggle-input-method
