@@ -223,7 +223,7 @@
   ("M-f" . helm-swoop)
   ("M-j" . helm-do-ag-project-root-or-default-at-point)
   ("M-l" . sort-dwim)
-  ("M-m" . newline-under)
+  ("M-m" . comment-indent-new-line)
   ("M-n" . scroll-up-one)
   ("M-o" . helm-multi-files)
   ("M-p" . other-window-backward)
