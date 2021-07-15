@@ -1004,7 +1004,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf powershell :ensure t)
 (leaf prolog :after t :defvar prolog-mode-map :config (dvorak-set-key-prog prolog-mode-map))
 (leaf robots-txt-mode :ensure t)
-(leaf sh-script :custom (sh-basic-offset . 2) :config (leaf sh :mode "\\.zsh$"))
+(leaf sh-script :custom (sh-basic-offset . 2) :hook (sh-mode-hook . lsp) :config (leaf sh :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
 
