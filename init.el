@@ -1012,6 +1012,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf cc-mode
   :after t
   :defvar c-mode-base-map
+  :hook
+  ((c-mode-hook . lsp)
+   (c++-mode-hook . lsp))
   :config
   (leaf clang-format
     :ensure t
