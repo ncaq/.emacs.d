@@ -1004,7 +1004,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf powershell :ensure t)
 (leaf prolog :after t :defvar prolog-mode-map :config (dvorak-set-key-prog prolog-mode-map))
 (leaf robots-txt-mode :ensure t)
-(leaf sh-script :custom (sh-basic-offset . 2) :hook (sh-mode-hook . lsp) :config (leaf sh :mode "\\.zsh$"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
 
@@ -1401,6 +1400,23 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
    minibuffer-local-completion-map)
   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
   (defvar sbt:program-options '("-Dsbt.supershell=false")))
+
+;; Sh Shell
+
+(leaf sh-script
+  :custom (sh-basic-offset . 2)
+  :defvar sh-shell
+  :init
+  (defun sh-set-shell-setup ()
+    (when (and
+           ;; bash以外はlspが対応していない
+           (equal sh-shell 'bash)
+           ;; ebuildはbash扱いだけどlspが対応していない
+           (not (equal major-mode 'ebuild-mode)))
+      (lsp)))
+  :hook (sh-set-shell-hook . sh-set-shell-setup)
+  :config
+  (leaf sh :mode "\\.zsh$"))
 
 ;; VB
 
