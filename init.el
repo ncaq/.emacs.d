@@ -735,16 +735,18 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 "
     (interactive)
     (pcase major-mode
-      ((or 'common-lisp-mode
-           'emacs-lisp-mode
-           'raku-mode
-           'scheme-mode
-           'sh-mode
-           'wdired-mode)
+      ((or
+        'common-lisp-mode
+        'emacs-lisp-mode
+        'raku-mode
+        'scheme-mode
+        'sh-mode
+        'wdired-mode)
        (string-inflection-all-cycle))
-      ((or 'python-mode
-           'ruby-mode
-           'rustic-mode)
+      ((or
+        'python-mode
+        'ruby-mode
+        'rustic-mode)
        (string-inflection-ruby-style-cycle))
       (_
        (string-inflection-java-style-cycle)))))
