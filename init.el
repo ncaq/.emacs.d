@@ -1416,8 +1416,8 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
     (when (and
            ;; bash以外はlspが対応していない
            (equal sh-shell 'bash)
-           ;; ebuildはbash扱いだけどlspが対応していない
-           (not (equal major-mode 'ebuild-mode)))
+           ;; ebuild-modeなどはsh-modeを継承しているけどlspが対応していない
+           (equal major-mode 'sh-mode))
       (lsp)))
   :hook (sh-set-shell-hook . sh-set-shell-setup)
   :config
