@@ -586,7 +586,6 @@
   (helm-samewindow . t)                            ; ウインドウ全体に表示
   (helm-for-files-preferred-list                   ; helm-for-filesのソースを充実化
    . '(helm-source-buffers-list
-       helm-source-files-in-current-dir
        helm-source-ls-git
        helm-source-recentf
        helm-source-file-cache
