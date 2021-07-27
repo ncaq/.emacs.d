@@ -1477,6 +1477,8 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (web-mode-jsx-depth-3-face . '((t (:background "#08404F"))))
   (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
   (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
+  :bind
+  (:web-mode-map ([remap comment-indent-new-line] . web-mode-comment-indent-new-line))
   :config
   (sp-local-pair 'web-mode "<" ">" :actions nil))
 
