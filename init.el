@@ -1457,6 +1457,9 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   "\\.tpl\\'"
   "\\.tsx?\\'"
   "\\.vue\\'"
+  ;; js-modeが指定されているインタプリタにおいてweb-modeが指定されるようにします。
+  :interpreter
+  `,(mapcar 'car (seq-filter (lambda (regex-mode) (pcase regex-mode (`(,_ . js-mode) t))) interpreter-mode-alist))
   :init
   (defun web-mode-setup ()
     (setq-local lsp-enabled-clients '(ts-ls eslint))
