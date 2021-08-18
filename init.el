@@ -1464,7 +1464,9 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (defun web-mode-setup ()
     (setq-local lsp-enabled-clients '(ts-ls eslint))
     (lsp)
-    (prettier-js-mode-toggle-setup))
+    (prettier-js-mode-toggle-setup)
+    ;; lspにフォーマットを任せるのでデフォルトではprettier-jsパッケージは無効化します。
+    (prettier-js-mode 0))
   :hook (web-mode-hook . web-mode-setup)
   :custom
   (web-mode-code-indent-offset . 2)
