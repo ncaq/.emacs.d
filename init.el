@@ -185,6 +185,8 @@
 (leaf rect      :after t :defvar rectangle-mark-mode-map :config (dvorak-set-key-prog rectangle-mark-mode-map))
 (leaf rst       :after t :defvar rst-mode-map            :config (dvorak-set-key-prog rst-mode-map))
 
+(leaf flyspell :after t :bind (:flyspell-mode-map ("C-," . nil) ("C-." . nil)))
+
 ;;; global-set-key
 
 (leaf *global-set-key
