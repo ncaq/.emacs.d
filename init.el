@@ -1129,6 +1129,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (lsp-haskell-formatting-provider . "fourmolu")
     ;; 補完時にスニペット展開(型が出てくるやつ)を行わないようにします。
     (lsp-haskell-completion-snippets-on . nil)
+    ;; import補完はcompanyから誤爆する可能性が高すぎるので無効化します。
+    (lsp-haskell-refineimports-on . nil)
     :defun
     lsp-code-actions-at-point
     lsp:code-action-title
