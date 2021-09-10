@@ -1148,22 +1148,24 @@ Add the type signature that GHC infers to the function located below the point."
     :bind (:haskell-mode-map
            ("C-c C-o" . lsp-haskell-execute-code-action-add-signature)))
   (leaf haskell-customize
+    :defvar haskell-stylish-on-save
     :init
     (eval-and-compile
       (defun stylish-haskell-enable ()
         "保存したときに自動的にstylish-haskellを適用する。"
         (interactive)
-        (custom-set-variables '(haskell-stylish-on-save t)))
+        (setq-local haskell-stylish-on-save t))
       (defun stylish-haskell-disable ()
         (interactive)
-        (custom-set-variables '(haskell-stylish-on-save nil)))
+        (setq-local haskell-stylish-on-save nil))
       (defun stylish-haskell-toggle ()
         (interactive)
-        (custom-set-variables '(haskell-stylish-on-save (not haskell-stylish-on-save))))
+        (setq-local haskell-stylish-on-save (not haskell-stylish-on-save)))
       (defun stylish-haskell-setup ()
         "プロジェクトディレクトリにstylish-haskellの設定ファイルがある場合、保存したときに自動的にstylish-haskellを適用する。"
-        (when (locate-dominating-file default-directory ".stylish-haskell.yaml")
-          (stylish-haskell-enable))))
+        (if (locate-dominating-file default-directory ".stylish-haskell.yaml")
+            (stylish-haskell-enable)
+          (stylish-haskell-disable))))
     :hook (haskell-mode-hook . stylish-haskell-setup))
   (leaf haskell-interactive-mode
     :defvar haskell-interactive-mode-map
