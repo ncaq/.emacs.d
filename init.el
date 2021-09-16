@@ -482,6 +482,7 @@
 (leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
 (leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
 (leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
+(leaf inf-lisp :custom (inferior-lisp-program . "sbcl --noinform")) ; Common Lispの処理系を設定
 (leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
 (leaf scheme :custom (scheme-program-name . "gosh")) ; schemeの処理系をgaucheに
 (leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
