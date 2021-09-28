@@ -1083,7 +1083,13 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf elm-mode
   :ensure t
-  :hook (elm-mode-hook . lsp))
+  :hook
+  (elm-mode-hook . lsp)
+  (elm-mode-hook . lsp-format-before-save)
+  :bind (:elm-mode-map
+         ("C-c C-f" . nil)
+         ; elm-format-bufferの方はnpmのプロジェクト固有のelm-formatを検知しないのでlspを使います。
+         ([remap indent-whole-buffer] . lsp-format-buffer)))
 
 ;;; Haskell
 
