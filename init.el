@@ -1079,6 +1079,12 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (leaf macrostep :ensure t)
   (leaf simple :bind (:read-expression-map ("<tab>" . completion-at-point))))
 
+;;; Elm
+
+(leaf elm-mode
+  :ensure t
+  :hook (elm-mode-hook . lsp))
+
 ;;; Haskell
 
 (leaf haskell-mode
