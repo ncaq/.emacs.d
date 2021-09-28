@@ -921,19 +921,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ([remap previous-error] . flycheck-previous-error)
          ([remap next-error] . flycheck-next-error)))
 
-(leaf prettier-js
-  :ensure t
-  :init
-  (defun prettier-js-mode-toggle-setup ()
-    "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにします。"
-    (interactive)
-    ;; 全体フォーマットをEmacsではなくprettierが行うように
-    (local-set-key [remap indent-whole-buffer] 'prettier-js)
-    ;; M-iでprettierの一時的無効化が出来るように
-    (local-set-key (kbd "M-i") 'prettier-js-mode)
-    ;; prettierを有効化
-    (prettier-js-mode t)))
-
 (leaf lsp-mode
   :ensure t
   :after t
@@ -1443,6 +1430,19 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (dvorak-set-key-prog visual-basic-mode-map))
 
 ;;; Web
+
+(leaf prettier-js
+  :ensure t
+  :init
+  (defun prettier-js-mode-toggle-setup ()
+    "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにします。"
+    (interactive)
+    ;; 全体フォーマットをEmacsではなくprettierが行うように
+    (local-set-key [remap indent-whole-buffer] 'prettier-js)
+    ;; M-iでprettierの一時的無効化が出来るように
+    (local-set-key (kbd "M-i") 'prettier-js-mode)
+    ;; prettierを有効化
+    (prettier-js-mode t)))
 
 (leaf web-mode
   :ensure t
