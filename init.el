@@ -533,7 +533,15 @@
     :ensure t
     :require t
     :custom (company-quickhelp-delay . 0)
-    :config (company-quickhelp-mode 1)))
+    :config (company-quickhelp-mode 1))
+  (leaf company-posframe
+    :doc "ウィンドウ分割などを行いウインドウをまたがる補完のスタイルが崩壊することを抑止してくれます。"
+    :ensure t
+    :require t desktop
+    :defvar desktop-minor-mode-table
+    :config
+    (company-posframe-mode 1)
+    (push '(company-posframe-mode . nil) desktop-minor-mode-table)))
 
 (leaf auto-complete
   :doc "基本はcompanyを使いますが、ライブラリが依存していることがあるので最低限設定をを整えます。"
