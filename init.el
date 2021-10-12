@@ -514,6 +514,10 @@
   :require t
   :defvar company-search-map
   :custom
+  ;; companyの自動補完スタートを無効化します。
+  ;; 理由はhaskell-mode, company-posframeの組み合わせの時、自動補完が一瞬現れては消える謎の挙動をするためです。
+  ;; 原因は不明ですが、もともと自動補完開始をあまり使っていなかったため、手動補完開始のみを使うことにします。
+  (company-idle-delay . nil)
   (company-dabbrev-code-other-buffers . 'all)
   (company-dabbrev-downcase . nil)
   (company-dabbrev-other-buffers . 'all)
