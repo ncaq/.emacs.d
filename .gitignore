@@ -4,4 +4,6 @@
 
 !.gitignore
 !.mc-lists.el
+!LICENSE
 !init.el
+!README.md
