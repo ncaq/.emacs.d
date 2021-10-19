@@ -542,7 +542,7 @@
     :doc "ウィンドウ分割などを行いウインドウをまたがる補完のスタイルが崩壊することを抑止してくれます。"
     :ensure t
     :require t desktop
-    :diminish "CPPF"
+    :diminish "COMPF"
     :defvar desktop-minor-mode-table
     :config
     (company-posframe-mode 1)
@@ -773,7 +773,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf undo-tree
   :ensure t
   :require t
-  :diminish "UT"
+  :diminish "UNDOT"
   :defvar undo-tree-visualizer-mode-map
   :custom
   (global-undo-tree-mode . t)
@@ -827,7 +827,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf git-gutter
   :ensure t
-  :diminish "GG"
+  :diminish "GITGU"
   :custom (global-git-gutter-mode . t))
 
 (leaf docker
@@ -896,7 +896,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 ;; 有効にするだけの短いコード
 
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
-(leaf editorconfig :ensure t :diminish "EC" :custom (editorconfig-mode . 1))
+(leaf editorconfig :ensure t :diminish "EDITC" :custom (editorconfig-mode . 1))
 (leaf google-this :ensure t)
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
