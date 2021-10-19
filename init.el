@@ -542,6 +542,7 @@
     :doc "ウィンドウ分割などを行いウインドウをまたがる補完のスタイルが崩壊することを抑止してくれます。"
     :ensure t
     :require t desktop
+    :diminish "CPPF"
     :defvar desktop-minor-mode-table
     :config
     (company-posframe-mode 1)
