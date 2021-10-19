@@ -512,6 +512,7 @@
 (leaf company
   :ensure t
   :require t
+  :diminish "COMPA"
   :defvar company-search-map
   :custom
   ;; companyの自動補完スタートを無効化します。
