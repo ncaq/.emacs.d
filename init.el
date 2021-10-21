@@ -1428,16 +1428,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf sh-script
   :custom (sh-basic-offset . 2)
-  :defvar sh-shell
-  :init
-  (defun sh-set-shell-setup ()
-    (when (and
-           ;; bash以外はlspが対応していない
-           (equal sh-shell 'bash)
-           ;; ebuild-modeなどはsh-modeを継承しているけどlspが対応していない
-           (equal major-mode 'sh-mode))
-      (lsp)))
-  :hook (sh-set-shell-hook . sh-set-shell-setup)
   :config
   (leaf sh :mode "\\.zsh$"))
 
