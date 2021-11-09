@@ -601,6 +601,7 @@
   (helm-delete-minibuffer-contents-from-point . t) ; kill-line sim
   (helm-ff-file-name-history-use-recentf . t)      ; helm-find-filesにrecentfを使用する
   (helm-samewindow . t)                            ; ウインドウ全体に表示
+  :defvar helm-for-files-preferred-list
   :init
   (defun helm-for-files-prefer-recentf ()
     "recentfを優先するhelm-for-filesです。"
