@@ -206,7 +206,7 @@
   ("C-b" . backward-delete-char-untabify)
   ("C-i" . indent-whole-buffer)
   ("C-j" . helm-do-ag-project-root-or-default)
-  ("C-o" . helm-for-files)
+  ("C-o" . helm-for-files-prefer-recentf)
   ("C-p" . other-window-fallback-split)
   ("C-q" . kill-this-buffer)
   ("C-u" . kill-whole-line)
@@ -227,7 +227,7 @@
   ("M-l" . sort-dwim)
   ("M-m" . newline-under)
   ("M-n" . scroll-up-one)
-  ("M-o" . helm-multi-files)
+  ("M-o" . helm-for-files-prefer-near)
   ("M-p" . other-window-backward)
   ("M-q" . delete-other-windows)
   ("M-r" . revert-buffer-safe-confirm)
@@ -601,12 +601,25 @@
   (helm-delete-minibuffer-contents-from-point . t) ; kill-line sim
   (helm-ff-file-name-history-use-recentf . t)      ; helm-find-filesにrecentfを使用する
   (helm-samewindow . t)                            ; ウインドウ全体に表示
-  (helm-for-files-preferred-list                   ; helm-for-filesのソースを充実化
-   . '(helm-source-buffers-list
-       helm-source-ls-git
-       helm-source-recentf
-       helm-source-file-cache
-       helm-source-locate))
+  :init
+  (defun helm-for-files-prefer-recentf ()
+    "recentfを優先するhelm-for-filesです。"
+    (interactive)
+    (let ((helm-for-files-preferred-list
+           '(helm-source-buffers-list
+             helm-source-recentf
+             helm-source-ls-git
+             helm-source-locate)))
+      (helm-for-files)))
+  (defun helm-for-files-prefer-near ()
+    "git管理下など近い場所のファイルを優先するhelm-for-filesです。"
+    (interactive)
+    (let ((helm-for-files-preferred-list
+           '(helm-source-buffers-list
+             helm-source-ls-git
+             helm-source-recentf
+             helm-source-locate)))
+      (helm-for-files)))
   :bind (:helm-map
          ("C-M-b" . nil)
          ("C-b" . nil)
