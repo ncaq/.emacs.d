@@ -984,7 +984,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :custom
     (lsp-ui-doc-header . t)             ; 何を見ているのかわからなくなりがちなので名前が含まれるヘッダも表示
     (lsp-ui-doc-include-signature . t)  ; シグネチャも表示する
-    (lsp-ui-doc-position . 'top)        ; カーソル位置に表示されると下のコードが見えなくなるので上
+    (lsp-ui-doc-position . 'bottom)     ; カーソル位置はコード、上はflycheckにかぶさるので下
     (lsp-ui-sideline-enable . nil)      ; エラーはflycheckで出して型はdocで出すので幅を取るサイドラインは不要
     :bind (:lsp-ui-mode-map
            ("C-c C-d" . lsp-ui-doc-show)  ; 手動でドキュメントを表示するコマンド
