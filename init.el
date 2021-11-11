@@ -378,8 +378,10 @@
   (kept-new-versions . 10)
   ;; backupに古いものをいくつ残すか
   (kept-old-versions . 0)
-  ;; バックアップファイルを作成する
-  (make-backup-files . t)
+  ;; バックアップファイル %backup%~ を作成しない。
+  ;; BtrfsとSnapperの環境下で作業することが多くなったのでEmacs側で単一のバックアップファイルを生成するメリットがあまりない。
+  ;; その割に終了時やパッケージ読み込み時のcustom.el(いらない)のバックアップを一々取るパフォーマンス上のデメリットが多い。
+  (make-backup-files . nil)
   ;; 複数バックアップ
   (version-control . t))
 
