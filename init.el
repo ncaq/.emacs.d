@@ -1037,6 +1037,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   ((c-mode-hook . lsp)
    (c++-mode-hook . lsp))
   :config
+  (leaf ccls :ensure t)
   (leaf clang-format
     :ensure t
     :init
