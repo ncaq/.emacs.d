@@ -398,7 +398,7 @@
 (leaf bindings
   :config
   ;; ((ファイル名 or バッファ名) モード一覧)
-  (setq frame-title-format '(:eval (list (or (buffer-file-name) (buffer-name)) " " mode-line-modes)))
+  (setq frame-title-format '(:eval (list "Emacs " (or (buffer-file-name) (buffer-name)) " " mode-line-modes)))
   ;; mode-line line and column and sum char numbar
   (setq mode-line-position
         '(:eval
