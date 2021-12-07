@@ -883,7 +883,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (mozc-candidate-style . 'echo-area))
 
 (leaf tr-ime
-  :doc "C-mでの確定にはEmacs側で対応していないのでKeyHacなどでの対処が必要"
+  :doc "C-mでの確定にはEmacs側で対応していないのでKeyhacなどでの対処が必要"
   :when (eq window-system 'w32)
   :ensure t
   :require t
