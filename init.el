@@ -46,6 +46,15 @@
 
 ;;; ある程度独立した関数定義
 
+(leaf f
+  :ensure t
+  :require t
+  :defun f-read-text
+  :init
+  (defvar system-type-wsl
+    (string-match-p "WSL" (f-read-text "/proc/sys/kernel/osrelease"))
+    "EmacsがWSLで動いているか?"))
+
 (defun open-desktop ()
   (interactive)
   (find-file "~/Desktop/"))
@@ -879,7 +888,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :require t
   :custom
   (default-input-method . "japanese-mozc-im")
-  (mozc-candidate-style . 'echo-area))
+  (mozc-candidate-style . 'echo-area)
+  :defun mozc-session-sendkey
+  :config
+  (defun mozc-ime-on (&rest args)
+    "Google日本語入力/Mozcにキーを与えることで変換状態をonにします。"
+    (when (eq (nth 0 args) 'CreateSession)
+      (mozc-session-sendkey '(Henkan))))
+  (when system-type-wsl
+    (advice-add 'mozc-session-execute-command :after 'mozc-ime-on)))
 
 (leaf tr-ime
   :doc "C-mでの確定にはEmacs側で対応していないのでKeyhacなどでの対処が必要"
