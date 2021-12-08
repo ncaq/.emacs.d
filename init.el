@@ -50,7 +50,7 @@
   :ensure t
   :require t
   :defun f-read-text
-  :init
+  :config
   (defvar system-type-wsl
     (string-match-p "WSL" (f-read-text "/proc/sys/kernel/osrelease"))
     "EmacsがWSLで動いているか?"))
