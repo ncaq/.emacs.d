@@ -392,7 +392,6 @@
 
 (leaf menu-bar :custom (menu-bar-mode . nil))        ; メニューバーを表示させない
 (leaf tool-bar :custom (tool-bar-mode . nil))        ; ツールバーを表示させない
-(leaf frame :config (toggle-frame-maximized))        ; 全画面化
 (leaf image-file :custom (auto-image-file-mode . 1)) ; 画像を表示
 
 (leaf bindings
