@@ -924,6 +924,13 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
   (modify-all-frames-parameters '((ime-font . "HackGenNerd-13.5"))))
 
+(leaf *wsl
+  :leaf-autoload nil
+  :when system-type-wsl
+  :custom
+  (browse-url-generic-program . "wsl-open")
+  (browse-url-browser-function . 'browse-url-generic))
+
 ;; 有効にするだけの短いコード
 
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
