@@ -1343,7 +1343,9 @@ Add the type signature that GHC infers to the function located below the point."
     :defvar elpy-modules python-shell-completion-native-disabled-interpreters
     :defun elpy-enable
     :init (elpy-enable)
-    :custom (elpy-formatter . 'black)
+    :custom
+    (elpy-rpc-python-command . "python3")
+    (elpy-formatter . 'black)
     :bind (:elpy-mode-map ([remap indent-whole-buffer] . elpy-format-code))
     :config
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
