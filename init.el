@@ -640,7 +640,10 @@
          ("<tab>" . helm-select-action))
   :config
   (helm-mode 1)
-  (custom-set-variables '(helm-boring-buffer-regexp-list (append '("\\*Flymake" "\\*tramp") helm-boring-buffer-regexp-list)))
+  (custom-set-variables
+   '(helm-boring-buffer-regexp-list
+     (append '("\\*Flymake" "\\*WoMan-Log" "\\*tramp")
+             helm-boring-buffer-regexp-list)))
   (swap-set-key
    helm-map
    '(("C-t" . "C-p")
