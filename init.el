@@ -1341,6 +1341,7 @@ Add the type signature that GHC infers to the function located below the point."
     :commands poetry-track-virtualenv)
   (leaf pipenv
     :ensure t
+    :require t
     :after python
     :commands pyvenv-track-virtualenv
     :defun pipenv-projectile-after-switch-extended
