@@ -1210,13 +1210,7 @@ Add the type signature that GHC infers to the function located below the point."
     :defvar haskell-cabal-mode-map
     :config (dvorak-set-key-prog haskell-cabal-mode-map)))
 
-(leaf hamlet-mode
-  :ensure t
-  :init
-  (defun hamlet-mode-setup ()
-    (local-set-key (kbd "C-m") 'newline-and-indent)
-    (electric-indent-local-mode -1))
-  :hook (hamlet-mode-hook . hamlet-mode-setup))
+(leaf shakespeare-mode :ensure t)
 
 ;;; Java
 
