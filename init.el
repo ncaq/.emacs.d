@@ -214,7 +214,7 @@
   ("C-a" . smart-move-beginning-of-line)
   ("C-b" . backward-delete-char-untabify)
   ("C-i" . indent-whole-buffer)
-  ("C-j" . helm-do-ag-project-root-or-default)
+  ("C-j" . helm-do-grep-ag-project-dir)
   ("C-o" . helm-for-files-prefer-recentf)
   ("C-p" . other-window-fallback-split)
   ("C-q" . kill-this-buffer)
@@ -232,7 +232,7 @@
   ("M-b" . backward-kill-word)
   ("M-c" . help-command)
   ("M-f" . helm-swoop)
-  ("M-j" . helm-do-ag-project-root-or-default-at-point)
+  ("M-j" . helm-do-grep-ag)
   ("M-l" . sort-dwim)
   ("M-m" . newline-under)
   ("M-n" . scroll-up-one)
@@ -251,7 +251,6 @@
   ("C-M-," . helm-semantic-or-imenu)
   ("C-M-b" . backward-kill-sexp)
   ("C-M-d" . kill-sexp)
-  ("C-M-j" . helm-do-ag-current-dir)
   ("C-M-l" . delete-duplicate-lines)
   ("C-M-m" . comment-indent-new-line)
   ("C-M-o" . ibuffer)
@@ -585,11 +584,18 @@
   :ensure t
   :require t helm-config
   :custom
-  (helm-buffer-max-len-mode . 25)                  ; モードを短縮する基準
-  (helm-buffer-max-length . 50)                    ; デフォルトはファイル名を短縮する区切りが20
-  (helm-delete-minibuffer-contents-from-point . t) ; kill-line sim
-  (helm-ff-file-name-history-use-recentf . t)      ; helm-find-filesにrecentfを使用する
-  (helm-samewindow . t)                            ; ウインドウ全体に表示
+  ;; ag用コマンドでripgrepを使うように指定
+  (helm-grep-ag-command . "rg --color=always --smart-case --no-heading --line-number --type-not=svg --sort=path %s -- %s %s")
+  ;; モードを短縮する基準
+  (helm-buffer-max-len-mode . 25)
+  ;; デフォルトはファイル名を短縮する区切りが20
+  (helm-buffer-max-length . 50)
+  ;; kill-line sim
+  (helm-delete-minibuffer-contents-from-point . t)
+  ;; helm-find-filesにrecentfを使用する
+  (helm-ff-file-name-history-use-recentf . t)
+  ;; ウインドウ全体に表示
+  (helm-samewindow . t)
   :defvar helm-for-files-preferred-list
   :init
   (defun helm-for-files-prefer-recentf ()
@@ -610,6 +616,10 @@
              helm-source-recentf
              helm-source-locate)))
       (helm-for-files)))
+  (defun helm-do-grep-ag-project-dir (arg)
+    "プロジェクトディレクトリ以下のファイルを対象にhelm-do-grep-ag検索を行います。"
+    (interactive "P")
+    (helm-grep-ag (expand-file-name (project-root (project-current))) arg))
   :bind (:helm-map
          ("C-M-b" . nil)
          ("C-b" . nil)
@@ -647,32 +657,6 @@
   (leaf helm-swoop :ensure t))
 
 ;;; ジャンプ
-
-(leaf helm-ag
-  :ensure t
-  :advice (:after helm-ag--save-current-context xref-push-marker-stack)
-  :commands helm-ag--project-root
-  :init
-  (defun helm-do-ag-project-root-or-default ()
-    (interactive)
-    (if (helm-ag--project-root)
-        (helm-do-ag-project-root)
-      (helm-do-ag)))
-  (defun helm-do-ag-project-root-or-default-at-point ()
-    (interactive)
-    (defvar helm-ag-insert-at-point)
-    (let ((helm-ag-insert-at-point 'symbol))
-      (helm-do-ag-project-root-or-default)))
-  (defun helm-do-ag-current-dir ()
-    (interactive)
-    (helm-do-ag default-directory))
-  :config
-  ;; Windowsだとrgがバックスラッシュで結果を返すのでうまく動かない
-  ;; 仕方がないのでWindowsではデフォルト設定のagを使います
-  (unless (member system-type '(ms-dos windows-nt))
-    (custom-set-variables
-     '(helm-ag-base-command "rg --no-heading --smart-case --type-not=svg --sort=path")
-     '(helm-grep-ag-command "rg --no-heading --smart-case --type-not=svg --sort=path --color=always --line-number %s %s %s"))))
 
 (leaf rg
   :ensure t
