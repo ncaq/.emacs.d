@@ -586,6 +586,8 @@
   :custom
   ;; ag用コマンドでripgrepを使うように指定
   (helm-grep-ag-command . "rg --color=always --smart-case --no-heading --line-number --type-not=svg --sort=path %s -- %s %s")
+  ;; 検索結果でファイル名だけではなくパスも表示する
+  (helm-grep-file-path-style . 'absolute)
   ;; モードを短縮する基準
   (helm-buffer-max-len-mode . 25)
   ;; デフォルトはファイル名を短縮する区切りが20
