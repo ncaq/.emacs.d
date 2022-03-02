@@ -599,6 +599,7 @@
   ;; ウインドウ全体に表示
   (helm-samewindow . t)
   :defvar helm-for-files-preferred-list
+  :defun helm-grep-ag project-root
   :init
   (defun helm-for-files-prefer-recentf ()
     "recentfを優先するhelm-for-filesです。"
