@@ -622,8 +622,10 @@
   (defun helm-do-grep-ag-project-dir-or-fallback (arg)
     "helm-do-grep-ag-project-dirか、helm-do-grep-agを行います。"
     (interactive "P")
-    (let ((in-project (ignore-errors (helm-do-grep-ag-project-dir arg))))
-      (unless in-project (helm-do-grep-ag arg))))
+    (let ((in-project (ignore-errors (project-root (project-current)))))
+      (if in-project
+          (helm-do-grep-ag-project-dir arg)
+        (helm-do-grep-ag arg))))
   (defun helm-do-grep-ag-project-dir (arg)
     "プロジェクトディレクトリ以下のファイルを対象にhelm-do-grep-ag検索を行います。"
     (interactive "P")
