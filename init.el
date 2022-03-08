@@ -214,7 +214,7 @@
   ("C-a" . smart-move-beginning-of-line)
   ("C-b" . backward-delete-char-untabify)
   ("C-i" . indent-whole-buffer)
-  ("C-j" . helm-do-grep-ag-project-dir)
+  ("C-j" . helm-do-grep-ag-project-dir-or-fallback)
   ("C-o" . helm-for-files-prefer-recentf)
   ("C-p" . other-window-fallback-split)
   ("C-q" . kill-this-buffer)
@@ -599,7 +599,7 @@
   ;; ウインドウ全体に表示
   (helm-samewindow . t)
   :defvar helm-for-files-preferred-list
-  :defun helm-grep-ag project-root
+  :defun helm-grep-ag project-root helm-do-grep-ag-project-dir
   :init
   (defun helm-for-files-prefer-recentf ()
     "recentfを優先するhelm-for-filesです。"
@@ -619,6 +619,11 @@
              helm-source-recentf
              helm-source-locate)))
       (helm-for-files)))
+  (defun helm-do-grep-ag-project-dir-or-fallback (arg)
+    "helm-do-grep-ag-project-dirか、helm-do-grep-agを行います。"
+    (interactive "P")
+    (let ((in-project (ignore-errors (helm-do-grep-ag-project-dir arg))))
+      (unless in-project (helm-do-grep-ag arg))))
   (defun helm-do-grep-ag-project-dir (arg)
     "プロジェクトディレクトリ以下のファイルを対象にhelm-do-grep-ag検索を行います。"
     (interactive "P")
