@@ -55,7 +55,7 @@
     (let ((osrelease-file "/proc/sys/kernel/osrelease"))
       (and
        (eq system-type 'gnu/linux)
-       (f-file? osrelease-file )
+       (f-file? osrelease-file)
        (string-match-p "WSL" (f-read-text osrelease-file))))
     "EmacsがWSLで動いているか?"))
 
