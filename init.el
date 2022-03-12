@@ -49,10 +49,14 @@
 (leaf f
   :ensure t
   :require t
-  :defun f-read-text
+  :defun f-file? f-read-text
   :config
   (defvar system-type-wsl
-    (string-match-p "WSL" (f-read-text "/proc/sys/kernel/osrelease"))
+    (let ((osrelease-file "/proc/sys/kernel/osrelease"))
+      (and
+       (eq system-type 'gnu/linux)
+       (f-file? osrelease-file )
+       (string-match-p "WSL" (f-read-text osrelease-file))))
     "EmacsがWSLで動いているか?"))
 
 (defun open-desktop ()
