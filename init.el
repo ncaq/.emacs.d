@@ -1209,6 +1209,8 @@ Add the type signature that GHC infers to the function located below the point."
           (stylish-haskell-disable))))
     :hook (haskell-mode-hook . stylish-haskell-setup))
   (leaf haskell-interactive-mode
+    :require t
+    :after t
     :defvar haskell-interactive-mode-map
     :config (dvorak-set-key-prog haskell-interactive-mode-map))
   (leaf haskell-cabal
