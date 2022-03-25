@@ -44,7 +44,7 @@
   :defun server-running-p
   :config (unless (server-running-p) (server-start)))
 
-;;; ある程度独立した関数定義
+;;; ある程度独立した定義。
 
 (leaf f
   :ensure t
@@ -76,27 +76,6 @@
   (interactive)
   (find-file (concat "~/Desktop/www.ncaq.net/entry/"
                      (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
-
-(defun insert-iso-datetime ()
-  (interactive)
-  (insert (format-time-string "%Y-%m-%dT%H:%M:%S%:z" (current-time))))
-
-(leaf s
-  :ensure t
-  :require t
-  :defun s-trim
-  :init
-  (defun insert-random-uuid ()
-    (interactive)
-    (insert (s-trim (shell-command-to-string "uuidgen")))))
-
-(defun revert-buffer-with-coding-system-utf-8-unix ()
-  (interactive)
-  (revert-buffer-with-coding-system 'utf-8-unix))
-
-(defun revert-buffer-with-coding-system-japanese-cp932-dos ()
-  (interactive)
-  (revert-buffer-with-coding-system 'japanese-cp932-dos))
 
 ;;; Dvorak設定をするための関数達
 
