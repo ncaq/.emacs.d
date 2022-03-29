@@ -1452,12 +1452,16 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 ;;; Web
 
+(leaf add-node-modules-path :ensure t)
+
 (leaf prettier-js
   :ensure t
+  :defun add-node-modules-path
   :init
   (defun prettier-js-mode-toggle-setup ()
     "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにします。"
     (interactive)
+    (add-node-modules-path)
     ;; 全体フォーマットをEmacsではなくprettierが行うように
     (local-set-key [remap indent-whole-buffer] 'prettier-js)
     ;; M-iでprettierの一時的無効化が出来るように
