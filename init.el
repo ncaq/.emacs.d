@@ -1471,7 +1471,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf web-mode
   :ensure t
-  :defvar lsp-enabled-clients
+  :defvar lsp-enabled-clients web-mode-comment-formats
   :defun sp-local-pair
   :mode
   "\\.[agj]sp\\'"
@@ -1514,6 +1514,8 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :bind
   (:web-mode-map ([remap comment-indent-new-line] . web-mode-comment-indent-new-line))
   :config
+  ;; コメントを`/*'式から`//'形式にする。
+  (add-to-list 'web-mode-comment-formats '("javascript" . "//"))
   (sp-local-pair 'web-mode "<" ">" :actions nil))
 
 (leaf yarn-mode :ensure t)
