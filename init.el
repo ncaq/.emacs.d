@@ -526,6 +526,8 @@
   :config
   (global-company-mode 1)
   (dvorak-set-key-prog company-active-map)
+  ;; company-search-mapの入力をそのまま受け付ける特殊性に対応するワークアラウンド。
+  (define-key company-search-map (kbd "C-c") nil)
   (dvorak-set-key company-search-map)
   (leaf company-quickhelp
     :ensure t
