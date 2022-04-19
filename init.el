@@ -442,7 +442,7 @@
          ("C-p" . nil)
          ("M-o" . nil)
          ("C-^" . dired-up-directory)
-         ("C-c C-p" . wdired-change-to-wdired-mode))
+         ("C-c C-c" . wdired-change-to-wdired-mode))
   :config (dvorak-set-key-prog dired-mode-map))
 
 (leaf *c-source-code
@@ -1255,7 +1255,6 @@ Add the type signature that GHC infers to the function located below the point."
     :hook
     (tuareg-mode-hook . merlin-mode)
     :config
-    (swap-set-key merlin-mode-map '(("C-c C-p" . "C-c C-t")))
     (leaf merlin-company
       :ensure t
       :require t
