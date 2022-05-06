@@ -546,7 +546,6 @@
 
 (leaf yasnippet
   :ensure t
-  :require t
   :bind (:yas-minor-mode-map
          ("<tab>" . nil)
          ("TAB" . nil)
@@ -759,7 +758,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf undo-tree
   :ensure t
-  :require t
   :diminish "UNDOT"
   :defvar undo-tree-visualizer-mode-map
   :custom
@@ -1013,7 +1011,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 ;;; C/C++
 
 (leaf cc-mode
-  :after t
   :defvar c-mode-base-map
   :hook
   ((c-mode-hook . lsp)
@@ -1041,16 +1038,13 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (add-to-list 'c-default-style '(d-mode . "java"))
   (leaf dfmt
     :ensure t
-    :require t
     :after d-mode
     :bind (:d-mode-map
            ([remap indent-whole-buffer] . dfmt-buffer)
            ([remap save-buffer] . dfmt-save-buffer)))
   (leaf company-dcd
     :ensure t
-    :after d-mode
     :hook (d-mode-hook . company-dcd-mode)
-    :bind
     :bind (:company-dcd-mode-map
            ("C-c ," . nil)
            ("C-c ." . nil)
@@ -1143,7 +1137,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :config
   (leaf lsp-haskell
     :ensure t
-    :require t
     :hook (haskell-mode-hook . lsp)
     :custom
     ;; フォーマッターをfourmoluにします。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
@@ -1191,7 +1184,6 @@ Add the type signature that GHC infers to the function located below the point."
           (stylish-haskell-disable))))
     :hook (haskell-mode-hook . stylish-haskell-setup))
   (leaf haskell-interactive-mode
-    :require t
     :after t
     :defvar haskell-interactive-mode-map
     :config (dvorak-set-key-prog haskell-interactive-mode-map))
@@ -1203,11 +1195,7 @@ Add the type signature that GHC infers to the function located below the point."
 
 ;;; Java
 
-(leaf lsp-java
-  :ensure t
-  :require t
-  :after cc-mode
-  :hook (java-mode-hook . lsp))
+(leaf lsp-java :ensure t :hook (java-mode-hook . lsp))
 
 (leaf groovy-mode :ensure t)
 
@@ -1251,25 +1239,20 @@ Add the type signature that GHC infers to the function located below the point."
   :config
   (leaf merlin
     :ensure t
-    :after tuareg
-    :defvar
-    merlin-mode-map
+    :defvar merlin-mode-map
     :hook
     (tuareg-mode-hook . merlin-mode)
     :config
     (leaf merlin-company
       :ensure t
-      :require t
-      :after merlin)
+      :require t)
     (leaf merlin-eldoc
       :ensure t
       :require t
-      :after merlin
       :hook
       (merlin-mode-hook . merlin-eldoc-setup)))
   (leaf ocamlformat
     :ensure t
-    :after tuareg
     :custom
     (ocamlformat-enable 'enable-outside-detected-project)
     :init
@@ -1279,7 +1262,6 @@ Add the type signature that GHC infers to the function located below the point."
     (tuareg-mode-hook . merlin-mode))
   (leaf utop
     :ensure t
-    :after tuareg
     :hook
     (tuareg-mode-hook . utop-minor-mode)))
 
@@ -1288,7 +1270,6 @@ Add the type signature that GHC infers to the function located below the point."
   :config
   (leaf dune-format
     :ensure t
-    :after dune
     :hook
     (dune-mode-hook . dune-format-on-save-mode)))
 
@@ -1303,7 +1284,6 @@ Add the type signature that GHC infers to the function located below the point."
   :config
   (leaf elpy
     :ensure t
-    :after python
     :defvar elpy-modules python-shell-completion-native-disabled-interpreters
     :defun elpy-enable
     :init (elpy-enable)
@@ -1316,15 +1296,12 @@ Add the type signature that GHC infers to the function located below the point."
     (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
   (leaf python-isort
     :ensure t
-    :after python
     :hook (python-mode-hook . python-isort-on-save-mode))
   (leaf poetry
     :ensure t
     :commands poetry-track-virtualenv)
   (leaf pipenv
     :ensure t
-    :require t
-    :after python
     :commands pyvenv-track-virtualenv
     :defun pipenv-projectile-after-switch-extended
     :custom
@@ -1333,8 +1310,6 @@ Add the type signature that GHC infers to the function located below the point."
     (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv"))
   (leaf lsp-pyright
     :ensure t
-    :require t
-    :after python
     :defvar
     lsp-pyright-venv-path
     python-shell-interpreter
