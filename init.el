@@ -442,7 +442,7 @@
          ("C-p" . nil)
          ("M-o" . nil)
          ("C-^" . dired-up-directory)
-         ("C-c C-c" . wdired-change-to-wdired-mode))
+         ("C-c C-p" . wdired-change-to-wdired-mode))
   :config (dvorak-set-key-prog dired-mode-map))
 
 (leaf *c-source-code
