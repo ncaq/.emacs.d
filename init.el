@@ -80,15 +80,19 @@
 ;;; Dvorak設定をするための関数達
 
 (defun reverse-cons (c)
+  "consセル、つまりpairをswap。"
   (cons (cdr c) (car c)))
 
 (defun trans-bind (key-map key-pair)
+  "(入れ替え先のキー, 再設定するコマンド)を生成。"
   (cons (kbd (car key-pair)) (command-or-nil (lookup-key key-map (kbd (cdr key-pair))))))
 
 (defun command-or-nil (symbol)
+  "対象がコマンドでない場合はnilを返す。"
   (when (commandp symbol) symbol))
 
 (defun swap-set-key (key-map key-pairs)
+  "key-pairsのデータに従ってキーを入れ替える。"
   (mapc
    (lambda (kc)
      (define-key key-map (car kc) (cdr kc)))
@@ -97,14 +101,18 @@
       (trans-bind key-map kp))
     (append key-pairs (mapcar 'reverse-cons key-pairs)))))
 
-(defconst qwerty-dvorak '(("b" . "h")
-                          ("f" . "s")
-                          ("p" . "t")))
+(defconst qwerty-dvorak
+  '(("b" . "h")
+    ("f" . "s")
+    ("p" . "t"))
+  "htnsbf形式のために標準的に入れ替える必要があるキー。")
 
 (defun prefix-key-pair (from-prefix to-prefix key-pair)
+  "プレフィクス付きの入れ替えキーペアを作る。"
   (cons (concat from-prefix (car key-pair)) (concat to-prefix (cdr key-pair))))
 
 (defun dvorak-set-key (key-map)
+  "標準的なモードをhtnsbf形式にする。"
   (let ((prefixes '((""       . "")
                     ("C-"     . "C-")
                     ("M-"     . "M-")
@@ -120,6 +128,7 @@
      prefixes)))
 
 (defun dvorak-set-key-prog (key-map)
+  "prog-modeベースのマップに対して入れ替えを設定する。"
   (swap-set-key key-map '(("M-h" . "C-x p") ("C-M-h" . "C-x d")))
   (mapc
    (lambda (key)
