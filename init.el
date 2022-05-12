@@ -95,7 +95,9 @@
   "key-pairsのデータに従ってキーを入れ替える。"
   (mapc
    (lambda (kc)
-     (define-key key-map (car kc) (cdr kc)))
+     (when (or (cdr kc) (lookup-key key-map (car kc)))
+       ;; 無駄にnilを増やさないように新規コマンドがnilで挿入先キーマップのコマンドもnilならキーを挿入しない。
+       (define-key key-map (car kc) (cdr kc))))
    (mapcar
     (lambda (kp)
       (trans-bind key-map kp))
@@ -132,7 +134,8 @@
   (swap-set-key key-map '(("M-h" . "C-x p") ("C-M-h" . "C-x d")))
   (mapc
    (lambda (key)
-     (define-key key-map (kbd key) 'nil))
+     (when (lookup-key key-map key)
+       (define-key key-map (kbd key) 'nil)))
    '("C-o" "M-b" "C-M-b" "C-q" "M-q" "C-M-q"))
   (dvorak-set-key key-map))
 
