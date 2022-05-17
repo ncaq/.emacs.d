@@ -216,6 +216,7 @@
   ("C-q" . kill-this-buffer)
   ("C-u" . kill-whole-line)
   ("C-w" . kill-region-or-symbol-at-point)
+  ("C-z" . nil)
 
   ("C-\\" . quoted-insert)
 
