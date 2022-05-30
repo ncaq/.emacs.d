@@ -1148,6 +1148,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ("C-c C-z" . haskell-interactive-switch)
          ([remap indent-whole-buffer] . haskell-mode-stylish-buffer))
   :config
+  (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
+  (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
   (leaf lsp-haskell
     :ensure t
     :hook (haskell-mode-hook . lsp)
