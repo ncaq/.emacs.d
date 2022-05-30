@@ -651,7 +651,7 @@
   (leaf helm-ls-git
     :ensure t
     :require t
-    :defvar helm-source-ls-git-status helm-source-ls-git helm-source-ls-git-buffers
+    :defvar helm-source-ls-git-status helm-source-ls-git helm-source-ls-git-buffers helm-ls-git-rebase-todo-mode-map
     :defun helm-ls-git-build-git-status-source helm-ls-git-build-ls-git-source helm-ls-git-build-buffers-source
     :config
     ;; helm-for-filesで出力するのには手動初期化が必要
@@ -660,7 +660,8 @@
           helm-source-ls-git
           (helm-ls-git-build-ls-git-source)
           helm-source-ls-git-buffers
-          (helm-ls-git-build-buffers-source)))
+          (helm-ls-git-build-buffers-source))
+    (swap-set-key helm-ls-git-rebase-todo-mode-map '(("M-t" . "M-p"))))
   (leaf helm-descbinds :ensure t :custom (helm-descbinds-mode . t))
   (leaf helm-swoop :ensure t))
 
