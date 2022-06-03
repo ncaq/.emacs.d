@@ -390,7 +390,6 @@
   ;; 複数バックアップ
   (version-control . t))
 
-(leaf tramp :custom (tramp-auto-save-directory . temporary-file-directory)) ; trampの自動保存ディレクトリをtmpにする
 (leaf filelock :custom (create-lockfiles . nil)) ; percelがバグるのでロックファイルとしてシンボリックリンクを作らない
 
 ;;; toolkit
