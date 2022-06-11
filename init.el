@@ -390,6 +390,7 @@
   ;; 複数バックアップ
   (version-control . t))
 
+(leaf tramp :custom (tramp-allow-unsafe-temporary-files . t)) ; バックアップファイルをroot絡みでも自動許可する。
 (leaf filelock :custom (create-lockfiles . nil)) ; percelがバグるのでロックファイルとしてシンボリックリンクを作らない
 
 ;;; toolkit
