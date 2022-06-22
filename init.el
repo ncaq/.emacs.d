@@ -595,7 +595,7 @@
   ;; helm-find-filesにrecentfを使用する
   (helm-ff-file-name-history-use-recentf . t)
   ;; ウインドウ全体に表示
-  (helm-samewindow . t)
+  (helm-full-frame . t)
   :defvar helm-for-files-preferred-list
   :defun helm-grep-ag project-root helm-do-grep-ag-project-dir
   :init
