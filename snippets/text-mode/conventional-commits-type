@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: conventional-commits-type
+# key: type
+# --
+`(yas-choose-value '(
+"build: "
+"chore: "
+"ci: "
+"docs: "
+"feat: "
+"fix: "
+"perf: "
+"refactor: "
+"revert: "
+"style: "
+"test: "
+))`$0

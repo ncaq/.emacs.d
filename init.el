@@ -811,7 +811,14 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :config (swap-set-key magit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
   (leaf git-commit
     :after t
+    :defun yas-expand-snippet yas-lookup-snippet
     :defvar git-commit-mode-map
+    :init
+    (defun yas-expand-snippet-conventional-commits-type ()
+      "@commitlint/config-conventionalが受け付けるtypeを選択して入力する。"
+      (interactive)
+      (yas-expand-snippet (yas-lookup-snippet "conventional-commits-type")))
+    :bind (:git-commit-mode-map ("M-z" . yas-expand-snippet-conventional-commits-type)) ;
     :config
     (modify-coding-system-alist 'file "COMMIT_EDITMSG" 'utf-8-unix)
     (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
