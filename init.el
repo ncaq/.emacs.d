@@ -59,6 +59,10 @@
        (string-match-p "WSL" (f-read-text osrelease-file))))
     "EmacsがWSLで動いているか?"))
 
+(defun open-home ()
+  (interactive)
+  (find-file "~/"))
+
 (defun open-desktop ()
   (interactive)
   (find-file "~/Desktop/"))
@@ -66,6 +70,10 @@
 (defun open-downloads ()
   (interactive)
   (find-file "~/Downloads/"))
+
+(defun open-win-downloads ()
+  (interactive)
+  (find-file "~/WinDownloads/"))
 
 (defun open-document-current ()
   (interactive)
@@ -264,6 +272,8 @@
   ("C-c c" . quickrun)
   ("C-c d" . docker)
   ("C-c e" . open-ncaq-entry)
+  ("C-c h" . open-home)
+  ("C-c i" . open-win-downloads)
   ("C-c j" . rg)
   ("C-c o" . open-desktop)
   ("C-c p" . package-list-packages)
