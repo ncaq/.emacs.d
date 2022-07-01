@@ -953,10 +953,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   flycheck-error-list-format
   :init
   (defun flycheck-error-list-mode-setup ()
-    ;; levelを幅10に、idを幅20にします。
+    ;; idの表示幅を広げます。
     ;; flycheck-error-list-formatがdefconstなので強引に変更せざるを得ません。
-    (setf (cadr (aref flycheck-error-list-format 3)) 10)
-    (setf (cadr (aref flycheck-error-list-format 4)) 20))
+    (setf (cadr (aref flycheck-error-list-format 4)) 10))
   :hook (flycheck-error-list-mode-hook . flycheck-error-list-mode-setup)
   :bind (:flycheck-mode-map
          ("C-z" . flycheck-list-errors)
