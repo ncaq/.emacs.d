@@ -1177,8 +1177,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (lsp-haskell-completion-snippets-on . nil)
     ;; 関数補完からの自動importはcompanyから誤爆する可能性が高すぎるので無効化します。
     (lsp-haskell-plugin-ghcide-completions-config-auto-extend-on . nil)
-    ;; importされたものが出てくる機能自体の思想は分かり易くて良いのですが、スクロール周りがすごい面倒になるので無効化。
-    (lsp-haskell-plugin-import-lens-code-lens-on . nil)
     :defun
     lsp-code-actions-at-point
     lsp:code-action-title
