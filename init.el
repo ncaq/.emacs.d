@@ -1519,7 +1519,9 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
   (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
   :bind
-  (:web-mode-map ([remap comment-indent-new-line] . web-mode-comment-indent-new-line))
+  (:web-mode-map
+   ([remap comment-indent-new-line] . web-mode-comment-indent-new-line)
+   ("C-c C-f" . lsp-eslint-apply-all-fixes))
   :config
   ;; コメントを`/*'式から`//'形式にする。
   (add-to-list 'web-mode-comment-formats '("javascript" . "//"))
