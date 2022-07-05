@@ -1524,8 +1524,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   ;; コメントを`/*'式から`//'形式にする。
   (add-to-list 'web-mode-comment-formats '("javascript" . "//"))
   (add-to-list 'web-mode-comment-formats '("jsx" . "//"))
-  (sp-local-pair 'web-mode "<" ">" :actions nil)
-  (leaf lsp-eslint :custom (lsp-eslint-auto-fix-on-save . t)))
+  (sp-local-pair 'web-mode "<" ">" :actions nil))
 
 (leaf yarn-mode :ensure t)
 
