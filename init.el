@@ -471,7 +471,6 @@
 (leaf *c-source-code
   :custom
   (delete-by-moving-to-trash . t)             ; ごみ箱を有効
-  (fill-column . 1000)                        ; auto fillを実質無効化(ちゃんとした無効化方法がわからない)
   (indent-tabs-mode . nil)                    ; インデントをスペースで行う
   (message-log-max . 100000)                  ; メッセージをたくさん残す
   (read-buffer-completion-ignore-case . t)    ; 大文字と小文字を区別しない バッファ名
@@ -830,6 +829,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
       (yas-expand-snippet (yas-lookup-snippet "conventional-commits-type")))
     :bind (:git-commit-mode-map ("M-z" . yas-expand-snippet-conventional-commits-type)) ;
     :config
+    ;; コミットメッセージ編集画面での幅に基づく自動改行を無効化
+    (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill)
     (modify-coding-system-alist 'file "COMMIT_EDITMSG" 'utf-8-unix)
     (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
   (leaf git-rebase
