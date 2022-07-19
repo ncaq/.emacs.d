@@ -292,20 +292,6 @@
 
   ("C-x C-f" . helm-find-files)
 
-  ("M-g a" . magit-snapshot-both)
-  ("M-g b" . magit-blame)
-  ("M-g c" . magit-commit)
-  ("M-g d" . magit-diff)
-  ("M-g f" . magit-find-file)
-  ("M-g g" . magit-dispatch)
-  ("M-g l" . magit-log-buffer-file)
-  ("M-g p" . magit-push)
-  ("M-g r" . magit-reset)
-  ("M-g s" . magit-status)
-  ("M-g u" . magit-pull)
-  ("M-g w" . magit-branch-checkout)
-  ("M-g z" . magit-stash-both)
-
   ("<help> c" . helpful-command)
   ("<help> w" . helm-man-woman)
 
@@ -813,6 +799,20 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf magit
   :ensure t
+  :bind
+  ("M-g a" . magit-snapshot-both)
+  ("M-g b" . magit-blame)
+  ("M-g c" . magit-commit)
+  ("M-g d" . magit-diff)
+  ("M-g f" . magit-find-file)
+  ("M-g g" . magit-dispatch)
+  ("M-g l" . magit-log-buffer-file)
+  ("M-g p" . magit-push)
+  ("M-g r" . magit-reset)
+  ("M-g s" . magit-status)
+  ("M-g u" . magit-pull)
+  ("M-g w" . magit-branch-checkout)
+  ("M-g z" . magit-stash-both)
   :config
   (leaf magit-mode
     :after t
