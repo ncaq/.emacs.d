@@ -1178,12 +1178,14 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :ensure t
     :hook (haskell-mode-hook . lsp)
     :custom
-    ;; フォーマッターをfourmoluにします。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
+    ;; フォーマッターをfourmoluにする。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
     (lsp-haskell-formatting-provider . "fourmolu")
-    ;; 補完時にスニペット展開(型が出てくるやつ)を行わないようにします。
+    ;; 補完時にスニペット展開(型が出てくるやつ)を行わないようにする。
     (lsp-haskell-completion-snippets-on . nil)
-    ;; 関数補完からの自動importはcompanyから誤爆する可能性が高すぎるので無効化します。
+    ;; 関数補完からの自動importはcompanyから誤爆する可能性が高すぎるので無効化する。
     (lsp-haskell-plugin-ghcide-completions-config-auto-extend-on . nil)
+    ;; import内容の表示は表示領域を取りすぎるので無効化する。
+    (lsp-haskell-plugin-import-lens-code-lens-on . nil)
     :defun
     lsp-code-actions-at-point
     lsp:code-action-title
