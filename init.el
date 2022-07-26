@@ -1383,6 +1383,10 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
           (setq-local lsp-pyright-venv-path python-shell-virtualenv-root))
         (lsp))
        (t
+        (pyvenv-track-virtualenv)
+        (when python-shell-virtualenv-root
+          (setq-local pyvenv-activate (directory-file-name python-shell-virtualenv-root))
+          (setq-local lsp-pyright-venv-path python-shell-virtualenv-root))
         (lsp))))
     :hook (python-mode-hook . lsp-pyright-setup)))
 
