@@ -969,6 +969,12 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ([remap previous-error] . flycheck-previous-error)
          ([remap next-error] . flycheck-next-error)))
 
+;; lspサーバをlocal変数を適応した後に起動し始めるのに必要。
+(defun run-local-vars-mode-hook ()
+  "Run `major-mode' hook after the local variables have been processed."
+  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
+(add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
+
 (leaf lsp-mode
   :ensure t
   :after t
@@ -1547,8 +1553,8 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf ts-comint :ensure t)
 
-(leaf json-mode :hook (json-mode-hook . lsp) (json-mode-hook . prettier-js-mode-toggle-setup))
-(leaf yaml-mode :ensure t :hook (yaml-mode-hook . lsp) (yaml-mode-hook . prettier-js-mode-toggle-setup))
+(leaf json-mode :hook (json-mode-local-vars-hook . lsp) (json-mode-hook . prettier-js-mode-toggle-setup))
+(leaf yaml-mode :ensure t :hook (yaml-mode-local-vars-hook . lsp) (yaml-mode-hook . prettier-js-mode-toggle-setup))
 
 (leaf css-mode
   :custom (css-indent-offset . 2)
