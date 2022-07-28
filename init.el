@@ -1548,7 +1548,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf ts-comint :ensure t)
 
 (leaf json-mode :hook (json-mode-hook . lsp) (json-mode-hook . prettier-js-mode-toggle-setup))
-(leaf yaml-mode :ensure t :hook (yaml-mode-hook . prettier-js-mode-toggle-setup))
+(leaf yaml-mode :ensure t :hook (yaml-mode-hook . lsp) (yaml-mode-hook . prettier-js-mode-toggle-setup))
 
 (leaf css-mode
   :custom (css-indent-offset . 2)
