@@ -801,9 +801,13 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :ensure t
   :init
   (defun magit-find-file-to-master ()
-    "今いるファイルのmasterリビジョンを開く。"
+    "今いるファイルのmasterのリビジョンを開く。"
     (interactive)
     (magit-find-file "master" (buffer-file-name)))
+  (defun magit-find-file-to-head ()
+    "今いるファイルのHEADのリビジョンを開く。"
+    (interactive)
+    (magit-find-file "HEAD" (buffer-file-name)))
   :bind
   ("M-g a" . magit-snapshot-both)
   ("M-g b" . magit-blame)
@@ -811,6 +815,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   ("M-g d" . magit-diff)
   ("M-g f" . magit-find-file)
   ("M-g g" . magit-dispatch)
+  ("M-g h" . magit-find-file-to-head)
   ("M-g l" . magit-log-buffer-file)
   ("M-g m" . magit-find-file-to-master)
   ("M-g p" . magit-push)
