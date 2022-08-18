@@ -826,6 +826,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :after t
     :defvar magit-mode-map
     :config (swap-set-key magit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
+  (leaf magit-diff
+    :after t
+    ;; `magit-diff-visit-worktree-file'は`C-<return>'でも代用出来て、検索の誤爆の原因になるので無効化する。
+    :bind (:magit-diff-section-map ("C-j" . nil)))
   (leaf git-commit
     :after t
     :defun yas-expand-snippet yas-lookup-snippet
