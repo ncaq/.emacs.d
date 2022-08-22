@@ -1559,7 +1559,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf ts-comint :ensure t)
 
-(leaf json-mode :hook (json-mode-local-vars-hook . lsp) (json-mode-hook . prettier-js-mode-toggle-setup))
+(leaf json-mode :ensure t :hook (json-mode-local-vars-hook . lsp) (json-mode-hook . prettier-js-mode-toggle-setup))
 (leaf yaml-mode :ensure t :hook (yaml-mode-local-vars-hook . lsp) (yaml-mode-hook . prettier-js-mode-toggle-setup))
 
 (leaf css-mode
