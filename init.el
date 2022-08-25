@@ -1005,6 +1005,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ("C-c C-n" . lsp-rename)
          ("C-c C-r" . lsp-workspace-restart)
          ("C-c C-t" . lsp-describe-thing-at-point))
+  :bind (:lsp-signature-mode-map
+         ("M-n" . nil)
+         ("M-p" . nil))
   :config
   ;; lsp-keymap-prefixはドキュメント用なのでこちらでの設定も必要。
   ;; bindだとうまく行かなかった。
