@@ -3,12 +3,12 @@
 # key: type
 # --
 `(yas-choose-value '(
+"feat: "
+"fix: "
 "build: "
 "chore: "
 "ci: "
 "docs: "
-"feat: "
-"fix: "
 "perf: "
 "refactor: "
 "revert: "
