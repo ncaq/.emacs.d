@@ -3,8 +3,8 @@
 # key: type
 # --
 `(yas-choose-value '(
-"feat: "
 "fix: "
+"feat: "
 "build: "
 "chore: "
 "ci: "
