@@ -202,6 +202,13 @@
 
 ;;; global-set-key
 
+(leaf *mac-keyboard
+  "macOSでのキーボード設定をLinuxとWindowsに合わせる。"
+  :when (equal system-type 'darwin)
+  :config
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier nil))
+
 (leaf *global-set-key
   :leaf-autoload nil
   :bind
