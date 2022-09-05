@@ -933,7 +933,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (wrap-function-to-control-ime 'y-or-n-p nil nil)
   (wrap-function-to-control-ime 'yes-or-no-p nil nil)
   (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
-  (modify-all-frames-parameters '((ime-font . "HackGenNerd-13.5"))))
+  (modify-all-frames-parameters '((ime-font . "HackGen Console NFJ-13.5"))))
 
 (leaf *wsl
   :leaf-autoload nil
