@@ -31,6 +31,13 @@
 (leaf leaf-convert :ensure t)
 (leaf leaf-tree :ensure t)
 
+(leaf exec-path-from-shell
+  :doc "GNU/Linux環境だとウィンドウマネージャもshellの.profileを継承するため問題ないが、macOSなどでランチャーから起動するとパスなどが読み込まれないことへの対策。"
+  :ensure t
+  :when (and window-system (not (eq system-type 'gnu/linux)))
+  :defun exec-path-from-shell-initialize
+  :config (exec-path-from-shell-initialize))
+
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
   "バッファが存在すればkillする. 無ければ何もしない."
   (when (get-buffer BUFFER-OR-NAME)
