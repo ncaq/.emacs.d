@@ -1486,7 +1486,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (leaf lsp-sourcekit
     :ensure t
     :when (eq system-type 'darwin)
-    :after lsp-mode
     :hook (swift-mode-hook . lsp)
     :custom
     (lsp-sourcekit-executable
