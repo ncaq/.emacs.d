@@ -311,7 +311,7 @@
   :config
   (set-face-attribute 'default nil :family "HackGen Console NFJ" :height 135)
   (set-fontset-font t 'unicode (font-spec :name "HackGen Console NFJ") nil 'append)
-  (unless (equal system-type 'darwin) (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append)))
+  (unless (eq system-type 'darwin) (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append)))
 
 ;; シンタックスハイライトをグローバルで有効化
 (leaf font-core :config (global-font-lock-mode 1))
@@ -1477,6 +1477,29 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :custom (sh-basic-offset . 2)
   :config
   (leaf sh :mode "\\.zsh$"))
+
+;;; Swift
+
+(leaf swift-mode
+  :ensure t
+  :config
+  (leaf lsp-sourcekit
+    :ensure t
+    :when (eq system-type 'darwin)
+    :after lsp-mode
+    :hook (swift-mode-hook . lsp)
+    :custom
+    (lsp-sourcekit-executable
+     . "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
+  (leaf swift-helpful
+    :ensure t
+    :when (eq system-type 'darwin))
+  (leaf company-sourcekit
+    :ensure t
+    :when (eq system-type 'darwin)
+    :after company
+    :defvar company-backends
+    :config (add-to-list 'company-backends 'company-sourcekit)))
 
 ;;; VB
 
