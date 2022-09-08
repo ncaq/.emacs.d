@@ -1494,7 +1494,10 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (leaf swift-helpful
     :ensure t
     :after swift-mode
-    :when (eq system-type 'darwin))
+    :when (eq system-type 'darwin)
+    :bind
+    (:swift-mode-map
+     ([remap lsp-describe-thing-at-point] . swift-helpful)))
   (leaf company-sourcekit
     :ensure t
     :after swift-mode company
