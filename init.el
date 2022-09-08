@@ -1499,7 +1499,13 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
     :when (eq system-type 'darwin)
     :after company
     :defvar company-backends
-    :config (add-to-list 'company-backends 'company-sourcekit)))
+    :config (add-to-list 'company-backends 'company-sourcekit))
+  (leaf reformatter
+    :ensure t
+    :hook (swift-mode-hook . swift-format-on-save-mode)
+    :config
+    (with-no-warnings
+      (reformatter-define swift-format :program "swift-format"))))
 
 ;;; VB
 
