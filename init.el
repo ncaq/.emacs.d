@@ -1485,6 +1485,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :config
   (leaf lsp-sourcekit
     :ensure t
+    :after swift-mode
     :when (eq system-type 'darwin)
     :hook (swift-mode-hook . lsp)
     :custom
@@ -1492,15 +1493,17 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
      . "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
   (leaf swift-helpful
     :ensure t
+    :after swift-mode
     :when (eq system-type 'darwin))
   (leaf company-sourcekit
     :ensure t
+    :after swift-mode company
     :when (eq system-type 'darwin)
-    :after company
     :defvar company-backends
     :config (add-to-list 'company-backends 'company-sourcekit))
   (leaf reformatter
     :ensure t
+    :after swift-mode
     :hook (swift-mode-hook . swift-format-on-save-mode)
     :bind
     (:swift-mode-map
