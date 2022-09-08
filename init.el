@@ -1517,7 +1517,10 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
     (with-no-warnings
       (reformatter-define swiftformat :program "swiftformat"))
     (defun swift-format-setup ()
-      "SwiftFormat向けの設定ファイルが存在すればSwiftFormatを使い、そうでなければswift-formatを使う。"
+      ;; 改行前自動インデントは無効化し、改行後自動インデントは有効化する。
+      (setq-local electric-indent-mode nil)
+      (define-key swift-mode-map [remap newline] 'newline-and-indent)
+      ;; SwiftFormat向けの設定ファイルが存在すればSwiftFormatを使い、そうでなければswift-formatを使う。
       (if (locate-dominating-file default-directory ".swiftformat")
           (progn
             (swiftformat-on-save-mode)
