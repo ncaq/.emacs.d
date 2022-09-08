@@ -1507,13 +1507,25 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (leaf reformatter
     :ensure t
     :after swift-mode
-    :hook (swift-mode-hook . swift-format-on-save-mode)
-    :bind
-    (:swift-mode-map
-     ([remap indent-whole-buffer] . swift-format-buffer))
-    :config
+    :defun
+    swiftformat-on-save-mode
+    swift-format-on-save-mode
+    :init
+    ;; swift-formatとSwiftFormatがそれぞれ全く違うプログラムとして存在している。
     (with-no-warnings
-      (reformatter-define swift-format :program "swift-format"))))
+      (reformatter-define swift-format :program "swift-format"))
+    (with-no-warnings
+      (reformatter-define swiftformat :program "swiftformat"))
+    (defun swift-format-setup ()
+      "SwiftFormat向けの設定ファイルが存在すればSwiftFormatを使い、そうでなければswift-formatを使う。"
+      (if (locate-dominating-file default-directory ".swiftformat")
+          (progn
+            (swiftformat-on-save-mode)
+            (define-key swift-mode-map [remap indent-whole-buffer] 'swiftformat-buffer))
+        (progn
+          (swift-format-on-save-mode)
+          (define-key swift-mode-map [remap indent-whole-buffer] 'swift-format-buffer))))
+    :hook (swift-mode-hook . swift-format-setup)))
 
 ;;; VB
 
