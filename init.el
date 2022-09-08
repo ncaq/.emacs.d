@@ -1471,14 +1471,14 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
   (defvar sbt:program-options '("-Dsbt.supershell=false")))
 
-;; Sh Shell
+;;; Sh Shell
 
 (leaf sh-script
   :custom (sh-basic-offset . 2)
   :config
   (leaf sh :mode "\\.zsh$"))
 
-;; VB
+;;; VB
 
 (leaf visual-basic-mode
   :el-get emacsmirror/visual-basic-mode
