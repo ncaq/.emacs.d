@@ -1502,6 +1502,9 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (leaf reformatter
     :ensure t
     :hook (swift-mode-hook . swift-format-on-save-mode)
+    :bind
+    (:swift-mode-map
+     ([remap indent-whole-buffer] . swift-format-buffer))
     :config
     (with-no-warnings
       (reformatter-define swift-format :program "swift-format"))))
