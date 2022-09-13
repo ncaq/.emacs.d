@@ -1515,7 +1515,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
     (with-no-warnings
       (reformatter-define swift-format :program "swift-format"))
     (with-no-warnings
-      (reformatter-define swiftformat :program "swiftformat"))
+      (reformatter-define swiftformat :program "swiftformat" :args `("--config" ,(concat (locate-dominating-file default-directory ".swiftformat") "/.swiftformat"))))
     (defun swift-format-setup ()
       ;; 改行前自動インデントは無効化し、改行後自動インデントは有効化する。
       (setq-local electric-indent-mode nil)
