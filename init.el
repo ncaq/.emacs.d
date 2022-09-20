@@ -1,10 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-;; GCの設定
-;; 起動にも影響するのでleaf無しで最初にやります
-(setq gc-cons-threshold 200000000)            ; 200MB
-(run-with-idle-timer 120 t #'garbage-collect) ; 2分のアイドル時間ごとに明示的にガベージコレクトを呼び出す
-
 ;;; 初期化
 
 ;; (require 'cl) を見逃す
@@ -398,8 +393,6 @@
 
 ;;; toolkit
 
-(leaf menu-bar :custom (menu-bar-mode . nil))        ; メニューバーを表示させない
-(leaf tool-bar :custom (tool-bar-mode . nil))        ; ツールバーを表示させない
 (leaf image-file :custom (auto-image-file-mode . 1)) ; 画像を表示
 
 (leaf bindings
@@ -468,6 +461,7 @@
   (message-log-max . 100000)                  ; メッセージをたくさん残す
   (read-buffer-completion-ignore-case . t)    ; 大文字と小文字を区別しない バッファ名
   (read-file-name-completion-ignore-case . t) ; 大文字と小文字を区別しない ファイル名
+  (read-process-output-max . 1048576)         ; プロセスから一度に読み込む量を増やす
   (scroll-conservatively . 1)                 ; 最下段までスクロールした時のカーソルの移動量を減らす
   (scroll-margin . 5)                         ; 最下段までスクロールしたという判定を伸ばす
   :setq-default
@@ -994,13 +988,12 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :defun lsp-enable-which-key-integration
   :defvar lsp-command-map lsp-signature-mode-map
   :custom
-  (lsp-auto-guess-root . t)             ; 自動的にimportする
-  (lsp-enable-snippet . nil)            ; 補完からスニペット展開をするのを無効化
-  (lsp-file-watch-threshold . 10000)    ; 監視ファイル警告を緩める
-  (lsp-keymap-prefix . "M-z")           ; s-lだとデスクトップがロックされてしまうので変更
-  (lsp-lens-mode . t)                   ; lens機能の有効化
-  (lsp-prefer-flymake . nil)            ; flycheckを優先する
-  (read-process-output-max . 1048576)   ; プロセスから読み込む量を増やす
+  (lsp-auto-guess-root . t)          ; 自動的にimportする
+  (lsp-enable-snippet . nil)         ; 補完からスニペット展開をするのを無効化
+  (lsp-file-watch-threshold . 10000) ; 監視ファイル警告を緩める
+  (lsp-keymap-prefix . "M-z")        ; s-lだとデスクトップがロックされてしまうので変更
+  (lsp-lens-mode . t)                ; lens機能の有効化
+  (lsp-prefer-flymake . nil)         ; flycheckを優先する
   :init
   (defun lsp-format-before-save ()
     "保存する前にフォーマットする"
