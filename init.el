@@ -393,7 +393,22 @@
 
 ;;; toolkit
 
-(leaf image-file :custom (auto-image-file-mode . 1)) ; 画像を表示
+(leaf frame
+  :doc "全画面化。"
+  ;; GNU/Linuxでは現状xmonadを使っているので無意味、Windows 10とX11サーバだと挙動が逆におかしくなるので無効。
+  :when (eq system-type 'darwin)
+  :init
+  (defun frame-maximized ()
+    "画面を全画面化する(not fullscreen)。
+`toggle-frame-maximized'のトグルじゃないバージョン。"
+    (interactive)
+    (set-frame-parameter nil 'fullscreen 'maximized))
+  :defun frame-maximized
+  :config (frame-maximized))
+
+(leaf image-file
+  :doc "画像を表示"
+  :custom (auto-image-file-mode . 1))
 
 (leaf bindings
   :config
