@@ -976,16 +976,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf flycheck
   :ensure t
   :custom
-  (global-flycheck-mode . t)               ; グローバルに有効にすます
-  (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない
-  :defvar
-  flycheck-error-list-format
-  :init
-  (defun flycheck-error-list-mode-setup ()
-    ;; idの表示幅を広げます。
-    ;; flycheck-error-list-formatがdefconstなので強引に変更せざるを得ません。
-    (setf (cadr (aref flycheck-error-list-format 4)) 10))
-  :hook (flycheck-error-list-mode-hook . flycheck-error-list-mode-setup)
+  (global-flycheck-mode . t)               ; グローバルに有効にする。
+  (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない。
   :bind (:flycheck-mode-map
          ("C-z" . flycheck-list-errors)
          ([remap previous-error] . flycheck-previous-error)
