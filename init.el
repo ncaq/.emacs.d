@@ -395,8 +395,6 @@
 
 (leaf frame
   :doc "全画面化。"
-  ;; GNU/Linuxでは現状xmonadを使っているので無意味、Windows 10とX11サーバだと挙動が逆におかしくなるので無効。
-  :when (eq system-type 'darwin)
   :init
   (defun frame-maximized ()
     "画面を全画面化する(not fullscreen)。
