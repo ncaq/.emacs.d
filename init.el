@@ -27,10 +27,10 @@
 (leaf leaf-tree :ensure t)
 
 (leaf exec-path-from-shell
-  :doc "GNU/Linux環境だとウィンドウマネージャもshellの.profileを継承するため問題ないが、macOSなどでランチャーから起動するとパスなどが読み込まれないことへの対策。"
+  :doc "Windowsのwslg.exeやmacOSのランチャーから起動したときはシェルの環境変数を引き継がないため、Emacs側でシェルを読み込む。"
   :ensure t
-  :when (and window-system (not (eq system-type 'gnu/linux)))
-  :defun exec-path-from-shell-initialize
+  :when window-system
+  ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
   :config (exec-path-from-shell-initialize))
 
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
