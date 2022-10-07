@@ -946,7 +946,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :leaf-autoload nil
   :when system-type-wsl
   :custom
-  (browse-url-generic-program . "wsl-open")
+  (browse-url-generic-program . "wslview")
   (browse-url-browser-function . 'browse-url-generic))
 
 ;; 有効にするだけの短いコード
