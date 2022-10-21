@@ -1,12 +1,10 @@
-;; GCの設定。
+;; GCを起動して即座に緩める。
 (setq gc-cons-threshold 200000000)            ; 200MB
-(run-with-idle-timer 120 t #'garbage-collect) ; 2分のアイドル時間ごとに明示的にガベージコレクトを呼び出す
 
-;; GUI設定。
+;; GUIを構築前に無効化する。
 (setq menu-bar-mode nil)
 (setq tool-bar-mode nil)
 
 ;; Local Variables:
-;; byte-compile-warnings: (not cl-functions obsolete)
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; End:

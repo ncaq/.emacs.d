@@ -1,9 +1,11 @@
 ;; -*- lexical-binding: t -*-
 
-;;; 初期化
+;;; ファイル設定
 
 ;; (require 'cl) を見逃す
 (setq byte-compile-warnings '(not cl-functions obsolete))
+
+;;; leaf設定
 
 (eval-and-compile
   (prog1 "leafを初期化する"
@@ -26,6 +28,13 @@
 (leaf leaf-convert :ensure t)
 (leaf leaf-tree :ensure t)
 
+;;; 初期化
+
+(leaf gcmh
+  :doc "アイドル状態かなどの判定からGCを調整する。"
+  :ensure t
+  :config (gcmh-mode 1))
+
 (leaf exec-path-from-shell
   :doc "Windowsのwslg.exeやmacOSのランチャーから起動したときはシェルの環境変数を引き継がないため、Emacs側でシェルを読み込む。"
   :ensure t
@@ -46,7 +55,7 @@
   :defun server-running-p
   :config (unless (server-running-p) (server-start)))
 
-;;; ある程度独立した定義。
+;;; ある程度独立した定義
 
 (leaf f
   :ensure t
