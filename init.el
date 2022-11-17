@@ -1192,17 +1192,23 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (other-window 1)
     (switch-to-buffer flycheck-error-list-buffer)
     (other-window 1))
-  :bind (:haskell-mode-map
-         ("M-i" . stylish-haskell-toggle)
-         ("C-M-z" . haskell-repl-and-flycheck)
-         ("C-c C-b" . haskell-hoogle)
-         ("C-c C-c" . haskell-session-change-target)
-         ("C-c C-l" . haskell-process-load-file)
-         ("C-c C-z" . haskell-interactive-switch)
-         ([remap indent-whole-buffer] . haskell-mode-stylish-buffer))
+  :bind
+  (:haskell-mode-map
+   ("M-i" . stylish-haskell-toggle)
+   ("C-c C-b" . haskell-hoogle)
+   ("C-c C-c" . haskell-session-change-target)
+   ([remap indent-whole-buffer] . haskell-mode-stylish-buffer))
   :config
   (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
   (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
+  (leaf haskell
+    :bind
+    (:interactive-haskell-mode-map
+     ("M-." . nil)
+     ("C-M-z" . haskell-repl-and-flycheck)
+     ("C-c C-b" . nil)
+     ("C-c C-c" . nil)
+     ("C-c C-r" . nil)))
   (leaf lsp-haskell
     :ensure t
     :hook (haskell-mode-hook . lsp)
