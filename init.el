@@ -291,6 +291,7 @@
   ("C-c r" . recentf-cleanup)
   ("C-c s" . customize-set-variable)
   ("C-c u" . open-document-current)
+  ("C-c v" . direnv-mode)
 
   ("C-x d" . mark-defun)
   ("C-x g" . insert-random-uuid)
