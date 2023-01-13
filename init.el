@@ -599,7 +599,7 @@
 
 (leaf helm
   :ensure t
-  :require t helm-config
+  :require t
   :custom
   ;; ag用コマンドでripgrepを使うように指定
   (helm-grep-ag-command . "rg --color=always --smart-case --no-heading --line-number --type-not=svg --sort=path %s -- %s %s")
