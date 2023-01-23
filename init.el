@@ -261,7 +261,6 @@
   ("M-w" . kill-ring-save-region-or-symbol-at-point)
   ("M-x" . helm-M-x)
   ("M-y" . helm-show-kill-ring)
-  ("M-z" . lsp)
 
   ("C-M-'" . mc/edit-lines)
   ("C-M-," . helm-semantic-or-imenu)
@@ -581,7 +580,8 @@
   :bind (:yas-minor-mode-map
          ("<tab>" . nil)
          ("TAB" . nil)
-         ("C-c C-y" . company-yasnippet))
+         ("C-c C-y" . company-yasnippet)
+         ("M-z" . yas-insert-snippet))
   :config
   (yas-global-mode)
   (leaf yasnippet-snippets :ensure t))
@@ -859,11 +859,11 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :defun yas-expand-snippet yas-lookup-snippet
     :defvar git-commit-mode-map
     :init
-    (defun yas-expand-snippet-conventional-commits-type ()
+    (defun yas-insert-snippet-conventional-commits-type ()
       "@commitlint/config-conventionalが受け付けるtypeを選択して入力する。"
       (interactive)
       (yas-expand-snippet (yas-lookup-snippet "conventional-commits-type")))
-    :bind (:git-commit-mode-map ("M-z" . yas-expand-snippet-conventional-commits-type)) ;
+    :bind (:git-commit-mode-map ("M-z" . yas-insert-snippet-conventional-commits-type))
     :config
     ;; コミットメッセージ編集画面での幅に基づく自動改行を無効化
     (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill)
@@ -1006,7 +1006,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (lsp-auto-guess-root . t)          ; 自動的にimportする
   (lsp-enable-snippet . nil)         ; 補完からスニペット展開をするのを無効化
   (lsp-file-watch-threshold . 10000) ; 監視ファイル警告を緩める
-  (lsp-keymap-prefix . "M-z")        ; s-lだとデスクトップがロックされてしまうので変更
+  (lsp-keymap-prefix . "C-c M-l")    ; s-lだとデスクトップがロックされてしまうので変更
   (lsp-lens-mode . t)                ; lens機能の有効化
   (lsp-prefer-flymake . nil)         ; flycheckを優先する
   :init
@@ -1026,7 +1026,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :config
   ;; lsp-keymap-prefixはドキュメント用なのでこちらでの設定も必要。
   ;; bindだとうまく行かなかった。
-  (define-key lsp-mode-map (kbd "M-z") lsp-command-map)
+  (define-key lsp-mode-map (kbd "C-c M-l") lsp-command-map)
   (dvorak-set-key-prog lsp-signature-mode-map)
   (leaf lsp-ui
     :ensure t
