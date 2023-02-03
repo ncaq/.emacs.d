@@ -690,7 +690,9 @@
   :ensure t
   :after t
   :defvar rg-mode-map
-  :config (dvorak-set-key-prog rg-mode-map))
+  :config
+  (dvorak-set-key-prog rg-mode-map)
+  (swap-set-key rg-mode-map '(("M-T" . "M-P"))))
 
 (leaf ggtags
   :ensure t
