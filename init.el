@@ -1565,20 +1565,18 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf add-node-modules-path :ensure t)
 
-(leaf prettier-js
+(leaf prettier
   :ensure t
-  :defun add-node-modules-path
   :init
-  (defun prettier-js-mode-toggle-setup ()
-    "prettier-js-modeの有効無効キーバインドをprettier-js-modeが有効に出来るモードで使えるようにします。"
+  (defun prettier-mode-toggle-setup ()
+    "prettier-modeの有効無効キーバインドをprettier-modeが有効に出来るモードで使えるようにします。"
     (interactive)
-    (add-node-modules-path)
     ;; 全体フォーマットをEmacsではなくprettierが行うように
-    (local-set-key [remap indent-whole-buffer] 'prettier-js)
+    (local-set-key [remap indent-whole-buffer] 'prettier-prettify)
     ;; M-iでprettierの一時的無効化が出来るように
-    (local-set-key (kbd "M-i") 'prettier-js-mode)
+    (local-set-key (kbd "M-i") 'prettier-mode)
     ;; prettierを有効化
-    (prettier-js-mode t)))
+    (prettier-mode t)))
 
 (leaf web-mode
   :ensure t
@@ -1606,7 +1604,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (defun web-mode-setup ()
     (setq-local lsp-enabled-clients '(ts-ls eslint))
     (lsp)
-    (prettier-js-mode-toggle-setup))
+    (prettier-mode-toggle-setup))
   :hook (web-mode-hook . web-mode-setup)
   :custom
   (web-mode-code-indent-offset . 2)
@@ -1638,13 +1636,13 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf ts-comint :ensure t)
 
-(leaf json-mode :ensure t :hook (json-mode-local-vars-hook . lsp) (json-mode-hook . prettier-js-mode-toggle-setup))
-(leaf yaml-mode :ensure t :hook (yaml-mode-local-vars-hook . lsp) (yaml-mode-hook . prettier-js-mode-toggle-setup))
+(leaf json-mode :ensure t :hook (json-mode-local-vars-hook . lsp) (json-mode-hook . prettier-mode-toggle-setup))
+(leaf yaml-mode :ensure t :hook (yaml-mode-local-vars-hook . lsp) (yaml-mode-hook . prettier-mode-toggle-setup))
 
 (leaf css-mode
   :custom (css-indent-offset . 2)
-  :hook (css-mode-hook . lsp) ((css-mode-hook scss-mode-hook) . prettier-js-mode-toggle-setup))
-(leaf less-css-mode :hook (less-css-mode-hook . prettier-js-mode-toggle-setup))
+  :hook (css-mode-hook . lsp) ((css-mode-hook scss-mode-hook) . prettier-mode-toggle-setup))
+(leaf less-css-mode :hook (less-css-mode-hook . prettier-mode-toggle-setup))
 
 (leaf nxml-mode
   :mode "\\.fxml\\'"
