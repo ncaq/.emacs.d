@@ -33,7 +33,7 @@
 (leaf gcmh
   :doc "アイドル状態かなどの判定からGCを調整する。"
   :ensure t
-  :config (gcmh-mode 1))
+  :hook (after-init-hook . gcmh-mode))
 
 (leaf exec-path-from-shell
   :doc "Windowsのwslg.exeやmacOSのランチャーから起動したときはシェルの環境変数を引き継がないため、Emacs側でシェルを読み込む。"
