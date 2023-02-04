@@ -886,7 +886,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf git-gutter
   :ensure t
   :diminish "GITGU"
-  :custom (global-git-gutter-mode . t))
+  :custom (global-git-gutter-mode . t)
+  :hook (magit-post-refresh-hook . git-gutter:update-all-windows))
 
 (leaf docker
   :ensure t
