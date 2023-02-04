@@ -658,24 +658,8 @@
    '(("C-t" . "C-p")
      ("C-s" . "C-f")))
   (leaf helm-buffers :bind (:helm-buffer-map ("C-s" . nil)))
-  (leaf helm-descbinds :ensure t :custom (helm-descbinds-mode . t))
   (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
-  (leaf helm-swoop :ensure t)
   (leaf helm-types :bind (:helm-generic-files-map ("C-s" . nil)))
-  (leaf helm-ls-git
-    :ensure t
-    :require t
-    :defvar helm-source-ls-git-status helm-source-ls-git helm-source-ls-git-buffers helm-ls-git-rebase-todo-mode-map
-    :defun helm-ls-git-build-git-status-source helm-ls-git-build-ls-git-source helm-ls-git-build-buffers-source
-    :config
-    ;; helm-for-filesで出力するのには手動初期化が必要
-    (setq helm-source-ls-git-status
-          (helm-ls-git-build-git-status-source)
-          helm-source-ls-git
-          (helm-ls-git-build-ls-git-source)
-          helm-source-ls-git-buffers
-          (helm-ls-git-build-buffers-source))
-    (swap-set-key helm-ls-git-rebase-todo-mode-map '(("M-t" . "M-p"))))
   (leaf helm-grep
     :defun helm-do-grep-ag-project-dir helm-grep-ag project-root xref-push-marker-stack
     :init
@@ -690,7 +674,23 @@
       "プロジェクトディレクトリ以下のファイルを対象にhelm-do-grep-ag検索を行います。"
       (interactive "P")
       (helm-grep-ag (expand-file-name (project-root (project-current))) arg))
-    :advice (:before helm-grep-action (lambda (&rest _ignored) (xref-push-marker-stack)))))
+    :advice (:before helm-grep-action (lambda (&rest _ignored) (xref-push-marker-stack))))
+  (leaf helm-descbinds :ensure t :custom (helm-descbinds-mode . t))
+  (leaf helm-swoop :ensure t)
+  (leaf helm-ls-git
+    :ensure t
+    :require t
+    :defvar helm-source-ls-git-status helm-source-ls-git helm-source-ls-git-buffers helm-ls-git-rebase-todo-mode-map
+    :defun helm-ls-git-build-git-status-source helm-ls-git-build-ls-git-source helm-ls-git-build-buffers-source
+    :config
+    ;; helm-for-filesで出力するのには手動初期化が必要
+    (setq helm-source-ls-git-status
+          (helm-ls-git-build-git-status-source)
+          helm-source-ls-git
+          (helm-ls-git-build-ls-git-source)
+          helm-source-ls-git-buffers
+          (helm-ls-git-build-buffers-source))
+    (swap-set-key helm-ls-git-rebase-todo-mode-map '(("M-t" . "M-p")))))
 
 ;;; ジャンプ
 
