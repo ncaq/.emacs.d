@@ -621,7 +621,6 @@
   ;; ウインドウ全体に表示
   (helm-full-frame . t)
   :defvar helm-for-files-preferred-list
-  :defun helm-grep-ag project-root helm-do-grep-ag-project-dir
   :init
   (defun helm-for-files-prefer-recentf ()
     "recentfを優先するhelm-for-filesです。"
@@ -641,17 +640,6 @@
              helm-source-recentf
              helm-source-locate)))
       (helm-for-files)))
-  (defun helm-do-grep-ag-project-dir-or-fallback (arg)
-    "helm-do-grep-ag-project-dirか、helm-do-grep-agを行います。"
-    (interactive "P")
-    (let ((in-project (ignore-errors (project-root (project-current)))))
-      (if in-project
-          (helm-do-grep-ag-project-dir arg)
-        (helm-do-grep-ag arg))))
-  (defun helm-do-grep-ag-project-dir (arg)
-    "プロジェクトディレクトリ以下のファイルを対象にhelm-do-grep-ag検索を行います。"
-    (interactive "P")
-    (helm-grep-ag (expand-file-name (project-root (project-current))) arg))
   :bind (:helm-map
          ("C-M-b" . nil)
          ("C-b" . nil)
@@ -670,7 +658,9 @@
    '(("C-t" . "C-p")
      ("C-s" . "C-f")))
   (leaf helm-buffers :bind (:helm-buffer-map ("C-s" . nil)))
+  (leaf helm-descbinds :ensure t :custom (helm-descbinds-mode . t))
   (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
+  (leaf helm-swoop :ensure t)
   (leaf helm-types :bind (:helm-generic-files-map ("C-s" . nil)))
   (leaf helm-ls-git
     :ensure t
@@ -686,10 +676,31 @@
           helm-source-ls-git-buffers
           (helm-ls-git-build-buffers-source))
     (swap-set-key helm-ls-git-rebase-todo-mode-map '(("M-t" . "M-p"))))
-  (leaf helm-descbinds :ensure t :custom (helm-descbinds-mode . t))
-  (leaf helm-swoop :ensure t))
+  (leaf helm-grep
+    :defun helm-do-grep-ag-project-dir helm-grep-ag project-root xref-push-marker-stack
+    :init
+    (defun helm-do-grep-ag-project-dir-or-fallback (arg)
+      "helm-do-grep-ag-project-dirか、helm-do-grep-agを行います。"
+      (interactive "P")
+      (let ((in-project (ignore-errors (project-root (project-current)))))
+        (if in-project
+            (helm-do-grep-ag-project-dir arg)
+          (helm-do-grep-ag arg))))
+    (defun helm-do-grep-ag-project-dir (arg)
+      "プロジェクトディレクトリ以下のファイルを対象にhelm-do-grep-ag検索を行います。"
+      (interactive "P")
+      (helm-grep-ag (expand-file-name (project-root (project-current))) arg))
+    :advice (:before helm-grep-action (lambda (&rest _ignored) (xref-push-marker-stack)))))
 
 ;;; ジャンプ
+
+(leaf xref
+  :defun xref-set-marker-ring-length
+  :config
+  ;; 履歴のサイズを上げるために、
+  ;; `xref-marker-ring-length'を設定したいだけですが、
+  ;; 設定したタイミングでリングのサイズ変更などを行う必要があるので専用関数が用意されているようです。
+  (xref-set-marker-ring-length 'xref-marker-ring-length 128))
 
 (leaf rg
   :ensure t
