@@ -889,6 +889,13 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :custom (global-git-gutter-mode . t)
   :hook (magit-post-refresh-hook . git-gutter:update-all-windows))
 
+(leaf git-link
+  :ensure t
+  :custom
+  (git-link-open-in-browser . t)
+  (git-link-use-commit . t)
+  :bind ("M-g p" . git-link))
+
 (leaf docker
   :ensure t
   :custom (docker-container-shell-file-name . "/bin/bash")
