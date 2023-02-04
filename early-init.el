@@ -5,9 +5,9 @@
 ;; しかしどうせ起動した後はgcmhに任せるので気にしないこととする。
 (setq gc-cons-threshold (* 1 1000 1000 1000))
 
-;; GUIを構築前に無効化する。
-(setq menu-bar-mode nil)
-(setq tool-bar-mode nil)
+;; GUIメニューを構築前に無効化する。
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(tool-bar-lines . 0) default-frame-alist)
 
 ;; Local Variables:
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
