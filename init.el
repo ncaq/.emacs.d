@@ -464,6 +464,19 @@
 
 ;;; その他
 
+(leaf *c-source-code
+  :custom
+  (delete-by-moving-to-trash . t)             ; ごみ箱を有効
+  (indent-tabs-mode . nil)                    ; インデントをスペースで行う
+  (message-log-max . 100000)                  ; メッセージをたくさん残す
+  (read-buffer-completion-ignore-case . t)    ; 大文字と小文字を区別しない バッファ名
+  (read-file-name-completion-ignore-case . t) ; 大文字と小文字を区別しない ファイル名
+  (read-process-output-max . 1048576)         ; プロセスから一度に読み込む量を増やす
+  (scroll-conservatively . 1)                 ; 最下段までスクロールした時のカーソルの移動量を減らす
+  (scroll-margin . 5)                         ; 最下段までスクロールしたという判定を伸ばす
+  :setq-default
+  (buffer-file-coding-system . 'utf-8-unix)) ; 新規ファイルではWindowsでもUTF-8を使う
+
 (leaf dired
   :init
   (defun dired-jump-to-current ()
@@ -485,19 +498,6 @@
          ("C-^" . dired-up-directory)
          ("C-c C-t" . wdired-change-to-wdired-mode))
   :config (dvorak-set-key-prog dired-mode-map))
-
-(leaf *c-source-code
-  :custom
-  (delete-by-moving-to-trash . t)             ; ごみ箱を有効
-  (indent-tabs-mode . nil)                    ; インデントをスペースで行う
-  (message-log-max . 100000)                  ; メッセージをたくさん残す
-  (read-buffer-completion-ignore-case . t)    ; 大文字と小文字を区別しない バッファ名
-  (read-file-name-completion-ignore-case . t) ; 大文字と小文字を区別しない ファイル名
-  (read-process-output-max . 1048576)         ; プロセスから一度に読み込む量を増やす
-  (scroll-conservatively . 1)                 ; 最下段までスクロールした時のカーソルの移動量を減らす
-  (scroll-margin . 5)                         ; 最下段までスクロールしたという判定を伸ばす
-  :setq-default
-  (buffer-file-coding-system . 'utf-8-unix)) ; 新規ファイルではWindowsでもUTF-8を使う
 
 (leaf man
   :after t
