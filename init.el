@@ -260,6 +260,7 @@
   ("C-S-d" . delete-whitespace-forward)
   ("C-S-m" . quoted-newline)
 
+  ("M-'" . er/expand-region)
   ("M-/" . point-undo)
   ("M-?" . point-redo)
   ("M-b" . backward-kill-word)
@@ -462,7 +463,7 @@
   :defvar truncate-string-ellipsis
   :setq (truncate-string-ellipsis . "…"))
 
-;;; その他
+;;; Emacs内部でだいたい収まる機能の設定
 
 (leaf *c-source-code
   :custom
@@ -476,6 +477,18 @@
   (scroll-margin . 5)                         ; 最下段までスクロールしたという判定を伸ばす
   :setq-default
   (buffer-file-coding-system . 'utf-8-unix)) ; 新規ファイルではWindowsでもUTF-8を使う
+
+(leaf autorevert :custom (global-auto-revert-mode . 1)) ; 自動再読込
+(leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
+(leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
+(leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
+(leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
+(leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
+(leaf simple :custom (blink-matching-paren . nil)) ; 括弧移動無効
+(leaf startup :custom (inhibit-startup-screen . t)) ; スタートアップ画面を出さない
+(leaf subr :config (fset 'yes-or-no-p 'y-or-n-p)) ; "yes or no"を"y or n"に
+(leaf vc-hooks :custom (vc-follow-symlinks . t)) ; 常にシンボリックリンクをたどる
+(leaf warnings :custom (warning-minimum-level . :error)) ; 警告はエラーレベルでないとポップアップ表示しない
 
 (leaf dired
   :init
@@ -498,112 +511,6 @@
          ("C-^" . dired-up-directory)
          ("C-c C-t" . wdired-change-to-wdired-mode))
   :config (dvorak-set-key-prog dired-mode-map))
-
-(leaf man
-  :after t
-  :defvar Man-mode-map
-  :custom
-  (Man-notify-method . 'bully)          ; Manページを現在のウィンドウで表示
-  (Man-width-max . nil)                 ; Manページのwidthの最大幅を除去
-  :config (dvorak-set-key-prog Man-mode-map))
-
-(leaf ediff
-  :custom
-  (ediff-split-window-function . 'split-window-horizontally)  ; ediffでウィンドウを横分割
-  (ediff-window-setup-function . 'ediff-setup-windows-plain)) ; ediffにframeを生成させない
-
-(leaf autorevert :custom (global-auto-revert-mode . 1)) ; 自動再読込
-(leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
-(leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
-(leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
-(leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
-(leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
-(leaf simple :custom (blink-matching-paren . nil)) ; 括弧移動無効
-(leaf startup :custom (inhibit-startup-screen . t)) ; スタートアップ画面を出さない
-(leaf subr :config (fset 'yes-or-no-p 'y-or-n-p)) ; "yes or no"を"y or n"に
-(leaf vc-hooks :custom (vc-follow-symlinks . t)) ; 常にシンボリックリンクをたどる
-(leaf warnings :custom (warning-minimum-level . :error)) ; 警告はエラーレベルでないとポップアップ表示しない
-
-(leaf ibuffer
-  :after t
-  :defvar ibuffer-mode-map
-  :custom `(ibuffer-formats . '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
-                                (mark " " (name 60 -1) " " filename))) ; 幅を大きくする
-  :bind (:ibuffer-mode-map
-         ("C-o" . nil)
-         ("C-t" . nil)
-         ("M-g" . nil))
-  :config (dvorak-set-key-prog ibuffer-mode-map))
-
-(leaf profiler
-  :after t
-  :defvar profiler-report-mode-map
-  :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right))))) ; 幅を大きくする
-  :config (dvorak-set-key-prog profiler-report-mode-map))
-
-(leaf company
-  :ensure t
-  :require t
-  :diminish "COMPA"
-  :defvar company-search-map
-  :custom
-  ;; companyの自動補完スタートを無効化します。
-  ;; 理由はhaskell-mode, company-posframeの組み合わせの時、自動補完が一瞬現れては消える謎の挙動をするためです。
-  ;; 原因は不明ですが、もともと自動補完開始をあまり使っていなかったため、手動補完開始のみを使うことにします。
-  (company-idle-delay . nil)
-  (company-dabbrev-code-other-buffers . 'all)
-  (company-dabbrev-downcase . nil)
-  (company-dabbrev-other-buffers . 'all)
-  :bind
-  (:company-mode-map
-   ("<C-iso-lefttab>" . company-dabbrev)
-   ("C-<tab>" . company-complete))
-  (:company-active-map
-   ("<backtab>" . company-select-previous)
-   ("<tab>" . company-complete-common-or-cycle)
-   ("C-h" . nil))
-  :config
-  (global-company-mode 1)
-  (dvorak-set-key-prog company-active-map)
-  ;; company-search-mapの入力をそのまま受け付ける特殊性に対応するワークアラウンド。
-  (define-key company-search-map (kbd "C-c") nil)
-  (dvorak-set-key company-search-map)
-  (leaf company-quickhelp
-    :ensure t
-    :require t
-    :custom (company-quickhelp-delay . 0)
-    :config (company-quickhelp-mode 1))
-  (leaf company-posframe
-    :doc "ウィンドウ分割などを行いウインドウをまたがる補完のスタイルが崩壊することを抑止してくれます。"
-    :ensure t
-    :require t desktop
-    :diminish "COMPF"
-    :defvar desktop-minor-mode-table
-    :config
-    (company-posframe-mode 1)
-    (push '(company-posframe-mode . nil) desktop-minor-mode-table)))
-
-(leaf yasnippet
-  :ensure t
-  :bind (:yas-minor-mode-map
-         ("<tab>" . nil)
-         ("TAB" . nil)
-         ("C-c C-y" . company-yasnippet)
-         ("M-z" . yas-insert-snippet))
-  :config
-  (yas-global-mode)
-  (leaf yasnippet-snippets :ensure t))
-
-(leaf helpful
-  :ensure t
-  :bind
-  ([remap describe-function] . helpful-callable)
-  ([remap describe-key]      . helpful-key)
-  ([remap describe-symbol]   . helpful-symbol)
-  ([remap describe-variable] . helpful-variable)
-  :defvar helpful-mode-map
-  :advice (:after helpful-at-point other-window-backward)
-  :config (dvorak-set-key-prog helpful-mode-map))
 
 (leaf helm
   :ensure t
@@ -695,6 +602,34 @@
           (helm-ls-git-build-buffers-source))
     (swap-set-key helm-ls-git-rebase-todo-mode-map '(("M-t" . "M-p")))))
 
+(leaf helpful
+  :ensure t
+  :bind
+  ([remap describe-function] . helpful-callable)
+  ([remap describe-key]      . helpful-key)
+  ([remap describe-symbol]   . helpful-symbol)
+  ([remap describe-variable] . helpful-variable)
+  :defvar helpful-mode-map
+  :advice (:after helpful-at-point other-window-backward)
+  :config (dvorak-set-key-prog helpful-mode-map))
+
+(leaf ibuffer
+  :after t
+  :defvar ibuffer-mode-map
+  :custom `(ibuffer-formats . '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
+                                (mark " " (name 60 -1) " " filename))) ; 幅を大きくする
+  :bind (:ibuffer-mode-map
+         ("C-o" . nil)
+         ("C-t" . nil)
+         ("M-g" . nil))
+  :config (dvorak-set-key-prog ibuffer-mode-map))
+
+(leaf profiler
+  :after t
+  :defvar profiler-report-mode-map
+  :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right))))) ; 幅を大きくする
+  :config (dvorak-set-key-prog profiler-report-mode-map))
+
 ;;; ジャンプ
 
 (leaf xref
@@ -739,6 +674,59 @@
   ("C-M-." . smart-jump-references))
 
 ;;; テキスト処理
+
+(leaf company
+  :ensure t
+  :require t
+  :diminish "COMPA"
+  :defvar company-search-map
+  :custom
+  ;; companyの自動補完スタートを無効化します。
+  ;; 理由はhaskell-mode, company-posframeの組み合わせの時、自動補完が一瞬現れては消える謎の挙動をするためです。
+  ;; 原因は不明ですが、もともと自動補完開始をあまり使っていなかったため、手動補完開始のみを使うことにします。
+  (company-idle-delay . nil)
+  (company-dabbrev-code-other-buffers . 'all)
+  (company-dabbrev-downcase . nil)
+  (company-dabbrev-other-buffers . 'all)
+  :bind
+  (:company-mode-map
+   ("<C-iso-lefttab>" . company-dabbrev)
+   ("C-<tab>" . company-complete))
+  (:company-active-map
+   ("<backtab>" . company-select-previous)
+   ("<tab>" . company-complete-common-or-cycle)
+   ("C-h" . nil))
+  :config
+  (global-company-mode 1)
+  (dvorak-set-key-prog company-active-map)
+  ;; company-search-mapの入力をそのまま受け付ける特殊性に対応するワークアラウンド。
+  (define-key company-search-map (kbd "C-c") nil)
+  (dvorak-set-key company-search-map)
+  (leaf company-quickhelp
+    :ensure t
+    :require t
+    :custom (company-quickhelp-delay . 0)
+    :config (company-quickhelp-mode 1))
+  (leaf company-posframe
+    :doc "ウィンドウ分割などを行いウインドウをまたがる補完のスタイルが崩壊することを抑止してくれます。"
+    :ensure t
+    :require t desktop
+    :diminish "COMPF"
+    :defvar desktop-minor-mode-table
+    :config
+    (company-posframe-mode 1)
+    (push '(company-posframe-mode . nil) desktop-minor-mode-table)))
+
+(leaf yasnippet
+  :ensure t
+  :bind (:yas-minor-mode-map
+         ("<tab>" . nil)
+         ("TAB" . nil)
+         ("C-c C-y" . company-yasnippet)
+         ("M-z" . yas-insert-snippet))
+  :config
+  (yas-global-mode)
+  (leaf yasnippet-snippets :ensure t))
 
 (leaf smartparens
   :ensure t
@@ -805,10 +793,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
        (string-inflection-ruby-style-cycle))
       (_
        (string-inflection-java-style-cycle)))))
-
-(leaf expand-region
-  :ensure t
-  :bind ("M-'" . er/expand-region))
 
 (leaf undo-tree
   :ensure t
@@ -947,6 +931,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (mozc-candidate-style . 'echo-area))
 
 (leaf *mozc-im-wsl
+  :leaf-autoload nil
   :doc "mozc_emacs_helper.exeを使って、Windows側のGoogle日本語入力と通信する。"
   ;; Windows 11 22H2からmozc_emacs_helper.exeが起動するたびにフォーカスを奪ってくるのでまともに動かない。
   ;; よって解決するまでWSL環境でもmozcで我慢する。
@@ -992,10 +977,24 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (browse-url-generic-program . "wslview")
   (browse-url-browser-function . 'browse-url-generic))
 
+(leaf man
+  :after t
+  :defvar Man-mode-map
+  :custom
+  (Man-notify-method . 'bully)     ; Manページを現在のウィンドウで表示
+  (Man-width-max . nil)            ; Manページのwidthの最大幅を除去
+  :config (dvorak-set-key-prog Man-mode-map))
+
+(leaf ediff
+  :custom
+  (ediff-split-window-function . 'split-window-horizontally)  ; ediffでウィンドウを横分割
+  (ediff-window-setup-function . 'ediff-setup-windows-plain)) ; ediffにframeを生成させない
+
 ;; 有効にするだけの短いコード
 
 (leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
 (leaf editorconfig :ensure t :diminish "EDITC" :custom (editorconfig-mode . 1))
+(leaf expand-region :ensure t)
 (leaf google-this :ensure t)
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
@@ -1003,32 +1002,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf symbolword-mode :ensure t :require t)
 (leaf which-key :ensure t :custom (which-key-mode . 1))
 
-;;; テキストを超えたプログラミング機能
-
-(leaf quickrun
-  :ensure t
-  :after t
-  :config
-  (quickrun-add-command "haskell"
-    '((:command . "stack runghc")
-      (:description . "Run Haskell file with Stack runghc(GHC)"))
-    :override t))
-
-(leaf flycheck
-  :ensure t
-  :custom
-  (global-flycheck-mode . t)               ; グローバルに有効にする。
-  (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない。
-  :bind (:flycheck-mode-map
-         ("C-z" . flycheck-list-errors)
-         ([remap previous-error] . flycheck-previous-error)
-         ([remap next-error] . flycheck-next-error)))
-
-;; lspサーバをlocal変数を適応した後に起動し始めるのに必要。
-(defun run-local-vars-mode-hook ()
-  "Run `major-mode' hook after the local variables have been processed."
-  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
-(add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
+;;; 汎用プログラミング機能
 
 (leaf lsp-mode
   :ensure t
@@ -1044,8 +1018,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (lsp-prefer-flymake . nil)         ; flycheckを優先する
   :init
   (defun lsp-format-before-save ()
-    "保存する前にフォーマットする"
-    (add-hook 'before-save-hook 'lsp-format-buffer nil t))
+    "保存する前にフォーマットする設定を有効にする。
+呼び出したバッファーでしか有効にならない。"
+    (add-hook 'before-save-hook #'lsp-format-buffer nil t))
   :bind (:lsp-mode-map
          ("C-S-SPC" . nil)
          ("C-c C-a" . lsp-execute-code-action)
@@ -1081,6 +1056,25 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :hook
     (lsp-mode-hook . dap-mode)
     (lsp-mode-hook . dap-ui-mode)))
+
+(leaf flycheck
+  :ensure t
+  :custom
+  (global-flycheck-mode . t)               ; グローバルに有効にする。
+  (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない。
+  :bind (:flycheck-mode-map
+         ("C-z" . flycheck-list-errors)
+         ([remap previous-error] . flycheck-previous-error)
+         ([remap next-error] . flycheck-next-error)))
+
+(leaf quickrun
+  :ensure t
+  :after t
+  :config
+  (quickrun-add-command "haskell"
+    '((:command . "stack runghc")
+      (:description . "Run Haskell file with Stack runghc(GHC)"))
+    :override t))
 
 ;;; 各言語モード
 
