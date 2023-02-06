@@ -511,9 +511,7 @@
 (leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
 (leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
 (leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
-(leaf inf-lisp :custom (inferior-lisp-program . "sbcl --noinform")) ; Common Lispの処理系を設定
 (leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
-(leaf scheme :custom (scheme-program-name . "gosh")) ; schemeの処理系をgaucheに
 (leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
 (leaf simple :custom (blink-matching-paren . nil)) ; 括弧移動無効
 (leaf startup :custom (inhibit-startup-screen . t)) ; スタートアップ画面を出さない
@@ -1094,6 +1092,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf envrc :ensure t)
 (leaf generic-x :require t)
 (leaf go-mode :ensure t :hook (go-mode-hook . lsp))
+(leaf inf-lisp :custom (inferior-lisp-program . "sbcl --noinform"))
 (leaf julia-mode :ensure t)
 (leaf make-mode :after t :defvar makefile-mode-map :config (dvorak-set-key-prog makefile-mode-map))
 (leaf mediawiki :ensure t :mode "\\.wiki$")
@@ -1103,6 +1102,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf powershell :ensure t)
 (leaf prolog :after t :defvar prolog-mode-map :config (dvorak-set-key-prog prolog-mode-map))
 (leaf robots-txt-mode :ensure t)
+(leaf scheme :custom (scheme-program-name . "gosh"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
 
