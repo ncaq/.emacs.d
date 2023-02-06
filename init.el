@@ -1515,7 +1515,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
       "lspを起動する。
 [bash-lsp/bash-language-server: A language server for Bash](https://github.com/bash-lsp/bash-language-server)
 はzshに対応していない。"
-      (when (member sh-shell '("sh" "bash")) (lsp)))
+      (when (member sh-shell '(sh bash)) (lsp)))
     :hook (sh-mode-hook . sh-setup)))
 
 ;;; Swift
