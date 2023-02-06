@@ -5,7 +5,7 @@
 ;; (require 'cl) を見逃す
 (setq byte-compile-warnings '(not cl-functions obsolete))
 
-;;; leaf設定
+;;; leafとpackageの設定
 
 (eval-and-compile
   (prog1 "leafを初期化する"
@@ -23,7 +23,24 @@
       (leaf el-get :ensure t :custom ((el-get-git-shallow-clone . t)))
       (leaf-keywords-init))))
 
-(leaf cus-edit :custom `((custom-file . ,(locate-user-emacs-file "custom.el")))) ; init.elに自動的に書き込ませない
+(leaf cus-edit
+  :doc "init.elに自動的に書き込ませない。
+書き出し先は雑に決定している。
+基本的に書き出さないで良いが、
+稀にGUIなどから値を設定したいときがあるかもしれないので/dev/nullにはしないでいる。"
+  :custom `((custom-file . ,(locate-user-emacs-file "custom.el")))) ;
+
+(leaf package
+  :init
+  (defun package-menu-mode-setup ()
+    "パッケージ名の幅を広く取る。"
+    (setf (cadr (aref tabulated-list-format 0)) 50))
+  (defun package-native-compile-async (&rest _)
+    "だいたいのパッケージをネイティブコンパイルする。
+最初に読み込むより先にコンパイルすることにより、更新後のストレスなどを抑える。"
+    (native-compile-async '("~/.emacs.d/elpa/" "~/.emacs.d/el-get/") 'recursively))
+  :hook (package-menu-mode-hook . package-menu-mode-setup)
+  :advice (:after package-install package-native-compile-async))
 
 (leaf leaf-convert :ensure t)
 (leaf leaf-tree :ensure t)
@@ -446,18 +463,6 @@
   :setq (truncate-string-ellipsis . "…"))
 
 ;;; その他
-
-(leaf package
-  :init
-  (defun package-menu-mode-setup ()
-    "パッケージ名の幅を広く取ります。"
-    (setf (cadr (aref tabulated-list-format 0)) 50))
-  (defun package-native-compile-async (&rest _)
-    "だいたいのパッケージをネイティブコンパイルする。
-最初に読み込むより先にコンパイルすることにより、更新後のストレスなどを抑える。"
-    (native-compile-async '("~/.emacs.d/elpa/" "~/.emacs.d/el-get/") 'recursively))
-  :hook (package-menu-mode-hook . package-menu-mode-setup)
-  :advice (:after package-install package-native-compile-async))
 
 (leaf dired
   :init
