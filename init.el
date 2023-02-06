@@ -1085,7 +1085,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf direnv :ensure t)
 (leaf dotenv-mode :ensure t)
 (leaf egison-mode :ensure t :mode ("\\.egi$" . egison-mode))
-(leaf envrc :ensure t)
 (leaf generic-x :require t)
 (leaf go-mode :ensure t :hook (go-mode-hook . lsp))
 (leaf inf-lisp :custom (inferior-lisp-program . "sbcl --noinform"))
