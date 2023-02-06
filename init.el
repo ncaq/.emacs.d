@@ -514,12 +514,9 @@
 
 (leaf helm
   :ensure t
-  :require t
+  :require t          ; 起動時の本質的には必要ないが、どうせすぐ使う。
   :custom
-  ;; ag用コマンドでripgrepを使うように指定
-  (helm-grep-ag-command . "rg --color=always --smart-case --no-heading --line-number --type-not=svg --sort=path %s -- %s %s")
-  ;; 検索結果でファイル名だけではなくパスも表示する
-  (helm-grep-file-path-style . 'absolute)
+  (helm-mode . t)
   ;; モードを短縮する基準
   (helm-buffer-max-len-mode . 25)
   ;; デフォルトはファイル名を短縮する区切りが20
@@ -530,7 +527,7 @@
   (helm-ff-file-name-history-use-recentf . t)
   ;; ウインドウ全体に表示
   (helm-full-frame . t)
-  :defvar helm-for-files-preferred-list
+  :defvar helm-boring-buffer-regexp-list helm-for-files-preferred-list
   :init
   (defun helm-for-files-prefer-recentf ()
     "recentfを優先するhelm-for-filesです。"
@@ -556,21 +553,21 @@
          ("C-h" . nil)
          ("M-b" . nil)
          ("M-s" . nil)
+         ("C-p" . helm-toggle-resplit-and-swap-windows)
+         ("C-t" . helm-previous-line)
          ("<tab>" . helm-select-action))
   :config
-  (helm-mode 1)
-  (custom-set-variables
-   '(helm-boring-buffer-regexp-list
-     (append '("\\*Flymake" "\\*WoMan-Log" "\\*tramp")
-             helm-boring-buffer-regexp-list)))
-  (swap-set-key
-   helm-map
-   '(("C-t" . "C-p")
-     ("C-s" . "C-f")))
+  (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list regex)) '("\\*Flymake" "\\*WoMan-Log" "\\*tramp"))
   (leaf helm-buffers :bind (:helm-buffer-map ("C-s" . nil)))
   (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
   (leaf helm-types :bind (:helm-generic-files-map ("C-s" . nil)))
   (leaf helm-grep
+    :custom
+    ;; ripgrepは自動認識されるが、オプションを少し追加。
+    (helm-grep-ag-command
+     . "rg --color=always --smart-case --search-zip --no-heading --line-number --type-not=svg --sort=path %s -- %s %s")
+    ;; 検索結果でファイル名だけではなくパスも表示する。
+    (helm-grep-file-path-style . 'absolute)
     :defun helm-do-grep-ag-project-dir helm-grep-ag project-root xref-push-marker-stack
     :init
     (defun helm-do-grep-ag-project-dir-or-fallback (arg)
