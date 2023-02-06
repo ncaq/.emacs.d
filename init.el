@@ -942,15 +942,20 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :require t
   :custom
   (default-input-method . "japanese-mozc-im")
-  (mozc-candidate-style . 'echo-area)
-  :defun mozc-session-sendkey
-  :config
+  (mozc-candidate-style . 'echo-area))
+
+(leaf *mozc-im-wsl
+  :doc "mozc_emacs_helper.exeを使って、Windows側のGoogle日本語入力と通信する。"
+  ;; Windows 11 22H2からmozc_emacs_helper.exeが起動するたびにフォーカスを奪ってくるのでまともに動かない。
+  ;; よって解決するまでWSL環境でもmozcで我慢する。
+  ;; :when system-type-wsl
+  :when nil
+  :init
   (defun mozc-ime-on (&rest args)
     "Google日本語入力/Mozcにキーを与えることで変換状態をonにします。"
     (when (eq (nth 0 args) 'CreateSession)
       (mozc-session-sendkey '(Henkan))))
-  (when system-type-wsl
-    (advice-add 'mozc-session-execute-command :after 'mozc-ime-on)))
+  :advice (:after mozc-session-execute-command mozc-ime-on))
 
 (leaf tr-ime
   :doc "C-mでの確定にはEmacs側で対応していないのでKeyhacなどでの対処が必要"
