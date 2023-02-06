@@ -1521,7 +1521,16 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf sh-script
   :custom (sh-basic-offset . 2)
   :config
-  (leaf sh :mode "\\.zsh$"))
+  (leaf sh
+    :mode "\\.zsh$"
+    :defvar sh-shell
+    :init
+    (defun sh-setup ()
+      "lspを起動する。
+[bash-lsp/bash-language-server: A language server for Bash](https://github.com/bash-lsp/bash-language-server)
+はzshに対応していない。"
+      (when (member sh-shell '("sh" "bash")) (lsp)))
+    :hook (sh-mode-hook . sh-setup)))
 
 ;;; Swift
 
