@@ -1383,22 +1383,19 @@ Add the type signature that GHC infers to the function located below the point."
 (leaf python
   :custom
   (python-indent-guess-indent-offset-verbose . nil)
-  (python-shell-interpreter . "jupyter")
-  (python-shell-interpreter-args . "console --simple-prompt")
   (python-shell-prompt-detect-failure-warning . nil)
   :config
   (leaf elpy
     :ensure t
-    :defvar elpy-modules python-shell-completion-native-disabled-interpreters
+    :defvar elpy-modules
     :defun elpy-enable
     :init (elpy-enable)
     :custom
     (elpy-rpc-python-command . "python3")
     (elpy-formatter . 'black)
-    :bind (:elpy-mode-map ([remap indent-whole-buffer] . elpy-format-code))
+    :bind (:elpy-mode-map ([remap indent-whole-buffer] . elpy-black-fix-code))
     :config
-    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-    (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter"))
+    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))
   (leaf python-isort
     :ensure t
     :hook (python-mode-hook . python-isort-on-save-mode))
@@ -1409,23 +1406,16 @@ Add the type signature that GHC infers to the function located below the point."
     :ensure t
     :commands pyvenv-track-virtualenv
     :defun pipenv-projectile-after-switch-extended
-    :custom
-    (pipenv-projectile-after-switch-function . #'pipenv-projectile-after-switch-extended)
-    :config
-    (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv"))
+    :defvar python-shell-completion-native-disabled-interpreters
+    :custom (pipenv-projectile-after-switch-function . #'pipenv-projectile-after-switch-extended)
+    :config (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv"))
   (leaf lsp-pyright
     :ensure t
     :defvar
-    lsp-pyright-venv-path
-    python-shell-interpreter
-    python-shell-interpreter-args
     python-shell-virtualenv-root
-    pyvenv-activate
     :defun
     pipenv--force-wait
     pipenv-venv
-    poetry-track-virtualenv
-    pyvenv-track-virtualenv
     :init
     (defun lsp-pyright-setup ()
       "文脈に応じたPython環境のセットアップを行います。
@@ -1445,7 +1435,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
         (when python-shell-virtualenv-root
           (setq-local pyvenv-activate (directory-file-name python-shell-virtualenv-root))
           (setq-local python-shell-interpreter "pipenv")
-          (setq-local python-shell-interpreter-args "run jupyter console --simple-prompt")
+          (setq-local python-shell-interpreter-args "run python3")
           (setq-local lsp-pyright-venv-path python-shell-virtualenv-root))
         (lsp))
        (t
