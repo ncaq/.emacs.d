@@ -63,6 +63,7 @@
         undo-tree-visualizer-quit
         upcase-region
         vs-move-beginning-of-line
+        wdired--self-insert
         yaml-electric-dash-and-dot
         ))
 
