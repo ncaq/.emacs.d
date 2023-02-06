@@ -398,7 +398,7 @@
 (leaf files
   :custom
   ;; バックアップ先をカレントディレクトリから変更
-  (backup-directory-alist . `(("" . ,(concat user-emacs-directory "file-backup/"))))
+  (backup-directory-alist . `(("." . ,(concat user-emacs-directory "file-backup/"))))
   ;; 自動保存(クラッシュ時の対応)先をカレントディレクトリから変更
   (auto-save-file-name-transforms . `((".*" ,temporary-file-directory t)))
   ;; askだと件数を超えた自動削除時時に一々聞いてくるのでtに変更
