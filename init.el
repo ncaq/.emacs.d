@@ -79,7 +79,7 @@
   :require t
   :defun f-file? f-read-text
   :config
-  (defvar system-type-wsl
+  (defconst system-type-wsl
     (let ((osrelease-file "/proc/sys/kernel/osrelease"))
       (and
        (eq system-type 'gnu/linux)
