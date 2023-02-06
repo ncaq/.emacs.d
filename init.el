@@ -914,8 +914,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (defun docker-image-mode-setup ()
     "イメージ名の幅を広く取ります。"
     (setf (cadr (aref tabulated-list-format 0)) 100))
-  :hook
-  (docker-image-mode-hook . docker-image-mode-setup))
+  :hook (docker-image-mode-hook . docker-image-mode-setup))
 
 (leaf *input-method
   :init
