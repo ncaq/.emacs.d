@@ -1202,20 +1202,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :after t
   :custom
   (haskell-hoogle-command . "Use Web-site")
-  (haskell-hoogle-url . '"fp-complete")
-  :defvar flycheck-error-list-buffer
-  :init
-  (defun haskell-repl-and-flycheck ()
-    "左ウィンドウにコード画面、右ウィンドウをに分割してREPLとFlycheckを開く。"
-    (interactive)
-    (delete-other-windows)
-    (flycheck-list-errors)
-    (haskell-process-load-file)
-    (haskell-interactive-switch)
-    (split-window-below)
-    (other-window 1)
-    (switch-to-buffer flycheck-error-list-buffer)
-    (other-window 1))
+  (haskell-hoogle-url . "fp-complete")
   :bind
   (:haskell-mode-map
    ("M-i" . stylish-haskell-toggle)
@@ -1225,14 +1212,32 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :config
   (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
   (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
-  (leaf haskell
+  (leaf haskell-interactive-mode
+    :defvar flycheck-error-list-buffer
+    :init
+    (defun haskell-interactive-repl-flycheck ()
+      "左ウィンドウにコード画面を残し、右ウィンドウを上下に分割してREPLとFlycheckを開く。"
+      (interactive)
+      (delete-other-windows)
+      (flycheck-list-errors)
+      (haskell-process-load-file)
+      (haskell-interactive-switch)
+      (split-window-below)
+      (other-window 1)
+      (switch-to-buffer flycheck-error-list-buffer)
+      (other-window 1))
     :bind
     (:interactive-haskell-mode-map
-     ("M-." . nil)
-     ("C-M-z" . haskell-repl-and-flycheck)
+     ("C-M-z" . haskell-interactive-repl-flycheck)
      ("C-c C-b" . nil)
      ("C-c C-c" . nil)
-     ("C-c C-r" . nil)))
+     ("C-c C-r" . nil))
+    :after t
+    :defvar haskell-interactive-mode-map
+    :config (dvorak-set-key-prog haskell-interactive-mode-map))
+  (leaf haskell-cabal
+    :defvar haskell-cabal-mode-map
+    :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (leaf lsp-haskell
     :ensure t
     :hook (haskell-mode-hook . lsp)
@@ -1280,14 +1285,7 @@ Add the type signature that GHC infers to the function located below the point."
         (if (locate-dominating-file default-directory ".stylish-haskell.yaml")
             (stylish-haskell-enable)
           (stylish-haskell-disable))))
-    :hook (haskell-mode-hook . stylish-haskell-setup))
-  (leaf haskell-interactive-mode
-    :after t
-    :defvar haskell-interactive-mode-map
-    :config (dvorak-set-key-prog haskell-interactive-mode-map))
-  (leaf haskell-cabal
-    :defvar haskell-cabal-mode-map
-    :config (dvorak-set-key-prog haskell-cabal-mode-map)))
+    :hook (haskell-mode-hook . stylish-haskell-setup)))
 
 (leaf shakespeare-mode :ensure t)
 
