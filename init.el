@@ -68,10 +68,7 @@
 ;; 起動時に作られる使わないバッファを削除する
 (kill-buffer-if-exist "*scratch*")
 
-(leaf server
-  :require t
-  :defun server-running-p
-  :config (unless (server-running-p) (server-start)))
+(leaf server :custom (server-mode . t))
 
 ;;; ある程度独立した定義
 
@@ -385,7 +382,7 @@
    (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
 
 (leaf recentf-ext :ensure t :require t)
-(leaf recentf-remove-sudo-tramp-prefix :ensure t :config (recentf-remove-sudo-tramp-prefix-mode 1))
+(leaf recentf-remove-sudo-tramp-prefix :ensure t :custom (recentf-remove-sudo-tramp-prefix-mode . t))
 
 (leaf savehist :custom (savehist-mode . t))
 
@@ -395,7 +392,7 @@
   (desktop-globals-to-save . nil)
   (desktop-restore-frames . nil))
 
-(leaf save-place-mode :config (save-place-mode 1))
+(leaf save-place-mode :custom (save-place-mode . t))
 
 (leaf files
   :custom
@@ -457,13 +454,6 @@
 ;; バッファの名前にディレクトリ名を付けることでユニークになりやすくする
 (leaf uniquify :require t :custom (uniquify-buffer-name-style . 'forward))
 
-(leaf mule-util
-  :doc
-  "省略記号に使う文字列幅を3文字から1文字にします。"
-  :require t
-  :defvar truncate-string-ellipsis
-  :setq (truncate-string-ellipsis . "…"))
-
 ;;; Emacs内部でだいたい収まる機能の設定
 
 (leaf *c-source-code
@@ -515,7 +505,6 @@
 
 (leaf helm
   :ensure t
-  :require t          ; 起動時の本質的には必要ないが、どうせすぐ使う。
   :custom
   (helm-mode . t)
   ;; モードを短縮する基準
@@ -677,10 +666,10 @@
 
 (leaf company
   :ensure t
-  :require t
   :diminish "COMPA"
   :defvar company-search-map
   :custom
+  (global-company-mode . t)
   ;; companyの自動補完スタートを無効化します。
   ;; 理由はhaskell-mode, company-posframeの組み合わせの時、自動補完が一瞬現れては消える謎の挙動をするためです。
   ;; 原因は不明ですが、もともと自動補完開始をあまり使っていなかったため、手動補完開始のみを使うことにします。
@@ -697,42 +686,40 @@
    ("<tab>" . company-complete-common-or-cycle)
    ("C-h" . nil))
   :config
-  (global-company-mode 1)
   (dvorak-set-key-prog company-active-map)
   ;; company-search-mapの入力をそのまま受け付ける特殊性に対応するワークアラウンド。
   (define-key company-search-map (kbd "C-c") nil)
   (dvorak-set-key company-search-map)
   (leaf company-quickhelp
     :ensure t
-    :require t
-    :custom (company-quickhelp-delay . 0)
-    :config (company-quickhelp-mode 1))
+    :custom
+    (company-quickhelp-mode . t)
+    (company-quickhelp-delay . 0))
   (leaf company-posframe
     :doc "ウィンドウ分割などを行いウインドウをまたがる補完のスタイルが崩壊することを抑止してくれます。"
     :ensure t
-    :require t desktop
     :diminish "COMPF"
+    :custom (company-posframe-mode . t)
     :defvar desktop-minor-mode-table
-    :config
-    (company-posframe-mode 1)
-    (push '(company-posframe-mode . nil) desktop-minor-mode-table)))
+    :config (add-to-list 'desktop-minor-mode-table '(company-posframe-mode . nil))))
 
 (leaf yasnippet
   :ensure t
+  :custom (yas-global-mode . t)
   :bind (:yas-minor-mode-map
          ("<tab>" . nil)
          ("TAB" . nil)
          ("C-c C-y" . company-yasnippet)
          ("M-z" . yas-insert-snippet))
-  :config
-  (yas-global-mode)
-  (leaf yasnippet-snippets :ensure t))
+  :config (leaf yasnippet-snippets :ensure t))
 
 (leaf smartparens
   :ensure t
   :require smartparens-config
-  :defun sp-pair
-  :custom (sp-escape-quotes-after-insert . nil)
+  :custom
+  (smartparens-global-mode . t)
+  (show-smartparens-global-mode . t)
+  (sp-escape-quotes-after-insert . nil)
   :bind (:smartparens-mode-map
          ("C-(" . sp-backward-slurp-sexp)
          ("C-)" . sp-slurp-hybrid-sexp)
@@ -750,10 +737,8 @@
          ([remap forward-sexp] . sp-forward-sexp)
          ([remap kill-sexp] . sp-kill-sexp)
          ([remap mark-sexp] . sp-mark-sexp))
+  :defun sp-pair
   :config
-  (smartparens-global-mode 1)
-  (show-smartparens-global-mode 1)
-
   (sp-pair "｢" "｣" :actions '(insert wrap autoskip navigate))
   (sp-pair "「" "」" :actions '(insert wrap autoskip navigate))
   (sp-pair "『" "』" :actions '(insert wrap autoskip navigate))
@@ -808,9 +793,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit))
 
 (leaf whitespace
-  :require t
   :custom
-  (global-whitespace-mode . 1)
+  (global-whitespace-mode . t)
   (whitespace-action . '(auto-cleanup))
   (whitespace-style . '(face tabs spaces trailing empty))
   :custom-face
@@ -904,6 +888,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :hook (docker-image-mode-hook . docker-image-mode-setup))
 
 (leaf *input-method
+  :leaf-autoload nil
   :init
   (defun off-input-method ()
     (interactive)
@@ -923,9 +908,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (window-configuration-change-hook . cursor-color-toggle))
 
 (leaf mozc-im
-  :when (member system-type '(gnu gnu/linux gnu/kfreebsd))
   :ensure t
-  :require t
+  :when (member system-type '(gnu gnu/linux gnu/kfreebsd))
   :custom
   (default-input-method . "japanese-mozc-im")
   (mozc-candidate-style . 'echo-area))
@@ -945,10 +929,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :advice (:after mozc-session-execute-command mozc-ime-on))
 
 (leaf tr-ime
+  :ensure t
   :doc "C-mでの確定にはEmacs側で対応していないのでKeyhacなどでの対処が必要"
   :when (eq window-system 'w32)
-  :ensure t
-  :require t
   :defun tr-ime-advanced-install w32-ime-initialize wrap-function-to-control-ime
   :defvar w32-ime-mode-line-state-indicator-list
   :config
@@ -992,15 +975,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 ;; 有効にするだけの短いコード
 
-(leaf auto-sudoedit :ensure t :config (auto-sudoedit-mode 1))
-(leaf editorconfig :ensure t :diminish "EDITC" :custom (editorconfig-mode . 1))
+(leaf auto-sudoedit :ensure t :custom (auto-sudoedit-mode . t))
+(leaf editorconfig :ensure t :diminish "EDITC" :custom (editorconfig-mode . t))
 (leaf expand-region :ensure t)
 (leaf google-this :ensure t)
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
 (leaf point-undo :el-get ncaq/point-undo :require t)
-(leaf symbolword-mode :ensure t :require t)
-(leaf which-key :ensure t :custom (which-key-mode . 1))
+(leaf symbolword-mode :ensure t :custom (symbolword-mode . t))
+(leaf which-key :ensure t :custom (which-key-mode . t))
 
 ;;; 汎用プログラミング機能
 
@@ -1119,6 +1102,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   ((c-mode-hook . lsp)
    (c++-mode-hook . lsp))
   :config
+  (dvorak-set-key-prog c-mode-base-map)
   (leaf ccls :ensure t)
   (leaf clang-format
     :ensure t
@@ -1128,8 +1112,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :hook ((c-mode-hook . set-hook-after-save-clang-format)
            (c++-mode-hook . set-hook-after-save-clang-format))
     :bind ((:c-mode-map ([remap indent-whole-buffer] . clang-format-buffer))
-           (:c++-mode-map ([remap indent-whole-buffer] . clang-format-buffer))))
-  (dvorak-set-key-prog c-mode-base-map))
+           (:c++-mode-map ([remap indent-whole-buffer] . clang-format-buffer)))))
 
 ;;; D
 
@@ -1141,7 +1124,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (add-to-list 'c-default-style '(d-mode . "java"))
   (leaf dfmt
     :ensure t
-    :after d-mode
     :bind (:d-mode-map
            ([remap indent-whole-buffer] . dfmt-buffer)
            ([remap save-buffer] . dfmt-save-buffer)))
@@ -1186,8 +1168,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (leaf eldoc :hook emacs-lisp-mode-hook ielm-mode-hook)
   (leaf flycheck-package :ensure t :after flycheck :defun flycheck-package-setup :config (flycheck-package-setup))
   (leaf ielm :bind (:ielm-map ("C-c C-d" . helpful-at-point)))
-  (leaf macrostep :ensure t)
-  (leaf simple :bind (:read-expression-map ("<tab>" . completion-at-point))))
+  (leaf macrostep :ensure t))
 
 ;;; Elm
 
@@ -1214,12 +1195,13 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf haskell-mode
   :ensure t
   :after t
-  :defvar flycheck-error-list-buffer
   :custom
-  (haskell-hoogle-command . nil)
-  (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s")
+  (haskell-hoogle-command . "Use Web-site")
+  (haskell-hoogle-url . '"fp-complete")
+  :defvar flycheck-error-list-buffer
   :init
   (defun haskell-repl-and-flycheck ()
+    "左ウィンドウにコード画面、右ウィンドウをに分割してREPLとFlycheckを開く。"
     (interactive)
     (delete-other-windows)
     (flycheck-list-errors)
@@ -1318,29 +1300,27 @@ Add the type signature that GHC infers to the function located below the point."
   :custom
   (markdown-fontify-code-blocks-natively . t)
   (markdown-hide-urls . nil)
-  :defvar markdown-mode-map
+  :defvar markdown-mode-map markdown-code-lang-modes
   :config
-  (custom-set-variables
-   '(markdown-code-lang-modes
-     (append
-      '(("diff" . diff-mode)
-        ("hs" . haskell-mode)
-        ("html" . web-mode)
-        ("ini" . conf-mode)
-        ("js" . web-mode)
-        ("jsx" . web-mode)
-        ("md" . markdown-mode)
-        ("pl6" . raku-mode)
-        ("py" . python-mode)
-        ("rb" . ruby-mode)
-        ("rs" . rustic-mode)
-        ("sqlite3" . sql-mode)
-        ("ts" . web-mode)
-        ("tsx" . web-mode)
-        ("yaml". yaml-mode)
-        ("zsh" . sh-mode))
-      markdown-code-lang-modes)))
-  (dvorak-set-key-prog markdown-mode-map))
+  (dvorak-set-key-prog markdown-mode-map)
+  (mapc
+   (lambda (mode) (add-to-list 'markdown-code-lang-modes mode))
+   '(("diff" . diff-mode)
+     ("hs" . haskell-mode)
+     ("html" . web-mode)
+     ("ini" . conf-mode)
+     ("js" . web-mode)
+     ("jsx" . web-mode)
+     ("md" . markdown-mode)
+     ("pl6" . raku-mode)
+     ("py" . python-mode)
+     ("rb" . ruby-mode)
+     ("rs" . rustic-mode)
+     ("sqlite3" . sql-mode)
+     ("ts" . web-mode)
+     ("tsx" . web-mode)
+     ("yaml". yaml-mode)
+     ("zsh" . sh-mode))))
 
 ;;; OCaml
 
@@ -1350,39 +1330,22 @@ Add the type signature that GHC infers to the function located below the point."
   :config
   (leaf merlin
     :ensure t
-    :defvar merlin-mode-map
-    :hook
-    (tuareg-mode-hook . merlin-mode)
+    :hook (tuareg-mode-hook . merlin-mode)
     :config
-    (leaf merlin-company
-      :ensure t
-      :require t)
-    (leaf merlin-eldoc
-      :ensure t
-      :require t
-      :hook
-      (merlin-mode-hook . merlin-eldoc-setup)))
+    (leaf merlin-company :ensure t :require t)
+    (leaf merlin-eldoc :ensure t :hook (merlin-mode-hook . merlin-eldoc-setup)))
   (leaf ocamlformat
     :ensure t
-    :custom
-    (ocamlformat-enable 'enable-outside-detected-project)
+    :custom (ocamlformat-enable . 'enable-outside-detected-project)
     :init
     (defun ocamlformat-setup ()
       (add-hook 'before-save-hook 'ocamlformat-before-save nil t))
-    :hook
-    (tuareg-mode-hook . merlin-mode))
-  (leaf utop
-    :ensure t
-    :hook
-    (tuareg-mode-hook . utop-minor-mode)))
+    :hook (tuareg-mode-hook . ocamlformat-setup))
+  (leaf utop :ensure t :hook (tuareg-mode-hook . utop-minor-mode)))
 
 (leaf dune
   :ensure t
-  :config
-  (leaf dune-format
-    :ensure t
-    :hook
-    (dune-mode-hook . dune-format-on-save-mode)))
+  :config (leaf dune-format :ensure t :hook (dune-mode-hook . dune-format-on-save-mode)))
 
 ;;; Python
 
@@ -1402,12 +1365,8 @@ Add the type signature that GHC infers to the function located below the point."
     :bind (:elpy-mode-map ([remap indent-whole-buffer] . elpy-black-fix-code))
     :config
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))
-  (leaf python-isort
-    :ensure t
-    :hook (python-mode-hook . python-isort-on-save-mode))
-  (leaf poetry
-    :ensure t
-    :commands poetry-track-virtualenv)
+  (leaf python-isort :ensure t :hook (python-mode-hook . python-isort-on-save-mode))
+  (leaf poetry :ensure t :commands poetry-track-virtualenv)
   (leaf pipenv
     :ensure t
     :commands pyvenv-track-virtualenv
@@ -1459,19 +1418,17 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf raku-mode
   :ensure t
   :custom (raku-indent-offset . 2)
-  :config (leaf flycheck-raku :ensure t :require t))
+  :config (leaf flycheck-raku :ensure t))
 
 ;;; Ruby
 
 (leaf ruby-mode
-  :defvar ruby-mode-map
   :custom (ruby-insert-encoding-magic-comment . nil)
   :hook (ruby-mode-hook . lsp)
+  :defvar ruby-mode-map
   :config
   (dvorak-set-key-prog ruby-mode-map)
-  (leaf inf-ruby
-    :ensure t
-    :hook (ruby-mode-hook . inf-ruby-minor-mode)))
+  (leaf inf-ruby :ensure t :hook (ruby-mode-hook . inf-ruby-minor-mode)))
 
 ;;; Rust
 
@@ -1479,12 +1436,9 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :ensure t
   :mode "\\.rs$"
   :custom
+  (lsp-rust-analyzer-cargo-watch-command . "clippy")
   (rustic-format-display-method . 'ignore) ; Rustfmtのメッセージをポップアップしない
-  (rustic-format-trigger . 'on-save)
-  :after flycheck
-  :defvar flycheck-checkers
-  :config
-  (push 'rustic-clippy flycheck-checkers))
+  (rustic-format-trigger . 'on-save))
 
 ;;; Scala
 
@@ -1494,7 +1448,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (scala-mode-hook . lsp)
   (scala-mode-hook . lsp-format-before-save)
   :config
-  (leaf lsp-metals :ensure t :require t)
+  (leaf lsp-metals :ensure t)
   (leaf smartparens :config (sp-local-pair 'scala-mode "{" nil :post-handlers nil)))
 
 (leaf sbt-mode
@@ -1587,11 +1541,11 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :custom
   (visual-basic-capitalize-keywords-p . nil) ; 文字列リテラルの内部の名前まで変更してしまうのでオフにします
   (visual-basic-mode-indent . 4)             ; editorconfigに認識させようとしたのですがうまく行かなかったので固定設定
-  :defvar visual-basic-mode-map
   :bind (:visual-basic-mode-map ("C-i" . nil))
+  :defvar visual-basic-mode-map
   :config
-  (leaf smartparens :config (sp-local-pair 'visual-basic-mode "'" "'" :actions nil))
-  (dvorak-set-key-prog visual-basic-mode-map))
+  (dvorak-set-key-prog visual-basic-mode-map)
+  (leaf smartparens :config (sp-local-pair 'visual-basic-mode "'" "'" :actions nil)))
 
 ;;; Web
 
@@ -1632,12 +1586,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   ;; js-modeが指定されているインタプリタにおいてweb-modeが指定されるようにします。
   :interpreter
   `,(seq-filter 'stringp (seq-map (lambda (regex-mode) (pcase regex-mode (`(,regex . js-mode) regex))) interpreter-mode-alist))
-  :init
-  (defun web-mode-setup ()
-    (setq-local lsp-enabled-clients '(ts-ls eslint))
-    (lsp)
-    (prettier-mode-toggle-setup))
-  :hook (web-mode-hook . web-mode-setup)
   :custom
   (web-mode-code-indent-offset . 2)
   (web-mode-css-indent-offset . 2)
@@ -1652,6 +1600,12 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (web-mode-jsx-depth-3-face . '((t (:background "#08404F"))))
   (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
   (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
+  :init
+  (defun web-mode-setup ()
+    (setq-local lsp-enabled-clients '(ts-ls eslint))
+    (lsp)
+    (prettier-mode-toggle-setup))
+  :hook (web-mode-hook . web-mode-setup)
   :bind
   (:web-mode-map
    ([remap comment-indent-new-line] . web-mode-comment-indent-new-line)
@@ -1662,14 +1616,14 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (add-to-list 'web-mode-comment-formats '("jsx" . "//"))
   (sp-local-pair 'web-mode "<" ">" :actions nil))
 
-(leaf yarn-mode :ensure t)
-
 (leaf js :custom (js-indent-level . 2))
-
-(leaf ts-comint :ensure t)
 
 (leaf json-mode :ensure t :hook (json-mode-local-vars-hook . lsp) (json-mode-hook . prettier-mode-toggle-setup))
 (leaf yaml-mode :ensure t :hook (yaml-mode-local-vars-hook . lsp) (yaml-mode-hook . prettier-mode-toggle-setup))
+
+(leaf yarn-mode :ensure t)
+
+(leaf ts-comint :ensure t)
 
 (leaf css-mode
   :custom (css-indent-offset . 2)
@@ -1678,15 +1632,15 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf nxml-mode
   :mode "\\.fxml\\'"
-  :defvar nxml-mode-map
   :custom (nxml-slash-auto-complete-flag . t)
   :bind (:nxml-mode-map
          ("M-h" . nil)
          ("C-M-t" . nil)
          ("C-M-p" . nxml-backward-element))
+  :defvar nxml-mode-map
   :config
-  (leaf smartparens :config (sp-local-pair 'nxml-mode "<" ">" :actions nil))
-  (dvorak-set-key-prog nxml-mode-map))
+  (dvorak-set-key-prog nxml-mode-map)
+  (leaf smartparens :config (sp-local-pair 'nxml-mode "<" ">" :actions nil)))
 
 ;; Local Variables:
 ;; byte-compile-warnings: (not cl-functions obsolete)
