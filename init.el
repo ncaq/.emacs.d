@@ -985,7 +985,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
 (leaf point-undo :el-get ncaq/point-undo :require t)
-(leaf symbolword-mode :ensure t :custom (symbolword-mode . t))
+(leaf symbolword-mode :ensure t :require t :custom (symbolword-mode . t))
 (leaf which-key :ensure t :custom (which-key-mode . t))
 
 ;;; 汎用プログラミング機能
