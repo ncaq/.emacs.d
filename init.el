@@ -910,6 +910,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf mozc-im
   :ensure t
   :when (member system-type '(gnu gnu/linux gnu/kfreebsd))
+  :require t
   :custom
   (default-input-method . "japanese-mozc-im")
   (mozc-candidate-style . 'echo-area))
