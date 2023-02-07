@@ -51,6 +51,7 @@
 (leaf gcmh
   :doc "アイドル状態かなどの判定からGCを調整する。"
   :ensure t
+  :blackout t
   :hook (after-init-hook . gcmh-mode))
 
 (leaf exec-path-from-shell
@@ -364,12 +365,13 @@
   web-mode-hook)
 
 ;; カットペーストなど挿入削除時にハイライト
-(leaf volatile-highlights :ensure t :global-minor-mode t)
+(leaf volatile-highlights :ensure t :global-minor-mode t :blackout t)
 
 ;; 置換の動きを可視化
 (leaf anzu
   :ensure t
   :global-minor-mode global-anzu-mode
+  :blackout t
   :bind
   ([remap query-replace] . anzu-query-replace)
   ([remap query-replace-regexp] . anzu-query-replace-regexp))
@@ -382,7 +384,7 @@
    (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
 
 (leaf recentf-ext :ensure t :require t)
-(leaf recentf-remove-sudo-tramp-prefix :ensure t :global-minor-mode t)
+(leaf recentf-remove-sudo-tramp-prefix :ensure t :global-minor-mode t :blackout t)
 
 (leaf savehist :global-minor-mode t)
 
@@ -504,6 +506,7 @@
 (leaf helm
   :ensure t
   :global-minor-mode t
+  :blackout t
   :custom
   ;; モードを短縮する基準
   (helm-buffer-max-len-mode . 25)
@@ -664,8 +667,8 @@
 
 (leaf company
   :ensure t
-  :diminish "COMPA"
   :global-minor-mode global-company-mode
+  :blackout t
   :custom
   ;; companyの自動補完スタートを無効化します。
   ;; 理由はhaskell-mode, company-posframeの組み合わせの時、自動補完が一瞬現れては消える謎の挙動をするためです。
@@ -695,8 +698,8 @@
   (leaf company-posframe
     :doc "ウィンドウ分割などを行いウインドウをまたがる補完のスタイルが崩壊することを抑止してくれます。"
     :ensure t
-    :diminish "COMPF"
     :global-minor-mode t
+    :blackout t
     :defvar desktop-minor-mode-table
     :config (add-to-list 'desktop-minor-mode-table '(company-posframe-mode . nil))))
 
@@ -716,6 +719,7 @@
   :global-minor-mode
   smartparens-global-mode
   show-smartparens-global-mode
+  :blackout smartparens-mode
   :custom
   (sp-escape-quotes-after-insert . nil)
   :bind (:smartparens-mode-map
@@ -779,8 +783,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf undo-tree
   :ensure t
-  :diminish "UNDOT"
   :global-minor-mode global-undo-tree-mode
+  :blackout t
   :custom
   (undo-tree-enable-undo-in-region . nil)
   (undo-tree-history-directory-alist . `(("" . ,(concat user-emacs-directory "undo-tree/"))))
@@ -792,6 +796,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf whitespace
   :global-minor-mode global-whitespace-mode
+  :blackout global-whitespace-mode
   :custom
   (whitespace-action . '(auto-cleanup))
   (whitespace-style . '(face tabs spaces trailing empty))
@@ -865,8 +870,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf git-gutter
   :ensure t
-  :diminish "GITGU"
   :global-minor-mode global-git-gutter-mode
+  :blackout t
   :hook (magit-post-refresh-hook . git-gutter:update-all-windows))
 
 (leaf git-link
@@ -976,15 +981,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 ;; 有効にするだけの短いコード
 
-(leaf auto-sudoedit :ensure t :global-minor-mode t)
-(leaf editorconfig :ensure t :diminish "EDITC" :global-minor-mode t)
+(leaf auto-sudoedit :ensure t :global-minor-mode t :blackout t)
+(leaf editorconfig :ensure t :global-minor-mode t :blackout t)
 (leaf expand-region :ensure t)
 (leaf google-this :ensure t)
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
 (leaf point-undo :el-get ncaq/point-undo :require t)
-(leaf symbolword-mode :ensure t :require t :global-minor-mode t)
-(leaf which-key :ensure t :global-minor-mode t)
+(leaf symbolword-mode :ensure t :require t :global-minor-mode t :blackout t)
+(leaf which-key :ensure t :global-minor-mode t :blackout t)
 
 ;;; 汎用プログラミング機能
 
@@ -1051,6 +1056,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf flycheck
   :ensure t
   :global-minor-mode global-flycheck-mode
+  :blackout t
   :custom (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない。
   :bind (:flycheck-mode-map
          ("C-z" . flycheck-list-errors)
