@@ -68,7 +68,7 @@
 ;; 起動時に作られる使わないバッファを削除する
 (kill-buffer-if-exist "*scratch*")
 
-(leaf server :custom (server-mode . t))
+(leaf server :global-minor-mode t)
 
 ;;; ある程度独立した定義
 
@@ -364,12 +364,12 @@
   web-mode-hook)
 
 ;; カットペーストなど挿入削除時にハイライト
-(leaf volatile-highlights :ensure t :config (volatile-highlights-mode t))
+(leaf volatile-highlights :ensure t :global-minor-mode t)
 
 ;; 置換の動きを可視化
 (leaf anzu
   :ensure t
-  :custom (global-anzu-mode . t)
+  :global-minor-mode global-anzu-mode
   :bind
   ([remap query-replace] . anzu-query-replace)
   ([remap query-replace-regexp] . anzu-query-replace-regexp))
@@ -382,17 +382,17 @@
    (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
 
 (leaf recentf-ext :ensure t :require t)
-(leaf recentf-remove-sudo-tramp-prefix :ensure t :custom (recentf-remove-sudo-tramp-prefix-mode . t))
+(leaf recentf-remove-sudo-tramp-prefix :ensure t :global-minor-mode t)
 
-(leaf savehist :custom (savehist-mode . t))
+(leaf savehist :global-minor-mode t)
 
 (leaf desktop
+  :global-minor-mode desktop-save-mode
   :custom
-  (desktop-save-mode . t)
   (desktop-globals-to-save . nil)
   (desktop-restore-frames . nil))
 
-(leaf save-place-mode :custom (save-place-mode . t))
+(leaf save-place-mode :global-minor-mode t)
 
 (leaf files
   :custom
@@ -429,9 +429,7 @@
   :defun frame-maximized
   :config (frame-maximized))
 
-(leaf image-file
-  :doc "画像を表示"
-  :custom (auto-image-file-mode . 1))
+(leaf image-file :global-minor-mode auto-image-file-mode)
 
 (leaf bindings
   :config
@@ -469,7 +467,7 @@
   :setq-default
   (buffer-file-coding-system . 'utf-8-unix)) ; 新規ファイルではWindowsでもUTF-8を使う
 
-(leaf autorevert :custom (global-auto-revert-mode . 1)) ; 自動再読込
+(leaf autorevert :global-minor-mode global-auto-revert-mode) ; 自動再読込
 (leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
 (leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
 (leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
@@ -505,8 +503,8 @@
 
 (leaf helm
   :ensure t
+  :global-minor-mode t
   :custom
-  (helm-mode . t)
   ;; モードを短縮する基準
   (helm-buffer-max-len-mode . 25)
   ;; デフォルトはファイル名を短縮する区切りが20
@@ -574,7 +572,7 @@
       (interactive "P")
       (helm-grep-ag (expand-file-name (project-root (project-current))) arg))
     :advice (:before helm-grep-action (lambda (&rest _ignored) (xref-push-marker-stack))))
-  (leaf helm-descbinds :ensure t :custom (helm-descbinds-mode . t))
+  (leaf helm-descbinds :ensure t :global-minor-mode t)
   (leaf helm-swoop :ensure t)
   (leaf helm-ls-git
     :ensure t
@@ -598,25 +596,25 @@
   ([remap describe-key]      . helpful-key)
   ([remap describe-symbol]   . helpful-symbol)
   ([remap describe-variable] . helpful-variable)
-  :defvar helpful-mode-map
   :advice (:after helpful-at-point other-window-backward)
+  :defvar helpful-mode-map
   :config (dvorak-set-key-prog helpful-mode-map))
 
 (leaf ibuffer
-  :after t
-  :defvar ibuffer-mode-map
   :custom `(ibuffer-formats . '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
                                 (mark " " (name 60 -1) " " filename))) ; 幅を大きくする
   :bind (:ibuffer-mode-map
          ("C-o" . nil)
          ("C-t" . nil)
          ("M-g" . nil))
+  :after t
+  :defvar ibuffer-mode-map
   :config (dvorak-set-key-prog ibuffer-mode-map))
 
 (leaf profiler
+  :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right))))) ; 幅を大きくする
   :after t
   :defvar profiler-report-mode-map
-  :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right))))) ; 幅を大きくする
   :config (dvorak-set-key-prog profiler-report-mode-map))
 
 ;;; ジャンプ
@@ -667,9 +665,8 @@
 (leaf company
   :ensure t
   :diminish "COMPA"
-  :defvar company-search-map
+  :global-minor-mode global-company-mode
   :custom
-  (global-company-mode . t)
   ;; companyの自動補完スタートを無効化します。
   ;; 理由はhaskell-mode, company-posframeの組み合わせの時、自動補完が一瞬現れては消える謎の挙動をするためです。
   ;; 原因は不明ですが、もともと自動補完開始をあまり使っていなかったため、手動補完開始のみを使うことにします。
@@ -685,6 +682,7 @@
    ("<backtab>" . company-select-previous)
    ("<tab>" . company-complete-common-or-cycle)
    ("C-h" . nil))
+  :defvar company-search-map
   :config
   (dvorak-set-key-prog company-active-map)
   ;; company-search-mapの入力をそのまま受け付ける特殊性に対応するワークアラウンド。
@@ -692,20 +690,19 @@
   (dvorak-set-key company-search-map)
   (leaf company-quickhelp
     :ensure t
-    :custom
-    (company-quickhelp-mode . t)
-    (company-quickhelp-delay . 0))
+    :global-minor-mode t
+    :custom (company-quickhelp-delay . 0))
   (leaf company-posframe
     :doc "ウィンドウ分割などを行いウインドウをまたがる補完のスタイルが崩壊することを抑止してくれます。"
     :ensure t
     :diminish "COMPF"
-    :custom (company-posframe-mode . t)
+    :global-minor-mode t
     :defvar desktop-minor-mode-table
     :config (add-to-list 'desktop-minor-mode-table '(company-posframe-mode . nil))))
 
 (leaf yasnippet
   :ensure t
-  :custom (yas-global-mode . t)
+  :global-minor-mode yas-global-mode
   :bind (:yas-minor-mode-map
          ("<tab>" . nil)
          ("TAB" . nil)
@@ -716,9 +713,10 @@
 (leaf smartparens
   :ensure t
   :require smartparens-config
+  :global-minor-mode
+  smartparens-global-mode
+  show-smartparens-global-mode
   :custom
-  (smartparens-global-mode . t)
-  (show-smartparens-global-mode . t)
   (sp-escape-quotes-after-insert . nil)
   :bind (:smartparens-mode-map
          ("C-(" . sp-backward-slurp-sexp)
@@ -782,19 +780,19 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf undo-tree
   :ensure t
   :diminish "UNDOT"
-  :defvar undo-tree-visualizer-mode-map
+  :global-minor-mode global-undo-tree-mode
   :custom
-  (global-undo-tree-mode . t)
   (undo-tree-enable-undo-in-region . nil)
   (undo-tree-history-directory-alist . `(("" . ,(concat user-emacs-directory "undo-tree/"))))
   (undo-tree-visualizer-timestamps . t)
+  :defvar undo-tree-visualizer-mode-map
   :config
   (dvorak-set-key-prog undo-tree-visualizer-mode-map)
   (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit))
 
 (leaf whitespace
+  :global-minor-mode global-whitespace-mode
   :custom
-  (global-whitespace-mode . t)
   (whitespace-action . '(auto-cleanup))
   (whitespace-style . '(face tabs spaces trailing empty))
   :custom-face
@@ -844,15 +842,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     ;; `magit-diff-visit-worktree-file'は`C-<return>'でも代用出来て、検索の誤爆の原因になるので無効化する。
     :bind (:magit-diff-section-map ("C-j" . nil)))
   (leaf git-commit
-    :after t
     :defun yas-expand-snippet yas-lookup-snippet
-    :defvar git-commit-mode-map
     :init
     (defun yas-insert-snippet-conventional-commits-type ()
       "@commitlint/config-conventionalが受け付けるtypeを選択して入力する。"
       (interactive)
       (yas-expand-snippet (yas-lookup-snippet "conventional-commits-type")))
     :bind (:git-commit-mode-map ("M-z" . yas-insert-snippet-conventional-commits-type))
+    :after t
+    :defvar git-commit-mode-map
     :config
     ;; コミットメッセージ編集画面での幅に基づく自動改行を無効化
     (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill)
@@ -868,7 +866,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf git-gutter
   :ensure t
   :diminish "GITGU"
-  :custom (global-git-gutter-mode . t)
+  :global-minor-mode global-git-gutter-mode
   :hook (magit-post-refresh-hook . git-gutter:update-all-windows))
 
 (leaf git-link
@@ -954,14 +952,14 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
   (modify-all-frames-parameters '((ime-font . "HackGen Console NFJ-13.5"))))
 
-(leaf envrc :ensure t :custom (envrc-global-mode . t))
+(leaf envrc :ensure t :global-minor-mode envrc-global-mode)
 
 (leaf man
-  :after t
-  :defvar Man-mode-map
   :custom
   (Man-notify-method . 'bully)     ; Manページを現在のウィンドウで表示
   (Man-width-max . nil)            ; Manページのwidthの最大幅を除去
+  :after t
+  :defvar Man-mode-map
   :config (dvorak-set-key-prog Man-mode-map))
 
 (leaf ediff
@@ -978,15 +976,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 ;; 有効にするだけの短いコード
 
-(leaf auto-sudoedit :ensure t :custom (auto-sudoedit-mode . t))
-(leaf editorconfig :ensure t :diminish "EDITC" :custom (editorconfig-mode . t))
+(leaf auto-sudoedit :ensure t :global-minor-mode t)
+(leaf editorconfig :ensure t :diminish "EDITC" :global-minor-mode t)
 (leaf expand-region :ensure t)
 (leaf google-this :ensure t)
 (leaf multiple-cursors :ensure t)
 (leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
 (leaf point-undo :el-get ncaq/point-undo :require t)
-(leaf symbolword-mode :ensure t :require t :custom (symbolword-mode . t))
-(leaf which-key :ensure t :custom (which-key-mode . t))
+(leaf symbolword-mode :ensure t :require t :global-minor-mode t)
+(leaf which-key :ensure t :global-minor-mode t)
 
 ;;; 汎用プログラミング機能
 
@@ -1052,9 +1050,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf flycheck
   :ensure t
-  :custom
-  (global-flycheck-mode . t)               ; グローバルに有効にする。
-  (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない。
+  :global-minor-mode global-flycheck-mode
+  :custom (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない。
   :bind (:flycheck-mode-map
          ("C-z" . flycheck-list-errors)
          ([remap previous-error] . flycheck-previous-error)
