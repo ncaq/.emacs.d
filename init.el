@@ -306,7 +306,7 @@
   ("C-c r" . recentf-cleanup)
   ("C-c s" . customize-set-variable)
   ("C-c u" . open-document-current)
-  ("C-c v" . direnv-mode)
+  ("C-c v" . envrc-allow)
 
   ("C-x d" . mark-defun)
   ("C-x g" . insert-random-uuid)
@@ -954,12 +954,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
   (modify-all-frames-parameters '((ime-font . "HackGen Console NFJ-13.5"))))
 
-(leaf *wsl
-  :leaf-autoload nil
-  :when system-type-wsl
-  :custom
-  (browse-url-generic-program . "wslview")
-  (browse-url-browser-function . 'browse-url-generic))
+(leaf envrc :ensure t :custom (envrc-global-mode . t))
 
 (leaf man
   :after t
@@ -973,6 +968,13 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :custom
   (ediff-split-window-function . 'split-window-horizontally)  ; ediffでウィンドウを横分割
   (ediff-window-setup-function . 'ediff-setup-windows-plain)) ; ediffにframeを生成させない
+
+(leaf *wsl
+  :leaf-autoload nil
+  :when system-type-wsl
+  :custom
+  (browse-url-generic-program . "wslview")
+  (browse-url-browser-function . 'browse-url-generic))
 
 ;; 有効にするだけの短いコード
 
@@ -1076,7 +1078,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf conf-mode :mode "/credentials$" "\\.accept_keywords$" "\\.dsk$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$")
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
-(leaf direnv :ensure t)
 (leaf dotenv-mode :ensure t)
 (leaf egison-mode :ensure t :mode ("\\.egi$" . egison-mode))
 (leaf generic-x :require t)
