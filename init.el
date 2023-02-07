@@ -8,20 +8,21 @@
 ;;; leafとpackageの設定
 
 (eval-and-compile
-  (prog1 "leafを初期化する"
-    (custom-set-variables
-     '(package-archives '(("melpa" . "https://melpa.org/packages/")
-                          ("gnu"   . "https://elpa.gnu.org/packages/"))))
-    (package-initialize)
-    (unless (package-installed-p 'leaf)
-      (package-refresh-contents)
-      (package-install 'leaf))
-    (leaf leaf-keywords
-      :ensure t
-      :config
-      (leaf diminish :ensure t)
-      (leaf el-get :ensure t :custom ((el-get-git-shallow-clone . t)))
-      (leaf-keywords-init))))
+  (customize-set-variable
+   'package-archives '(("melpa" . "https://melpa.org/packages/")
+                       ("gnu" . "https://elpa.gnu.org/packages/")))
+  (package-initialize)
+  (unless (package-installed-p 'leaf)
+    (package-refresh-contents)
+    (package-install 'leaf))
+  (leaf leaf-keywords
+    :ensure t
+    :init
+    (leaf el-get :ensure t :custom ((el-get-git-shallow-clone . t)))
+    (leaf blackout :ensure t)
+    (leaf diminish :ensure t)
+    :config
+    (leaf-keywords-init)))
 
 (leaf cus-edit
   :doc "init.elに自動的に書き込ませない。
