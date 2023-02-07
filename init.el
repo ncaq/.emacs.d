@@ -1003,6 +1003,13 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 ;;; 汎用プログラミング機能
 
+;; lspなどサーバをlocal変数を適応した後に起動し始めるのに必要。
+;; 主にNode.jsとDenoの切り替えや、LSPサーバに渡すカスタム変数の変更など。
+(defun run-local-vars-mode-hook ()
+  "Run `major-mode' hook after the local variables have been processed."
+  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
+(add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
+
 (leaf lsp-mode
   :ensure t
   :after t
