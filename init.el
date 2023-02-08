@@ -544,6 +544,7 @@
          ("C-M-b" . nil)
          ("C-b" . nil)
          ("C-h" . nil)
+         ("C-s" . nil)
          ("M-b" . nil)
          ("M-s" . nil)
          ("C-p" . helm-toggle-resplit-and-swap-windows)
