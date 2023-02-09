@@ -1228,7 +1228,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
       (switch-to-buffer flycheck-error-list-buffer)
       (other-window 1))
     :bind
-    (:interactive-haskell-mode-map
+    (:haskell-interactive-mode-map
      ("C-M-z" . haskell-interactive-repl-flycheck)
      ("C-c C-b" . nil)
      ("C-c C-c" . nil)
