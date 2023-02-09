@@ -1299,6 +1299,7 @@ Add the type signature that GHC infers to the function located below the point."
   :custom
   (markdown-fontify-code-blocks-natively . t)
   (markdown-hide-urls . nil)
+  :bind (:markdown-mode-map ("C-c k" . markdown-insert-kbd))
   :defvar markdown-mode-map markdown-code-lang-modes
   :config
   (dvorak-set-key-prog markdown-mode-map)
