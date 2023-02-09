@@ -241,7 +241,7 @@
   ("C-." . on-input-method)
   ("C-;" . my-string-inflection-cycle-auto)
   ("C-=" . text-scale-reset)
-  ("C-^" . dired-jump-to-current)
+  ("C-^" . dired-jump)
   ("C-a" . smart-move-beginning-of-line)
   ("C-b" . backward-delete-char-untabify)
   ("C-i" . indent-whole-buffer)
@@ -482,11 +482,6 @@
 (leaf warnings :custom (warning-minimum-level . :error)) ; 警告はエラーレベルでないとポップアップ表示しない
 
 (leaf dired
-  :init
-  (defun dired-jump-to-current ()
-    "バッファが属しているディレクトリを開きます。"
-    (interactive)
-    (dired "."))
   :custom
   (dired-auto-revert-buffer . t)        ; diredの自動再読込
   (dired-dwim-target . t)               ; コピーなどを行う時に隣のバッファを対象にする
@@ -499,7 +494,7 @@
          ("C-o" . nil)
          ("C-p" . nil)
          ("M-o" . nil)
-         ("C-^" . dired-up-directory)
+         ("C-^" . dired-jump)
          ("C-c C-t" . wdired-change-to-wdired-mode))
   :config (dvorak-set-key-prog dired-mode-map))
 
