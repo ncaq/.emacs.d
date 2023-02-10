@@ -999,13 +999,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf lsp-mode
   :ensure t
   :after t
-  :defun lsp-enable-which-key-integration
-  :defvar lsp-command-map lsp-signature-mode-map
+  :preface
+  ;; s-lだと大概のディスプレイマネージャでロックされてしまうので変更。
+  ;; lsp-modeの何かを読み込んだ時点でdefvarでkeymapが作成されてしまうため、
+  ;; 先に初期化が必要。
+  (defvar lsp-keymap-prefix "C-c l")
   :custom
   (lsp-auto-guess-root . t)          ; 自動的にimportする
   (lsp-enable-snippet . nil)         ; 補完からスニペット展開をするのを無効化
   (lsp-file-watch-threshold . 10000) ; 監視ファイル警告を緩める
-  (lsp-keymap-prefix . "C-c M-l")    ; s-lだとデスクトップがロックされてしまうので変更
   (lsp-lens-mode . t)                ; lens機能の有効化
   (lsp-prefer-flymake . nil)         ; flycheckを優先する
   :init
@@ -1024,9 +1026,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ("M-n" . nil)
          ("M-p" . nil))
   :config
-  ;; lsp-keymap-prefixはドキュメント用なのでこちらでの設定も必要。
-  ;; bindだとうまく行かなかった。
-  (define-key lsp-mode-map (kbd "C-c M-l") lsp-command-map)
   (dvorak-set-key-prog lsp-signature-mode-map)
   (leaf lsp-ui
     :ensure t
