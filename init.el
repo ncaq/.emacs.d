@@ -1297,6 +1297,7 @@ Add the type signature that GHC infers to the function located below the point."
 (leaf markdown-mode
   :ensure t
   :after t
+  :mode ("README\\.md\\'" . gfm-mode)
   :custom
   (markdown-fontify-code-blocks-natively . t)
   (markdown-hide-urls . nil)
