@@ -1029,7 +1029,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (dvorak-set-key-prog lsp-signature-mode-map)
   (leaf lsp-ui
     :ensure t
-    :defvar lsp-ui-peek-mode-map
     :custom
     (lsp-ui-doc-header . t)             ; 何を見ているのかわからなくなりがちなので名前が含まれるヘッダも表示
     (lsp-ui-doc-include-signature . t)  ; シグネチャも表示する
@@ -1041,6 +1040,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
            ([remap smart-jump-references] . lsp-ui-peek-find-references)
            ("C->" . lsp-find-type-definition)
            ("C-c C-p" . lsp-ui-peek-find-implementation))
+    :defvar lsp-ui-peek-mode-map
     :config (dvorak-set-key-prog lsp-ui-peek-mode-map))
   (leaf dap-mode
     :ensure t
@@ -1056,7 +1056,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :bind (:flycheck-mode-map
          ("C-z" . flycheck-list-errors)
          ([remap previous-error] . flycheck-previous-error)
-         ([remap next-error] . flycheck-next-error)))
+         ([remap next-error] . flycheck-next-error))
+  :defvar flycheck-error-list-mode-map
+  :config (dvorak-set-key flycheck-error-list-mode-map))
 
 (leaf quickrun
   :ensure t
