@@ -1586,13 +1586,10 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :interpreter
   `,(seq-filter 'stringp (seq-map (lambda (regex-mode) (pcase regex-mode (`(,regex . js-mode) regex))) interpreter-mode-alist))
   :custom
-  (web-mode-code-indent-offset . 2)
-  (web-mode-css-indent-offset . 2)
   (web-mode-enable-auto-indentation . nil)
   (web-mode-enable-auto-quoting . nil)
   (web-mode-enable-current-column-highlight . t)
   (web-mode-enable-current-element-highlight . t)
-  (web-mode-markup-indent-offset . 2)
   :custom-face
   (web-mode-jsx-depth-1-face . '((t (:background "#073844"))))
   (web-mode-jsx-depth-2-face . '((t (:background "#083C49"))))
