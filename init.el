@@ -1197,9 +1197,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf haskell-mode
   :ensure t
   :after t
-  :custom
-  (haskell-hoogle-command . "Use Web-site")
-  (haskell-hoogle-url . "fp-complete")
   :bind
   (:haskell-mode-map
    ("M-i" . stylish-haskell-toggle)
@@ -1209,7 +1206,9 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :config
   (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
   (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
-  (leaf haskell-interactive-mode
+  ;; melpaに登録されている名前はhaskell-modeで、haskell.elがhaskell-mode.elを読み込むよく分からない状態です。
+  ;; melpaに登録されている名前を優先することにします。
+  (leaf haskell
     :defvar flycheck-error-list-buffer
     :init
     (defun haskell-interactive-repl-flycheck ()
@@ -1224,17 +1223,37 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
       (switch-to-buffer flycheck-error-list-buffer)
       (other-window 1))
     :bind
-    (:haskell-interactive-mode-map
+    (:interactive-haskell-mode-map
      ("C-M-z" . haskell-interactive-repl-flycheck)
      ("C-c C-b" . nil)
      ("C-c C-c" . nil)
-     ("C-c C-r" . nil))
-    :after t
-    :defvar haskell-interactive-mode-map
-    :config (dvorak-set-key-prog haskell-interactive-mode-map))
-  (leaf haskell-cabal
-    :defvar haskell-cabal-mode-map
-    :config (dvorak-set-key-prog haskell-cabal-mode-map))
+     ("C-c C-r" . nil)
+     ("C-c C-t" . nil)))
+  (leaf haskell-customize
+    :doc "haskell-stylish-on-saveがhaskell-customizeに属する。"
+    :init
+    (eval-and-compile
+      (defun stylish-haskell-enable ()
+        "保存したときに自動的にstylish-haskellを適用する。"
+        (interactive)
+        (setq-local haskell-stylish-on-save t))
+      (defun stylish-haskell-disable ()
+        (interactive)
+        (setq-local haskell-stylish-on-save nil))
+      (defun stylish-haskell-toggle ()
+        (interactive)
+        (setq-local haskell-stylish-on-save (not haskell-stylish-on-save)))
+      (defun stylish-haskell-setup ()
+        "プロジェクトディレクトリにstylish-haskellの設定ファイルがある場合、保存したときに自動的にstylish-haskellを適用する。"
+        (if (locate-dominating-file default-directory ".stylish-haskell.yaml")
+            (stylish-haskell-enable)
+          (stylish-haskell-disable))))
+    :hook (haskell-mode-hook . stylish-haskell-setup))
+  (leaf haskell-hoogle
+    :custom
+    (haskell-hoogle-command . "Use Web-site")
+    (haskell-hoogle-url . "fp-complete"))
+  (leaf haskell-cabal :defvar haskell-cabal-mode-map :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (leaf lsp-haskell
     :ensure t
     :hook (haskell-mode-hook . lsp)
@@ -1262,27 +1281,7 @@ Add the type signature that GHC infers to the function located below the point."
             (lsp-execute-code-action action)
           (message "I can't find add signature action for this point"))))
     :bind (:haskell-mode-map
-           ("C-c C-o" . lsp-haskell-execute-code-action-add-signature)))
-  (leaf haskell-customize
-    :defvar haskell-stylish-on-save
-    :init
-    (eval-and-compile
-      (defun stylish-haskell-enable ()
-        "保存したときに自動的にstylish-haskellを適用する。"
-        (interactive)
-        (setq-local haskell-stylish-on-save t))
-      (defun stylish-haskell-disable ()
-        (interactive)
-        (setq-local haskell-stylish-on-save nil))
-      (defun stylish-haskell-toggle ()
-        (interactive)
-        (setq-local haskell-stylish-on-save (not haskell-stylish-on-save)))
-      (defun stylish-haskell-setup ()
-        "プロジェクトディレクトリにstylish-haskellの設定ファイルがある場合、保存したときに自動的にstylish-haskellを適用する。"
-        (if (locate-dominating-file default-directory ".stylish-haskell.yaml")
-            (stylish-haskell-enable)
-          (stylish-haskell-disable))))
-    :hook (haskell-mode-hook . stylish-haskell-setup)))
+           ("C-c C-o" . lsp-haskell-execute-code-action-add-signature))))
 
 (leaf shakespeare-mode :ensure t)
 
