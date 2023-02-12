@@ -1204,6 +1204,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
    ("C-c C-c" . haskell-session-change-target)
    ([remap indent-whole-buffer] . haskell-mode-stylish-buffer))
   :config
+  ;; もう使われてないようですが古いプロジェクトではローカル変数として追加されることが多いので許可しておく。
   (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
   (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
   ;; melpaに登録されている名前はhaskell-modeで、haskell.elがhaskell-mode.elを読み込むよく分からない状態です。
