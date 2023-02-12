@@ -1542,7 +1542,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :mode "\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'"
   :custom
   (visual-basic-capitalize-keywords-p . nil) ; 文字列リテラルの内部の名前まで変更してしまうのでオフにします
-  (visual-basic-mode-indent . 4)             ; editorconfigに認識させようとしたのですがうまく行かなかったので固定設定
   :bind (:visual-basic-mode-map ("C-i" . nil))
   :defvar visual-basic-mode-map
   :config
