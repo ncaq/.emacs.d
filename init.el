@@ -383,7 +383,7 @@
   ((recentf-max-saved-items . 2000)
    (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
 
-(leaf recentf-ext :ensure t :require t)
+(leaf recentf-ext :ensure t :after docker-tramp :require t)
 (leaf recentf-remove-sudo-tramp-prefix :ensure t :global-minor-mode t :blackout t)
 
 (leaf savehist :global-minor-mode t)
@@ -884,7 +884,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (defun docker-image-mode-setup ()
     "イメージ名の幅を広く取ります。"
     (setf (cadr (aref tabulated-list-format 0)) 100))
-  :hook (docker-image-mode-hook . docker-image-mode-setup))
+  :hook (docker-image-mode-hook . docker-image-mode-setup)
+  :config (leaf docker-tramp :ensure t))
 
 (leaf *input-method
   :leaf-autoload nil
