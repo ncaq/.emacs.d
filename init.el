@@ -1263,6 +1263,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (leaf haskell-cabal :defvar haskell-cabal-mode-map :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (leaf lsp-haskell
     :ensure t
+    :require t
     :hook (haskell-mode-hook . lsp)
     :custom
     ;; フォーマッターをfourmoluにする。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
