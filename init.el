@@ -1258,8 +1258,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :hook (haskell-mode-hook . stylish-haskell-setup))
   (leaf haskell-hoogle
     :custom
-    (haskell-hoogle-command . "Use Web-site")
-    (haskell-hoogle-url . "fp-complete"))
+    (haskell-hoogle-command . nil)
+    (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s"))
   (leaf haskell-cabal :defvar haskell-cabal-mode-map :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (leaf lsp-haskell
     :ensure t
