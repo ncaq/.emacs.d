@@ -1275,6 +1275,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (lsp-haskell-plugin-ghcide-completions-config-auto-extend-on . nil)
     ;; import内容の表示は表示領域を取りすぎるので無効化する。
     (lsp-haskell-plugin-import-lens-code-lens-on . nil)
+    ;; lintが厳しいだけならともかく、StrictDataなどを有効化していても認識してくれないため無効化する。
+    (lsp-haskell-plugin-stan-global-on . nil)
     :defun
     lsp-code-actions-at-point
     lsp:code-action-title
