@@ -1323,6 +1323,7 @@ Add the type signature that GHC infers to the function located below the point."
      ("md" . markdown-mode)
      ("pl6" . raku-mode)
      ("py" . python-mode)
+     ("raku" . raku-mode)
      ("rb" . ruby-mode)
      ("rs" . rustic-mode)
      ("sqlite3" . sql-mode)
