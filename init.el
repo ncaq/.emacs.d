@@ -98,6 +98,10 @@
   (interactive)
   (find-file "~/Downloads/"))
 
+(defun open-google-drive ()
+  (interactive)
+  (find-file "~/GoogleDrive/"))
+
 (defun open-win-downloads ()
   (interactive)
   (find-file "~/WinDownloads/"))
@@ -299,6 +303,7 @@
   ("C-c c" . quickrun)
   ("C-c d" . docker)
   ("C-c e" . open-ncaq-entry)
+  ("C-c g" . open-google-drive)
   ("C-c h" . open-home)
   ("C-c i" . open-win-downloads)
   ("C-c j" . rg)
