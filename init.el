@@ -707,6 +707,7 @@
 (leaf yasnippet
   :ensure t
   :global-minor-mode yas-global-mode
+  :blackout yas-minor-mode
   :bind (:yas-minor-mode-map
          ("<tab>" . nil)
          ("TAB" . nil)
