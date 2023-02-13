@@ -428,12 +428,12 @@
 (leaf frame
   :doc "全画面化。"
   :init
-  (defun frame-maximized ()
-    "画面を全画面化する(not fullscreen)。
+  (eval-and-compile
+    (defun frame-maximized ()
+      "画面を全画面化する(not fullscreen)。
 `toggle-frame-maximized'のトグルじゃないバージョン。"
-    (interactive)
-    (set-frame-parameter nil 'fullscreen 'maximized))
-  :defun frame-maximized
+      (interactive)
+      (set-frame-parameter nil 'fullscreen 'maximized)))
   :config (frame-maximized))
 
 (leaf image-file :global-minor-mode auto-image-file-mode)
