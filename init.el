@@ -1295,7 +1295,13 @@ Add the type signature that GHC infers to the function located below the point."
 
 ;;; Java
 
-(leaf lsp-java :ensure t :hook (java-mode-hook . lsp))
+(leaf java-mode
+  :after t
+  :config
+  (leaf lsp-java
+    :ensure t
+    :require t
+    :hook (java-mode-hook . lsp)))
 
 (leaf groovy-mode :ensure t)
 
@@ -1360,6 +1366,7 @@ Add the type signature that GHC infers to the function located below the point."
 ;;; Python
 
 (leaf python
+  :after t
   :custom
   (python-indent-guess-indent-offset-verbose . nil)
   (python-shell-prompt-detect-failure-warning . nil)
@@ -1386,6 +1393,7 @@ Add the type signature that GHC infers to the function located below the point."
     :config (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv"))
   (leaf lsp-pyright
     :ensure t
+    :require t
     :defvar
     python-shell-virtualenv-root
     :defun
@@ -1454,11 +1462,12 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf scala-mode
   :ensure t
+  :after t
   :hook
   (scala-mode-hook . lsp)
   (scala-mode-hook . lsp-format-before-save)
   :config
-  (leaf lsp-metals :ensure t)
+  (leaf lsp-metals :ensure t :require t)
   (leaf smartparens :config (sp-local-pair 'scala-mode "{" nil :post-handlers nil)))
 
 (leaf sbt-mode
@@ -1495,10 +1504,11 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf swift-mode
   :ensure t
+  :after t
   :config
   (leaf lsp-sourcekit
     :ensure t
-    :after swift-mode
+    :require t
     :when (eq system-type 'darwin)
     :hook (swift-mode-hook . lsp)
     :custom
@@ -1506,7 +1516,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
      . "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
   (leaf swift-helpful
     :ensure t
-    :after swift-mode
     :when (eq system-type 'darwin)
     :bind
     (:swift-mode-map
