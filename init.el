@@ -113,7 +113,7 @@
 
 (defun open-ncaq-entry ()
   (interactive)
-  (find-file (concat "~/Desktop/www.ncaq.net/entry/"
+  (find-file (concat "~/Desktop/www.ncaq.net/site/entry/"
                      (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
 
 ;;; Dvorak設定をするための関数達
