@@ -1175,7 +1175,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :ensure t
     :bind (:elisp-slime-nav-mode-map ("C-c C-d" . helpful-at-point))
     :hook emacs-lisp-mode-hook help-mode-hook)
-  (leaf eldoc :hook emacs-lisp-mode-hook ielm-mode-hook)
+  (leaf eldoc :blackout t :hook emacs-lisp-mode-hook ielm-mode-hook)
   (leaf flycheck-package :ensure t :after flycheck :defun flycheck-package-setup :config (flycheck-package-setup))
   (leaf ielm :bind (:ielm-map ("C-c C-d" . helpful-at-point)))
   (leaf macrostep :ensure t))
