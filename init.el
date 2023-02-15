@@ -1012,13 +1012,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   ;; lsp-modeの何かを読み込んだ時点でdefvarでkeymapが作成されてしまうため、
   ;; 先に初期化が必要。
   (defvar lsp-keymap-prefix "C-c l")
-  :blackout lsp-lens-mode
   :custom
   (lsp-auto-guess-root . t)          ; 自動的にimportする
   (lsp-enable-snippet . nil)         ; 補完からスニペット展開をするのを無効化
   (lsp-file-watch-threshold . 10000) ; 監視ファイル警告を緩める
-  (lsp-lens-mode . t)                ; lens機能の有効化
-  (lsp-prefer-flymake . nil)         ; flycheckを優先する
   :init
   (defun lsp-format-before-save ()
     "保存する前にフォーマットする設定を有効にする。
@@ -1051,6 +1048,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
            ("C-c C-p" . lsp-ui-peek-find-implementation))
     :defvar lsp-ui-peek-mode-map
     :config (dvorak-set-key-prog lsp-ui-peek-mode-map))
+  (leaf lsp-lens :blackout t :custom (lsp-lens-mode . t))
   (leaf dap-mode
     :ensure t
     :hook
