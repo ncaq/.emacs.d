@@ -1090,6 +1090,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf egison-mode :ensure t :mode ("\\.egi$" . egison-mode))
 (leaf generic-x :require t)
 (leaf go-mode :ensure t :hook (go-mode-hook . lsp))
+(leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil))
 (leaf inf-lisp :custom (inferior-lisp-program . "sbcl --noinform"))
 (leaf julia-mode :ensure t)
 (leaf make-mode :after t :defvar makefile-mode-map :config (dvorak-set-key-prog makefile-mode-map))
@@ -1191,14 +1192,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ("C-c C-f" . nil)
          ;; elm-format-bufferの方はnpmのプロジェクト固有のelm-formatを検知しないのでlspを使います。
          ([remap indent-whole-buffer] . lsp-format-buffer)))
-
-;;; Graphviz
-
-(leaf graphviz-dot-mode
-  :ensure t
-  :custom
-  (graphviz-dot-auto-indent-on-semi . nil) ; dotファイルで自動セミコロン挿入しない
-  (graphviz-dot-indent-width . 2))
 
 ;;; Haskell
 
