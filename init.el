@@ -1012,6 +1012,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   ;; lsp-modeの何かを読み込んだ時点でdefvarでkeymapが作成されてしまうため、
   ;; 先に初期化が必要。
   (defvar lsp-keymap-prefix "C-c l")
+  :blackout lsp-lens-mode
   :custom
   (lsp-auto-guess-root . t)          ; 自動的にimportする
   (lsp-enable-snippet . nil)         ; 補完からスニペット展開をするのを無効化
