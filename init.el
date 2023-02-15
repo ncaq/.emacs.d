@@ -722,7 +722,7 @@
   :global-minor-mode
   smartparens-global-mode
   show-smartparens-global-mode
-  :blackout smartparens-mode
+  :blackout t
   :custom
   (sp-escape-quotes-after-insert . nil)
   :bind (:smartparens-mode-map
