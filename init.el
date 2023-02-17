@@ -552,7 +552,14 @@
          ("C-t" . helm-previous-line)
          ("<tab>" . helm-select-action))
   :config
-  (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list regex)) '("\\*Flymake" "\\*WoMan-Log" "\\*tramp"))
+  (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list regex))
+        '("\\*Flycheck errors"
+          "\\*Flymake"
+          "\\*WoMan-Log"
+          "\\*lsp-log"
+          "\\*prettier"
+          "\\*tramp"
+          "\\*vc\\*"))
   (leaf helm-buffers :bind (:helm-buffer-map ("C-s" . nil)))
   (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
   (leaf helm-types :bind (:helm-generic-files-map ("C-s" . nil)))
