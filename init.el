@@ -556,6 +556,7 @@
         '("\\*Flycheck errors"
           "\\*Flymake"
           "\\*WoMan-Log"
+          "\\*envrc\\*"
           "\\*lsp-log"
           "\\*prettier"
           "\\*tramp"
