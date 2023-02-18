@@ -553,7 +553,9 @@
          ("<tab>" . helm-select-action))
   :config
   (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list regex))
-        '("\\*Flycheck errors"
+        '("\\*.*ls::stderr\\*$"
+          "\\*.*ls\\*$"
+          "\\*Flycheck errors"
           "\\*Flymake"
           "\\*WoMan-Log"
           "\\*envrc\\*"
