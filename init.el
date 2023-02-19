@@ -559,6 +559,7 @@
           "envrc"
           "lsp-.+\\(::stderr\\)?"
           "prettier.+"
+          "pyright\\(::stderr\\)?"
           "tramp.+"
           "vc"))
   (leaf helm-buffers :bind (:helm-buffer-map ("C-s" . nil)))
