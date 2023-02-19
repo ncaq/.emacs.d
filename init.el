@@ -1008,6 +1008,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   ;; 先に初期化が必要。
   (defvar lsp-keymap-prefix "C-c l")
   :custom
+  (lsp-auto-execute-action . nil)    ; アクションが1つだけでも実行するか確認する
   (lsp-auto-guess-root . t)          ; 自動的にimportする
   (lsp-enable-snippet . nil)         ; 補完からスニペット展開をするのを無効化
   (lsp-file-watch-threshold . 10000) ; 監視ファイル警告を緩める
