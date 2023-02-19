@@ -553,13 +553,11 @@
          ("<tab>" . helm-select-action))
   :config
   (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list (concat "^\\*" regex "\\*$")))
-        '(".+ls::stderr"
-          ".+ls"
+        '(".+ls\\(::stderr\\)?"
           "Flycheck errors"
           "WoMan-Log"
           "envrc"
-          "lsp-.+::stderr"
-          "lsp-.+"
+          "lsp-.+\\(::stderr\\)?"
           "prettier.+"
           "tramp.+"
           "vc"))
