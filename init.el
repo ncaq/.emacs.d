@@ -649,20 +649,6 @@
   (dvorak-set-key-prog rg-mode-map)
   (swap-set-key rg-mode-map '(("M-T" . "M-P"))))
 
-(leaf ggtags
-  :ensure t
-  :init
-  (eval-and-compile
-    (defun gtags-dir? ()
-      (locate-dominating-file default-directory "GTAGS")))
-  (defun ggtags-mode-when-gtags-dir ()
-    (when (gtags-dir?)
-      (ggtags-mode 1)))
-  :hook (find-file-hook . ggtags-mode-when-gtags-dir)
-  :custom
-  (ggtags-enable-navigation-keys . nil)
-  (ggtags-global-ignore-case . t))
-
 (leaf smart-jump
   :ensure t
   :defun smart-jump-find-references-with-rg
