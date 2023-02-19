@@ -552,17 +552,17 @@
          ("C-t" . helm-previous-line)
          ("<tab>" . helm-select-action))
   :config
-  (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list regex))
-        '("\\*.+ls::stderr\\*$"
-          "\\*.+ls\\*$"
-          "\\*Flycheck errors\\*$"
-          "\\*WoMan-Log\\*$"
-          "\\*envrc\\*$"
-          "\\*lsp-.+::stderr\\*$"
-          "\\*lsp-.+\\*$"
-          "\\*prettier.+\\*$"
-          "\\*tramp.+\\*$"
-          "\\*vc\\*$"))
+  (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list (concat "^\\*" regex "\\*$")))
+        '(".+ls::stderr"
+          ".+ls"
+          "Flycheck errors"
+          "WoMan-Log"
+          "envrc"
+          "lsp-.+::stderr"
+          "lsp-.+"
+          "prettier.+"
+          "tramp.+"
+          "vc"))
   (leaf helm-buffers :bind (:helm-buffer-map ("C-s" . nil)))
   (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
   (leaf helm-types :bind (:helm-generic-files-map ("C-s" . nil)))
