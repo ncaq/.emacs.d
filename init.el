@@ -396,6 +396,7 @@
 
 (leaf desktop
   :global-minor-mode desktop-save-mode
+  :defvar desktop-minor-mode-table
   :custom
   (desktop-globals-to-save . nil)
   (desktop-restore-frames . nil))
@@ -521,10 +522,10 @@
   (helm-full-frame . t)
   ;; [Pinging init.as (American Samoa) · Issue #2574 · emacs-helm/helm](https://github.com/emacs-helm/helm/issues/2574)
   (ffap-machine-p-known . 'accept)
-  :defvar helm-boring-buffer-regexp-list helm-for-files-preferred-list
+  :defvar helm-for-files-preferred-list
   :init
   (defun helm-for-files-prefer-recentf ()
-    "recentfを優先するhelm-for-filesです。"
+    "recentfを優先する`helm-for-files'。"
     (interactive)
     (let ((helm-for-files-preferred-list
            '(helm-source-buffers-list
@@ -533,7 +534,7 @@
              helm-source-locate)))
       (helm-for-files)))
   (defun helm-for-files-prefer-near ()
-    "git管理下など近い場所のファイルを優先するhelm-for-filesです。"
+    "git管理下など近い場所のファイルを優先する`helm-for-files'。"
     (interactive)
     (let ((helm-for-files-preferred-list
            '(helm-source-buffers-list
@@ -552,17 +553,20 @@
          ("C-t" . helm-previous-line)
          ("<tab>" . helm-select-action))
   :config
-  (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list (concat "^\\*" regex "\\*$")))
-        '(".+ls\\(::stderr\\)?"
-          "Flycheck errors"
-          "WoMan-Log"
-          "envrc"
-          "lsp-.+\\(::stderr\\)?"
-          "prettier.+"
-          "pyright\\(::stderr\\)?"
-          "tramp.+"
-          "vc"))
-  (leaf helm-buffers :bind (:helm-buffer-map ("C-s" . nil)))
+  (leaf helm-buffers
+    :bind (:helm-buffer-map ("C-s" . nil))
+    :defvar helm-boring-buffer-regexp-list
+    :config
+    (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list (concat "^\\*" regex "\\*$")))
+          '(".+ls\\(::stderr\\)?"
+            "Flycheck errors"
+            "WoMan-Log"
+            "envrc"
+            "lsp-.+\\(::stderr\\)?"
+            "prettier.+"
+            "pyright\\(::stderr\\)?"
+            "tramp.+"
+            "vc")))
   (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
   (leaf helm-types :bind (:helm-generic-files-map ("C-s" . nil)))
   (leaf helm-grep
@@ -572,19 +576,20 @@
      . "rg --color=always --smart-case --search-zip --no-heading --line-number --type-not=svg --sort=path %s -- %s %s")
     ;; 検索結果でファイル名だけではなくパスも表示する。
     (helm-grep-file-path-style . 'absolute)
-    :defun helm-do-grep-ag-project-dir helm-grep-ag project-root xref-push-marker-stack
+    :defun project-root helm-grep-ag
     :init
-    (defun helm-do-grep-ag-project-dir-or-fallback (arg)
-      "helm-do-grep-ag-project-dirか、helm-do-grep-agを行います。"
-      (interactive "P")
-      (let ((in-project (ignore-errors (project-root (project-current)))))
-        (if in-project
-            (helm-do-grep-ag-project-dir arg)
-          (helm-do-grep-ag arg))))
-    (defun helm-do-grep-ag-project-dir (arg)
-      "プロジェクトディレクトリ以下のファイルを対象にhelm-do-grep-ag検索を行います。"
-      (interactive "P")
-      (helm-grep-ag (expand-file-name (project-root (project-current))) arg))
+    (eval-and-compile
+      (defun helm-do-grep-ag-project-dir (arg)
+        "プロジェクトディレクトリ以下のファイルを対象に`helm-do-grep-ag'検索を行う。"
+        (interactive "P")
+        (helm-grep-ag (expand-file-name (project-root (project-current))) arg))
+      (defun helm-do-grep-ag-project-dir-or-fallback (arg)
+        "`helm-do-grep-ag-project-dir' OR `helm-do-grep-ag'."
+        (interactive "P")
+        (let ((in-project (ignore-errors (project-root (project-current)))))
+          (if in-project
+              (helm-do-grep-ag-project-dir arg)
+            (helm-do-grep-ag arg)))))
     :advice (:before helm-grep-action (lambda (&rest _ignored) (xref-push-marker-stack))))
   (leaf helm-descbinds :ensure t :global-minor-mode t)
   (leaf helm-swoop :ensure t)
@@ -634,7 +639,7 @@
 ;;; ジャンプ
 
 (leaf xref
-  :defun xref-set-marker-ring-length
+  :defun xref-push-marker-stack xref-set-marker-ring-length
   :config
   ;; 履歴のサイズを上げるために、
   ;; `xref-marker-ring-length'を設定したいだけですが、
@@ -651,9 +656,8 @@
 
 (leaf smart-jump
   :ensure t
-  :defun smart-jump-find-references-with-rg
   :custom
-  (smart-jump-find-references-fallback-function . #'smart-jump-find-references-with-rg)
+  (smart-jump-find-references-fallback-function . 'smart-jump-find-references-with-rg)
   (smart-jump-refs-key . "C-M-.")
   :bind
   ("M-." . smart-jump-go)
@@ -682,7 +686,7 @@
    ("<backtab>" . company-select-previous)
    ("<tab>" . company-complete-common-or-cycle)
    ("C-h" . nil))
-  :defvar company-search-map
+  :defvar company-backends company-search-map
   :config
   (dvorak-set-key-prog company-active-map)
   ;; company-search-mapの入力をそのまま受け付ける特殊性に対応するワークアラウンド。
@@ -697,13 +701,13 @@
     :ensure t
     :global-minor-mode t
     :blackout t
-    :defvar desktop-minor-mode-table
     :config (add-to-list 'desktop-minor-mode-table '(company-posframe-mode . nil))))
 
 (leaf yasnippet
   :ensure t
   :global-minor-mode yas-global-mode
   :blackout yas-minor-mode
+  :defun yas-expand-snippet yas-lookup-snippet
   :bind (:yas-minor-mode-map
          ("<tab>" . nil)
          ("TAB" . nil)
@@ -737,7 +741,7 @@
          ([remap forward-sexp] . sp-forward-sexp)
          ([remap kill-sexp] . sp-kill-sexp)
          ([remap mark-sexp] . sp-mark-sexp))
-  :defun sp-pair
+  :defun sp-local-pair sp-pair
   :config
   (sp-pair "｢" "｣" :actions '(insert wrap autoskip navigate))
   (sp-pair "「" "」" :actions '(insert wrap autoskip navigate))
@@ -845,15 +849,14 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     ;; `magit-diff-visit-worktree-file'は`C-<return>'でも代用出来て、検索の誤爆の原因になるので無効化する。
     :bind (:magit-diff-section-map ("C-j" . nil)))
   (leaf git-commit
-    :defun yas-expand-snippet yas-lookup-snippet
+    :after t
     :init
     (defun yas-insert-snippet-conventional-commits-type ()
       "@commitlint/config-conventionalが受け付けるtypeを選択して入力する。"
       (interactive)
       (yas-expand-snippet (yas-lookup-snippet "conventional-commits-type")))
-    :bind (:git-commit-mode-map ("M-z" . yas-insert-snippet-conventional-commits-type))
-    :after t
     :defvar git-commit-mode-map
+    :bind (:git-commit-mode-map ("M-z" . yas-insert-snippet-conventional-commits-type))
     :config
     ;; コミットメッセージ編集画面での幅に基づく自動改行を無効化
     (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill)
@@ -1012,6 +1015,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (lsp-auto-guess-root . t)          ; 自動的にimportする
   (lsp-enable-snippet . nil)         ; 補完からスニペット展開をするのを無効化
   (lsp-file-watch-threshold . 10000) ; 監視ファイル警告を緩める
+  :defun lsp-code-actions-at-point lsp:code-action-title
   :init
   (defun lsp-format-before-save ()
     "保存する前にフォーマットする設定を有効にする。
@@ -1060,7 +1064,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
          ("C-z" . flycheck-list-errors)
          ([remap previous-error] . flycheck-previous-error)
          ([remap next-error] . flycheck-next-error))
-  :defvar flycheck-error-list-mode-map
+  :defvar flycheck-error-list-buffer flycheck-error-list-mode-map
   :config (dvorak-set-key flycheck-error-list-mode-map))
 
 (leaf quickrun
@@ -1103,7 +1107,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 ;;; C/C++
 
 (leaf cc-mode
-  :defvar c-mode-base-map
+  :defvar c-mode-base-map c-default-style
   :hook
   ((c-mode-hook . lsp)
    (c++-mode-hook . lsp))
@@ -1124,8 +1128,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf d-mode
   :ensure t
-  :after cc-vars
-  :defvar c-default-style
+  :after t
   :config
   (add-to-list 'c-default-style '(d-mode . "java"))
   (leaf dfmt
@@ -1153,7 +1156,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 ;;; ebuild
 
 (leaf ebuild-mode
-  :defvar sh-basic-offset
   :init
   (defun ebuild-mode-setup ()
     (setq-local sh-basic-offset 4))     ; ebuildのインデントは伝統的に4
@@ -1206,7 +1208,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   ;; melpaに登録されている名前はhaskell-modeで、haskell.elがhaskell-mode.elを読み込むよく分からない状態です。
   ;; melpaに登録されている名前を優先することにします。
   (leaf haskell
-    :defvar flycheck-error-list-buffer
     :init
     (defun haskell-interactive-repl-flycheck ()
       "左ウィンドウにコード画面を残し、右ウィンドウを上下に分割してREPLとFlycheckを開く。"
@@ -1267,9 +1268,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (lsp-haskell-plugin-import-lens-code-lens-on . nil)
     ;; lintが厳しいだけならともかく、StrictDataなどを有効化していても認識してくれないため無効化する。
     (lsp-haskell-plugin-stan-global-on . nil)
-    :defun
-    lsp-code-actions-at-point
-    lsp:code-action-title
     :init
     (defun lsp-haskell-execute-code-action-add-signature ()
       "Execute code action of add signature.
@@ -1364,6 +1362,7 @@ Add the type signature that GHC infers to the function located below the point."
   :custom
   (python-indent-guess-indent-offset-verbose . nil)
   (python-shell-prompt-detect-failure-warning . nil)
+  :defvar python-shell-completion-native-disabled-interpreters python-shell-virtualenv-root
   :config
   (leaf elpy
     :ensure t
@@ -1381,18 +1380,12 @@ Add the type signature that GHC infers to the function located below the point."
   (leaf pipenv
     :ensure t
     :commands pyvenv-track-virtualenv
-    :defun pipenv-projectile-after-switch-extended
-    :defvar python-shell-completion-native-disabled-interpreters
+    :defun pipenv--force-wait pipenv-projectile-after-switch-extended pipenv-venv
     :custom (pipenv-projectile-after-switch-function . #'pipenv-projectile-after-switch-extended)
     :config (add-to-list 'python-shell-completion-native-disabled-interpreters "pipenv"))
   (leaf lsp-pyright
     :ensure t
     :require t
-    :defvar
-    python-shell-virtualenv-root
-    :defun
-    pipenv--force-wait
-    pipenv-venv
     :init
     (defun lsp-pyright-setup ()
       "文脈に応じたPython環境のセットアップを行います。
@@ -1518,20 +1511,18 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
     :ensure t
     :after swift-mode company
     :when (eq system-type 'darwin)
-    :defvar company-backends
     :config (add-to-list 'company-backends 'company-sourcekit))
   (leaf reformatter
     :ensure t
     :after swift-mode
-    :defun
-    swiftformat-on-save-mode
-    swift-format-on-save-mode
     :init
     ;; swift-formatとSwiftFormatがそれぞれ全く違うプログラムとして存在している。
-    (with-no-warnings
-      (reformatter-define swift-format :program "swift-format"))
-    (with-no-warnings
-      (reformatter-define swiftformat :program "swiftformat" :args `("--config" ,(concat (locate-dominating-file default-directory ".swiftformat") "/.swiftformat"))))
+    (eval-and-compile
+      (with-no-warnings
+        (reformatter-define swift-format :program "swift-format"))
+      (with-no-warnings
+        (reformatter-define swiftformat :program "swiftformat"
+          :args `("--config" ,(concat (locate-dominating-file default-directory ".swiftformat") "/.swiftformat")))))
     (defun swift-format-setup ()
       ;; 改行前自動インデントは無効化し、改行後自動インデントは有効化する。
       (setq-local electric-indent-mode nil)
@@ -1578,8 +1569,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf web-mode
   :ensure t
-  :defvar lsp-enabled-clients web-mode-comment-formats
-  :defun sp-local-pair
   :mode
   "\\.[agj]sp\\'"
   "\\.[cm]?[jt]sx?\\'"
@@ -1617,11 +1606,12 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (:web-mode-map
    ([remap comment-indent-new-line] . web-mode-comment-indent-new-line)
    ("C-c C-f" . lsp-eslint-apply-all-fixes))
+  :defvar web-mode-comment-formats
   :config
   ;; コメントを`/*'式から`//'形式にする。
   (add-to-list 'web-mode-comment-formats '("javascript" . "//"))
   (add-to-list 'web-mode-comment-formats '("jsx" . "//"))
-  (sp-local-pair 'web-mode "<" ">" :actions nil))
+  (leaf smartparens :config (sp-local-pair 'web-mode "<" ">" :actions nil)))
 
 (leaf js :custom (js-indent-level . 2))
 
