@@ -1375,7 +1375,11 @@ Add the type signature that GHC infers to the function located below the point."
     :bind (:elpy-mode-map ([remap indent-whole-buffer] . elpy-black-fix-code))
     :config
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))
-  (leaf python-isort :ensure t :hook (python-mode-hook . python-isort-on-save-mode))
+  (leaf python-isort
+    :ensure t
+    :custom
+    (python-isort-arguments . '("--stdout" "--atomic" "--profile" "black" "-"))
+    :hook (python-mode-hook . python-isort-on-save-mode))
   (leaf poetry :ensure t :commands poetry-track-virtualenv)
   (leaf pipenv
     :ensure t
