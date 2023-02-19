@@ -1342,7 +1342,8 @@ Add the type signature that GHC infers to the function located below the point."
      ("ts" . web-mode)
      ("tsx" . web-mode)
      ("yaml". yaml-mode)
-     ("zsh" . sh-mode))))
+     ("zsh" . sh-mode)))
+  (leaf lsp-marksman :ensure :require t :hook (markdown-mode-hook . lsp)))
 
 ;;; OCaml
 
