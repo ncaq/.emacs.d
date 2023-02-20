@@ -1232,10 +1232,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :bind
     (:haskell-indentation-mode-map
      ([remap haskell-indentation-newline-and-indent] . comment-indent-new-line)))
-  (leaf haskell-interactive-mode
-    :defvar haskell-interactive-mode-map
-    :config
-    (dvorak-set-key haskell-interactive-mode-map))
   (leaf haskell-customize
     :doc "haskell-stylish-on-saveがhaskell-customizeに属する。"
     :init
@@ -1260,6 +1256,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :custom
     (haskell-hoogle-command . nil)
     (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s"))
+  (leaf haskell-interactive-mode :defvar haskell-interactive-mode-map :config (dvorak-set-key haskell-interactive-mode-map))
   (leaf haskell-cabal :defvar haskell-cabal-mode-map :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (leaf lsp-haskell
     :ensure t
