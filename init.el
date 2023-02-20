@@ -1372,7 +1372,10 @@ Add the type signature that GHC infers to the function located below the point."
     :custom
     (elpy-rpc-python-command . "python3")
     (elpy-formatter . 'black)
-    :bind (:elpy-mode-map ([remap indent-whole-buffer] . elpy-black-fix-code))
+    :bind
+    (:elpy-mode-map
+     ([remap elpy-doc] . lsp-ui-doc-show)
+     ([remap indent-whole-buffer] . elpy-black-fix-code))
     :config
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))
   (leaf python-isort
