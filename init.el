@@ -1228,6 +1228,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
      ("C-c C-r" . nil)
      ("C-c C-t" . nil)
      ("M-." . nil)))
+  (leaf haskell-interactive-mode
+    :defvar haskell-interactive-mode-map
+    :config
+    (dvorak-set-key haskell-interactive-mode-map))
   (leaf haskell-customize
     :doc "haskell-stylish-on-saveがhaskell-customizeに属する。"
     :init
