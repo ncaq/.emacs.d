@@ -39,6 +39,7 @@
   (defun package-native-compile-async (&rest _)
     "だいたいのパッケージをネイティブコンパイルする。
 最初に読み込むより先にコンパイルすることにより、更新後のストレスなどを抑える。"
+    (interactive)
     (native-compile-async '("~/.emacs.d/elpa/" "~/.emacs.d/el-get/") 'recursively))
   :hook (package-menu-mode-hook . package-menu-mode-setup)
   :advice (:after package-install package-native-compile-async))
