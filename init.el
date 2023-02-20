@@ -1228,6 +1228,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
      ("C-c C-r" . nil)
      ("C-c C-t" . nil)
      ("M-." . nil)))
+  (leaf haskell-indentation
+    :bind
+    (:haskell-indentation-mode-map
+     ([remap haskell-indentation-newline-and-indent] . comment-indent-new-line)))
   (leaf haskell-interactive-mode
     :defvar haskell-interactive-mode-map
     :config
