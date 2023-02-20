@@ -1024,6 +1024,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :bind (:lsp-mode-map
          ("C-S-SPC" . nil)
          ("C-c C-a" . lsp-execute-code-action)
+         ("C-c C-e" . lsp-lens-mode)
          ("C-c C-i" . lsp-format-region)
          ("C-c C-n" . lsp-rename)
          ("C-c C-r" . lsp-workspace-restart)
@@ -1048,7 +1049,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
            ("C-c C-p" . lsp-ui-peek-find-implementation))
     :defvar lsp-ui-peek-mode-map
     :config (dvorak-set-key-prog lsp-ui-peek-mode-map))
-  (leaf lsp-lens :blackout t :custom (lsp-lens-mode . t))
+  (leaf lsp-lens :custom (lsp-lens-mode . nil))
   (leaf dap-mode
     :ensure t
     :hook
@@ -1265,8 +1266,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (lsp-haskell-completion-snippets-on . nil)
     ;; 関数補完からの自動importはcompanyから誤爆する可能性が高すぎるので無効化する。
     (lsp-haskell-plugin-ghcide-completions-config-auto-extend-on . nil)
-    ;; import内容の表示は表示領域を取りすぎるので無効化する。
-    (lsp-haskell-plugin-import-lens-code-lens-on . nil)
     ;; lintが厳しいだけならともかく、StrictDataなどを有効化していても認識してくれないため無効化する。
     (lsp-haskell-plugin-stan-global-on . nil)
     :init
