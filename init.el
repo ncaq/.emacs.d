@@ -563,6 +563,7 @@
             "Flycheck errors"
             "WoMan-Log"
             "envrc"
+            "eslint-.+\\(::stderr\\)?"
             "lsp-.+\\(::stderr\\)?"
             "prettier.+"
             "pyright\\(::stderr\\)?"
