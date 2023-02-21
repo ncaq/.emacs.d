@@ -565,6 +565,7 @@
             "envrc"
             "eslint-.+\\(::stderr\\)?"
             "lsp-.+\\(::stderr\\)?"
+            "marksman\\(::stderr\\)?"
             "prettier.+"
             "pyright\\(::stderr\\)?"
             "tramp.+"
