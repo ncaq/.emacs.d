@@ -477,13 +477,17 @@
   :setq-default
   (buffer-file-coding-system . 'utf-8-unix)) ; 新規ファイルではWindowsでもUTF-8を使う
 
+(leaf simple
+  :custom
+  (blink-matching-paren . nil)          ; 括弧移動無効
+  (kill-ring-max . 600)) ; メモリに余裕があるのでクリップボードの履歴数を増やす
+
 (leaf autorevert :global-minor-mode global-auto-revert-mode) ; 自動再読込
 (leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
 (leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
 (leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
 (leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
 (leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
-(leaf simple :custom (blink-matching-paren . nil)) ; 括弧移動無効
 (leaf startup :custom (inhibit-startup-screen . t)) ; スタートアップ画面を出さない
 (leaf subr :config (fset 'yes-or-no-p 'y-or-n-p)) ; "yes or no"を"y or n"に
 (leaf vc-hooks :custom (vc-follow-symlinks . t)) ; 常にシンボリックリンクをたどる
