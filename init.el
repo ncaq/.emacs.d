@@ -1052,7 +1052,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
            ("C-c C-p" . lsp-ui-peek-find-implementation))
     :defvar lsp-ui-peek-mode-map
     :config (dvorak-set-key-prog lsp-ui-peek-mode-map))
-  (leaf lsp-lens :custom (lsp-lens-mode . nil))
   (leaf dap-mode
     :ensure t
     :hook
@@ -1261,7 +1260,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (leaf lsp-haskell
     :ensure t
     :require t
-    :hook (haskell-mode-hook . lsp)
+    :init
+    (defun lsp-haskell-setup ()
+      "Template Haskellの展開内容を全部表示しようとするのが鬱陶しいのでHaskellではlens無効。
+TH展開機能だけ無効にしたいが設定方法が分からない。"
+      (setq-local lsp-lens-enable nil)
+      ;; `haskell-mode-hook'に単純に追加するとlspが先に起動してしまう。
+      (lsp))
+    :hook
+    (haskell-mode-hook . lsp-haskell-setup)
     :custom
     ;; フォーマッターをfourmoluにする。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
     (lsp-haskell-formatting-provider . "fourmolu")
