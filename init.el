@@ -54,7 +54,6 @@
   :doc "Windowsのwslg.exeやmacOSのランチャーから起動したときはシェルの環境変数を引き継がないため、Emacs側でシェルを読み込む。"
   :ensure t
   :when window-system
-  :custom (exec-path-from-shell-arguments . '("-l"))
   ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
   :config (exec-path-from-shell-initialize))
 
