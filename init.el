@@ -1,10 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-;;; ファイル設定
-
-;; (require 'cl) を見逃す
-(setq byte-compile-warnings '(not cl-functions obsolete))
-
 ;;; leafとpackageの設定
 
 (eval-and-compile
@@ -1661,6 +1656,5 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (leaf smartparens :config (sp-local-pair 'nxml-mode "<" ">" :actions nil)))
 
 ;; Local Variables:
-;; byte-compile-warnings: (not cl-functions obsolete)
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; End:
