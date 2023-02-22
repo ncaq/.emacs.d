@@ -36,13 +36,13 @@
   (defun package-menu-mode-setup ()
     "パッケージ名の幅を広く取る。"
     (setf (cadr (aref tabulated-list-format 0)) 50))
-  (defun package-native-compile-async (&rest _)
+  (defun package-load-path-native-compile-async (&rest _)
     "だいたいのパッケージをネイティブコンパイルする。
 最初に読み込むより先にコンパイルすることにより、更新後のストレスなどを抑える。"
     (interactive)
-    (native-compile-async '("~/.emacs.d/elpa/" "~/.emacs.d/el-get/") 'recursively))
+    (native-compile-async load-path 'recursively))
   :hook (package-menu-mode-hook . package-menu-mode-setup)
-  :advice (:after package-install package-native-compile-async))
+  :advice (:after package-install package-load-path-native-compile-async))
 
 (leaf leaf-convert :ensure t)
 (leaf leaf-tree :ensure t)
