@@ -820,10 +820,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf magit
   :ensure t
   :init
-  (defun magit-find-file-to-master ()
+  (defun magit-find-file-to-origin-master ()
     "今いるファイルのmasterのリビジョンを開く。"
     (interactive)
-    (magit-find-file "master" (buffer-file-name)))
+    (magit-find-file "origin/master" (buffer-file-name)))
   (defun magit-find-file-to-head ()
     "今いるファイルのHEADのリビジョンを開く。"
     (interactive)
@@ -836,7 +836,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   ("M-g g" . magit-dispatch)
   ("M-g h" . magit-find-file-to-head)
   ("M-g l" . magit-log-buffer-file)
-  ("M-g m" . magit-find-file-to-master)
+  ("M-g m" . magit-find-file-to-origin-master)
   ("M-g s" . magit-status)
   ("M-g u" . magit-pull)
   ("M-g w" . magit-branch-checkout)
