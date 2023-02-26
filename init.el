@@ -819,6 +819,8 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf magit
   :ensure t
+  :custom
+  (magit-wip-mode . t)
   :init
   (defun magit-find-file-to-origin-master ()
     "今いるファイルのmasterのリビジョンを開く。"
