@@ -1231,6 +1231,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
      ("C-c C-c" . nil)
      ("C-c C-r" . nil)
      ("C-c C-t" . nil)
+     ("C-c TAB" . nil)
      ("M-." . nil)))
   (leaf haskell-customize
     :doc "haskell-stylish-on-saveがhaskell-customizeに属する。"
