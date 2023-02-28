@@ -281,7 +281,7 @@
   ("M-y" . helm-show-kill-ring)
 
   ("C-M-'" . mc/edit-lines)
-  ("C-M-," . helm-semantic-or-imenu)
+  ("C-M-," . helm-imenu)
   ("C-M-b" . backward-kill-sexp)
   ("C-M-d" . kill-sexp)
   ("C-M-l" . delete-duplicate-lines)
@@ -640,14 +640,6 @@
 
 ;;; ジャンプ
 
-(leaf xref
-  :defun xref-push-marker-stack xref-set-marker-ring-length
-  :config
-  ;; 履歴のサイズを上げるために、
-  ;; `xref-marker-ring-length'を設定したいだけですが、
-  ;; 設定したタイミングでリングのサイズ変更などを行う必要があるので専用関数が用意されているようです。
-  (xref-set-marker-ring-length 'xref-marker-ring-length 128))
-
 (leaf rg
   :ensure t
   :after t
@@ -655,6 +647,14 @@
   :config
   (dvorak-set-key-prog rg-mode-map)
   (swap-set-key rg-mode-map '(("M-T" . "M-P"))))
+
+(leaf xref
+  :defun xref-push-marker-stack xref-set-marker-ring-length
+  :config
+  ;; 履歴のサイズを上げるために、
+  ;; `xref-marker-ring-length'を設定したいだけですが、
+  ;; 設定したタイミングでリングのサイズ変更などを行う必要があるので専用関数が用意されているようです。
+  (xref-set-marker-ring-length 'xref-marker-ring-length 128))
 
 (leaf smart-jump
   :ensure t
@@ -1015,10 +1015,11 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   ;; 先に初期化が必要。
   (defvar lsp-keymap-prefix "C-c l")
   :custom
-  (lsp-auto-execute-action . nil)    ; アクションが1つだけでも実行するか確認する
-  (lsp-auto-guess-root . t)          ; 自動的にimportする
-  (lsp-enable-snippet . nil)         ; 補完からスニペット展開をするのを無効化
-  (lsp-file-watch-threshold . 10000) ; 監視ファイル警告を緩める
+  (lsp-auto-execute-action . nil)       ; アクションが1つだけでも実行するか確認する
+  (lsp-auto-guess-root . t)             ; 自動的にimportする
+  (lsp-enable-snippet . nil)            ; 補完からスニペット展開をするのを無効化
+  (lsp-file-watch-threshold . 10000)    ; 監視ファイル警告を緩める
+  (lsp-imenu-sort-methods . 'position)  ; sortがデフォルトでは種類別になっている
   :defun lsp-code-actions-at-point lsp:code-action-title
   :init
   (defun lsp-format-before-save ()
@@ -1047,6 +1048,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     (lsp-ui-sideline-enable . nil)      ; エラーはflycheckで出して型はdocで出すので幅を取るサイドラインは不要
     :bind (:lsp-ui-mode-map
            ("C-c C-d" . lsp-ui-doc-show)  ; 手動でドキュメントを表示するコマンド
+           ([remap helm-imenu] . lsp-ui-imenu)
            ([remap smart-jump-go] . lsp-ui-peek-find-definitions)
            ([remap smart-jump-references] . lsp-ui-peek-find-references)
            ("C->" . lsp-find-type-definition)
