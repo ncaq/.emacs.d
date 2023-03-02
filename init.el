@@ -1620,8 +1620,8 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :init
   (defun web-mode-setup ()
     (setq-local lsp-enabled-clients '(ts-ls eslint))
-    (lsp-format-before-save)
-    (lsp))
+    (lsp)
+    (prettier-mode-toggle-setup))
   :hook (web-mode-hook . web-mode-setup)
   :bind
   (:web-mode-map
