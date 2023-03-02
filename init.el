@@ -562,7 +562,7 @@
             "Flycheck errors"
             "WoMan-Log"
             "envrc"
-            "eslint.+\\(::stderr\\)?"
+            "eslint\\(::stderr\\)?"
             "lsp-.+\\(::stderr\\)?"
             "marksman\\(::stderr\\)?"
             "prettier.+"
