@@ -1625,7 +1625,9 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :hook (web-mode-hook . web-mode-setup)
   :bind
   (:web-mode-map
-   ([remap comment-indent-new-line] . web-mode-comment-indent-new-line)
+   ;; 一時的に無効化。
+   ;; [web-mode-comment-indent-new-line do not indent · Issue #1270 · fxbois/web-mode](https://github.com/fxbois/web-mode/issues/1270)
+   ;; ([remap comment-indent-new-line] . web-mode-comment-indent-new-line)
    ("C-c C-f" . lsp-eslint-apply-all-fixes))
   :defvar web-mode-comment-formats
   :config
