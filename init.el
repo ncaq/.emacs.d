@@ -822,14 +822,24 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (magit-wip-mode . t)
   :init
   (defun magit-find-file-to-origin-master ()
-    "今いるファイルのmasterのリビジョンを開く。"
+    "今いるファイルのorigin/masterのリビジョンを開く。"
     (interactive)
     (magit-find-file "origin/master" (buffer-file-name)))
   (defun magit-find-file-to-head ()
     "今いるファイルのHEADのリビジョンを開く。"
     (interactive)
     (magit-find-file "HEAD" (buffer-file-name)))
+  (defun magit-diff-range-to-origin-master ()
+    "今いるファイルのorigin/masterとのdiffを閲覧する。"
+    (interactive)
+    (magit-diff-range "origin/master" nil (list (buffer-file-name))))
+  (defun magit-diff-range-to-head ()
+    "今いるファイルのHEADとのdiffを閲覧する。"
+    (interactive)
+    (magit-diff-range "origin/master" nil (list (buffer-file-name))))
   :bind
+  ("M-g H" . magit-diff-range-to-head)
+  ("M-g M" . magit-diff-range-to-origin-master)
   ("M-g a" . magit-snapshot-both)
   ("M-g b" . magit-blame)
   ("M-g d" . magit-diff)
