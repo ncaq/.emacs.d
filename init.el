@@ -836,7 +836,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (defun magit-diff-range-to-head ()
     "今いるファイルのHEADとのdiffを閲覧する。"
     (interactive)
-    (magit-diff-range "origin/master" nil (list (buffer-file-name))))
+    (magit-diff-range "HEAD" nil (list (buffer-file-name))))
   :bind
   ("M-g H" . magit-diff-range-to-head)
   ("M-g M" . magit-diff-range-to-origin-master)
