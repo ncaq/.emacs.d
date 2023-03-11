@@ -972,7 +972,10 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
   (modify-all-frames-parameters '((ime-font . "HackGen Console NFJ-13.5"))))
 
-(leaf envrc :ensure t :global-minor-mode envrc-global-mode)
+(leaf envrc
+  :ensure t
+  :global-minor-mode envrc-global-mode
+  :custom (envrc-none-lighter . nil))
 
 (leaf man
   :custom
