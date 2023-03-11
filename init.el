@@ -861,6 +861,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :after t
     ;; `magit-diff-visit-worktree-file'は`C-<return>'でも代用出来て、検索の誤爆の原因になるので無効化する。
     :bind (:magit-diff-section-map ("C-j" . nil)))
+  (leaf magit-wip :blackout t)
   (leaf git-commit
     :after t
     :init
