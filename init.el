@@ -1021,7 +1021,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf lsp-mode
   :ensure t
-  :after t
   :preface
   ;; s-lだと大概のディスプレイマネージャでロックされてしまうので変更。
   ;; lsp-modeの何かを読み込んだ時点でdefvarでkeymapが作成されてしまうため、
@@ -1088,7 +1087,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf quickrun
   :ensure t
-  :after t
   :config
   (quickrun-add-command "haskell"
     '((:command . "stack runghc")
@@ -1147,7 +1145,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf d-mode
   :ensure t
-  :after t
+  :after cc-vars
   :config
   (add-to-list 'c-default-style '(d-mode . "java"))
   (leaf dfmt
@@ -1193,7 +1191,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :bind (:elisp-slime-nav-mode-map ("C-c C-d" . helpful-at-point))
     :hook emacs-lisp-mode-hook help-mode-hook)
   (leaf eldoc :blackout t :hook emacs-lisp-mode-hook ielm-mode-hook)
-  (leaf flycheck-package :ensure t :after flycheck :defun flycheck-package-setup :config (flycheck-package-setup))
+  (leaf flycheck-package :ensure t :defun flycheck-package-setup :config (flycheck-package-setup))
   (leaf ielm :bind (:ielm-map ("C-c C-d" . helpful-at-point)))
   (leaf macrostep :ensure t))
 
@@ -1213,7 +1211,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf haskell-mode
   :ensure t
-  :after t
   :bind
   (:haskell-mode-map
    ("M-i" . stylish-haskell-toggle)
@@ -1314,7 +1311,6 @@ Add the type signature that GHC infers to the function located below the point."
 ;;; Java
 
 (leaf java-mode
-  :after t
   :config
   (leaf lsp-java
     :ensure t
@@ -1327,7 +1323,6 @@ Add the type signature that GHC infers to the function located below the point."
 
 (leaf markdown-mode
   :ensure t
-  :after t
   :mode ("README\\.md\\'" . gfm-mode)
   :custom
   (markdown-fontify-code-blocks-natively . t)
@@ -1385,7 +1380,6 @@ Add the type signature that GHC infers to the function located below the point."
 ;;; Python
 
 (leaf python
-  :after t
   :custom
   (python-indent-guess-indent-offset-verbose . nil)
   (python-shell-prompt-detect-failure-warning . nil)
@@ -1483,7 +1477,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf scala-mode
   :ensure t
-  :after t
   :hook
   (scala-mode-hook . lsp)
   (scala-mode-hook . lsp-format-before-save)
@@ -1525,7 +1518,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf swift-mode
   :ensure t
-  :after t
   :config
   (leaf lsp-sourcekit
     :ensure t
@@ -1543,12 +1535,10 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
      ([remap lsp-describe-thing-at-point] . swift-helpful)))
   (leaf company-sourcekit
     :ensure t
-    :after swift-mode company
     :when (eq system-type 'darwin)
     :config (add-to-list 'company-backends 'company-sourcekit))
   (leaf reformatter
     :ensure t
-    :after swift-mode
     :init
     ;; swift-formatとSwiftFormatがそれぞれ全く違うプログラムとして存在している。
     (eval-and-compile
