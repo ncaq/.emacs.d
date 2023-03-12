@@ -884,7 +884,15 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :defvar git-rebase-mode-map
     :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t"))))
   (leaf git-modes :ensure t :mode ("/.dockerignore\\'" . gitignore-mode))
-  (leaf forge :ensure t :require t))
+  (leaf forge
+    :ensure t
+    :require t
+    :defun forge-get-repository
+    :init
+    (defun forge-pull-when-forge-repo ()
+      "forgeが設定されているリポジトリでは`forge-pull'を実行する。"
+      (when (forge-get-repository nil) (forge-pull)))
+    :advice (:after magit-pull forge-pull-when-forge-repo)))
 
 (leaf git-gutter
   :ensure t
