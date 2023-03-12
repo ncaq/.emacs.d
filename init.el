@@ -884,7 +884,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     :defvar git-rebase-mode-map
     :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t"))))
   (leaf git-modes :ensure t :mode ("/.dockerignore\\'" . gitignore-mode))
-  (leaf forge :ensure t))
+  (leaf forge :ensure t :require t))
 
 (leaf git-gutter
   :ensure t
