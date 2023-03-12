@@ -821,6 +821,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 (leaf magit
   :ensure t
   :custom
+  (magit-pull-or-fetch . t)
   (magit-wip-mode . t)
   :init
   (defun magit-find-file-to-origin-master ()
