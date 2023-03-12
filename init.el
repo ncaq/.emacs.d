@@ -895,6 +895,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (leaf forge
     :ensure t
     :require t
+    :custom (forge-add-pullreq-refspec . nil)
     :defun forge-get-repository
     :init
     (defun forge-pull-when-forge-repo ()
