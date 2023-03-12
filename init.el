@@ -513,6 +513,8 @@
   (helm-buffer-max-len-mode . 25)
   ;; デフォルトはファイル名を短縮する区切りが20
   (helm-buffer-max-length . 50)
+  ;; デフォルトは50で全体画面表示するから足りない
+  (helm-candidate-number-limit . 200)
   ;; kill-line sim
   (helm-delete-minibuffer-contents-from-point . t)
   ;; helm-find-filesにrecentfを使用する
