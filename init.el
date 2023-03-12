@@ -823,6 +823,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   :custom
   (magit-pull-or-fetch . t)
   (magit-wip-mode . t)
+  :defun magit-start-process
   :init
   (defun magit-find-file-to-origin-master ()
     "今いるファイルのorigin/masterのリビジョンを開く。"
@@ -840,6 +841,12 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
     "今いるファイルのHEADとのdiffを閲覧する。"
     (interactive)
     (magit-diff-range "HEAD" nil (list (buffer-file-name))))
+  (defun gh-pr-create-web ()
+    "GitHub CLIを使ってPull Requestを作成する画面をwebで開く。
+Forgeとかにも作成機能はあるが、レビュアーやラベルやProjectsの指定はwebの方が楽。"
+    (interactive)
+    ;; Git関係なのでMagitのProcessに履歴を残しておきたい。
+    (magit-start-process "gh" nil "pr" "create" "--assignee" "@me" "--web"))
   :bind
   ("M-g H" . magit-diff-range-to-head)
   ("M-g M" . magit-diff-range-to-origin-master)
@@ -851,6 +858,7 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
   ("M-g h" . magit-find-file-to-head)
   ("M-g l" . magit-log-buffer-file)
   ("M-g m" . magit-find-file-to-origin-master)
+  ("M-g q" . gh-pr-create-web)
   ("M-g s" . magit-status)
   ("M-g u" . magit-pull)
   ("M-g w" . magit-branch-checkout)
