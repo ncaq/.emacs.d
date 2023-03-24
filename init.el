@@ -114,70 +114,99 @@
 
 ;;; Dvorak設定をするための関数達
 
-(defun reverse-cons (c)
-  "consセル、つまりpairをswap。"
-  (cons (cdr c) (car c)))
+(defun define-key-unless-nil (key-map key def)
+  "無駄にnilを増やさないように新規コマンドがnilで挿入先キーマップのコマンドもnilならキーを挿入しない。"
+  (when (or def (lookup-key key-map (kbd key)))
+    (define-key key-map (kbd key) def)))
 
-(defun trans-bind (key-map key-pair)
-  "(入れ替え先のキー, 再設定するコマンド)を生成。"
-  (cons (kbd (car key-pair)) (command-or-nil (lookup-key key-map (kbd (cdr key-pair))))))
+(defun lookup-key-command (key-map key)
+  "何故かコマンドでない関数がキーに割り当てられていることがあるため、
+コマンドのみを抽出する。
+コマンドでない場合`nil'を返す。"
+  (let ((f (lookup-key key-map (kbd key))))
+    (and (commandp f) f)))
 
-(defun command-or-nil (symbol)
-  "対象がコマンドでない場合はnilを返す。"
-  (when (commandp symbol) symbol))
+(defun make-key-def-for-swap (key-map key-pairs)
+  "入れ替え動作を行う前に現在のデータを一通り取得して設定するためのデータを生成する。"
+  (apply
+   #'append
+   (pcase-dolist (`(,from-key . ,to-key) key-pairs)
+     (let ((from-def (lookup-key-command key-map from-key))
+           (to-def   (lookup-key-command key-map to-key)))
+       (list (cons from-key to-def) (cons to-key from-def))))))
 
-(defun swap-set-key (key-map key-pairs)
-  "key-pairsのデータに従ってキーを入れ替える。"
-  (mapc
-   (lambda (kc)
-     (when (or (cdr kc) (lookup-key key-map (car kc)))
-       ;; 無駄にnilを増やさないように新規コマンドがnilで挿入先キーマップのコマンドもnilならキーを挿入しない。
-       (define-key key-map (car kc) (cdr kc))))
-   (mapcar
-    (lambda (kp)
-      (trans-bind key-map kp))
-    (append key-pairs (mapcar 'reverse-cons key-pairs)))))
+(defun swap-set-keys (key-map key-pairs)
+  "`key-pairs'に従い、キーに割り当てられたコマンドをswapする。
+入れ替える前のアクションを保持しておく必要があるため、listを使って一気に行う必要がある。"
+  (pcase-dolist (`(,key . ,def) (make-key-def-for-swap key-map key-pairs))
+    (define-key-unless-nil key-map key def)))
+
+(defun swap-set-keys-n-pt (key-map)
+  "pとtを入れ替える。"
+  (swap-set-keys key-map '(("p" . "t"))))
+
+(defun swap-set-keys-m-pt (key-map)
+  "M-pとM-tを入れ替える。"
+  (swap-set-keys key-map '(("M-p" . "M-t"))))
+
+(defun swap-set-keys-nm-pt (key-map)
+  "pとtについて通常とM付き両方で入れ替える。"
+  (swap-set-keys-n-pt key-map)
+  (swap-set-keys-m-pt key-map))
 
 (defconst qwerty-dvorak
-  '(("b" . "h")
-    ("f" . "s")
-    ("p" . "t"))
-  "htnsbf形式のために標準的に入れ替える必要があるキー。")
+  (let ((base-case
+         '(("b" . "h")
+           ("f" . "s")
+           ("p" . "t"))))
+    (append base-case (mapcar (pcase-lambda (`(,a . ,b)) (cons (upcase a) (upcase b))) base-case)))
+  "htnsbf形式のために標準的に入れ替える必要があるキーたち。")
 
-(defun prefix-key-pair (from-prefix to-prefix key-pair)
+(defconst htnsbf-prefixes
+  '(""
+    "C-"
+    "M-"
+    "C-M-"
+    "C-c C-"
+    "M-g "
+    "M-g M-")
+  "htnsbf形式をまとめて適応する時に利用する典型的なプレフィクス。")
+
+(defun make-prefix-key-pair (from-prefix to-prefix key-pair)
   "プレフィクス付きの入れ替えキーペアを作る。"
-  (cons (concat from-prefix (car key-pair)) (concat to-prefix (cdr key-pair))))
+  (pcase-let ((`(,from-key . ,to-key) key-pair))
+    (cons (concat from-prefix from-key) (concat to-prefix to-key))))
 
-(defun dvorak-set-key (key-map)
+(defun make-prefix-key-pairs (prefixs key-pairs)
+  "`mk-prefix-key-pair'でキーペアをまとめて生成。
+リスト内包表記が欲しい。"
+  (apply
+   #'append
+   (mapcar
+    (lambda (prefix)
+      (mapcar
+       (lambda (key-pair)
+         (make-prefix-key-pair prefix prefix key-pair))
+       key-pairs))
+    prefixs)))
+
+(defun dvorak-set-key-fundamental (key-map)
   "標準的なモードをhtnsbf形式にする。"
-  (let ((prefixes '((""       . "")
-                    ("C-"     . "C-")
-                    ("M-"     . "M-")
-                    ("C-M-"   . "C-M-")
-                    ("C-c C-" . "C-c C-")
-                    ("M-g M-" . "M-g M-"))))
-    (mapc
-     (lambda (pp)
-       (swap-set-key key-map (mapcar
-                              (lambda (kp)
-                                (prefix-key-pair (car pp) (cdr pp) kp))
-                              qwerty-dvorak)))
-     prefixes)))
+  (swap-set-keys key-map (make-prefix-key-pairs htnsbf-prefixes qwerty-dvorak)))
 
 (defun dvorak-set-key-prog (key-map)
-  "prog-modeベースのマップに対して入れ替えを設定する。"
-  (swap-set-key key-map '(("M-h" . "C-x p") ("C-M-h" . "C-x d")))
+  "prog-modeベースのモードをhtnsbf形式にする。"
+  (swap-set-keys key-map '(("M-h" . "C-x p") ("C-M-h" . "C-x d")))
   (mapc
    (lambda (key)
      (when (lookup-key key-map key)
        (define-key key-map (kbd key) 'nil)))
    '("C-o" "M-b" "C-M-b" "C-q" "M-q" "C-M-q"))
-  (dvorak-set-key key-map))
+  (dvorak-set-key-fundamental key-map))
 
 ;;; Dvorak設定をするだけのコード
 
-(dvorak-set-key global-map)
-(swap-set-key global-map '(("M-g p" . "M-g t")))
+(dvorak-set-key-fundamental global-map)
 
 ;; minibuffer-local-map is a variable defined in `C source code'.
 (dvorak-set-key-prog minibuffer-local-map)
@@ -609,7 +638,7 @@
           (helm-ls-git-build-ls-git-source)
           helm-source-ls-git-buffers
           (helm-ls-git-build-buffers-source))
-    (swap-set-key helm-ls-git-rebase-todo-mode-map '(("M-t" . "M-p")))))
+    (swap-set-keys-m-pt helm-ls-git-rebase-todo-mode-map)))
 
 (leaf helpful
   :ensure t
@@ -646,8 +675,7 @@
   :after t
   :defvar rg-mode-map
   :config
-  (dvorak-set-key-prog rg-mode-map)
-  (swap-set-key rg-mode-map '(("M-T" . "M-P"))))
+  (dvorak-set-key-prog rg-mode-map))
 
 (leaf xref
   :defun xref-push-marker-stack xref-set-marker-ring-length
@@ -694,7 +722,7 @@
   (dvorak-set-key-prog company-active-map)
   ;; company-search-mapの入力をそのまま受け付ける特殊性に対応するワークアラウンド。
   (define-key company-search-map (kbd "C-c") nil)
-  (dvorak-set-key company-search-map)
+  (dvorak-set-key-fundamental company-search-map)
   (leaf company-quickhelp
     :ensure t
     :global-minor-mode t
@@ -867,7 +895,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (leaf magit-mode
     :after t
     :defvar magit-mode-map
-    :config (swap-set-key magit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
+    :config (swap-set-keys-nm-pt magit-mode-map))
   (leaf magit-diff
     :after t
     ;; `magit-diff-visit-worktree-file'は`C-<return>'でも代用出来て、検索の誤爆の原因になるので無効化する。
@@ -886,11 +914,11 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     ;; コミットメッセージ編集画面での幅に基づく自動改行を無効化
     (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill)
     (modify-coding-system-alist 'file "COMMIT_EDITMSG" 'utf-8-unix)
-    (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
+    (swap-set-keys-nm-pt git-commit-mode-map))
   (leaf git-rebase
     :after t
     :defvar git-rebase-mode-map
-    :config (swap-set-key git-rebase-mode-map '(("p" . "t") ("M-p" . "M-t"))))
+    :config (swap-set-keys-nm-pt git-rebase-mode-map))
   (leaf git-modes :ensure t :mode ("/.dockerignore\\'" . gitignore-mode))
   (leaf forge
     :ensure t
@@ -1103,7 +1131,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
          ([remap previous-error] . flycheck-previous-error)
          ([remap next-error] . flycheck-next-error))
   :defvar flycheck-error-list-buffer flycheck-error-list-mode-map
-  :config (dvorak-set-key flycheck-error-list-mode-map))
+  :config (dvorak-set-key-fundamental flycheck-error-list-mode-map))
 
 (leaf quickrun
   :ensure t
@@ -1289,8 +1317,14 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     :custom
     (haskell-hoogle-command . nil)
     (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s"))
-  (leaf haskell-interactive-mode :after t :defvar haskell-interactive-mode-map :config (dvorak-set-key haskell-interactive-mode-map))
-  (leaf haskell-cabal :defvar haskell-cabal-mode-map :config (dvorak-set-key-prog haskell-cabal-mode-map))
+  (leaf
+    haskell-interactive-mode
+    :after t
+    :defvar haskell-interactive-mode-map
+    :config (dvorak-set-key-fundamental haskell-interactive-mode-map))
+  (leaf haskell-cabal
+    :defvar haskell-cabal-mode-map
+    :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (leaf lsp-haskell
     :ensure t
     :require t
