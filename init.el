@@ -1664,8 +1664,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf yarn-mode :ensure t)
 
-(leaf ts-comint :ensure t)
-
 (leaf css-mode
   :custom (css-indent-offset . 2)
   :hook (css-mode-hook . lsp) ((css-mode-hook scss-mode-hook) . prettier-mode-toggle-setup))
