@@ -331,8 +331,8 @@
 
 (leaf *font
   :config
-  (set-face-attribute 'default nil :family "HackGen Console NFJ" :height 135)
-  (set-fontset-font t 'unicode (font-spec :name "HackGen Console NFJ") nil 'append)
+  (set-face-attribute 'default nil :family "HackGen Console NF" :height 135)
+  (set-fontset-font t 'unicode (font-spec :name "HackGen Console NF") nil 'append)
   (unless (eq system-type 'darwin) (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append)))
 
 ;; シンタックスハイライトをグローバルで有効化
@@ -991,7 +991,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (wrap-function-to-control-ime 'y-or-n-p nil nil)
   (wrap-function-to-control-ime 'yes-or-no-p nil nil)
   (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
-  (modify-all-frames-parameters '((ime-font . "HackGen Console NFJ-13.5"))))
+  (modify-all-frames-parameters '((ime-font . "HackGen Console NF-13.5"))))
 
 (leaf envrc
   :ensure t
