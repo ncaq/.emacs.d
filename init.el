@@ -1134,6 +1134,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf nginx-mode :ensure t)
 (leaf opascal-mode :mode "\\.dfm$" "\\.pas$")
 (leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
+(leaf plantuml-mode :ensure t :mode "\\.puml$" :custom (plantuml-default-exec-mode . 'executable))
 (leaf powershell :ensure t)
 (leaf prolog :after t :defvar prolog-mode-map :config (dvorak-set-key-prog prolog-mode-map))
 (leaf robots-txt-mode :ensure t)
