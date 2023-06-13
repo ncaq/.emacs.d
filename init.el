@@ -895,7 +895,9 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (leaf forge
     :ensure t
     :require t
-    :custom (forge-add-pullreq-refspec . nil)
+    :custom
+    (forge-post-fill-region . nil)     ; issueなどを自動改行しない。
+    (forge-add-pullreq-refspec . nil)  ; PR作る時にrefを自動生成しない。
     :defun forge-get-repository
     :init
     (defun forge-pull-when-forge-repo ()
