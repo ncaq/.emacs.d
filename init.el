@@ -17,7 +17,19 @@
     (leaf blackout :ensure t)
     (leaf diminish :ensure t)
     :config
-    (leaf-keywords-init)))
+    (leaf-keywords-init))
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 6))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage)))
 
 (leaf cus-edit
   :doc "init.elに自動的に書き込ませない。
@@ -568,6 +580,7 @@
             "marksman\\(::stderr\\)?"
             "prettier.+"
             "pyright\\(::stderr\\)?"
+            "straight-process"
             "tramp.+"
             "vc")))
   (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
@@ -1019,6 +1032,21 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   :custom
   (browse-url-generic-program . "wslview")
   (browse-url-browser-function . 'browse-url-generic))
+
+(leaf deferred :ensure t)
+(leaf concurrent :ensure t)
+(leaf chatgpt
+  ;; Pythonのsexpdataとepcパッケージが必要です。
+  :straight
+  (chatgpt
+   :type git
+   :host github
+   :repo "ncaq/ChatGPT.el"
+   :commit "aa1bb991cb83089fba9db93b834e6ae3fc82d9d8"
+   :files ("dist" "*.el"))
+  :custom `((chatgpt-repo-path . ,(concat user-emacs-directory "straight/repos/ChatGPT.el/"))
+            (python-interpreter . "python3"))
+  :bind ("C-c q" . chatgpt-query))
 
 ;; 有効にするだけの短いコード
 
