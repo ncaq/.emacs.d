@@ -1055,7 +1055,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (lsp-enable-snippet . nil)            ; 補完からスニペット展開をするのを無効化
   (lsp-file-watch-threshold . 10000)    ; 監視ファイル警告を緩める
   (lsp-imenu-sort-methods . 'position)  ; sortがデフォルトでは種類別になっている
-  :defun lsp-code-actions-at-point lsp:code-action-title
+  :defun lsp-code-actions-at-point lsp-register-client lsp-stdio-connection lsp:code-action-title make-lsp-client
   :init
   (defun lsp-format-before-save ()
     "保存する前にフォーマットする設定を有効にする。
@@ -1139,7 +1139,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
 (leaf plantuml-mode :ensure t :mode "\\.puml$" :custom (plantuml-default-exec-mode . 'executable))
 (leaf powershell :ensure t)
-(leaf prolog :after t :defvar prolog-mode-map :config (dvorak-set-key-prog prolog-mode-map))
 (leaf robots-txt-mode :ensure t)
 (leaf scheme :custom (scheme-program-name . "gosh"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
@@ -1400,6 +1399,27 @@ Add the type signature that GHC infers to the function located below the point."
 (leaf dune
   :ensure t
   :config (leaf dune-format :ensure t :hook (dune-mode-hook . dune-format-on-save-mode)))
+
+;;; Prolog
+
+(leaf prolog
+  :after t
+  :hook (prolog-mode-hook . lsp)
+  :defvar prolog-mode-map
+  :config
+  (dvorak-set-key-prog prolog-mode-map)
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection
+    (lsp-stdio-connection (list "swipl"
+                                "-g" "use_module(library(lsp_server))."
+                                "-g" "lsp_server:main"
+                                "-t" "halt"
+                                "--" "stdio"))
+    :major-modes '(prolog-mode)
+    :priority 1
+    :multi-root t
+    :server-id 'prolog-ls)))
 
 ;;; Python
 
