@@ -1122,7 +1122,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 
 (leaf apache-mode :ensure t)
 (leaf bnf-mode :ensure t)
-(leaf conf-mode :mode "/credentials$" "\\.accept_keywords$" "\\.dsk$" "\\.keywords$" "\\.license$" "\\.mask$" "\\.unmask$" "\\.use$")
+(leaf conf-mode :mode "/credentials$" "\\.dsk$")
 (leaf csharp-mode :ensure t)
 (leaf csv-mode :ensure t)
 (leaf dotenv-mode :ensure t)
