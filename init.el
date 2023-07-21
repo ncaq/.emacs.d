@@ -1138,7 +1138,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf opascal-mode :mode "\\.dfm$" "\\.pas$")
 (leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
 (leaf plantuml-mode :ensure t :mode "\\.puml$" :custom (plantuml-default-exec-mode . 'executable))
-(leaf powershell :ensure t)
+(leaf powershell :ensure t :hook (powershell-mode-hook . lsp))
 (leaf robots-txt-mode :ensure t)
 (leaf scheme :custom (scheme-program-name . "gosh"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
