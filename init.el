@@ -1356,8 +1356,7 @@ Add the type signature that GHC infers to the function located below the point."
   (dvorak-set-key-prog markdown-mode-map)
   (mapc
    (lambda (mode) (add-to-list 'markdown-code-lang-modes mode))
-   '(("diff" . diff-mode)
-     ("hs" . haskell-mode)
+   '(("hs" . haskell-mode)
      ("html" . web-mode)
      ("ini" . conf-mode)
      ("js" . web-mode)
@@ -1366,13 +1365,11 @@ Add the type signature that GHC infers to the function located below the point."
      ("pl6" . raku-mode)
      ("ps1" . powershell-mode)
      ("py" . python-mode)
-     ("raku" . raku-mode)
      ("rb" . ruby-mode)
      ("rs" . rustic-mode)
      ("sqlite3" . sql-mode)
      ("ts" . web-mode)
      ("tsx" . web-mode)
-     ("yaml". yaml-mode)
      ("zsh" . sh-mode)))
   (leaf lsp-marksman :ensure :require t :hook (markdown-mode-hook . lsp)))
 
