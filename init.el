@@ -1364,6 +1364,7 @@ Add the type signature that GHC infers to the function located below the point."
      ("jsx" . web-mode)
      ("md" . markdown-mode)
      ("pl6" . raku-mode)
+     ("ps1" . powershell-mode)
      ("py" . python-mode)
      ("raku" . raku-mode)
      ("rb" . ruby-mode)
