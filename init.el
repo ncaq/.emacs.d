@@ -904,7 +904,12 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
       "forgeが設定されているリポジトリでは`forge-pull'を実行する。"
       (when (forge-get-repository nil) (forge-pull)))
     :advice (:after magit-pull forge-pull-when-forge-repo)
-    :config (leaf sqlite3 :ensure t :emacs< "29.1" :doc "29.1以降ではビルドインのSQLiteモジュールを使います。")))
+    :config
+    (leaf sqlite3
+      :unless (and (fboundp 'sqlite-available-p) (sqlite-available-p))
+      :doc "Emacsのbuilt-inのSQLite機能が使えない場合、フォールバックとして有効にします。"
+      :ensure t
+      :require t)))
 
 (leaf git-gutter
   :ensure t
