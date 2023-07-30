@@ -61,6 +61,11 @@
   ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
   :config (exec-path-from-shell-initialize))
 
+(leaf startup
+  :custom
+  (inhibit-startup-screen . t)      ; スタートアップ画面を出さない
+  (mail-host-address . "ncaq.net")) ; これでuser-mail-addressも設定されます
+
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
   "バッファが存在すればkillする. 無ければ何もしない."
   (when (get-buffer BUFFER-OR-NAME)
@@ -486,7 +491,6 @@
 (leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
 (leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
 (leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
-(leaf startup :custom (inhibit-startup-screen . t)) ; スタートアップ画面を出さない
 (leaf subr :config (fset 'yes-or-no-p 'y-or-n-p)) ; "yes or no"を"y or n"に
 (leaf vc-hooks :custom (vc-follow-symlinks . t)) ; 常にシンボリックリンクをたどる
 (leaf warnings :custom (warning-minimum-level . :error)) ; 警告はエラーレベルでないとポップアップ表示しない
