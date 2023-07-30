@@ -10,14 +10,21 @@
   (unless (package-installed-p 'leaf)
     (package-refresh-contents)
     (package-install 'leaf))
+
   (leaf leaf-keywords
     :ensure t
     :init
-    (leaf el-get :ensure t :custom ((el-get-git-shallow-clone . t)))
+    ;; optional packages if you want to use :hydra, :el-get, :blackout,,,
+    (leaf el-get :ensure t)
     (leaf blackout :ensure t)
     (leaf diminish :ensure t)
+
     :config
+    ;; initialize leaf-keywords.el
     (leaf-keywords-init)))
+
+(leaf leaf-tree :ensure t)
+(leaf leaf-convert :ensure t)
 
 (leaf cus-edit
   :doc "init.elに自動的に書き込ませない。
@@ -38,9 +45,6 @@
     (native-compile-async load-path 'recursively))
   :hook (package-menu-mode-hook . package-menu-mode-setup)
   :advice (:after package-install package-load-path-native-compile-async))
-
-(leaf leaf-convert :ensure t)
-(leaf leaf-tree :ensure t)
 
 ;;; 初期化
 
