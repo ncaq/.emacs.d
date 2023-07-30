@@ -48,12 +48,6 @@
 
 ;;; 初期化
 
-(leaf gcmh
-  :doc "アイドル状態かなどの判定からGCを調整する。"
-  :ensure t
-  :blackout t
-  :hook (after-init-hook . gcmh-mode))
-
 (leaf exec-path-from-shell
   :doc "Windowsのwslg.exeやmacOSのランチャーから起動したときはシェルの環境変数を引き継がないため、Emacs側でシェルを読み込む。"
   :ensure t
@@ -1714,6 +1708,14 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :config
   (dvorak-set-key-prog nxml-mode-map)
   (leaf smartparens :config (sp-local-pair 'nxml-mode "<" ">" :actions nil)))
+
+;; 起動終わりの処理
+
+(leaf gcmh
+  :doc "アイドル状態かなどの判定からGCを調整してくれます。"
+  :ensure t
+  :blackout t
+  :custom (gcmh-mode . t))
 
 ;; Local Variables:
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
