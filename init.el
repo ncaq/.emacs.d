@@ -1115,6 +1115,61 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   :defvar flycheck-error-list-buffer flycheck-error-list-mode-map
   :config (dvorak-set-key flycheck-error-list-mode-map))
 
+(leaf language-detection
+  :ensure t
+  :init
+  (defun language-detection-mode-switch ()
+    "`(language-detection-buffer)'の結果に従ってモードを切り替えます。
+典型的な使い方として、PerlとPrologを自動識別することを考えています。"
+    (interactive)
+    (let ((mode
+           (pcase (language-detection-buffer)
+             ('ada 'ada-mode)
+             ('awk 'awk-mode)
+             ('c 'c-mode)
+             ('cpp 'c++-mode)
+             ('clojure 'clojure-mode)
+             ('csharp 'csharp-mode)
+             ('css 'css-mode)
+             ('dart 'dart-mode)
+             ('delphi 'delphi-mode)
+             ('emacslisp 'emacs-lisp-mode)
+             ('erlang 'erlang-mode)
+             ('fortran 'fortran-mode)
+             ('fsharp 'fsharp-mode)
+             ('go 'go-mode)
+             ('groovy 'groovy-mode)
+             ('haskell 'haskell-mode)
+             ('html 'html-mode)
+             ('java 'java-mode)
+             ('javascript 'javascript-mode)
+             ('json 'json-mode)
+             ('latex 'latex-mode)
+             ('lisp 'lisp-mode)
+             ('lua 'lua-mode)
+             ('matlab 'matlab-mode)
+             ('objc 'objc-mode)
+             ('perl 'perl-mode)
+             ('php 'php-mode)
+             ('prolog 'prolog-mode)
+             ('python 'python-mode)
+             ('r 'r-mode)
+             ('ruby 'ruby-mode)
+             ('rust 'rust-mode)
+             ('scala 'scala-mode)
+             ('shell 'shell-script-mode)
+             ('smalltalk 'smalltalk-mode)
+             ('sql 'sql-mode)
+             ('swift 'swift-mode)
+             ('visualbasic 'visual-basic-mode)
+             ('xml 'sgml-mode)
+             (_ nil))))
+      (if (not mode)
+          (error "モードを推定できませんでした。")
+        (if (not (fboundp mode))
+            (error (concat "モードに対応する関数がインストールされていません: " mode))
+          (funcall mode))))))
+
 (leaf quickrun
   :ensure t
   :config
@@ -1407,7 +1462,8 @@ Add the type signature that GHC infers to the function located below the point."
 ;;; Prolog
 
 (leaf prolog
-  :after t
+  :mode
+  (("\\.pl\\'" "\\.pro\\'" "\\.P\\'") . language-detection-mode-switch)
   :hook (prolog-mode-hook . lsp)
   :defvar prolog-mode-map
   :config
