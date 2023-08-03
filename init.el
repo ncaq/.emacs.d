@@ -1114,9 +1114,15 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   :bind (:flycheck-mode-map
          ("C-z" . flycheck-list-errors)
          ([remap previous-error] . flycheck-previous-error)
-         ([remap next-error] . flycheck-next-error))
+         ([remap next-error]     . flycheck-next-error))
   :defvar flycheck-error-list-buffer flycheck-error-list-mode-map
   :config (dvorak-set-key flycheck-error-list-mode-map))
+
+(leaf flymake
+  :bind (:flymake-mode-map
+         ("C-z" . flymake-show-buffer-diagnostics)
+         ([remap previous-error] . flymake-goto-prev-error)
+         ([remap next-error]     . flymake-goto-next-error)))
 
 (leaf language-detection
   :ensure t
@@ -1154,7 +1160,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
              ('objc 'objc-mode)
              ('perl 'perl-mode)
              ('php 'php-mode)
-             ('prolog 'prolog-mode)
+             ('prolog 'sweeprolog-mode)
              ('python 'python-mode)
              ('r 'r-mode)
              ('ruby 'ruby-mode)
@@ -1480,25 +1486,23 @@ Add the type signature that GHC infers to the function located below the point."
 
 ;;; Prolog
 
-(leaf prolog
-  :mode
-  (("\\.pl\\'" "\\.pro\\'" "\\.P\\'") . language-detection-mode-switch)
-  :hook (prolog-mode-hook . lsp)
-  :defvar prolog-mode-map
-  :config
-  (dvorak-set-key-prog prolog-mode-map)
-  (lsp-register-client
-   (make-lsp-client
-    :new-connection
-    (lsp-stdio-connection (list "swipl"
-                                "-g" "use_module(library(lsp_server))."
-                                "-g" "lsp_server:main"
-                                "-t" "halt"
-                                "--" "stdio"))
-    :major-modes '(prolog-mode)
-    :priority 1
-    :multi-root t
-    :server-id 'prolog-ls)))
+(leaf prolog :custom (prolog-system . 'swi))
+
+(leaf sweeprolog
+  :doc "sweepを使う場合、SWI-Prologは手動でビルドする必要があります。
+[SWI-Prolog -- Installation on Linux, *BSD (Unix)](https://www.swi-prolog.org/build/unix.html)"
+  :ensure t
+  :mode (("\\.plt?\\'" "\\.pro\\'" "\\.P\\'" "\\.prolog\\'") . language-detection-mode-switch)
+  :init
+  (defun sweeprolog-setup ()
+    (flycheck-mode -1)
+    (flymake-mode 1))
+  :hook (sweeprolog-mode-hook . sweeprolog-setup)
+  :bind (:sweeprolog-mode-map
+         ("M-p" . nil)
+         ("M-n" . nil)
+         ("M-h" . nil)
+         ("C-c C-z" . sweeprolog-top-level)))
 
 ;;; Python
 
