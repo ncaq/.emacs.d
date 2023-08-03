@@ -29,9 +29,9 @@
 
 (leaf cus-edit
   :doc "init.elに自動的に書き込ませない。
-書き出し先は雑に決定している。
-基本的に書き出さないで良いが、
-稀にGUIなどから値を設定したいときがあるかもしれないので/dev/nullにはしないでいる。"
+  書き出し先は雑に決定している。
+  基本的に書き出さないで良いが、
+  稀にGUIなどから値を設定したいときがあるかもしれないので/dev/nullにはしないでいる。"
   :custom `((custom-file . ,(locate-user-emacs-file "custom.el")))) ;
 
 (leaf package
@@ -41,7 +41,7 @@
     (setf (cadr (aref tabulated-list-format 0)) 50))
   (defun package-load-path-native-compile-async (&rest _)
     "だいたいのパッケージをネイティブコンパイルする。
-最初に読み込むより先にコンパイルすることにより、更新後のストレスなどを抑える。"
+  最初に読み込むより先にコンパイルすることにより、更新後のストレスなどを抑える。"
     (interactive)
     (native-compile-async load-path 'recursively))
   :hook (package-menu-mode-hook . package-menu-mode-setup)
