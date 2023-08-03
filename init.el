@@ -470,9 +470,13 @@
   (read-file-name-completion-ignore-case . t) ; 大文字と小文字を区別しない ファイル名
   (read-process-output-max . 1048576)         ; プロセスから一度に読み込む量を増やす
   (scroll-conservatively . 1)                 ; 最下段までスクロールした時のカーソルの移動量を減らす
-  (scroll-margin . 5)                         ; 最下段までスクロールしたという判定を伸ばす
-  :setq-default
-  (buffer-file-coding-system . 'utf-8-unix)) ; 新規ファイルではWindowsでもUTF-8を使う
+  (scroll-margin . 5))                        ; 最下段までスクロールしたという判定を伸ばす
+
+(leaf mule-cmds
+  :doc "Windowsなどでも優先してUTF-8を使うための設定。"
+  :config
+  (set-default-coding-systems 'utf-8-unix)
+  (prefer-coding-system 'utf-8))
 
 (leaf simple
   :custom
@@ -1200,7 +1204,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf opascal-mode :mode "\\.dfm$" "\\.pas$")
 (leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
 (leaf plantuml-mode :ensure t :mode "\\.puml$" :custom (plantuml-default-exec-mode . 'executable))
-(leaf powershell :ensure t :hook (powershell-mode-hook . lsp))
 (leaf robots-txt-mode :ensure t)
 (leaf scheme :custom (scheme-program-name . "gosh"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
@@ -1458,6 +1461,23 @@ Add the type signature that GHC infers to the function located below the point."
 (leaf dune
   :ensure t
   :config (leaf dune-format :ensure t :hook (dune-mode-hook . dune-format-on-save-mode)))
+
+;;; PowerShell
+
+(leaf powershell
+  :ensure t
+  :init
+  (defun powershell-setup ()
+    (set-buffer-file-coding-system 'utf-8-with-signature-dos))
+  :hook
+  (powershell-mode-hook . powershell-setup)
+  (powershell-mode-hook . lsp))
+
+(leaf bat-mode
+  :init
+  (defun bat-setup ()
+    (set-buffer-file-coding-system 'ascii-dos))
+  :hook (bat-mode-hook . bat-setup))
 
 ;;; Prolog
 
