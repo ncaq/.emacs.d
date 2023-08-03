@@ -1149,14 +1149,14 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
              ('go 'go-mode)
              ('groovy 'groovy-mode)
              ('haskell 'haskell-mode)
-             ('html 'html-mode)
+             ('html 'web-mode)
              ('java 'java-mode)
-             ('javascript 'javascript-mode)
+             ('javascript 'web-mode)
              ('json 'json-mode)
              ('latex 'latex-mode)
              ('lisp 'lisp-mode)
              ('lua 'lua-mode)
-             ('matlab 'matlab-mode)
+             ('matlab 'octave-mode)
              ('objc 'objc-mode)
              ('perl 'perl-mode)
              ('php 'php-mode)
@@ -1164,14 +1164,14 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
              ('python 'python-mode)
              ('r 'r-mode)
              ('ruby 'ruby-mode)
-             ('rust 'rust-mode)
+             ('rust 'rustic-mode)
              ('scala 'scala-mode)
              ('shell 'shell-script-mode)
              ('smalltalk 'smalltalk-mode)
              ('sql 'sql-mode)
              ('swift 'swift-mode)
              ('visualbasic 'visual-basic-mode)
-             ('xml 'sgml-mode)
+             ('xml 'nxml-mode)
              (_ nil))))
       (if (not mode)
           (error "モードを推定できませんでした。")
@@ -1780,11 +1780,11 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf nxml-mode
   :mode "\\.fxml\\'"
   :custom (nxml-slash-auto-complete-flag . t)
+  :defvar nxml-mode-map
   :bind (:nxml-mode-map
          ("M-h" . nil)
          ("C-M-t" . nil)
          ("C-M-p" . nxml-backward-element))
-  :defvar nxml-mode-map
   :config
   (dvorak-set-key-prog nxml-mode-map)
   (leaf smartparens :config (sp-local-pair 'nxml-mode "<" ">" :actions nil)))
