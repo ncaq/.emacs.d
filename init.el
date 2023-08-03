@@ -827,9 +827,6 @@ python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのal
 
 (leaf magit
   :ensure t
-  :custom
-  (magit-pull-or-fetch . t)
-  (magit-wip-mode . t)
   :defun magit-start-process
   :init
   (defun magit-find-file-to-origin-master ()
@@ -879,7 +876,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     :after t
     ;; `magit-diff-visit-worktree-file'は`C-<return>'でも代用出来て、検索の誤爆の原因になるので無効化する。
     :bind (:magit-diff-section-map ("C-j" . nil)))
-  (leaf magit-wip :blackout t)
+  (leaf magit-pull :custom (magit-pull-or-fetch . t))
+  (leaf magit-wip :blackout t :custom (magit-wip-mode . t))
   (leaf git-commit
     :after t
     :init
