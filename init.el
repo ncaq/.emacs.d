@@ -936,8 +936,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (defun docker-image-mode-setup ()
     "イメージ名の幅を広く取ります。"
     (setf (cadr (aref tabulated-list-format 0)) 100))
-  :hook (docker-image-mode-hook . docker-image-mode-setup)
-  :config (leaf docker-tramp :ensure t))
+  :hook (docker-image-mode-hook . docker-image-mode-setup))
 
 (leaf *input-method
   :leaf-autoload nil
