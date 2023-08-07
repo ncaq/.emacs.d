@@ -851,6 +851,10 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     (interactive)
     ;; Git関係なのでMagitのProcessに履歴を残しておきたい。
     (magit-start-process "gh" nil "pr" "create" "--assignee" "@me" "--web"))
+  (defun gh-repo-view-web ()
+    "GitHub CLIを使って現在フォーカスしているリポジトリをwebで開きます。"
+    (interactive)
+    (magit-start-process "gh" nil "repo" "view" "--web"))
   :bind
   ("M-g F" . magit-pull)
   ("M-g H" . magit-diff-range-to-head)
@@ -865,6 +869,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   ("M-g m" . magit-find-file-to-origin-master)
   ("M-g q" . gh-pr-create-web)
   ("M-g s" . magit-status)
+  ("M-g v" . gh-repo-view-web)
   ("M-g w" . magit-branch-checkout)
   ("M-g z" . magit-stash-both)
   :config
