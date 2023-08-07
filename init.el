@@ -61,6 +61,10 @@
   (inhibit-startup-screen . t)      ; スタートアップ画面を出さない
   (mail-host-address . "ncaq.net")) ; これでuser-mail-addressも設定されます
 
+(leaf editfns
+  :doc "WSL2 + Ubuntuなどだと環境変数`NAME'が`hostname'と同じ値になってしまうのを回避します。"
+  :custom `(user-full-name . ,user-login-name))
+
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
   "バッファが存在すればkillする. 無ければ何もしない."
   (when (get-buffer BUFFER-OR-NAME)
