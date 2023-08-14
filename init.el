@@ -572,6 +572,7 @@
     (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list (concat "^\\*" regex "\\*$")))
           '(".+ls\\(::stderr\\)?"
             "Flycheck errors"
+            "Flymake log"
             "WoMan-Log"
             "envrc"
             "eslint\\(::stderr\\)?"
