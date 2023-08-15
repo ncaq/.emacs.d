@@ -580,6 +580,7 @@
             "marksman\\(::stderr\\)?"
             "prettier.+"
             "pyright\\(::stderr\\)?"
+            "sweep Messages"
             "tramp.+"
             "vc")))
   (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
