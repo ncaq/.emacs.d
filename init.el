@@ -1116,8 +1116,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
            ([remap helm-imenu] . lsp-ui-imenu)
            ([remap smart-jump-go] . lsp-ui-peek-find-definitions)
            ([remap smart-jump-references] . lsp-ui-peek-find-references)
-           ("C->" . lsp-find-type-definition)
-           ("C-c C-p" . lsp-ui-peek-find-implementation))
+           ("C->" . lsp-ui-peek-find-implementation)
+           ("C-c C-." . lsp-find-type-definition))
     :defvar lsp-ui-peek-mode-map
     :config (dvorak-set-key-prog lsp-ui-peek-mode-map))
   (leaf dap-mode
@@ -1326,9 +1326,10 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   :ensure t
   :bind
   (:haskell-mode-map
-   ("M-i" . stylish-haskell-toggle)
    ("C-c C-b" . haskell-hoogle)
    ("C-c C-c" . haskell-session-change-target)
+   ("C-c C-p" . haskell-command-insert-language-pragma)
+   ("M-i" . stylish-haskell-toggle)
    ([remap indent-whole-buffer] . haskell-mode-stylish-buffer))
   :config
   ;; もう使われてないようですが古いプロジェクトではローカル変数として追加されることが多いので許可しておく。
