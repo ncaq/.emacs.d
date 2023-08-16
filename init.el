@@ -570,19 +570,20 @@
     :defvar helm-boring-buffer-regexp-list
     :config
     (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list (concat "^\\*" regex "\\*$")))
-          '(".+ls\\(::stderr\\)?"
-            "Flycheck errors"
+          '("Flycheck errors"
             "Flymake log"
             "WoMan-Log"
             "envrc"
+            "prettier.+"
+            "sweep Messages"
+            "tramp.+"
+            "vc"
+
+            ".+ls\\(::stderr\\)?"
             "eslint\\(::stderr\\)?"
             "lsp-.+\\(::stderr\\)?"
             "marksman\\(::stderr\\)?"
-            "prettier.+"
-            "pyright\\(::stderr\\)?"
-            "sweep Messages"
-            "tramp.+"
-            "vc")))
+            "pyright\\(::stderr\\)?")))
   (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
   (leaf helm-types :bind (:helm-generic-files-map ("C-s" . nil)))
   (leaf helm-grep
