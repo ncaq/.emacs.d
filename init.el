@@ -1080,11 +1080,11 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   ;; 先に初期化が必要。
   (defvar lsp-keymap-prefix "C-c l")
   :custom
-  (lsp-auto-execute-action . nil)       ; アクションが1つだけでも実行するか確認する
-  (lsp-auto-guess-root . t)             ; 自動的にimportする
-  (lsp-enable-snippet . nil)            ; 補完からスニペット展開をするのを無効化
-  (lsp-file-watch-threshold . 10000)    ; 監視ファイル警告を緩める
-  (lsp-imenu-sort-methods . 'position)  ; sortがデフォルトでは種類別になっている
+  (lsp-auto-execute-action . nil)        ; アクションが1つだけでも実行するか確認する
+  (lsp-auto-guess-root . t)              ; 自動的にimportする
+  (lsp-enable-snippet . nil)             ; 補完からスニペット展開をするのを無効化
+  (lsp-file-watch-threshold . 10000)     ; 監視ファイル警告を緩める
+  (lsp-imenu-sort-methods . '(position)) ; sortがデフォルトでは種類別になっている
   :defun lsp-code-actions-at-point lsp-register-client lsp-stdio-connection lsp:code-action-title make-lsp-client
   :init
   (defun lsp-format-before-save ()
