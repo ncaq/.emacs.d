@@ -1087,9 +1087,9 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
          ("C-c C-a" . lsp-execute-code-action)
          ("C-c C-e" . lsp-lens-mode)
          ("C-c C-i" . lsp-format-region)
-         ("C-c C-n" . lsp-rename)
-         ("C-c C-r" . lsp-workspace-restart)
-         ("C-c C-t" . lsp-describe-thing-at-point))
+         ("C-c C-r" . lsp-rename)
+         ("C-c C-t" . lsp-describe-thing-at-point)
+         ("C-c C-w" . lsp-workspace-restart))
   :bind (:lsp-signature-mode-map
          ("M-n" . nil)
          ("M-p" . nil))
@@ -1510,10 +1510,11 @@ Add the type signature that GHC infers to the function located below the point."
     (flymake-mode 1))
   :hook (sweeprolog-mode-hook . sweeprolog-setup)
   :bind (:sweeprolog-mode-map
-         ("M-p" . nil)
-         ("M-n" . nil)
+         ("C-c C-w" . sweeprolog-restart)
+         ("C-c C-z" . sweeprolog-top-level)
          ("M-h" . nil)
-         ("C-c C-z" . sweeprolog-top-level)))
+         ("M-n" . nil)
+         ("M-p" . nil)))
 
 ;;; Python
 
