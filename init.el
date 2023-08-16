@@ -247,7 +247,7 @@
   ("C-," . off-input-method)
   ("C--" . text-scale-decrease)
   ("C-." . on-input-method)
-  ("C-;" . my-string-inflection-cycle-auto)
+  ("C-;" . string-inflection-dwim-style-cycle)
   ("C-=" . text-scale-reset)
   ("C-^" . dired-jump)
   ("C-a" . smart-move-beginning-of-line)
@@ -776,29 +776,38 @@
 (leaf string-inflection
   :ensure t
   :config
-  (defun my-string-inflection-cycle-auto ()
-    "メジャーモードに従って挙動を変える.
-lisp, shell, rakuはハイフンを含めることが出来るのでall.
-python, ruby, rustはスネークケースを含むのでruby(pythonはrubyのalias).
-その他はjavaスタイル.
-"
+  (defun string-inflection-dwim-style-cycle ()
+    "メジャーモードに従ってありえる命名候補を自動的に変更します。判断できなければ`string-inflection-all-cycle'に投げます。"
     (interactive)
     (pcase major-mode
+      ;; snake_case -> PascalCase。大文字での定数も含みます。
       ((or
-        'common-lisp-mode
-        'emacs-lisp-mode
-        'raku-mode
-        'scheme-mode
-        'sh-mode
-        'wdired-mode)
-       (string-inflection-all-cycle))
-      ((or
+        'c++-mode-hook
+        'c-mode
         'python-mode
         'ruby-mode
-        'rustic-mode)
+        'rust-mode
+        'rustic-mode
+        'tuareg)
        (string-inflection-ruby-style-cycle))
+      ;; snake_case -> PascalCase。
+      ('elixir-mode
+       (string-inflection-elixir-style-cycle))
+      ;; camelCase -> PascalCase。大文字での定数も含みます。
+      ((or
+        'csharp-mode
+        'd-mode
+        'elm-mode
+        'groovy-mode
+        'haskell-mode
+        'java-mode
+        'sbt-mode
+        'scala-mode
+        'web-mode)
+       (string-inflection-java-style-cycle))
+      ;; 全ての変換を含みます。
       (_
-       (string-inflection-java-style-cycle)))))
+       (string-inflection-all-cycle)))))
 
 (leaf undo-tree
   :ensure t
