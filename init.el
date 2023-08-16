@@ -1510,8 +1510,12 @@ Add the type signature that GHC infers to the function located below the point."
     (flymake-mode 1))
   :hook (sweeprolog-mode-hook . sweeprolog-setup)
   :bind (:sweeprolog-mode-map
+         ("C-M-m" . nil)
+         ("C-c C-RET" . sweeprolog-insert-term-dwim)
+         ("C-c C-t" . eldoc-print-current-symbol-info)
          ("C-c C-w" . sweeprolog-restart)
          ("C-c C-z" . sweeprolog-top-level)
+         ("C-x d" . sweeprolog-mark-predicate)
          ("M-h" . nil)
          ("M-n" . nil)
          ("M-p" . nil)))
