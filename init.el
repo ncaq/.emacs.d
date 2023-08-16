@@ -1513,15 +1513,34 @@ Add the type signature that GHC infers to the function located below the point."
 [SWI-Prolog -- Installation on Linux, *BSD (Unix)](https://www.swi-prolog.org/build/unix.html)"
   :ensure t
   :mode (("\\.plt?\\'" "\\.pro\\'" "\\.P\\'" "\\.prolog\\'") . language-detection-mode-switch)
+  :defun sweeprolog-identifier-at-point
   :init
+  (defun sweeprolog-describe-predicate-at-point ()
+    "
+現在のポイントにあるPrologの述語を説明します。
+
+ポイント位置にPrologの識別子がある場合、その識別子に関連する述語の説明を表示します。
+識別子が存在しない場合はエラーメッセージ「There is no term at point.」を表示します。
+
+この関数は主に`sweeprolog-identifier-at-point`と、
+`sweeprolog-describe-predicate`と連携して動作します。
+`sweeprolog-identifier-at-point`は現在のポイントでの識別子を取得し、
+`sweeprolog-describe-predicate`は識別子の述語を説明します。
+"
+    (interactive)
+    (if-let ((symbol (sweeprolog-identifier-at-point)))
+        (sweeprolog-describe-predicate symbol)
+      (user-error "There is no term at point.")))
   (defun sweeprolog-setup ()
+    ;; sweeprologがflymakeにしか対応していないためflycheckを無効化してflymakeを有効化します。
     (flycheck-mode -1)
     (flymake-mode 1))
   :hook (sweeprolog-mode-hook . sweeprolog-setup)
   :bind (:sweeprolog-mode-map
+         ("C-M-;" . sweeprolog-document-predicate-at-point)
          ("C-M-m" . nil)
          ("C-c C-RET" . sweeprolog-insert-term-dwim)
-         ("C-c C-t" . eldoc-print-current-symbol-info)
+         ("C-c C-d" . sweeprolog-describe-predicate-at-point)
          ("C-c C-w" . sweeprolog-restart)
          ("C-c C-z" . sweeprolog-top-level)
          ("C-x d" . sweeprolog-mark-predicate)
