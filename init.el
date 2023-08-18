@@ -700,7 +700,7 @@
   ("M-," . smart-jump-back)
   ("C-M-." . smart-jump-references))
 
-;;; テキスト処理
+;;; 補完
 
 (leaf company
   :ensure t
@@ -755,6 +755,8 @@
          ("C-c C-y" . company-yasnippet)
          ("M-z" . yas-insert-snippet))
   :config (leaf yasnippet-snippets :ensure t))
+
+;;; テキスト処理
 
 (leaf smartparens
   :ensure t
