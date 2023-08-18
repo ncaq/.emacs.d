@@ -1,8 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
-;;; leafとpackageの設定
+;;; package管理システムの初期設定
 
 (eval-and-compile
+  ;; package.el
   (customize-set-variable
    'package-archives '(("melpa"  . "https://melpa.org/packages/")
                        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
@@ -12,6 +13,21 @@
     (package-refresh-contents)
     (package-install 'leaf))
 
+  ;; straight.el
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 6))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+
+  ;; leaf.el
   (leaf leaf-keywords
     :ensure t
     :init
@@ -62,7 +78,7 @@
   (mail-host-address . "ncaq.net")) ; これでuser-mail-addressも設定されます
 
 (leaf editfns
-  :doc "WSL2 + Ubuntuなどだと環境変数`NAME'が`hostname'と同じ値になってしまうのを回避します。"
+  :doc "WSL2 + Ubuntuなどだと環境変数`NAME'が`hostname'と同じ値になってしまい`user-full-name'がそれ由来になることを回避します。"
   :custom `(user-full-name . ,user-login-name))
 
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
@@ -240,7 +256,7 @@
 (leaf *global-set-key
   :leaf-autoload nil
   :bind
-  ("<tab>" . indent-for-tab-command) ; 何かしらを割り当てることで, C-iと別扱いになる
+  ("<tab>" . indent-for-tab-command) ; <tab>に何かしらを割り当てることでC-iと別扱いになります
 
   ("C-'" . mc/mark-all-dwim)
   ("C-+" . text-scale-increase)
@@ -573,8 +589,11 @@
           '("Flycheck errors"
             "Flymake log"
             "WoMan-Log"
+            "copilot events"
+            "copilot-balancer"
             "envrc"
             "prettier.+"
+            "straight-process"
             "sweep Messages"
             "tramp.+"
             "vc"
@@ -709,16 +728,21 @@
   ;; company-search-mapの入力をそのまま受け付ける特殊性に対応するワークアラウンド。
   (define-key company-search-map (kbd "C-c") nil)
   (dvorak-set-key company-search-map)
-  (leaf company-quickhelp
+  (leaf company-box
+    :when window-system
     :ensure t
-    :global-minor-mode t
-    :custom (company-quickhelp-delay . 0))
-  (leaf company-posframe
-    :doc "ウィンドウ分割などを行いウインドウをまたがる補完のスタイルが崩壊することを抑止してくれます。"
-    :ensure t
-    :global-minor-mode t
+    :require t
     :blackout t
-    :config (add-to-list 'desktop-minor-mode-table '(company-posframe-mode . nil))))
+    :hook (company-mode-hook . company-box-mode)))
+
+(leaf copilot
+  :straight (copilot :type git :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+  :hook (prog-mode-hook . copilot-mode)
+  :bind (:copilot-completion-map
+         ("<tab>" . copilot-accept-completion)
+         ("TAB"   . copilot-accept-completion)
+         ("C-M-n" . copilot-next-completion)
+         ("C-M-t" . copilot-previous-completion)))
 
 (leaf yasnippet
   :ensure t
