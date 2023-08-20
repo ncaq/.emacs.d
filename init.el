@@ -2,18 +2,16 @@
 
 ;;; package管理システムの初期設定
 
+;; package.el
 (eval-and-compile
-  ;; package.el
   (customize-set-variable
    'package-archives '(("melpa"  . "https://melpa.org/packages/")
                        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                        ("gnu"    . "https://elpa.gnu.org/packages/")))
-  (package-initialize)
-  (unless (package-installed-p 'leaf)
-    (package-refresh-contents)
-    (package-install 'leaf))
+  (package-initialize))
 
-  ;; straight.el
+;; straight.el
+(eval-and-compile
   (defvar bootstrap-version)
   (let ((bootstrap-file
          (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -25,9 +23,13 @@
            'silent 'inhibit-cookies)
         (goto-char (point-max))
         (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
+    (load bootstrap-file nil 'nomessage)))
 
-  ;; leaf.el
+;; leaf.el
+(eval-and-compile
+  (unless (package-installed-p 'leaf)
+    (package-refresh-contents)
+    (package-install 'leaf))
   (leaf leaf-keywords
     :ensure t
     :init
@@ -35,7 +37,6 @@
     (leaf el-get :ensure t)
     (leaf blackout :ensure t)
     (leaf diminish :ensure t)
-
     :config
     ;; initialize leaf-keywords.el
     (leaf-keywords-init)))
