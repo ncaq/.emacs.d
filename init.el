@@ -3,27 +3,25 @@
 ;;; package管理システムの初期設定
 
 ;; package.el
-(eval-and-compile
-  (customize-set-variable
-   'package-archives '(("melpa"  . "https://melpa.org/packages/")
-                       ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-                       ("gnu"    . "https://elpa.gnu.org/packages/")))
-  (package-initialize))
+(customize-set-variable
+ 'package-archives '(("melpa"  . "https://melpa.org/packages/")
+                     ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+                     ("gnu"    . "https://elpa.gnu.org/packages/")))
+(package-initialize)
 
 ;; straight.el
-(eval-and-compile
-  (defvar bootstrap-version)
-  (let ((bootstrap-file
-         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-        (bootstrap-version 6))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage)))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
 ;; leaf.el
 (eval-and-compile
