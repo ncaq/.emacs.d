@@ -1567,10 +1567,10 @@ Add the type signature that GHC infers to the function located below the point."
   :bind (:sweeprolog-mode-map
          ("C-M-;" . sweeprolog-document-predicate-at-point)
          ("C-M-m" . nil)
-         ("C-c C-RET" . sweeprolog-insert-term-dwim)
          ("C-c C-d" . sweeprolog-describe-predicate-at-point)
          ("C-c C-w" . sweeprolog-restart)
          ("C-c C-z" . sweeprolog-top-level)
+         ("C-c RET" . sweeprolog-insert-term-dwim)
          ("C-x d" . sweeprolog-mark-predicate)
          ("M-h" . nil)
          ("M-n" . nil)
