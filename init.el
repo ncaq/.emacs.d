@@ -737,6 +737,7 @@
 (leaf copilot
   :straight (copilot :type git :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
   :hook
+  git-commit-setup-hook
   prog-mode-hook
   :bind (:copilot-completion-map
          ("<tab>" . copilot-accept-completion)
