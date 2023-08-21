@@ -732,11 +732,12 @@
     :ensure t
     :require t
     :blackout t
-    :hook (company-mode-hook . company-box-mode)))
+    :hook company-mode-hook))
 
 (leaf copilot
   :straight (copilot :type git :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
-  :hook (prog-mode-hook . copilot-mode)
+  :hook
+  prog-mode-hook
   :bind (:copilot-completion-map
          ("<tab>" . copilot-accept-completion)
          ("TAB"   . copilot-accept-completion)
