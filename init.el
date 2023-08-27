@@ -1274,16 +1274,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
    (c++-mode-hook . lsp))
   :config
   (dvorak-set-key-prog c-mode-base-map)
-  (leaf ccls :ensure t)
-  (leaf clang-format
-    :ensure t
-    :init
-    (defun set-hook-after-save-clang-format ()
-      (add-hook 'after-save-hook 'clang-format-buffer t t))
-    :hook ((c-mode-hook . set-hook-after-save-clang-format)
-           (c++-mode-hook . set-hook-after-save-clang-format))
-    :bind ((:c-mode-map ([remap indent-whole-buffer] . clang-format-buffer))
-           (:c++-mode-map ([remap indent-whole-buffer] . clang-format-buffer)))))
+  (leaf ccls :ensure t))
 
 ;;; D
 
