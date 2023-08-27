@@ -297,7 +297,7 @@
   ("M-q" . delete-other-windows)
   ("M-r" . revert-buffer-safe-confirm)
   ("M-t" . scroll-down-one)
-  ("M-u" . copy-whole-line)
+  ("M-u" . duplicate-dwim)
   ("M-w" . kill-ring-save-region-or-symbol-at-point)
   ("M-x" . helm-M-x)
   ("M-y" . helm-show-kill-ring)
