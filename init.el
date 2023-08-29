@@ -1415,15 +1415,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (leaf lsp-haskell
     :ensure t
     :require t
-    :init
-    (defun lsp-haskell-setup ()
-      "Template Haskellの展開内容を全部表示しようとするのが鬱陶しいのでHaskellではlens無効。
-TH展開機能だけ無効にしたいが設定方法が分からない。"
-      (setq-local lsp-lens-enable nil)
-      ;; `haskell-mode-hook'に単純に追加するとlspが先に起動してしまう。
-      (lsp))
     :hook
-    (haskell-mode-hook . lsp-haskell-setup)
+    (haskell-mode-hook . lsp)
     :custom
     ;; フォーマッターをfourmoluにする。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
     (lsp-haskell-formatting-provider . "fourmolu")
