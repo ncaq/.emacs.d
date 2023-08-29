@@ -1105,7 +1105,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   ;; s-lだと大概のディスプレイマネージャでロックされてしまうので変更。
   ;; lsp-modeの何かを読み込んだ時点でdefvarでkeymapが作成されてしまうため、
   ;; 先に初期化が必要。
-  (defvar lsp-keymap-prefix "C-c l")
+  (defvar lsp-keymap-prefix "C-M-z")
   :custom
   (lsp-auto-execute-action . nil)        ; アクションが1つだけでも実行するか確認する
   (lsp-auto-guess-root . t)              ; 自動的にimportする
@@ -1379,7 +1379,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
       (other-window 1))
     :bind
     (:interactive-haskell-mode-map
-     ("C-M-z" . haskell-interactive-repl-flycheck)
+     ("C-c z"   . haskell-interactive-repl-flycheck)
      ("C-c C-b" . nil)
      ("C-c C-c" . nil)
      ("C-c C-r" . nil)
