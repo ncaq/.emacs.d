@@ -736,9 +736,13 @@
 
 (leaf copilot
   :straight (copilot :type git :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
-  :hook
-  git-commit-setup-hook
-  prog-mode-hook
+  :global-minor-mode global-copilot-mode
+  :defun copilot-mode
+  :init
+  (defun copilot-mode-off ()
+    "copilot-modeを無効にします。"
+    (interactive)
+    (copilot-mode -1))
   :bind (:copilot-completion-map
          ("<tab>" . copilot-accept-completion)
          ("TAB"   . copilot-accept-completion)
