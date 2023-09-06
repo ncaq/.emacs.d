@@ -1125,9 +1125,9 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   :bind (:lsp-mode-map
          ("C-S-SPC" . nil)
          ("C-c C-a" . lsp-execute-code-action)
-         ("C-c C-e" . lsp-lens-mode)
          ("C-c C-i" . lsp-format-region)
          ("C-c C-r" . lsp-rename)
+         ("C-c C-s" . lsp-lens-mode)
          ("C-c C-t" . lsp-describe-thing-at-point)
          ("C-c C-w" . lsp-workspace-restart))
   :bind (:lsp-signature-mode-map
@@ -1318,8 +1318,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf elisp-mode
   :custom (flycheck-emacs-lisp-load-path . 'inherit)
   :bind (:emacs-lisp-mode-map
-         ("C-M-q" . nil)
-         ("C-c C-e" . macrostep-expand))
+         ("C-M-q" . nil))
   :config
   (leaf elisp-slime-nav
     :ensure t
@@ -1351,6 +1350,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
    ("C-c C-b" . haskell-hoogle)
    ("C-c C-c" . haskell-session-change-target)
    ("C-c C-p" . haskell-command-insert-language-pragma)
+   ("C-c C-s" . nil)
    ("M-i" . stylish-haskell-toggle)
    ([remap indent-whole-buffer] . haskell-mode-stylish-buffer))
   :config
