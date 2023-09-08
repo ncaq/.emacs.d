@@ -294,7 +294,7 @@
   ("M-n" . scroll-up-one)
   ("M-o" . helm-for-files-prefer-near)
   ("M-p" . other-window-backward)
-  ("M-q" . delete-other-windows)
+  ("M-q" . delete-other-windows-force)
   ("M-r" . revert-buffer-safe-confirm)
   ("M-t" . scroll-down-one)
   ("M-u" . duplicate-dwim)
