@@ -132,8 +132,13 @@
 
 (defun open-ncaq-entry ()
   (interactive)
-  (find-file (concat "~/Desktop/www.ncaq.net/site/entry/"
-                     (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
+  (find-file "~/Desktop/www.ncaq.net/site/entry/"))
+
+(defun open-ncaq-entry-current-time ()
+  (interactive)
+  (find-file (concat
+              "~/Desktop/www.ncaq.net/site/entry/"
+              (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
 
 ;;; Dvorak設定をするための関数達
 
@@ -318,10 +323,11 @@
 
   ("C-c '" . google-this)
   ("C-c ;" . align-regexp)
+  ("C-c E" . open-ncaq-entry)
   ("C-c a" . open-downloads)
   ("C-c c" . quickrun)
   ("C-c d" . docker)
-  ("C-c e" . open-ncaq-entry)
+  ("C-c e" . open-ncaq-entry-current-time)
   ("C-c g" . open-google-drive)
   ("C-c h" . open-home)
   ("C-c i" . open-win-downloads)
