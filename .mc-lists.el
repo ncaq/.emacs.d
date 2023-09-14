@@ -52,6 +52,7 @@
         sp-slurp-hybrid-sexp
         sp-splice-sexp
         sp-wrap-tag-done
+        string-inflection-dwim-style-cycle
         symbolword-backward
         symbolword-backward-kill
         symbolword-forward
