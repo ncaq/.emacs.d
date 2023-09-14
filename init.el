@@ -553,8 +553,6 @@
   (helm-ff-file-name-history-use-recentf . t)
   ;; ウインドウ全体に表示
   (helm-full-frame . t)
-  ;; [Pinging init.as (American Samoa) · Issue #2574 · emacs-helm/helm](https://github.com/emacs-helm/helm/issues/2574)
-  (ffap-machine-p-known . 'accept)
   :defvar helm-for-files-preferred-list
   :init
   (defun helm-for-files-prefer-recentf ()
