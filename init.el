@@ -1364,6 +1364,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   ;; melpaに登録されている名前はhaskell-modeで、haskell.elがhaskell-mode.elを読み込むよく分からない状態です。
   ;; melpaに登録されている名前を優先することにします。
   (leaf haskell
+    :blackout interactive-haskell-mode
     :init
     (defun haskell-interactive-repl-flycheck ()
       "左ウィンドウにコード画面を残し、右ウィンドウを上下に分割してREPLとFlycheckを開く。"
