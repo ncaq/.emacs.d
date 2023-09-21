@@ -1410,8 +1410,13 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     :custom
     (haskell-hoogle-command . nil)
     (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s"))
-  (leaf haskell-interactive-mode :after t :defvar haskell-interactive-mode-map :config (dvorak-set-key haskell-interactive-mode-map))
-  (leaf haskell-cabal :defvar haskell-cabal-mode-map :config (dvorak-set-key-prog haskell-cabal-mode-map))
+  (leaf haskell-interactive-mode
+    :after t
+    :defvar haskell-interactive-mode-map
+    :config (dvorak-set-key haskell-interactive-mode-map))
+  (leaf haskell-cabal
+    :defvar haskell-cabal-mode-map
+    :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (leaf lsp-haskell
     :ensure t
     :require t
