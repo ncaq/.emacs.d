@@ -360,7 +360,14 @@
 
 (leaf *font
   :config
-  (set-face-attribute 'default nil :family "HackGen Console NF" :height 135)
+  (set-face-attribute
+   'default
+   nil
+   :family "HackGen Console NF"
+   ;; 2画面分割でだいたい横120文字を表示できるフォントサイズにする。
+   ;; フルHDと4Kを想定。
+   :height (if (<= (frame-pixel-width) 1920) 108 135)
+   )
   (set-fontset-font t 'unicode (font-spec :name "HackGen Console NF") nil 'append)
   (unless (eq system-type 'darwin) (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append)))
 
