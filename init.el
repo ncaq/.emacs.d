@@ -65,7 +65,8 @@
 ;;; 初期化
 
 (leaf exec-path-from-shell
-  :doc "Windowsのwslg.exeやmacOSのランチャーから起動したときはシェルの環境変数を引き継がないため、Emacs側でシェルを読み込む。"
+  :doc "Windowsのwslg.exeやmacOSのランチャーなどから起動したときはシェルの環境変数を引き継がないため、
+Emacs側でシェルを読み込む。"
   :ensure t
   :when window-system
   ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
@@ -77,7 +78,8 @@
   (mail-host-address . "ncaq.net")) ; これでuser-mail-addressも設定されます
 
 (leaf editfns
-  :doc "WSL2 + Ubuntuなどだと環境変数`NAME'が`hostname'と同じ値になってしまい`user-full-name'がそれ由来になることを回避します。"
+  :doc "WSL2 + Ubuntuなどだと環境変数`NAME'が`hostname'と同じ値になってしまい、
+`user-full-name'がそれ由来になることを回避します。"
   :custom `(user-full-name . ,user-login-name))
 
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
@@ -1408,7 +1410,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
         (interactive)
         (setq-local haskell-stylish-on-save (not haskell-stylish-on-save)))
       (defun stylish-haskell-setup ()
-        "プロジェクトディレクトリにstylish-haskellの設定ファイルがある場合、保存したときに自動的にstylish-haskellを適用する。"
+        "プロジェクトディレクトリにstylish-haskellの設定ファイルがある場合、
+保存したときに自動的にstylish-haskellを適用する。"
         (if (locate-dominating-file default-directory ".stylish-haskell.yaml")
             (stylish-haskell-enable)
           (stylish-haskell-disable))))
