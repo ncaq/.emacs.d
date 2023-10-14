@@ -658,7 +658,7 @@ Emacs側でシェルを読み込む。"
           (helm-ls-git-build-ls-git-source)
           helm-source-ls-git-buffers
           (helm-ls-git-build-buffers-source))
-    (swap-set-key helm-ls-git-rebase-todo-mode-map '(("M-t" . "M-p")))))
+    (swap-set-key helm-ls-git-rebase-todo-mode-map '(("M-p" . "M-t")))))
 
 (leaf helpful
   :ensure t
@@ -696,7 +696,7 @@ Emacs側でシェルを読み込む。"
   :defvar rg-mode-map
   :config
   (dvorak-set-key-prog rg-mode-map)
-  (swap-set-key rg-mode-map '(("M-T" . "M-P"))))
+  (swap-set-key rg-mode-map '(("M-P" . "M-T"))))
 
 (leaf xref
   :defun xref-push-marker-stack xref-set-marker-ring-length
