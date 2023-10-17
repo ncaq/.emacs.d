@@ -1850,8 +1850,9 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf js :custom (js-indent-level . 2))
 
-(leaf json-mode :ensure t :hook (json-mode-local-vars-hook . lsp) (json-mode-hook . prettier-toggle-setup))
-(leaf yaml-mode :ensure t :hook (yaml-mode-local-vars-hook . lsp) (yaml-mode-hook . prettier-toggle-setup))
+(leaf graphql-mode :ensure t :hook (graphql-mode-hook . prettier-toggle-setup))
+(leaf json-mode    :ensure t :hook (json-mode-hook    . prettier-toggle-setup) (json-mode-local-vars-hook . lsp))
+(leaf yaml-mode    :ensure t :hook (yaml-mode-hook    . prettier-toggle-setup) (yaml-mode-local-vars-hook . lsp))
 
 (leaf yarn-mode :ensure t)
 
@@ -1871,11 +1872,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :config
   (dvorak-set-key-prog nxml-mode-map)
   (leaf smartparens :config (sp-local-pair 'nxml-mode "<" ">" :actions nil)))
-
-(leaf graphql-mode
-  :ensure t
-  :hook
-  (graphql-mode-hook . prettier-toggle-setup))
 
 ;; 起動終わりの処理
 
