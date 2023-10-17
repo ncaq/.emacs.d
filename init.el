@@ -1872,6 +1872,11 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (dvorak-set-key-prog nxml-mode-map)
   (leaf smartparens :config (sp-local-pair 'nxml-mode "<" ">" :actions nil)))
 
+(leaf graphql-mode
+  :ensure t
+  :hook
+  (graphql-mode-hook . prettier-toggle-setup))
+
 ;; 起動終わりの処理
 
 (leaf gcmh
