@@ -566,6 +566,8 @@ Emacs側でシェルを読み込む。"
   (helm-ff-file-name-history-use-recentf . t)
   ;; ウインドウ全体に表示
   (helm-full-frame . t)
+  ;; `helm-for-files'を多用するためソースは`helm-next-line'などで移動したい。
+  (helm-move-to-line-cycle-in-source . nil)
   :defvar helm-for-files-preferred-list
   :init
   (defun helm-for-files-prefer-recentf ()
