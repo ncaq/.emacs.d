@@ -32,7 +32,6 @@
     :ensure t
     :init
     ;; optional packages if you want to use :hydra, :el-get, :blackout,,,
-    (leaf el-get :ensure t)
     (leaf blackout :ensure t)
     (leaf diminish :ensure t)
     :config
@@ -1108,8 +1107,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf expand-region :ensure t)
 (leaf google-this :ensure t)
 (leaf multiple-cursors :ensure t)
-(leaf ncaq-emacs-utils :el-get ncaq/ncaq-emacs-utils :require t)
-(leaf point-undo :el-get ncaq/point-undo :require t)
+(leaf ncaq-emacs-utils :straight (ncaq-emacs-utils :type git :host github :repo "ncaq/ncaq-emacs-utils") :require t)
+(leaf point-undo :straight (point-undo :type git :host github :repo "ncaq/point-undo") :require t)
 (leaf symbolword-mode :ensure t :require t :global-minor-mode t :blackout t)
 (leaf which-key :ensure t :global-minor-mode t :blackout t)
 
@@ -1776,7 +1775,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 ;;; VB
 
 (leaf visual-basic-mode
-  :el-get emacsmirror/visual-basic-mode
+  :straight (visual-basic-mode :type git :host github :repo "emacsmirror/visual-basic-mode")
   :mode "\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'"
   :custom
   (visual-basic-capitalize-keywords-p . nil) ; 文字列リテラルの内部の名前まで変更してしまうのでオフにします
