@@ -1855,6 +1855,10 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf json-mode    :ensure t :hook (json-mode-hook    . prettier-toggle-setup) (json-mode-local-vars-hook . lsp))
 (leaf yaml-mode    :ensure t :hook (yaml-mode-hook    . prettier-toggle-setup) (yaml-mode-local-vars-hook . lsp))
 
+(leaf prisma-mode
+  :straight (prisma-mode :type git :host github :repo "pimeys/emacs-prisma-mode" :branch "main")
+  :hook (prisma-mode-hook . lsp))
+
 (leaf yarn-mode :ensure t)
 
 (leaf css-mode
