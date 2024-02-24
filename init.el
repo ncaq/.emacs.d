@@ -652,7 +652,15 @@ Emacs側でシェルを読み込む。"
     :defvar helm-source-ls-git-status helm-source-ls-git helm-source-ls-git-buffers helm-ls-git-rebase-todo-mode-map
     :defun helm-ls-git-build-git-status-source helm-ls-git-build-ls-git-source helm-ls-git-build-buffers-source
     :config
-    ;; helm-for-filesで出力するのには手動初期化が必要
+    ;; git-commmit.elなど特化型のものが存在するためバッファ向けのモードは不要。
+    (setq auto-mode-alist
+          (cl-remove-if
+           (lambda (pair)
+             (member
+              (cdr pair)
+              '(helm-ls-git-commit-mode helm-ls-git-rebase-todo-mode)))
+           auto-mode-alist))
+    ;; helm-for-filesで出力するのには手動初期化が必要。
     (setq helm-source-ls-git-status
           (helm-ls-git-build-git-status-source)
           helm-source-ls-git
