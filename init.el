@@ -761,7 +761,7 @@ Emacs側でシェルを読み込む。"
     :hook company-mode-hook))
 
 (leaf copilot
-  :straight (copilot :type git :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+  :straight (copilot :type git :host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
   :global-minor-mode global-copilot-mode
   :defun copilot-mode
   :init
