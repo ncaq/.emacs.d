@@ -950,6 +950,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (leaf magit-wip :blackout t :custom (magit-wip-mode . t))
   (leaf git-commit
     :after t
+    :custom
+    (git-commit-major-mode . #'markdown-mode)
     :init
     (defun yas-insert-snippet-conventional-commits-type ()
       "@commitlint/config-conventionalが受け付けるtypeを選択して入力する。"
