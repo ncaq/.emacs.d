@@ -1120,7 +1120,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf ncaq-emacs-utils :straight (ncaq-emacs-utils :type git :host github :repo "ncaq/ncaq-emacs-utils") :require t)
 (leaf point-undo :straight (point-undo :type git :host github :repo "ncaq/point-undo") :require t)
 (leaf symbolword-mode :ensure t :require t :global-minor-mode t :blackout t)
-(leaf which-key :ensure t :global-minor-mode t :blackout t)
 
 ;;; 汎用プログラミング機能
 
