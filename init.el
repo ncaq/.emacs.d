@@ -506,7 +506,7 @@ Emacs側でシェルを読み込む。"
   (message-log-max . 100000)                  ; メッセージをたくさん残す
   (read-buffer-completion-ignore-case . t)    ; 大文字と小文字を区別しない バッファ名
   (read-file-name-completion-ignore-case . t) ; 大文字と小文字を区別しない ファイル名
-  (read-process-output-max . 1048576)         ; プロセスから一度に読み込む量を増やす
+  (read-process-output-max . 3145728)         ; プロセスから一度に読み込む量を増やす、3MB
   (ring-bell-function . #'ignore)             ; ビープ音を消す
   (scroll-conservatively . 1)                 ; 最下段までスクロールした時のカーソルの移動量を減らす
   (scroll-margin . 5))                        ; 最下段までスクロールしたという判定を伸ばす
