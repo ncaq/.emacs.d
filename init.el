@@ -268,7 +268,6 @@ Emacs側でシェルを読み込む。"
   ("C-," . off-input-method)
   ("C--" . text-scale-decrease)
   ("C-." . on-input-method)
-  ("C-;" . string-inflection-dwim-style-cycle)
   ("C-=" . text-scale-reset)
   ("C-^" . dired-jump)
   ("C-a" . smart-move-beginning-of-line)
@@ -310,6 +309,7 @@ Emacs側でシェルを読み込む。"
 
   ("C-M-'" . mc/edit-lines)
   ("C-M-," . helm-imenu)
+  ("C-M-;" . string-inflection-dwim-style-cycle)
   ("C-M-b" . backward-kill-sexp)
   ("C-M-d" . kill-sexp)
   ("C-M-l" . delete-duplicate-lines)
