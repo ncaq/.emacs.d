@@ -1907,6 +1907,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf prisma-mode
   :straight (prisma-mode :type git :host github :repo "pimeys/emacs-prisma-mode" :branch "main")
+  :after lsp-mode
   :hook (prisma-mode-hook . lsp))
 
 (leaf yarn-mode :ensure t)
