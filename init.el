@@ -761,6 +761,18 @@ Emacs側でシェルを読み込む。"
     :blackout t
     :hook company-mode-hook))
 
+(leaf yasnippet
+  :ensure t
+  :global-minor-mode yas-global-mode
+  :blackout yas-minor-mode
+  :defun yas-expand-snippet yas-lookup-snippet
+  :bind (:yas-minor-mode-map
+         ("<tab>" . nil)
+         ("TAB" . nil)
+         ("C-c C-y" . company-yasnippet)
+         ("M-z" . yas-insert-snippet))
+  :config (leaf yasnippet-snippets :ensure t))
+
 (leaf copilot
   :straight (copilot :type git :host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
   :global-minor-mode global-copilot-mode
@@ -776,17 +788,6 @@ Emacs側でシェルを読み込む。"
          ("C-M-n" . copilot-next-completion)
          ("C-M-t" . copilot-previous-completion)))
 
-(leaf yasnippet
-  :ensure t
-  :global-minor-mode yas-global-mode
-  :blackout yas-minor-mode
-  :defun yas-expand-snippet yas-lookup-snippet
-  :bind (:yas-minor-mode-map
-         ("<tab>" . nil)
-         ("TAB" . nil)
-         ("C-c C-y" . company-yasnippet)
-         ("M-z" . yas-insert-snippet))
-  :config (leaf yasnippet-snippets :ensure t))
 
 ;;; テキスト処理
 
