@@ -268,7 +268,6 @@ Emacs側でシェルを読み込む。"
   ("C-," . off-input-method)
   ("C--" . text-scale-decrease)
   ("C-." . on-input-method)
-  ("C-;" . string-inflection-dwim-style-cycle)
   ("C-=" . text-scale-reset)
   ("C-^" . dired-jump)
   ("C-a" . smart-move-beginning-of-line)
@@ -310,6 +309,7 @@ Emacs側でシェルを読み込む。"
 
   ("C-M-'" . mc/edit-lines)
   ("C-M-," . helm-imenu)
+  ("C-M-;" . string-inflection-dwim-style-cycle)
   ("C-M-b" . backward-kill-sexp)
   ("C-M-d" . kill-sexp)
   ("C-M-l" . delete-duplicate-lines)
@@ -609,6 +609,7 @@ Emacs側でシェルを読み込む。"
             "WoMan-Log"
             "copilot events"
             "copilot-balancer"
+            "copilot-chat-curl-stderr"
             "envrc"
             "prettier.+"
             "straight-process"
@@ -761,6 +762,20 @@ Emacs側でシェルを読み込む。"
     :blackout t
     :hook company-mode-hook))
 
+(leaf yasnippet
+  :ensure t
+  :global-minor-mode yas-global-mode
+  :blackout yas-minor-mode
+  :defun yas-expand-snippet yas-lookup-snippet
+  :bind (:yas-minor-mode-map
+         ("<tab>" . nil)
+         ("TAB" . nil)
+         ("C-c C-y" . company-yasnippet)
+         ("M-z" . yas-insert-snippet))
+  :config (leaf yasnippet-snippets :ensure t))
+
+;;; GitHub copilot
+
 (leaf copilot
   :straight (copilot :type git :host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
   :global-minor-mode global-copilot-mode
@@ -776,17 +791,42 @@ Emacs側でシェルを読み込む。"
          ("C-M-n" . copilot-next-completion)
          ("C-M-t" . copilot-previous-completion)))
 
-(leaf yasnippet
-  :ensure t
-  :global-minor-mode yas-global-mode
-  :blackout yas-minor-mode
-  :defun yas-expand-snippet yas-lookup-snippet
-  :bind (:yas-minor-mode-map
-         ("<tab>" . nil)
-         ("TAB" . nil)
-         ("C-c C-y" . company-yasnippet)
-         ("M-z" . yas-insert-snippet))
-  :config (leaf yasnippet-snippets :ensure t))
+(leaf copilot-chat
+  :straight (copilot-chat :type git :host github :repo "chep/copilot-chat.el" :files ("*.el"))
+  :after request ; 要求しないとトークンが無視され毎回認証が必要になる。
+  :require t
+  :bind
+  ("C-; C-;" . copilot-chat-display)
+  ("C-; C-a" . copilot-chat-ask-and-insert)
+  ("C-; C-b" . copilot-chat-list)
+  ("C-; C-c" . copilot-chat-custom-prompt-selection)
+  ("C-; C-d" . copilot-chat-doc)
+  ("C-; C-e" . copilot-chat-explain)
+  ("C-; C-f" . copilot-chat-fix)
+  ("C-; C-l" . copilot-chat-add-current-buffer)
+  ("C-; C-o" . copilot-chat-optimize)
+  ("C-; C-q" . copilot-chat-reset)
+  ("C-; C-r" . copilot-chat-review)
+  ("C-; C-t" . copilot-chat-test)
+  ("C-; C-u" . copilot-chat-del-current-buffer)
+  :config
+  (defconst
+    copilot-chat-prompt-emacs-japanese "The user works in Emacs. Please respond in Japanese."
+    "プロンプト: ユーザはエディタにEmacsを使っていて日本語での返答を望んでいる。")
+  (leaf shell-maker
+    :straight (shell-maker :type git :host github :repo "xenodium/chatgpt-shell" :files ("shell-maker.el")))
+  (leaf copilot-chat-shell-maker
+    :after copilot-chat
+    :require t
+    :custom
+    (copilot-chat-frontend . 'shell-maker)
+    :defvar copilot-chat-frontend-list copilot-chat-prompt
+    :defun copilot-chat-shell-maker-init
+    :config
+    (push '(shell-maker . copilot-chat-shell-maker-init) copilot-chat-frontend-list)
+    (copilot-chat-shell-maker-init)
+    ;; init関数でグローバルプロンプトが上書きされるため、日本語を使うように小さくプロンプトを再設定。
+    (setq copilot-chat-prompt copilot-chat-prompt-emacs-japanese)))
 
 ;;; テキスト処理
 
