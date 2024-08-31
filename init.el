@@ -791,6 +791,9 @@ Emacs側でシェルを読み込む。"
          ("C-M-n" . copilot-next-completion)
          ("C-M-t" . copilot-previous-completion)))
 
+(leaf shell-maker
+  :straight (shell-maker :type git :host github :repo "xenodium/chatgpt-shell" :files ("shell-maker.el")))
+
 (leaf copilot-chat
   :straight (copilot-chat :type git :host github :repo "chep/copilot-chat.el" :files ("*.el"))
   :after request ; 要求しないとトークンが無視され毎回認証が必要になる。
@@ -813,8 +816,6 @@ Emacs側でシェルを読み込む。"
   (defconst
     copilot-chat-prompt-emacs-japanese "The user works in Emacs. Please respond in Japanese."
     "プロンプト: ユーザはエディタにEmacsを使っていて日本語での返答を望んでいる。")
-  (leaf shell-maker
-    :straight (shell-maker :type git :host github :repo "xenodium/chatgpt-shell" :files ("shell-maker.el")))
   (leaf copilot-chat-shell-maker
     :after copilot-chat
     :require t
