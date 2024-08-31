@@ -779,17 +779,13 @@ Emacs側でシェルを読み込む。"
 (leaf copilot
   :straight (copilot :type git :host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
   :global-minor-mode global-copilot-mode
-  :defun copilot-mode
-  :init
-  (defun copilot-mode-off ()
-    "copilot-modeを無効にします。"
-    (interactive)
-    (copilot-mode -1))
-  :bind (:copilot-completion-map
-         ("<tab>" . copilot-accept-completion)
-         ("TAB"   . copilot-accept-completion)
-         ("C-M-n" . copilot-next-completion)
-         ("C-M-t" . copilot-previous-completion)))
+  :bind
+  ("C-; C-k" . global-copilot-mode)
+  (:copilot-completion-map
+   ("<tab>" . copilot-accept-completion)
+   ("TAB"   . copilot-accept-completion)
+   ("C-M-n" . copilot-next-completion)
+   ("C-M-t" . copilot-previous-completion)))
 
 (leaf shell-maker
   :straight (shell-maker :type git :host github :repo "xenodium/chatgpt-shell" :files ("shell-maker.el")))
