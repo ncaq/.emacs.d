@@ -778,9 +778,15 @@ Emacs側でシェルを読み込む。"
 
 (leaf copilot
   :straight (copilot :type git :host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
-  :global-minor-mode global-copilot-mode
+  :init
+  (defun turn-on-copilot-mode ()
+    (interactive)
+    (copilot-mode 1))
+  ;; 起動時に無限再帰してしまう問題から`global-copilot-mode'をしばらく諦める。
+  ;; [global-copilot-mode uses entire system memory · Issue #226 · copilot-emacs/copilot.el](https://github.com/copilot-emacs/copilot.el/issues/226)
+  :hook ((text-mode-hook prog-mode-hook) . turn-on-copilot-mode)
   :bind
-  ("C-; C-k" . global-copilot-mode)
+  ("C-; C-k" . copilot-mode)
   (:copilot-completion-map
    ("<tab>" . copilot-accept-completion)
    ("TAB"   . copilot-accept-completion)
