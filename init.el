@@ -814,22 +814,27 @@ Emacs側でシェルを読み込む。"
   ("C-; C-r" . copilot-chat-review)
   ("C-; C-t" . copilot-chat-test)
   ("C-; C-u" . copilot-chat-del-current-buffer)
-  :config
+  :defvar copilot-chat-prompt
+  :init
   (defconst
     copilot-chat-prompt-emacs-japanese "The user works in Emacs. Please respond in Japanese."
     "プロンプト: ユーザはエディタにEmacsを使っていて日本語での返答を望んでいる。")
+  (defun copilot-chat-set-japanese ()
+    "日本語を使うように小さくプロンプトを再設定する。"
+    (setq copilot-chat-prompt copilot-chat-prompt-emacs-japanese))
+  :config
   (leaf copilot-chat-shell-maker
     :after copilot-chat
     :require t
     :custom
     (copilot-chat-frontend . 'shell-maker)
-    :defvar copilot-chat-frontend-list copilot-chat-prompt
     :defun copilot-chat-shell-maker-init
+    :defvar copilot-chat-frontend-list
+    ;; 各種init関数でプロンプトが再設定されてしまうため(orgやmarkdownを切り替えるためだろう)、adviceを使って毎回再設定する。
+    :advice (:after copilot-chat-shell-maker-init copilot-chat-set-japanese)
     :config
     (push '(shell-maker . copilot-chat-shell-maker-init) copilot-chat-frontend-list)
-    (copilot-chat-shell-maker-init)
-    ;; init関数でグローバルプロンプトが上書きされるため、日本語を使うように小さくプロンプトを再設定。
-    (setq copilot-chat-prompt copilot-chat-prompt-emacs-japanese)))
+    (copilot-chat-shell-maker-init)))
 
 ;;; テキスト処理
 
