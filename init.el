@@ -972,7 +972,7 @@ Emacs側でシェルを読み込む。"
 Forgeとかにも作成機能はあるが、レビュアーやラベルやProjectsの指定はwebの方が楽。"
     (interactive)
     ;; Git関係なのでMagitのProcessに履歴を残しておきたい。
-    (magit-start-process "gh" nil "pr" "create" "--assignee" "@me" "--web"))
+    (magit-start-process "gh" nil "pr" "create" "--assignee" "@me" "--fill" "--web"))
   (defun gh-repo-view-web ()
     "GitHub CLIを使って現在フォーカスしているリポジトリをwebで開きます。"
     (interactive)
