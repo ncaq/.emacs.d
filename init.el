@@ -1036,7 +1036,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     :init
     (defun forge-pull-when-forge-repo ()
       "forgeが設定されているリポジトリでは`forge-pull'を実行する。"
-      (when (forge-get-repository nil) (forge-pull)))
+      (when (forge-get-repository :tracked?) (forge-pull)))
     :advice (:after magit-pull forge-pull-when-forge-repo)
     :config
     (leaf sqlite3
