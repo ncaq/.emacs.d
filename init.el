@@ -374,7 +374,7 @@ Emacs側でシェルを読み込む。"
       (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append)))
   ;; `frame-pixel-width'がフレーム作成後でないと実用的な値を返さないので、
   ;; 初期化後にフォントサイズを設定します。
-  (add-hook 'after-init-hook 'font-setup t))
+  (add-hook 'window-setup-hook 'font-setup))
 
 ;; シンタックスハイライトをグローバルで有効化
 (leaf font-core :config (global-font-lock-mode 1))
