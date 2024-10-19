@@ -1909,7 +1909,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf yaml-mode    :ensure t :hook (yaml-mode-hook    . prettier-toggle-setup) (yaml-mode-local-vars-hook . lsp))
 
 (leaf prisma-mode
-  :straight (:url "https://github.com/pimeys/emacs-prisma-mode")
+  :vc (:url "https://github.com/pimeys/emacs-prisma-mode")
   :after lsp-mode
   :hook (prisma-mode-hook . lsp))
 
