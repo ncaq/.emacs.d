@@ -793,11 +793,8 @@ Emacs側でシェルを読み込む。"
    ("C-M-n" . copilot-next-completion)
    ("C-M-t" . copilot-previous-completion)))
 
-(leaf shell-maker
-  :straight (shell-maker :type git :host github :repo "xenodium/chatgpt-shell" :files ("shell-maker.el")))
-
 (leaf copilot-chat
-  :straight (copilot-chat :type git :host github :repo "chep/copilot-chat.el" :files ("*.el"))
+  :ensure t
   :after request ; 要求しないとトークンが無視され毎回認証が必要になる。
   :require t
   :bind
