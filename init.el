@@ -777,7 +777,7 @@ Emacs側でシェルを読み込む。"
 ;;; GitHub copilot
 
 (leaf copilot
-  :straight (copilot :type git :host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
+  :straight :vc (:url "https://github.com/copilot-emacs/copilot.el")
   :init
   (defun turn-on-copilot-mode ()
     (interactive)
@@ -1161,7 +1161,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf expand-region :ensure t)
 (leaf google-this :ensure t)
 (leaf multiple-cursors :ensure t)
-(leaf ncaq-emacs-utils :straight (ncaq-emacs-utils :type git :host github :repo "ncaq/ncaq-emacs-utils") :require t)
+(leaf ncaq-emacs-utils :vc (:url "https://github.com/ncaq/ncaq-emacs-utils") :require t)
 (leaf point-undo :straight (point-undo :type git :host github :repo "ncaq/point-undo") :require t)
 (leaf symbolword-mode :ensure t :require t :global-minor-mode t :blackout t)
 
@@ -1909,7 +1909,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf yaml-mode    :ensure t :hook (yaml-mode-hook    . prettier-toggle-setup) (yaml-mode-local-vars-hook . lsp))
 
 (leaf prisma-mode
-  :straight (prisma-mode :type git :host github :repo "pimeys/emacs-prisma-mode" :branch "main")
+  :straight (:url "https://github.com/pimeys/emacs-prisma-mode")
   :after lsp-mode
   :hook (prisma-mode-hook . lsp))
 
