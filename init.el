@@ -777,7 +777,7 @@ Emacs側でシェルを読み込む。"
 ;;; GitHub copilot
 
 (leaf copilot
-  :straight :vc (:url "https://github.com/copilot-emacs/copilot.el")
+  :vc (:url "https://github.com/copilot-emacs/copilot.el")
   :init
   (defun turn-on-copilot-mode ()
     (interactive)
