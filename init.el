@@ -443,18 +443,10 @@ Emacs側でシェルを読み込む。"
   :custom
   ;; バックアップ先をカレントディレクトリから変更
   (backup-directory-alist . `(("." . ,(concat user-emacs-directory "file-backup/"))))
-  ;; 自動保存(クラッシュ時の対応)先をカレントディレクトリから変更
-  (auto-save-file-name-transforms . `((".*" ,temporary-file-directory t)))
   ;; askだと件数を超えた自動削除時時に一々聞いてくるのでtに変更
   (delete-old-versions . t)
   ;; backupに新しいものをいくつ残すか
   (kept-new-versions . 10)
-  ;; backupに古いものをいくつ残すか
-  (kept-old-versions . 0)
-  ;; バックアップファイル %backup%~ を作成しない。
-  ;; BtrfsとSnapperの環境下で作業することが多くなったのでEmacs側で単一のバックアップファイルを生成するメリットがあまりない。
-  ;; その割に終了時やパッケージ読み込み時のcustom.el(いらない)のバックアップを一々取るパフォーマンス上のデメリットが多い。
-  (make-backup-files . nil)
   ;; 複数バックアップ
   (version-control . t))
 
