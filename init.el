@@ -805,12 +805,10 @@ Emacs側でシェルを読み込む。"
   ("C-; C-u" . copilot-chat-del-current-buffer)
   :defvar copilot-chat-prompt
   :init
-  (defconst
-    copilot-chat-prompt-emacs-japanese "The user works in Emacs. Please respond in Japanese."
-    "プロンプト: ユーザはエディタにEmacsを使っていて日本語での返答を望んでいる。")
+  (defconst copilot-chat-prompt-japanese "Please respond in Japanese.")
   (defun copilot-chat-set-japanese ()
     "日本語を使うように小さくプロンプトを再設定する。"
-    (setq copilot-chat-prompt copilot-chat-prompt-emacs-japanese))
+    (setq copilot-chat-prompt copilot-chat-prompt-japanese))
   :config
   (leaf copilot-chat-shell-maker
     :after copilot-chat
