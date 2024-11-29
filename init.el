@@ -71,7 +71,12 @@ Emacs側でシェルを読み込む。"
   ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
   :config (exec-path-from-shell-initialize))
 
-(leaf nix-mode :ensure t)
+(leaf nix-mode
+  :ensure t
+  :init
+  (defun nix-mode-setup ()
+    (add-hook 'before-save-hook #'nix-format-before-save nil t))
+  :hook (nix-mode-hook . nix-mode-setup))
 
 (leaf startup
   :custom
