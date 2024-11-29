@@ -1172,23 +1172,28 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (lsp-enable-snippet . nil)             ; 補完からスニペット展開をするのを無効化
   (lsp-file-watch-threshold . 10000)     ; 監視ファイル警告を緩める
   (lsp-imenu-sort-methods . '(position)) ; sortがデフォルトでは種類別になっている
+  (lsp-warn-no-matched-clients . nil)    ; クライアントが見つからない時の警告を無効化
   :defun lsp-code-actions-at-point lsp-register-client lsp-stdio-connection lsp:code-action-title make-lsp-client
   :init
   (defun lsp-format-before-save ()
     "保存する前にフォーマットする設定を有効にする。
 呼び出したバッファーでしか有効にならない。"
     (add-hook 'before-save-hook #'lsp-format-buffer nil t))
-  :bind (:lsp-mode-map
-         ("C-S-SPC" . nil)
-         ("C-c C-a" . lsp-execute-code-action)
-         ("C-c C-i" . lsp-format-region)
-         ("C-c C-r" . lsp-rename)
-         ("C-c C-s" . lsp-lens-mode)
-         ("C-c C-t" . lsp-describe-thing-at-point)
-         ("C-c C-w" . lsp-workspace-restart))
-  :bind (:lsp-signature-mode-map
-         ("M-n" . nil)
-         ("M-p" . nil))
+  ;; `prog-mode'を継承したモード全体でlsp-modeを有効にしてしまう。
+  ;; 見つからない時の警告は`lsp-warn-no-matched-clients'で無効化。
+  :hook ((prog-mode-hook markdown-mode-hook) . lsp-deferred)
+  :bind
+  ((:lsp-mode-map
+    ("C-S-SPC" . nil)
+    ("C-c C-a" . lsp-execute-code-action)
+    ("C-c C-i" . lsp-format-region)
+    ("C-c C-r" . lsp-rename)
+    ("C-c C-s" . lsp-lens-mode)
+    ("C-c C-t" . lsp-describe-thing-at-point)
+    ("C-c C-w" . lsp-workspace-restart))
+   (:lsp-signature-mode-map
+    ("M-n" . nil)
+    ("M-p" . nil)))
   :config
   (dvorak-set-key-prog lsp-signature-mode-map)
   (leaf lsp-ui
@@ -1305,7 +1310,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf dotenv-mode :ensure t)
 (leaf egison-mode :ensure t :mode ("\\.egi$" . egison-mode))
 (leaf generic-x :require t)
-(leaf go-mode :ensure t :hook (go-mode-hook . lsp))
+(leaf go-mode :ensure t)
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil))
 (leaf inf-lisp :custom (inferior-lisp-program . "sbcl --noinform"))
 (leaf julia-mode :ensure t)
@@ -1323,10 +1328,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 ;;; C/C++
 
 (leaf cc-mode
-  :defvar c-mode-base-map c-default-style
-  :hook
-  ((c-mode-hook . lsp)
-   (c++-mode-hook . lsp))
+  :after t
+  :defvar c-mode-base-map
   :config
   (dvorak-set-key-prog c-mode-base-map)
   (leaf ccls :ensure t))
@@ -1336,6 +1339,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf d-mode
   :ensure t
   :after cc-vars
+  :defvar c-default-style
   :config
   (add-to-list 'c-default-style '(d-mode . "java"))
   (leaf dfmt
@@ -1389,7 +1393,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf elm-mode
   :ensure t
   :hook
-  (elm-mode-hook . lsp)
   (elm-mode-hook . lsp-format-before-save)
   :bind (:elm-mode-map
          ("C-c C-f" . nil)
@@ -1472,8 +1475,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (leaf lsp-haskell
     :ensure t
     :require t
-    :hook
-    (haskell-mode-hook . lsp)
     :custom
     ;; フォーマッターをfourmoluにする。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
     (lsp-haskell-formatting-provider . "fourmolu")
@@ -1505,8 +1506,7 @@ Add the type signature that GHC infers to the function located below the point."
   :config
   (leaf lsp-java
     :ensure t
-    :require t
-    :hook (java-mode-hook . lsp)))
+    :require t))
 
 (leaf groovy-mode :ensure t)
 
@@ -1538,7 +1538,7 @@ Add the type signature that GHC infers to the function located below the point."
      ("ts" . web-mode)
      ("tsx" . web-mode)
      ("zsh" . sh-mode)))
-  (leaf lsp-marksman :ensure :require t :hook (markdown-mode-hook . lsp)))
+  (leaf lsp-marksman :ensure :require t))
 
 ;;; OCaml
 
@@ -1573,8 +1573,7 @@ Add the type signature that GHC infers to the function located below the point."
   (defun powershell-setup ()
     (set-buffer-file-coding-system 'utf-8-with-signature-dos))
   :hook
-  (powershell-mode-hook . powershell-setup)
-  (powershell-mode-hook . lsp))
+  (powershell-mode-hook . powershell-setup))
 
 (leaf bat-mode
   :init
@@ -1674,7 +1673,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
        ((locate-dominating-file default-directory "pyproject.toml")
         (poetry-track-virtualenv)
         (setq-local lsp-pyright-venv-path python-shell-virtualenv-root)
-        (lsp))
+        (lsp-deferred))
        ;; Pipenv環境
        ((locate-dominating-file default-directory "Pipfile")
         (pyvenv-track-virtualenv)
@@ -1684,13 +1683,13 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
           (setq-local python-shell-interpreter "pipenv")
           (setq-local python-shell-interpreter-args "run python3")
           (setq-local lsp-pyright-venv-path python-shell-virtualenv-root))
-        (lsp))
+        (lsp-deferred))
        (t
         (pyvenv-track-virtualenv)
         (when python-shell-virtualenv-root
           (setq-local pyvenv-activate (directory-file-name python-shell-virtualenv-root))
           (setq-local lsp-pyright-venv-path python-shell-virtualenv-root))
-        (lsp))))
+        (lsp-deferred))))
     :hook (python-mode-hook . lsp-pyright-setup)))
 
 (leaf ein :ensure t)
@@ -1705,8 +1704,8 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 ;;; Ruby
 
 (leaf ruby-mode
+  :after t
   :custom (ruby-insert-encoding-magic-comment . nil)
-  :hook (ruby-mode-hook . lsp)
   :defvar ruby-mode-map
   :config
   (dvorak-set-key-prog ruby-mode-map)
@@ -1727,7 +1726,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf scala-mode
   :ensure t
   :hook
-  (scala-mode-hook . lsp)
   (scala-mode-hook . lsp-format-before-save)
   :config
   (leaf lsp-metals :ensure t :require t)
@@ -1749,19 +1747,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 ;;; Sh Shell
 
-(leaf sh-script
-  :custom (sh-basic-offset . 2)
-  :config
-  (leaf sh
-    :mode "\\.zsh$"
-    :defvar sh-shell
-    :init
-    (defun sh-setup ()
-      "lspを起動する。
-[bash-lsp/bash-language-server: A language server for Bash](https://github.com/bash-lsp/bash-language-server)
-はzshに対応していない。"
-      (when (member sh-shell '(sh bash)) (lsp)))
-    :hook (sh-mode-hook . sh-setup)))
+(leaf sh-script :custom (sh-basic-offset . 2))
 
 ;;; Swift
 
@@ -1772,7 +1758,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
     :ensure t
     :require t
     :when (eq system-type 'darwin)
-    :hook (swift-mode-hook . lsp)
     :custom
     (lsp-sourcekit-executable
      . "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
@@ -1870,12 +1855,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   (web-mode-jsx-depth-3-face . '((t (:background "#08404F"))))
   (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
   (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
-  :init
-  (defun web-mode-setup ()
-    (setq-local lsp-enabled-clients '(ts-ls eslint))
-    (lsp)
-    (prettier-toggle-setup))
-  :hook (web-mode-hook . web-mode-setup)
+  :hook (web-mode-hook . prettier-toggle-setup)
   :bind
   (:web-mode-map
    ([remap comment-indent-new-line] . web-mode-comment-indent-new-line)
@@ -1890,19 +1870,18 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf js :custom (js-indent-level . 2))
 
 (leaf graphql-mode :ensure t :hook (graphql-mode-hook . prettier-toggle-setup))
-(leaf json-mode    :ensure t :hook (json-mode-hook    . prettier-toggle-setup) (json-mode-hook . lsp))
-(leaf yaml-mode    :ensure t :hook (yaml-mode-hook    . prettier-toggle-setup) (yaml-mode-hook . lsp))
+(leaf json-mode    :ensure t :hook (json-mode-hook    . prettier-toggle-setup))
+(leaf yaml-mode    :ensure t :hook (yaml-mode-hook    . prettier-toggle-setup))
 
 (leaf prisma-mode
   :vc (:url "https://github.com/pimeys/emacs-prisma-mode")
-  :after lsp-mode
-  :hook (prisma-mode-hook . lsp))
+  :after lsp-mode)
 
 (leaf yarn-mode :ensure t)
 
 (leaf css-mode
   :custom (css-indent-offset . 2)
-  :hook (css-mode-hook . lsp) ((css-mode-hook scss-mode-hook) . prettier-toggle-setup))
+  :hook ((css-mode-hook scss-mode-hook) . prettier-toggle-setup))
 (leaf less-css-mode :hook (less-css-mode-hook . prettier-toggle-setup))
 
 (leaf nxml-mode
