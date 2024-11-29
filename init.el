@@ -1159,13 +1159,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 
 ;;; 汎用プログラミング機能
 
-;; lspなどサーバをlocal変数を適応した後に起動し始めるのに必要。
-;; 主にNode.jsとDenoの切り替えや、LSPサーバに渡すカスタム変数の変更など。
-(defun run-local-vars-mode-hook ()
-  "Run `major-mode' hook after the local variables have been processed."
-  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
-(add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
-
 (leaf lsp-mode
   :ensure t
   :preface
@@ -1897,8 +1890,8 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf js :custom (js-indent-level . 2))
 
 (leaf graphql-mode :ensure t :hook (graphql-mode-hook . prettier-toggle-setup))
-(leaf json-mode    :ensure t :hook (json-mode-hook    . prettier-toggle-setup) (json-mode-local-vars-hook . lsp))
-(leaf yaml-mode    :ensure t :hook (yaml-mode-hook    . prettier-toggle-setup) (yaml-mode-local-vars-hook . lsp))
+(leaf json-mode    :ensure t :hook (json-mode-hook    . prettier-toggle-setup) (json-mode-hook . lsp))
+(leaf yaml-mode    :ensure t :hook (yaml-mode-hook    . prettier-toggle-setup) (yaml-mode-hook . lsp))
 
 (leaf prisma-mode
   :vc (:url "https://github.com/pimeys/emacs-prisma-mode")
