@@ -71,6 +71,8 @@ Emacs側でシェルを読み込む。"
   ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
   :config (exec-path-from-shell-initialize))
 
+(leaf nix-mode :ensure t)
+
 (leaf startup
   :custom
   (inhibit-startup-screen . t)      ; スタートアップ画面を出さない
