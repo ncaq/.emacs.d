@@ -1178,17 +1178,18 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     "保存する前にフォーマットする設定を有効にする。
 呼び出したバッファーでしか有効にならない。"
     (add-hook 'before-save-hook #'lsp-format-buffer nil t))
-  :bind (:lsp-mode-map
-         ("C-S-SPC" . nil)
-         ("C-c C-a" . lsp-execute-code-action)
-         ("C-c C-i" . lsp-format-region)
-         ("C-c C-r" . lsp-rename)
-         ("C-c C-s" . lsp-lens-mode)
-         ("C-c C-t" . lsp-describe-thing-at-point)
-         ("C-c C-w" . lsp-workspace-restart))
-  :bind (:lsp-signature-mode-map
-         ("M-n" . nil)
-         ("M-p" . nil))
+  :bind
+  ((:lsp-mode-map
+    ("C-S-SPC" . nil)
+    ("C-c C-a" . lsp-execute-code-action)
+    ("C-c C-i" . lsp-format-region)
+    ("C-c C-r" . lsp-rename)
+    ("C-c C-s" . lsp-lens-mode)
+    ("C-c C-t" . lsp-describe-thing-at-point)
+    ("C-c C-w" . lsp-workspace-restart))
+   (:lsp-signature-mode-map
+    ("M-n" . nil)
+    ("M-p" . nil)))
   :config
   (dvorak-set-key-prog lsp-signature-mode-map)
   (leaf lsp-ui
