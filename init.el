@@ -1325,6 +1325,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf opascal-mode :mode "\\.dfm$" "\\.pas$")
 (leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
 (leaf plantuml-mode :ensure t :mode "\\.puml$" :custom (plantuml-default-exec-mode . 'executable))
+(leaf powershell :ensure t)
 (leaf robots-txt-mode :ensure t)
 (leaf scheme :custom (scheme-program-name . "gosh"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
@@ -1569,22 +1570,6 @@ Add the type signature that GHC infers to the function located below the point."
 (leaf dune
   :ensure t
   :config (leaf dune-format :ensure t :hook (dune-mode-hook . dune-format-on-save-mode)))
-
-;;; PowerShell
-
-(leaf powershell
-  :ensure t
-  :init
-  (defun powershell-setup ()
-    (set-buffer-file-coding-system 'utf-8-with-signature-dos))
-  :hook
-  (powershell-mode-hook . powershell-setup))
-
-(leaf bat-mode
-  :init
-  (defun bat-setup ()
-    (set-buffer-file-coding-system 'ascii-dos))
-  :hook (bat-mode-hook . bat-setup))
 
 ;;; Prolog
 
