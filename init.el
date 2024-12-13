@@ -1841,7 +1841,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf typespec-ts-mode
   :vc (:url "https://github.com/ncaq/typespec-ts-mode/") ; TODO: melpaにpublishする。
-  :mode "\\.tsp\\'"
   :defun typespec-ts-mode-grammar-install
   :defvar lsp-language-id-configuration
   :hook (typespec-ts-mode-hook . lsp-format-before-save)
