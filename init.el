@@ -628,6 +628,7 @@ Emacs側でシェルを読み込む。"
             "vc"
 
             ".+ls\\(::stderr\\)?"
+            ".+lsp\\(::stderr\\)?"
             "eslint\\(::stderr\\)?"
             "lsp-.+\\(::stderr\\)?"
             "marksman\\(::stderr\\)?"
