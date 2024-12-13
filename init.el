@@ -1837,6 +1837,20 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
           (define-key swift-mode-map [remap indent-whole-buffer] 'swift-format-buffer))))
     :hook (swift-mode-hook . swift-format-setup)))
 
+;;; TypeSpec
+
+(leaf typespec-ts-mode
+  :vc (:url "https://github.com/ncaq/typespec-ts-mode/") ; TODO: melpaにpublishする。
+  :mode "\\.tsp\\'"
+  :defun typespec-ts-mode-grammar-install
+  :defvar lsp-language-id-configuration
+  :hook (typespec-ts-mode-hook . lsp-format-before-save)
+  :bind (:typespec-ts-mode-map
+         ([remap indent-whole-buffer] . lsp-format-buffer))
+  :config
+  (typespec-ts-mode-grammar-install) ; TODO: 必要な時だけインストールする。
+  (add-to-list 'lsp-language-id-configuration '(typespec-ts-mode . "typespec"))) ; TODO: lsp-modeにマージする。
+
 ;;; VB
 
 (leaf visual-basic-mode
