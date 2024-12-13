@@ -628,6 +628,7 @@ Emacs側でシェルを読み込む。"
             "vc"
 
             ".+ls\\(::stderr\\)?"
+            ".+lsp\\(::stderr\\)?"
             "eslint\\(::stderr\\)?"
             "lsp-.+\\(::stderr\\)?"
             "marksman\\(::stderr\\)?"
@@ -1907,6 +1908,15 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :config
   (dvorak-set-key-prog nxml-mode-map)
   (leaf smartparens :config (sp-local-pair 'nxml-mode "<" ">" :actions nil)))
+
+(leaf typespec-ts-mode
+  :load-path "/home/ncaq/Desktop/typespec-ts-mode/"
+  :require t lsp-mode
+  :defun typespec-ts-mode-grammar-install
+  :defvar lsp-language-id-configuration
+  :config
+  (typespec-ts-mode-grammar-install)
+  (add-to-list 'lsp-language-id-configuration '(typespec-ts-mode . "typespec")))
 
 ;; 起動終わりの処理
 
