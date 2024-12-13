@@ -61,7 +61,11 @@
   :hook (package-menu-mode-hook . package-menu-mode-setup)
   :advice (:after package-install package-load-path-native-compile-async))
 
-;;; 初期化
+;;; 早めにserverを起動することで二重起動の可能性を減らす
+
+(leaf server :global-minor-mode t)
+
+;;; PATH
 
 (leaf exec-path-from-shell
   :doc "Windowsのwslg.exeやmacOSのランチャーなどから起動したときはシェルの環境変数を引き継がないため、
@@ -78,15 +82,19 @@ Emacs側でシェルを読み込む。"
     (add-hook 'before-save-hook #'nix-format-before-save nil t))
   :hook (nix-mode-hook . nix-mode-setup))
 
+(leaf envrc
+  :ensure t
+  :global-minor-mode envrc-global-mode
+  :custom (envrc-none-lighter . nil))
+
+(leaf add-node-modules-path :ensure t :defun add-node-modules-path)
+
+;;; 初期時実行
+
 (leaf startup
   :custom
   (inhibit-startup-screen . t)      ; スタートアップ画面を出さない
   (mail-host-address . "ncaq.net")) ; これでuser-mail-addressも設定されます
-
-(leaf editfns
-  :doc "WSL2 + Ubuntuなどだと環境変数`NAME'が`hostname'と同じ値になってしまい、
-`user-full-name'がそれ由来になることを回避します。"
-  :custom `(user-full-name . ,user-login-name))
 
 (defun kill-buffer-if-exist (BUFFER-OR-NAME)
   "バッファが存在すればkillする. 無ければ何もしない."
@@ -96,9 +104,7 @@ Emacs側でシェルを読み込む。"
 ;; 起動時に作られる使わないバッファを削除する
 (kill-buffer-if-exist "*scratch*")
 
-(leaf server :global-minor-mode t)
-
-;;; ある程度独立した定義
+;;; 設定からある程度独立した定義
 
 (leaf f
   :ensure t
@@ -112,6 +118,8 @@ Emacs側でシェルを読み込む。"
        (f-file? osrelease-file)
        (string-match-p "WSL" (f-read-text osrelease-file))))
     "EmacsがWSLで動いているか?"))
+
+(leaf ncaq-emacs-utils :vc (:url "https://github.com/ncaq/ncaq-emacs-utils") :require t)
 
 (defun open-home ()
   (interactive)
@@ -258,10 +266,10 @@ Emacs側でシェルを読み込む。"
 (leaf diff-mode :after t :defvar diff-mode-map           :config (dvorak-set-key-prog diff-mode-map))
 (leaf doc-view  :after t :defvar doc-view-mode-map       :config (dvorak-set-key-prog doc-view-mode-map))
 (leaf help-mode :after t :defvar help-mode-map           :config (dvorak-set-key-prog help-mode-map))
+(leaf make-mode :after t :defvar makefile-mode-map       :config (dvorak-set-key-prog makefile-mode-map))
+(leaf pascal    :after t :defvar pascal-mode-map         :config (dvorak-set-key-prog pascal-mode-map))
 (leaf rect      :after t :defvar rectangle-mark-mode-map :config (dvorak-set-key-prog rectangle-mark-mode-map))
 (leaf rst       :after t :defvar rst-mode-map            :config (dvorak-set-key-prog rst-mode-map))
-
-(leaf flyspell :after t :bind (:flyspell-mode-map ("C-," . nil) ("C-." . nil)))
 
 ;;; global-set-key
 
@@ -364,7 +372,42 @@ Emacs側でシェルを読み込む。"
   ("C-x <RET> u" . revert-buffer-with-coding-system-utf-8-unix)
   ("C-x <RET> s" . revert-buffer-with-coding-system-japanese-cp932-dos))
 
-;;; 見た目
+;;; History
+
+(leaf recentf
+  :custom
+  ((recentf-max-saved-items . 2000)
+   (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
+
+(leaf recentf-ext :ensure t :after docker-tramp :require t)
+(leaf recentf-remove-sudo-tramp-prefix :ensure t :global-minor-mode t :blackout t)
+
+(leaf savehist :global-minor-mode t)
+
+(leaf desktop
+  :global-minor-mode desktop-save-mode
+  :defvar desktop-minor-mode-table
+  :custom
+  (desktop-globals-to-save . nil)
+  (desktop-restore-frames . nil))
+
+(leaf save-place-mode :global-minor-mode t)
+
+(leaf files
+  :custom
+  ;; バックアップ先をカレントディレクトリから変更
+  (backup-directory-alist . `(("." . ,(concat user-emacs-directory "file-backup/"))))
+  ;; askだと件数を超えた自動削除時時に一々聞いてくるのでtに変更
+  (delete-old-versions . t)
+  ;; backupに新しいものをいくつ残すか
+  (kept-new-versions . 10)
+  ;; 複数バックアップ
+  (version-control . t))
+
+(leaf tramp :custom (tramp-allow-unsafe-temporary-files . t)) ; バックアップファイルをroot絡みでも自動許可する。
+(leaf filelock :custom (create-lockfiles . nil)) ; percelがバグるのでロックファイルとしてシンボリックリンクを作らない
+
+;;; テキストなどの見た目
 
 (leaf *font
   :init
@@ -430,41 +473,6 @@ Emacs側でシェルを読み込む。"
   ([remap query-replace] . anzu-query-replace)
   ([remap query-replace-regexp] . anzu-query-replace-regexp))
 
-;;; History
-
-(leaf recentf
-  :custom
-  ((recentf-max-saved-items . 2000)
-   (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
-
-(leaf recentf-ext :ensure t :after docker-tramp :require t)
-(leaf recentf-remove-sudo-tramp-prefix :ensure t :global-minor-mode t :blackout t)
-
-(leaf savehist :global-minor-mode t)
-
-(leaf desktop
-  :global-minor-mode desktop-save-mode
-  :defvar desktop-minor-mode-table
-  :custom
-  (desktop-globals-to-save . nil)
-  (desktop-restore-frames . nil))
-
-(leaf save-place-mode :global-minor-mode t)
-
-(leaf files
-  :custom
-  ;; バックアップ先をカレントディレクトリから変更
-  (backup-directory-alist . `(("." . ,(concat user-emacs-directory "file-backup/"))))
-  ;; askだと件数を超えた自動削除時時に一々聞いてくるのでtに変更
-  (delete-old-versions . t)
-  ;; backupに新しいものをいくつ残すか
-  (kept-new-versions . 10)
-  ;; 複数バックアップ
-  (version-control . t))
-
-(leaf tramp :custom (tramp-allow-unsafe-temporary-files . t)) ; バックアップファイルをroot絡みでも自動許可する。
-(leaf filelock :custom (create-lockfiles . nil)) ; percelがバグるのでロックファイルとしてシンボリックリンクを作らない
-
 ;;; toolkit
 
 (leaf frame
@@ -501,7 +509,7 @@ Emacs側でシェルを読み込む。"
 ;; バッファの名前にディレクトリ名を付けることでユニークになりやすくする
 (leaf uniquify :require t :custom (uniquify-buffer-name-style . 'forward))
 
-;;; Emacs内部でだいたい収まる機能の設定
+;;; Emacs同梱パッケージの小さな設定
 
 (leaf *c-source-code
   :custom
@@ -513,28 +521,25 @@ Emacs側でシェルを読み込む。"
   (read-process-output-max . 3145728)         ; プロセスから一度に読み込む量を増やす、3MB
   (ring-bell-function . #'ignore)             ; ビープ音を消す
   (scroll-conservatively . 1)                 ; 最下段までスクロールした時のカーソルの移動量を減らす
-  (scroll-margin . 5))                        ; 最下段までスクロールしたという判定を伸ばす
+  (scroll-margin . 5)                         ; 最下段までスクロールしたという判定を伸ばす
+  `(user-full-name . ,(user-login-name)))     ; WSL2などでは環境変数`NAME'が`hostname'と同じ値になってしまうことへの対応
 
-(leaf mule-cmds
-  :doc "Windowsなどでも優先してUTF-8を使うための設定。"
-  :config
-  (set-default-coding-systems 'utf-8-unix)
-  (prefer-coding-system 'utf-8))
+(leaf autorevert :global-minor-mode global-auto-revert-mode) ; 自動再読込
+(leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
+(leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
+(leaf indent :custom (standard-indent . 2)) ; フォールバック標準インデント値を2にする
+(leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
+(leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
+(leaf subr :config (fset 'yes-or-no-p 'y-or-n-p)) ; "yes or no"を"y or n"に
+(leaf vc-hooks :custom (vc-follow-symlinks . t)) ; 常にシンボリックリンクをたどる
+(leaf warnings :custom (warning-minimum-level . :error)) ; 警告はエラーレベルでないとポップアップ表示しない
 
 (leaf simple
   :custom
   (blink-matching-paren . nil)          ; 括弧移動無効
   (kill-ring-max . 600)) ; メモリに余裕があるのでクリップボードの履歴数を増やす
 
-(leaf autorevert :global-minor-mode global-auto-revert-mode) ; 自動再読込
-(leaf executable :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p)) ; スクリプトに実行権限付加
-(leaf files :custom (require-final-newline . t)) ; ファイルの最後に改行
-(leaf indent :custom (standard-indent . 2)) ; 標準インデント値を出来るだけ2にする
-(leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
-(leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
-(leaf subr :config (fset 'yes-or-no-p 'y-or-n-p)) ; "yes or no"を"y or n"に
-(leaf vc-hooks :custom (vc-follow-symlinks . t)) ; 常にシンボリックリンクをたどる
-(leaf warnings :custom (warning-minimum-level . :error)) ; 警告はエラーレベルでないとポップアップ表示しない
+;;; 操作補助
 
 (leaf dired
   :custom
@@ -676,17 +681,6 @@ Emacs側でシェルを読み込む。"
           (helm-ls-git-build-buffers-source))
     (swap-set-key helm-ls-git-rebase-todo-mode-map '(("M-p" . "M-t")))))
 
-(leaf helpful
-  :ensure t
-  :bind
-  ([remap describe-function] . helpful-callable)
-  ([remap describe-key]      . helpful-key)
-  ([remap describe-symbol]   . helpful-symbol)
-  ([remap describe-variable] . helpful-variable)
-  :advice (:after helpful-at-point other-window-backward)
-  :defvar helpful-mode-map
-  :config (dvorak-set-key-prog helpful-mode-map))
-
 (leaf ibuffer
   :custom `(ibuffer-formats . '((mark modified read-only " " (name 60 30) " " (size 6 -1) " " (mode 16 16) " " filename)
                                 (mark " " (name 60 -1) " " filename))) ; 幅を大きくする
@@ -698,13 +692,31 @@ Emacs側でシェルを読み込む。"
   :defvar ibuffer-mode-map
   :config (dvorak-set-key-prog ibuffer-mode-map))
 
-(leaf profiler
-  :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right))))) ; 幅を大きくする
+(leaf man
+  :custom
+  (Man-notify-method . 'bully)     ; Manページを現在のウィンドウで表示
+  (Man-width-max . nil)            ; Manページのwidthの最大幅を除去
   :after t
-  :defvar profiler-report-mode-map
-  :config (dvorak-set-key-prog profiler-report-mode-map))
+  :defvar Man-mode-map
+  :config (dvorak-set-key-prog Man-mode-map))
+
+(leaf ediff
+  :custom
+  (ediff-split-window-function . 'split-window-horizontally)  ; ediffでウィンドウを横分割
+  (ediff-window-setup-function . 'ediff-setup-windows-plain)) ; ediffにframeを生成させない
+
+(leaf auto-sudoedit :ensure t :global-minor-mode t :blackout t)
 
 ;;; ジャンプ
+
+(leaf browse-url
+  :doc "WSLの場合のURLへの紐付けをラップする。"
+  :when system-type-wsl
+  :custom
+  (browse-url-generic-program . "wslview")
+  (browse-url-browser-function . 'browse-url-generic))
+
+(leaf google-this :ensure t)
 
 (leaf rg
   :ensure t
@@ -838,6 +850,30 @@ Emacs側でシェルを読み込む。"
 
 ;;; テキスト処理
 
+(leaf mule-cmds
+  :doc "Windowsなどでも優先してUTF-8を使う。"
+  :config
+  (set-default-coding-systems 'utf-8-unix)
+  (prefer-coding-system 'utf-8))
+
+(leaf undo-tree
+  :ensure t
+  :global-minor-mode global-undo-tree-mode
+  :blackout t
+  :custom
+  (undo-tree-enable-undo-in-region . nil)
+  (undo-tree-history-directory-alist . `(("" . ,(concat user-emacs-directory "undo-tree/"))))
+  (undo-tree-visualizer-timestamps . t)
+  :defvar undo-tree-visualizer-mode-map
+  :config
+  (dvorak-set-key-prog undo-tree-visualizer-mode-map)
+  (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit))
+
+(leaf expand-region :ensure t)
+(leaf multiple-cursors :ensure t)
+(leaf point-undo :straight (point-undo :type git :host github :repo "ncaq/point-undo") :require t)
+(leaf symbolword-mode :ensure t :require t :global-minor-mode t :blackout t)
+
 (leaf smartparens
   :ensure t
   :require smartparens-config
@@ -915,18 +951,7 @@ Emacs側でシェルを読み込む。"
       (_
        (string-inflection-all-cycle)))))
 
-(leaf undo-tree
-  :ensure t
-  :global-minor-mode global-undo-tree-mode
-  :blackout t
-  :custom
-  (undo-tree-enable-undo-in-region . nil)
-  (undo-tree-history-directory-alist . `(("" . ,(concat user-emacs-directory "undo-tree/"))))
-  (undo-tree-visualizer-timestamps . t)
-  :defvar undo-tree-visualizer-mode-map
-  :config
-  (dvorak-set-key-prog undo-tree-visualizer-mode-map)
-  (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-quit))
+(leaf editorconfig :ensure t :global-minor-mode t :blackout t)
 
 (leaf whitespace
   :global-minor-mode global-whitespace-mode
@@ -945,7 +970,21 @@ Emacs側でシェルを読み込む。"
     (interactive)
     (setq-local whitespace-action (remove 'auto-cleanup whitespace-action))))
 
-;;; Emacsと外部プロセスの連携
+(leaf prettier-rc
+  :ensure t
+  :init
+  (defun prettier-toggle-setup ()
+    "prettierの有効無効キーバインドを使えるようにして、自動prettier適応を有効にします。"
+    (interactive)
+    (add-node-modules-path)
+    ;; 全体フォーマットをEmacsではなくprettierが行うように
+    (local-set-key [remap indent-whole-buffer] 'prettier-rc)
+    ;; M-iでprettierの一時的無効化が出来るように
+    (local-set-key (kbd "M-i") 'prettier-rc-mode)
+    ;; prettierを有効化
+    (prettier-rc-mode t)))
+
+;;; Git
 
 (leaf magit
   :ensure t
@@ -1062,6 +1101,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (git-link-use-commit . t)
   :bind ("M-g p" . git-link))
 
+;;; Docker
+
 (leaf docker
   :ensure t
   :custom (docker-container-shell-file-name . "/bin/bash")
@@ -1070,6 +1111,12 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     "イメージ名の幅を広く取ります。"
     (setf (cadr (aref tabulated-list-format 0)) 100))
   :hook (docker-image-mode-hook . docker-image-mode-setup))
+
+(leaf dockerfile-mode :ensure t)
+
+(leaf docker-compose-mode :ensure t)
+
+;;; IME
 
 (leaf *input-method
   :leaf-autoload nil
@@ -1090,6 +1137,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (input-method-activate-hook . cursor-color-toggle)
   (input-method-deactivate-hook . cursor-color-direct)
   (window-configuration-change-hook . cursor-color-toggle))
+
+(leaf flyspell :after t :bind (:flyspell-mode-map ("C-," . nil) ("C-." . nil)))
 
 (leaf mozc-im
   :ensure t
@@ -1115,7 +1164,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 
 (leaf tr-ime
   :ensure t
-  :doc "C-mでの確定にはEmacs側で対応していないのでKeyhacなどでの対処が必要"
+  :doc "WindowsネイティブでのIME設定。C-mでの確定にはEmacs側で対応していないのでKeyhacなどでの対処が必要。"
   :when (eq window-system 'w32)
   :defun tr-ime-advanced-install w32-ime-initialize wrap-function-to-control-ime
   :defvar w32-ime-mode-line-state-indicator-list
@@ -1137,42 +1186,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (wrap-function-to-control-ime 'yes-or-no-p nil nil)
   (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
   (modify-all-frames-parameters '((ime-font . "HackGen Console NF-13.5"))))
-
-(leaf envrc
-  :ensure t
-  :global-minor-mode envrc-global-mode
-  :custom (envrc-none-lighter . nil))
-
-(leaf man
-  :custom
-  (Man-notify-method . 'bully)     ; Manページを現在のウィンドウで表示
-  (Man-width-max . nil)            ; Manページのwidthの最大幅を除去
-  :after t
-  :defvar Man-mode-map
-  :config (dvorak-set-key-prog Man-mode-map))
-
-(leaf ediff
-  :custom
-  (ediff-split-window-function . 'split-window-horizontally)  ; ediffでウィンドウを横分割
-  (ediff-window-setup-function . 'ediff-setup-windows-plain)) ; ediffにframeを生成させない
-
-(leaf *wsl
-  :leaf-autoload nil
-  :when system-type-wsl
-  :custom
-  (browse-url-generic-program . "wslview")
-  (browse-url-browser-function . 'browse-url-generic))
-
-;; 有効にするだけの短いコード
-
-(leaf auto-sudoedit :ensure t :global-minor-mode t :blackout t)
-(leaf editorconfig :ensure t :global-minor-mode t :blackout t)
-(leaf expand-region :ensure t)
-(leaf google-this :ensure t)
-(leaf multiple-cursors :ensure t)
-(leaf ncaq-emacs-utils :vc (:url "https://github.com/ncaq/ncaq-emacs-utils") :require t)
-(leaf point-undo :straight (point-undo :type git :host github :repo "ncaq/point-undo") :require t)
-(leaf symbolword-mode :ensure t :require t :global-minor-mode t :blackout t)
 
 ;;; 汎用プログラミング機能
 
@@ -1328,20 +1341,23 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf egison-mode :ensure t :mode ("\\.egi$" . egison-mode))
 (leaf generic-x :require t)
 (leaf go-mode :ensure t)
+(leaf graphql-mode :ensure t :hook (graphql-mode-hook . prettier-toggle-setup))
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil))
 (leaf inf-lisp :custom (inferior-lisp-program . "sbcl --noinform"))
+(leaf json-mode :ensure t :hook (json-mode-hook . prettier-toggle-setup))
 (leaf julia-mode :ensure t)
-(leaf make-mode :after t :defvar makefile-mode-map :config (dvorak-set-key-prog makefile-mode-map))
 (leaf mediawiki :ensure t :mode "\\.wiki$")
 (leaf nginx-mode :ensure t)
 (leaf opascal-mode :mode "\\.dfm$" "\\.pas$")
-(leaf pascal :after t :defvar pascal-mode-map :config (dvorak-set-key-prog pascal-mode-map))
 (leaf plantuml-mode :ensure t :mode "\\.puml$" :custom (plantuml-default-exec-mode . 'executable))
 (leaf powershell :ensure t)
+(leaf prisma-mode :vc (:url "https://github.com/pimeys/emacs-prisma-mode") :after lsp-mode)
 (leaf robots-txt-mode :ensure t)
 (leaf scheme :custom (scheme-program-name . "gosh"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
+(leaf yaml-mode :ensure t :hook (yaml-mode-hook . prettier-toggle-setup))
+(leaf yarn-mode :ensure t)
 
 ;;; C/C++
 
@@ -1351,6 +1367,14 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   :config
   (dvorak-set-key-prog c-mode-base-map)
   (leaf ccls :ensure t))
+
+;;; CSS
+
+(leaf css-mode
+  :custom (css-indent-offset . 2)
+  :hook ((css-mode-hook scss-mode-hook) . prettier-toggle-setup))
+
+(leaf less-css-mode :hook (less-css-mode-hook . prettier-toggle-setup))
 
 ;;; D
 
@@ -1376,12 +1400,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
            ("C-c C-d" . company-dcd-show-ddoc-with-buffer)
            ("M-." . company-dcd-goto-definition))))
 
-;;; Docker
-
-(leaf dockerfile-mode :ensure t)
-
-(leaf docker-compose-mode :ensure t)
-
 ;;; ebuild
 
 (leaf ebuild-mode
@@ -1395,16 +1413,37 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf elisp-mode
   :custom (flycheck-emacs-lisp-load-path . 'inherit)
   :bind (:emacs-lisp-mode-map
-         ("C-M-q" . nil))
-  :config
-  (leaf elisp-slime-nav
-    :ensure t
-    :bind (:elisp-slime-nav-mode-map ("C-c C-d" . helpful-at-point))
-    :hook emacs-lisp-mode-hook help-mode-hook)
-  (leaf eldoc :blackout t :hook emacs-lisp-mode-hook ielm-mode-hook)
-  (leaf flycheck-package :ensure t :defun flycheck-package-setup :config (flycheck-package-setup))
-  (leaf ielm :bind (:ielm-map ("C-c C-d" . helpful-at-point)))
-  (leaf macrostep :ensure t))
+         ("C-M-q" . nil)))
+
+(leaf flycheck-package :ensure t :defun flycheck-package-setup :config (flycheck-package-setup))
+
+(leaf helpful
+  :ensure t
+  :bind
+  ([remap describe-function] . helpful-callable)
+  ([remap describe-key]      . helpful-key)
+  ([remap describe-symbol]   . helpful-symbol)
+  ([remap describe-variable] . helpful-variable)
+  :advice (:after helpful-at-point other-window-backward)
+  :defvar helpful-mode-map
+  :config (dvorak-set-key-prog helpful-mode-map))
+
+(leaf eldoc :blackout t :hook emacs-lisp-mode-hook ielm-mode-hook)
+
+(leaf elisp-slime-nav
+  :ensure t
+  :bind (:elisp-slime-nav-mode-map ("C-c C-d" . helpful-at-point))
+  :hook emacs-lisp-mode-hook help-mode-hook)
+
+(leaf macrostep :ensure t)
+
+(leaf profiler
+  :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right))))) ; 幅を大きくする
+  :after t
+  :defvar profiler-report-mode-map
+  :config (dvorak-set-key-prog profiler-report-mode-map))
+
+(leaf ielm :bind (:ielm-map ("C-c C-d" . helpful-at-point)))
 
 ;;; Elm
 
@@ -1812,22 +1851,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 ;;; Web
 
-(leaf add-node-modules-path :ensure t :defun add-node-modules-path)
-
-(leaf prettier-rc
-  :ensure t
-  :init
-  (defun prettier-toggle-setup ()
-    "prettierの有効無効キーバインドを使えるようにして、自動prettier適応を有効にします。"
-    (interactive)
-    (add-node-modules-path)
-    ;; 全体フォーマットをEmacsではなくprettierが行うように
-    (local-set-key [remap indent-whole-buffer] 'prettier-rc)
-    ;; M-iでprettierの一時的無効化が出来るように
-    (local-set-key (kbd "M-i") 'prettier-rc-mode)
-    ;; prettierを有効化
-    (prettier-rc-mode t)))
-
 (leaf web-mode
   :ensure t
   :mode
@@ -1871,20 +1894,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf js :custom (js-indent-level . 2))
 
-(leaf graphql-mode :ensure t :hook (graphql-mode-hook . prettier-toggle-setup))
-(leaf json-mode    :ensure t :hook (json-mode-hook    . prettier-toggle-setup))
-(leaf yaml-mode    :ensure t :hook (yaml-mode-hook    . prettier-toggle-setup))
-
-(leaf prisma-mode
-  :vc (:url "https://github.com/pimeys/emacs-prisma-mode")
-  :after lsp-mode)
-
-(leaf yarn-mode :ensure t)
-
-(leaf css-mode
-  :custom (css-indent-offset . 2)
-  :hook ((css-mode-hook scss-mode-hook) . prettier-toggle-setup))
-(leaf less-css-mode :hook (less-css-mode-hook . prettier-toggle-setup))
+;;; XML
 
 (leaf nxml-mode
   :mode "\\.fxml\\'"
