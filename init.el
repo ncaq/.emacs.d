@@ -402,7 +402,9 @@ Emacs側でシェルを読み込む。"
   ;; backupに新しいものをいくつ残すか
   (kept-new-versions . 10)
   ;; 複数バックアップ
-  (version-control . t))
+  (version-control . t)
+  ;; 自動保存ファイルを同じディレクトリに作らない
+  (auto-save-file-name-transforms . `((".*" ,(concat user-emacs-directory "auto-save-file/") t))))
 
 (leaf tramp :custom (tramp-allow-unsafe-temporary-files . t)) ; バックアップファイルをroot絡みでも自動許可する。
 (leaf filelock :custom (create-lockfiles . nil)) ; percelがバグるのでロックファイルとしてシンボリックリンクを作らない
