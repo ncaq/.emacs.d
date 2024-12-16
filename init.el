@@ -394,6 +394,8 @@ Emacs側でシェルを読み込む。"
 (leaf save-place-mode :global-minor-mode t)
 
 (leaf files
+  :defvar auto-save-file-dir
+  :pre-setq `(auto-save-file-dir . ,(concat user-emacs-directory "auto-save-file/"))
   :custom
   ;; バックアップ先をカレントディレクトリから変更
   (backup-directory-alist . `(("." . ,(concat user-emacs-directory "file-backup/"))))
@@ -404,7 +406,8 @@ Emacs側でシェルを読み込む。"
   ;; 複数バックアップ
   (version-control . t)
   ;; 自動保存ファイルを同じディレクトリに作らない
-  (auto-save-file-name-transforms . `((".*" ,(concat user-emacs-directory "auto-save-file/") t))))
+  (auto-save-file-name-transforms . `((".*" ,auto-save-file-dir t)))
+  :config (unless (file-directory-p auto-save-file-dir) (make-directory auto-save-file-dir)))
 
 (leaf tramp :custom (tramp-allow-unsafe-temporary-files . t)) ; バックアップファイルをroot絡みでも自動許可する。
 (leaf filelock :custom (create-lockfiles . nil)) ; percelがバグるのでロックファイルとしてシンボリックリンクを作らない
