@@ -829,6 +829,7 @@ Emacs側でシェルを読み込む。"
   ("C-; C-e" . copilot-chat-explain)
   ("C-; C-f" . copilot-chat-fix)
   ("C-; C-l" . copilot-chat-add-current-buffer)
+  ("C-; C-m" . copilot-chat-set-model)
   ("C-; C-o" . copilot-chat-optimize)
   ("C-; C-q" . copilot-chat-reset)
   ("C-; C-r" . copilot-chat-review)
