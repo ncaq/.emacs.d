@@ -852,7 +852,9 @@ Emacs側でシェルを読み込む。"
     :advice (:after copilot-chat-shell-maker-init copilot-chat-set-japanese)
     :config
     (push '(shell-maker . copilot-chat-shell-maker-init) copilot-chat-frontend-list)
-    (copilot-chat-shell-maker-init)))
+    (copilot-chat-shell-maker-init))
+  ;; Gitコミットメッセージの編集開始時にGitHub Copilotによるコミットメッセージを挿入する。
+  (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message))
 
 ;;; テキスト処理
 
