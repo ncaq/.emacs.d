@@ -1208,6 +1208,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   :custom
   (lsp-auto-execute-action . nil)        ; アクションが1つだけでも実行するか確認する
   (lsp-auto-guess-root . t)              ; 自動的にimportする
+  (lsp-disabled-clients . '(copilot-ls)) ; 専用のcampanyクライアントの方が高機能なため無効化
   (lsp-enable-snippet . nil)             ; 補完からスニペット展開をするのを無効化
   (lsp-file-watch-threshold . 10000)     ; 監視ファイル警告を緩める
   (lsp-imenu-sort-methods . '(position)) ; sortがデフォルトでは種類別になっている
