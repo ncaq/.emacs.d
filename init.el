@@ -1546,6 +1546,9 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
       (require 'haskell-commands)
       (add-hook 'before-save-hook 'haskell-buffer-cabal-fmt nil t))
     :hook (haskell-cabal-mode-hook . haskell-cabal-mode-setup)
+    :bind
+    (:haskell-cabal-mode-map
+     ([remap indent-whole-buffer] . haskell-buffer-cabal-fmt))
     :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (leaf lsp-haskell
     :ensure t
