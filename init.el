@@ -1537,7 +1537,15 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     :defvar haskell-interactive-mode-map
     :config (dvorak-set-key haskell-interactive-mode-map))
   (leaf haskell-cabal
+    :defun haskell-mode-buffer-apply-command
     :defvar haskell-cabal-mode-map
+    :init
+    (defun haskell-buffer-cabal-fmt ()
+      (haskell-mode-buffer-apply-command "cabal-fmt"))
+    (defun haskell-cabal-mode-setup ()
+      (require 'haskell-commands)
+      (add-hook 'before-save-hook 'haskell-buffer-cabal-fmt nil t))
+    :hook (haskell-cabal-mode-hook . haskell-cabal-mode-setup)
     :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (leaf lsp-haskell
     :ensure t
