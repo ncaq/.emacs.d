@@ -1541,6 +1541,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     :defvar haskell-cabal-mode-map
     :init
     (defun haskell-buffer-cabal-fmt ()
+      (interactive)
       (haskell-mode-buffer-apply-command "cabal-fmt"))
     (defun haskell-cabal-mode-setup ()
       (require 'haskell-commands)
