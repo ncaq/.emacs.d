@@ -1019,7 +1019,7 @@ Emacs側でシェルを読み込む。"
     "GitHub CLIを使ってPull Requestを作成する画面をwebで開く。
 Forgeとかにも作成機能はあるが、レビュアーやラベルやProjectsの指定はwebの方が楽。"
     (interactive)
-    ;; Git関係なのでMagitのProcessに履歴を残しておきたい。
+    (magit-start-process "git" nil "push" "--verbose" "--set-upstream" "origin")
     (magit-start-process "gh" nil "pr" "create" "--assignee" "@me" "--fill" "--web"))
   (defun gh-single-merge ()
     (interactive)
