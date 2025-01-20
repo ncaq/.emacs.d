@@ -997,7 +997,7 @@ Emacs側でシェルを読み込む。"
 
 (leaf magit
   :ensure t
-  :defun magit-start-process
+  :defun magit-start-process magit-run-git-async
   :init
   (defun magit-find-file-to-origin-master ()
     "今いるファイルのorigin/masterのリビジョンを開く。"
@@ -1019,8 +1019,12 @@ Emacs側でシェルを読み込む。"
     "GitHub CLIを使ってPull Requestを作成する画面をwebで開く。
 Forgeとかにも作成機能はあるが、レビュアーやラベルやProjectsの指定はwebの方が楽。"
     (interactive)
-    (magit-start-process "git" nil "push" "--verbose" "--set-upstream" "origin")
-    (magit-start-process "gh" nil "pr" "create" "--assignee" "@me" "--fill" "--web"))
+    (let ((process
+           (magit-run-git-async "push" "--verbose" "--verbose" "--set-upstream" "origin")))
+      (set-process-sentinel
+       process
+       (lambda (_process _event)
+         (magit-start-process "gh" nil "pr" "create" "--assignee" "@me" "--fill" "--web")))))
   (defun gh-single-merge ()
     (interactive)
     (magit-start-process "gh-single-merge"))
