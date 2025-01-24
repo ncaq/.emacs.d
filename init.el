@@ -1701,9 +1701,9 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     :init
     (defun haskell-buffer-cabal-fmt ()
       (interactive)
+      (unless (fboundp 'haskell-mode-buffer-apply-command) (require 'haskell-commands))
       (haskell-mode-buffer-apply-command "cabal-fmt"))
     (defun haskell-cabal-mode-setup ()
-      (require 'haskell-commands)
       (add-hook 'before-save-hook 'haskell-buffer-cabal-fmt nil t))
     :hook (haskell-cabal-mode-hook . haskell-cabal-mode-setup)
     :bind
