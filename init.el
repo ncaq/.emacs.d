@@ -640,6 +640,7 @@ Emacs側でシェルを読み込む。"
             "eslint\\(::stderr\\)?"
             "lsp-.+\\(::stderr\\)?"
             "marksman\\(::stderr\\)?"
+            "nix-nil\\(::stderr\\)?"
             "pyright\\(::stderr\\)?")))
   (leaf helm-files :bind (:helm-find-files-map ("C-s" . nil)))
   (leaf helm-types :bind (:helm-generic-files-map ("C-s" . nil)))
