@@ -1696,24 +1696,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     :after t
     :defvar haskell-interactive-mode-map
     :config (dvorak-set-key haskell-interactive-mode-map))
-  (leaf haskell-cabal
-    :defun haskell-mode-buffer-apply-command
-    :defvar haskell-cabal-mode-map
-    :init
-    (defun haskell-buffer-cabal-fmt ()
-      (interactive)
-      (unless (fboundp 'haskell-mode-buffer-apply-command) (require 'haskell-commands))
-      (haskell-mode-buffer-apply-command "cabal-fmt"))
-    (defun haskell-cabal-mode-setup ()
-      (add-hook 'before-save-hook 'haskell-buffer-cabal-fmt nil t))
-    :hook (haskell-cabal-mode-hook . haskell-cabal-mode-setup)
-    :bind
-    (:haskell-cabal-mode-map
-     ([remap indent-whole-buffer] . haskell-buffer-cabal-fmt))
-    :config (dvorak-set-key-prog haskell-cabal-mode-map))
   (leaf lsp-haskell
     :ensure t
-    :require t
     :custom
     ;; フォーマッターをfourmoluにする。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
     (lsp-haskell-formatting-provider . "fourmolu")
@@ -1736,6 +1720,22 @@ Add the type signature that GHC infers to the function located below the point."
           (message "I can't find add signature action for this point"))))
     :bind (:haskell-mode-map
            ("C-c C-o" . lsp-haskell-execute-code-action-add-signature))))
+
+(leaf haskell-cabal
+  :defun haskell-mode-buffer-apply-command
+  :defvar haskell-cabal-mode-map
+  :init
+  (defun cabal-fmt ()
+    (interactive)
+    (unless (fboundp 'haskell-mode-buffer-apply-command) (require 'haskell-commands))
+    (haskell-mode-buffer-apply-command "cabal-fmt"))
+  (defun haskell-cabal-mode-setup ()
+    (add-hook 'before-save-hook 'cabal-fmt nil t))
+  :hook (haskell-cabal-mode-hook . haskell-cabal-mode-setup)
+  :bind
+  (:haskell-cabal-mode-map
+   ([remap indent-whole-buffer] . cabal-fmt))
+  :config (dvorak-set-key-prog haskell-cabal-mode-map))
 
 (leaf shakespeare-mode :ensure t)
 
