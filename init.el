@@ -622,6 +622,7 @@ Emacs側でシェルを読み込む。"
     :config
     (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list (concat "^\\*" regex "\\*$")))
           '("Flycheck errors"
+            "Copilot-chat-list"
             "Flymake log"
             "WoMan-Log"
             "copilot events"
