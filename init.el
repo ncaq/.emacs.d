@@ -1374,6 +1374,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf scheme :custom (scheme-program-name . "gosh"))
 (leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
 (leaf systemd :ensure t)
+(leaf wat-ts-mode :ensure t :mode "\\.wat\\'" "\\.wast\\'")
 (leaf yaml-mode :ensure t :hook (yaml-mode-hook . prettier-toggle-setup))
 (leaf yarn-mode :ensure t)
 
