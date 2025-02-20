@@ -826,6 +826,8 @@ Emacs側でシェルを読み込む。"
   :ensure t
   :after request ; 要求しないとトークンが無視され毎回認証が必要になる。
   :require t
+  :custom
+  (copilot-chat-model . "claude-3.5-sonnet")
   :bind
   ("C-; C-;" . copilot-chat-display)
   ("C-; C-a" . copilot-chat-ask-and-insert)
