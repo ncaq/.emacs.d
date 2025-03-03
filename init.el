@@ -294,7 +294,7 @@ Emacs側でシェルを読み込む。"
   ("C-j" . helm-do-grep-ag-project-dir-or-fallback)
   ("C-o" . helm-for-files-prefer-recentf)
   ("C-p" . other-window-fallback-split)
-  ("C-q" . kill-this-buffer)
+  ("C-q" . kill-current-buffer)
   ("C-u" . kill-whole-line)
   ("C-w" . kill-region-or-symbol-at-point)
   ("C-z" . nil)
