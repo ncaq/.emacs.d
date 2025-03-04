@@ -824,9 +824,9 @@ Emacs側でシェルを読み込む。"
 
 (leaf copilot-chat
   :ensure t
-  :after request ; 要求しないとトークンが無視され毎回認証が必要になる。
-  :require t
   :custom
+  (copilot-chat-frontend . 'shell-maker)
+  (copilot-chat-markdown-prompt . "Please respond in Japanese.")
   (copilot-chat-model . "claude-3.5-sonnet")
   :bind
   ("C-; C-;" . copilot-chat-display)
@@ -843,25 +843,8 @@ Emacs側でシェルを読み込む。"
   ("C-; C-r" . copilot-chat-review)
   ("C-; C-t" . copilot-chat-test)
   ("C-; C-u" . copilot-chat-del-current-buffer)
-  :defvar copilot-chat-prompt
-  :init
-  (defconst copilot-chat-prompt-japanese "Please respond in Japanese.")
-  (defun copilot-chat-set-japanese ()
-    "日本語を使うように小さくプロンプトを再設定する。"
-    (setq copilot-chat-prompt copilot-chat-prompt-japanese))
-  :config
-  (leaf copilot-chat-shell-maker
-    :after copilot-chat
-    :require t
-    :custom
-    (copilot-chat-frontend . 'shell-maker)
-    :defun copilot-chat-shell-maker-init
-    ;; 各種init関数でプロンプトが再設定されてしまうため(orgやmarkdownを切り替えるためだろう)、adviceを使って毎回再設定する。
-    :advice (:after copilot-chat-shell-maker-init copilot-chat-set-japanese)
-    :config
-    (copilot-chat-shell-maker-init))
   ;; Gitコミットメッセージの編集開始時にGitHub Copilotによるコミットメッセージを挿入する。
-  (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message))
+  :hook (git-commit-setup-hook . copilot-chat-insert-commit-message))
 
 ;;; テキスト処理
 
