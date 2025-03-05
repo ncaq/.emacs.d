@@ -1469,9 +1469,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
    ("C-c C-b" . haskell-hoogle)
    ("C-c C-c" . haskell-session-change-target)
    ("C-c C-p" . haskell-command-insert-language-pragma)
-   ("C-c C-s" . nil)
-   ("M-i" . stylish-haskell-toggle)
-   ([remap indent-whole-buffer] . haskell-mode-stylish-buffer))
+   ("C-c C-s" . nil))
   :config
   ;; もう使われてないようですが古いプロジェクトではローカル変数として追加されることが多いので許可しておく。
   (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
@@ -1501,27 +1499,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
      ("C-c C-t" . nil)
      ("C-c TAB" . nil)
      ("M-." . nil)))
-  (leaf haskell-customize
-    :doc "haskell-stylish-on-saveがhaskell-customizeに属する。"
-    :init
-    (eval-and-compile
-      (defun stylish-haskell-enable ()
-        "保存したときに自動的にstylish-haskellを適用する。"
-        (interactive)
-        (setq-local haskell-stylish-on-save t))
-      (defun stylish-haskell-disable ()
-        (interactive)
-        (setq-local haskell-stylish-on-save nil))
-      (defun stylish-haskell-toggle ()
-        (interactive)
-        (setq-local haskell-stylish-on-save (not haskell-stylish-on-save)))
-      (defun stylish-haskell-setup ()
-        "プロジェクトディレクトリにstylish-haskellの設定ファイルがある場合、
-保存したときに自動的にstylish-haskellを適用する。"
-        (if (locate-dominating-file default-directory ".stylish-haskell.yaml")
-            (stylish-haskell-enable)
-          (stylish-haskell-disable))))
-    :hook (haskell-mode-hook . stylish-haskell-setup))
   (leaf haskell-hoogle
     :custom
     (haskell-hoogle-command . nil)
@@ -1553,6 +1530,7 @@ Add the type signature that GHC infers to the function located below the point."
             (lsp-execute-code-action action)
           (message "I can't find add signature action for this point"))))
     :bind (:haskell-mode-map
+           ([remap indent-whole-buffer] . lsp-format-buffer)
            ("C-c C-o" . lsp-haskell-execute-code-action-add-signature))))
 
 (leaf haskell-cabal
