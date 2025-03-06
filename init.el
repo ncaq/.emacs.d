@@ -443,7 +443,7 @@ Emacs側でシェルを読み込む。"
 (leaf treesit-auto
   :ensure t
   :require t
-  :custom (treesit-auto-install. . t))
+  :custom (treesit-auto-install . t))
 
 ;; 以下の順番で読み込まないと正常に動かなかった
 ;; rainbow-delimiters -> rainbow-mode
