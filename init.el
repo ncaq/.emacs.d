@@ -1840,8 +1840,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :bind (:typespec-ts-mode-map
          ([remap indent-whole-buffer] . lsp-format-buffer))
   :config
-  (typespec-ts-mode-grammar-install) ; TODO: 必要な時だけインストールする。
-  (add-to-list 'lsp-language-id-configuration '(typespec-ts-mode . "typespec"))) ; TODO: lsp-modeにマージする。
+  (typespec-ts-mode-grammar-install)) ; TODO: 必要な時だけインストールする。
 
 ;;; VB
 
