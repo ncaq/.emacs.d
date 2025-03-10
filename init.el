@@ -1834,13 +1834,9 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf typespec-ts-mode
   :vc (:url "https://github.com/ncaq/typespec-ts-mode/") ; TODO: melpaにpublishする。
-  :defun typespec-ts-mode-grammar-install
-  :defvar lsp-language-id-configuration
   :hook (typespec-ts-mode-hook . lsp-format-before-save)
   :bind (:typespec-ts-mode-map
-         ([remap indent-whole-buffer] . lsp-format-buffer))
-  :config
-  (typespec-ts-mode-grammar-install)) ; TODO: 必要な時だけインストールする。
+         ([remap indent-whole-buffer] . lsp-format-buffer)))
 
 ;;; VB
 
