@@ -1832,10 +1832,10 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 ;;; TypeSpec
 
-(leaf typespec-ts-mode
-  :vc (:url "https://github.com/ncaq/typespec-ts-mode/") ; TODO: melpaにpublishする。
-  :hook (typespec-ts-mode-hook . lsp-format-before-save)
-  :bind (:typespec-ts-mode-map
+(leaf typespec-ts-another-mode
+  :vc (:url "https://github.com/ncaq/typespec-ts-another-mode/")
+  :hook (typespec-ts-another-mode-hook . lsp-format-before-save)
+  :bind (:typespec-ts-another-mode-map
          ([remap indent-whole-buffer] . lsp-format-buffer)))
 
 ;;; VB
