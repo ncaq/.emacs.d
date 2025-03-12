@@ -380,7 +380,7 @@ Emacs側でシェルを読み込む。"
 (leaf recentf
   :custom
   ((recentf-max-saved-items . 2000)
-   (recentf-exclude . '("\\.elc$" "\\.o$" "~$" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
+   (recentf-exclude . '("\\.elc\\'" "\\.o\\'" "~\\'" "\\.file-backup/" "\\.undo-tree/" "EDITMSG" "PATH" "TAGS" "autoloads"))))
 
 (leaf recentf-ext :ensure t :after docker-tramp :require t)
 (leaf recentf-remove-sudo-tramp-prefix :ensure t :global-minor-mode t :blackout t)
@@ -620,7 +620,7 @@ Emacs側でシェルを読み込む。"
     :bind (:helm-buffer-map ("C-s" . nil))
     :defvar helm-boring-buffer-regexp-list
     :config
-    (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list (concat "^\\*" regex "\\*$")))
+    (mapc (lambda (regex) (add-to-list 'helm-boring-buffer-regexp-list (concat "^\\*" regex "\\*\\'")))
           '("Flycheck errors"
             "Copilot-chat-list"
             "Flymake log"
@@ -1338,10 +1338,10 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 
 (leaf apache-mode :ensure t)
 (leaf bnf-mode :ensure t)
-(leaf conf-mode :mode "/credentials$" "\\.dsk$")
+(leaf conf-mode :mode "/credentials\\'" "\\.dsk\\'")
 (leaf csv-mode :ensure t)
 (leaf dotenv-mode :ensure t)
-(leaf egison-mode :ensure t :mode ("\\.egi$" . egison-mode))
+(leaf egison-mode :ensure t :mode ("\\.egi\\'" . egison-mode))
 (leaf generic-x :require t)
 (leaf go-mode :ensure t)
 (leaf graphql-mode :ensure t :hook (graphql-mode-hook . prettier-toggle-setup))
@@ -1350,15 +1350,15 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf inf-lisp :custom (inferior-lisp-program . "sbcl --noinform"))
 (leaf json-mode :ensure t :hook (json-mode-hook . prettier-toggle-setup))
 (leaf julia-mode :ensure t)
-(leaf mediawiki :ensure t :mode "\\.wiki$")
+(leaf mediawiki :ensure t :mode "\\.wiki\\'")
 (leaf nginx-mode :ensure t)
-(leaf opascal-mode :mode "\\.dfm$" "\\.pas$")
-(leaf plantuml-mode :ensure t :mode "\\.puml$" :custom (plantuml-default-exec-mode . 'executable))
+(leaf opascal-mode :mode "\\.dfm\\'" "\\.pas\\'")
+(leaf plantuml-mode :ensure t :mode "\\.puml\\'" :custom (plantuml-default-exec-mode . 'executable))
 (leaf powershell :ensure t)
 (leaf prisma-mode :vc (:url "https://github.com/pimeys/emacs-prisma-mode") :after lsp-mode)
 (leaf robots-txt-mode :ensure t)
 (leaf scheme :custom (scheme-program-name . "gosh"))
-(leaf ssh-config-mode :ensure t :mode "\\.ssh/config$" "sshd?_config$")
+(leaf ssh-config-mode :ensure t :mode "\\.ssh/config\\'" "sshd?_config\\'")
 (leaf systemd :ensure t)
 (leaf terraform-mode :ensure t)
 (leaf wat-ts-mode :ensure t :mode "\\.wat\\'" "\\.wast\\'")
@@ -1597,7 +1597,7 @@ Add the type signature that GHC infers to the function located below the point."
 
 (leaf tuareg
   :ensure t
-  :mode ("\\.ml[iylp]?$" . tuareg-mode)
+  :mode ("\\.ml[iylp]?\\'" . tuareg-mode)
   :config
   (leaf merlin
     :ensure t
@@ -1752,7 +1752,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf rustic
   :ensure t
-  :mode "\\.rs$"
+  :mode "\\.rs\\'"
   :custom
   (lsp-rust-analyzer-cargo-watch-command . "clippy")
   (rustic-format-display-method . 'ignore) ; Rustfmtのメッセージをポップアップしない
