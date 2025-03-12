@@ -738,14 +738,6 @@ Emacs側でシェルを読み込む。"
   (dvorak-set-key-prog rg-mode-map)
   (swap-set-key rg-mode-map '(("M-P" . "M-T"))))
 
-(leaf xref
-  :defun xref-push-marker-stack xref-set-marker-ring-length
-  :config
-  ;; 履歴のサイズを上げるために、
-  ;; `xref-marker-ring-length'を設定したいだけですが、
-  ;; 設定したタイミングでリングのサイズ変更などを行う必要があるので専用関数が用意されているようです。
-  (xref-set-marker-ring-length 'xref-marker-ring-length 128))
-
 (leaf smart-jump
   :ensure t
   :custom
