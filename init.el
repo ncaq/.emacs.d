@@ -1806,10 +1806,13 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
     ;; swift-formatとSwiftFormatがそれぞれ全く違うプログラムとして存在している。
     (eval-and-compile
       (with-no-warnings
-        (reformatter-define swift-format :program "swift-format"))
-      (with-no-warnings
-        (reformatter-define swiftformat :program "swiftformat"
-          :args `("--config" ,(concat (locate-dominating-file default-directory ".swiftformat") "/.swiftformat")))))
+        (reformatter-define swift-format
+          :program "swift-format"
+          :group 'swift-format)
+        (reformatter-define swiftformat
+          :program "swiftformat"
+          :args `("--config" ,(concat (locate-dominating-file default-directory ".swiftformat") "/.swiftformat"))
+          :group 'swiftformat)))
     (defun swift-format-setup ()
       ;; 改行前自動インデントは無効化し、改行後自動インデントは有効化する。
       (setq-local electric-indent-mode nil)
