@@ -1200,7 +1200,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (lsp-warn-no-matched-clients . nil)    ; クライアントが見つからない時の警告を無効化
   :defun lsp-code-actions-at-point lsp-register-client lsp-stdio-connection lsp:code-action-title make-lsp-client
   :init
-  (defun lsp-format-before-save ()
+  (defun lsp-format-buffer-on-save-setup ()
     "保存する前にフォーマットする設定を有効にする。
 呼び出したバッファーでしか有効にならない。"
     (add-hook 'before-save-hook #'lsp-format-buffer nil t))
@@ -1448,7 +1448,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf elm-mode
   :ensure t
   :hook
-  (elm-mode-hook . lsp-format-before-save)
+  (elm-mode-hook . lsp-format-buffer-on-save-setup)
   :bind (:elm-mode-map
          ("C-c C-f" . nil)
          ;; elm-format-bufferの方はnpmのプロジェクト固有のelm-formatを検知しないのでlspを使います。
@@ -1755,7 +1755,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 (leaf scala-mode
   :ensure t
   :hook
-  (scala-mode-hook . lsp-format-before-save)
+  (scala-mode-hook . lsp-format-buffer-on-save-setup)
   :config
   (leaf lsp-metals :ensure t :require t)
   (leaf smartparens :config (sp-local-pair 'scala-mode "{" nil :post-handlers nil)))
@@ -1831,7 +1831,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf typespec-ts-another-mode
   :vc (:url "https://github.com/ncaq/typespec-ts-another-mode/")
-  :hook (typespec-ts-another-mode-hook . lsp-format-before-save)
+  :hook (typespec-ts-another-mode-hook . lsp-format-buffer-on-save-setup)
   :bind (:typespec-ts-another-mode-map
          ([remap indent-whole-buffer] . lsp-format-buffer)))
 
