@@ -1204,6 +1204,11 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
     "保存する前にフォーマットする設定を有効にする。
 呼び出したバッファーでしか有効にならない。"
     (add-hook 'before-save-hook #'lsp-format-buffer nil t))
+  ;; プロジェクト側が自動フォーマットを設定することを許可する。
+  (add-to-list 'safe-local-eval-forms '(add-hook 'before-save-hook #'project-format-buffer nil t))
+  (add-to-list 'safe-local-eval-forms '(defun project-format-buffer ()
+                                         (when (commandp #'lsp-format-buffer)
+                                           (lsp-format-buffer))))
   ;; `prog-mode'を継承したモード全体でlsp-modeを有効にしてしまう。
   ;; 見つからない時の警告は`lsp-warn-no-matched-clients'で無効化。
   :hook ((prog-mode-hook markdown-mode-hook) . lsp-deferred)
