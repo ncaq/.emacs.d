@@ -817,9 +817,9 @@ Emacs側でシェルを読み込む。"
 (leaf copilot-chat
   :ensure t
   :custom
+  (copilot-chat-default-model . "claude-3.5-sonnet")
   (copilot-chat-frontend . 'shell-maker)
   (copilot-chat-markdown-prompt . "Use Markdown for syntax. Please respond in Japanese.")
-  (copilot-chat-model . "claude-3.5-sonnet")
   :bind
   ("C-; C-;" . copilot-chat-display)
   ("C-; C-a" . copilot-chat-ask-and-insert)
