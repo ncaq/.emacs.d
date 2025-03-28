@@ -483,6 +483,14 @@ Emacs側でシェルを読み込む。"
 
 ;;; toolkit
 
+(leaf fns
+  :doc "プロンプトの単純化。"
+  :custom
+  (menu-prompting . nil)   ;; メニューによるプロンプトを無効化
+  (use-dialog-box . nil)   ;; ダイアログボックスでの質問を無効化
+  (use-file-dialog . nil)  ;; ファイル選択ダイアログを無効化
+  (use-short-answers . t)) ;; yes/noの質問をy/nで答えられるように短縮
+
 (leaf frame
   :doc "全画面化。"
   :init
@@ -538,7 +546,6 @@ Emacs側でシェルを読み込む。"
 (leaf indent :custom (standard-indent . 2)) ; フォールバック標準インデント値を2にする
 (leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
 (leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
-(leaf subr :config (fset 'yes-or-no-p 'y-or-n-p)) ; "yes or no"を"y or n"に
 (leaf vc-hooks :custom (vc-follow-symlinks . t)) ; 常にシンボリックリンクをたどる
 (leaf warnings :custom (warning-minimum-level . :error)) ; 警告はエラーレベルでないとポップアップ表示しない
 
