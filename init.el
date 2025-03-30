@@ -265,7 +265,6 @@ Emacs側でシェルを読み込む。"
 (leaf info      :after t :config (dvorak-set-key-prog Info-mode-map))
 (leaf prog-mode :after t :config (dvorak-set-key-prog prog-mode-map))
 
-(leaf comint    :after t :defvar comint-mode-map         :config (dvorak-set-key-prog comint-mode-map))
 (leaf diff-mode :after t :defvar diff-mode-map           :config (dvorak-set-key-prog diff-mode-map))
 (leaf doc-view  :after t :defvar doc-view-mode-map       :config (dvorak-set-key-prog doc-view-mode-map))
 (leaf help-mode :after t :defvar help-mode-map           :config (dvorak-set-key-prog help-mode-map))
@@ -553,6 +552,20 @@ Emacs側でシェルを読み込む。"
   :custom
   (blink-matching-paren . nil)          ; 括弧移動無効
   (kill-ring-max . 600)) ; メモリに余裕があるのでクリップボードの履歴数を増やす
+
+(leaf comint
+  :doc "`C-m'は改行に割り当てて、`C-<return>'で送信。
+日本語圏だと`C-m'を変換確定にも使っているので誤爆しやすい。
+本当は`<return>'を改行に割り当てたかったが、
+Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが困難。"
+  :after t
+  :defvar comint-mode-map
+  :bind
+  (:comint-mode-map
+   ("C-<return>" . comint-send-input)
+   ("C-m" . newline))
+  :config
+  (dvorak-set-key-prog comint-mode-map))
 
 ;;; 操作補助
 
