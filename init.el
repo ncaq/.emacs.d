@@ -575,6 +575,7 @@ Emacs側でシェルを読み込む。"
 
 (leaf helm
   :ensure t
+  :require t helm-x-files
   :global-minor-mode t
   :blackout t
   :custom
@@ -588,26 +589,37 @@ Emacs側でシェルを読み込む。"
   (helm-full-frame . t)
   ;; `helm-for-files'を多用するためソースは`helm-next-line'などで移動したい。
   (helm-move-to-line-cycle-in-source . nil)
-  :defvar helm-for-files-preferred-list
+  :defvar helm-source-buffers-list helm-for-files-preferred-list
+  :defun helm-make-source
   :init
   (defun helm-for-files-prefer-recentf ()
     "recentfを優先する`helm-for-files'。"
     (interactive)
+    (unless helm-source-buffers-list
+      (setq helm-source-buffers-list
+            (helm-make-source "Buffers" 'helm-source-buffers)))
     (let ((helm-for-files-preferred-list
            '(helm-source-buffers-list
              helm-source-recentf
              helm-source-ls-git
              helm-source-locate)))
-      (helm-for-files)))
+      (helm :sources helm-for-files-preferred-list
+            :buffer "*helm for files*"
+            :ff-transformer-show-only-basename nil)))
   (defun helm-for-files-prefer-near ()
     "git管理下など近い場所のファイルを優先する`helm-for-files'。"
     (interactive)
+    (unless helm-source-buffers-list
+      (setq helm-source-buffers-list
+            (helm-make-source "Buffers" 'helm-source-buffers)))
     (let ((helm-for-files-preferred-list
            '(helm-source-buffers-list
              helm-source-ls-git
              helm-source-recentf
              helm-source-locate)))
-      (helm-for-files)))
+      (helm :sources helm-for-files-preferred-list
+            :buffer "*helm for files*"
+            :ff-transformer-show-only-basename nil)))
   :bind (:helm-map
          ("C-M-b" . nil)
          ("C-b" . nil)
