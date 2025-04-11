@@ -1567,12 +1567,6 @@ Add the type signature that GHC infers to the function located below the point."
     (interactive)
     (unless (fboundp 'haskell-mode-buffer-apply-command) (require 'haskell-commands))
     (haskell-mode-buffer-apply-command "cabal-fmt"))
-  (defun haskell-cabal-mode-setup ()
-    (add-hook 'before-save-hook 'cabal-fmt nil t))
-  :hook (haskell-cabal-mode-hook . haskell-cabal-mode-setup)
-  :bind
-  (:haskell-cabal-mode-map
-   ([remap indent-whole-buffer] . cabal-fmt))
   :config (dvorak-set-key-prog haskell-cabal-mode-map))
 
 (leaf shakespeare-mode :ensure t)
