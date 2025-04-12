@@ -1560,6 +1560,7 @@ Add the type signature that GHC infers to the function located below the point."
            ("C-c C-o" . lsp-haskell-execute-code-action-add-signature))))
 
 (leaf haskell-cabal
+  :after t
   :defun haskell-mode-buffer-apply-command
   :defvar haskell-cabal-mode-map
   :init
