@@ -15,6 +15,7 @@
         c-electric-slash
         c-electric-star
         c-hungry-backspace
+        comint-delchar-or-maybe-eof
         comment-dwim
         company-complete
         company-indent-or-complete-common
