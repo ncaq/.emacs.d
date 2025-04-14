@@ -1609,8 +1609,7 @@ Add the type signature that GHC infers to the function located below the point."
      ("sqlite3" . sql-mode)
      ("ts" . web-mode)
      ("tsx" . web-mode)
-     ("zsh" . sh-mode)))
-  (leaf lsp-marksman :require t))
+     ("zsh" . sh-mode))))
 
 ;;; OCaml
 
