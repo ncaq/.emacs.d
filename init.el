@@ -868,11 +868,11 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
 
 (leaf claude-code
   :global-minor-mode t
+  :ensure eat
   :straight (claude-code
              :type git :host github
              :repo "stevemolitor/claude-code.el"
-             :branch "main" :files ("*.el" (:exclude "demo.gif")))
-  :hook (claude-code--start-hook . sm-setup-claude-faces))
+             :branch "main" :files ("*.el" (:exclude "demo.gif"))))
 
 ;;; テキスト処理
 
