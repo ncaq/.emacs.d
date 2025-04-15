@@ -343,7 +343,7 @@ Emacs側でシェルを読み込む。"
   ("C-c ;" . align-regexp)
   ("C-c E" . open-ncaq-entry)
   ("C-c a" . open-downloads)
-  ("C-c c" . quickrun)
+  ("C-c c" . claude-code-command-map)
   ("C-c d" . docker)
   ("C-c e" . open-ncaq-entry-current-time)
   ("C-c g" . open-google-drive)
@@ -352,6 +352,7 @@ Emacs側でシェルを読み込む。"
   ("C-c j" . rg)
   ("C-c o" . open-desktop)
   ("C-c p" . package-list-packages)
+  ("C-c q" . quickrun)
   ("C-c r" . recentf-cleanup)
   ("C-c s" . customize-set-variable)
   ("C-c u" . open-document-current)
@@ -822,7 +823,7 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
          ("M-z" . yas-insert-snippet))
   :config (leaf yasnippet-snippets :ensure t))
 
-;;; GitHub copilot
+;;; LLM
 
 (leaf copilot
   :vc (:url "https://github.com/copilot-emacs/copilot.el")
@@ -864,6 +865,14 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
   ("C-; C-u" . copilot-chat-del-current-buffer)
   ;; Gitコミットメッセージの編集開始時にGitHub Copilotによるコミットメッセージを挿入する。
   :hook (git-commit-setup-hook . copilot-chat-insert-commit-message))
+
+(leaf claude-code
+  :global-minor-mode t
+  :straight (claude-code
+             :type git :host github
+             :repo "stevemolitor/claude-code.el"
+             :branch "main" :files ("*.el" (:exclude "demo.gif")))
+  :hook (claude-code--start-hook . sm-setup-claude-faces))
 
 ;;; テキスト処理
 
