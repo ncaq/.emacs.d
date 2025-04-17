@@ -845,7 +845,7 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
 (leaf copilot-chat
   :ensure t
   :custom
-  (copilot-chat-default-model . "o3-mini")
+  (copilot-chat-default-model . "gpt-4.1")
   (copilot-chat-frontend . 'shell-maker)
   (copilot-chat-markdown-prompt . "Use Markdown for syntax. Please respond in Japanese.")
   :bind
