@@ -1132,6 +1132,15 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   (git-link-use-commit . t)
   :bind ("M-g p" . git-link))
 
+(leaf pr-review
+  :ensure t
+  :bind
+  (("M-g R" . pr-review)
+   ("M-g r" . pr-review-notification))
+  :defvar pr-review-listview-mode-map
+  :config
+  (swap-set-key pr-review-listview-mode-map '(("p" . "t") ("C-c C-p" . "C-c C-t"))))
+
 ;;; Docker
 
 (leaf docker
