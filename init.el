@@ -657,6 +657,7 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
             "copilot events"
             "copilot-chat-curl-stderr.*"
             "copilot-chat-shell-maker-temp.*"
+            "copilot-language-server-log"
             "envrc"
             "nixfmt"
             "prettier.+"
