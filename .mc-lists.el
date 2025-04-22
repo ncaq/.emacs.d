@@ -40,6 +40,7 @@
         my-string-inflection-cycle-auto
         nxml-down-element
         nxml-electric-slash
+        org-delete-char
         rectangle-forward-char
         sgml-slash
         sh-assignment
