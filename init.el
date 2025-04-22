@@ -1138,9 +1138,13 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   :bind
   (("M-g R" . pr-review)
    ("M-g r" . pr-review-notification))
-  :defvar pr-review-listview-mode-map
   :config
-  (swap-set-key pr-review-listview-mode-map '(("p" . "t") ("C-c C-p" . "C-c C-t"))))
+  (leaf pr-review-listview
+    :require t
+    :after t
+    :defvar pr-review-listview-mode-map
+    :config
+    (swap-set-key pr-review-listview-mode-map '(("p" . "t") ("C-c C-p" . "C-c C-t")))))
 
 ;;; Docker
 
