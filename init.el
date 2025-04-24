@@ -77,10 +77,6 @@ Emacs側でシェルを読み込む。"
 
 (leaf nix-mode
   :ensure t
-  :init
-  (defun nix-mode-setup ()
-    (add-hook 'before-save-hook #'nix-format-before-save nil t))
-  :hook (nix-mode-hook . nix-mode-setup)
   :bind
   (:nix-mode-map
    ([remap indent-whole-buffer] . nix-format-buffer)))
