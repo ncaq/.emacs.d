@@ -67,16 +67,30 @@
 
 ;;; PATH
 
+(leaf f
+  :ensure t
+  :require t
+  :defun f-file? f-read-text
+  :config
+  (defconst system-type-wsl
+    (let ((osrelease-file "/proc/sys/kernel/osrelease"))
+      (and
+       (eq system-type 'gnu/linux)
+       (f-file? osrelease-file)
+       (string-match-p "WSL" (f-read-text osrelease-file))))
+    "EmacsがWSLで動いているか?"))
+
 (leaf exec-path-from-shell
   :doc "Windowsのwslg.exeやmacOSのランチャーなどから起動したときはシェルの環境変数を引き継がないため、
 Emacs側でシェルを読み込む。"
   :ensure t
-  :when window-system
-  :defvar exec-path-from-shell-variables
+  :when
+  (and
+   window-system
+   (or
+    system-type-wsl
+    (eq system-type 'darwin)))
   :config
-  ;; 公式READMEにも書いているnixのサポート方法。
-  (dolist (var '("SSH_AUTH_SOCK" "SSH_AGENT_PID" "GPG_AGENT_INFO" "LANG" "LC_CTYPE" "NIX_SSL_CERT_FILE" "NIX_PATH"))
-    (add-to-list 'exec-path-from-shell-variables var))
   ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
   (exec-path-from-shell-initialize))
 
@@ -109,19 +123,6 @@ Emacs側でシェルを読み込む。"
 (kill-buffer-if-exist "*scratch*")
 
 ;;; 設定からある程度独立した定義
-
-(leaf f
-  :ensure t
-  :require t
-  :defun f-file? f-read-text
-  :config
-  (defconst system-type-wsl
-    (let ((osrelease-file "/proc/sys/kernel/osrelease"))
-      (and
-       (eq system-type 'gnu/linux)
-       (f-file? osrelease-file)
-       (string-match-p "WSL" (f-read-text osrelease-file))))
-    "EmacsがWSLで動いているか?"))
 
 (leaf ncaq-emacs-utils :vc (:url "https://github.com/ncaq/ncaq-emacs-utils") :require t)
 
