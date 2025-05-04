@@ -5,6 +5,7 @@
 
 !.gitignore
 !.mc-lists.el
+!CLAUDE.md
 !LICENSE
 !README.md
 !early-init.el
