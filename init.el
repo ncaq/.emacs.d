@@ -1461,6 +1461,13 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   :bind (:emacs-lisp-mode-map
          ("C-M-q" . nil)))
 
+(leaf elisp-autofmt
+  :ensure t
+  :hook (emacs-lisp-mode-hook . elisp-autofmt-mode)
+  :bind
+  (:emacs-lisp-mode-map
+   ([remap indent-whole-buffer] . elisp-autofmt-buffer)))
+
 (leaf flycheck-package :ensure t :defun flycheck-package-setup :config (flycheck-package-setup))
 
 (leaf helpful
