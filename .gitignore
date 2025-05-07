@@ -3,6 +3,7 @@
 !/.github/
 !/snippets/
 
+!.elisp-autofmt
 !.gitignore
 !.mc-lists.el
 !CLAUDE.md
