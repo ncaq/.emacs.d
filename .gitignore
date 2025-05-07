@@ -3,6 +3,7 @@
 !/.github/
 !/snippets/
 
+!.dir-locals.el
 !.editorconfig
 !.elisp-autofmt
 !.gitignore
