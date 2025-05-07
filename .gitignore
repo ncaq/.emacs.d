@@ -3,6 +3,7 @@
 !/.github/
 !/snippets/
 
+!.editorconfig
 !.elisp-autofmt
 !.gitignore
 !.mc-lists.el
