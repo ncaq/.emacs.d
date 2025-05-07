@@ -96,7 +96,7 @@ Emacs側でシェルを読み込む。"
  nix-mode
  :ensure t
  :bind (:nix-mode-map ([remap indent-whole-buffer] . lsp-format-buffer))
- :config (leaf lsp-mode :after t :custom (lsp-nix-nil-formatter . "nixfmt")))
+ :config (leaf lsp-mode :after t :custom (lsp-nix-nil-formatter . ["nixfmt"])))
 
 (leaf envrc :ensure t :global-minor-mode envrc-global-mode :custom (envrc-none-lighter . nil))
 
