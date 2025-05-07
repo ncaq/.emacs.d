@@ -1960,5 +1960,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   :custom (gcmh-mode . t))
 
 ;; Local Variables:
+;; fill-column: 120
 ;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
 ;; End:
