@@ -1444,6 +1444,21 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf
  elisp-autofmt
  :ensure t
+ :init
+ (eval-and-compile
+   (defun in-user-emacs-directory-not-user-config-p ()
+     "In `.emacs.d', not (`early-init.el' or `init.el')."
+     (let* ((file-path (buffer-file-name))
+            (dir-path
+             (when file-path
+               (file-name-directory file-path))))
+       (and file-path
+            dir-path
+            (string-prefix-p user-emacs-directory dir-path)
+            (not (member (file-name-nondirectory file-path) '("early-init.el" "init.el"))))))
+   (defun elisp-autofmt-check-elisp-autofmt-exists-and-not-package ()
+     (and (elisp-autofmt-check-elisp-autofmt-exists) (in-user-emacs-directory-not-user-config-p))))
+ :custom (elisp-autofmt-on-save-p . 'elisp-autofmt-check-elisp-autofmt-exists-and-not-package)
  :hook (emacs-lisp-mode-hook . elisp-autofmt-mode)
  :bind (:emacs-lisp-mode-map ([remap indent-whole-buffer] . elisp-autofmt-buffer)))
 
