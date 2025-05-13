@@ -1964,3 +1964,8 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 ;; 起動終わりの処理
 
 (leaf gcmh :doc "アイドル状態かなどの判定からGCを調整してくれます。" :ensure t :blackout t :custom (gcmh-mode . t))
+
+;; Local Variables:
+;; fill-column: 120
+;; flycheck-disabled-checkers: (emacs-lisp-checkdoc)
+;; End:
