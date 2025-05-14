@@ -1945,7 +1945,8 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
  ;; コメントを`/*'式から`//'形式にする。
  (add-to-list 'web-mode-comment-formats '("javascript" . "//"))
  (add-to-list 'web-mode-comment-formats '("jsx" . "//"))
- (leaf smartparens :config (sp-local-pair 'web-mode "<" ">" :actions nil)))
+ (leaf smartparens :config (sp-local-pair 'web-mode "<" ">" :actions nil))
+ (leaf lsp-eslint :after t :custom (lsp-eslint-server-command . '("vscode-eslint-language-server" "--stdio"))))
 
 (leaf js :custom (js-indent-level . 2))
 
