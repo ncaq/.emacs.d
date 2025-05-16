@@ -1126,7 +1126,16 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
    (setf (cadr (aref tabulated-list-format 0)) 100))
  :hook (docker-image-mode-hook . docker-image-mode-setup))
 
-(leaf dockerfile-mode :ensure t)
+(leaf
+ dockerfile-mode
+ :ensure t
+ :init
+ (leaf
+  flycheck
+  :after t
+  (defun dockerfile-mode-hook-setup ()
+    (flycheck-add-next-checker 'lsp 'dockerfile-hadolint)))
+ :hook (dockerfile-mode-hook . dockerfile-mode-hook-setup))
 
 (leaf docker-compose-mode :ensure t)
 
