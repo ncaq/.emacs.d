@@ -130,9 +130,31 @@ Emacs側でシェルを読み込む。"
   (interactive)
   (find-file "~/Desktop/"))
 
+(defun open-ncaq-entry ()
+  (interactive)
+  (find-file "~/Desktop/www.ncaq.net/site/entry/"))
+
+(defun open-ncaq-entry-current-time ()
+  (interactive)
+  (find-file
+   (concat "~/Desktop/www.ncaq.net/site/entry/" (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
+
+(defun open-document ()
+  (interactive)
+  (find-file "~/Documents/"))
+
+(defun open-document-current ()
+  (interactive)
+  (let ((find-file-visit-truename t))
+    (find-file "~/Documents/current/")))
+
 (defun open-downloads ()
   (interactive)
   (find-file "~/Downloads/"))
+
+(defun open-dotfiles ()
+  (interactive)
+  (find-file "~/dotfiles/"))
 
 (defun open-google-drive ()
   (interactive)
@@ -142,19 +164,9 @@ Emacs側でシェルを読み込む。"
   (interactive)
   (find-file "~/WinDownloads/"))
 
-(defun open-document-current ()
+(defun open-win-home ()
   (interactive)
-  (let ((find-file-visit-truename t))
-    (find-file "~/Documents/current/")))
-
-(defun open-ncaq-entry ()
-  (interactive)
-  (find-file "~/Desktop/www.ncaq.net/site/entry/"))
-
-(defun open-ncaq-entry-current-time ()
-  (interactive)
-  (find-file
-   (concat "~/Desktop/www.ncaq.net/site/entry/" (format-time-string "%Y-%m-%d-%H-%M-%S" (current-time)) ".md")))
+  (find-file "~/WinHome/"))
 
 ;;; Dvorak設定をするための関数達
 
@@ -327,6 +339,9 @@ Emacs側でシェルを読み込む。"
  ("C-c '" . google-this)
  ("C-c ;" . align-regexp)
  ("C-c E" . open-ncaq-entry)
+ ("C-c I" . open-win-home)
+ ("C-c O" . open-dotfiles)
+ ("C-c U" . open-document)
  ("C-c a" . open-downloads)
  ("C-c d" . docker)
  ("C-c e" . open-ncaq-entry-current-time)
