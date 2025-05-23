@@ -56,13 +56,7 @@
  (defun package-menu-mode-setup ()
    "パッケージ名の幅を広く取る。"
    (setf (cadr (aref tabulated-list-format 0)) 50))
- (defun package-load-path-native-compile-async (&rest _)
-   "だいたいのパッケージをネイティブコンパイルする。
-  最初に読み込むより先にコンパイルすることにより、更新後のストレスなどを抑える。"
-   (interactive)
-   (native-compile-async load-path 'recursively))
- :hook (package-menu-mode-hook . package-menu-mode-setup)
- :advice (:after package-install package-load-path-native-compile-async))
+ :hook (package-menu-mode-hook . package-menu-mode-setup))
 
 ;;; 早めにserverを起動することで二重起動の可能性を減らす
 
