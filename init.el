@@ -1844,34 +1844,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   company-sourcekit
   :ensure t
   :when (eq system-type 'darwin)
-  :config (add-to-list 'company-backends 'company-sourcekit))
- (leaf
-  reformatter
-  :ensure t
-  :init
-  ;; swift-formatとSwiftFormatがそれぞれ全く違うプログラムとして存在している。
-  (eval-and-compile
-    (with-no-warnings
-      (reformatter-define swift-format :program "swift-format" :group 'swift-format)
-      (reformatter-define
-       swiftformat
-       :program "swiftformat"
-       :args
-       `("--config" ,(concat (locate-dominating-file default-directory ".swiftformat") "/.swiftformat"))
-       :group 'swiftformat)))
-  (defun swift-format-setup ()
-    ;; 改行前自動インデントは無効化し、改行後自動インデントは有効化する。
-    (setq-local electric-indent-mode nil)
-    (define-key swift-mode-map [remap newline] 'newline-and-indent)
-    ;; SwiftFormat向けの設定ファイルが存在すればSwiftFormatを使い、そうでなければswift-formatを使う。
-    (if (locate-dominating-file default-directory ".swiftformat")
-        (progn
-          (swiftformat-on-save-mode)
-          (define-key swift-mode-map [remap indent-whole-buffer] 'swiftformat-buffer))
-      (progn
-        (swift-format-on-save-mode)
-        (define-key swift-mode-map [remap indent-whole-buffer] 'swift-format-buffer))))
-  :hook (swift-mode-hook . swift-format-setup)))
+  :config (add-to-list 'company-backends 'company-sourcekit)))
 
 ;;; TypeSpec
 
