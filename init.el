@@ -1221,6 +1221,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf
  lsp-mode
  :ensure t
+ :after t
  :preface
  ;; s-lだと大概のディスプレイマネージャでロックされてしまうので変更。
  ;; lsp-modeの何かを読み込んだ時点でdefvarでkeymapが作成されてしまうため、
