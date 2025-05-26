@@ -1221,6 +1221,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf
  lsp-mode
  :ensure t
+ :after t
  :preface
  ;; s-lだと大概のディスプレイマネージャでロックされてしまうので変更。
  ;; lsp-modeの何かを読み込んだ時点でdefvarでkeymapが作成されてしまうため、
@@ -1453,9 +1454,11 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
             (string-prefix-p user-emacs-directory dir-path)
             (member (file-name-nondirectory file-path) '("early-init.el" "init.el")))))
    (defun elisp-autofmt-check-elisp-autofmt-exists-and-not-package ()
-     (and (elisp-autofmt-check-elisp-autofmt-exists) (not (in-user-emacs-directory-not-user-config-p)))))
+     (and (elisp-autofmt-check-elisp-autofmt-exists) (not (in-user-emacs-directory-not-user-config-p))))
+   (defun elisp-autofmt-setup ()
+     (add-hook 'emacs-lisp-mode-hook 'elisp-autofmt-mode)))
  :custom (elisp-autofmt-on-save-p . 'elisp-autofmt-check-elisp-autofmt-exists-and-not-package)
- :hook (emacs-lisp-mode-hook . elisp-autofmt-mode)
+ :hook (after-init-hook . elisp-autofmt-setup)
  :bind (:emacs-lisp-mode-map ([remap indent-whole-buffer] . elisp-autofmt-buffer)))
 
 (leaf flycheck-package :ensure t :defun flycheck-package-setup :config (flycheck-package-setup))
@@ -1844,34 +1847,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
   company-sourcekit
   :ensure t
   :when (eq system-type 'darwin)
-  :config (add-to-list 'company-backends 'company-sourcekit))
- (leaf
-  reformatter
-  :ensure t
-  :init
-  ;; swift-formatとSwiftFormatがそれぞれ全く違うプログラムとして存在している。
-  (eval-and-compile
-    (with-no-warnings
-      (reformatter-define swift-format :program "swift-format" :group 'swift-format)
-      (reformatter-define
-       swiftformat
-       :program "swiftformat"
-       :args
-       `("--config" ,(concat (locate-dominating-file default-directory ".swiftformat") "/.swiftformat"))
-       :group 'swiftformat)))
-  (defun swift-format-setup ()
-    ;; 改行前自動インデントは無効化し、改行後自動インデントは有効化する。
-    (setq-local electric-indent-mode nil)
-    (define-key swift-mode-map [remap newline] 'newline-and-indent)
-    ;; SwiftFormat向けの設定ファイルが存在すればSwiftFormatを使い、そうでなければswift-formatを使う。
-    (if (locate-dominating-file default-directory ".swiftformat")
-        (progn
-          (swiftformat-on-save-mode)
-          (define-key swift-mode-map [remap indent-whole-buffer] 'swiftformat-buffer))
-      (progn
-        (swift-format-on-save-mode)
-        (define-key swift-mode-map [remap indent-whole-buffer] 'swift-format-buffer))))
-  :hook (swift-mode-hook . swift-format-setup)))
+  :config (add-to-list 'company-backends 'company-sourcekit)))
 
 ;;; TypeSpec
 
