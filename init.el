@@ -1487,12 +1487,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 
 (leaf macrostep :ensure t)
 
-(leaf
- profiler
- :custom (profiler-report-cpu-line-format . '((100 left) (24 right ((19 right) (5 right))))) ; 幅を大きくする
- :after t
- :defvar profiler-report-mode-map
- :config (dvorak-set-key-prog profiler-report-mode-map))
+(leaf profiler :after t :defvar profiler-report-mode-map :config (dvorak-set-key-prog profiler-report-mode-map))
 
 (leaf ielm :bind (:ielm-map ("C-c C-d" . helpful-at-point)))
 
