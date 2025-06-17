@@ -1505,78 +1505,62 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 ;;; Haskell
 
 (leaf
- haskell-mode
+ haskell-ts-mode
+ :doc "比較的高速なのでsyntaxハイライトなどはhaskell-ts-modeを使う。便利機能は使いたいのでhaskell-modeも残す。"
  :ensure t
+ :mode ("\\.hs\\'" . haskell-ts-mode)
  :bind
- (:haskell-mode-map
+ (:haskell-ts-mode-map
   ("C-c C-b" . haskell-hoogle)
   ("C-c C-c" . haskell-session-change-target)
+  ("C-c C-l" . haskell-process-load-file)
   ("C-c C-p" . haskell-command-insert-language-pragma)
-  ("C-c C-s" . nil))
+  ("C-c C-r" . haskell-process-reload)
+  ("C-c C-t" . haskell-process-do-type)
+  ("C-c C-v" . haskell-cabal-visit-file)
+  ("C-c C-z" . haskell-interactive-switch))
+ :defvar treesit-language-source-alist
+ :config
+ (add-to-list
+  'treesit-language-source-alist '(haskell . ("https://github.com/tree-sitter/tree-sitter-haskell" "v0.23.1")))
+ (unless (treesit-language-available-p 'haskell)
+   (treesit-install-language-grammar 'haskell)))
+
+(leaf
+ haskell-mode
+ :ensure t
  :config
  ;; もう使われてないようですが古いプロジェクトではローカル変数として追加されることが多いので許可しておく。
  (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
  (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
- ;; melpaに登録されている名前はhaskell-modeで、haskell.elがhaskell-mode.elを読み込むよく分からない状態です。
- ;; melpaに登録されている名前を優先することにします。
- (leaf
-  haskell
-  :blackout interactive-haskell-mode
-  :init
-  (defun haskell-interactive-repl-flycheck ()
-    "左ウィンドウにコード画面を残し、右ウィンドウを上下に分割してREPLとFlycheckを開く。"
-    (interactive)
-    (delete-other-windows)
-    (flycheck-list-errors)
-    (haskell-process-load-file)
-    (haskell-interactive-switch)
-    (split-window-below)
-    (other-window 1)
-    (switch-to-buffer flycheck-error-list-buffer)
-    (other-window 1))
-  :bind
-  (:interactive-haskell-mode-map
-   ("C-c z" . haskell-interactive-repl-flycheck)
-   ("C-c C-b" . nil)
-   ("C-c C-c" . nil)
-   ("C-c C-r" . nil)
-   ("C-c C-t" . nil)
-   ("C-c TAB" . nil)
-   ("M-." . nil)))
  (leaf
   haskell-hoogle
-  :custom (haskell-hoogle-command . nil) (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s"))
- (leaf
-  haskell-interactive-mode
-  :after t
-  :defvar haskell-interactive-mode-map
-  :config (dvorak-set-key haskell-interactive-mode-map))
- (leaf
-  lsp-haskell
-  :ensure t
-  :custom
-  ;; フォーマッターをfourmoluにする。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
-  (lsp-haskell-formatting-provider . "fourmolu")
-  ;; 補完時にスニペット展開(型が出てくるやつ)を行わないようにする。
-  (lsp-haskell-completion-snippets-on . nil)
-  ;; 関数補完からの自動importはcompanyから誤爆する可能性が高すぎるので無効化する。
-  (lsp-haskell-plugin-ghcide-completions-config-auto-extend-on . nil)
-  ;; lintが厳しいだけならともかく、StrictDataなどを有効化していても認識してくれないため無効化する。
-  (lsp-haskell-plugin-stan-global-on . nil)
-  :init
-  (defun lsp-haskell-execute-code-action-add-signature ()
-    "Execute code action of add signature.
+  :custom (haskell-hoogle-command . nil) (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s")))
+
+(leaf
+ lsp-haskell
+ :ensure t
+ :custom
+ ;; フォーマッターをfourmoluにする。fourmoluのデフォルト値も気に入らないがカスタマイズ出来るだけマシ。
+ (lsp-haskell-formatting-provider . "fourmolu")
+ ;; 関数補完からの自動importはcompanyから誤爆する可能性が高すぎるので無効化する。
+ (lsp-haskell-plugin-ghcide-completions-config-auto-extend-on . nil)
+ ;; lintが厳しいだけならともかく、StrictDataなどを有効化していても認識してくれないため無効化する。
+ (lsp-haskell-plugin-stan-global-on . nil)
+ :init
+ (defun lsp-haskell-execute-code-action-add-signature ()
+   "Execute code action of add signature.
 Add the type signature that GHC infers to the function located below the point."
-    (interactive)
-    (let ((action
-           (seq-find
-            (lambda (e) (string-prefix-p "add signature" (lsp:code-action-title e))) (lsp-code-actions-at-point))))
-      (if action
-          (lsp-execute-code-action action)
-        (message "I can't find add signature action for this point"))))
-  :bind
-  (:haskell-mode-map
-   ([remap indent-whole-buffer] . lsp-format-buffer) ("C-c C-o" . lsp-haskell-execute-code-action-add-signature))))
+   (interactive)
+   (let ((action
+          (seq-find
+           (lambda (e) (string-prefix-p "add signature" (lsp:code-action-title e))) (lsp-code-actions-at-point))))
+     (if action
+         (lsp-execute-code-action action)
+       (message "I can't find add signature action for this point"))))
+ :bind
+ (:haskell-ts-mode-map
+  ([remap indent-whole-buffer] . lsp-format-buffer) ("C-c C-o" . lsp-haskell-execute-code-action-add-signature)))
 
 (leaf
  haskell-cabal
