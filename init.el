@@ -1519,7 +1519,10 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   ("C-c C-r" . haskell-process-reload)
   ("C-c C-t" . haskell-process-do-type)
   ("C-c C-v" . haskell-cabal-visit-file)
-  ("C-c C-z" . haskell-interactive-switch))
+  ("C-c C-z" . haskell-interactive-switch)
+
+  ([remap indent-whole-buffer] . lsp-format-buffer)
+  ("C-c C-o" . lsp-haskell-execute-code-action-add-signature))
  :defvar treesit-language-source-alist
  :config
  (add-to-list
@@ -1558,10 +1561,7 @@ Add the type signature that GHC infers to the function located below the point."
            (lambda (e) (string-prefix-p "add signature" (lsp:code-action-title e))) (lsp-code-actions-at-point))))
      (if action
          (lsp-execute-code-action action)
-       (message "I can't find add signature action for this point"))))
- :bind
- (:haskell-ts-mode-map
-  ([remap indent-whole-buffer] . lsp-format-buffer) ("C-c C-o" . lsp-haskell-execute-code-action-add-signature)))
+       (message "I can't find add signature action for this point")))))
 
 (leaf
  haskell-cabal
