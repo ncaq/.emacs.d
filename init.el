@@ -426,7 +426,7 @@ Emacs側でシェルを読み込む。"
                        ;; フルHDと4Kを想定。
                        :height
                        (if (<= (frame-pixel-width) 1920)
-                           108
+                           120
                          130))
    (set-fontset-font t 'unicode (font-spec :name "HackGen Console NF") nil 'append)
    (unless (eq system-type 'darwin)
