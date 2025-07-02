@@ -1526,6 +1526,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   ("C-c C-o" . lsp-haskell-execute-code-action-add-signature))
  :defvar treesit-language-source-alist
  :config
+ (require 'haskell-commands) ; need by `haskell-command-insert-language-pragma'
  (add-to-list
   'treesit-language-source-alist '(haskell . ("https://github.com/tree-sitter/tree-sitter-haskell" "v0.23.1")))
  (unless (treesit-language-available-p 'haskell)
@@ -1540,8 +1541,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
  (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
  (leaf
   haskell-hoogle
-  :custom (haskell-hoogle-command . nil) (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s"))
- (leaf haskell-commands :commands haskell-command-insert-language-pragma))
+  :custom (haskell-hoogle-command . nil) (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s")))
 
 (leaf
  lsp-haskell
