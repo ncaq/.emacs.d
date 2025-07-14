@@ -301,7 +301,6 @@ Emacs側でシェルを読み込む。"
  ("M-?" . point-redo)
  ("M-b" . backward-kill-word)
  ("M-c" . help-command)
- ("M-f" . helm-swoop)
  ("M-j" . helm-do-grep-ag)
  ("M-l" . sort-dwim)
  ("M-m" . newline-under)
@@ -702,7 +701,6 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
           (helm-do-grep-ag arg)))))
   :advice (:before helm-grep-action (lambda (&rest _ignored) (xref-push-marker-stack))))
  (leaf helm-descbinds :ensure t :global-minor-mode t)
- (leaf helm-swoop :ensure t)
  (leaf
   helm-ls-git
   :ensure t
