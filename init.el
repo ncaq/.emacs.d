@@ -1534,8 +1534,13 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
  haskell-mode
  :ensure t
  :config
- ;; もう使われてないようですが古いプロジェクトではローカル変数として追加されることが多いので許可しておく。
+ ;; 影響はないが、周辺ツールによって変更されるのを手動で認証しなくて済むようにする。
  (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
+ (add-to-list 'safe-local-variable-values '(haskell-indentation-layout-offset . 2))
+ (add-to-list 'safe-local-variable-values '(haskell-indentation-left-offset . 2))
+ (add-to-list 'safe-local-variable-values '(haskell-indentation-starter-offset . 2))
+ (add-to-list 'safe-local-variable-values '(haskell-indentation-where-post-offset . 2))
+ (add-to-list 'safe-local-variable-values '(haskell-indentation-where-pre-offset . 2))
  (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
  (leaf
   haskell-hoogle
