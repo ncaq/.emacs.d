@@ -1902,6 +1902,11 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
  ;; コメントを`/*'式から`//'形式にする。
  (add-to-list 'web-mode-comment-formats '("javascript" . "//"))
  (add-to-list 'web-mode-comment-formats '("jsx" . "//"))
+ ;; editorconfigなどが設定する値をsafeにする。
+ (add-to-list 'safe-local-variable-values '(web-mode-block-padding . 2))
+ (add-to-list 'safe-local-variable-values '(web-mode-indent-style . 2))
+ (add-to-list 'safe-local-variable-values '(web-mode-script-padding . 2))
+ (add-to-list 'safe-local-variable-values '(web-mode-style-padding . 2))
  (leaf smartparens :config (sp-local-pair 'web-mode "<" ">" :actions nil))
  (leaf lsp-eslint :after t :custom (lsp-eslint-server-command . '("vscode-eslint-language-server" "--stdio"))))
 
