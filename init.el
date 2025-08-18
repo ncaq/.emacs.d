@@ -549,6 +549,7 @@ Emacs側でシェルを読み込む。"
 (leaf indent :custom (standard-indent . 2)) ; フォールバック標準インデント値を2にする
 (leaf novice :custom (disabled-command-function . nil)) ; 初心者向けに無効にされているコマンドを有効にする
 (leaf select :custom (select-enable-clipboard . t)) ; クリップボードをX11と共有
+(leaf smie :config (add-to-list 'safe-local-variable-values '(smie-indent-basic . 2)))
 (leaf vc-hooks :custom (vc-follow-symlinks . t)) ; 常にシンボリックリンクをたどる
 (leaf warnings :custom (warning-minimum-level . :error)) ; 警告はエラーレベルでないとポップアップ表示しない
 
