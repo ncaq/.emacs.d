@@ -844,7 +844,7 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
  :ensure t
  :custom
  (copilot-chat-default-model . "gpt-5")
- (copilot-chat-commit-model . "grok-code-fast-1")
+ (copilot-chat-commit-model . "gemini-2.5-pro")
  (copilot-chat-frontend . 'shell-maker)
  (copilot-chat-markdown-prompt . "日本語で答えてください。")
  :bind
