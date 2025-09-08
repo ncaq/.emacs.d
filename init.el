@@ -1055,6 +1055,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
  (leaf
   magit-diff
   :after t
+  :custom (magit-diff-visit-prefer-worktree . t)
   ;; `magit-diff-visit-worktree-file'は`C-<return>'でも代用出来て、検索の誤爆の原因になるので無効化する。
   :bind (:magit-diff-section-map ("C-j" . nil)))
  (leaf magit-pull :custom (magit-pull-or-fetch . t))
