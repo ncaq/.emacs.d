@@ -862,7 +862,6 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
  ("C-; C-r" . copilot-chat-review)
  ("C-; C-t" . copilot-chat-test)
  ("C-; C-u" . copilot-chat-del-current-buffer)
- ("C-<return>" . copilot-chat-prompt-send)
  ;; Gitコミットメッセージの編集開始時にGitHub Copilotによるコミットメッセージを挿入する。
  :hook (git-commit-setup-hook . copilot-chat-insert-commit-message))
 
