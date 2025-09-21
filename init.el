@@ -1784,7 +1784,8 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
  :mode "\\.rs\\'"
  :custom (lsp-rust-analyzer-cargo-watch-command . "clippy")
  (rustic-format-display-method . 'ignore) ; Rustfmtのメッセージをポップアップしない
- (rustic-format-trigger . 'on-save))
+ (rustic-format-trigger . 'on-save)
+ :config (add-to-list 'safe-local-variable-values '(rustic-indent-offset . 4)))
 
 ;;; Scala
 
