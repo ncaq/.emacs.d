@@ -1372,7 +1372,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf go-mode :ensure t)
 (leaf graphql-mode :ensure t :hook (graphql-mode-hook . prettier-toggle-setup))
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil))
-(leaf hcl-mode :ensure t)
+(leaf hcl-mode :ensure t :config (add-to-list 'safe-local-variable-values '(hcl-indent-level . 2)))
 (leaf inf-lisp :custom (inferior-lisp-program . "sbcl --noinform"))
 (leaf json-mode :mode "\\.lock\\'" :ensure t :hook (json-mode-hook . prettier-toggle-setup))
 (leaf julia-mode :ensure t)
