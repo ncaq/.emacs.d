@@ -1546,7 +1546,12 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
  (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
  (leaf
   haskell-hoogle
-  :custom (haskell-hoogle-command . nil) (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s")))
+  :custom (haskell-hoogle-command . nil) (haskell-hoogle-url . "https://www.stackage.org/lts/hoogle?q=%s"))
+ (leaf
+  haskell-interactive-mode
+  :after t
+  :defvar haskell-interactive-mode-map
+  :config (dvorak-set-key-prog haskell-interactive-mode-map)))
 
 (leaf
  lsp-haskell
