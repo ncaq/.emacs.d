@@ -843,7 +843,7 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
  copilot-chat
  :ensure t
  :custom
- (copilot-chat-default-model . "gpt-5")
+ (copilot-chat-default-model . "gpt-5.1")
  (copilot-chat-commit-model . "gpt-4.1")
  (copilot-chat-frontend . 'shell-maker)
  (copilot-chat-markdown-prompt . "日本語で答えてください。")
