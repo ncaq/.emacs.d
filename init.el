@@ -421,14 +421,14 @@ Emacs側でシェルを読み込む。"
  :init
  (defun font-setup ()
    (set-face-attribute 'default nil
-                       :family "HackGen Console NF"
+                       :family "FirgeNerd Console"
                        ;; 2画面分割でだいたい横120文字を表示できるフォントサイズにする。
                        ;; フルHDと4Kを想定。
                        :height
                        (if (<= (frame-pixel-width) 1920)
                            120
                          130))
-   (set-fontset-font t 'unicode (font-spec :name "HackGen Console NF") nil 'append)
+   (set-fontset-font t 'unicode (font-spec :name "FirgeNerd Console") nil 'append)
    (unless (eq system-type 'darwin)
      (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append)))
  ;; `frame-pixel-width'がフレーム作成後でないと実用的な値を返さないので、
