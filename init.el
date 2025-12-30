@@ -1379,6 +1379,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf bnf-mode :ensure t)
 (leaf conf-mode :mode "/credentials\\'" "\\.dsk\\'")
 (leaf csv-mode :ensure t)
+(leaf dhall-mode :ensure t)
 (leaf dotenv-mode :ensure t)
 (leaf egison-mode :ensure t :mode ("\\.egi\\'" . egison-mode))
 (leaf generic-x :require t)
