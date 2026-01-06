@@ -991,6 +991,17 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
    ;; prettierを有効化
    (prettier-rc-mode t)))
 
+;;; Crypt
+
+(leaf
+ sops
+ :ensure t
+ :init
+ (defun sops-decrypt ()
+   (interactive)
+   (sops-mode 1)
+   (sops-edit-file)))
+
 ;;; Git
 
 (leaf
