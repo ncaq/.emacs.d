@@ -996,6 +996,7 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
 (leaf
  sops
  :ensure t
+ :commands sops-decrypt
  :init
  (defun sops-decrypt ()
    "sopsで暗号化されたファイルを手動で復号して編集するためのコマンド。"
