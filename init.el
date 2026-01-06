@@ -998,6 +998,7 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
  :ensure t
  :init
  (defun sops-decrypt ()
+   "sopsで暗号化されたファイルを手動で復号して編集するためのコマンド。"
    (interactive)
    (sops-mode 1)
    (sops-edit-file)))
