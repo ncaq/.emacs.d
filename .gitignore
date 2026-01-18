@@ -5,11 +5,16 @@
 
 !.dir-locals.el
 !.editorconfig
+!.editorconfig-checker.json
 !.elisp-autofmt
+!.envrc
 !.gitignore
+!.marksman.toml
 !.mc-lists.el
 !CLAUDE.md
 !LICENSE
 !README.md
 !early-init.el
+!flake.lock
+!flake.nix
 !init.el

@@ -13,16 +13,16 @@
 ### 設定の特徴
 
 - パッケージ管理に[leaf](https://github.com/conao3/leaf.el)を使用。
-    - leafは`ensure`キーワードを使うと`package.el`を使ってパッケージをインストールする。これを優先的に使用。
-        - `package.el`のリポジトリには以下を指定している。
-            - [melpa](https://melpa.org/packages/)
-            - [nongnu](https://elpa.nongnu.org/nongnu/)
-            - [gnu](https://elpa.gnu.org/packages/)
-    - melpaが対応していないパッケージのインストールには他の手段をleafのキーワードで使用。
-        - `:straight`で[straight](https://github.com/radian-software/straight.el)を使用。
-        - `:vc`でEmacs組み込み機能の`package-vc`を使用。
+  - leafは`ensure`キーワードを使うと`package.el`を使ってパッケージをインストールする。これを優先的に使用。
+    - `package.el`のリポジトリには以下を指定している。
+      - [melpa](https://melpa.org/packages/)
+      - [nongnu](https://elpa.nongnu.org/nongnu/)
+      - [gnu](https://elpa.gnu.org/packages/)
+  - melpaが対応していないパッケージのインストールには他の手段をleafのキーワードで使用。
+    - `:straight`で[straight](https://github.com/radian-software/straight.el)を使用。
+    - `:vc`でEmacs組み込み機能の`package-vc`を使用。
 - 自動カスタマイズ変数読み込みは無効化。
-    - 自動で書き込みが行われるので`custom.el`に書き込みだけしている。
+  - 自動で書き込みが行われるので`custom.el`に書き込みだけしている。
 
 ## 使用言語と規約
 
