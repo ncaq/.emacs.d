@@ -6,13 +6,46 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+# URLなどは分割困難で長過ぎることがあるためしばしば例外が許可されます。
+# あくまで指針と各種フォーマッターへの指示です。
+max_line_length = 120
+
+# デフォルトのインデントをスペースで2幅にして例外の方を設定することにします。
+# これもcheckerがインデントではないものを誤認することがあるので、
+# あくまで指針と各種フォーマッターへの指示です。
 indent_style = space
 indent_size = 2
-max_line_length = 120
+
+# 標準インデントが4の言語。
+[*.{cs,csx,java,kt,kts,php,py,pyi,rs}]
+indent_size = 4
+
+# 標準インデントがタブの言語。
+[{*.go,*.make,*.mk,Makefile}]
+indent_style = tab
 
 [*.md]
 # Markdownには最後にスペース2つ入れて強制改行するシンタックスがあるので末尾のスペースを許可。
-# 注意: なるべく強制改行は使わず、意味で段落して、改行位置はクライアントのデバイスに任せるべき。
+# 注意: なるべく強制改行は使わず、意味で段落して、改行位置はクライアントのデバイスに任せるべきです。
 trim_trailing_whitespace = false
-# 順序付きリストをネストする時に、GitHubなどはインデント幅を2にすると適切にパース出来ないので4とする。
-indent_size = 4
+# MarkdownはURLやコード例が長くなることが多いため行幅制限を緩めます。
+max_line_length = 200
+# MarkdownはCommonMark準拠パーサーでは箇条書きリストのネストは2スペースでも動作し、
+# 番号付きリストはマーカー幅に依存するため固定値での指定は不適切です。
+# よって`indent_size = 4`を指定するのも不適切なため指定せず親の値を継承します。
+
+[*.nix]
+# Nix言語を使った設定はコメントなどでURLやコード例が長くなることが多いため行幅制限を緩めます。
+max_line_length = 200
+
+[*.bat]
+charset = latin1
+end_of_line = crlf
+
+[*.ps1]
+charset = utf-8-bom
+end_of_line = crlf
+
+[*.reg]
+charset = utf-8-bom
+end_of_line = crlf
