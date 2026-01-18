@@ -14,7 +14,6 @@
 
   outputs =
     inputs@{
-      nixpkgs,
       flake-parts,
       treefmt-nix,
       ...
@@ -31,7 +30,6 @@
       perSystem =
         {
           pkgs,
-          inputs',
           ...
         }:
         {
