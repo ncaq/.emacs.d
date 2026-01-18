@@ -9,6 +9,7 @@
 !.elisp-autofmt
 !.envrc
 !.gitignore
+!.marksman.toml
 !.mc-lists.el
 !CLAUDE.md
 !LICENSE
