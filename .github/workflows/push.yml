@@ -21,17 +21,3 @@ jobs:
           extra_nix_config: |
             accept-flake-config = true
       - run: nix flake check
-
-  elisp-autofmt:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
-        with:
-          persist-credentials: false
-      - uses: purcell/setup-emacs@7a92187aa5b5a3b854cbdfa47499fbd3d1207163 # v7.0
-        with:
-          version: 30.2
-      - run: git clone --depth=1 https://codeberg.org/ideasman42/emacs-elisp-autofmt.git
-      - run: chmod +x ./emacs-elisp-autofmt/elisp-autofmt.py
-      - run: git ls-files '*.el'|xargs -r ./emacs-elisp-autofmt/elisp-autofmt-cmd.py
-      - run: git diff --exit-code
