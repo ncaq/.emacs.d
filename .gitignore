@@ -7,10 +7,13 @@
 !.editorconfig
 !.editorconfig-checker.json
 !.elisp-autofmt
+!.envrc
 !.gitignore
 !.mc-lists.el
 !CLAUDE.md
 !LICENSE
 !README.md
 !early-init.el
+!flake.lock
+!flake.nix
 !init.el
