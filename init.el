@@ -680,8 +680,15 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
   helm-grep
   :custom
   ;; ripgrepは自動認識されるが、オプションを少し追加。
-  (helm-grep-ag-command
-   . "rg --color=always --smart-case --search-zip --no-heading --line-number --type-not=svg --sort=path %s -- %s %s")
+  `(helm-grep-ag-command
+    .
+    ,(string-join '("rg" "--color=always" "--smart-case" "--search-zip" "--no-heading" "--line-number"
+                    "--type-not=svg" ; SVGはXMLなので検索してしまいますが有用ではないので。
+                    "--hidden" ; デフォルトでhiddenは`.gitignore'を尊重します。
+                    "--glob '!.git'" ; hiddenを有効にすると`.git'も対象になってしまいます。
+                    "--sort=path" ; ソート順を安定させます。
+                    "%s -- %s %s")
+                  " "))
   ;; 検索結果でファイル名だけではなくパスも表示する。
   (helm-grep-file-path-style . 'absolute)
   :defun project-root helm-grep-ag
