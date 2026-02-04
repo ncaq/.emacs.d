@@ -975,19 +975,19 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
  whitespace
  :global-minor-mode global-whitespace-mode
  :blackout global-whitespace-mode
- :custom
- (whitespace-action . '(auto-cleanup))
- (whitespace-style . '(face tabs spaces trailing empty))
- :custom-face
- (whitespace-empty . '((t (:foreground "#5a2c2b"))))
- (whitespace-space . '((t (:background "#073642"))))
- (whitespace-tab . '((t (:foreground "#0C2B33"))))
- (whitespace-trailing . '((t (:foreground "#332B28"))))
- :defvar whitespace-action
+ :custom (whitespace-action . '(auto-cleanup)) (whitespace-style . '(face tabs spaces trailing empty))
  :init
  (defun whitespace-cleanup-turn-off ()
    (interactive)
-   (setq-local whitespace-action (remove 'auto-cleanup whitespace-action))))
+   (setq-local whitespace-action (remove 'auto-cleanup whitespace-action)))
+ :config
+ ;; modus-themes-with-colorsはevalベースのマクロのためバイトコンパイラが変数を追跡できない
+ (with-no-warnings
+   (modus-themes-with-colors
+    (set-face-attribute 'whitespace-empty nil :foreground bg-red-nuanced)
+    (set-face-attribute 'whitespace-space nil :background bg-dim)
+    (set-face-attribute 'whitespace-tab nil :foreground bg-inactive)
+    (set-face-attribute 'whitespace-trailing nil :foreground bg-red-nuanced))))
 
 (leaf
  prettier-rc
