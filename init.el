@@ -439,7 +439,16 @@ Emacs側でシェルを読み込む。"
 (leaf font-core :config (global-font-lock-mode 1))
 
 ;; テーマを読み込む
-(leaf solarized-theme :ensure t :config (load-theme 'solarized-dark t))
+(leaf
+ modus-themes
+ :ensure t
+ :custom
+ (modus-themes-italic-constructs . t)
+ (modus-themes-bold-constructs . t)
+ (modus-themes-headings . '((1 . (rainbow bold 1.3)) (2 . (rainbow bold 1.2)) (t . (rainbow bold 1.1))))
+ (modus-themes-completions . '((matches . (extrabold intense)) (selection . (semibold accented))))
+ (modus-themes-prompts . '(bold intense))
+ :config (load-theme 'modus-vivendi t))
 
 ;; tree-sitterの自動インストール
 (leaf treesit-auto :ensure t :require t :custom (treesit-auto-install . t))
