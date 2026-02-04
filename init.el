@@ -1923,11 +1923,11 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
  (web-mode-enable-current-column-highlight . t)
  (web-mode-enable-current-element-highlight . t)
  :custom-face
- (web-mode-jsx-depth-1-face . '((t (:background "#073844"))))
- (web-mode-jsx-depth-2-face . '((t (:background "#083C49"))))
- (web-mode-jsx-depth-3-face . '((t (:background "#08404F"))))
- (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
- (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
+ (web-mode-jsx-depth-1-face . '((t (:background "#091a20"))))
+ (web-mode-jsx-depth-2-face . '((t (:background "#0c2028"))))
+ (web-mode-jsx-depth-3-face . '((t (:background "#0f2630"))))
+ (web-mode-jsx-depth-4-face . '((t (:background "#122c38"))))
+ (web-mode-jsx-depth-5-face . '((t (:background "#153240"))))
  :hook (web-mode-hook . prettier-toggle-setup)
  :bind
  (:web-mode-map
