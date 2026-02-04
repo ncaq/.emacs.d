@@ -457,11 +457,7 @@ Emacs側でシェルを読み込む。"
 ;; rainbow-delimiters -> rainbow-mode
 
 ;; 括弧の対応を色対応でわかりやすく
-(leaf
- rainbow-delimiters
- :ensure t
- :hook prog-mode-hook web-mode-hook
- :custom-face (rainbow-delimiters-depth-1-face . '((t (:foreground "#586e75"))))) ; 文字列の色と被るため変更
+(leaf rainbow-delimiters :ensure t :hook prog-mode-hook web-mode-hook)
 
 ;; 色コードを可視化
 (leaf
