@@ -439,19 +439,25 @@ Emacs側でシェルを読み込む。"
 (leaf font-core :config (global-font-lock-mode 1))
 
 ;; テーマを読み込む
-(leaf solarized-theme :ensure t :config (load-theme 'solarized-dark t))
+(leaf
+ modus-themes
+ :ensure t
+ :custom
+ (modus-themes-italic-constructs . t)
+ (modus-themes-bold-constructs . t)
+ (modus-themes-headings . '((1 . (rainbow bold 1.3)) (2 . (rainbow bold 1.2)) (t . (rainbow bold 1.1))))
+ (modus-themes-completions . '((matches . (extrabold intense)) (selection . (semibold accented))))
+ (modus-themes-prompts . '(bold intense))
+ :config (load-theme 'modus-vivendi t))
 
+;; tree-sitterの自動インストール
 (leaf treesit-auto :ensure t :require t :custom (treesit-auto-install . t))
 
 ;; 以下の順番で読み込まないと正常に動かなかった
 ;; rainbow-delimiters -> rainbow-mode
 
 ;; 括弧の対応を色対応でわかりやすく
-(leaf
- rainbow-delimiters
- :ensure t
- :hook prog-mode-hook web-mode-hook
- :custom-face (rainbow-delimiters-depth-1-face . '((t (:foreground "#586e75"))))) ; 文字列の色と被るため変更
+(leaf rainbow-delimiters :ensure t :hook prog-mode-hook web-mode-hook)
 
 ;; 色コードを可視化
 (leaf
@@ -969,19 +975,19 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
  whitespace
  :global-minor-mode global-whitespace-mode
  :blackout global-whitespace-mode
- :custom
- (whitespace-action . '(auto-cleanup))
- (whitespace-style . '(face tabs spaces trailing empty))
- :custom-face
- (whitespace-empty . '((t (:foreground "#5a2c2b"))))
- (whitespace-space . '((t (:background "#073642"))))
- (whitespace-tab . '((t (:foreground "#0C2B33"))))
- (whitespace-trailing . '((t (:foreground "#332B28"))))
- :defvar whitespace-action
+ :custom (whitespace-action . '(auto-cleanup)) (whitespace-style . '(face tabs spaces trailing empty))
  :init
  (defun whitespace-cleanup-turn-off ()
    (interactive)
-   (setq-local whitespace-action (remove 'auto-cleanup whitespace-action))))
+   (setq-local whitespace-action (remove 'auto-cleanup whitespace-action)))
+ :config
+ ;; modus-themes-with-colorsはevalベースのマクロのためバイトコンパイラが変数を追跡できない
+ (with-no-warnings
+   (modus-themes-with-colors
+    (set-face-attribute 'whitespace-empty nil :foreground bg-red-nuanced)
+    (set-face-attribute 'whitespace-space nil :background bg-dim)
+    (set-face-attribute 'whitespace-tab nil :foreground bg-inactive)
+    (set-face-attribute 'whitespace-trailing nil :foreground bg-red-nuanced))))
 
 (leaf
  prettier-rc
@@ -1917,11 +1923,11 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
  (web-mode-enable-current-column-highlight . t)
  (web-mode-enable-current-element-highlight . t)
  :custom-face
- (web-mode-jsx-depth-1-face . '((t (:background "#073844"))))
- (web-mode-jsx-depth-2-face . '((t (:background "#083C49"))))
- (web-mode-jsx-depth-3-face . '((t (:background "#08404F"))))
- (web-mode-jsx-depth-4-face . '((t (:background "#094554"))))
- (web-mode-jsx-depth-5-face . '((t (:background "#0A4D5E"))))
+ (web-mode-jsx-depth-1-face . '((t (:background "#091a20"))))
+ (web-mode-jsx-depth-2-face . '((t (:background "#0c2028"))))
+ (web-mode-jsx-depth-3-face . '((t (:background "#0f2630"))))
+ (web-mode-jsx-depth-4-face . '((t (:background "#122c38"))))
+ (web-mode-jsx-depth-5-face . '((t (:background "#153240"))))
  :hook (web-mode-hook . prettier-toggle-setup)
  :bind
  (:web-mode-map
