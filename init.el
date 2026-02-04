@@ -441,6 +441,7 @@ Emacs側でシェルを読み込む。"
 ;; テーマを読み込む
 (leaf solarized-theme :ensure t :config (load-theme 'solarized-dark t))
 
+;; tree-sitterの自動インストール
 (leaf treesit-auto :ensure t :require t :custom (treesit-auto-install . t))
 
 ;; 以下の順番で読み込まないと正常に動かなかった
