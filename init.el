@@ -508,6 +508,8 @@ Emacs側でシェルを読み込む。"
      (interactive)
      (set-frame-parameter nil 'fullscreen 'maximized)))
  :config
+ ;; 非デーモンモードの場合にも、起動時にフレームを最大化します。
+ (frame-maximized)
  ;; デーモンモードでは起動時にフレームが存在しないため、
  ;; `default-frame-alist'で新規フレーム作成時に最大化します。
  (push '(fullscreen . maximized) default-frame-alist))
