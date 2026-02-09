@@ -512,7 +512,7 @@ Emacs側でシェルを読み込む。"
  (frame-maximized)
  ;; デーモンモードでは起動時にフレームが存在しないため、
  ;; `default-frame-alist'で新規フレーム作成時に最大化します。
- (push '(fullscreen . maximized) default-frame-alist))
+ (add-to-list 'default-frame-alist '(fullscreen . maximized)))
 
 (leaf image-file :global-minor-mode auto-image-file-mode)
 
