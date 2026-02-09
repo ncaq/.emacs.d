@@ -2,6 +2,9 @@ version: 2
 updates:
   - package-ecosystem: github-actions
     directory: "/"
+    open-pull-requests-limit: 20
+    labels:
+      - "Type: CI"
+      - "Type: Dependencies"
     schedule:
       interval: daily
-    open-pull-requests-limit: 20
