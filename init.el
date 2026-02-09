@@ -507,7 +507,12 @@ Emacs側でシェルを読み込む。"
 `toggle-frame-maximized'のトグルじゃないバージョン。"
      (interactive)
      (set-frame-parameter nil 'fullscreen 'maximized)))
- :config (frame-maximized))
+ :config
+ ;; 非デーモンモードの場合にも、起動時にフレームを最大化します。
+ (frame-maximized)
+ ;; デーモンモードでは起動時にフレームが存在しないため、
+ ;; `default-frame-alist'で新規フレーム作成時に最大化します。
+ (add-to-list 'default-frame-alist '(fullscreen . maximized)))
 
 (leaf image-file :global-minor-mode auto-image-file-mode)
 
