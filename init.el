@@ -78,10 +78,12 @@
 (leaf
  exec-path-from-shell
  :doc
- "Windowsのwslg.exeやmacOSのランチャーなどから起動したときはシェルの環境変数を引き継がないため、
-Emacs側でシェルを読み込む。"
+ "以下のようなシェルの環境変数を引き継がないケースでもEmacs側で環境変数を読み込みます。
+- Windowsのwslg.exe
+- macOSのランチャー
+- systemdのサービス
+"
  :ensure t
- :when (and window-system (or system-type-wsl (eq system-type 'darwin)))
  :config
  ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
  (exec-path-from-shell-initialize))
