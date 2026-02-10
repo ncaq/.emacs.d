@@ -844,7 +844,7 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
 
 (leaf
  copilot
- :vc (:url "https://github.com/copilot-emacs/copilot.el")
+ :ensure t
  :init
  (defun turn-on-copilot-mode ()
    (interactive)
