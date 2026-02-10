@@ -1415,7 +1415,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf opascal-mode :mode "\\.dfm\\'" "\\.pas\\'")
 (leaf plantuml-mode :ensure t :mode "\\.puml\\'" :custom (plantuml-default-exec-mode . 'executable))
 (leaf powershell :ensure t)
-(leaf prisma-mode :vc (:url "https://github.com/pimeys/emacs-prisma-mode") :after lsp-mode)
 (leaf protobuf-mode :ensure t)
 (leaf robots-txt-mode :ensure t)
 (leaf scheme :custom (scheme-program-name . "gosh"))
