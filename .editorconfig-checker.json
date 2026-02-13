@@ -2,5 +2,5 @@
   "Disable": {
     "IndentSize": true
   },
-  "Exclude": [".*.el"]
+  "Exclude": [".*\\.el$"]
 }
