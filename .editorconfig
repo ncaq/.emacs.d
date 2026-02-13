@@ -47,8 +47,3 @@ end_of_line = crlf
 [*.reg]
 charset = utf-8-bom
 end_of_line = crlf
-
-[*.el]
-# Emacs Lispの設定ファイルはコメント内のURL参照が長くなることが多く、
-# elisp-autofmtがleafマクロの:bindなどで改行を維持しないため行幅制限を緩めます。
-max_line_length = 200
