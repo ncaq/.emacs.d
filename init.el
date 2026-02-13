@@ -1396,6 +1396,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 ;; 一行で収まる他と関連性の薄いもの
 
 (leaf apache-mode :ensure t)
+(leaf bicep-ts-mode :ensure t :mode "\\.bicep\\'")
 (leaf bnf-mode :ensure t)
 (leaf conf-mode :mode "/credentials\\'" "\\.dsk\\'")
 (leaf csv-mode :ensure t)
