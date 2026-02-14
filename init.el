@@ -84,6 +84,7 @@
 - systemdのサービス
 "
  :ensure t
+ :custom (exec-path-from-shell-variables . '("PATH" "MANPATH" "SSH_ASKPASS" "SSH_AUTH_SOCK"))
  :config
  ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
  (exec-path-from-shell-initialize))
