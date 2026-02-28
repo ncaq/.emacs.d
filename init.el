@@ -1410,7 +1410,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf graphviz-dot-mode :ensure t :custom (graphviz-dot-auto-indent-on-semi . nil))
 (leaf hcl-mode :ensure t :config (add-to-list 'safe-local-variable-values '(hcl-indent-level . 2)))
 (leaf inf-lisp :custom (inferior-lisp-program . "sbcl --noinform"))
-(leaf json-mode :mode "\\.lock\\'" :ensure t :hook (json-mode-hook . prettier-toggle-setup))
 (leaf julia-mode :ensure t)
 (leaf mediawiki :ensure t :mode "\\.wiki\\'")
 (leaf nginx-mode :ensure t)
@@ -1630,6 +1629,20 @@ Add the type signature that GHC infers to the function located below the point."
 (leaf java-mode :config (leaf lsp-java :ensure t :require t))
 
 (leaf groovy-mode :ensure t)
+
+;;; JavaScript
+
+(leaf js :doc "実際の設定ではweb-modeが使われます。" :custom (js-indent-level . 2))
+
+(leaf
+ json-mode
+ :ensure t
+ :mode
+ ("\\.jsonc\\'" . jsonc-mode)
+ ("\\.lock\\'" . json-mode)
+ :hook
+ (json-mode-hook . prettier-toggle-setup)
+ (jsonc-mode-hook . prettier-toggle-setup))
 
 ;;; Markdown
 
@@ -1952,8 +1965,6 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
  (add-to-list 'safe-local-variable-values '(web-mode-style-padding . 2))
  (leaf smartparens :config (sp-local-pair 'web-mode "<" ">" :actions nil))
  (leaf lsp-eslint :after t :custom (lsp-eslint-server-command . '("vscode-eslint-language-server" "--stdio"))))
-
-(leaf js :custom (js-indent-level . 2))
 
 ;;; XML
 
