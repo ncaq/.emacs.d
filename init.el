@@ -1423,7 +1423,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf systemd :ensure t)
 (leaf terraform-mode :ensure t)
 (leaf wat-ts-mode :ensure t :mode "\\.wat\\'" "\\.wast\\'")
-(leaf yaml-mode :ensure t :hook (yaml-mode-hook . prettier-toggle-setup))
+(leaf yaml-mode :ensure t :mode "\\.yaml\\.lock\\'" :hook (yaml-mode-hook . prettier-toggle-setup))
 (leaf yarn-mode :ensure t)
 
 ;;; C/C++
@@ -1638,8 +1638,8 @@ Add the type signature that GHC infers to the function located below the point."
  json-mode
  :ensure t
  :mode
+ ("/package-lock\\.json\\'" . json-mode)
  ("\\.jsonc\\'" . jsonc-mode)
- ("\\.lock\\'" . json-mode)
  :hook
  (json-mode-hook . prettier-toggle-setup)
  (jsonc-mode-hook . prettier-toggle-setup))
