@@ -38,7 +38,7 @@ jobs:
             accept-flake-config = true
       - name: Run Claude Code Review
         id: claude-review
-        uses: anthropics/claude-code-action@ba7fa4bcf054319261202aef93d71a89112a8d00 # v1
+        uses: anthropics/claude-code-action@64c7a0ef71df67b14cb4471f4d9c8565c61042bf # v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           plugin_marketplaces: "https://github.com/anthropics/claude-code.git"
