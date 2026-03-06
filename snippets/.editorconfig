@@ -1,0 +1,5 @@
+[*]
+insert_final_newline = false    # snippetは末尾改行が意味を持ってしまい改行が追加されてしまうため無効化
+
+[{.editorconfig,.yas-parents}]
+insert_final_newline = true
