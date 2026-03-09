@@ -18,6 +18,12 @@ jobs:
           persist-credentials: false
       - uses: cachix/install-nix-action@19effe9fe722874e6d46dd7182e4b8b7a43c4a99 # v31.10.0
         with:
-          extra_nix_config: |
-            accept-flake-config = true
+          extra_nix_config: >-
+            extra-substituters =
+            https://cache.nixos.org/
+            https://nix-community.cachix.org/
+
+            extra-trusted-public-keys =
+            cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
       - run: nix flake check
