@@ -63,9 +63,74 @@
               config = ./init.el;
               # init.elから自動推論されないパッケージを追加します。
               extraEmacsPackages =
-                _epkgs: with pkgs; [
-                  copilot-language-server
-                ];
+                _epkgs:
+                with pkgs;
+                [
+                  bash-language-server
+                  black
+                  ccls
+                  clojure-lsp
+                  cmake-language-server
+                  csharp-ls
+                  deno
+                  dhall-lsp-server
+                  dockerfile-language-server
+                  elixir-ls
+                  erlang-language-platform
+                  fortls
+                  fourmolu
+                  gauche
+                  gh
+                  gopls
+                  graphql-language-service-cli
+                  graphviz
+                  haskell-language-server
+                  isort
+                  jdt-language-server
+                  kotlin-language-server
+                  ltex-ls-plus
+                  lua-language-server
+                  marksman
+                  metals
+                  nginx-language-server
+                  nil
+                  nixfmt
+                  ocamlPackages.ocaml-lsp
+                  ocamlformat
+                  omnisharp-roslyn
+                  plantuml
+                  prettier
+                  pyright
+                  ripgrep
+                  ruff
+                  rust-analyzer
+                  sbcl
+                  serve-d
+                  shellcheck
+                  sops
+                  sqls
+                  svelte-language-server
+                  tailwindcss-language-server
+                  taplo
+                  terraform-ls
+                  texlab
+                  typescript-language-server
+                  vscode-langservers-extracted
+                  vue-language-server
+                  yaml-language-server
+                  zls
+                ]
+                ++ (with elmPackages; [
+                  elm-format
+                  elm-language-server
+                ])
+                ++ (with haskellPackages; [
+                  cabal-fmt
+                  cabal-gild
+                ])
+                ++ (with nodePackages; [
+                  purescript-language-server
+                ]);
             };
           };
           treefmt.config = {
