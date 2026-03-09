@@ -19,6 +19,7 @@
 
   outputs =
     inputs@{
+      nixpkgs,
       flake-parts,
       treefmt-nix,
       emacs-overlay,
@@ -37,9 +38,16 @@
       perSystem =
         {
           pkgs,
+          system,
           ...
         }:
         {
+          _module.args.pkgs = import nixpkgs {
+            inherit system;
+            overlays = [
+              emacs-overlay.overlays.default
+            ];
+          };
           packages = {
             default = pkgs.emacsWithPackagesFromUsePackage {
               # init.elが依存しているEmacs Lispパッケージがバンドルされます。
