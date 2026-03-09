@@ -33,7 +33,7 @@ trim_trailing_whitespace = false
 # よって`indent_size = 4`を指定するのも不適切なため指定せず親の値を継承します。
 
 [*.{md,nix,yml,yaml}]
-# 設定やドキュメントのファイルはコメントなどでURLやコード例が長くなることが多いため行幅制限を緩めます。
+# 設定やドキュメントのファイルはURLなど改行困難なものが多いため行幅制限を緩めます。
 max_line_length = 200
 
 [*.bat]
