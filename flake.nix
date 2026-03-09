@@ -8,12 +8,21 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+      };
+    };
   };
 
   outputs =
     inputs@{
+      nixpkgs,
       flake-parts,
       treefmt-nix,
+      emacs-overlay,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -29,9 +38,101 @@
       perSystem =
         {
           pkgs,
+          system,
           ...
         }:
+        let
+          # 明示的に許可するunfreeパッケージのリスト。
+          allowedUnfreePackages = [
+            "copilot-language-server" # 一番いい補完のため仕方がない。
+          ];
+        in
         {
+          _module.args.pkgs = import nixpkgs {
+            inherit system;
+            config = {
+              allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) allowedUnfreePackages;
+            };
+            overlays = [
+              emacs-overlay.overlays.default
+            ];
+          };
+          packages = {
+            default = pkgs.emacsWithPackagesFromUsePackage {
+              # init.elが依存しているEmacs Lispパッケージがバンドルされます。
+              config = ./init.el;
+              # init.elから自動推論されないパッケージを追加します。
+              extraEmacsPackages =
+                _epkgs:
+                with pkgs;
+                [
+                  bash-language-server
+                  black
+                  ccls
+                  clojure-lsp
+                  cmake-language-server
+                  csharp-ls
+                  deno
+                  dhall-lsp-server
+                  dockerfile-language-server
+                  elixir-ls
+                  erlang-language-platform
+                  fortls
+                  fourmolu
+                  gauche
+                  gh
+                  gopls
+                  graphql-language-service-cli
+                  graphviz
+                  haskell-language-server
+                  isort
+                  jdt-language-server
+                  kotlin-language-server
+                  ltex-ls-plus
+                  lua-language-server
+                  marksman
+                  metals
+                  nginx-language-server
+                  nil
+                  nixfmt
+                  ocamlPackages.ocaml-lsp
+                  ocamlformat
+                  omnisharp-roslyn
+                  plantuml
+                  prettier
+                  pyright
+                  ripgrep
+                  ruff
+                  rust-analyzer
+                  sbcl
+                  serve-d
+                  shellcheck
+                  sops
+                  sqls
+                  svelte-language-server
+                  tailwindcss-language-server
+                  taplo
+                  terraform-ls
+                  texlab
+                  typescript-language-server
+                  vscode-langservers-extracted
+                  vue-language-server
+                  yaml-language-server
+                  zls
+                ]
+                ++ (with elmPackages; [
+                  elm-format
+                  elm-language-server
+                ])
+                ++ (with haskellPackages; [
+                  cabal-fmt
+                  cabal-gild
+                ])
+                ++ (with nodePackages; [
+                  purescript-language-server
+                ]);
+            };
+          };
           treefmt.config = {
             projectRootFile = "flake.nix";
             programs = {
@@ -55,16 +156,11 @@
                     name = "editorconfig-checker-wrapper";
                     runtimeInputs = [ pkgs.editorconfig-checker ];
                     text = ''
-                      editorconfig-checker -config .editorconfig-checker.json "$@"
+                      editorconfig-checker "$@"
                     '';
                   }
                 );
                 includes = [ "*" ];
-                excludes = [
-                  ".git/*"
-                  ".direnv/*"
-                  "result*"
-                ];
               };
             };
           };
