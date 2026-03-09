@@ -41,9 +41,18 @@
           system,
           ...
         }:
+        let
+          # 明示的に許可するunfreeパッケージのリスト。
+          allowedUnfreePackages = [
+            "copilot-language-server" # 一番いい補完のため仕方がない。
+          ];
+        in
         {
           _module.args.pkgs = import nixpkgs {
             inherit system;
+            config = {
+              allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) allowedUnfreePackages;
+            };
             overlays = [
               emacs-overlay.overlays.default
             ];
@@ -52,6 +61,11 @@
             default = pkgs.emacsWithPackagesFromUsePackage {
               # init.elが依存しているEmacs Lispパッケージがバンドルされます。
               config = ./init.el;
+              # init.elから自動推論されないパッケージを追加します。
+              extraEmacsPackages =
+                _epkgs: with pkgs; [
+                  copilot-language-server
+                ];
             };
           };
           treefmt.config = {
