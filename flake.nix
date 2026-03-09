@@ -21,6 +21,7 @@
     inputs@{
       flake-parts,
       treefmt-nix,
+      emacs-overlay,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -39,6 +40,12 @@
           ...
         }:
         {
+          packages = {
+            default = pkgs.emacsWithPackagesFromUsePackage {
+              # init.elが依存しているEmacs Lispパッケージがバンドルされます。
+              config = ./init.el;
+            };
+          };
           treefmt.config = {
             projectRootFile = "flake.nix";
             programs = {
