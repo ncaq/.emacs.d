@@ -1639,6 +1639,7 @@ Add the type signature that GHC infers to the function located below the point."
  json-mode
  :ensure t
  :mode
+ ("/flake\\.lock\\'" . json-mode)
  ("/package-lock\\.json\\'" . json-mode)
  ("\\.jsonc\\'" . jsonc-mode)
  :hook
