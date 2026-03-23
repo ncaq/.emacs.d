@@ -71,6 +71,7 @@
                   ccls
                   clojure-lsp
                   cmake-language-server
+                  copilot-language-server
                   csharp-ls
                   deno
                   dhall-lsp-server
