@@ -84,7 +84,12 @@
 - systemdのサービス
 "
  :ensure t
- :custom (exec-path-from-shell-variables . '("PATH" "MANPATH" "SSH_ASKPASS" "SSH_AUTH_SOCK"))
+ :custom
+ ;; NixOSのEmacsがsystemdサービスとして動く環境では、
+ ;; bash -l -c経由で起動するためPATHは既に正しい。
+ ;; PATHを同期するとNixのsite-start.elで追加されたexec-pathが上書きされて逆に読めなくなってしまいます。
+ ;; よってPATHは除外します。
+ (exec-path-from-shell-variables . '("MANPATH" "SSH_ASKPASS" "SSH_AUTH_SOCK"))
  :config
  ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
  (exec-path-from-shell-initialize))
