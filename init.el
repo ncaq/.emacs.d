@@ -162,6 +162,11 @@
   (interactive)
   (find-file "~/GoogleDrive/"))
 
+(defun open-coding-agent-work ()
+  "Open the coding agent work directory."
+  (interactive)
+  (find-file (expand-file-name "coding-agent-work" (getenv "XDG_RUNTIME_DIR"))))
+
 (defun open-win-downloads ()
   (interactive)
   (find-file "~/WinDownloads/"))
@@ -340,8 +345,9 @@
 
  ("C-c '" . google-this)
  ("C-c ;" . align-regexp)
+ ("C-c A" . open-win-downloads)
  ("C-c E" . open-ncaq-entry)
- ("C-c I" . open-win-home)
+ ("C-c H" . open-win-home)
  ("C-c O" . open-dotfiles)
  ("C-c U" . open-document)
  ("C-c a" . open-downloads)
@@ -349,7 +355,6 @@
  ("C-c e" . open-ncaq-entry-current-time)
  ("C-c g" . open-google-drive)
  ("C-c h" . open-home)
- ("C-c i" . open-win-downloads)
  ("C-c j" . rg)
  ("C-c o" . open-desktop)
  ("C-c p" . package-list-packages)
@@ -358,6 +363,7 @@
  ("C-c s" . customize-set-variable)
  ("C-c u" . open-document-current)
  ("C-c v" . envrc-allow)
+ ("C-c w" . open-coding-agent-work)
 
  ("C-x d" . mark-defun)
  ("C-x g" . insert-random-uuid)
