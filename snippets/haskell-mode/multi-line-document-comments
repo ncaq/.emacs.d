@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: multi-line-docment-comments
+# name: multi-line-document-comments
 # key: mdoc
 # --
 {- |

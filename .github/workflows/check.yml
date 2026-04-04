@@ -1,0 +1,24 @@
+name: check
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read # リポジトリコンテンツの読み取り
+  id-token: write # niks3 OIDC認証
+
+jobs:
+  nix-fast-build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-nix
+        with:
+          cachix-auth-token: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - run: nix run '.#nix-fast-build' -- --option eval-cache false --no-link --skip-cached --no-nom

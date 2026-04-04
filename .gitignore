@@ -14,7 +14,9 @@
 !CLAUDE.md
 !LICENSE
 !README.md
+!_typos.toml
 !early-init.el
 !flake.lock
 !flake.nix
 !init.el
+!statix.toml
