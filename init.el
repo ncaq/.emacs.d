@@ -1438,7 +1438,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 
 ;;; C/C++
 
-(leaf cc-mode :after t :defvar c-mode-base-map :config (dvorak-set-key-prog c-mode-base-map) (leaf ccls :ensure t))
+(leaf cc-mode :after t :defvar c-mode-base-map :config (dvorak-set-key-prog c-mode-base-map))
 
 ;;; CSS
 
