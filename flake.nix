@@ -68,7 +68,7 @@
                 [
                   bash-language-server
                   black
-                  ccls
+                  clang-tools
                   clojure-lsp
                   cmake-language-server
                   copilot-language-server
