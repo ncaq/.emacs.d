@@ -41,24 +41,45 @@
           system,
           ...
         }:
-        let
-          # 明示的に許可するunfreeパッケージのリスト。
-          allowedUnfreePackages = [
-            "copilot-language-server" # 一番いい補完のため仕方がない。
-          ];
-        in
         {
-          _module.args.pkgs = import nixpkgs {
-            inherit system;
-            config = {
-              allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) allowedUnfreePackages;
+          _module.args.pkgs =
+            let
+              # 明示的に許可するunfreeパッケージのリスト。
+              allowedUnfreePackages = [
+                "copilot-language-server" # 一番いい補完のため仕方がない。
+              ];
+            in
+            import nixpkgs {
+              inherit system;
+              config = {
+                allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) allowedUnfreePackages;
+              };
+              overlays = [
+                emacs-overlay.overlays.default
+              ];
             };
-            overlays = [
-              emacs-overlay.overlays.default
-            ];
+          treefmt.config = {
+            projectRootFile = "flake.nix";
+            programs = {
+              actionlint.enable = true;
+              deadnix.enable = true;
+              nixfmt.enable = true;
+              prettier.enable = true;
+              shellcheck.enable = true;
+              shfmt.enable = true;
+              statix.enable = true;
+              typos.enable = true;
+              zizmor.enable = true;
+            };
+            settings.formatter = {
+              editorconfig-checker = {
+                command = pkgs.editorconfig-checker;
+                includes = [ "*" ];
+              };
+            };
           };
-          packages = {
-            default = pkgs.emacsWithPackagesFromUsePackage {
+          packages =
+            let
               # init.elが依存しているEmacs Lispパッケージがバンドルされます。
               config = ./init.el;
               # init.elから自動推論されないパッケージを追加します。
@@ -132,32 +153,27 @@
                 ++ (with nodePackages; [
                   purescript-language-server
                 ]);
-            };
-            # flake.lockの管理バージョンをre-exportすることで安定した利用を促進。
-            inherit (pkgs)
-              nix-fast-build
-              ;
-          };
-          treefmt.config = {
-            projectRootFile = "flake.nix";
-            programs = {
-              actionlint.enable = true;
-              deadnix.enable = true;
-              nixfmt.enable = true;
-              prettier.enable = true;
-              shellcheck.enable = true;
-              shfmt.enable = true;
-              statix.enable = true;
-              typos.enable = true;
-              zizmor.enable = true;
-            };
-            settings.formatter = {
-              editorconfig-checker = {
-                command = pkgs.editorconfig-checker;
-                includes = [ "*" ];
+            in
+            {
+              # flake.lockの管理バージョンをre-exportすることで安定した利用を促進。
+              inherit (pkgs)
+                nix-fast-build
+                ;
+              # デフォルトではパッケージを指定せずデフォルト引数に任せます。
+              default = pkgs.emacsWithPackagesFromUsePackage {
+                inherit
+                  config
+                  extraEmacsPackages
+                  ;
+              };
+              pgtk = pkgs.emacsWithPackagesFromUsePackage {
+                inherit
+                  config
+                  extraEmacsPackages
+                  ;
+                package = pkgs.emacs-pgtk;
               };
             };
-          };
           devShells.default = pkgs.mkShell { };
         };
     };
