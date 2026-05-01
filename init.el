@@ -1721,7 +1721,7 @@ Add the type signature that GHC infers to the function located below the point."
 "
    (interactive)
    (if-let ((symbol (sweeprolog-identifier-at-point)))
-     (sweeprolog-describe-predicate symbol)
+       (sweeprolog-describe-predicate symbol)
      (user-error "There is no term at point.")))
  (defun sweeprolog-setup ()
    ;; sweeprologがflymakeにしか対応していないためflycheckを無効化してflymakeを有効化します。
