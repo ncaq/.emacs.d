@@ -1628,12 +1628,26 @@ Add the type signature that GHC infers to the function located below the point."
  json-mode
  :ensure t
  :mode
- ("/flake\\.lock\\'" . json-mode)
- ("/package-lock\\.json\\'" . json-mode)
- ("\\.jsonc\\'" . jsonc-mode)
- :hook
- (json-mode-hook . prettier-toggle-setup)
- (jsonc-mode-hook . prettier-toggle-setup))
+ ("/\\(?:tsconfig\\|jsconfig\\).*\\.json\\'" . jsonc-mode) ; tscの設定はJSONC。
+ ("/\\.vscode/.*\\.json\\'" . jsonc-mode) ; vscodeの設定はJSONC。
+ ("/devcontainer\\.json\\'" . jsonc-mode) ; devcontainerの設定はJSONC。
+ ("/flake\\.lock\\'" . json-mode) ; flakeのロックファイルはJSON。
+ ("\\.code-snippets\\'" . jsonc-mode) ; VSCodeのスニペットはJSONC。
+ ("\\.jsonc\\'" . jsonc-mode) ; JSONC拡張子に明示的にjsoncを割り当てます。
+ :hook (json-mode-hook . prettier-toggle-setup) (jsonc-mode-hook . prettier-toggle-setup)
+ :config
+ (leaf
+  lsp-mode
+  :after t
+  :defvar lsp-language-id-configuration
+  :config
+  ;; lsp-modeにjsoncの場合の言語idを認識させます。
+  ;; JSON拡張子が優先されないように拡張子ベースのマッチを削除します。
+  ;; JSONマッチに使われるのはjson-modeがマッチすれば十分なはずです。
+  (setq lsp-language-id-configuration
+        (cl-remove-if
+         (lambda (entry) (and (stringp (car entry)) (string-equal (car entry) "\\.json$")))
+         lsp-language-id-configuration))))
 
 ;;; Markdown
 
