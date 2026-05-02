@@ -94,12 +94,6 @@
  ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
  (exec-path-from-shell-initialize))
 
-(leaf
- nix-mode
- :ensure t
- :bind (:nix-mode-map ([remap indent-whole-buffer] . lsp-format-buffer))
- :config (leaf lsp-mode :after t :custom (lsp-nix-nil-formatter . ["nixfmt"])))
-
 (leaf envrc :ensure t :global-minor-mode envrc-global-mode :custom (envrc-none-lighter . nil))
 
 (leaf add-node-modules-path :ensure t :defun add-node-modules-path)
@@ -1667,6 +1661,14 @@ Add the type signature that GHC infers to the function located below the point."
     ("ts" . web-mode)
     ("tsx" . web-mode)
     ("zsh" . sh-mode))))
+
+;;; Nix
+
+(leaf
+ nix-mode
+ :ensure t
+ :bind (:nix-mode-map ([remap indent-whole-buffer] . lsp-format-buffer))
+ :config (leaf lsp-mode :after t :custom (lsp-nix-nil-formatter . ["nixfmt"])))
 
 ;;; OCaml
 
