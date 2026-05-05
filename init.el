@@ -1139,7 +1139,7 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
   :bind (:git-commit-mode-map ("M-z" . yas-insert-snippet-conventional-commits-type))
   :config
   ;; コミットメッセージ編集画面での幅に基づく自動改行を無効化
-  (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill)
+  (remove-hook 'git-commit-setup-hook 'git-commit-setup-auto-fill)
   (modify-coding-system-alist 'file "COMMIT_EDITMSG" 'utf-8-unix)
   (swap-set-key git-commit-mode-map '(("p" . "t") ("M-p" . "M-t"))))
  (leaf
