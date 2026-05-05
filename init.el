@@ -1093,9 +1093,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
      (set-process-sentinel
       process
       (lambda (_process _event) (magit-start-process "gh" nil "pr" "create" "--assignee" "@me" "--fill" "--web")))))
- (defun gh-single-merge ()
-   (interactive)
-   (magit-start-process "gh-single-merge"))
  (defun gh-repo-view-web ()
    "GitHub CLIを使って現在フォーカスしているリポジトリをwebで開きます。"
    (interactive)
@@ -1110,7 +1107,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
  ("M-g f" . magit-find-file)
  ("M-g g" . magit-dispatch)
  ("M-g h" . magit-find-file-to-head)
- ("M-g j" . gh-single-merge)
  ("M-g l" . magit-log-buffer-file)
  ("M-g m" . magit-find-file-to-origin-master)
  ("M-g q" . gh-pr-create-web)
