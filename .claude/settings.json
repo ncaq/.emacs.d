@@ -156,6 +156,11 @@
       "mcp__github__search_users",
       "mcp__plugin_nix-tasuke_nixos"
     ],
-    "deny": ["Bash(gh * delete:*)", "Bash(gh repo archive:*)", "Bash(gh repo rename:*)", "Bash(rm:*)"]
+    "deny": [
+      "Bash(gh * delete:*)",
+      "Bash(gh repo archive:*)",
+      "Bash(gh repo rename:*)",
+      "Bash(rm:*)"
+    ]
   }
 }
