@@ -1321,7 +1321,6 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
 (leaf
  docker
  :ensure t
- :custom (docker-container-shell-file-name . "/bin/bash")
  :init
  (defun docker-image-mode-setup ()
    "イメージ名の幅を広く取ります。"
