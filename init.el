@@ -1405,7 +1405,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
    ("C-c C-r" . lsp-rename)
    ("C-c C-s" . lsp-lens-mode)
    ("C-c C-t" . lsp-describe-thing-at-point)
-   ("C-c C-w" . lsp-workspace-restart))
+   ("C-c C-w" . lsp-workspace-restart)
+   ([remap indent-whole-buffer] . lsp-format-buffer))
   (:lsp-signature-mode-map ("M-n" . nil) ("M-p" . nil)))
  :config (dvorak-set-key-prog lsp-signature-mode-map)
  (leaf
@@ -1659,14 +1660,7 @@ PerlとPrologを自動識別するのは非常に有用です。"
 
 ;;; Elm
 
-(leaf
- elm-mode
- :ensure t
- :bind
- (:elm-mode-map
-  ("C-c C-f" . nil)
-  ;; elm-format-bufferの方はnpmのプロジェクト固有のelm-formatを検知しないのでlspを使います。
-  ([remap indent-whole-buffer] . lsp-format-buffer)))
+(leaf elm-mode :ensure t :bind (:elm-mode-map ("C-c C-f" . nil)))
 
 ;;; Haskell
 
@@ -1682,14 +1676,12 @@ PerlとPrologを自動識別するのは非常に有用です。"
   ("C-c C-b" . haskell-hoogle)
   ("C-c C-c" . haskell-session-change-target)
   ("C-c C-l" . haskell-process-load-file)
+  ("C-c C-o" . lsp-haskell-execute-code-action-add-signature)
   ("C-c C-p" . haskell-command-insert-language-pragma)
   ("C-c C-r" . haskell-process-reload)
   ("C-c C-t" . haskell-process-do-type)
   ("C-c C-v" . haskell-cabal-visit-file)
-  ("C-c C-z" . haskell-interactive-switch)
-
-  ([remap indent-whole-buffer] . lsp-format-buffer)
-  ("C-c C-o" . lsp-haskell-execute-code-action-add-signature))
+  ("C-c C-z" . haskell-interactive-switch))
  :defvar treesit-language-source-alist
  :config
  (require 'haskell-commands) ; need by `haskell-command-insert-language-pragma'
@@ -1828,7 +1820,6 @@ Add the type signature that GHC infers to the function located below the point."
 (leaf
  nix-mode
  :ensure t
- :bind (:nix-mode-map ([remap indent-whole-buffer] . lsp-format-buffer))
  :config (leaf lsp-mode :after t :custom (lsp-nix-nil-formatter . ["nixfmt"])))
 
 ;;; OCaml
