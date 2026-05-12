@@ -1498,14 +1498,7 @@ PerlとPrologを自動識別するのは非常に有用です。"
            (error (concat "モードに対応する関数がインストールされていません: " mode))
          (funcall mode))))))
 
-(leaf
- quickrun
- :ensure t
- :config
- (quickrun-add-command
-  "haskell"
-  '((:command . "stack runghc") (:description . "Run Haskell file with Stack runghc(GHC)"))
-  :override t))
+(leaf quickrun :ensure t)
 
 ;;; 各言語モード
 
