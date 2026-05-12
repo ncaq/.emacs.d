@@ -506,6 +506,11 @@
  (modus-themes-prompts . '(bold intense))
  :config (load-theme 'modus-vivendi t))
 
+(leaf
+ display-fill-column-indicator
+ :doc "`fill-column'基準で縦線を表示して改行を促します。editorconfigと自動連携します。"
+ :global-minor-mode global-display-fill-column-indicator-mode)
+
 ;; tree-sitterの自動インストール
 (leaf treesit-auto :ensure t :require t :custom (treesit-auto-install . t))
 
