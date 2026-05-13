@@ -1716,7 +1716,7 @@ PerlとPrologを自動識別するのは非常に有用です。"
  (add-to-list 'safe-local-variable-values '(haskell-indentation-where-post-offset . 2))
  (add-to-list 'safe-local-variable-values '(haskell-indentation-where-pre-offset . 2))
  (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
- (leaf haskell-command :commands haskell-command-insert-language-pragma)
+ (leaf haskell-commands :commands haskell-command-insert-language-pragma)
  (leaf
   haskell-hoogle
   :custom
