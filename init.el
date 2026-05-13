@@ -1707,6 +1707,7 @@ PerlとPrologを自動識別するのは非常に有用です。"
 (leaf
  haskell-mode
  :ensure t
+ :after haskell-ts-mode
  :config
  ;; 影響はないが、周辺ツールによって変更されるのを手動で認証しなくて済むようにする。
  (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
@@ -1716,7 +1717,12 @@ PerlとPrologを自動識別するのは非常に有用です。"
  (add-to-list 'safe-local-variable-values '(haskell-indentation-where-post-offset . 2))
  (add-to-list 'safe-local-variable-values '(haskell-indentation-where-pre-offset . 2))
  (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
- (leaf haskell-commands :commands haskell-command-insert-language-pragma)
+ (leaf
+  haskell-commands
+  :doc
+  "`haskell-command-insert-language-pragma'のため必要。
+`:commands'ではうまくいかない。"
+  :require t)
  (leaf
   haskell-hoogle
   :custom
