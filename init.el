@@ -1818,7 +1818,8 @@ Add the type signature that GHC infers to the function located below the point."
  json-ts-mode
  :doc "Tree-Sitterにより通常の`json-mode'より高速なことが期待されます。"
  :mode
- ("/flake\\.lock\\'" . json-mode)) ; flakeのロックファイルはJSON。
+ ("/flake\\.lock\\'" . json-mode) ; flakeのロックファイルはJSON。
+ ("\\.json\\'" . json-mode)) ; 通常のJSON拡張子はjson-ts-modeで扱います。
 
 (leaf
  json-mode
