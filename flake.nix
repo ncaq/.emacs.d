@@ -38,6 +38,7 @@
       perSystem =
         {
           pkgs,
+          lib,
           system,
           ...
         }:
@@ -52,7 +53,7 @@
             import nixpkgs {
               inherit system;
               config = {
-                allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) allowedUnfreePackages;
+                allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowedUnfreePackages;
               };
               overlays = [
                 emacs-overlay.overlays.default
