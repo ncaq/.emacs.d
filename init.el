@@ -508,8 +508,14 @@
 
 (leaf
  display-fill-column-indicator
- :doc "`fill-column'基準で縦線を表示して改行を促します。editorconfigと自動連携します。"
- :global-minor-mode global-display-fill-column-indicator-mode)
+ :doc
+ "`fill-column'基準で縦線を表示して改行を促します。
+editorconfigと自動連携します。
+`global-display-fill-column-indicator-mode'ではなく、
+テキスト編集っぽいモードのhookで`display-fill-column-indicator--turn-on'を使って有効化します。
+テキスト編集時ではない時、
+例えばリスト選択の提示時などでは表示されてほしくないためです。"
+ :hook ((text-mode-hook prog-mode-hook) . display-fill-column-indicator--turn-on))
 
 ;; tree-sitterの自動インストール
 (leaf treesit-auto :ensure t :require t :custom (treesit-auto-install . t))
