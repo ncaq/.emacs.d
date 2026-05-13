@@ -10,21 +10,6 @@
    ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
-;; straight.el
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent
-         'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
 ;; leaf.el
 (eval-and-compile
   (unless (package-installed-p 'leaf)
@@ -818,7 +803,6 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
      "envrc"
      "nixfmt"
      "prettier.+"
-     "straight-process"
      "sweep Messages"
      "tramp.+"
      "vc"
@@ -1071,7 +1055,7 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
 
 (leaf expand-region :ensure t)
 (leaf multiple-cursors :ensure t)
-(leaf point-undo :straight (point-undo :type git :host github :repo "ncaq/point-undo") :require t)
+(leaf point-undo :vc (:url "https://github.com/ncaq/point-undo") :require t)
 (leaf symbolword-mode :ensure t :require t :global-minor-mode t :blackout t)
 
 (leaf
@@ -2098,7 +2082,7 @@ poetryなどの自動的なトラッキングを使わずにマニュアルで�
 
 (leaf
  visual-basic-mode
- :straight (visual-basic-mode :type git :host github :repo "emacsmirror/visual-basic-mode")
+ :vc (:url "https://github.com/emacsmirror/visual-basic-mode")
  :mode "\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'"
  :custom
  ;; 文字列リテラルの内部の名前まで変更してしまうのでオフにします
