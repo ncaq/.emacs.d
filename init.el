@@ -1691,8 +1691,6 @@ PerlとPrologを自動識別するのは非常に有用です。"
  "比較的高速なのでsyntaxハイライトなどはhaskell-ts-modeを使います。
 便利機能は使いたいのでhaskell-modeも残します。"
  :ensure t
- :after t
- :require t haskell-mode
  :mode ("\\.hs\\'" . haskell-ts-mode)
  :bind
  (:haskell-ts-mode-map
@@ -1709,8 +1707,6 @@ PerlとPrologを自動識別するのは非常に有用です。"
 (leaf
  haskell-mode
  :ensure t
- :after t
- :require t
  :config
  ;; 影響はないが、周辺ツールによって変更されるのを手動で認証しなくて済むようにする。
  (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
@@ -1720,7 +1716,7 @@ PerlとPrologを自動識別するのは非常に有用です。"
  (add-to-list 'safe-local-variable-values '(haskell-indentation-where-post-offset . 2))
  (add-to-list 'safe-local-variable-values '(haskell-indentation-where-pre-offset . 2))
  (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
- (leaf haskell-command :doc "need by `haskell-command-insert-language-pragma'." :require t)
+ (leaf haskell-command :commands haskell-command-insert-language-pragma)
  (leaf
   haskell-hoogle
   :custom
