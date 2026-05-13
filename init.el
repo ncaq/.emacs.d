@@ -540,7 +540,6 @@ editorconfigと自動連携します。
  help-mode-hook
  js-ts-mode-hook
  json-mode-hook
- json-ts-mode-hook
  jsonc-mode-hook
  lisp-mode-hook
  sass-mode-hook
@@ -1502,7 +1501,7 @@ PerlとPrologを自動識別するのは非常に有用です。"
             ('html 'web-mode)
             ('java 'java-mode)
             ('javascript 'js-ts-mode)
-            ('json 'json-ts-mode)
+            ('json 'json-mode)
             ('latex 'latex-mode)
             ('lisp 'lisp-mode)
             ('lua 'lua-mode)
@@ -1815,20 +1814,16 @@ Add the type signature that GHC infers to the function located below the point."
  :custom (lsp-eslint-server-command . '("vscode-eslint-language-server" "--stdio")))
 
 (leaf
- json-ts-mode
- :doc "Tree-Sitterにより通常の`json-mode'より高速なことが期待されます。"
- :mode
- ("/flake\\.lock\\'" . json-mode) ; flakeのロックファイルはJSON。
- ("\\.json\\'" . json-mode)) ; 通常のJSON拡張子はjson-ts-modeで扱います。
-
-(leaf
  json-mode
- :doc "`json-ts-mode'はjsoncはサポートしないのでjsonc扱いするファイルはこちらで開きます。"
+ :doc
+ "`json-ts-mode'はjsoncファイルはサポートしないので、
+面倒なので通常の`json-mode'でまとめて扱います。"
  :ensure t
  :mode
  ("/\\(?:tsconfig\\|jsconfig\\).*\\.json\\'" . jsonc-mode) ; tscの設定はJSONC。
  ("/\\.vscode/.*\\.json\\'" . jsonc-mode) ; vscodeの設定はJSONC。
  ("/devcontainer\\.json\\'" . jsonc-mode) ; devcontainerの設定はJSONC。
+ ("/flake\\.lock\\'" . json-mode) ; flakeのロックファイルはJSON。
  ("\\.code-snippets\\'" . jsonc-mode) ; VSCodeのスニペットはJSONC。
  ("\\.jsonc\\'" . jsonc-mode) ; JSONC拡張子に明示的にjsoncを割り当てます。
  :config
