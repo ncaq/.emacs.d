@@ -42,6 +42,102 @@
           system,
           ...
         }:
+        let
+          # init.elが依存しているEmacs Lispパッケージがバンドルされます。
+          config = ./init.el;
+          # init.elから自動推論されないパッケージを追加します。
+          extraEmacsPackages =
+            epkgs:
+            with epkgs;
+            [
+              treesit-grammars.with-all-grammars
+            ]
+            ++ (
+              with pkgs;
+              [
+                bash-language-server
+                black
+                clang-tools
+                clojure-lsp
+                cmake-language-server
+                copilot-language-server
+                csharp-ls
+                deno
+                dhall-lsp-server
+                dockerfile-language-server
+                elixir-ls
+                erlang-language-platform
+                fortls
+                fourmolu
+                gauche
+                gh
+                gopls
+                graphql-language-service-cli
+                graphviz
+                haskell-language-server
+                isort
+                jdt-language-server
+                kotlin-language-server
+                ltex-ls-plus
+                lua-language-server
+                marksman
+                metals
+                nginx-language-server
+                nil
+                nixfmt
+                ocamlPackages.ocaml-lsp
+                ocamlformat
+                omnisharp-roslyn
+                plantuml
+                prettier
+                pyright
+                ripgrep
+                ruff
+                rust-analyzer
+                sbcl
+                serve-d
+                shellcheck
+                sops
+                sqls
+                svelte-language-server
+                tailwindcss-language-server
+                taplo
+                terraform-ls
+                texlab
+                typescript-language-server
+                vscode-langservers-extracted
+                vue-language-server
+                yaml-language-server
+                zls
+              ]
+              ++ (with elmPackages; [
+                elm-format
+                elm-language-server
+              ])
+              ++ (with haskellPackages; [
+                cabal-fmt
+                cabal-gild
+              ])
+              ++ (with nodePackages; [
+                purescript-language-server
+              ])
+            );
+          # デフォルトではパッケージを指定せずデフォルト引数に任せます。
+          dot-emacs-default = pkgs.emacsWithPackagesFromUsePackage {
+            inherit
+              config
+              extraEmacsPackages
+              ;
+          };
+          # Wayland対応のpure GTK版Emacsを使用。
+          dot-emacs-pgtk = pkgs.emacsWithPackagesFromUsePackage {
+            inherit
+              config
+              extraEmacsPackages
+              ;
+            package = pkgs.emacs-pgtk;
+          };
+        in
         {
           _module.args.pkgs =
             let
@@ -79,108 +175,17 @@
               };
             };
           };
-          packages =
-            let
-              # init.elが依存しているEmacs Lispパッケージがバンドルされます。
-              config = ./init.el;
-              # init.elから自動推論されないパッケージを追加します。
-              extraEmacsPackages =
-                epkgs:
-                with epkgs;
-                [
-                  treesit-grammars.with-all-grammars
-                ]
-                ++ (
-                  with pkgs;
-                  [
-                    bash-language-server
-                    black
-                    clang-tools
-                    clojure-lsp
-                    cmake-language-server
-                    copilot-language-server
-                    csharp-ls
-                    deno
-                    dhall-lsp-server
-                    dockerfile-language-server
-                    elixir-ls
-                    erlang-language-platform
-                    fortls
-                    fourmolu
-                    gauche
-                    gh
-                    gopls
-                    graphql-language-service-cli
-                    graphviz
-                    haskell-language-server
-                    isort
-                    jdt-language-server
-                    kotlin-language-server
-                    ltex-ls-plus
-                    lua-language-server
-                    marksman
-                    metals
-                    nginx-language-server
-                    nil
-                    nixfmt
-                    ocamlPackages.ocaml-lsp
-                    ocamlformat
-                    omnisharp-roslyn
-                    plantuml
-                    prettier
-                    pyright
-                    ripgrep
-                    ruff
-                    rust-analyzer
-                    sbcl
-                    serve-d
-                    shellcheck
-                    sops
-                    sqls
-                    svelte-language-server
-                    tailwindcss-language-server
-                    taplo
-                    terraform-ls
-                    texlab
-                    typescript-language-server
-                    vscode-langservers-extracted
-                    vue-language-server
-                    yaml-language-server
-                    zls
-                  ]
-                  ++ (with elmPackages; [
-                    elm-format
-                    elm-language-server
-                  ])
-                  ++ (with haskellPackages; [
-                    cabal-fmt
-                    cabal-gild
-                  ])
-                  ++ (with nodePackages; [
-                    purescript-language-server
-                  ])
-                );
-            in
-            {
-              # flake.lockの管理バージョンをre-exportすることで安定した利用を促進。
-              inherit (pkgs)
-                nix-fast-build
-                ;
-              # デフォルトではパッケージを指定せずデフォルト引数に任せます。
-              default = pkgs.emacsWithPackagesFromUsePackage {
-                inherit
-                  config
-                  extraEmacsPackages
-                  ;
-              };
-              pgtk = pkgs.emacsWithPackagesFromUsePackage {
-                inherit
-                  config
-                  extraEmacsPackages
-                  ;
-                package = pkgs.emacs-pgtk;
-              };
-            };
+          checks = {
+            inherit dot-emacs-default dot-emacs-pgtk;
+          };
+          packages = {
+            # flake.lockの管理バージョンをre-exportすることで安定した利用を促進。
+            inherit (pkgs)
+              nix-fast-build
+              ;
+            default = dot-emacs-default;
+            pgtk = dot-emacs-pgtk;
+          };
           devShells.default = pkgs.mkShell { };
         };
     };
