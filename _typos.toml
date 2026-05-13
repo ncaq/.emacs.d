@@ -6,7 +6,6 @@ extend-exclude = [
   "snippets/",
   # パッケージディレクトリはサードパーティのため除外。
   "elpa/",
-  "straight/",
 ]
 
 [default.extend-words]

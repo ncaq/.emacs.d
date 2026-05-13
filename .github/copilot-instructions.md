@@ -19,7 +19,6 @@
       - [nongnu](https://elpa.nongnu.org/nongnu/)
       - [gnu](https://elpa.gnu.org/packages/)
   - melpaが対応していないパッケージのインストールには他の手段をleafのキーワードで使用。
-    - `:straight`で[straight](https://github.com/radian-software/straight.el)を使用。
     - `:vc`でEmacs組み込み機能の`package-vc`を使用。
 - 自動カスタマイズ変数読み込みは無効化。
   - 自動で書き込みが行われるので`custom.el`に書き込みだけしている。
@@ -43,7 +42,6 @@
 
 - `elpa/`: package.elによりインストールされたパッケージ
 - `snippets/`: YASnippetのスニペット集
-- `straight/`: straight.elによりインストールされたパッケージ
 
 ## 重要なパッケージと機能
 
