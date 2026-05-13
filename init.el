@@ -523,9 +523,6 @@ editorconfigと自動連携します。
      (display-fill-column-indicator-mode 1)))
  :hook ((text-mode-hook prog-mode-hook) . turn-on-display-fill-column-indicator))
 
-;; tree-sitterの自動インストール
-(leaf treesit-auto :ensure t :require t :custom (treesit-auto-install . t))
-
 ;; 以下の順番で読み込まないと正常に動かなかった
 ;; rainbow-delimiters -> rainbow-mode
 
