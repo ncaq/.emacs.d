@@ -1690,6 +1690,8 @@ PerlとPrologを自動識別するのは非常に有用です。"
  "比較的高速なのでsyntaxハイライトなどはhaskell-ts-modeを使います。
 便利機能は使いたいのでhaskell-modeも残します。"
  :ensure t
+ :after t
+ :require t haskell-mode
  :mode ("\\.hs\\'" . haskell-ts-mode)
  :bind
  (:haskell-ts-mode-map
@@ -1701,19 +1703,13 @@ PerlとPrologを自動識別するのは非常に有用です。"
   ("C-c C-r" . haskell-process-reload)
   ("C-c C-t" . haskell-process-do-type)
   ("C-c C-v" . haskell-cabal-visit-file)
-  ("C-c C-z" . haskell-interactive-switch))
- :defvar treesit-language-source-alist
- :config
- (require 'haskell-commands) ; need by `haskell-command-insert-language-pragma'
- (add-to-list
-  'treesit-language-source-alist
-  '(haskell . ("https://github.com/tree-sitter/tree-sitter-haskell" "v0.23.1")))
- (unless (treesit-language-available-p 'haskell)
-   (treesit-install-language-grammar 'haskell)))
+  ("C-c C-z" . haskell-interactive-switch)))
 
 (leaf
  haskell-mode
  :ensure t
+ :after t
+ :require t
  :config
  ;; 影響はないが、周辺ツールによって変更されるのを手動で認証しなくて済むようにする。
  (add-to-list 'safe-local-variable-values '(haskell-indent-spaces . 4))
@@ -1723,6 +1719,7 @@ PerlとPrologを自動識別するのは非常に有用です。"
  (add-to-list 'safe-local-variable-values '(haskell-indentation-where-post-offset . 2))
  (add-to-list 'safe-local-variable-values '(haskell-indentation-where-pre-offset . 2))
  (add-to-list 'safe-local-variable-values '(haskell-process-use-ghci . t))
+ (leaf haskell-command :doc "need by `haskell-command-insert-language-pragma'." :require t)
  (leaf
   haskell-hoogle
   :custom
