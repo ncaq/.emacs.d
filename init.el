@@ -512,10 +512,16 @@
  "`fill-column'基準で縦線を表示して改行を促します。
 editorconfigと自動連携します。
 `global-display-fill-column-indicator-mode'ではなく、
-テキスト編集っぽいモードのhookで`display-fill-column-indicator--turn-on'を使って有効化します。
+テキスト編集っぽいモードのhookで個別に有効化します。
 テキスト編集時ではない時、
 例えばリスト選択の提示時などでは表示されてほしくないためです。"
- :hook ((text-mode-hook prog-mode-hook) . display-fill-column-indicator--turn-on))
+ :init
+ (defun turn-on-display-fill-column-indicator ()
+   "`display-fill-column-indicator'を有効にします。
+`display-fill-column-indicator--turn-on'は内部関数なのでこちらをhookに登録します。"
+   (unless (or (minibufferp) (and (daemonp) (null (frame-parameter nil 'client))))
+     (display-fill-column-indicator-mode 1)))
+ :hook ((text-mode-hook prog-mode-hook) . turn-on-display-fill-column-indicator))
 
 ;; tree-sitterの自動インストール
 (leaf treesit-auto :ensure t :require t :custom (treesit-auto-install . t))
