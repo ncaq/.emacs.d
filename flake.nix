@@ -43,7 +43,7 @@
           ...
         }:
         let
-          # init.elが依存しているEmacs Lispパッケージがバンドルされます。
+          # config引数に指定することで`init.el`が依存しているEmacs Lispパッケージがバンドルされます。
           config = ./init.el;
           # init.elから自動推論されないパッケージを追加します。
           extraEmacsPackages =
