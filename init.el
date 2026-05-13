@@ -1791,6 +1791,9 @@ Add the type signature that GHC infers to the function located below the point."
  ;; Major mode for editing TSX and JSX documents.
  ;; と説明に書いてあるのでtsxもjsxもカバーされます。
  ("\\.[cm]?[tj]sx\\'" . tsx-ts-mode)
+ :hook
+ ;; `lsp-javascript.el'が利用するフォーマッタはあまり強くないのでprettierを使います。
+ ((typescript-ts-mode-hook tsx-ts-mode-hook) . prettier-toggle-setup)
  :bind
  (:typescript-ts-mode-map ("C-c C-f" . lsp-eslint-apply-all-fixes))
  (:tsx-ts-mode-map ("C-c C-f" . lsp-eslint-apply-all-fixes)))
@@ -1798,10 +1801,9 @@ Add the type signature that GHC infers to the function located below the point."
 (leaf
  js
  :doc "Tree-SitterベースのJavaScriptモード。"
- :mode
- ;; 標準のJavaScriptファイル。
- ("\\.[cm]?js\\'" . js-ts-mode)
+ :mode ("\\.[cm]?js\\'" . js-ts-mode)
  :custom (js-indent-level . 2)
+ :hook (js-ts-mode-hook . prettier-toggle-setup)
  :bind (:js-ts-mode-map ("C-c C-f" . lsp-eslint-apply-all-fixes)))
 
 (leaf
