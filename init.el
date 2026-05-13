@@ -1813,7 +1813,7 @@ Add the type signature that GHC infers to the function located below the point."
  :after t
  ;; `lsp-eslint-server-command'のデフォルト値はシステムのものを絶対呼び出せないので、
  ;; PATHにありそうなものを指定しておきます。
- ;; パスに置くのは解決はNixに任せます。
+ ;; 実行バイナリのパス解決はNixに任せます。
  :custom (lsp-eslint-server-command . '("vscode-eslint-language-server" "--stdio")))
 
 (leaf
