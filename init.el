@@ -512,7 +512,7 @@ editorconfigと自動連携します。
 ;; rainbow-delimiters -> rainbow-mode
 
 ;; 括弧の対応を色対応でわかりやすく
-(leaf rainbow-delimiters :ensure t :hook prog-mode-hook web-mode-hook)
+(leaf rainbow-delimiters :ensure t :hook prog-mode-hook)
 
 ;; 色コードを可視化
 (leaf
