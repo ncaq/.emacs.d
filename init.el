@@ -1777,7 +1777,7 @@ Add the type signature that GHC infers to the function located below the point."
 
 (leaf
  typescript-ts-mode
- :doc "Tree-SitterベースのTypeScriptモード。"
+ :doc "Tree-SitterベースのTypeScriptモードを利用します。"
  :mode
  ;; 標準のTypeScriptファイル。
  ("\\.[cm]?ts\\'" . typescript-ts-mode)
@@ -1788,18 +1788,16 @@ Add the type signature that GHC infers to the function located below the point."
  ("\\.[cm]?[tj]sx\\'" . tsx-ts-mode)
  :hook
  ;; `lsp-javascript.el'が利用するフォーマッタはあまり強くないのでprettierを使います。
- ((typescript-ts-mode-hook tsx-ts-mode-hook) . prettier-toggle-setup)
- :bind
- (:typescript-ts-mode-map ("C-c C-f" . lsp-eslint-apply-all-fixes))
- (:tsx-ts-mode-map ("C-c C-f" . lsp-eslint-apply-all-fixes)))
+ (typescript-ts-base-mode-hook . prettier-toggle-setup)
+ :bind (:typescript-ts-base-mode-map ("C-c C-f" . lsp-eslint-apply-all-fixes)))
 
 (leaf
  js
- :doc "Tree-SitterベースのJavaScriptモード。"
+ :doc "Tree-SitterベースのJavaScriptモードを利用します。"
  :mode ("\\.[cm]?js\\'" . js-ts-mode)
  :custom (js-indent-level . 2)
- :hook (js-ts-mode-hook . prettier-toggle-setup)
- :bind (:js-ts-mode-map ("C-c C-f" . lsp-eslint-apply-all-fixes)))
+ :hook (js-base-mode-hook . prettier-toggle-setup)
+ :bind (:js-base-mode-map ("C-c C-f" . lsp-eslint-apply-all-fixes)))
 
 (leaf
  lsp-javascript
