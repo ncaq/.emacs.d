@@ -112,12 +112,26 @@
               yaml-language-server
               zls
             ]);
-          # デフォルトではパッケージを指定せずデフォルト引数に任せます。
+          # Emacs derivationのビルドオプション。
+          # `default`と`pgtk`の両方に適用されます。
+          emacsBuildOptions = {
+            withCompressInstall = false;
+          };
+          # デフォルトのEmacsにカスタムビルドオプションを適用したものを使用。
           dot-emacs-default = pkgs.emacsWithPackagesFromUsePackage {
             inherit
               config
               extraEmacsPackages
               ;
+            package = pkgs.emacs.override (
+              emacsBuildOptions
+              // {
+                # `withImageMagick`は`withX`または`withNS`を要求するため、
+                # pgtkでは有効化できません。
+                # default側にのみ設定。
+                withImageMagick = true;
+              }
+            );
           };
           # Wayland対応のpure GTK版Emacsを使用。
           dot-emacs-pgtk = pkgs.emacsWithPackagesFromUsePackage {
@@ -125,7 +139,7 @@
               config
               extraEmacsPackages
               ;
-            package = pkgs.emacs-pgtk;
+            package = pkgs.emacs-pgtk.override emacsBuildOptions;
           };
         in
         {
