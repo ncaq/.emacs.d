@@ -130,9 +130,7 @@
       /**
         指定`system`に対して`init.el`と外部toolingを束ねたEmacsパッケージを生成する関数。
 
-        - `variant`:
-          - `"default"`は通常のX11版
-          - `"pgtk"`はWayland向けのpure GTK版
+        - `package`: nixpkgsなどに定義されているemacsのpackage名を指定します。
         - `extraOverlays`: dotfiles側のCPUモデル最適化overlayなど、
           呼び出し側が追加したいnixpkgs overlayを受け取る。
           ここで受け取ったoverlayは内部pkgsの構築時に`emacs-overlay`の後ろに連結されるため、
@@ -144,24 +142,17 @@
       mkEmacs =
         {
           system,
-          variant ? "default",
+          basePackage,
           extraOverlays ? [ ],
         }:
         let
           pkgs = mkPkgs { inherit system extraOverlays; };
-          package =
-            if variant == "pgtk" then
-              pkgs.emacs-pgtk.override emacsBuildOptions
-            else
-              pkgs.emacs.override (
-                emacsBuildOptions
-                // {
-                  # `withImageMagick`は`withX`または`withNS`を要求するため、
-                  # pgtkでは有効化できません。
-                  # default側にのみ設定。
-                  withImageMagick = true;
-                }
-              );
+          withPgtk = nixpkgs.lib.elem "--with-pgtk" basePackage.configureFlags;
+          # `withImageMagick`は`withX`または`withNS`を要求するため、
+          # pgtkと一緒に有効化できません。
+          extraEmacsBuildOptions =
+            emacsBuildOptions // (if withPgtk then { } else { withImageMagick = true; });
+          package = basePackage.override extraEmacsBuildOptions;
         in
         pkgs.emacsWithPackagesFromUsePackage {
           inherit package;
@@ -190,10 +181,13 @@
           ...
         }:
         let
-          dot-emacs-default = mkEmacs { inherit system; };
+          dot-emacs-default = mkEmacs {
+            inherit system;
+            basePackage = pkgs.emacs;
+          };
           dot-emacs-pgtk = mkEmacs {
             inherit system;
-            variant = "pgtk";
+            basePackage = pkgs.emacs-pgtk;
           };
         in
         {
