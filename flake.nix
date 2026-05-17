@@ -25,6 +25,141 @@
       emacs-overlay,
       ...
     }:
+    let
+      # 明示的に許可するunfreeパッケージのリスト。
+      allowedUnfreePackages = [
+        "copilot-language-server" # 一番いい補完のため仕方がない。
+      ];
+
+      # 外部のoverlayを受け入れたpkgsを生成する。
+      mkPkgs =
+        {
+          system,
+          extraOverlays ? [ ],
+        }:
+        import nixpkgs {
+          inherit system;
+          config = {
+            allowUnfreePredicate =
+              pkg:
+              let
+                name = nixpkgs.lib.getName pkg;
+              in
+              builtins.elem name allowedUnfreePackages;
+          };
+          overlays = [
+            emacs-overlay.overlays.default
+          ]
+          ++ extraOverlays;
+        };
+
+      # `init.el`から自動推論されないネイティブパッケージ。
+      extraEmacsPackagesFor =
+        pkgs: epkgs:
+        (with epkgs; [
+          treesit-grammars.with-all-grammars
+        ])
+        ++ (with pkgs; [
+          bash-language-server
+          black
+          clang-tools
+          clojure-lsp
+          cmake-language-server
+          copilot-language-server
+          csharp-ls
+          deno
+          dhall-lsp-server
+          dockerfile-language-server
+          elixir-ls
+          elmPackages.elm-format
+          elmPackages.elm-language-server
+          erlang-language-platform
+          fortls
+          fourmolu
+          gauche
+          gh
+          gopls
+          graphql-language-service-cli
+          graphviz
+          haskell-language-server
+          haskellPackages.cabal-fmt
+          haskellPackages.cabal-gild
+          isort
+          jdt-language-server
+          kotlin-language-server
+          ltex-ls-plus
+          lua-language-server
+          marksman
+          metals
+          nginx-language-server
+          nil
+          nixfmt
+          nodePackages.purescript-language-server
+          ocamlPackages.ocaml-lsp
+          ocamlformat
+          omnisharp-roslyn
+          plantuml
+          prettier
+          pyright
+          ripgrep
+          ruff
+          rust-analyzer
+          sbcl
+          serve-d
+          shellcheck
+          sops
+          sqls
+          svelte-language-server
+          tailwindcss-language-server
+          taplo
+          terraform-ls
+          texlab
+          typescript-language-server
+          vscode-langservers-extracted
+          vue-language-server
+          yaml-language-server
+          zls
+        ]);
+
+      # Emacs derivationのビルドオプション。
+      # `default`と`pgtk`の両方に適用されます。
+      emacsBuildOptions = {
+        withCompressInstall = false;
+      };
+
+      /**
+        指定`system`に対して`init.el`と外部toolingを束ねたEmacsパッケージを生成する関数。
+
+        - `basePackage`: `pkgs.emacs`や`pkgs.emacs-pgtk`などのEmacs derivationを指定します。
+        - `extraOverlays`: dotfiles側のCPUモデル最適化overlayなど、
+          呼び出し側が追加したいnixpkgs overlayを受け取る。
+          ここで受け取ったoverlayは内部pkgsの構築時に`emacs-overlay`の後ろに連結されるため、
+          `emacs`/`emacs-pgtk`などのderivationを呼び出し側が差し替えられる。
+
+        flake outputsの`packages.<system>.default`/`pgtk`は、
+        外部overlayなしのデフォルト構成としてこの関数を呼び出した結果である。
+      */
+      mkEmacs =
+        {
+          system,
+          basePackage,
+          extraOverlays ? [ ],
+        }:
+        let
+          pkgs = mkPkgs { inherit system extraOverlays; };
+          withPgtk = nixpkgs.lib.elem "--with-pgtk" basePackage.configureFlags;
+          # `withImageMagick`は`withX`または`withNS`を要求するため、
+          # pgtkと一緒に有効化できません。
+          extraEmacsBuildOptions =
+            emacsBuildOptions // (if withPgtk then { } else { withImageMagick = true; });
+          package = basePackage.override extraEmacsBuildOptions;
+        in
+        pkgs.emacsWithPackagesFromUsePackage {
+          inherit package;
+          config = ./init.el;
+          extraEmacsPackages = extraEmacsPackagesFor pkgs;
+        };
+    in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         treefmt-nix.flakeModule
@@ -35,130 +170,28 @@
         "x86_64-linux"
       ];
 
+      flake.lib = {
+        inherit mkEmacs;
+      };
+
       perSystem =
         {
           pkgs,
-          lib,
           system,
           ...
         }:
         let
-          # config引数に指定することで`init.el`が依存しているEmacs Lispパッケージがバンドルされます。
-          config = ./init.el;
-          # init.elから自動推論されないパッケージを追加します。
-          extraEmacsPackages =
-            epkgs:
-            (with epkgs; [
-              treesit-grammars.with-all-grammars
-            ])
-            ++ (with pkgs; [
-              bash-language-server
-              black
-              clang-tools
-              clojure-lsp
-              cmake-language-server
-              copilot-language-server
-              csharp-ls
-              deno
-              dhall-lsp-server
-              dockerfile-language-server
-              elixir-ls
-              elmPackages.elm-format
-              elmPackages.elm-language-server
-              erlang-language-platform
-              fortls
-              fourmolu
-              gauche
-              gh
-              gopls
-              graphql-language-service-cli
-              graphviz
-              haskell-language-server
-              haskellPackages.cabal-fmt
-              haskellPackages.cabal-gild
-              isort
-              jdt-language-server
-              kotlin-language-server
-              ltex-ls-plus
-              lua-language-server
-              marksman
-              metals
-              nginx-language-server
-              nil
-              nixfmt
-              nodePackages.purescript-language-server
-              ocamlPackages.ocaml-lsp
-              ocamlformat
-              omnisharp-roslyn
-              plantuml
-              prettier
-              pyright
-              ripgrep
-              ruff
-              rust-analyzer
-              sbcl
-              serve-d
-              shellcheck
-              sops
-              sqls
-              svelte-language-server
-              tailwindcss-language-server
-              taplo
-              terraform-ls
-              texlab
-              typescript-language-server
-              vscode-langservers-extracted
-              vue-language-server
-              yaml-language-server
-              zls
-            ]);
-          # Emacs derivationのビルドオプション。
-          # `default`と`pgtk`の両方に適用されます。
-          emacsBuildOptions = {
-            withCompressInstall = false;
+          dot-emacs-default = mkEmacs {
+            inherit system;
+            basePackage = pkgs.emacs;
           };
-          # デフォルトのEmacsにカスタムビルドオプションを適用したものを使用。
-          dot-emacs-default = pkgs.emacsWithPackagesFromUsePackage {
-            inherit
-              config
-              extraEmacsPackages
-              ;
-            package = pkgs.emacs.override (
-              emacsBuildOptions
-              // {
-                # `withImageMagick`は`withX`または`withNS`を要求するため、
-                # pgtkでは有効化できません。
-                # default側にのみ設定。
-                withImageMagick = true;
-              }
-            );
-          };
-          # Wayland対応のpure GTK版Emacsを使用。
-          dot-emacs-pgtk = pkgs.emacsWithPackagesFromUsePackage {
-            inherit
-              config
-              extraEmacsPackages
-              ;
-            package = pkgs.emacs-pgtk.override emacsBuildOptions;
+          dot-emacs-pgtk = mkEmacs {
+            inherit system;
+            basePackage = pkgs.emacs-pgtk;
           };
         in
         {
-          _module.args.pkgs =
-            let
-              # 明示的に許可するunfreeパッケージのリスト。
-              allowedUnfreePackages = [
-                "copilot-language-server" # 一番いい補完のため仕方がない。
-              ];
-            in
-            import nixpkgs {
-              inherit system;
-              config = {
-                allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowedUnfreePackages;
-              };
-              overlays = [
-                emacs-overlay.overlays.default
-              ];
-            };
+          _module.args.pkgs = mkPkgs { inherit system; };
           treefmt.config = {
             projectRootFile = "flake.nix";
             programs = {
@@ -180,7 +213,10 @@
             };
           };
           checks = {
-            inherit dot-emacs-default dot-emacs-pgtk;
+            inherit
+              dot-emacs-default
+              dot-emacs-pgtk
+              ;
           };
           packages = {
             # flake.lockの管理バージョンをre-exportすることで安定した利用を促進。
