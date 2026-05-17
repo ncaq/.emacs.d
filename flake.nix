@@ -130,7 +130,7 @@
       /**
         指定`system`に対して`init.el`と外部toolingを束ねたEmacsパッケージを生成する関数。
 
-        - `package`: nixpkgsなどに定義されているemacsのpackage名を指定します。
+        - `basePackage`: `pkgs.emacs`や`pkgs.emacs-pgtk`などのEmacs derivationを指定します。
         - `extraOverlays`: dotfiles側のCPUモデル最適化overlayなど、
           呼び出し側が追加したいnixpkgs overlayを受け取る。
           ここで受け取ったoverlayは内部pkgsの構築時に`emacs-overlay`の後ろに連結されるため、
