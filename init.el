@@ -516,7 +516,8 @@ editorconfigと自動連携します。
  ;; ちょうどよい100幅にします。
  ;; `buffer.c'での定義なので適切な場所があまりないので関係性を考えてここに定義。
  (fill-column . 100)
- ;; standard-valueも変更して変更された時に分かりやすいようにします。
+ ;; `standard-value'も変更して変更された時に分かりやすいようにします。
+ ;; `setq-default'だけだとOriginal Valueが変更されません。
  :config (put 'fill-column 'standard-value '(100)))
 
 ;; 以下の順番で読み込まないと正常に動かなかった
