@@ -508,8 +508,8 @@ editorconfigと自動連携します。
      (display-fill-column-indicator-mode 1)))
  :hook ((conf-mode-hook prog-mode-hook text-mode-hook) . turn-on-display-fill-column-indicator)
  :setq-default
- ;; column値が設定されていないデフォルトの場合は幅を100にします。
- ;; 小さい画面にも配慮したある程度適切な値です。
+ ;; `fill-column'のグローバルデフォルト値を100にします。
+ ;; 明示設定のないバッファで適用されます。
  ;; どこかで設定されている70や80と言った値はあまりにも狭すぎて、
  ;; 現代では不合理です。
  ;; かと言って120幅はフルHD画面を二分割したぐらいでちょっとはみ出るので、
