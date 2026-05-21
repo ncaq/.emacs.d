@@ -506,7 +506,19 @@ editorconfigと自動連携します。
 `display-fill-column-indicator--turn-on'は内部関数なのでこちらをhookに登録します。"
    (unless (or (minibufferp) (and (daemonp) (null (frame-parameter nil 'client))))
      (display-fill-column-indicator-mode 1)))
- :hook ((conf-mode-hook prog-mode-hook text-mode-hook) . turn-on-display-fill-column-indicator))
+ :hook ((conf-mode-hook prog-mode-hook text-mode-hook) . turn-on-display-fill-column-indicator)
+ :setq-default
+ ;; `fill-column'のグローバルデフォルト値を100にします。
+ ;; 明示設定のないバッファで適用されます。
+ ;; どこかで設定されている70や80と言った値はあまりにも狭すぎて、
+ ;; 現代では不合理です。
+ ;; かと言って120幅はフルHD画面を二分割したぐらいでちょっとはみ出るので、
+ ;; ちょうどよい100幅にします。
+ ;; `buffer.c'での定義なので適切な場所があまりないので関係性を考えてここに定義。
+ (fill-column . 100)
+ ;; `standard-value'も変更して変更された時に分かりやすいようにします。
+ ;; `setq-default'だけだとOriginal Valueが変更されません。
+ :config (put 'fill-column 'standard-value '(100)))
 
 ;; 以下の順番で読み込まないと正常に動かなかった
 ;; rainbow-delimiters -> rainbow-mode
