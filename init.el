@@ -462,7 +462,7 @@
  (defun font-setup ()
    (set-face-attribute 'default nil
                        :family "FirgeNerd Console"
-                       ;; 2画面分割でだいたい横120文字を表示できるフォントサイズにする。
+                       ;; 2画面分割でだいたい横100文字を表示できるフォントサイズにする。
                        ;; フルHDと4Kを想定。
                        :height
                        (if (<= (frame-pixel-width) 1920)
