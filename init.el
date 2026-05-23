@@ -462,12 +462,16 @@
  (defun font-setup ()
    (set-face-attribute 'default nil
                        :family "FirgeNerd Console"
-                       ;; 2画面分割でだいたい横120文字を表示できるフォントサイズにする。
-                       ;; フルHDと4Kを想定。
+                       ;; 2画面分割でだいたい横100文字を表示できる、
+                       ;; 出来るだけ大きめのフォントサイズにします。
+                       ;; フルHDと4K(144 dpi)を想定します。
                        :height
                        (if (<= (frame-pixel-width) 1920)
-                           120
-                         130))
+                           ;; フルHDで横100文字を表示できるギリギリのサイズ。
+                           130
+                         ;; 4K(144 dpi)ならもう少し大きくしても余裕がありますが、
+                         ;; 縦幅もそれなりに取りたいので控えめなサイズ。
+                         150))
    (set-fontset-font t 'unicode (font-spec :name "FirgeNerd Console") nil 'append)
    (unless (eq system-type 'darwin)
      (set-fontset-font t '(#x1F000 . #x1FAFF) (font-spec :name "Noto Color Emoji") nil 'append)))
