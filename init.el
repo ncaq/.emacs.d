@@ -466,7 +466,7 @@
                        ;; フルHDと4Kを想定。
                        :height
                        (if (<= (frame-pixel-width) 1920)
-                           120
+                           130
                          130))
    (set-fontset-font t 'unicode (font-spec :name "FirgeNerd Console") nil 'append)
    (unless (eq system-type 'darwin)
