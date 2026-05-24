@@ -96,14 +96,6 @@
  (inhibit-startup-screen . t) ; スタートアップ画面を出さない
  (mail-host-address . "ncaq.net")) ; これでuser-mail-addressも設定されます
 
-(defun kill-buffer-if-exist (BUFFER-OR-NAME)
-  "バッファが存在すればkillする. 無ければ何もしない."
-  (when (get-buffer BUFFER-OR-NAME)
-    (kill-buffer BUFFER-OR-NAME)))
-
-;; 起動時に作られる使わないバッファを削除する
-(kill-buffer-if-exist "*scratch*")
-
 ;;; 設定からある程度独立した定義
 
 (leaf ncaq-emacs-utils :vc (:url "https://github.com/ncaq/ncaq-emacs-utils") :require t)
