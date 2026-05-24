@@ -62,8 +62,6 @@
 
 (leaf envrc :ensure t :global-minor-mode envrc-global-mode)
 
-;;; 初期時実行
-
 (leaf
  startup
  :custom
