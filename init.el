@@ -45,9 +45,7 @@
    (setf (cadr (aref tabulated-list-format 0)) 50))
  :hook (package-menu-mode-hook . package-menu-mode-setup))
 
-;;; 早めにserverを起動することで二重起動の可能性を減らす
-
-(leaf server :global-minor-mode t)
+(leaf server :doc "二重起動の可能性を減らすために早めにserverは起動します。" :global-minor-mode t)
 
 ;;; PATH
 
