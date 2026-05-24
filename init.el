@@ -1765,6 +1765,11 @@ Add the type signature that GHC infers to the function located below the point."
    (unless (fboundp 'haskell-mode-buffer-apply-command)
      (require 'haskell-commands))
    (haskell-mode-buffer-apply-command "cabal-fmt"))
+ (defun cabal-gild ()
+   (interactive)
+   (unless (fboundp 'haskell-mode-buffer-apply-command)
+     (require 'haskell-commands))
+   (haskell-mode-buffer-apply-command "cabal-gild"))
  :config (dvorak-set-key-prog haskell-cabal-mode-map))
 
 (leaf shakespeare-mode :ensure t)
