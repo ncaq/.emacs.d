@@ -47,8 +47,6 @@
 
 (leaf server :doc "二重起動の可能性を減らすために早めにserverは起動します。" :global-minor-mode t)
 
-;;; PATH
-
 (leaf
  f
  :ensure t
