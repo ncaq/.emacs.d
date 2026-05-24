@@ -94,7 +94,7 @@
  startup
  :custom
  (inhibit-startup-screen . t) ; スタートアップ画面を出さない
- (mail-host-address . "ncaq.net")) ; これでuser-mail-addressも設定されます
+ (mail-host-address . "ncaq.net")) ; これで`user-mail-address'も設定されます
 
 ;;; 設定からある程度独立した定義
 
