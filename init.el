@@ -66,8 +66,6 @@
 
 (leaf envrc :ensure t :global-minor-mode envrc-global-mode :custom (envrc-none-lighter . nil))
 
-(leaf add-node-modules-path :ensure t :defun add-node-modules-path)
-
 ;;; 初期時実行
 
 (leaf
