@@ -559,38 +559,39 @@ editorconfigと自動連携します。
 
 (leaf
  bindings
- :config
+ :setq
  ;; ((ファイル名 or バッファ名) モード一覧)
- (setq frame-title-format
-       '(:eval (list "emacs " (or (buffer-file-name) (buffer-name)) " " mode-line-modes)))
+ (frame-title-format
+  . '(:eval (list "emacs " (or (buffer-file-name) (buffer-name)) " " mode-line-modes)))
  ;; mode-line line and column and sum char numbar
- (setq mode-line-position
-       '(:eval
-         (list
-          ;; 行の情報。
-          "l"
-          ;; 現在のポイントの行番号。
-          "%l"
-          ;; セパレータ。
-          "/"
-          ;; バッファの総行数。
-          (number-to-string (count-lines (point-min) (point-max)))
-          ;; 列の情報。
-          " c"
-          ;; 現在のポイントの列番号。
-          (number-to-string (- (point) (line-beginning-position)))
-          ;; セパレータ。
-          "/"
-          ;; 現在のポイントの列の総文字数。
-          (number-to-string (- (line-end-position) (line-beginning-position)))
-          ;; 文字数の情報。
-          " s"
-          ;; 現在のポイントまでの文字数。
-          (number-to-string (point))
-          ;; セパレータ。
-          "/"
-          ;; バッファの総文字数。
-          "%i"))))
+ (mode-line-position
+  .
+  '(:eval
+    (list
+     ;; 行の情報。
+     "l"
+     ;; 現在のポイントの行番号。
+     "%l"
+     ;; セパレータ。
+     "/"
+     ;; バッファの総行数。
+     (number-to-string (count-lines (point-min) (point-max)))
+     ;; 列の情報。
+     " c"
+     ;; 現在のポイントの列番号。
+     (number-to-string (- (point) (line-beginning-position)))
+     ;; セパレータ。
+     "/"
+     ;; 現在のポイントの列の総文字数。
+     (number-to-string (- (line-end-position) (line-beginning-position)))
+     ;; 文字数の情報。
+     " s"
+     ;; 現在のポイントまでの文字数。
+     (number-to-string (point))
+     ;; セパレータ。
+     "/"
+     ;; バッファの総文字数。
+     "%i"))))
 
 ;; バッファの名前にディレクトリ名を付けることでユニークになりやすくする
 (leaf uniquify :require t :custom (uniquify-buffer-name-style . 'forward))
