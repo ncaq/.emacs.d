@@ -64,7 +64,7 @@
           (string-match-p "WSL" (f-read-text osrelease-file))))
    "EmacsがWSLで動いているか?"))
 
-(leaf envrc :ensure t :global-minor-mode envrc-global-mode :custom (envrc-none-lighter . nil))
+(leaf envrc :ensure t :global-minor-mode envrc-global-mode)
 
 ;;; 初期時実行
 
