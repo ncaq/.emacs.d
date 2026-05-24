@@ -64,26 +64,6 @@
           (string-match-p "WSL" (f-read-text osrelease-file))))
    "EmacsがWSLで動いているか?"))
 
-(leaf
- exec-path-from-shell
- :doc
- "以下のようなシェルの環境変数を引き継がないケースでもEmacs側で環境変数を読み込みます。
-- Windowsのwslg.exe
-- macOSのランチャー
-- systemdのサービス
-"
- :ensure t
- :custom
- ;; NixOSのEmacsがsystemdサービスとして動く環境では、
- ;; bash -l -c経由で起動するためPATHは既に正しい。
- ;; PATHを同期するとNixのsite-start.elで追加されたexec-pathが上書きされて、
- ;; 逆に読めなくなってしまいます。
- ;; よってPATHは除外します。
- (exec-path-from-shell-variables . '("MANPATH" "SSH_ASKPASS" "SSH_AUTH_SOCK"))
- :config
- ;; wslg.exeでshell-typeをnoneにすると何故かここで新しいインスタンスが起動してループするため注意。
- (exec-path-from-shell-initialize))
-
 (leaf envrc :ensure t :global-minor-mode envrc-global-mode :custom (envrc-none-lighter . nil))
 
 (leaf add-node-modules-path :ensure t :defun add-node-modules-path)
