@@ -568,7 +568,7 @@ editorconfigと自動連携します。
   .
   '(:eval
     (list
-     ;; 行の情報。
+     ;;; 行の情報。
      "l"
      ;; 現在のポイントの行番号。
      "%l"
@@ -576,15 +576,21 @@ editorconfigと自動連携します。
      "/"
      ;; バッファの総行数。
      (number-to-string (count-lines (point-min) (point-max)))
-     ;; 列の情報。
+     ;;; 列の情報。
      " c"
      ;; 現在のポイントの列番号。
-     (number-to-string (- (point) (line-beginning-position)))
+     ;; `current-column'は全角文字を2幅でタブを設定された幅として計算するため、
+     ;; `fill-column'や`display-fill-column-indicator'の基準と一致します。
+     (number-to-string (current-column))
      ;; セパレータ。
      "/"
      ;; 現在のポイントの列の総文字数。
-     (number-to-string (- (line-end-position) (line-beginning-position)))
-     ;; 文字数の情報。
+     ;; こちらも`current-column'と同じ表示幅基準で行末までの幅を計算します。
+     (number-to-string
+      (save-excursion
+        (end-of-line)
+        (current-column)))
+     ;;; 文字数の情報。
      " s"
      ;; 現在のポイントまでの文字数。
      (number-to-string (point))
