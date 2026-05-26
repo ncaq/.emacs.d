@@ -1849,7 +1849,8 @@ Add the type signature that GHC infers to the function located below the point."
  markdown-mode
  :ensure t
  :mode ("README\\.md\\'" . gfm-mode)
- :custom (markdown-fontify-code-blocks-natively . t)
+ :custom
+ (markdown-fontify-code-blocks-natively . t) ; コードブロックにシンタックスハイライトをつける。
  :bind (:markdown-mode-map ("C-c k" . markdown-insert-kbd))
  :defvar markdown-mode-map markdown-code-lang-modes
  :config (dvorak-set-key-prog markdown-mode-map)
