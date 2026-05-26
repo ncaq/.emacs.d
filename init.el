@@ -1851,6 +1851,7 @@ Add the type signature that GHC infers to the function located below the point."
  :mode ("README\\.md\\'" . gfm-mode)
  :custom
  (markdown-fontify-code-blocks-natively . t) ; コードブロックにシンタックスハイライトをつける。
+ :hook (markdown-mode-hook . prettier-toggle-setup)
  :bind (:markdown-mode-map ("C-c k" . markdown-insert-kbd))
  :defvar markdown-mode-map markdown-code-lang-modes
  :config (dvorak-set-key-prog markdown-mode-map)
