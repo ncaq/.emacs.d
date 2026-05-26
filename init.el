@@ -1851,7 +1851,17 @@ Add the type signature that GHC infers to the function located below the point."
  :mode ("README\\.md\\'" . gfm-mode)
  :custom
  (markdown-fontify-code-blocks-natively . t) ; コードブロックにシンタックスハイライトをつける。
- :hook (markdown-mode-hook . prettier-toggle-setup)
+ :init
+ (defun markdown-prettier-toggle-setup ()
+   "`markdown-mode'で`git-commit-mode'ではないなら`prettier-toggle-setup'を実行します。
+`git-commit-mode'を弾くのは`COMMIT_EDITMSG'がMarkdownであるとprettierが知らず、
+そのファイル名で実行するとprettierがエラーを吐き出すからです。
+正しく設定でprettierに教えるのも設定ファイルのコンフリクトで難しいです。
+コミットメッセージをMarkdownとしてフォーマットする必要はそこまでないので、
+単純に無効にしてしまいます。"
+   (unless (bound-and-true-p git-commit-mode)
+     (prettier-toggle-setup)))
+ :hook (markdown-mode-hook . markdown-prettier-toggle-setup)
  :bind (:markdown-mode-map ("C-c k" . markdown-insert-kbd))
  :defvar markdown-mode-map markdown-code-lang-modes
  :config (dvorak-set-key-prog markdown-mode-map)
