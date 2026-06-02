@@ -1388,7 +1388,8 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
  :require t
  :custom
  (default-input-method . "japanese-mozc-im")
- (mozc-candidate-style . 'echo-area))
+ (mozc-candidate-style . 'echo-area)
+ `(mozc-helper-program-name . ,(executable-find "mozc_emacs_helper")))
 
 ;;; 汎用プログラミング機能
 
