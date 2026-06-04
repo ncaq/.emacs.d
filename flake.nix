@@ -56,69 +56,80 @@
       # `init.el`から自動推論されないネイティブパッケージ。
       extraEmacsPackagesFor =
         pkgs: epkgs:
-        (with epkgs; [
-          treesit-grammars.with-all-grammars
-        ])
-        ++ (with pkgs; [
-          bash-language-server
-          black
-          clang-tools
-          clojure-lsp
-          cmake-language-server
-          copilot-language-server
-          csharp-ls
-          deno
-          dhall-lsp-server
-          dockerfile-language-server
-          elixir-ls
-          elmPackages.elm-format
-          elmPackages.elm-language-server
-          erlang-language-platform
-          fortls
-          fourmolu
-          gauche
-          gh
-          gopls
-          graphql-language-service-cli
-          graphviz
-          haskell-language-server
-          haskellPackages.cabal-fmt
-          haskellPackages.cabal-gild
-          isort
-          jdt-language-server
-          kotlin-language-server
-          ltex-ls-plus
-          lua-language-server
-          marksman
-          metals
-          nginx-language-server
-          nil
-          nixfmt
-          ocamlPackages.ocaml-lsp
-          ocamlformat
-          omnisharp-roslyn
-          plantuml
-          prettier
-          pyright
-          ripgrep
-          ruff
-          rust-analyzer
-          sbcl
-          serve-d
-          shellcheck
-          sops
-          sqls
-          svelte-language-server
-          tailwindcss-language-server
-          taplo
-          terraform-ls
-          texlab
-          typescript-language-server
-          vscode-langservers-extracted
-          vue-language-server
-          yaml-language-server
-          zls
-        ]);
+        let
+          # tree-sitterの文法一式。
+          treesitPackages = with epkgs; [
+            treesit-grammars.with-all-grammars
+          ];
+          # 各言語のLanguage Server。
+          languageServers = with pkgs; [
+            bash-language-server
+            clang-tools
+            clojure-lsp
+            cmake-language-server
+            copilot-language-server
+            csharp-ls
+            dhall-lsp-server
+            dockerfile-language-server
+            elixir-ls
+            elmPackages.elm-language-server
+            erlang-language-platform
+            fortls
+            gopls
+            graphql-language-service-cli
+            haskell-language-server
+            jdt-language-server
+            kotlin-language-server
+            ltex-ls-plus
+            lua-language-server
+            marksman
+            metals
+            nginx-language-server
+            nil
+            ocamlPackages.ocaml-lsp
+            omnisharp-roslyn
+            pyright
+            rust-analyzer
+            serve-d
+            sqls
+            svelte-language-server
+            tailwindcss-language-server
+            taplo
+            terraform-ls
+            texlab
+            typescript-language-server
+            vscode-langservers-extracted
+            vue-language-server
+            yaml-language-server
+            zls
+          ];
+          # フォーマッタとlinter。
+          formatters = with pkgs; [
+            black
+            elmPackages.elm-format
+            fourmolu
+            haskellPackages.cabal-fmt
+            haskellPackages.cabal-gild
+            isort
+            nixfmt
+            ocamlformat
+            prettier
+            ruff
+            shellcheck
+          ];
+          # 言語処理系やその他の補助ツール。
+          tools = with pkgs; [
+            deno
+            gauche
+            gh
+            graphviz
+            plantuml
+            ripgrep
+            sbcl
+            sops
+          ];
+        in
+        treesitPackages ++ languageServers ++ formatters ++ tools;
 
       # Emacs derivationのビルドオプション。
       # `default`と`pgtk`の両方に適用されます。
