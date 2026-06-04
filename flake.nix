@@ -117,15 +117,10 @@
             ruff
             shellcheck
           ];
-          # 言語処理系やその他の補助ツール。
+          # その他の補助ツール。
           tools = with pkgs; [
-            deno
-            gauche
             gh
-            graphviz
-            plantuml
             ripgrep
-            sbcl
             sops
           ];
         in
