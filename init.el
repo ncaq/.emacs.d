@@ -1290,6 +1290,13 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
  (leaf magit-pull :custom (magit-pull-or-fetch . t))
  (leaf magit-wip :blackout t :custom (magit-wip-mode . t))
  (leaf
+  magit-commit
+  :after t
+  :config
+  ;; `magit-commit'はデフォルトで`--verbose'が有効。
+  ;; commitlintがdiff部分を誤検出するため無効化する。
+  (oset (get 'magit-commit 'transient--prefix) default-value nil))
+ (leaf
   git-commit
   :custom (git-commit-major-mode . #'markdown-mode)
   :init
