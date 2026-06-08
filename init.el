@@ -1477,7 +1477,12 @@ Forgeとかにも作成機能はあるが、レビュアーやラベルやProjec
  :ensure t
  :global-minor-mode global-flycheck-mode
  :blackout t
- :custom (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない。
+ :custom
+ (flycheck-display-errors-function . nil) ; Echoエリアにエラーを表示しない。
+ ;; HaskellはLSP(HLS)が診断を提供するためネイティブcheckerは冗長。
+ ;; 有効なままだとバッファを開くたびにghc/hlint/stackの実行ファイル探索が走り、
+ ;; `.hs'を開くのが異様に遅くなるため無効化する。
+ (flycheck-disabled-checkers . '(haskell-ghc haskell-hlint haskell-stack-ghc))
  :bind
  (:flycheck-mode-map
   ("C-z" . flycheck-list-errors)
