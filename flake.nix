@@ -61,47 +61,9 @@
           treesitPackages = with epkgs; [
             treesit-grammars.with-all-grammars
           ];
-          # 各言語のLanguage Server。
+          # Emacs固有機能が利用するLanguage Server。
           languageServers = with pkgs; [
-            bash-language-server
-            clang-tools
-            clojure-lsp
-            cmake-language-server
             copilot-language-server
-            csharp-ls
-            dhall-lsp-server
-            dockerfile-language-server
-            elixir-ls
-            elmPackages.elm-language-server
-            erlang-language-platform
-            fortls
-            gopls
-            graphql-language-service-cli
-            haskell-language-server
-            jdt-language-server
-            kotlin-language-server
-            ltex-ls-plus
-            lua-language-server
-            marksman
-            metals
-            nginx-language-server
-            nil
-            ocamlPackages.ocaml-lsp
-            omnisharp-roslyn
-            pyright
-            rust-analyzer
-            serve-d
-            sqls
-            svelte-language-server
-            tailwindcss-language-server
-            taplo
-            terraform-ls
-            texlab
-            typescript-language-server
-            vscode-langservers-extracted
-            vue-language-server
-            yaml-language-server
-            zls
           ];
           # フォーマッタとlinter。
           formatters = with pkgs; [
