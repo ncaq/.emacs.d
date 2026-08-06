@@ -1924,7 +1924,23 @@ Add the type signature that GHC infers to the function located below the point."
 (leaf
  nix-mode
  :ensure t
- :config (leaf lsp-mode :after t :custom (lsp-nix-nil-formatter . ["nixfmt"])))
+ :preface
+ (defconst nixd-deployed-nixos-options-expr
+   (format
+    "(builtins.getFlake %S).nixosConfigurations.%S.options"
+    (file-truename "/etc/nixos-flake")
+    (system-name)))
+ :config
+ (leaf
+  lsp-nix
+  :after t
+  :custom
+  (lsp-nix-nixd-formatting-command . ["nixfmt"])
+  (lsp-nix-nixd-nixpkgs-expr . "import <nixpkgs> { }")
+  `(lsp-nix-nixd-nixos-options-expr . ,nixd-deployed-nixos-options-expr)
+  `(lsp-nix-nixd-home-manager-options-expr
+    . ,(concat nixd-deployed-nixos-options-expr ".home-manager.users.type.getSubOptions []"))
+  :config (setf (lsp--client-priority (gethash 'nixd-lsp lsp-clients)) 1)))
 
 ;;; OCaml
 
