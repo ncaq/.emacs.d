@@ -1930,10 +1930,9 @@ Add the type signature that GHC infers to the function located below the point."
   :after t
   :preface
   (defconst nixd-deployed-nixos-options-expr
-    (format
-     "(builtins.getFlake %S).nixosConfigurations.%S.options"
-     (file-truename "/etc/nixos-flake")
-     (system-name))
+    (format "(builtins.getFlake %S).nixosConfigurations.%S.options"
+            (file-truename "/etc/nixos-flake")
+            (system-name))
     "nixdに渡す、このホストにデプロイされているNixOSのオプションを取得する式。")
   (defconst nixd-deployed-home-manager-options-expr
     (concat nixd-deployed-nixos-options-expr ".home-manager.users.type.getSubOptions []")
