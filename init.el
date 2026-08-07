@@ -1935,16 +1935,14 @@ Add the type signature that GHC infers to the function located below the point."
      (file-truename "/etc/nixos-flake")
      (system-name))
     "nixdに渡す、このホストにデプロイされているNixOSのオプションを取得する式。")
+  (defconst nixd-deployed-home-manager-options-expr
+    (concat nixd-deployed-nixos-options-expr ".home-manager.users.type.getSubOptions []")
+    "nixdに渡す、home-managerのオプションを取得する式。")
   :custom
   (lsp-nix-nixd-formatting-command . ["nixfmt"])
   (lsp-nix-nixd-nixpkgs-expr . "import <nixpkgs> { }")
-  ;; `:custom'のバッククォートはleafのマクロ展開時に評価されてしまい、
-  ;; `:preface'の定義がまだ実行されていないため使えない。
-  ;; `:custom*'は値をフォームのまま残すので実行時に評価される。
-  :custom*
-  ((lsp-nix-nixd-nixos-options-expr nixd-deployed-nixos-options-expr)
-   (lsp-nix-nixd-home-manager-options-expr
-    (concat nixd-deployed-nixos-options-expr ".home-manager.users.type.getSubOptions []")))
+  (lsp-nix-nixd-nixos-options-expr . nixd-deployed-nixos-options-expr)
+  (lsp-nix-nixd-home-manager-options-expr . nixd-deployed-home-manager-options-expr)
   :config (setf (lsp--client-priority (gethash 'nixd-lsp lsp-clients)) 1)))
 
 ;;; OCaml
