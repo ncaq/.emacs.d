@@ -1942,6 +1942,7 @@ Add the type signature that GHC infers to the function located below the point."
   (lsp-nix-nixd-nixpkgs-expr . "import <nixpkgs> { }")
   (lsp-nix-nixd-nixos-options-expr . nixd-deployed-nixos-options-expr)
   (lsp-nix-nixd-home-manager-options-expr . nixd-deployed-home-manager-options-expr)
+  :defvar lsp-clients ; lsp-modeによる定義。lsp-nixが読み込まれているときには読み込まれている。
   :config (setf (lsp--client-priority (gethash 'nixd-lsp lsp-clients)) 1)))
 
 ;;; OCaml
