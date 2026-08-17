@@ -58,8 +58,18 @@
         pkgs: epkgs:
         let
           # tree-sitterの文法一式。
-          treesitPackages = with epkgs; [
-            treesit-grammars.with-all-grammars
+          treesitPackages = [
+            (epkgs.treesit-grammars.with-grammars (
+              grammars:
+              pkgs.tree-sitter.allGrammars
+              ++ [
+                # nixpkgsは1リポジトリにつき1文法しかビルドしないため、
+                # `tree-sitter-fsharp`は`fsharp`文法だけが提供され、
+                # `.fsi`が使う`fsharp_signature`文法が欠けている。
+                # 同じソースから`language`を差し替えてビルドし直して補う。
+                (grammars.tree-sitter-fsharp.override { language = "fsharp_signature"; })
+              ]
+            ))
           ];
           # Emacs固有機能が利用するLanguage Server。
           languageServers = with pkgs; [
