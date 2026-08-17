@@ -1717,7 +1717,12 @@ PerlとPrologを自動識別するのは非常に有用です。"
  :custom (fsharp-ts-guess-indent-offset . t)
  :hook
  (fsharp-ts-mode-hook . fsharp-ts-dotnet-mode)
- (fsharp-ts-mode-hook . fsharp-ts-repl-minor-mode))
+ (fsharp-ts-mode-hook . fsharp-ts-repl-minor-mode)
+ :config
+ (leaf
+  lsp-fsharp
+  :custom
+  (lsp-fsharp-use-dotnet-local-tool . t))) ; nixで宣言的にインストールされてあることを前提にする。
 
 ;;; Haskell
 
