@@ -1722,7 +1722,7 @@ PerlとPrologを自動識別するのは非常に有用です。"
  (leaf
   lsp-fsharp
   :custom
-  (lsp-fsharp-use-dotnet-tool-for-fsac . t))) ; nixで宣言的にインストールされていることが前提
+  (lsp-fsharp-use-dotnet-tool-for-fsac . nil))) ; nixで宣言的にインストールされていることが前提
 
 ;;; Haskell
 
