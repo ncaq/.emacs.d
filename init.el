@@ -1522,7 +1522,7 @@ PerlとPrologを自動識別するのは非常に有用です。"
             ('emacslisp 'emacs-lisp-mode)
             ('erlang 'erlang-mode)
             ('fortran 'fortran-mode)
-            ('fsharp 'fsharp-mode)
+            ('fsharp 'fsharp-ts-mode)
             ('go 'go-mode)
             ('groovy 'groovy-mode)
             ('haskell 'haskell-ts-mode)
@@ -1708,6 +1708,16 @@ PerlとPrologを自動識別するのは非常に有用です。"
 ;;; Elm
 
 (leaf elm-mode :ensure t :bind (:elm-mode-map ("C-c C-f" . nil)))
+
+;;; F#
+
+(leaf
+ fsharp-ts-mode
+ :ensure t
+ :custom (fsharp-ts-guess-indent-offset . t)
+ :hook
+ (fsharp-ts-mode-hook . fsharp-ts-dotnet-mode)
+ (fsharp-ts-mode-hook . fsharp-ts-repl-minor-mode))
 
 ;;; Haskell
 
