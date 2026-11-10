@@ -1038,7 +1038,7 @@ https://github.com/copilot-emacs/copilot.el/issues/469"
  :require t ; `:vc'でインストールする場合は自動ロードがうまくいかないので必要。
  :custom
  (gh-copilot-chat-default-model . "gpt-6.1-sol")
- (gh-copilot-chat-commit-model . "gpt-6-luna")
+ (gh-copilot-chat-commit-model . "claude-opus-5.5")
  (gh-copilot-chat-frontend . 'shell-maker)
  (gh-copilot-chat-markdown-prompt . "日本語で答えてください。")
  :bind
