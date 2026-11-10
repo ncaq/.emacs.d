@@ -1035,6 +1035,7 @@ https://github.com/copilot-emacs/copilot.el/issues/469"
   MELPAではまだ旧名の改名前のバージョンしか配布されていないため`:vc'で直接取得する。
   MELPAで`gh-copilot-chat'が配布されたら`:ensure t'に戻す。"
  :vc (:url "https://github.com/chep/gh-copilot-chat.el")
+ :require t ; `:vc'でインストールする場合は自動ロードがうまくいかないので必要。
  :custom
  (gh-copilot-chat-default-model . "gpt-6.1-sol")
  (gh-copilot-chat-commit-model . "gpt-6-luna")
