@@ -1036,8 +1036,8 @@ https://github.com/copilot-emacs/copilot.el/issues/469"
   MELPAで`gh-copilot-chat'が配布されたら`:ensure t'に戻す。"
  :vc (:url "https://github.com/chep/gh-copilot-chat.el")
  :custom
- (gh-copilot-chat-default-model . "gpt-5.4")
- (gh-copilot-chat-commit-model . "gpt-4.1")
+ (gh-copilot-chat-default-model . "gpt-6.1-sol")
+ (gh-copilot-chat-commit-model . "gpt-6-luna")
  (gh-copilot-chat-frontend . 'shell-maker)
  (gh-copilot-chat-markdown-prompt . "日本語で答えてください。")
  :bind
