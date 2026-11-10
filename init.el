@@ -800,10 +800,11 @@ Emacsでは`C-m'と`RET'を同一に扱うためうまく振り分けるのが�
      "Flymake log"
      "WoMan-Log"
      "copilot events"
-     "copilot-chat-curl-stderr.*"
-     "copilot-chat-shell-maker-temp.*"
      "copilot-language-server-log"
      "envrc"
+     "gh-copilot-chat-claude-stderr"
+     "gh-copilot-chat-curl-stderr"
+     "gh-copilot-chat-shell-maker-temp.*"
      "nixfmt"
      "prettier.+"
      "sweep Messages"
@@ -1028,30 +1029,34 @@ https://github.com/copilot-emacs/copilot.el/issues/469"
   ("C-M-t" . copilot-previous-completion)))
 
 (leaf
- copilot-chat
- :ensure t
+ gh-copilot-chat
+ :doc
+ "`copilot-chat'から`gh-copilot-chat'に改名された。
+  MELPAではまだ旧名の改名前のバージョンしか配布されていないため`:vc'で直接取得する。
+  MELPAで`gh-copilot-chat'が配布されたら`:ensure t'に戻す。"
+ :vc (:url "https://github.com/chep/gh-copilot-chat.el")
  :custom
- (copilot-chat-default-model . "gpt-5.4")
- (copilot-chat-commit-model . "gpt-4.1")
- (copilot-chat-frontend . 'shell-maker)
- (copilot-chat-markdown-prompt . "日本語で答えてください。")
+ (gh-copilot-chat-default-model . "gpt-6.1-sol")
+ (gh-copilot-chat-commit-model . "gpt-6-luna")
+ (gh-copilot-chat-frontend . 'shell-maker)
+ (gh-copilot-chat-markdown-prompt . "日本語で答えてください。")
  :bind
- ("C-; C-;" . copilot-chat-display)
- ("C-; C-a" . copilot-chat-ask-and-insert)
- ("C-; C-b" . copilot-chat-list)
- ("C-; C-c" . copilot-chat-regenerate-commit-message)
- ("C-; C-d" . copilot-chat-doc)
- ("C-; C-e" . copilot-chat-explain)
- ("C-; C-f" . copilot-chat-fix)
- ("C-; C-l" . copilot-chat-add-current-buffer)
- ("C-; C-m" . copilot-chat-set-model)
- ("C-; C-o" . copilot-chat-optimize)
- ("C-; C-q" . copilot-chat-reset)
- ("C-; C-r" . copilot-chat-review)
- ("C-; C-t" . copilot-chat-test)
- ("C-; C-u" . copilot-chat-del-current-buffer)
+ ("C-; C-;" . gh-copilot-chat-display)
+ ("C-; C-a" . gh-copilot-chat-ask-and-insert)
+ ("C-; C-b" . gh-copilot-chat-list)
+ ("C-; C-c" . gh-copilot-chat-regenerate-commit-message)
+ ("C-; C-d" . gh-copilot-chat-doc)
+ ("C-; C-e" . gh-copilot-chat-explain)
+ ("C-; C-f" . gh-copilot-chat-fix)
+ ("C-; C-l" . gh-copilot-chat-add-current-buffer)
+ ("C-; C-m" . gh-copilot-chat-set-model)
+ ("C-; C-o" . gh-copilot-chat-optimize)
+ ("C-; C-q" . gh-copilot-chat-reset)
+ ("C-; C-r" . gh-copilot-chat-review)
+ ("C-; C-t" . gh-copilot-chat-test)
+ ("C-; C-u" . gh-copilot-chat-del-current-buffer)
  ;; Gitコミットメッセージの編集開始時にGitHub Copilotによるコミットメッセージを挿入する。
- :hook (git-commit-setup-hook . copilot-chat-insert-commit-message-no-clobber))
+ :hook (git-commit-setup-hook . gh-copilot-chat-insert-commit-message-no-clobber))
 
 ;;; テキスト処理
 
